@@ -3,6 +3,8 @@ layout: page
 title: Getting Started
 ---
 
+{line-numbers=off}
+
 # Getting started
 
 In this book we will be using the [R](https://cran.r-project.org/) programming language for all our analysis. You will learn R and statistics simultaneously. However, we assume you have some basic programming skills and knowledge of R syntax. If you don't, the first homework, listed below, is to complete a tutorial. Here we give step-by-step instructions on how to get set up so that you can follow the book.
