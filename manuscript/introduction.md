@@ -1,3 +1,5 @@
+{line-numbers=off}
+
 # Introduction
 
 The unprecedented advance in digital technology during the second half of the 20th century has produced a measurement revolution that is transforming science. In the life sciences, the genomics revolution is being driven by new technologies that permit us to observe molecular entities analogous to discovering the protons, electrons and neutrons in chemistry.  Choice examples are microarrays and next generation sequencing technology.  
