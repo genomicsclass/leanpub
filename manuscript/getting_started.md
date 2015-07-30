@@ -5,12 +5,12 @@ title: Getting Started
 
 # Getting started
 
-In this book we will be using the [R](https://cran.r-project.org/) programming language for all our analysis. You will learn R and statistics simultaneously. However, we assume you have some basic programming skills and knowledge of R syntax. If you don't, the first homework, below, is to complete a tutorial. Here we give step-by-step instructions on how to get set up to follow along.
+In this book we will be using the [R](https://cran.r-project.org/) programming language for all our analysis. You will learn R and statistics simultaneously. However, we assume you have some basic programming skills and knowledge of R syntax. If you don't, the first homework, listed below, is to complete a tutorial. Here we give step-by-step instructions on how to get set up so that you can follow the book.
 
 
 ## Installing R
 
-The first step is to install R. You can downloand and install R from the (Comprehensive R Archive Network)[https://cran.r-project.org/] (CRAN). It is relatively straight forward but if you need furthter help you can try the following resources:
+The first step is to install R. You can downloand and install R from the (Comprehensive R Archive Network)[https://cran.r-project.org/] (CRAN). It is relatively straightforward, but if you need further help you can try the following resources:
 
 * [Installing R on Windows](https://github.com/genomicsclass/windows#installing-r). 
 * [Installing R on Mac](http://youtu.be/Icawuhf0Yqo)
@@ -22,7 +22,7 @@ The next step is to install RStudio. Technically you can run all the code shown 
 
 ## Learn R basics
 
-The first homework assignment is to complete an R tutorial to familiarize yourself with the basics of programming and R syntax. If you are already familiar you can skip to the next section.
+The first homework assignment is to complete an R tutorial to familiarize yourself with the basics of programming and R syntax. If you are already familiar with R you can skip ahead to the next section.
 
 *Homework 0*:  Go through the [swirl](http://swirlstats.com/) tutorial, which teaches you R programming and data science interactively, at your own pace, and right in the R console”. Once you have R installed you can install swirl and run it this way:
 
@@ -56,7 +56,7 @@ and that the hashtag symbol represents comments and are not interpreted:
 
 ## Installing packages
 
-The first R command we will run is `install.packages`. If you took the swirl tutorial you already did this! R only includes a basic set of functions. There is much more it can do than this, but not everybody needs everything so we instead make some functions via packages. Many of these function are stored in CRAN. Note that these packages are vetted. You can install easily from within R if you know the name of the function. As an example, we are going to install the package `downloader` which we use in our first data analysis examples:
+The first R command we will run is `install.packages`. If you took the swirl tutorial you already did this! R only includes a basic set of functions. It can do much more than this, but not everybody needs everything so we instead make some functions via packages. Many of these functions are stored in CRAN. Note that these packages are vetted. You can install easily from within R if you know the name of the function. As an example, we are going to install the package `downloader` which we use in our first data analysis examples:
 
 
 ```r
