@@ -1,2 +1,13 @@
 introduction.md
 getting_started.md
+random_variables.md
+populations_and_samples.md
+clt_and_t-distribution.md	
+clt_in_practice.md
+t-tests_in_practice.md
+confidence_intervals.md
+association_tests.md
+power_calculations.md
+monte_carlo.md
+permutation_tests.md
+
