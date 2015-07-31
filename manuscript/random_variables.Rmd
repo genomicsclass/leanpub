@@ -32,7 +32,7 @@ To back this up they provide this in the results section:
 What does P < 0.001 mean? What are $\pm$ included? In this class we will learn what this mean and learn to compute these values in R. The first step is to understand what is a random variable. To understand this, we will use data from a mouse database (provided by Karen Svenson via Gary Churchill and Dan Gatti and Partially funded by P50 GM070683.) We will import the data with R and explain random variables and null distributions using R programming.
 
 If you have the file in your working directory you can read it with just one line.
-```{r,eval=FALSE}
+```{r}
 dat=read.csv("femaleMiceWeights.csv")
 ```
 
@@ -73,7 +73,7 @@ url <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extd
 filename <- "femaleControlsPopulation.csv"
 if (!file.exists(filename)) download(url,destfile=filename)
 population <- read.csv(filename)
-population <- unlist( population) #turn it into a numeric
+population <- unlist(population) #turn it into a numeric
 ```
 
 Now let's sample 12 mice three times and see how the average changes.
@@ -137,8 +137,8 @@ n <- 100
 plot(0,0,xlim=c(-5,5),ylim=c(1,30),type="n")
 totals <- vector("numeric",11)
 for(i in 1:n){
-  control <- sample(population[,1],12)
-  treatment <- sample(population[,1],12)
+  control <- sample(population,12)
+  treatment <- sample(population,12)
   nulldiff <- mean(treatment) - mean(control)
   j <- pmax(pmin(round(nulldiff)+6,11),1)
   totals[j]<-totals[j]+1
