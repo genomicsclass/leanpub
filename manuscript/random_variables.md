@@ -130,7 +130,7 @@ mean(control)
 ```
 
 ```
-## [1] 23.81333
+## [1] 24.11333
 ```
 
 ```r
@@ -139,7 +139,7 @@ mean(control)
 ```
 
 ```
-## [1] 23.77083
+## [1] 24.40667
 ```
 
 ```r
@@ -148,7 +148,7 @@ mean(control)
 ```
 
 ```
-## [1] 24.18667
+## [1] 23.84
 ```
 
 Note how the average varies. We can continue to do this over and over again and start learning something about the...
@@ -171,7 +171,7 @@ print(mean(treatment) - mean(control))
 ```
 
 ```
-## [1] 0.6375
+## [1] 0.5575
 ```
 
 Now let's do it 10,000 times. We will use a for-loop, an operation that lets us automatize this
@@ -196,7 +196,7 @@ mean(null>=diff)
 ```
 
 ```
-## [1] 0.0151
+## [1] 0.0138
 ```
 
 Only 1.5%. So what do we conclude as skeptics. When there is no diet effect, we see value a `diff` as big as the one we observed only 1.5% of the time. Note that this is what is known as a p-value which we will also define more formally later
@@ -221,7 +221,7 @@ for(i in 1:n){
   }
 ```
 
-![plot of chunk unnamed-chunk-10](figure/random_variables-unnamed-chunk-10-1.png) 
+![plot of chunk unnamed-chunk-10](images/random_variables-unnamed-chunk-10-1.png) 
 
 <a name="distributions"></a>
 
@@ -241,7 +241,7 @@ myecdf <- ecdf(null)
 plot(values,myecdf(values),type="l")
 ```
 
-![plot of chunk unnamed-chunk-11](figure/random_variables-unnamed-chunk-11-1.png) 
+![plot of chunk unnamed-chunk-11](images/random_variables-unnamed-chunk-11-1.png) 
 
 The `ecdf` function is not typical and we won't discuss it here. Furthermore, these ecdfs are actually not as popular as histograms which give us the same information but show us the proportion of values in intervals
 
@@ -256,7 +256,7 @@ hist(null)
 abline(v=diff)
 ```
 
-![plot of chunk unnamed-chunk-12](figure/random_variables-unnamed-chunk-12-1.png) 
+![plot of chunk unnamed-chunk-12](images/random_variables-unnamed-chunk-12-1.png) 
 
 We will provide more details on histograms in later chapters. 
 
@@ -280,7 +280,7 @@ Here $\mu$ and $\sigma$ are refereed to as the mean and standard deviation. If t
 ```
 
 ```
-## [1] 0.01468484
+## [1] 0.01391929
 ```
 
 Later we will learn there is a mathematical explanation for this. A very useful characteristic of this approximation is that one only needs to know $\mu$ and $\sigma$ to describe the entire distribution. From this we can compute the proportion of values in any interval. 
