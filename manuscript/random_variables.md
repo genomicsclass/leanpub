@@ -130,7 +130,7 @@ mean(control)
 ```
 
 ```
-## [1] 24.11333
+## [1] 23.81333
 ```
 
 ```r
@@ -139,7 +139,7 @@ mean(control)
 ```
 
 ```
-## [1] 24.40667
+## [1] 23.77083
 ```
 
 ```r
@@ -148,7 +148,7 @@ mean(control)
 ```
 
 ```
-## [1] 23.84
+## [1] 24.18667
 ```
 
 Note how the average varies. We can continue to do this over and over again and start learning something about the...
@@ -171,7 +171,7 @@ print(mean(treatment) - mean(control))
 ```
 
 ```
-## [1] 0.5575
+## [1] 0.6375
 ```
 
 Now let's do it 10,000 times. We will use a for-loop, an operation that lets us automatize this
@@ -196,7 +196,7 @@ mean(null>=diff)
 ```
 
 ```
-## [1] 0.0138
+## [1] 0.0151
 ```
 
 Only 1.5%. So what do we conclude as skeptics. When there is no diet effect, we see value a `diff` as big as the one we observed only 1.5% of the time. Note that this is what is known as a p-value which we will also define more formally later
@@ -221,7 +221,7 @@ for(i in 1:n){
   }
 ```
 
-![plot of chunk unnamed-chunk-10](images/random_variables-unnamed-chunk-10-1.png) 
+![Illustration of the null distribution](images/random_variables-unnamed-chunk-10-1.png) 
 
 <a name="distributions"></a>
 
@@ -280,7 +280,7 @@ Here $\mu$ and $\sigma$ are refereed to as the mean and standard deviation. If t
 ```
 
 ```
-## [1] 0.01391929
+## [1] 0.01468484
 ```
 
 Later we will learn there is a mathematical explanation for this. A very useful characteristic of this approximation is that one only needs to know $\mu$ and $\sigma$ to describe the entire distribution. From this we can compute the proportion of values in any interval. 
