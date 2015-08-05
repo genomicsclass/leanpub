@@ -5,7 +5,7 @@ title: Introduction to random variables
 
 ```{r options, echo=FALSE}
 library(knitr)
-opts_chunk$set(fig.path=paste0("figures/", sub("(.*).Rmd","\\1",basename(knitr:::knit_concord$get('infile'))), "-"))
+opts_chunk$set(fig.path=paste0("figure/", sub("(.*).Rmd","\\1",basename(knitr:::knit_concord$get('infile'))), "-"))
 ```
 
 # Inference
