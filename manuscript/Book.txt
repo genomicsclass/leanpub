@@ -4,15 +4,16 @@ dplyr_tutorial.md
 
 ##Chapter 1 - Inference
 random_variables.md
-populations_and_samples.md
-clt_and_t-distribution.md	
+populations_and_samples.md ## Must explain histograms and qqplots here!
+clt_and_t-distribution.md	 
 clt_in_practice.md
 t-tests_in_practice.md
-confidence_intervals.md
-association_tests.md
+confidence_intervals.md ## functions and sapply
 power_calculations.md
 monte_carlo.md
 permutation_tests.md
+
+association_tests.md
 
 ##Chapter 2 - EDA
 exploratory_data_analysis_1.md
