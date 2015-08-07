@@ -10,11 +10,10 @@ clt_in_practice.md
 t-tests_in_practice.md
 course1 confidence_intervals ## functions and sapply
 power_calculations.md
-##course1 monte_carlo
+monte_carlo.md
 ##course1 permutation_tests
 ##course1 association_tests
 ##Chapter 2 - EDA
-##course1 exploratory_data_analysis_1
 ##course1 exploratory_data_analysis_2
 ##course1 plots_to_avoid
 ##course1 robust_summaries
