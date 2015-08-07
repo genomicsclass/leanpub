@@ -221,7 +221,7 @@ text(j-6,totals[j],pch=15,round(nulldiff,1))
 } 
 ``` 
 
-![Illustration of the null distribution](figure/random_variables-unnamed-chunk-10-1.png) 
+![Illustration of the null distribution](image/random_variables-unnamed-chunk-10-1.png) 
 
 <a name="distributions"></a> 
 
@@ -241,7 +241,7 @@ myecdf <- ecdf(null)
 plot(values,myecdf(values),type="l") 
 ``` 
 
-![plot of chunk unnamed-chunk-11](figure/random_variables-unnamed-chunk-11-1.png) 
+![plot of chunk unnamed-chunk-11](image/random_variables-unnamed-chunk-11-1.png) 
 
 The `ecdf` function is not typical and we won't discuss it here. Furthermore, these ecdfs are actually not as popular as histograms which give us the same information but show us the proportion of values in intervals 
 
@@ -256,7 +256,7 @@ hist(null)
 abline(v=diff) 
 ``` 
 
-![plot of chunk unnamed-chunk-12](figure/random_variables-unnamed-chunk-12-1.png) 
+![plot of chunk unnamed-chunk-12](image/random_variables-unnamed-chunk-12-1.png) 
 
 We will provide more details on histograms in later chapters. 
 
