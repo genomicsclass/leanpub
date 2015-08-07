@@ -1,15 +1,15 @@
-introduction.md
-getting_started.md
+frontmatter introduction
+course1 getting_started
 
 ##Chapter 1 - Inference
 
-random_variables.md
+course1 random_variables
 course1 populations_and_samples ## Must explain histograms and qqplots here!
-clt_and_t-distribution.md
-clt_in_practice.md
-t-tests_in_practice.md
+course1 clt_and_t-distribution	 
+course1 clt_in_practice
+course1 t-tests_in_practice
 course1 confidence_intervals ## functions and sapply
-power_calculations.md
+course1 power_calculations
 ##course1 monte_carlo
 ##course1 permutation_tests
 ##course1 association_tests
@@ -53,3 +53,4 @@ power_calculations.md
 ##factor_analysis.html)
 ##eda_with_pca.html)
 ##adjusting_with_factor_analysis.html)
+## Chapter 9 - Modeling

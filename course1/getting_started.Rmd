@@ -39,7 +39,7 @@ Note that there are also many open and free resources and reference guides for R
 * R referecence card (PDF)[https://cran.r-project.org/doc/contrib/Short-refcard.pdf] by Tom Short 
 
 Two key things you absolutely need to know about R is that you can get help for a function using `help` or `?`, like this:
-```{r}
+```{r,eval=FALSE}
 ?install.packages
 help("install.packages")
 ```
