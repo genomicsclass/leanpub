@@ -22,9 +22,9 @@ Note that the abstract has this statement:
 
 To back this up they provide this in the results section: 
 
-> "Already during the first week after introduction of high-fat diet, body weight increased significantly more in the high-fat diet–fed mice (+1.6 ± 0.1 g) than in the normal diet–fed mice (+0.2 { $$}\pm{ /$$} 0.1 g; P < 0.001)." 
+> "Already during the first week after introduction of high-fat diet, body weight increased significantly more in the high-fat diet–fed mice (+1.6 ± 0.1 g) than in the normal diet–fed mice (+0.2 {$$}\pm {/$$}0.1 g; P < 0.001)." 
 
-What does P < 0.001 mean? What are { $$}\pm{ /$$} included? In this class we will learn what this mean and learn to compute these values in R. The first step is to understand what is a random variable. To understand this, we will use data from a mouse database (provided by Karen Svenson via Gary Churchill and Dan Gatti and Partially funded by P50 GM070683.) We will import the data with R and explain random variables and null distributions using R programming. 
+What does P < 0.001 mean? What are {$$}\pm {/$$}included? In this class we will learn what this mean and learn to compute these values in R. The first step is to understand what is a random variable. To understand this, we will use data from a mouse database (provided by Karen Svenson via Gary Churchill and Dan Gatti and Partially funded by P50 GM070683.) We will import the data with R and explain random variables and null distributions using R programming. 
 
 If you have the file in your working directory you can read it with just one line. 
 
@@ -228,11 +228,11 @@ text(j-6,totals[j],pch=15,round(nulldiff,1))
 ## Distributions 
 
 We have explained what we mean by *null* in the context of null hypothesis but what exactly is a distribution? 
-The simplest way to think of a *distribution* is as a compact description of many numbers. For example, in the previous section we defined an object 'null' with 10,000 average differences created under the null. To define a distribution we compute, for all possible values of { $$}a{ /$$} the proportion of numbers in our list that are below { $$}a{ /$$}. We use the following notation 
+The simplest way to think of a *distribution* is as a compact description of many numbers. For example, in the previous section we defined an object 'null' with 10,000 average differences created under the null. To define a distribution we compute, for all possible values of {$$}a {/$$}the proportion of numbers in our list that are below {$$}a {/$$}. We use the following notation 
 
-{ $$} F(a) \equiv \mbox{Pr}(x \leq a) { /$$} 
+{$$}F(a) \equiv \mbox{Pr}(x \leq a) {/$$}
 
-This is called the empirical cumulative distribution function. We can plot { $$}F(a){ /$$} versus { $$}a{ /$$} like this 
+This is called the empirical cumulative distribution function. We can plot {$$}F(a) {/$$}versus {$$}a {/$$}like this 
 
 
 ```r 
@@ -245,7 +245,7 @@ plot(values,myecdf(values),type="l")
 
 The `ecdf` function is not typical and we won't discuss it here. Furthermore, these ecdfs are actually not as popular as histograms which give us the same information but show us the proportion of values in intervals 
 
-{ $$} \mbox{Pr}(a \leq x \leq b) = F(b) - F(a) { /$$} 
+{$$}\mbox{Pr}(a \leq x \leq b) = F(b) - F(a) {/$$}
 
 This is a more useful plot because we are usually more interested in intervals. It is also easier to distinguish different types (families) of distributions by looking at histograms. 
 
@@ -260,7 +260,7 @@ abline(v=diff)
 
 We will provide more details on histograms in later chapters. 
 
-An important point to keep in mind here is that while we defined { $$}Pr(a){ /$$} by counting cases, we will learn how, in some circumstances, mathematics gives us formulas for { $$}Pr(a){ /$$} that save us the trouble of computing them as we did here. 
+An important point to keep in mind here is that while we defined {$$}Pr(a) {/$$}by counting cases, we will learn how, in some circumstances, mathematics gives us formulas for {$$}Pr(a) {/$$}that save us the trouble of computing them as we did here. 
 
 <a name="normal_distribution"></a> 
 
@@ -268,11 +268,11 @@ An important point to keep in mind here is that while we defined { $$}Pr(a){ /$$
 
 If instead of the total numbers we report the proportions, then the histogram is a probability distribution. The probability distribution we see above approximates one that is very common in a nature: the bell curve or normal distribution or Gaussian distribution. When the histogram of a list of numbers approximates the normal distribution we can use a convenient mathematical formula to approximate the proportion of individuals in any given interval 
 
-{ $$} 
+{$$}
 \mbox{Pr}(a < x < b) = \int_a^b \frac{1}{\sqrt{2\pi\sigma^2}} \exp{\left( \frac{-(x-\mu)^2}{2 \sigma^2} \right)} \, dx 
-{ /$$} 
+{/$$}
 
-Here { $$}\mu{ /$$} and { $$}\sigma{ /$$} are refereed to as the mean and standard deviation. If this approximation holds for our list then the population mean and variance of our list can be used in the formula above. To see this with an example remember that above we noted that only 1.5% of values on the null distribution were above `diff`. We can compute the proportion of values below a value `x` with `pnorm(x,mu,sigma)` without knowing all the values. The normal approximation works very well here: 
+Here {$$}\mu {/$$}and {$$}\sigma {/$$}are refereed to as the mean and standard deviation. If this approximation holds for our list then the population mean and variance of our list can be used in the formula above. To see this with an example remember that above we noted that only 1.5% of values on the null distribution were above `diff`. We can compute the proportion of values below a value `x` with `pnorm(x,mu,sigma)` without knowing all the values. The normal approximation works very well here: 
 
 
 ```r 
@@ -283,7 +283,7 @@ Here { $$}\mu{ /$$} and { $$}\sigma{ /$$} are refereed to as the mean and standa
 ## [1] 0.01391929 
 ``` 
 
-Later we will learn there is a mathematical explanation for this. A very useful characteristic of this approximation is that one only needs to know { $$}\mu{ /$$} and { $$}\sigma{ /$$} to describe the entire distribution. From this we can compute the proportion of values in any interval. 
+Later we will learn there is a mathematical explanation for this. A very useful characteristic of this approximation is that one only needs to know {$$}\mu {/$$}and {$$}\sigma {/$$}to describe the entire distribution. From this we can compute the proportion of values in any interval. 
 
 ### Summary 
 
