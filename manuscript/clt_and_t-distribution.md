@@ -82,21 +82,28 @@ Here we will use the mice phenotypes data as example. We start by creating two v
 
 
 ```r 
-dat <- read.csv("mice_pheno.csv") ## We downloaded this file in a previous section 
-
-controlPopulation <- filter(dat,Sex == "F" & Diet == "chow") %>% select(Bodyweight) %>% unlist 
+library(dplyr) 
 ``` 
 
 ``` 
-## Error in eval(expr, envir, enclos): could not find function "%>%" 
+## 
+## Attaching package: 'dplyr' 
+## 
+## The following object is masked from 'package:stats': 
+## 
+## filter 
+## 
+## The following objects are masked from 'package:base': 
+## 
+## intersect, setdiff, setequal, union 
 ``` 
 
 ```r 
-hfPopulation <- filter(dat,Sex == "F" & Diet == "hf") %>% select(Bodyweight) %>% unlist 
-``` 
+dat <- read.csv("mice_pheno.csv") ## We downloaded this file in a previous section 
 
-``` 
-## Error in eval(expr, envir, enclos): could not find function "%>%" 
+controlPopulation <- filter(dat,Sex == "F" & Diet == "chow") %>% select(Bodyweight) %>% unlist 
+
+hfPopulation <- filter(dat,Sex == "F" & Diet == "hf") %>% select(Bodyweight) %>% unlist 
 ``` 
 
 It is important to keep in mind that what we are assuming to be normal here is the distribution of {$$}y_1,y_2,\dots,y_n {/$$}not the random variable {$$}\bar{Y} {/$$}. Although we do not get to do this in practice, in this illustrative example we get to see this distribution for both controls and high fat diet mice: 
@@ -106,19 +113,10 @@ It is important to keep in mind that what we are assuming to be normal here is t
 library(rafalib) 
 mypar(1,2) 
 hist(hfPopulation) 
-``` 
-
-``` 
-## Error in hist(hfPopulation): object 'hfPopulation' not found 
-``` 
-
-```r 
 hist(controlPopulation) 
 ``` 
 
-``` 
-## Error in hist(controlPopulation): object 'controlPopulation' not found 
-``` 
+![plot of chunk unnamed-chunk-3](images/clt_and_t-distribution-unnamed-chunk-3-1.png) 
 
 We can use qq-plots to confirm that the distribution are relatively close to being normally distributed. 
 
@@ -126,27 +124,10 @@ We can use qq-plots to confirm that the distribution are relatively close to bei
 ```r 
 mypar(1,2) 
 qqnorm(hfPopulation);qqline(hfPopulation) 
-``` 
-
-``` 
-## Error in qqnorm(hfPopulation): object 'hfPopulation' not found 
-``` 
-
-``` 
-## Error in quantile(y, probs, names = FALSE, type = qtype, na.rm = TRUE): object 'hfPopulation' not found 
-``` 
-
-```r 
 qqnorm(controlPopulation);qqline(controlPopulation) 
 ``` 
 
-``` 
-## Error in qqnorm(controlPopulation): object 'controlPopulation' not found 
-``` 
-
-``` 
-## Error in quantile(y, probs, names = FALSE, type = qtype, na.rm = TRUE): object 'controlPopulation' not found 
-``` 
+![plot of chunk unnamed-chunk-4](images/clt_and_t-distribution-unnamed-chunk-4-1.png) 
 
 The larger the sample, the more forgiving the result is to the weakness of this approximation. In the next section we will later see that for this particular dataset the t-distribution works well even for sample sizes as small as 3. 
 
