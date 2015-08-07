@@ -3,64 +3,54 @@ getting_started.md
 dplyr_tutorial.md
 
 ##Chapter 1 - Inference
+
 random_variables.md
-populations_and_samples.md ## Must explain histograms and qqplots here!
-clt_and_t-distribution.md	 
+course1 populations_and_samples ## Must explain histograms and qqplots here!
+clt_and_t-distribution.md
 clt_in_practice.md
 t-tests_in_practice.md
-confidence_intervals.md ## functions and sapply
-power_calculations.md
-monte_carlo.md
-permutation_tests.md
-
-association_tests.md
-
+course1 confidence_intervals ## functions and sapply
+##course1 power_calculations
+##course1 monte_carlo
+##course1 permutation_tests
+##course1 association_tests
 ##Chapter 2 - EDA
-exploratory_data_analysis_1.md
-exploratory_data_analysis_2.md
-plots_to_avoid.md
-obust_summaries.md
-ranktest.md
-
+##course1 exploratory_data_analysis_1
+##course1 exploratory_data_analysis_2
+##course1 plots_to_avoid
+##course1 robust_summaries
+##course1 ranktest
 ## Chapter 3 - Matrix Algebra
-intro_using_regression.md
-matrix_notation.md
-matrix_operations.md
-matrix_algebra_examples.md
-
+##course2 intro_using_regression
+##course2 matrix_notation
+##course2 matrix_operations
+##course2 matrix_algebra_examples
 ### Chapter 4: Linear Models
-expressing_design_formula.md
-linear_models_in_practice.md
-standard_errors.md
-interactions_and_contrasts.md
-pages/collinearity.md
-qr_and_regression.md
-linear_models_going_further.md
-
+##course2 expressing_design_formula
+##course2 linear_models_in_practice
+##course2 standard_errors
+##course2 interactions_and_contrasts
+##course2 pages/collinearity
+##course2 qr_and_regression
+##course2 linear_models_going_further
 ### Chapter 5: Multiple comparisons
-intro_to_highthroughput_data.md
-inference_for_highthroughput.html)
-eda_for_highthroughput.html)
-
+##course3 intro_to_highthroughput_data
+##course3 inference_for_highthroughput.html)
+##course3 eda_for_highthroughput.html)
 ## Chapter 6: Distance, clustering and dimension reduction
- 
-distance.md
-svd.md
-mds.md
-clustering_and_heatmaps.md
-
+##distance
+##svd
+##mds
+##clustering_and_heatmaps
 ## Chapter 7: Practical Machine Learning
-machine_learning.html)
-croossvalidation.html)
-
+##machine_learning.html)
+##croossvalidation.html)
 ## Chapter 8 - Batch effects
-confounding.html
-adjusting_with_linar_models.html)
-projections.html)
-rotations.html)
-PCA.html)
-factor_analysis.html)
-eda_with_pca.html)
-adjusting_with_factor_analysis.html)
-
-## Chapter 9 - Modeling
+##confounding.html
+##adjusting_with_linar_models.html)
+##projections.html)
+##rotations.html)
+##PCA.html)
+##factor_analysis.html)
+##eda_with_pca.html)
+##adjusting_with_factor_analysis.html)

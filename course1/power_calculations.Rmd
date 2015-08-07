@@ -18,6 +18,7 @@ opts_chunk$set(fig.path=paste0("figure/", sub("(.*).Rmd","\\1",basename(knitr:::
 We have used the example of the effects of two different diets on the weight of mice. Because in this illustrative example we have access to the population we know that in fact there is a substantial (about 10%) difference between the average weights of the two populations:
 
 ```{r}
+library(dplyr)
 dat <- read.csv("mice_pheno.csv") ## We downloaded this file in a previous section
 
 controlPopulation <- filter(dat,Sex == "F" & Diet == "chow") %>%  select(Bodyweight) %>% unlist
