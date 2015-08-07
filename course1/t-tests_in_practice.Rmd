@@ -32,6 +32,8 @@ Throughout this book we use random number generators. This implies that many of 
 ### Read in and prepare data
 We start by reading in the data. A first important step is to identify which rows are associated with treatment and control and computing the difference in mean.
 ```{r}
+library(dplyr)
+
 dat <- read.csv("femaleMiceWeights.csv") #previously downloaded
 
 control <- filter(dat,Diet=="chow") %>% select(Bodyweight) %>% unlist
