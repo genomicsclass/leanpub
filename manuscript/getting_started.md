@@ -180,7 +180,7 @@ install_github("genomicsclass/dagdata")
 ## Installing dagdata 
 ## '/Library/Frameworks/R.framework/Resources/bin/R' --no-site-file \ 
 ## --no-environ --no-save --no-restore CMD INSTALL \ 
-## '/private/var/folders/kv/h18_5_qn1hj43r8pq5l0tddw0000gn/T/Rtmpxqqc6s/devtools10b84144a48ce/genomicsclass-dagdata-0639a9e' \ 
+## '/private/var/folders/kv/h18_5_qn1hj43r8pq5l0tddw0000gn/T/Rtmp5cobta/devtools10d917a55fd07/genomicsclass-dagdata-0639a9e' \ 
 ## --library='/Library/Frameworks/R.framework/Versions/3.2/Resources/library' \ 
 ## --install-tests 
 ``` 
