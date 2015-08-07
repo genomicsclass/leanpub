@@ -17,7 +17,7 @@ Now that we have introduced the idea of a random variable, a null distribution, 
 
 A first step in statistical inference is to understand what population you are interested in. In the mouse weight example, we have two populations; female mice on control diet and female mice on high fat diet, and the outcome of interest was weight. We consider this population to be fixed, and the randomness comes from the sampling. One reason we have been using this dataset as an example is because we happen to have the weights of all the mice of this type. Here we download and read in this dataset:
 
-```{r}
+```{r,message=FALSE}
 library(downloader)
 url <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/mice_pheno.csv"
 filename <- tempfile()
@@ -27,7 +27,7 @@ dat <- read.csv(filename)
 
 We can then access the population values and determine, for example, how many we have. For example here we compute the size of the control population:
 
-```{r}
+```{r,message=FALSE}
 library(dplyr)
 controlPopulation <- filter(dat,Sex == "F" & Diet == "chow") %>%  select(Bodyweight) %>% unlist
 ##alternative way:
