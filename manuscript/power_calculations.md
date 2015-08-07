@@ -16,45 +16,36 @@ We have used the example of the effects of two different diets on the weight of 
 
 
 ```r 
+library(dplyr) 
+``` 
+
+``` 
+## 
+## Attaching package: 'dplyr' 
+## 
+## The following object is masked from 'package:stats': 
+## 
+## filter 
+## 
+## The following objects are masked from 'package:base': 
+## 
+## intersect, setdiff, setequal, union 
+``` 
+
+```r 
 dat <- read.csv("mice_pheno.csv") ## We downloaded this file in a previous section 
 
 controlPopulation <- filter(dat,Sex == "F" & Diet == "chow") %>% select(Bodyweight) %>% unlist 
-``` 
 
-``` 
-## Error in eval(expr, envir, enclos): could not find function "%>%" 
-``` 
-
-```r 
 hfPopulation <- filter(dat,Sex == "F" & Diet == "hf") %>% select(Bodyweight) %>% unlist 
-``` 
 
-``` 
-## Error in eval(expr, envir, enclos): could not find function "%>%" 
-``` 
-
-```r 
 mu_hf <- mean(hfPopulation) 
-``` 
-
-``` 
-## Error in mean(hfPopulation): object 'hfPopulation' not found 
-``` 
-
-```r 
 mu_control <- mean(controlPopulation) 
-``` 
-
-``` 
-## Error in mean(controlPopulation): object 'controlPopulation' not found 
-``` 
-
-```r 
 print(mu_hf - mu_control) 
 ``` 
 
 ``` 
-## Error in print(mu_hf - mu_control): object 'mu_hf' not found 
+## [1] 2.375517 
 ``` 
 
 We have also seen that in some cases, when we take a sample and perform a t-test we don't always get a p-value smaller than 0.05. For example, here is a case were we take sample of 5 mice and we don't achieve statistical significance at the 0.05 level: 
@@ -64,26 +55,12 @@ We have also seen that in some cases, when we take a sample and perform a t-test
 set.seed(1) 
 N <- 5 
 hf <- sample(hfPopulation,N) 
-``` 
-
-``` 
-## Error in sample(hfPopulation, N): object 'hfPopulation' not found 
-``` 
-
-```r 
 control <- sample(controlPopulation,N) 
-``` 
-
-``` 
-## Error in sample(controlPopulation, N): object 'controlPopulation' not found 
-``` 
-
-```r 
 t.test(hf,control)$p.value 
 ``` 
 
 ``` 
-## Error in t.test(hf, control): object 'hf' not found 
+## [1] 0.1410204 
 ``` 
 
 Did we make a mistake? By not rejecting the null hypothesis are we saying the diet has no effect? The answer to this question is no. All we can say is that we did not reject the null. But this does not necessarily imply that the null true. The problem is that in this particular instance we don't have enough _power_, a term we are now going to define. If you are doing scientific research it is very likely that you will have to do a power calculation at some point. In many cases it is an ethical obligation as it can help you avoid sacrificing mice that do not need to be. Here we explain what this means. 
@@ -145,7 +122,7 @@ reject(12)
 ``` 
 
 ``` 
-## Error in sample(hfPopulation, N): object 'hfPopulation' not found 
+## [1] FALSE 
 ``` 
 
 Now we can use the `replicate` function to do this `B` times. 
@@ -153,10 +130,6 @@ Now we can use the `replicate` function to do this `B` times.
 
 ```r 
 rejections <- replicate(B,reject(N)) 
-``` 
-
-``` 
-## Error in sample(hfPopulation, N): object 'hfPopulation' not found 
 ``` 
 
 Our power is just the proportion of times we correctly reject. So with {$$}N=12 {/$$}our power is only: 
@@ -167,7 +140,7 @@ mean(rejections)
 ``` 
 
 ``` 
-## Error in mean(rejections): object 'rejections' not found 
+## [1] 0.2145 
 ``` 
 
 For those that were confused as to why the t-test was rejecting when we knew the null was false, this explains it. With a sample size of just 12 our power is about 9%. To guard against false posties at the 0.05 level, we had to be this careful and ended up with making many type II error. 
@@ -188,10 +161,6 @@ mean(rejections)
 }) 
 ``` 
 
-``` 
-## Error in sample(hfPopulation, N): object 'hfPopulation' not found 
-``` 
-
 Note that for each of the three simulation it just returns the proportion of times we reject. Not surprisingly power increases with N: 
 
 
@@ -199,9 +168,7 @@ Note that for each of the three simulation it just returns the proportion of tim
 plot(Ns, power, type="b") 
 ``` 
 
-``` 
-## Error in xy.coords(x, y, xlabel, ylabel, log): 'x' and 'y' lengths differ 
-``` 
+![plot of chunk unnamed-chunk-12](images/power_calculations-unnamed-chunk-12-1.png) 
 
 Similarly if we change the level `alpha` at which we reject, power changes. The smaller I want the chance of type I error to be, the less power I will have. We can see this by writing similar code but keeping {$$}N {/$$}fixed and considering several values of `alpha` 
 
@@ -213,19 +180,10 @@ power <- sapply(alphas,function(alpha){
 rejections <- replicate(B,reject(N,alpha=alpha)) 
 mean(rejections) 
 }) 
-``` 
-
-``` 
-## Error in sample(hfPopulation, N): object 'hfPopulation' not found 
-``` 
-
-```r 
 plot(alphas, power, xlab="alpha", type="b", log="x") 
 ``` 
 
-``` 
-## Error in xy.coords(x, y, xlabel, ylabel, log): 'x' and 'y' lengths differ 
-``` 
+![plot of chunk unnamed-chunk-13](images/power_calculations-unnamed-chunk-13-1.png) 
 
 Note that the x-axis in this last plot is in the log scale. 
 
