@@ -52,8 +52,8 @@ control <- filter(dat,Diet=="chow") %>% select(Bodyweight) %>% unlist
 treatment <- filter(dat,Diet=="hf") %>% select(Bodyweight) %>% unlist
 print( mean(treatment) )
 print( mean(control) )
-diff <- mean(treatment)-mean(control)
-print(diff)
+obsdiff <- mean(treatment)-mean(control)
+print(obsdiff)
 ```
 
 So the hf diet mice are about 10% heavier. Are we done? Why do we need p-values and confidence intervals? The reason is that these averages are random variables. They can take many values. 
@@ -95,7 +95,7 @@ Note how the average varies. We can continue to do this over and over again and 
 
 ## The Null Hypothesis
 
-Now let's go back to our average difference of `diff`. As scientists we need to be skeptics. How do we know that this `diff` is due to the diet. What happens if we give all 24 the same diet, can we see a difference this big? Statisticians refer to this scenario as the *null hypothesis*. The name "null" is used to remind us that we are acting as skeptics: we give credence to the possibility that there is no difference. 
+Now let's go back to our average difference of `obsdiff`. As scientists we need to be skeptics. How do we know that this `obsdiff` is due to the diet. What happens if we give all 24 the same diet, can we see a difference this big? Statisticians refer to this scenario as the *null hypothesis*. The name "null" is used to remind us that we are acting as skeptics: we give credence to the possibility that there is no difference. 
 
 Because we have access to the population, we can actually observe as many values as we want to of the difference of the averages when the diet has no effect. We can do this by randomly sampling 24 control mice, giving them the same diet, and then recording the difference in mean between to randomly split groups. Here is the code:
 
@@ -121,9 +121,9 @@ for(i in 1:n){
 
 The values in `null` form what we call the *null distribution*. We will define this more formally below.
 
-So what percent are bigger than `diff`?
+So what percent are bigger than `obsdiff`?
 ```{r}
-mean(null>=diff)
+mean(null>=obsdiff)
 ```
 
 Only a small percent of the 1,000 simulations. So what do we conclude as skeptics. When there is no diet effect, we see value a `diff` as big as the one we observed only 1.5% of the time. Note that this is what is known as a p-value which we will also define more formally later.
@@ -204,11 +204,11 @@ for(i in 1:n){
   }
 ```
 
-The figure above amounts to a histogram. From an actual histogram we can see that values as large as `diff` are relatively rare
+The figure above amounts to a histogram. From an actual histogram we can see that values as large as `obsdiff` are relatively rare
 
 ```{r}
 hist(null, freq=TRUE)
-abline(v=diff)
+abline(v=obsdiff)
 ```
 
 
@@ -224,10 +224,10 @@ $$
 \mbox{Pr}(a < x < b) = \int_a^b \frac{1}{\sqrt{2\pi\sigma^2}} \exp{\left( \frac{-(x-\mu)^2}{2 \sigma^2} \right)} \, dx
 $$
 
-Here $\mu$ and $\sigma$ are refereed to as the mean and standard deviation of the population (we explain these in more detail in another section). If this approximation holds for our list then the population mean and variance of our list can be used in the formula above. To see this with an example remember that above we noted that only 1.5% of values on the null distribution were above `diff`. We can compute the proportion of values below a value `x` with `pnorm(x,mu,sigma)` without knowing all the values. The normal approximation works very well here:
+Here $\mu$ and $\sigma$ are refereed to as the mean and standard deviation of the population (we explain these in more detail in another section). If this approximation holds for our list then the population mean and variance of our list can be used in the formula above. To see this with an example remember that above we noted that only 1.5% of values on the null distribution were above `obsdiff`. We can compute the proportion of values below a value `x` with `pnorm(x,mu,sigma)` without knowing all the values. The normal approximation works very well here:
 
 ```{r}
-1-pnorm(diff,mean(null),sd(null)) 
+1-pnorm(obsdiff,mean(null),sd(null)) 
 ```
 
 Later we will learn there is a mathematical explanation for this. A very useful characteristic of this approximation is that one only needs to know $\mu$ and $\sigma$ to describe the entire distribution. From this we can compute the proportion of values in any interval. 

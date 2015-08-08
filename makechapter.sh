@@ -2,7 +2,7 @@
 
 printf "  *** knit file, fix latex, and move to  *** \n\n"
 
-cd $1
+cd ../labs/$1
 Rscript --no-init-file -e "library(knitr); knit('$2.Rmd')"
 
 sed 's/\$\$/@@@@/g' $2.md |
@@ -32,16 +32,16 @@ for (i=1;i<=NF;++i){
 }
 printf "\n";
 } 
-' $2.md > ../manuscript/$2.md
+' $2.md > ../../leanpub/manuscript/$2.md
 
 rm $2.md
-cd ..
+cd ../../leanpub
 
-imgcount=`ls -1 $1/figure/$2* 2> /dev/null | wc -l`
+imgcount=`ls -1 ../labs/$1/figure/$2* 2> /dev/null | wc -l`
  
 if [ $imgcount -gt 0 ]
 then
-mv $1/figure/$2* manuscript/images
+mv ../labs/$1/figure/$2* manuscript/images/
 fi
 
 
