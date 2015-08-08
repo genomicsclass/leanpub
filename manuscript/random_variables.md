@@ -92,8 +92,8 @@ print( mean(control) )
 ``` 
 
 ```r 
-diff <- mean(treatment)-mean(control) 
-print(diff) 
+obsdiff <- mean(treatment)-mean(control) 
+print(obsdiff) 
 ``` 
 
 ``` 
@@ -157,7 +157,7 @@ Note how the average varies. We can continue to do this over and over again and 
 
 ## The Null Hypothesis 
 
-Now let's go back to our average difference of `diff`. As scientists we need to be skeptics. How do we know that this `diff` is due to the diet. What happens if we give all 24 the same diet, can we see a difference this big? Statisticians refer to this scenario as the *null hypothesis*. The name "null" is used to remind us that we are acting as skeptics: we give credence to the possibility that there is no difference. 
+Now let's go back to our average difference of `obsdiff`. As scientists we need to be skeptics. How do we know that this `obsdiff` is due to the diet. What happens if we give all 24 the same diet, can we see a difference this big? Statisticians refer to this scenario as the *null hypothesis*. The name "null" is used to remind us that we are acting as skeptics: we give credence to the possibility that there is no difference. 
 
 Because we have access to the population, we can actually observe as many values as we want to of the difference of the averages when the diet has no effect. We can do this by randomly sampling 24 control mice, giving them the same diet, and then recording the difference in mean between to randomly split groups. Here is the code: 
 
@@ -189,10 +189,10 @@ null[i] <- mean(treatment) - mean(control)
 
 The values in `null` form what we call the *null distribution*. We will define this more formally below. 
 
-So what percent are bigger than `diff`? 
+So what percent are bigger than `obsdiff`? 
 
 ```r 
-mean(null>=diff) 
+mean(null>=obsdiff) 
 ``` 
 
 ``` 
@@ -293,12 +293,12 @@ text(j-6,totals[j],pch=15,round(nulldiff,1))
 
 ![Illustration of the null distribution](images/random_variables-unnamed-chunk-12-1.png) 
 
-The figure above amounts to a histogram. From an actual histogram we can see that values as large as `diff` are relatively rare 
+The figure above amounts to a histogram. From an actual histogram we can see that values as large as `obsdiff` are relatively rare 
 
 
 ```r 
 hist(null, freq=TRUE) 
-abline(v=diff) 
+abline(v=obsdiff) 
 ``` 
 
 ![plot of chunk unnamed-chunk-13](images/random_variables-unnamed-chunk-13-1.png) 
@@ -316,11 +316,11 @@ The probability distribution we see above approximates one that is very common i
 \mbox{Pr}(a < x < b) = \int_a^b \frac{1}{\sqrt{2\pi\sigma^2}} \exp{\left( \frac{-(x-\mu)^2}{2 \sigma^2} \right)} \, dx 
 {/$$}
 
-Here {$$}\mu {/$$}and {$$}\sigma {/$$}are refereed to as the mean and standard deviation of the population (we explain these in more detail in another section). If this approximation holds for our list then the population mean and variance of our list can be used in the formula above. To see this with an example remember that above we noted that only 1.5% of values on the null distribution were above `diff`. We can compute the proportion of values below a value `x` with `pnorm(x,mu,sigma)` without knowing all the values. The normal approximation works very well here: 
+Here {$$}\mu {/$$}and {$$}\sigma {/$$}are refereed to as the mean and standard deviation of the population (we explain these in more detail in another section). If this approximation holds for our list then the population mean and variance of our list can be used in the formula above. To see this with an example remember that above we noted that only 1.5% of values on the null distribution were above `obsdiff`. We can compute the proportion of values below a value `x` with `pnorm(x,mu,sigma)` without knowing all the values. The normal approximation works very well here: 
 
 
 ```r 
-1-pnorm(diff,mean(null),sd(null)) 
+1-pnorm(obsdiff,mean(null),sd(null)) 
 ``` 
 
 ``` 
