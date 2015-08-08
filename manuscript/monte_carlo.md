@@ -52,7 +52,7 @@ hist(ttests)
 
 ![plot of chunk unnamed-chunk-4](images/monte_carlo-unnamed-chunk-4-1.png) 
 
-So is the distribution of this t-statistic well approximated by the normal distribution? 
+So is the distribution of this t-statistic well approximated by the normal distribution? In the next chapter we will introduce quantile-quantile plots which provide a useful visual inspection of how well one distribution approximates another. As we will explain later, if points fall on the identiy line, it means the approximation is a good one. 
 
 
 ```r 
@@ -107,4 +107,15 @@ For the case of wieghts we could use our knowledge that mice are typically 24 ou
 controls<- rnorm(5000, mean=24, sd=3.5) 
 ``` 
 
-and repeat the entire excercise. We can then repeat the exercise above. 
+and repeat the entire excercise. We can then repeat the exercise above. Note that we no longer have to use the `sample` function since we can re-generate random normal numbers. So the `ttestgenerator` function can be written like this: 
+
+
+```r 
+ttestgenerator <- function(n, mean=24, sd=3.5) { 
+cases <- rnorm(n,mean,sd) 
+controls <- rnorm(n,mean,sd) 
+tstat <- (mean(cases)-mean(controls)) / 
+sqrt( var(cases)/n + var(controls)/n ) 
+return(tstat) 
+} 
+``` 
