@@ -19,7 +19,8 @@ sed 's/\$\$/@@@@/g' $2.md |
     sed 's/:\$/:@@@@/g' |
     sed 's/@@@@/\$\$/g' |
     sed 's/\$\$/{\$\$}/g' |
-    sed 's/(figure\//(images\//g' > $2.md
+    sed 's/(figure\//(images\//g' |
+    sed 's/\"figure\//\"images\//g'> $2.md
     
 awk '
 BEGIN {count = 0;}
