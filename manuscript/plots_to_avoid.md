@@ -214,6 +214,167 @@ abline(h=0,col=2,lwd=2)
 ![plot of chunk unnamed-chunk-12](images/plots_to_avoid-unnamed-chunk-12-1.png) 
 These are referred to as Bland-Altman plots or MA plots in the genomics literature and we will talk more about them later. In this plot we see that the typical difference in the log (base 2) scale between two replicated measures is about 1. This means that when measurements should be the same we will, on average, observe 2 fold difference. We can now compare this variability to the differences we want to detect and decide if this technology is precise enough for our purposes. 
 
+### Barplots for paired data 
+
+A common task in data analysis is the comparison of two groups. When the dataset is small and data are paired, for example outcomes before and after a treatment, an unfortunate display that is used is the barplot with two colors: 
+
+![Barplot for two variables](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig6r_e.png) 
+
+There are various better ways of showing these data to illustrate there is an increase after treatment. One is to simply make a scatterplot which shows that most points are above the identity line. Another alternative is plot the differences against the before values. 
+
+```r 
+set.seed(12201970) 
+before <- runif(6, 5, 8) 
+after <- rnorm(6, before*1.05, 2) 
+li <- range(c(before, after)) 
+ymx <- max(abs(after-before)) 
+
+mypar(1,2) 
+plot(before, after, xlab="Before", ylab="After", 
+ylim=li, xlim=li) 
+abline(0,1, lty=2, col=1) 
+
+
+plot(before, after-before, xlab="Before", ylim=c(-ymx, ymx), 
+ylab="Change (After - Before)", lwd=2) 
+abline(h=0, lty=2, col=1) 
+``` 
+
+![plot of chunk unnamed-chunk-13](images/plots_to_avoid-unnamed-chunk-13-1.png) 
+
+
+Line plots are not a bad choice, although I find them harder to follow than the previous two. Boxplots show you the increase, but lose the paired information. 
+
+
+```r 
+z <- rep(c(0,1), rep(6,2)) 
+mypar(1,2) 
+plot(z, c(before, after), 
+xaxt="n", ylab="Response", 
+xlab="", xlim=c(-0.5, 1.5)) 
+axis(side=1, at=c(0,1), c("Before","After")) 
+segments(rep(0,6), before, rep(1,6), after, col=1) 
+
+boxplot(before,after,names=c("Before","After"),ylab="Response") 
+``` 
+
+![plot of chunk unnamed-chunk-14](images/plots_to_avoid-unnamed-chunk-14-1.png) 
+
+### Gratuitous 3D 
+
+The follow figure shows three curves. Pseudo 3D is used but it is not clear way. Maybe to separate the three curves? Note how difficult it is to determine the values of the curves at any given point: 
+
+![Gratuitous 3-D](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig8b.png") 
+
+This plot can be made better by simply using color to distinguish the three lines: 
+
+
+```r 
+library(downloader) 
+filename <- "fig8dat.csv" 
+url <- "https://github.com/kbroman/Talk_Graphs/raw/master/R/fig8dat.csv" 
+if (!file.exists(filename)) download(url, filename) 
+x <- read.table(filename, sep=",", header=TRUE) 
+plot(x[,1],x[,2],xlab="log Dose",ylab="Proportion survived",ylim=c(0,1), 
+type="l",lwd=2,col=1) 
+lines(x[,1],x[,3],lwd=2,col=2) 
+lines(x[,1],x[,4],lwd=2,col=3) 
+legend(1,0.4,c("Drug A","Drug B","Drug C"),lwd=2, col=1:3) 
+``` 
+
+![plot of chunk unnamed-chunk-15](images/plots_to_avoid-unnamed-chunk-15-1.png) 
+
+### Ignoring important factors 
+
+
+
+In this example we generate data with a simulation. We are studying a dose response relationship between two groups treatment and control. We have three groups of measurements for both control and treatment. Comparing treatment and control using the common barplot: 
+
+![Ingoring important factors](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig9d.png) 
+
+Instead we should show each curve. We can use color to distinguish treatment and control and dashed and solid lines to distinguish the original data from the mean of the three groups. 
+
+
+```r 
+plot(x, y1, ylim=c(0,1), type="n", xlab="Dose", ylab="Response") 
+for(i in 1:3) lines(x, z[,i], col=1, lwd=1, lty=2) 
+for(i in 1:3) lines(x, y[,i], col=2, lwd=1, lty=2) 
+lines(x, ym, col=1, lwd=2) 
+lines(x, zm, col=2, lwd=2) 
+legend("bottomleft", lwd=2, col=c(1, 2), c("Control", "Treated")) 
+``` 
+
+![plot of chunk unnamed-chunk-17](images/plots_to_avoid-unnamed-chunk-17-1.png) 
+
+
+### Too many significant digits 
+
+By default, statistical software like R return many significant digits. This does not mean we should report them. Cutting and pasting directly from R is a bad idea as you might end up showing a table like this for, say, heights of basketball players: 
+
+
+```r 
+heights <- cbind(rnorm(8,73,3),rnorm(8,73,3),rnorm(8,80,3), 
+rnorm(8,78,3),rnorm(8,78,3)) 
+colnames(heights)<-c("SG","PG","C","PF","SF") 
+rownames(heights)<- paste("team",1:8) 
+heights 
+``` 
+
+``` 
+## SG PG C PF SF 
+## team 1 76.39843 76.21026 81.68291 75.32815 77.18792 
+## team 2 74.14399 71.10380 80.29749 81.58405 73.01144 
+## team 3 71.51120 69.02173 85.80092 80.08623 72.80317 
+## team 4 78.71579 72.80641 81.33673 76.30461 82.93404 
+## team 5 73.42427 73.27942 79.20283 79.71137 80.30497 
+## team 6 72.93721 71.81364 77.35770 81.69410 80.39703 
+## team 7 68.37715 73.01345 79.10755 71.24982 77.19851 
+## team 8 73.77538 75.59278 82.99395 75.57702 87.68162 
+``` 
+
+Note we are reporting precision up to 0.00001 inches. Do you know of a tape measure with that much 
+precision? This can be easily remedied: 
+
+
+```r 
+round(heights,1) 
+``` 
+
+``` 
+## SG PG C PF SF 
+## team 1 76.4 76.2 81.7 75.3 77.2 
+## team 2 74.1 71.1 80.3 81.6 73.0 
+## team 3 71.5 69.0 85.8 80.1 72.8 
+## team 4 78.7 72.8 81.3 76.3 82.9 
+## team 5 73.4 73.3 79.2 79.7 80.3 
+## team 6 72.9 71.8 77.4 81.7 80.4 
+## team 7 68.4 73.0 79.1 71.2 77.2 
+## team 8 73.8 75.6 83.0 75.6 87.7 
+``` 
+
+### Displaying data well 
+
+In general you should follow these principles: 
+
+* Be accurate and clear. 
+* Let the data speak. 
+* Show as much information as possible, taking care not to obscure the message. 
+* Science not sales: avoid unnecessary frills (esp. gratuitous 3d). 
+* In tables, every digit should be meaningful. Don't drop ending 0's. 
+
+Some further reading: 
+
+* ER Tufte (1983) The visual display of quantitative information. 
+Graphics Press. 
+* ER Tufte (1990) Envisioning information. Graphics Press. 
+* ER Tufte (1997) Visual explanations. Graphics Press. 
+* WS Cleveland (1993) Visualizing data. Hobart Press. 
+* WS Cleveland (1994) The elements of graphing data. CRC Press. 
+* A Gelman, C Pasarica, R Dodhia (2002) Let's practice what we preach: 
+Turning tables into graphs. The American Statistician 56:121-130 
+* NB Robbins (2004) Creating more effective graphs. Wiley 
+* [Nature Methods columns](http://bang.clearscience.info/?p=546) 
+
 
 
 
