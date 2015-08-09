@@ -28,9 +28,8 @@ We can then access the population values and determine, for example, how many we
 
 ```r 
 library(dplyr) 
-controlPopulation <- filter(dat,Sex == "F" & Diet == "chow") %>% select(Bodyweight) %>% unlist 
-##alternative way: 
-##controlPopulation <- dat[dat$Sex == "F" & dat$Diet == "chow", 3] 
+controlPopulation <- filter(dat,Sex == "F" & Diet == "chow") %>% 
+select(Bodyweight) %>% unlist 
 length(controlPopulation) 
 ``` 
 
