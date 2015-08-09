@@ -68,3 +68,152 @@ barplot(browsers,main="Browser Usage (August 2013)")
 Note that we can now pretty easily determine the percentages by following a horizontal line to the x-axis. Do avoid 3-D version as the obfuscate the plot and remove this particular advantage. 
 
 ![3-D version](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig2b.png) 
+
+
+
+Note that even worse that piecharts are donut plots. 
+
+![Donut plot](http://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Donut-Chart.svg/360px-Donut-Chart.svg.png) 
+
+The reason is that by removing the center we remove one of the visual cues for determining the different areas: the angles. There is no reason to ever use a donut to display data. 
+
+### Barplots as data summaries 
+
+While barplots are useful for showing percentages, they are incorrectly used to display data from two groups begin compared. Specifically, barplots are created with height equal to the group means and an antenna is added at the top to represent standard errors. This plot is simply showing two numbers per groups and the plot adds nothing: 
+
+![Bad bar plots](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig1c.png) 
+
+Much more informative is to summarizing with a boxplot. If the number of points is small enough, we might as well add them to the plot. When the number of points is too large for us to see them, just showing a boxplot is preferable. 
+
+
+```r 
+library("downloader") 
+filename <- "fig1.RData" 
+url <- "https://github.com/kbroman/Talk_Graphs/raw/master/R/fig1.RData" 
+if (!file.exists(filename)) download(url,filename) 
+load(filename) 
+library(rafalib) 
+mypar(1,1) 
+dat <- list(Treatment=x,Control=y) 
+boxplot(dat,xlab="Group",ylab="Response",xlab="Group",ylab="Response",cex=0) 
+stripchart(dat,vertical=TRUE,method="jitter",pch=16,add=TRUE,col=1) 
+``` 
+
+<img src="images/plots_to_avoid-unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" /> 
+
+Note how much more we see here: the center, spread, range and the points themselves while in the barplot we only see the mean and the SE and the SE has more to do with sample size than the spread of the data. 
+
+This problem is magnified when our data has outliers or very large tails. Note that from this plot there appears to be very large and consistent difference between the two groups: 
+
+![Bar plots with outliers](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig3c.png) 
+
+A quick look at the data demonstrates that this difference is mostly driven by just two points. A version showing the data in the log-scale is much more informative. 
+
+
+```r 
+library(downloader) 
+url <- "https://github.com/kbroman/Talk_Graphs/raw/master/R/fig3.RData" 
+filename <- "fig3.RData" 
+if (!file.exists(filename)) download(url, filename) 
+load(filename) 
+library(rafalib) 
+mypar(1,2) 
+dat <- list(Treatment=x,Control=y) 
+boxplot(dat,xlab="Group",ylab="Response",xlab="Group",ylab="Response",cex=0) 
+stripchart(dat,vertical=TRUE,method="jitter",pch=16,add=TRUE,col=1) 
+boxplot(dat,xlab="Group",ylab="Response",xlab="Group",ylab="Response",log="y",cex=0) 
+stripchart(dat,vertical=TRUE,method="jitter",pch=16,add=TRUE,col=1) 
+``` 
+
+<img src="images/plots_to_avoid-unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" /> 
+
+
+### Show the scatterplot 
+
+The purpose of many statistical analyses is to determine relationships between two variables. Sample correlations are typically reported and sometimes plots are displayed to show this. However, showing just the regression line is one way to display your data baldy as it hides the scatter. Surprisingly plots such as the following are commonly seen: 
+
+
+```r 
+url <- "https://github.com/kbroman/Talk_Graphs/raw/master/R/fig4.RData" 
+filename <- "fig4.RData" 
+if (!file.exists(filename)) download(url, filename) 
+load(filename) 
+plot(x,y,lwd=2,type="n") 
+fit <- lm(y~x) 
+abline(fit$coef,lwd=2) 
+b <- round(fit$coef,4) 
+text(78, 200, paste("y =", b[1], "+", b[2], "x"), adj=c(0,0.5)) 
+rho <- round(cor(x,y),4) # 0.8567 
+text(78, 187,expression(paste(rho," = 0.8567")),adj=c(0,0.5)) 
+``` 
+
+![plot of chunk unnamed-chunk-8](images/plots_to_avoid-unnamed-chunk-8-1.png) 
+
+Showing the data is much more informative: 
+
+```r 
+plot(x,y,lwd=2) 
+fit <- lm(y~x) 
+abline(fit$coef,lwd=2) 
+``` 
+
+![plot of chunk unnamed-chunk-9](images/plots_to_avoid-unnamed-chunk-9-1.png) 
+
+### High correlation does not imply replication 
+
+When new technologies or laboratory techniques are introduced, we are often shown scatter plots and correlations from replicated samples. High correlations are used to demonstrate that the new technique is reproducible. But correlation can be very misleading. Below is a scatter plot showing data from replicated samples run on a high throughput technology. This technology outputs 12,626 simultaneously measurements. 
+
+In the plot on the left we see the original data which shows very high correlation. But the data follows a distribution with very fat tails. Note that 95% of the data is below the green line. The plot on the right is in the log scale. 
+
+
+```r 
+library(Biobase) 
+##install SpikeInSubset with: 
+##library(rafalib) 
+##install_bioc("SpikeInSubset") 
+library(SpikeInSubset) 
+``` 
+
+```r 
+data(mas95) 
+mypar(1,2) 
+r <- exprs(mas95)[,1] ##original measures were not logged 
+g <- exprs(mas95)[,2] 
+plot(r,g,lwd=2,cex=0.2,pch=16, 
+xlab=expression(paste(E[1])), 
+ylab=expression(paste(E[2])), 
+main=paste0("corr=",signif(cor(r,g),3))) 
+abline(0,1,col=2,lwd=2) 
+f <- function(a,x,y,p=0.95) mean(x<=a & y<=a)-p 
+a95 <- uniroot(f,lower=2000,upper=20000,x=r,y=g)$root 
+abline(a95,-1,lwd=2,col=1) 
+text(8500,0,"95% of data below this line",col=1,cex=1.2,adj=c(0,0)) 
+r <- log2(r) 
+g <- log2(g) 
+plot(r,g,lwd=2,cex=0.2,pch=16, 
+xlab=expression(paste(log[2], " ", E[1])), 
+ylab=expression(paste(log[2], " ", E[2])), 
+main=paste0("corr=",signif(cor(r,g),3))) 
+abline(0,1,col=2,lwd=2) 
+``` 
+
+<img src="images/plots_to_avoid-unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" style="display: block; margin: auto;" /> 
+
+Although the correlation is reduced in the log-scale, it is very close to 1 in both cases. Does this mean these data are reproduced? To examine how well the second vector reproduces the first, we need to study the differences. So we should instead plot that. In this plot we plot the difference (in the log scale) versus the average: 
+
+
+```r 
+mypar(1,1) 
+plot((r+g)/2,(r-g),lwd=2,cex=0.2,pch=16, 
+xlab=expression(paste("Ave{ ",log[2], " ", E[1],", ",log[2], " ", E[2]," }")), 
+ylab=expression(paste(log[2]," { ",E[1]," / ",E[2]," }")), 
+main=paste0("SD=",signif(sqrt(mean((r-g)^2)),3))) 
+abline(h=0,col=2,lwd=2) 
+``` 
+
+<img src="images/plots_to_avoid-unnamed-chunk-12-1.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" style="display: block; margin: auto;" /> 
+These are referred to as Bland-Altman plots or MA plots in the genomics literature and we will talk more about them later. In this plot we see that the typical difference in the log (base 2) scale between two replicated measures is about 1. This means that when measurements should be the same we will, on average, observe 2 fold difference. We can now compare this variability to the differences we want to detect and decide if this technology is precise enough for our purposes. 
+
+
+
+
