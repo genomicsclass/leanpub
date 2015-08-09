@@ -38,7 +38,7 @@ length(controlPopulation)
 ## [1] 225 
 ``` 
 
-We usually denote these values as {$$}x_1,\dots,x_m {/$$}. In this case {$$}m {/$$}is the number computer above. We can do the same for the high fat diet population 
+We usually denote these values as {$$}x_1,\dots,x_m {/$$} . In this case {$$}m {/$$} is the number computer above. We can do the same for the high fat diet population 
 
 
 ```r 
@@ -50,29 +50,29 @@ length(hfPopulation)
 ## [1] 200 
 ``` 
 
-and denote with {$$}y_1,\dots,y_n {/$$}. 
+and denote with {$$}y_1,\dots,y_n {/$$} . 
 
 We can then define summaries of interest for these population such as the mean and variance. 
 
 the mean: 
 
-{$$}\mu_X = \frac{1}{m}\sum_{i=1}^m x_i \mbox{ and } \mu_Y = \frac{1}{n} \sum_{i=1}^n y_i {/$$}
+{$$}\mu_X = \frac{1}{m}\sum_{i=1}^m x_i \mbox{ and } \mu_Y = \frac{1}{n} \sum_{i=1}^n y_i {/$$} 
 
 the variance: 
 
-{$$}\sigma_X^2 = \frac{1}{m}\sum_{i=1}^m (x_i-\mu_x)^2 \mbox{ and } \sigma_Y^2 = \frac{1}{n} \sum_{i=1}^n (y_i-\mu_y)^2 {/$$}
+{$$}\sigma_X^2 = \frac{1}{m}\sum_{i=1}^m (x_i-\mu_x)^2 \mbox{ and } \sigma_Y^2 = \frac{1}{n} \sum_{i=1}^n (y_i-\mu_y)^2 {/$$} 
 
-with the standard deviation being the square root of the variance. We refer to such quantities, that can be obtained from the population, as _population parameters_. The question we started out asking can now be written mathematically: Is {$$}\mu_Y - \mu_X = 0 {/$$}? 
+with the standard deviation being the square root of the variance. We refer to such quantities, that can be obtained from the population, as _population parameters_. The question we started out asking can now be written mathematically: Is {$$}\mu_Y - \mu_X = 0 {/$$} ? 
 
 An important point is that although in our illustration, we have all the values and can check if this is true, in practice we do not. For example, in practice, it would be prohibiltiy expensive to buy all mice in a poplution. Here we learn how taking a _sample_ permits us to answer the questions. This is the essence of statistical inference. 
 
 ### Sample estimates 
 
 In the previous chapter, we obtained samples of 12 mice from each population. We represent data from samples with capital letters to indicate that they are random. 
-This is common practice in statistics, although it is not always followed. So the samples are {$$}X_1,\dots,X_M {/$$}and {$$}Y_1,\dots,Y_N {/$$}and in this case {$$}N=M=12 {/$$}. In contrst, as we saw above, when we list out the values of the population, which are set and not random, we use small cap. 
+This is common practice in statistics, although it is not always followed. So the samples are {$$}X_1,\dots,X_M {/$$} and {$$}Y_1,\dots,Y_N {/$$} and in this case {$$}N=M=12 {/$$} . In contrst, as we saw above, when we list out the values of the population, which are set and not random, we use small cap. 
 
-Since we want to know if {$$}\mu_Y - \mu_X {/$$}is 0, we consider the sample version: {$$}\bar{Y}-\bar{X} {/$$}with 
+Since we want to know if {$$}\mu_Y - \mu_X {/$$} is 0, we consider the sample version: {$$}\bar{Y}-\bar{X} {/$$} with 
 
-{$$}\bar{X}=\frac{1}{M} \sum_{i=1}^M X_i \mbox{ and }\bar{Y}=\frac{1}{N} \sum_{i=1}^N Y_i {/$$}. 
+{$$}\bar{X}=\frac{1}{M} \sum_{i=1}^M X_i \mbox{ and }\bar{Y}=\frac{1}{N} \sum_{i=1}^N Y_i {/$$} . 
 
-Note that this difference of averages is alos a random variable. Previously we learned about the behavior of random variables with the exercise that involved sampling over and over from the original distribution. We noted that this is not an exercise that we can execute in practice. In this particular case it would involve buying 24 mice over and over. Here we described the mathematical theory that mathematically relates {$$}\bar{X} {/$$}to {$$}\mu_X {/$$}and {$$}\bar{Y} {/$$}to {$$}\mu_Y {/$$}, which will in turn help us understand the relationship between {$$}\bar{Y}-\bar{X} {/$$}and {$$}\mu_Y - \mu_X {/$$}. Specifically, we will describe how Central Limit Theorem permits us to use an approximation to answer this question as well as the widely used t-distribution. 
+Note that this difference of averages is alos a random variable. Previously we learned about the behavior of random variables with the exercise that involved sampling over and over from the original distribution. We noted that this is not an exercise that we can execute in practice. In this particular case it would involve buying 24 mice over and over. Here we described the mathematical theory that mathematically relates {$$}\bar{X} {/$$} to {$$}\mu_X {/$$} and {$$}\bar{Y} {/$$} to {$$}\mu_Y {/$$} , which will in turn help us understand the relationship between {$$}\bar{Y}-\bar{X} {/$$} and {$$}\mu_Y - \mu_X {/$$} . Specifically, we will describe how Central Limit Theorem permits us to use an approximation to answer this question as well as the widely used t-distribution. 
