@@ -38,7 +38,7 @@ Say we want the report the results from a poll asking about browser preference (
 pie(browsers,main="Browser Usage (August 2013)") 
 ``` 
 
-<img src="figure/plots_to_avoid-unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" /> 
+<img src="images/plots_to_avoid-unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" /> 
 
 But as stated by the help file for the `pie` function: 
 
@@ -63,7 +63,7 @@ If you do want to plot them, then a barplot is appropriate:
 barplot(browsers,main="Browser Usage (August 2013)") 
 ``` 
 
-<img src="figure/plots_to_avoid-unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" /> 
+<img src="images/plots_to_avoid-unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" /> 
 
 Note that we can now pretty easily determine the percentages by following a horizontal line to the x-axis. Do avoid 3-D version as the obfuscate the plot and remove this particular advantage. 
 
@@ -103,7 +103,7 @@ boxplot(dat,xlab="Group",ylab="Response",xlab="Group",ylab="Response",cex=0)
 stripchart(dat,vertical=TRUE,method="jitter",pch=16,add=TRUE,col=1) 
 ``` 
 
-<img src="figure/plots_to_avoid-unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" /> 
+<img src="images/plots_to_avoid-unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" /> 
 
 Note how much more we see here: the center, spread, range and the points themselves while in the barplot we only see the mean and the SE and the SE has more to do with sample size than the spread of the data. 
 
@@ -131,7 +131,7 @@ boxplot(dat,xlab="Group",ylab="Response",xlab="Group",ylab="Response",log="y",ce
 stripchart(dat,vertical=TRUE,method="jitter",pch=16,add=TRUE,col=1) 
 ``` 
 
-<img src="figure/plots_to_avoid-unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" /> 
+<img src="images/plots_to_avoid-unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" /> 
 
 
 ### Show the scatterplot 
@@ -203,7 +203,7 @@ main=paste0("corr=",signif(cor(r,g),3)))
 abline(0,1,col=2,lwd=2) 
 ``` 
 
-<img src="figure/plots_to_avoid-unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" style="display: block; margin: auto;" /> 
+<img src="images/plots_to_avoid-unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" style="display: block; margin: auto;" /> 
 
 Although the correlation is reduced in the log-scale, it is very close to 1 in both cases. Does this mean these data are reproduced? To examine how well the second vector reproduces the first, we need to study the differences. So we should instead plot that. In this plot we plot the difference (in the log scale) versus the average: 
 
@@ -217,7 +217,7 @@ main=paste0("SD=",signif(sqrt(mean((r-g)^2)),3)))
 abline(h=0,col=2,lwd=2) 
 ``` 
 
-<img src="figure/plots_to_avoid-unnamed-chunk-12-1.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" style="display: block; margin: auto;" /> 
+<img src="images/plots_to_avoid-unnamed-chunk-12-1.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" style="display: block; margin: auto;" /> 
 These are referred to as Bland-Altman plots or MA plots in the genomics literature and we will talk more about them later. In this plot we see that the typical difference in the log (base 2) scale between two replicated measures is about 1. This means that when measurements should be the same we will, on average, observe 2 fold difference. We can now compare this variability to the differences we want to detect and decide if this technology is precise enough for our purposes. 
 
 
@@ -249,7 +249,7 @@ ylab="Change (After - Before)", lwd=2)
 abline(h=0, lty=2, col=1) 
 ``` 
 
-<img src="figure/plots_to_avoid-unnamed-chunk-13-1.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" style="display: block; margin: auto;" /> 
+<img src="images/plots_to_avoid-unnamed-chunk-13-1.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" style="display: block; margin: auto;" /> 
 
 
 Line plots are not a bad choice, although I find them harder to follow than the previous two. Boxplots show you the increase, but lose the paired information. 
@@ -267,7 +267,7 @@ segments(rep(0,6), before, rep(1,6), after, col=1)
 boxplot(before,after,names=c("Before","After"),ylab="Response") 
 ``` 
 
-<img src="figure/plots_to_avoid-unnamed-chunk-14-1.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" style="display: block; margin: auto;" /> 
+<img src="images/plots_to_avoid-unnamed-chunk-14-1.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" style="display: block; margin: auto;" /> 
 
 ### Gratuitous 3D 
 
@@ -293,7 +293,7 @@ lines(x[,1],x[,4],lwd=2,col=3)
 legend(1,0.4,c("Drug A","Drug B","Drug C"),lwd=2, col=1:3) 
 ``` 
 
-<img src="figure/plots_to_avoid-unnamed-chunk-15-1.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" style="display: block; margin: auto;" /> 
+<img src="images/plots_to_avoid-unnamed-chunk-15-1.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" style="display: block; margin: auto;" /> 
 
 ### Ignoring important factors 
 
@@ -316,7 +316,7 @@ lines(x, zm, col=2, lwd=2)
 legend("bottomleft", lwd=2, col=c(1, 2), c("Control", "Treated")) 
 ``` 
 
-<img src="figure/plots_to_avoid-unnamed-chunk-17-1.png" title="plot of chunk unnamed-chunk-17" alt="plot of chunk unnamed-chunk-17" style="display: block; margin: auto;" /> 
+<img src="images/plots_to_avoid-unnamed-chunk-17-1.png" title="plot of chunk unnamed-chunk-17" alt="plot of chunk unnamed-chunk-17" style="display: block; margin: auto;" /> 
 
 
 ### Too many significant digits 
