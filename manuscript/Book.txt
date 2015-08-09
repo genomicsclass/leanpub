@@ -17,7 +17,7 @@ association_tests.md
 
 ##Chapter 2 - EDA
 exploratory_data_analysis_2.md
-#course1 plots_to_avoid
+plots_to_avoid.md
 
 ##Chapter 3 - Robust Statistics
 ##course1 robust_summaries
