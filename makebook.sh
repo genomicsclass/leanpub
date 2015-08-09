@@ -24,3 +24,6 @@ while read line; do
 		printf "\n";
 	fi
 done < filenames.txt > manuscript/Book.txt
+
+git commit -m "editing Book.txt" manuscript/Book.txt
+git push 
