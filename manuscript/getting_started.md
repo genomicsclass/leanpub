@@ -221,7 +221,17 @@ Note that there are two types of diets and that this is denoted in the first col
 ```r 
 library(dplyr) 
 chow <- filter(dat, Diet=="chow") ##keep only the ones with chow diet 
-View(chow) 
+head(chow) 
+``` 
+
+``` 
+## Diet Bodyweight 
+## 1 chow 21.51 
+## 2 chow 28.14 
+## 3 chow 24.04 
+## 4 chow 23.45 
+## 5 chow 23.68 
+## 6 chow 19.79 
 ``` 
 
 And now we can select just the column with the values 
