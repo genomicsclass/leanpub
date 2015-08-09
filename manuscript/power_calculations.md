@@ -80,7 +80,7 @@ Most Journals and regulatory agencies many times insist that results be signific
 
 ### Power calculation 
 
-Power is the probability of rejecting the null when the null is false. Now, "when the null is false" is a complicated statement because it can be false in many ways. {$$}\delta \equiv mu_hf - mu_control {/$$}could be anything and power actually depends on this parameter. It also depends on the standard error of your estimates which depends on sample size and the population standard deviations. In practice we don't know these, so we usually report power for several plausible values. Statistical theory gives us formulas to calculate power. The `pwr` package performs these calculations for you. Here we will illustrate the concepts behind power by coding up simulations in R. 
+Power is the probability of rejecting the null when the null is false. Now, "when the null is false" is a complicated statement because it can be false in many ways. {$$}\delta \equiv mu_hf - mu_control {/$$} could be anything and power actually depends on this parameter. It also depends on the standard error of your estimates which depends on sample size and the population standard deviations. In practice we don't know these, so we usually report power for several plausible values. Statistical theory gives us formulas to calculate power. The `pwr` package performs these calculations for you. Here we will illustrate the concepts behind power by coding up simulations in R. 
 
 Suppose our sample size is 
 
@@ -103,7 +103,7 @@ What is our power with this particular data? We will compute this probability by
 B <- 2000 
 ``` 
 
-simulations. The simulation is as follows: we take a sample of size {$$}N {/$$}from both control and treatment groups, we perform a t-test comparing these two, and report if the p-value is less than `alpha` or not. We write a function that does this: 
+simulations. The simulation is as follows: we take a sample of size {$$}N {/$$} from both control and treatment groups, we perform a t-test comparing these two, and report if the p-value is less than `alpha` or not. We write a function that does this: 
 
 
 ```r 
@@ -132,7 +132,7 @@ Now we can use the `replicate` function to do this `B` times.
 rejections <- replicate(B,reject(N)) 
 ``` 
 
-Our power is just the proportion of times we correctly reject. So with {$$}N=12 {/$$}our power is only: 
+Our power is just the proportion of times we correctly reject. So with {$$}N=12 {/$$} our power is only: 
 
 
 ```r 
@@ -170,7 +170,7 @@ plot(Ns, power, type="b")
 
 ![plot of chunk unnamed-chunk-12](images/power_calculations-unnamed-chunk-12-1.png) 
 
-Similarly if we change the level `alpha` at which we reject, power changes. The smaller I want the chance of type I error to be, the less power I will have. We can see this by writing similar code but keeping {$$}N {/$$}fixed and considering several values of `alpha` 
+Similarly if we change the level `alpha` at which we reject, power changes. The smaller I want the chance of type I error to be, the less power I will have. We can see this by writing similar code but keeping {$$}N {/$$} fixed and considering several values of `alpha` 
 
 
 ```r 
