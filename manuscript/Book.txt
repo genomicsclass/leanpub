@@ -20,8 +20,8 @@ exploratory_data_analysis_2.md
 plots_to_avoid.md
 
 ##Chapter 3 - Robust Statistics
-##course1 robust_summaries
-##course1 ranktest
+robust_summaries.md
+ranktest.md
 
 ## Chapter 3 - Matrix Algebra
 ##course2 intro_using_regression
