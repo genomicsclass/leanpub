@@ -10,10 +10,10 @@ clt_and_t-distribution.md
 clt_in_practice.md
 t-tests_in_practice.md
 confidence_intervals.md
-#course1 power_calculations
-#course1 monte_carlo
-#course1 permutation_tests
-#course1 association_tests
+power_calculations.md
+monte_carlo.md
+permutation_tests.md
+association_tests.md
 
 ##Chapter 2 - EDA
 #course1 exploratory_data_analysis_2
