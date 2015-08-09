@@ -33,6 +33,8 @@ library(swirl)
 swirl() 
 ``` 
 
+To follow this book you should be familiar with the difference betwee lists (including data frames) and numeric vectors, for loops, how to create functions, and how to use the `sapply` and `replicate` functions. 
+
 Alternatively you can take the [try R](http://tryr.codeschool.com/) interactive class from Code School. 
 
 Note that there are also many open and free resources and reference guides for R. Two examples are 
@@ -56,10 +58,11 @@ and that the hashtag symbol represents comments and are not interpreted:
 
 ## Installing packages 
 
-The first R command we will run is `install.packages`. If you took the swirl tutorial you already did this! R only includes a basic set of functions. There is much more it can do than this, but not everybody needs everything so we instead make some functions via packages. Many of these function are stored in CRAN. Note that these packages are vetted. You can install easily from within R if you know the name of the function. As an example, we are going to install the package `downloader` which we use in our first data analysis examples: 
+The first R command we will run is `install.packages`. If you took the swirl tutorial you already did this! R only includes a basic set of functions. There is much more it can do than this, but not everybody needs everything so we instead make some functions via packages. Many of these function are stored in CRAN. Note that these packages are vetted. You can install easily from within R if you know the name of the function. As an example, we are going to install the packages `rafalib` and `downloader` which we use in our first data analysis examples: 
 
 
 ```r 
+install.packages("rafalib") 
 install.packages("downloader") 
 ``` 
 
@@ -149,10 +152,6 @@ To install packages from GitHub you will need to install the `devtools` package:
 install.packages("devtools") 
 ``` 
 
-``` 
-## Error in contrib.url(repos, "source"): trying to use CRAN without setting a mirror 
-``` 
-
 Note to Windows users: To use devtools you will have to also install `Rtools`. In general you will need to install packages as administrator. One way to do this is to start R as administrator. If you do not have permission to do this, then it is a bit [more complicated](http://www.magesblog.com/2012/04/installing-r-packages-without-admin.html). 
 
 Now we are ready to install from GitHub. Note that we now use a different function: 
@@ -160,29 +159,7 @@ Now we are ready to install from GitHub. Note that we now use a different functi
 
 ```r 
 library(devtools) 
-``` 
-
-``` 
-## 
-## Attaching package: 'devtools' 
-## 
-## The following object is masked from 'package:downloader': 
-## 
-## source_url 
-``` 
-
-```r 
 install_github("genomicsclass/dagdata") 
-``` 
-
-``` 
-## Downloading github repo genomicsclass/dagdata@master 
-## Installing dagdata 
-## '/Library/Frameworks/R.framework/Resources/bin/R' --no-site-file \ 
-## --no-environ --no-save --no-restore CMD INSTALL \ 
-## '/private/var/folders/kv/h18_5_qn1hj43r8pq5l0tddw0000gn/T/Rtmp0xb7n5/devtools1370f6a5c3064/genomicsclass-dagdata-0639a9e' \ 
-## --library='/Library/Frameworks/R.framework/Versions/3.2/Resources/library' \ 
-## --install-tests 
 ``` 
 
 The file we are working with is actually included in this package. So once you install the pacakge, the file is on your computer. However, finding it is somewhat advanced. Here are the lines of code: 
@@ -225,7 +202,17 @@ Take a look at the dataset we read in:
 
 ```r 
 dat <- read.csv(filename) 
-View(dat) 
+head(dat) ##In R Studio use View(dat) 
+``` 
+
+``` 
+## Diet Bodyweight 
+## 1 chow 21.51 
+## 2 chow 28.14 
+## 3 chow 24.04 
+## 4 chow 23.45 
+## 5 chow 23.68 
+## 6 chow 19.79 
 ``` 
 
 Note that there are two types of diets and that this is denoted in the first column. Note also that if we want just the weights, we only need the second column. So if we want to weights for mice on the `chow` diet we subset and filter like this: 
@@ -233,22 +220,6 @@ Note that there are two types of diets and that this is denoted in the first col
 
 ```r 
 library(dplyr) 
-``` 
-
-``` 
-## 
-## Attaching package: 'dplyr' 
-## 
-## The following object is masked from 'package:stats': 
-## 
-## filter 
-## 
-## The following objects are masked from 'package:base': 
-## 
-## intersect, setdiff, setequal, union 
-``` 
-
-```r 
 chow <- filter(dat, Diet=="chow") ##keep only the ones with chow diet 
 View(chow) 
 ``` 
@@ -258,7 +229,7 @@ And now we can select just the column with the values
 
 ```r 
 chowVals <- select(chow,Bodyweight) 
-chowVals 
+head(chowVals) 
 ``` 
 
 ``` 
@@ -269,12 +240,6 @@ chowVals
 ## 4 23.45 
 ## 5 23.68 
 ## 6 19.79 
-## 7 28.40 
-## 8 20.98 
-## 9 22.51 
-## 10 20.10 
-## 11 26.91 
-## 12 26.25 
 ``` 
 
 A nice feature of the dplyr function is that you can perform consectutive tasks of the form do this and then to that do this other thing using this character a "pipe". We use this symbol to say "then to that do this": `%>%`. So the above can be done in just one line: 
@@ -285,6 +250,37 @@ chowVals <- filter(dat, Diet=="chow") %>% select(Bodyweight)
 ``` 
 
 Note that in the second task we now longer have to specific that object we are editing since it is whatever comes from the previous call. 
+
+Also note that if `dplyr` receives a data.frame it will returns a data.frame. 
+
+```r 
+class(dat) 
+``` 
+
+``` 
+## [1] "data.frame" 
+``` 
+
+```r 
+class(chowVals) 
+``` 
+
+``` 
+## [1] "data.frame" 
+``` 
+
+For the pedagogical reasons we will many times want to have the final resulte be a simple `numeric` vector. To obtain such a vector with dplyr we can apply the `unlist` function which turns `lists` such as `data.frames` into `numeric` vectors: 
+
+
+```r 
+chowVals <- filter(dat, Diet=="chow") %>% select(Bodyweight) %>% unlist 
+class( chowVasl) 
+``` 
+
+``` 
+## Error in eval(expr, envir, enclos): object 'chowVasl' not found 
+``` 
+
 
 So that you can see the way we would do this in R without dplyr this is the code: 
 
