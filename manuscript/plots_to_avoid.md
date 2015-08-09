@@ -67,3 +67,6 @@ barplot(browsers,main="Browser Usage (August 2013)")
 
 Note that we can now pretty easily determine the percentages by following a horizontal line to the x-axis. Do avoid 3-D version as the obfuscate the plot and remove this particular advantage. 
 
+<center> 
+<img src="https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig2b.png" width="400"> 
+</center> 
