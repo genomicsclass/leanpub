@@ -27,7 +27,7 @@ gsub(/\{\$\$\}/," \{\$\$\} ");
 for (i=1;i<=NF;++i){ 
 	if($i=="\{\$\$\}") {
 		++count;
-		if(count==1){ printf "%s", "\{\$\$\}"} else { printf "%s", "\{/\$\$\}"; count=0} 
+		if(count==1){ printf "%s", "\{\$\$\}"} else { printf "%s", "\{/\$\$\} "; count=0} 
 } else {printf "%s ", $i}
 }
 printf "\n";
