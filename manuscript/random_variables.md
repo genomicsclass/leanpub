@@ -235,8 +235,8 @@ This is called the cumulative distribution function (CDF). When the CDF is deriv
 smallest <- floor( min(x) ) 
 largest <- ceiling( max(x) ) 
 values <- seq(smallest, largest,len=300) 
-myecdf <- ecdf(null) 
-plot(values,myecdf(values),type="l") 
+heightecdf <- ecdf(x) 
+plot(values, heightecdf(values), type="l") 
 ``` 
 
 ![plot of chunk unnamed-chunk-11](images/random_variables-unnamed-chunk-11-1.png) 
