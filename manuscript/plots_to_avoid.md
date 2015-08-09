@@ -40,3 +40,30 @@ pie(browsers,main="Browser Usage (August 2013)")
 <img src="images/plots_to_avoid-unnamed-chunk-3-1.png" title="Piechart of browser usage" alt="Piechart of browser usage" style="display: block; margin: auto;" /> 
 
 But as stated by the help file for the `pie` function: 
+
+
+> Pie charts are a very bad way of displaying information. The eye is good at judging linear measures and bad at judging relative areas. A bar chart or dot chart is a preferable way of displaying this type of data. 
+
+To see this, look at the figure above an try to determine the percentages just from looking at the plot. Simply showing the numbers is not only clear but it saves on printing costs. 
+
+
+```r 
+browsers 
+``` 
+
+``` 
+## Opera Safari Firefox IE Chrome 
+## 1 9 20 26 44 
+``` 
+
+If you do want to plot them, then a barplot is appropriate: 
+
+
+```r 
+barplot(browsers,main="Browser Usage (August 2013)") 
+``` 
+
+<img src="images/plots_to_avoid-unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" /> 
+
+Note that we can now pretty easily determine the percentages by following a horizontal line to the x-axis. Do avoid 3-D version as the obfuscate the plot and remove this particular advantage. 
+
