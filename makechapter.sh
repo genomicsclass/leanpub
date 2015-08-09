@@ -56,7 +56,6 @@ git add images/$2*
 fi
 
 git commit -am "adding $2 to book"
-git push 
 
 printf "\n  *** done! *** \n\n"
 
