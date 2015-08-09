@@ -25,3 +25,18 @@ The aims of good data graphics is to display data accurately and clearly. Some r
 * Use a poorly chosen scale. 
 * Ignore significant figures. 
 
+
+### Piecharts 
+
+
+
+Say we want the report the results from a poll asking about browser preference (taken in August 2013). The standard way of displaying these is with a piechart: 
+
+
+```r 
+pie(browsers,main="Browser Usage (August 2013)") 
+``` 
+
+<img src="images/plots_to_avoid-unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" /> 
+
+But as stated by the help file for the `pie` function: 
