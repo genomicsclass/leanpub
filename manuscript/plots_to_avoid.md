@@ -99,7 +99,7 @@ boxplot(dat,xlab="Group",ylab="Response",xlab="Group",ylab="Response",cex=0)
 stripchart(dat,vertical=TRUE,method="jitter",pch=16,add=TRUE,col=1) 
 ``` 
 
-<img src="images/plots_to_avoid-unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" /> 
+![plot of chunk unnamed-chunk-6](images/plots_to_avoid-unnamed-chunk-6-1.png) 
 
 Note how much more we see here: the center, spread, range and the points themselves while in the barplot we only see the mean and the SE and the SE has more to do with sample size than the spread of the data. 
 
@@ -125,7 +125,7 @@ boxplot(dat,xlab="Group",ylab="Response",xlab="Group",ylab="Response",log="y",ce
 stripchart(dat,vertical=TRUE,method="jitter",pch=16,add=TRUE,col=1) 
 ``` 
 
-<img src="images/plots_to_avoid-unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" /> 
+![plot of chunk unnamed-chunk-7](images/plots_to_avoid-unnamed-chunk-7-1.png) 
 
 
 ### Show the scatterplot 
@@ -197,7 +197,7 @@ main=paste0("corr=",signif(cor(r,g),3)))
 abline(0,1,col=2,lwd=2) 
 ``` 
 
-<img src="images/plots_to_avoid-unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" style="display: block; margin: auto;" /> 
+![plot of chunk unnamed-chunk-11](images/plots_to_avoid-unnamed-chunk-11-1.png) 
 
 Although the correlation is reduced in the log-scale, it is very close to 1 in both cases. Does this mean these data are reproduced? To examine how well the second vector reproduces the first, we need to study the differences. So we should instead plot that. In this plot we plot the difference (in the log scale) versus the average: 
 
@@ -211,7 +211,7 @@ main=paste0("SD=",signif(sqrt(mean((r-g)^2)),3)))
 abline(h=0,col=2,lwd=2) 
 ``` 
 
-<img src="images/plots_to_avoid-unnamed-chunk-12-1.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" style="display: block; margin: auto;" /> 
+![plot of chunk unnamed-chunk-12](images/plots_to_avoid-unnamed-chunk-12-1.png) 
 These are referred to as Bland-Altman plots or MA plots in the genomics literature and we will talk more about them later. In this plot we see that the typical difference in the log (base 2) scale between two replicated measures is about 1. This means that when measurements should be the same we will, on average, observe 2 fold difference. We can now compare this variability to the differences we want to detect and decide if this technology is precise enough for our purposes. 
 
 
