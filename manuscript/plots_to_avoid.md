@@ -37,6 +37,6 @@ Say we want the report the results from a poll asking about browser preference (
 pie(browsers,main="Browser Usage (August 2013)") 
 ``` 
 
-<img src="images/plots_to_avoid-unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" /> 
+<img src="images/plots_to_avoid-unnamed-chunk-3-1.png" title="Piechart of browser usage" alt="Piechart of browser usage" style="display: block; margin: auto;" /> 
 
 But as stated by the help file for the `pie` function: 
