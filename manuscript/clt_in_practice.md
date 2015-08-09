@@ -97,7 +97,7 @@ N <- 12
 hf <- sample(hfPopulation,12) 
 control <- sample(controlPopulation,12) 
 ``` 
-The CLT tells us that, for large {$$}N {/$$}, each of these is approximately normal with average population mean and standard error population variance divided by {$$}N {/$$}. We mentioned that a rule of thumb is that {$$}N {/$$}should be 30 or more. But that is just a rule of thumb as the preciseness of the approximation depends on the population distribution. Here we can actually check the approximation and we do that for various values of {$$}N {/$$}. 
+The CLT tells us that, for large {$$}N {/$$} , each of these is approximately normal with average population mean and standard error population variance divided by {$$}N {/$$} . We mentioned that a rule of thumb is that {$$}N {/$$} should be 30 or more. But that is just a rule of thumb as the preciseness of the approximation depends on the population distribution. Here we can actually check the approximation and we do that for various values of {$$}N {/$$} . 
 
 Now we use `sapply` and `replicate` instead of `for` loops, which is recommended. 
 
@@ -109,7 +109,7 @@ replicate(B,mean(sample(hfPopulation,n))-mean(sample(controlPopulation,n)))
 }) 
 ``` 
 
-Now we can use qq-plots to see how well CLT approximations works for these. If in fact the normal distribution is a good approximation the points should fall on a straight line when compared to normal quantiles. The more it deviates, the worse the approximation. We also show, in the title, the average and SD of the observed distribution showing how the SD decreases with {$$}\sqrt{N} {/$$}as predicted. 
+Now we can use qq-plots to see how well CLT approximations works for these. If in fact the normal distribution is a good approximation the points should fall on a straight line when compared to normal quantiles. The more it deviates, the worse the approximation. We also show, in the title, the average and SD of the observed distribution showing how the SD decreases with {$$}\sqrt{N} {/$$} as predicted. 
 
 ```r 
 library(rafalib) 
@@ -173,9 +173,9 @@ qqline(res[,i],col=2)
 
 ![plot of chunk unnamed-chunk-11](images/clt_in_practice-unnamed-chunk-11-1.png) ![plot of chunk unnamed-chunk-11](images/clt_in_practice-unnamed-chunk-11-2.png) ![plot of chunk unnamed-chunk-11](images/clt_in_practice-unnamed-chunk-11-3.png) ![plot of chunk unnamed-chunk-11](images/clt_in_practice-unnamed-chunk-11-4.png) 
 
-Now we see that for {$$}N=3 {/$$}the CLT does not provide a usable approximation. For {$$}N=12 {/$$}their is a slight deviation at the higher values, although the approximation appears useful. For 25 and 50 the appoximation is spot on. 
+Now we see that for {$$}N=3 {/$$} the CLT does not provide a usable approximation. For {$$}N=12 {/$$} their is a slight deviation at the higher values, although the approximation appears useful. For 25 and 50 the appoximation is spot on. 
 
-Note that this simulation is not meant as proof that {$$}N=12 {/$$}is large enough, in general. It only applies to this dataset and, as mentioned above, we will not be able to perform this simulation in most situation. We only use the simulation to illustrate the conecepts behind the CLT. In future sections we will describe approaches we actually use in practice. 
+Note that this simulation is not meant as proof that {$$}N=12 {/$$} is large enough, in general. It only applies to this dataset and, as mentioned above, we will not be able to perform this simulation in most situation. We only use the simulation to illustrate the conecepts behind the CLT. In future sections we will describe approaches we actually use in practice. 
 
 
 
