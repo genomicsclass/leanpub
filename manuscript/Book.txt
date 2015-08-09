@@ -8,8 +8,8 @@ random_variables.md
 populations_and_samples.md
 clt_and_t-distribution.md
 clt_in_practice.md
-#course1 t-tests_in_practice
-#course1 confidence_intervals
+t-tests_in_practice.md
+confidence_intervals.md
 #course1 power_calculations
 #course1 monte_carlo
 #course1 permutation_tests
