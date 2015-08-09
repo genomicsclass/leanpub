@@ -174,116 +174,36 @@ In the plot on the left we see the original data which shows very high correlati
 
 ```r 
 library(Biobase) 
+##install SpikeInSubset with: 
+##library(rafalib) 
+##install_bioc("SpikeInSubset") 
 library(SpikeInSubset) 
-``` 
-
-``` 
-## Error in library(SpikeInSubset): there is no package called 'SpikeInSubset' 
 ``` 
 
 ```r 
 data(mas95) 
-``` 
-
-``` 
-## Warning in data(mas95): data set 'mas95' not found 
-``` 
-
-```r 
 mypar(1,2) 
 r <- exprs(mas95)[,1] ##original measures were not logged 
-``` 
-
-``` 
-## Error in exprs(mas95): error in evaluating the argument 'object' in selecting a method for function 'exprs': Error: object 'mas95' not found 
-``` 
-
-```r 
 g <- exprs(mas95)[,2] 
-``` 
-
-``` 
-## Error in exprs(mas95): error in evaluating the argument 'object' in selecting a method for function 'exprs': Error: object 'mas95' not found 
-``` 
-
-```r 
 plot(r,g,lwd=2,cex=0.2,pch=16, 
 xlab=expression(paste(E[1])), 
 ylab=expression(paste(E[2])), 
 main=paste0("corr=",signif(cor(r,g),3))) 
-``` 
-
-``` 
-## Error in plot(r, g, lwd = 2, cex = 0.2, pch = 16, xlab = expression(paste(E[1])), : object 'r' not found 
-``` 
-
-```r 
 abline(0,1,col=2,lwd=2) 
-``` 
-
-``` 
-## Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): plot.new has not been called yet 
-``` 
-
-```r 
 f <- function(a,x,y,p=0.95) mean(x<=a & y<=a)-p 
 a95 <- uniroot(f,lower=2000,upper=20000,x=r,y=g)$root 
-``` 
-
-``` 
-## Error in mean(x <= a & y <= a): object 'r' not found 
-``` 
-
-```r 
 abline(a95,-1,lwd=2,col=1) 
-``` 
-
-``` 
-## Error in abline(a95, -1, lwd = 2, col = 1): object 'a95' not found 
-``` 
-
-```r 
 text(8500,0,"95% of data below this line",col=1,cex=1.2,adj=c(0,0)) 
-``` 
-
-``` 
-## Error in text.default(8500, 0, "95% of data below this line", col = 1, : plot.new has not been called yet 
-``` 
-
-```r 
 r <- log2(r) 
-``` 
-
-``` 
-## Error in eval(expr, envir, enclos): object 'r' not found 
-``` 
-
-```r 
 g <- log2(g) 
-``` 
-
-``` 
-## Error in eval(expr, envir, enclos): object 'g' not found 
-``` 
-
-```r 
 plot(r,g,lwd=2,cex=0.2,pch=16, 
 xlab=expression(paste(log[2], " ", E[1])), 
 ylab=expression(paste(log[2], " ", E[2])), 
 main=paste0("corr=",signif(cor(r,g),3))) 
-``` 
-
-``` 
-## Error in plot(r, g, lwd = 2, cex = 0.2, pch = 16, xlab = expression(paste(log[2], : object 'r' not found 
-``` 
-
-```r 
 abline(0,1,col=2,lwd=2) 
 ``` 
 
-``` 
-## Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): plot.new has not been called yet 
-``` 
+<img src="figure/plots_to_avoid-unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" style="display: block; margin: auto;" /> 
 
 Although the correlation is reduced in the log-scale, it is very close to 1 in both cases. Does this mean these data are reproduced? To examine how well the second vector reproduces the first, we need to study the differences. So we should instead plot that. In this plot we plot the difference (in the log scale) versus the average: 
 
@@ -294,19 +214,10 @@ plot((r+g)/2,(r-g),lwd=2,cex=0.2,pch=16,
 xlab=expression(paste("Ave{ ",log[2], " ", E[1],", ",log[2], " ", E[2]," }")), 
 ylab=expression(paste(log[2]," { ",E[1]," / ",E[2]," }")), 
 main=paste0("SD=",signif(sqrt(mean((r-g)^2)),3))) 
-``` 
-
-``` 
-## Error in plot((r + g)/2, (r - g), lwd = 2, cex = 0.2, pch = 16, xlab = expression(paste("Ave{ ", : object 'r' not found 
-``` 
-
-```r 
 abline(h=0,col=2,lwd=2) 
 ``` 
 
-``` 
-## Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): plot.new has not been called yet 
-``` 
+<img src="figure/plots_to_avoid-unnamed-chunk-12-1.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" style="display: block; margin: auto;" /> 
 These are referred to as Bland-Altman plots or MA plots in the genomics literature and we will talk more about them later. In this plot we see that the typical difference in the log (base 2) scale between two replicated measures is about 1. This means that when measurements should be the same we will, on average, observe 2 fold difference. We can now compare this variability to the differences we want to detect and decide if this technology is precise enough for our purposes. 
 
 
@@ -506,10 +417,10 @@ For simplicity, if we assume that the variance of both lists is 1 then this redu
 
 with {$$}\rho {/$$}the correlation. So we see the direct relationship between distance and correlation. However, an important difference is that the distance contains the term {$$}(\mu_x-\mu_y)^2 {/$$}thus can detect cases that are not reproducible due to large average changes. 
 
-Yet another reason correlation is not an optimal metric for reproducibility is the lack of units. To see this we use a formula the relates the correlation of a variable with the correlation of that variable plus what is interpreted here as deviation:$x {$$}and {/$$}y=x+d {$$}. The larger the variance of {/$$}d {$$}the less {/$$}x+d {$$}reproduces {/$$}x {$$}. Here the distance metric would depend only on the variance of {/$$}d {$$}and would summarize reproducibitly. However, correlation depends on the variance of {/$$}x {$$}as well: 
+Yet another reason correlation is not an optimal metric for reproducibility is the lack of units. To see this we use a formula the relates the correlation of a variable with the correlation of that variable plus what is interpreted here as deviation: {$$}x {/$$}and {$$}y=x+d {/$$}. The larger the variance of {$$}d {/$$}the less {$$}x+d {/$$}reproduces {$$}x {/$$}. Here the distance metric would depend only on the variance of {$$}d {/$$}and would summarize reproducibitly. However, correlation depends on the variance of {$$}x {/$$}as well: 
 
-{/$$}
-cor(x,x+d) = \frac{1}{\sqrt{1+\mbox{var}(d)/\mbox{var}(x)}} 
 {$$}
+cor(x,x+d) = \frac{1}{\sqrt{1+\mbox{var}(d)/\mbox{var}(x)}} 
+{/$$}
 
-Note that this implies that correlations near 1 do not necessarily imply reproducibility. Specifically, irrespective of the variance of {/$$}d {$$}, we can make the correlation arbitrarily close to 1 by increasing the variance of {/$$}x {$$}. 
+Note that this implies that correlations near 1 do not necessarily imply reproducibility. Specifically, irrespective of the variance of {$$}d {/$$}, we can make the correlation arbitrarily close to 1 by increasing the variance of {$$}x {/$$}. 
