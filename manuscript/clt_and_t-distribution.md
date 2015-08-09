@@ -83,22 +83,7 @@ Here we will use the mice phenotypes data as example. We start by creating two v
 
 ```r 
 library(dplyr) 
-``` 
 
-``` 
-## 
-## Attaching package: 'dplyr' 
-## 
-## The following object is masked from 'package:stats': 
-## 
-## filter 
-## 
-## The following objects are masked from 'package:base': 
-## 
-## intersect, setdiff, setequal, union 
-``` 
-
-```r 
 dat <- read.csv("mice_pheno.csv") ## We downloaded this file in a previous section 
 
 controlPopulation <- filter(dat,Sex == "F" & Diet == "chow") %>% select(Bodyweight) %>% unlist 
