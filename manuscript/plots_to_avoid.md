@@ -37,7 +37,7 @@ Say we want the report the results from a poll asking about browser preference (
 pie(browsers,main="Browser Usage (August 2013)") 
 ``` 
 
-<img src="images/plots_to_avoid-unnamed-chunk-3-1.png" title="Piechart of browser usage" alt="Piechart of browser usage" style="display: block; margin: auto;" /> 
+![Piechart of browser usage](images/plots_to_avoid-unnamed-chunk-3-1.png) 
 
 But as stated by the help file for the `pie` function: 
 
@@ -63,7 +63,7 @@ If you do want to plot them, then a barplot is appropriate:
 barplot(browsers,main="Browser Usage (August 2013)") 
 ``` 
 
-<img src="images/plots_to_avoid-unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" /> 
+![plot of chunk unnamed-chunk-5](images/plots_to_avoid-unnamed-chunk-5-1.png) 
 
 Note that we can now pretty easily determine the percentages by following a horizontal line to the x-axis. Do avoid 3-D version as the obfuscate the plot and remove this particular advantage. 
 
