@@ -70,7 +70,7 @@ Under the null, the mean of the distribution of `diff` is 0. What about the stan
 
 To simplify, let's start with `mean(control)`. This is also a random variable. We want to know the standard error of the distribution of this random variable, which from now on we will call a _standard error_ (SE). In statistics we call the standard deviation of the distribution of a random variable, the standard error of the random variable. Previously, we learned that statistical theory tells us that the standard error of this random variable is the population standard deviation divided by the square root of the square root of the sample size. The formula we showed was 
 
-{$$}SE(\bar{X}) = \sigma / \sqrt{N} {/$$}
+{$$}SE(\bar{X}) = \sigma / \sqrt{N} {/$$} 
 
 We use the sample standard deviation as an estimate of the SE. In R we simply use the `sd` function and the SE is simply 
 
