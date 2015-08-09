@@ -121,7 +121,7 @@ Stratification followed by boxplots lets us see the distribution of each group. 
 
 ## Bi-variate normal distribution 
 
-A pair of random variable {$$}(X,y) {/$$}is considered to be approximated by bivariate normal when the proportion of values below, say {$$}x {/$$}and {$$}y {/$$}is approximated by this expression: 
+A pair of random variable {$$}(X,y) {/$$} is considered to be approximated by bivariate normal when the proportion of values below, say {$$}x {/$$} and {$$}y {/$$} is approximated by this expression: 
 
 {$$}Pr(X<a,Y<b) = \int_{-\infty}^{a} \int_{-\infty}^{b} \frac{1}{2\pi\sigma_x\sigma_y\sqrt{1-\rho^2}} 
 \exp{ \left( 
@@ -132,9 +132,9 @@ A pair of random variable {$$}(X,y) {/$$}is considered to be approximated by biv
 \right] 
 \right) 
 } 
-{/$$}
+{/$$} 
 
-A definition that is more intuitive is the following. Fix a value {$$}x {/$$}and look at all the pairs {$$}(X,Y) {/$$}for which {$$}X=x {/$$}. Generally, in Statistics we call this exercise _conditionion_. We are conditioning {$$}Y {/$$}on {$$}X {/$$}. If a pair of random variables is approximated by a bivariate normal distribution then the distribution of {$$}Y {/$$}condition on {$$}X=x {/$$}is approximated with a normal distribution for all {$$}x {/$$}. Let's see if this happens here. We take 4 different strata to demonstrate this: 
+A definition that is more intuitive is the following. Fix a value {$$}x {/$$} and look at all the pairs {$$}(X,Y) {/$$} for which {$$}X=x {/$$} . Generally, in Statistics we call this exercise _conditionion_. We are conditioning {$$}Y {/$$} on {$$}X {/$$} . If a pair of random variables is approximated by a bivariate normal distribution then the distribution of {$$}Y {/$$} condition on {$$}X=x {/$$} is approximated with a normal distribution for all {$$}x {/$$} . Let's see if this happens here. We take 4 different strata to demonstrate this: 
 
 
 ```r 
@@ -150,21 +150,21 @@ qqline(groups[[i]])
 ![plot of chunk unnamed-chunk-8](images/exploratory_data_analysis_2-unnamed-chunk-8-1.png) 
 
 
-Now we come back to defining correlation. Mathematical statistics tells us that when two variables follow a bivariate normal distribution then for any given value of {$$}x {/$$}the average of the {$$}Y {/$$}in pairs for which {$$}X=x {/$$}is 
+Now we come back to defining correlation. Mathematical statistics tells us that when two variables follow a bivariate normal distribution then for any given value of {$$}x {/$$} the average of the {$$}Y {/$$} in pairs for which {$$}X=x {/$$} is 
 
 {$$}
 \mu_Y + r \frac{X-\mu_X}{\sigma_X}\sigma_Y 
-{/$$}
+{/$$} 
 
-Note that this is a line with slope {$$}r \frac{\sigma_Y}{\sigma_X} {/$$}. This is referred to as the _regression line_. Note also that if the SDs are the same, then the slope of the regression line is the correlation {$$}r {/$$}. Therefore, if we standardize {$$}X {/$$}and {$$}Y {/$$}the correlation is the slope of the regression line. 
+Note that this is a line with slope {$$}r \frac{\sigma_Y}{\sigma_X} {/$$} . This is referred to as the _regression line_. Note also that if the SDs are the same, then the slope of the regression line is the correlation {$$}r {/$$} . Therefore, if we standardize {$$}X {/$$} and {$$}Y {/$$} the correlation is the slope of the regression line. 
 
-Another way to see this is that to form a prediction {$$}\hat{Y} {/$$}, for every SD away from the mean in {$$}x {/$$}, we predict {$$}r {/$$}SDs away for {$$}Y {/$$}: 
+Another way to see this is that to form a prediction {$$}\hat{Y} {/$$} , for every SD away from the mean in {$$}x {/$$} , we predict {$$}r {/$$} SDs away for {$$}Y {/$$} : 
 
 {$$}
 \frac{\hat{Y} - \mu_Y}{\sigma_Y} = r \frac{x-\mu_X}{\sigma_X} 
-{/$$}
+{/$$} 
 
-with the {$$}\mu {/$$}representing the averages, {$$}\sigma {/$$}the standard deviations, and {$$}r {/$$}the correlation. So if there is perfect correlation we predict the same number of SDs, if there is 0 correlation then we don't use {$$}x {/$$}at all, and for values between 0 and 1, the prediction is somewhere in between. For negative values, we simply predict in the opposite direction. 
+with the {$$}\mu {/$$} representing the averages, {$$}\sigma {/$$} the standard deviations, and {$$}r {/$$} the correlation. So if there is perfect correlation we predict the same number of SDs, if there is 0 correlation then we don't use {$$}x {/$$} at all, and for values between 0 and 1, the prediction is somewhere in between. For negative values, we simply predict in the opposite direction. 
 
 
 To confirm that the above approximations hold here, let's compare the mean of each strata to the identity line and the regression line 
@@ -181,19 +181,3 @@ abline(0,cor(x,y))
 ``` 
 
 ![plot of chunk unnamed-chunk-9](images/exploratory_data_analysis_2-unnamed-chunk-9-1.png) 
-
-## Spearman's correlation 
-
-Just like the average and standard deviation are not good summaries when the data is not well approximated by the normal distribution, the correlation is not a good summary when pairs of lists are not approximated by the bivariate normal distribution. Examples include cases in which on variable is related to another by a parabolic function. Another, more common example are caused by outliers or extreme values. 
-
-
-```r 
-a=rnorm(100);a[1]=10 
-b=rnorm(100);b[1]=11 
-plot(a,b,main=paste("correlation =",signif(cor(a,b),2))) 
-``` 
-
-![plot of chunk unnamed-chunk-10](images/exploratory_data_analysis_2-unnamed-chunk-10-1.png) 
-In the example above the data are not associated but for one pair both values are very large. The correlation here is about 0.5. This is driven by just that one point as taking it out lowers to correlation to about 0. An alternative summary for cases with outliers or extreme values is Spearman's correlation which is based on ranks instead of the values themselves. 
-
-
