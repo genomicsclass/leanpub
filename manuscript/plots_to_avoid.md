@@ -264,7 +264,7 @@ boxplot(before,after,names=c("Before","After"),ylab="Response")
 
 The follow figure shows three curves. Pseudo 3D is used but it is not clear way. Maybe to separate the three curves? Note how difficult it is to determine the values of the curves at any given point: 
 
-![Gratuitous 3-D](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig8b.png") 
+![Gratuitous 3-D](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig8b.png) 
 
 This plot can be made better by simply using color to distinguish the three lines: 
 
@@ -383,12 +383,11 @@ The use of correlation to summarize reproducibility has become widespread in, fo
 
 The most egregious related mistake is to compute correlations of data that is not approximated by bi-variate normal data. As described above averages, standard deviations and correlations are popular summary statistics for two-dimensional data because for the bivariate normal distribution these five parameters fully describe the distribution. However, there are many examples of data that are not well approximated by bivariate normal data. 
 
-The standard way to quantify reproducibility between two sets of replicated measurement, say {$$}x_1,\odts,x_n {/$$} and {$$}y_1,\dot,y_n {/$$} , is simply to compute the distance between them: 
+The standard way to quantify reproducibility between two sets of replicated measurement, say {$$}x_1,\dots,x_n {/$$} and {$$}y_1,\dots,y_n {/$$} , is simply to compute the distance between them: 
 
 {$$}
 \sqrt{ 
-\sum_{i=1}^n d_i^2 \mbox{ with } d_i=x_i - y_i 
-} 
+\sum_{i=1}^n d_i^2} \mbox{ with } d_i=x_i - y_i 
 {/$$} 
 
 Note that this metric decreases as reproducibility improves and it is 0 when the reproducibility is perfect. Another advantage of this metric is that if we divide the sum by N, we can interpret the resulting quantity as the standard deviation of the {$$}d_1,\dots,d_N {/$$} if we assume the {$$}d {/$$} average out to 0. Furthermore, this quantity will have the same units as our measurements resulting in a more interpretable metric. Another limitation of the correlation is that it does not detect cases that are not reproducible due to average changes. The distance metric does detect these differences. Notet that we can rewrite 
