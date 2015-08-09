@@ -1,74 +1,52 @@
 --- 
 title: "Exploratory Data Analysis 2" 
-output: pdf_document 
+output: html_document 
 layout: page 
 --- 
 
 
 
 
-# Data Visualization 
+# Exploratory Data Analysis 
 
 Biases, systematic errors and unexpected variability are common in data from the life sciences. Failure to discover these problems often leads to flawed analyses and false discoveries. As an example, consider that experiments sometimes fail and not all data processing pipelines, such as the t.test function in R, are designed to detect these. Yet, these pipelines still give you an answer. Furthermore, it may be hard or impossible to notice an error was made just from the reported results. 
 
-Graphing data is a powerful approach to detecting these problems. We refer to this as _exploratory data analyis_ (EDA). Many important methodological contributions to existing data analysis techniques in data analysis were initiated by discoveries made via EDA. Through this book we make use of exploratory plots to motivate the analyses we choose. Here we present a general introduction to EDA using height data. 
+Summarizing and, especially, visualizing data are powerful approaches to detecting these problems. We refer to this as _exploratory data analyis_ (EDA). Many important methodological contributions to existing data analysis techniques in data analysis were initiated by discoveries made via EDA. Through this book we make use of exploratory plots to motivate the analyses we choose. Here we present a general introduction to EDA using height data. 
 
 We have already introduce some EDA approaches for _univariate_ data. Namely the histograms. Here we describe the qq-plot in more detail ans how some EDA and summary statistics for paired data. We also give a demonstration of commonly used figures that we recommend against. 
 
 
-### Quantile Quantile Plots 
+## Quantile Quantile Plots 
 
-To corroborate that the normal distribution is in fact a good approximation we can use quantile-quantile plots (QQ-plots). Quantiles are best understood by considering the special case of percentiles. The p-th percentile of a list of a distribution is defined as the number q that is bigger than p% of numbers. For example, the median 50-th percentile is the median. We can compute the percentiles for our list and for the normal distribution 
+To corroborate that the normal distribution is in fact a good approximation we can use quantile-quantile plots (QQ-plots). Quantiles are best understood by considering the special case of percentiles. The p-th percentile of a list of a distribution is defined as the number q that is bigger than p% of numbers. For example, the median 50-th percentile is the median. We can compute the percentiles for our list of heights 
+
+
+
+```r 
+library(UsingR) 
+x=father.son$fheight 
+``` 
+
+and for the normal distribution 
+
 
 ```r 
 ps <- seq(0.01,0.99,0.01) 
 qs <- quantile(x,ps) 
-``` 
-
-``` 
-## Error in quantile(x, ps): object 'x' not found 
-``` 
-
-```r 
 normalqs <- qnorm(ps,mean(x),popsd(x)) 
-``` 
-
-``` 
-## Error in mean(x): object 'x' not found 
-``` 
-
-```r 
 plot(normalqs,qs,xlab="Normal percentiles",ylab="Height percentiles") 
-``` 
-
-``` 
-## Error in plot(normalqs, qs, xlab = "Normal percentiles", ylab = "Height percentiles"): object 'normalqs' not found 
-``` 
-
-```r 
 abline(0,1) ##identity line 
 ``` 
 
-``` 
-## Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): plot.new has not been called yet 
-``` 
+![plot of chunk unnamed-chunk-2](images/exploratory_data_analysis_2-unnamed-chunk-2-1.png) 
 Note how close these values are. Also note that we can see these qqplots with less code 
 
 ```r 
 qqnorm(x) 
-``` 
-
-``` 
-## Error in qqnorm(x): object 'x' not found 
-``` 
-
-```r 
 qqline(x) 
 ``` 
 
-``` 
-## Error in quantile(y, probs, names = FALSE, type = qtype, na.rm = TRUE): object 'x' not found 
-``` 
+![plot of chunk unnamed-chunk-3](images/exploratory_data_analysis_2-unnamed-chunk-3-1.png) 
 However, the `qqnorm` function plots against a standard normal distribution. This is why the line has slope `popsd(x)` and intercept `mean(x)` 
 
 In the example above the points match the line very well. In fact we can run Monte Carlo simulations to see that we see plots like this for data known to be normally distributed 
@@ -89,14 +67,7 @@ We can also get a sense for how non-normally distributed data looks. Here we gen
 
 ```r 
 dfs <- c(3,6,12,30) 
-mypar2(2,2) 
-``` 
-
-``` 
-## Error in eval(expr, envir, enclos): could not find function "mypar2" 
-``` 
-
-```r 
+mypar(2,2) 
 for(df in dfs){ 
 x <- rt(1000,df) 
 qqnorm(x,xlab="t quantiles",main=paste0("d.f=",df),ylim=c(-6,6)) 
@@ -104,11 +75,11 @@ qqline(x)
 } 
 ``` 
 
-![plot of chunk unnamed-chunk-5](images/exploratory_data_analysis_2-unnamed-chunk-5-1.png) ![plot of chunk unnamed-chunk-5](images/exploratory_data_analysis_2-unnamed-chunk-5-2.png) ![plot of chunk unnamed-chunk-5](images/exploratory_data_analysis_2-unnamed-chunk-5-3.png) ![plot of chunk unnamed-chunk-5](images/exploratory_data_analysis_2-unnamed-chunk-5-4.png) 
+![plot of chunk unnamed-chunk-5](images/exploratory_data_analysis_2-unnamed-chunk-5-1.png) 
 
 <a name="scatterplots"></a> 
 
-### Scatterplots and correlation 
+## Scatterplots and correlation 
 
 The methods described above relate to _univariate_ variables. In the biomedical sciences it is common to be interested in the relationship between two or more variables. A classic examples is the father/son height data used by Galton to understand heredity. Were we to summarize these data we could use the two averages and two standard deviations as both distributions are well approximated by the normal distribution. This summary, however, fails to describe an important characteristic of the data. 
 
@@ -116,38 +87,6 @@ The methods described above relate to _univariate_ variables. In the biomedical 
 ```r 
 # install.packages("UsingR") 
 library(UsingR) 
-``` 
-
-``` 
-## Loading required package: MASS 
-## Loading required package: HistData 
-## Loading required package: Hmisc 
-## Loading required package: methods 
-## Loading required package: grid 
-## Loading required package: lattice 
-## Loading required package: survival 
-## Loading required package: Formula 
-## Loading required package: ggplot2 
-## 
-## Attaching package: 'Hmisc' 
-## 
-## The following objects are masked from 'package:base': 
-## 
-## format.pval, round.POSIXt, trunc.POSIXt, units 
-## 
-## 
-## Attaching package: 'UsingR' 
-## 
-## The following object is masked from 'package:ggplot2': 
-## 
-## movies 
-## 
-## The following object is masked from 'package:survival': 
-## 
-## cancer 
-``` 
-
-```r 
 data("father.son") 
 x=father.son$fheight 
 y=father.son$sheight 
@@ -158,7 +97,7 @@ plot(x,y,xlab="Father's height in inches",ylab="Son's height in inches",main=pas
 
 The scatter plot shows a general trend: the taller the father the taller to son. A summary of this trend is the correlation coefficient which in this cases is 0.5. We motivate this statistic by trying to predict son's height using the father's. 
 
-### Stratification 
+## Stratification 
 
 Suppose we are asked to guess the height of randomly select sons. The average height, 68.7 inches, is the value with the highest proportion (see histogram) and would be our prediction. But what if we are told that the father is 72 inches tall, do we sill guess 68.7? 
 
@@ -180,7 +119,7 @@ print(mean(y[ round(x) == 72]))
 ``` 
 Stratification followed by boxplots lets us see the distribution of each group. The average height of sons with fathers that are 72 is 70.7. We also see that the means of the strata appear to follow a straight line. This line is refereed to the regression line and it's slope is related to the correlation. 
 
-### Bi-variate normal distribution 
+## Bi-variate normal distribution 
 
 A pair of random variable {$$}(X,y) {/$$}is considered to be approximated by bivariate normal when the proportion of values below, say {$$}x {/$$}and {$$}y {/$$}is approximated by this expression: 
 
@@ -200,14 +139,7 @@ A definition that is more intuitive is the following. Fix a value {$$}x {/$$}and
 
 ```r 
 groups <- split(y,round(x)) 
-mypar2(2,2) 
-``` 
-
-``` 
-## Error in eval(expr, envir, enclos): could not find function "mypar2" 
-``` 
-
-```r 
+mypar(2,2) 
 for(i in c(5,8,11,14)){ 
 qqnorm(groups[[i]],main=paste0("X=",names(groups)[i]," strata"), 
 ylim=range(y),xlim=c(-2.5,2.5)) 
@@ -215,7 +147,7 @@ qqline(groups[[i]])
 } 
 ``` 
 
-![plot of chunk unnamed-chunk-8](images/exploratory_data_analysis_2-unnamed-chunk-8-1.png) ![plot of chunk unnamed-chunk-8](images/exploratory_data_analysis_2-unnamed-chunk-8-2.png) ![plot of chunk unnamed-chunk-8](images/exploratory_data_analysis_2-unnamed-chunk-8-3.png) ![plot of chunk unnamed-chunk-8](images/exploratory_data_analysis_2-unnamed-chunk-8-4.png) 
+![plot of chunk unnamed-chunk-8](images/exploratory_data_analysis_2-unnamed-chunk-8-1.png) 
 
 
 Now we come back to defining correlation. Mathematical statistics tells us that when two variables follow a bivariate normal distribution then for any given value of {$$}x {/$$}the average of the {$$}Y {/$$}in pairs for which {$$}X=x {/$$}is 
@@ -243,21 +175,14 @@ x=(x-mean(x))/sd(x)
 y=(y-mean(y))/sd(y) 
 means=tapply(y,round(x*4)/4,mean) 
 fatherheights=as.numeric(names(means)) 
-mypar2(1,1) 
-``` 
-
-``` 
-## Error in eval(expr, envir, enclos): could not find function "mypar2" 
-``` 
-
-```r 
+mypar(1,1) 
 plot(fatherheights,means,ylab="average of strata of son heights",ylim=range(fatherheights)) 
 abline(0,cor(x,y)) 
 ``` 
 
 ![plot of chunk unnamed-chunk-9](images/exploratory_data_analysis_2-unnamed-chunk-9-1.png) 
 
-### Spearman's correlation 
+## Spearman's correlation 
 
 Just like the average and standard deviation are not good summaries when the data is not well approximated by the normal distribution, the correlation is not a good summary when pairs of lists are not approximated by the bivariate normal distribution. Examples include cases in which on variable is related to another by a parabolic function. Another, more common example are caused by outliers or extreme values. 
 
@@ -272,4 +197,40 @@ plot(a,b,main=paste("correlation =",signif(cor(a,b),2)))
 In the example above the data are not associated but for one pair both values are very large. The correlation here is about 0.5. This is driven by just that one point as taking it out lowers to correlation to about 0. An alternative summary for cases with outliers or extreme values is Spearman's correlation which is based on ranks instead of the values themselves. 
 
 
-### Misunderstanding Correlation 
+## Misunderstanding Correlation 
+
+The use of correlation to summarize reproducibility has become widespread in, for example, genomics. Despite its English language definition, mathematically, correlation is not necessarily informative with regards to reproducibility. Here we briefly describe three major problems. 
+
+The most egregious related mistake is to compute correlations of data that is not approximated by bi-variate normal data. As described above averages, standard deviations and correlations are popular summary statistics for two-dimensional data because for the bivariate normal distribution these five parameters fully describe the distribution. However, there are many examples of data that are not well approximated by bivariate normal data. 
+
+The standard way to quantify reproducibility between two sets of replicated measurement, say {$$}x_1,\odts,x_n {/$$}and {$$}y_1,\dot,y_n {/$$}, is simply to compute the distance between them: 
+
+{$$}
+\sqrt{ 
+\sum_{i=1}^n d_i^2 \mbox{ with } d_i=x_i - y_i 
+} 
+{/$$}
+
+Note that this metric decreases as reproducibility improves and it is 0 when the reproducibility is perfect. Another advantage of this metric is that if we divide the sum by N, we can interpret the resulting quantity as the standard deviation of the {$$}d_1,\dots,d_N {/$$}if we assume the {$$}d {/$$}average out to 0. Furthermore, this quantity will have the same units as our measurements resulting in a more interpretable metric. Another limitation of the correlation is that it does not detect cases that are not reproducible due to average changes. The distance metric does detect these differences. Notet that we can rewrite 
+
+{$$}\frac{1}{n} \sum_{i=1}^n (x_i - y_i)^2 = \frac{1}{n} \sum_{i=1}^n [(x_i-\mu_x) - (y_i - \mu_y)^2 + (\mu_x-\mu_y)]^2 {/$$}
+
+with {$$}\mu_x {/$$}and {$$}\mu_y {/$$}the average of each list. Then we have 
+
+{$$}\frac{1}{n} \sum_{i=1}^n (x_i - y_i)^2 = \frac{1}{n} \sum_{i=1}^n (x_i-\mu_x)^2 + \frac{1}{n} \sum_{i=1}^n (y_i - \mu_y)^2 + (\mu_x-\mu_y)^2 + \frac{1}{n}\sum_{i=1}^n (x_i-\mu_x)(y_i - \mu_y) 
+{/$$}
+
+For simplicity, if we assume that the variance of both lists is 1 then this reduces to 
+
+{$$}\frac{1}{n} \sum_{i=1}^n (x_i - y_i)^2 = 2 + (\mu_x-\mu_y)^2 - 2\rho {/$$}
+
+with {$$}\rho {/$$}the correlation. So we see the direct relationship between distance and correlation. However, an important difference is that the distance contains the term {$$}(\mu_x-\mu_y)^2 {/$$}thus can detect cases that are not reproducible due to large average changes. 
+
+Yet another reason correlation is not an optimal metric for reproducibility is the lack of units. To see this we use a formula the relates the correlation of a variable with the correlation of that variable plus what is interpreted here as deviation:$x {$$}and {/$$}y=x+d {$$}. The larger the variance of {/$$}d {$$}the less {/$$}x+d {$$}reproduces {/$$}x {$$}. Here the distance metric would depend only on the variance of {/$$}d {$$}and would summarize reproducibitly. However, correlation depends on the variance of {/$$}x {$$}as well: 
+
+{/$$}
+cor(x,x+d) = \frac{1}{\sqrt{1+\mbox{var}(d)/\mbox{var}(x)}} 
+{$$}
+
+Note that this implies that correlations near 1 do not necessarily imply reproducibility. Specifically, irrespective of the variance of {/$$}d {$$}, we can make the correlation arbitrarily close to 1 by increasing the variance of {/$$}x {$$}. 
+
