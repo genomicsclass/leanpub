@@ -18,7 +18,7 @@ One of the most famous examples of hypothesis testing was performed by RA Fisher
 
 The basic question we ask is: if the lady is just guessing, what are the chances that she gets 3 or more correct? Just as we have done before we can compute a probability under the null hypothesis that she is just guessing four of each. If we assume this null hypothesis, we can think of this particular examples as picking 4 balls out of an urn with 4 green (correct answer) and 4 red (incorrect answer) balls. 
 
-Under the null hypothesis that the lady is just guessing each ball has the same chance of being picked. We can then use combinatorics to figure out the probability. The probability of picking 3 is {$$}{4 \choose 3} {4 \choose 1} / {8 \choose 4} = 16/70 {/$$}. The probability of picking all correct is {$$}{4 \choose 4} {4 \choose 0}/{8 \choose 4}= 1/70 {/$$}. Thus the chance of observing a 3 or something more extreme, under the null hypothesis, is 0.24. This is called a p-value. This is called Fisher's exact test and it uses the hyper geometric distribution. 
+Under the null hypothesis that the lady is just guessing each ball has the same chance of being picked. We can then use combinatorics to figure out the probability. The probability of picking 3 is {$$}{4 \choose 3} {4 \choose 1} / {8 \choose 4} = 16/70 {/$$} . The probability of picking all correct is {$$}{4 \choose 4} {4 \choose 0}/{8 \choose 4}= 1/70 {/$$} . Thus the chance of observing a 3 or something more extreme, under the null hypothesis, is 0.24. This is called a p-value. This is called Fisher's exact test and it uses the hyper geometric distribution. 
 
 ### Two by two tables 
 
@@ -126,9 +126,9 @@ tab
 ## aa 40 10 
 ``` 
 
-Note that you can feed `table` {$$}n {/$$}factors and it will tabulate all {$$}n {/$$}-tubles. 
+Note that you can feed `table` {$$}n {/$$} factors and it will tabulate all {$$}n {/$$} -tubles. 
 
-The typical statistics we use to summarize these results is the odds ratio (OR). We compute the odds of having the disease if you are an "aa": 10/40, the odds of having the disease if you are an "AA/Aa": 20/180, and take the ration: {$$}(10/40) / (20/180) {/$$}
+The typical statistics we use to summarize these results is the odds ratio (OR). We compute the odds of having the disease if you are an "aa": 10/40, the odds of having the disease if you are an "AA/Aa": 20/180, and take the ration: {$$}(10/40) / (20/180) {/$$} 
 
 
 ```r 
