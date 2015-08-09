@@ -11,7 +11,7 @@ layout: page
 
 ## Plots to Avoid 
 
-This section is based on talk by [Karl W. Broman](http://kbroman.org/) titled "How to Display Data Badly" in which he described how the default plots offered by Microsoft Excel "obscure your data and annoy your readers" ([here](http://kbroman.org/pages/talks.html) is a link to a collection of Karl Broman's talks). His lecture was inspired by the 1984 paper by H Wainer: How to display data badly. American Statistician 38(2): 137--147}. Dr. Wainer was the first to elucidate the principles of the bad display of data. But according to Karl, "The now widespread use of Microsoft Excel has resulted in remarkable advances in the field." Here we show examples of "bad plots" and how to improve them in R. 
+This section is based on talk by [Karl W. Broman](http://kbroman.org/) titled "How to Display Data Badly" in which he described how the default plots offered by Microsoft Excel "obscure your data and annoy your readers" ([here](http://kbroman.org/pages/talks.html) is a link to a collection of Karl Broman's talks). His lecture was inspired by the 1984 paper by H Wainer: How to display data badly. American Statistician 38(2): 137--147. Dr. Wainer was the first to elucidate the principles of the bad display of data. But according to Karl, "The now widespread use of Microsoft Excel has resulted in remarkable advances in the field." Here we show examples of "bad plots" and how to improve them in R. 
 
 ### General Principles 
 
