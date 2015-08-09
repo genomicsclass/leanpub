@@ -274,11 +274,11 @@ For the pedagogical reasons we will many times want to have the final resulte be
 
 ```r 
 chowVals <- filter(dat, Diet=="chow") %>% select(Bodyweight) %>% unlist 
-class( chowVasl) 
+class( chowVals ) 
 ``` 
 
 ``` 
-## Error in eval(expr, envir, enclos): object 'chowVasl' not found 
+## [1] "numeric" 
 ``` 
 
 
