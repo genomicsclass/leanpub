@@ -40,7 +40,7 @@ for (i=1;i<=n;++i){
 }
 print line;
 }
-' $2.md > ../../leanpub/manuscript/$2.md
+' $2.md > caca.md ##../../leanpub/manuscript/$2.md
 
 #rm $2.md
 cd ../../leanpub
