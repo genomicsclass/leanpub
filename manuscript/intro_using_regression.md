@@ -16,7 +16,7 @@ We are going to describe three examples from the life sciences. One from physics
 ```r
 library(rafalib)
 ```
-## Examples
+## Motivating Examples
 
 ### Objects falling
 
@@ -107,7 +107,7 @@ We want to estimate the difference in average weight between populations. We sho
 with {$$}\beta_0{/$$} the chow diet average weight, {$$}\beta_1{/$$} the difference between averages, {$$}x_i = 1{/$$} when mouse {$$}i{/$$} gets the high fat (hf) diet, {$$}x_i = 0{/$$} when it gets the chow diet, and {$$}\varepsilon_i{/$$} explains the differences between mice of same population. 
  
 
-## Linear model in general
+### Linear model in general
 
 We have seen three very different examples in which linear models can be used. A general model that encompasses all of the above examples is the following:
 
@@ -120,7 +120,7 @@ Note that we have a general number of predictors {$$}p{/$$}. Matrix algebra prov
 
 <a name="estimates"></a>
 
-## Estimating parameters
+### Estimating parameters
 
 For the models above to be useful we have to estimate the unknown {$$}\beta{/$$} s. In the first example, we want to describe a physical process for which we can't have unknown parameters. In the second example we better understand inheritence by estimating how much, on average, father height affects the son's. In the final example we want to determine if their is infact a difference: if {$$}\beta_1 \neq 0{/$$}. 
 
@@ -162,7 +162,7 @@ But we were pretending we are Galileo and don't know the parameters in the model
 
 So how do we find the LSE?
 
-## The `lm` function
+### The `lm` function
 
 In R we can fit this model by simply using the `lm` function. We will describe this function in detail later, but here is a preview
 
@@ -184,7 +184,7 @@ It gives us the LSE as well as standard errors and p-values.
 
 Part of what we do in this course is explain the mathematics behind this function. 
 
-## The Least Squares Eestimate (LSE)
+### The Least Squares Eestimate (LSE)
 
 Let's write a function that computes the RSS for any vector {$$}\beta{/$$}
 
@@ -212,14 +212,15 @@ lines(Beta2s,sapply(Beta2s,rss,Beta0=65,Beta1=0),col=2)
 Trial and error here is not going to work. Instead we can use calculus: take the partial derivatives, set them to 0 and solve. But note that if we have many parameters, these equations can get rather complex. Linear algebra provides a compact and general way of solving this problem. 
 
 
-## More on Galton (Advanced)
+### More on Galton (Advanced)
 When studying the father son data, Galton made a fascinating discovery using exploratory analysis.
 
 ![Galton's plot](http://upload.wikimedia.org/wikipedia/commons/b/b2/Galton's_correlation_diagram_1875.jpg)
 
 He noted that if he tabulated the number of father/son height pairs and followed all the x,y values having the same totals in the table they formed an ellipses. In the plot above, made by Galton, you see the ellipsis formed by the pairs having 3 cases. This then led to modeling this data as correlated bivariate normal. 
 
-{$$} Pr(X<a,Y<b) = \int_{-\infty}^{a} \int_{-\infty}^{b} \frac{1}{2\pi\sigma_x\sigma_y\sqrt{1-\rho^2}}
+{$$} Pr(X<a,Y<b) = \\
+\int_{-\infty}^{a} \int_{-\infty}^{b} \frac{1}{2\pi\sigma_x\sigma_y\sqrt{1-\rho^2}}
 \exp{ \left\{
 \frac{1}{2(1-\rho^2)}
 \left[\left(\frac{x-\mu_x}{\sigma_x}\right)^2 -  
