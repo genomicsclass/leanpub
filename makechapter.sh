@@ -25,16 +25,21 @@ sed 's/\$\$/@@@@/g' $2.md |
 awk '
 BEGIN {count = 0;}
 {
-gsub(/\{\$\$\}/," \{\$\$\} ");
-for (i=1;i<=NF;++i){ 
-	if($i=="\{\$\$\}") {
+gsub(/\{\$\$\}/,"@@@@\{\$\$\}@@@@");
+n=split($0,a,"@@@@")
+line = "";
+for (i=1;i<=n;++i){
+	if(a[i]=="\{\$\$\}") {
 		++count;
-		if(count==1){ printf "%s", "\{\$\$\}"} else { printf "%s", "\{/\$\$\} "; count=0} 
-} else {printf "%s ", $i}
+		if(count==2) { 
+			a[i] = "\{/\$\$\}"; 
+			count=0
+		}
+	}
+	line=(line a[i])
 }
-printf "\n";
-} 
-' $2.md > ../../leanpub/manuscript/$2.md
+print line;
+}' $2.md > ../../leanpub/manuscript/$2.md
 
 rm $2.md
 cd ../../leanpub
