@@ -42,7 +42,7 @@ print line;
 }
 ' $2.md > ../../leanpub/manuscript/$2.md
 
-rm $2.md
+#rm $2.md
 cd ../../leanpub
 
 imgcount=`ls -1 ../labs/$1/figure/$2* 2> /dev/null | wc -l`
