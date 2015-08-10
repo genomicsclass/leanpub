@@ -21,17 +21,6 @@ The main point of this entire exercise is to show how we can write the models ab
 ## The Original Application: Solving System of Equations
 
 Linear algebra was created by mathematicians to solve systems of linear equations such as this:
-
-{$$}
-\begin{aligned}
-a + b + c &= 6\\
-3a - 2b + c &= 2\\
-2a + b  - c &= 1
-\end{aligned}
-{/$$}
-
-It provides very useful machinery to solve these problems generally. We will learn how we can write and solve this system using matrix algebra notation:
-
 This section explains the notation used above. It turns that we can borrow this notation for linear models in statistics as well.
 
 ## Vectors, Matrices and Scalars
