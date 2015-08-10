@@ -1,5 +1,5 @@
-introduction.md
-getting_started.md
+##frontmatter introduction
+##course1 getting_started
 ## need to add something about functions and sapply
 
 ##Chapter 1 - Inference
