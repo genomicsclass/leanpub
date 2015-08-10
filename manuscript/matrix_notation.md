@@ -22,13 +22,6 @@ The main point of this entire exercise is to show how we can write the models ab
 
 Linear algebra was created by mathematicians to solve systems of linear equations such as this:
 
-{$$}
-\begin{aligned}
-a + b + c &= 6\\
-3a - 2b + c &= 2\\
-2a + b  - c &= 1
-\end{aligned}
-{/$$}
 
 It provides very useful machinery to solve these problems generally. We will learn how we can write and solve this system using matrix algebra notation:
 
