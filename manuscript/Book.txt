@@ -4,28 +4,28 @@ getting_started.md
 
 ##Chapter 1 - Inference
 
-random_variables.md
-populations_and_samples.md
-clt_and_t-distribution.md
-clt_in_practice.md
-t-tests_in_practice.md
-confidence_intervals.md
-power_calculations.md
-monte_carlo.md
-permutation_tests.md
-association_tests.md
+#course1 random_variables
+#course1 populations_and_samples
+#course1 clt_and_t-distribution
+#course1 clt_in_practice
+#course1 t-tests_in_practice
+#course1 confidence_intervals
+#course1 power_calculations
+#course1 monte_carlo
+#course1 permutation_tests
+#course1 association_tests
 
 ##Chapter 2 - EDA
-exploratory_data_analysis_2.md
-plots_to_avoid.md
+#course1 exploratory_data_analysis_2
+#course1 plots_to_avoid
 
 ##Chapter 3 - Robust Statistics
-robust_summaries.md
-ranktest.md
+#course1 robust_summaries
+#course1 ranktest
 
 ## Chapter 4 - Matrix Algebra
-intro_using_regression.md
-##course2 matrix_notation
+#course2 intro_using_regression
+matrix_notation.md
 ##course2 matrix_operations
 ##course2 matrix_algebra_examples
 
