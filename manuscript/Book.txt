@@ -25,7 +25,7 @@ ranktest.md
 
 ## Chapter 4 - Matrix Algebra
 intro_using_regression.md
-matrix_notation.md
+##course2 matrix_notation
 ##course2 matrix_operations
 ##course2 matrix_algebra_examples
 
