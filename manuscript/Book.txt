@@ -23,11 +23,12 @@ plots_to_avoid.md
 robust_summaries.md
 ranktest.md
 
-## Chapter 3 - Matrix Algebra
-##course2 intro_using_regression
+## Chapter 4 - Matrix Algebra
+intro_using_regression.md
 ##course2 matrix_notation
 ##course2 matrix_operations
 ##course2 matrix_algebra_examples
+
 ### Chapter 4: Linear Models
 ##course2 expressing_design_formula
 ##course2 linear_models_in_practice
