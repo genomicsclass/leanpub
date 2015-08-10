@@ -80,25 +80,11 @@ Here we read-in mouse body weight data from mice that were fed two different die
 
 ```r
 dat <- read.csv("femaleMiceWeights.csv")
-```
-
-```
-## Warning in file(file, "rt"): cannot open file 'femaleMiceWeights.csv': No
-## such file or directory
-```
-
-```
-## Error in file(file, "rt"): cannot open the connection
-```
-
-```r
 mypar(1,1)
 stripchart(Bodyweight~Diet,data=dat,vertical=TRUE,method="jitter",pch=1,main="Mice weights")
 ```
 
-```
-## Error in eval(expr, envir, enclos): object 'dat' not found
-```
+![plot of chunk unnamed-chunk-5](images/intro_using_regression-unnamed-chunk-5-1.png) 
 
 We want to estimate the difference in average weight between populations. We showed how to do this using t-tests and confidence intervals based on the difference in sample averages. We can obtain the same exact results using a linear model:
 
@@ -175,9 +161,9 @@ summary(fit)$coef
 
 ```
 ##               Estimate Std. Error    t value     Pr(>|t|)
-## (Intercept) 56.4305502  0.3969358 142.165421 4.226652e-34
-## tt           0.1467666  0.5407103   0.271433 7.885888e-01
-## tt2         -4.8943619  0.1536079 -31.862690 6.638629e-20
+## (Intercept) 57.1047803  0.4996845 114.281666 5.119823e-32
+## tt          -0.4460393  0.6806757  -0.655289 5.190757e-01
+## tt2         -4.7471698  0.1933701 -24.549662 1.767229e-17
 ```
 
 It gives us the LSE as well as standard errors and p-values. 
