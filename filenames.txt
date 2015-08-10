@@ -26,7 +26,7 @@ course1 ranktest
 ## Chapter 4 - Matrix Algebra
 course2 intro_using_regression
 course2 matrix_notation
-course2 matrix_operations
+##course2 matrix_operations
 ##course2 matrix_algebra_examples
 
 ### Chapter 4: Linear Models
