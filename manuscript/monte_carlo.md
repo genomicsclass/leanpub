@@ -1,121 +1,121 @@
---- 
-layout: page 
-title: Monte Carlo methods 
---- 
+---
+layout: page
+title: Monte Carlo methods
+---
 
 
 
 
 
 
-## Monte Carlo Simulation 
+## Monte Carlo Simulation
 
-Computers can be used to generate pseudo-random numbers. For practical purposes these pseudo-random numbers can be used to imitate random variables from the real world. This permits us to examine properties of random variables using a computer instead of theoretical or analytical derivations. One very useful aspect of this concept is that we can create *simulated* data to test out ideas or competing methods without actually having to perform laboratory experiments. 
+Computers can be used to generate pseudo-random numbers. For practical purposes these pseudo-random numbers can be used to imitate random variables from the real world. This permits us to examine properties of random variables using a computer instead of theoretical or analytical derivations. One very useful aspect of this concept is that we can create *simulated* data to test out ideas or competing methods without actually having to perform laboratory experiments.
 
-Simulations can also be used to check theoretical or analytical results. Also, many of the theoretical results we use in statistics are based on asymptotics: they hold when the sample size goes to infinity. In practice we never have an infinite number of samples so we may want to know how well the theory works with our actual sample size. Sometimes we can answer this question analytically, but not always. Simulations are extremely useful in these cases. 
+Simulations can also be used to check theoretical or analytical results. Also, many of the theoretical results we use in statistics are based on asymptotics: they hold when the sample size goes to infinity. In practice we never have an infinite number of samples so we may want to know how well the theory works with our actual sample size. Sometimes we can answer this question analytically, but not always. Simulations are extremely useful in these cases.
 
-As an example, let's use a Monte Carlo simualation to see compare the CLT to the t-distribution approximation for different sample sizes. 
-
-
-```r 
-library(downloader) 
-url <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/mice_pheno.csv" 
-filename <- tempfile() 
-download(url,destfile=filename) 
-dat <- read.csv(filename) 
-
-library(dplyr) 
-controlPopulation <- filter(dat,Sex == "F" & Diet == "chow") %>% select(Bodyweight) %>% unlist 
-``` 
+As an example, let's use a Monte Carlo simulation to see compare the CLT to the t-distribution approximation for different sample sizes.
 
 
+```r
+library(downloader)
+url <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/mice_pheno.csv"
+filename <- tempfile()
+download(url,destfile=filename)
+dat <- read.csv(filename)
 
-```r 
-ttestgenerator <- function(n) { 
-# note that here we have a false "high fat" group where we actually 
-# sample from the nonsmokers. this is because we are modeling the *null* 
-cases <- sample(controlPopulation,n) 
-controls <- sample(controlPopulation,n) 
-tstat <- (mean(cases)-mean(controls)) / 
-sqrt( var(cases)/n + var(controls)/n ) 
-return(tstat) 
-} 
-ttests <- replicate(1000, ttestgenerator(10)) 
-``` 
-
-With 1,000 Monte Carlo simulated ocurrences of this random variable we can now get a gimplse of it's distribution 
+library(dplyr)
+controlPopulation <- filter(dat,Sex == "F" & Diet == "chow") %>%  select(Bodyweight) %>% unlist
+```
 
 
-```r 
-hist(ttests) 
-``` 
+
+```r
+ttestgenerator <- function(n) {
+  # note that here we have a false "high fat" group where we actually
+  # sample from the nonsmokers. this is because we are modeling the *null*
+  cases <- sample(controlPopulation,n)
+  controls <- sample(controlPopulation,n)
+  tstat <- (mean(cases)-mean(controls)) / 
+      sqrt( var(cases)/n + var(controls)/n ) 
+  return(tstat)
+  }
+ttests <- replicate(1000, ttestgenerator(10))
+```
+
+With 1,000 Monte Carlo simulated occurrences of this random variable we can now get a glimpse of its distribution
+
+
+```r
+hist(ttests)
+```
 
 ![plot of chunk unnamed-chunk-4](images/monte_carlo-unnamed-chunk-4-1.png) 
 
-So is the distribution of this t-statistic well approximated by the normal distribution? In the next chapter we will introduce quantile-quantile plots which provide a useful visual inspection of how well one distribution approximates another. As we will explain later, if points fall on the identiy line, it means the approximation is a good one. 
+So is the distribution of this t-statistic well approximated by the normal distribution? In the next chapter we will introduce quantile-quantile plots which provide a useful visual inspection of how well one distribution approximates another. As we will explain later, if points fall on the identity line, it means the approximation is a good one.
 
 
-```r 
-qqnorm(ttests) 
-abline(0,1) 
-``` 
+```r
+qqnorm(ttests)
+abline(0,1)
+```
 
 ![plot of chunk unnamed-chunk-5](images/monte_carlo-unnamed-chunk-5-1.png) 
 
 This looks like a very good approximation. So for this particular population a sample size of 10 was large enough to use the CLT approximation. How about 3? 
 
 
-```r 
-ttests <- replicate(1000, ttestgenerator(3)) 
-qqnorm(ttests) 
-abline(0,1) 
-``` 
+```r
+ttests <- replicate(1000, ttestgenerator(3))
+qqnorm(ttests)
+abline(0,1)
+```
 
 ![plot of chunk unnamed-chunk-6](images/monte_carlo-unnamed-chunk-6-1.png) 
 
-Now we see that the large quantiles (refered to by statisticians as the _tails_) are large than expected. In the previous module we explained that when the sample size is not large enough and the *population values* follow a normal distribution then the t-distribution is a better approximation. Our simulation results seem to confirm this: 
+Now we see that the large quantiles (referred to by statisticians as the _tails_) are large than expected. In the previous module we explained that when the sample size is not large enough and the *population values* follow a normal distribution then the t-distribution is a better approximation. Our simulation results seem to confirm this:
 
 
-```r 
-qs <- (seq(0,999)+0.5)/1000 
-qqplot(qt(qs,df=2*3-2),ttests,xlim=c(-6,6),ylim=c(-6,6)) 
-abline(0,1) 
-``` 
+```r
+qs <- (seq(0,999)+0.5)/1000
+qqplot(qt(qs,df=2*3-2),ttests,xlim=c(-6,6),ylim=c(-6,6))
+abline(0,1)
+```
 
 ![plot of chunk unnamed-chunk-7](images/monte_carlo-unnamed-chunk-7-1.png) 
 
-The t-distribution is a much better approximation in this case but it is still not perfect. This is due to the fact that the original data is not that well approximated by the normal distribution. 
+The t-distribution is a much better approximation in this case but it is still not perfect. This is due to the fact that the original data is not that well approximated by the normal distribution.
 
 
-```r 
-qqnorm(controlPopulation) 
-qqline(controlPopulation) 
-``` 
+```r
+qqnorm(controlPopulation)
+qqline(controlPopulation)
+```
 
 ![plot of chunk unnamed-chunk-8](images/monte_carlo-unnamed-chunk-8-1.png) 
 
 
-### Parametric simulations for the observations 
+### Parametric simulations for the observations
 
-The technique we used to motivate random variables and null distribution was a type of Monte Carlo simulation. We had access to population data and generated samples at random. In practice, we do not have access to the entire population. The reason for using the approach here was for educational purpsoses. But when we want to use Monte Carlo simulations in practice it is much more typical to assume a parametric distribution and generate a population from this. Instead, we can simulate the populaton data as well, using what is called a "parametric simulation". This means that we take parameters from the real data (here the mean and the standard deviation), and plug these into a model (here the normal distribution). This is acually the most common form of Monte Carlo simulation. 
+The technique we used to motivate random variables and null distribution was a type of Monte Carlo simulation. We had access to population data and generated samples at random. In practice, we do not have access to the entire population. The reason for using the approach here was for educational purposes. But when we want to use Monte Carlo simulations in practice it is much more typical to assume a parametric distribution and generate a population from this. Instead, we can simulate the population data as well, using what is called a "parametric simulation". This means that we take parameters from the real data (here the mean and the standard deviation), and plug these into a model (here the normal distribution).  This is actually the most common form of Monte Carlo simulation.
 
-For the case of wieghts we could use our knowledge that mice are typically 24 ounces in weigth with and SD of about 3.5 and that their weight distribution is roughly normal to generate population data: 
+For the case of weights we could use our knowledge that mice are typically 24 ounces in weight with and SD of about 3.5 and that their weight distribution is roughly normal to generate population data:
 
 
 
-```r 
+```r
 controls<- rnorm(5000, mean=24, sd=3.5) 
-``` 
+```
 
-and repeat the entire excercise. We can then repeat the exercise above. Note that we no longer have to use the `sample` function since we can re-generate random normal numbers. So the `ttestgenerator` function can be written like this: 
+and repeat the entire exercise. We can then repeat the exercise above. Note that we no longer have to use the `sample` function since we can re-generate random normal numbers. So the `ttestgenerator` function can be written like this: 
 
 
-```r 
-ttestgenerator <- function(n, mean=24, sd=3.5) { 
-cases <- rnorm(n,mean,sd) 
-controls <- rnorm(n,mean,sd) 
-tstat <- (mean(cases)-mean(controls)) / 
-sqrt( var(cases)/n + var(controls)/n ) 
-return(tstat) 
-} 
-``` 
+```r
+ttestgenerator <- function(n, mean=24, sd=3.5) {
+  cases <- rnorm(n,mean,sd)
+  controls <- rnorm(n,mean,sd)
+  tstat <- (mean(cases)-mean(controls)) / 
+      sqrt( var(cases)/n + var(controls)/n ) 
+  return(tstat)
+  }
+```
