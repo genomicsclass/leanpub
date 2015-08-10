@@ -69,8 +69,6 @@ c
 
 This section explains the notation used above. It turns that we can borrow this notation for linear models in statistics as well.
 
-
-
 ## Vectors, Matrices and Scalars
 
 In the examples above the random variables associated with the data were represented by {$$}Y_1,\dots,Y_n{/$$}. We can think of this as a vector. In fact, in R we are already doing this:
