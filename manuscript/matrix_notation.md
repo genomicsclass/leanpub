@@ -33,43 +33,31 @@ a + b + c &= 6\\
 It provides very useful machinery to solve these problems generally. We will learn how we can write and solve this system using matrix algebra notation:
 
 
-It provides very useful machinery to solve these problems generally. We will learn how we can write and solve this system using matrix algebra notation:
+This section explains the notation used above. It turns that we can borrow this notation for linear models in statistics as well.
+
+## Vectors, Matrices and Scalars
+
+In the examples above the random variables associated with the data were represented by {$$}Y_1,\dots,Y_n{/$$}. We can think of this as a vector. In fact, in R we are already doing this:
 
 
-{$$}\begin{pmatrix}
-1&1&1\\
-3&-2&1\\
-2&1&-1
-\end{pmatrix}
-\begin{pmatrix}
-a\\
-b\\
-c
-\end{pmatrix} =
-\begin{pmatrix}
-6\\
-2\\
-1
-\end{pmatrix}
-\implies
-\begin{pmatrix}
-a\\
-b\\
-c
-\end{pmatrix} =
-\begin{pmatrix}
-1&1&1\\
-3&-2&1\\
-2&1&-1
-\end{pmatrix}^{-1}
-\begin{pmatrix}
-6\\
-2\\
-1
+```r
+library(UsingR)
+y=father.son$fheight
+head(y)
+```
+
+```
+## [1] 65.04851 63.25094 64.95532 65.75250 61.13723 63.02254
+```
+In math we can also use just one symbol and we usually use bold to distinguish it from the individual entries:
+
+{$$} \mathbf{Y} = \begin{pmatrix}
+Y_1\\\
+Y_2\\\
+\vdots\\\
+Y_N
 \end{pmatrix}
 {/$$}
-
-This section explains the notation used above. It turns that we can borrow this notation for linear models in statistics as well.
 
 
 For reasons that will become clear soon, default representation of data vectors have dimension {$$}N\times 1{/$$} as opposed to {$$}1 \times N{/$$} .
