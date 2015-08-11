@@ -35,9 +35,7 @@ It provides very useful machinery to solve these problems generally. We will lea
 
 {$$}
 \begin{pmatrix}
-1&1&1\\
-3&-2&1\\
-2&1&-1
+1&1&1\\3&-2&1\\2&1&-1
 \end{pmatrix}
 {/$$}
 
