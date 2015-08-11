@@ -33,6 +33,45 @@ a + b + c &= 6\\
 It provides very useful machinery to solve these problems generally. We will learn how we can write and solve this system using matrix algebra notation:
 
 
+It provides very useful machinery to solve these problems generally. We will learn how we can write and solve this system using matrix algebra notation:
+
+
+{$$}\begin{pmatrix}
+1&1&1\\
+3&-2&1\\
+2&1&-1
+\end{pmatrix}
+\begin{pmatrix}
+a\\
+b\\
+c
+\end{pmatrix} =
+\begin{pmatrix}
+6\\
+2\\
+1
+\end{pmatrix}
+\implies
+\begin{pmatrix}
+a\\
+b\\
+c
+\end{pmatrix} =
+\begin{pmatrix}
+1&1&1\\
+3&-2&1\\
+2&1&-1
+\end{pmatrix}^{-1}
+\begin{pmatrix}
+6\\
+2\\
+1
+\end{pmatrix}
+{/$$}
+
+This section explains the notation used above. It turns that we can borrow this notation for linear models in statistics as well.
+
+
 For reasons that will become clear soon, default representation of data vectors have dimension {$$}N\times 1{/$$} as opposed to {$$}1 \times N{/$$} .
 
 Note: we don't always use bold because commonly one can tell what is a matrix from the context.
