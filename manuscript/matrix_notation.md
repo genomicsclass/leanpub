@@ -33,6 +33,7 @@ a + b + c &= 6\\
 It provides very useful machinery to solve these problems generally. We will learn how we can write and solve this system using matrix algebra notation:
 
 {$$} 
+\,
 \begin{pmatrix}
 x_{1,1}\\
 \vdots\\
