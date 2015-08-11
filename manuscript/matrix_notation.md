@@ -32,6 +32,19 @@ a + b + c &= 6\\
 
 It provides very useful machinery to solve these problems generally. We will learn how we can write and solve this system using matrix algebra notation:
 
+{$$} 
+\mathbf{X}_1 = \begin{pmatrix}
+x_{1,1}\\
+\vdots\\
+x_{N,1}
+\end{pmatrix} \mbox{ and }
+\mathbf{X}_2 = \begin{pmatrix}
+x_{1,2}\\
+\vdots\\
+x_{N,2}
+\end{pmatrix}
+{/$$}
+
 This section explains the notation used above. It turns that we can borrow this notation for linear models in statistics as well.
 
 ## Vectors, Matrices and Scalars
