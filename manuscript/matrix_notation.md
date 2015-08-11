@@ -23,15 +23,14 @@ The main point of this entire exercise is to show how we can write the models ab
 Linear algebra was created by mathematicians to solve systems of linear equations such as this:
 
 {$$}
-\begin{align}
+\begin{align*}
 a + b + c &= 6\\
 3a - 2b + c &= 2\\
 2a + b  - c &= 1
-\end{align}
+\end{align*}
 {/$$}
 
 It provides very useful machinery to solve these problems generally. We will learn how we can write and solve this system using matrix algebra notation:
-
 
 
 For reasons that will become clear soon, default representation of data vectors have dimension {$$}N\times 1{/$$} as opposed to {$$}1 \times N{/$$} .
