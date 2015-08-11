@@ -33,6 +33,23 @@ a + b + c &= 6\\
 It provides very useful machinery to solve these problems generally. We will learn how we can write and solve this system using matrix algebra notation:
 
 
+{$$}
+\begin{pmatrix}
+1&1&1\\
+3&-2&1\\
+2&1&-1
+\end{pmatrix}
+\begin{pmatrix}
+a\\
+b\\
+c
+\end{pmatrix} =
+\begin{pmatrix}
+6\\
+2\\
+1
+\end{pmatrix}
+{/$$}
 This section explains the notation used above. It turns that we can borrow this notation for linear models in statistics as well.
 
 ## Vectors, Matrices and Scalars
