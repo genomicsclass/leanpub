@@ -26,10 +26,10 @@
 ## Chapter 4 - Matrix Algebra
 #course2 intro_using_regression
 matrix_notation.md
-##course2 matrix_operations
-##course2 matrix_algebra_examples
+matrix_operations.md
+matrix_algebra_examples.md
 
-### Chapter 4: Linear Models
+### Chapter 5: Linear Models
 ##course2 expressing_design_formula
 ##course2 linear_models_in_practice
 ##course2 standard_errors
@@ -37,6 +37,7 @@ matrix_notation.md
 ##course2 pages/collinearity
 ##course2 qr_and_regression
 ##course2 linear_models_going_further
+
 ### Chapter 5: Multiple comparisons
 ##course3 intro_to_highthroughput_data
 ##course3 inference_for_highthroughput.html)
