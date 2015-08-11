@@ -39,17 +39,8 @@ It provides very useful machinery to solve these problems generally. We will lea
 3&-2&1\\
 2&1&-1
 \end{pmatrix}
-\begin{pmatrix}
-a\\
-b\\
-c
-\end{pmatrix} =
-\begin{pmatrix}
-6\\
-2\\
-1
-\end{pmatrix}
 {/$$}
+
 This section explains the notation used above. It turns that we can borrow this notation for linear models in statistics as well.
 
 ## Vectors, Matrices and Scalars
