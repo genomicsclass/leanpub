@@ -185,6 +185,7 @@ Sex & A & B & C & D\\
 Here we can see that sex and treatment are confounded. Specifically, the sex column can be written as a linear combination of the C and D matrices.
 
 {$$}
+\,
 \begin{pmatrix}
 Sex \\
 0\\
