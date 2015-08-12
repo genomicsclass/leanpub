@@ -114,13 +114,13 @@ The transpose is an operation that simply changes columns to rows. We use either
   x_{1,1}&\dots & x_{1,p} \\
   x_{2,1}&\dots & x_{2,p} \\
    & \vdots & \\
-  x_{N,1}&\dots & x_{N,p} \\
+  x_{N,1}&\dots & x_{N,p} 
   \end{pmatrix} \implies
 \mathbf{X}^\top = \begin{pmatrix}
   x_{1,1}&\dots & x_{p,1} \\
   x_{1,2}&\dots & x_{p,2} \\
    & \vdots & \\
-  x_{1,N}&\dots & x_{p,N} \\
+  x_{1,N}&\dots & x_{p,N} 
   \end{pmatrix}
 {/$$}
 
