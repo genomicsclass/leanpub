@@ -35,12 +35,12 @@
 ##course2 standard_errors
 ##course2 interactions_and_contrasts
 ##course2 collinearity
-course2 qr_and_regression
+##course2 qr_and_regression
 ##course2 linear_models_going_further
 
-### Chapter 5: Multiple comparisons
-##course3 intro_to_highthroughput_data
-##course3 inference_for_highthroughput.html)
+### Chapter 6: Multiple comparisons
+course3 intro_to_highthroughput_data
+course3 inference_for_highthroughput.html)
 ##course3 eda_for_highthroughput.html)
 ## Chapter 6: Distance, clustering and dimension reduction
 ##distance
