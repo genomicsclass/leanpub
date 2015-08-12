@@ -36,16 +36,6 @@ library(devtools)
 install_github("genomicsclass/GSE5859Subset")
 ```
 
-```
-## Downloading github repo genomicsclass/GSE5859Subset@master
-## Installing GSE5859Subset
-## '/Library/Frameworks/R.framework/Resources/bin/R' --no-site-file  \
-##   --no-environ --no-save --no-restore CMD INSTALL  \
-##   '/private/var/folders/kv/h18_5_qn1hj43r8pq5l0tddw0000gn/T/RtmpWMq4nl/devtools178996a441e99/genomicsclass-GSE5859Subset-8ada5f4'  \
-##   --library='/Library/Frameworks/R.framework/Versions/3.2/Resources/library'  \
-##   --install-tests
-```
-
 ### The three tables
 
 Most of the data we use as examples in this class are created with high-throughput technologies. These technologies measure thousands of _features_. Examples of feature are genes, single base locations of the genome, genomic regions, or image pixel intensities. Each specific measurement product is defined by a specific set of features. 
