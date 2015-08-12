@@ -206,3 +206,15 @@ or simply:
 
 which is a much simpler way to write it. 
 
+
+**Optional homework**: write out the matrices multiplication convince yourself that this this is the case.
+
+The least squares equation becomes simpler as well as it is the following cross-product:
+
+{$$}
+(\mathbf{Y}-\mathbf{X}\boldsymbol{\beta})^\top
+(\mathbf{Y}-\mathbf{X}\boldsymbol{\beta})
+{/$$}
+
+So now we are ready to determine which values of {$$}\beta{/$$} minimize the above. There are a series of rules that permit us to compute partial derivatives equations in matrix notation. By equating the derivative to 0 and solving for the {$$}\beta{/$$} we will have our solution. The only one we need here tells us that the derivative of the above equation is:
+
