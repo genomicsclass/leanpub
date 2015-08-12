@@ -12,16 +12,19 @@ layout: page
 
 In the previous section we motivated the use of matrix algebra with this system of equations:
 
-{$$}\begin{eqnarray}
-a + b + c &=& 6\\
-3a - 2b + c &=& 2\\
-2a + b  - c &=& 1
-\end{eqnarray}
+
+{$$}
+\begin{align*}
+a + b + c &= 6\\
+3a - 2b + c &= 2\\
+2a + b  - c &= 1
+\end{align*}
 {/$$}
 
 We described how this system can be rewritten and solved using matrix algebra:
 
 {$$}
+\,
 \begin{pmatrix}
 1&1&1\\
 3&-2&1\\
@@ -153,16 +156,17 @@ t(X)
 We start by describing the matrix multiplication shown in the original system of equations example:
 
 {$$}
-\begin{aligned}
+\begin{align*}
 a + b + c &=6\\
 3a - 2b + c &= 2\\
 2a + b  - c &= 1
-\end{aligned}
+\end{align*}
 {/$$}
 
 What we are doing is multiplying the rows of the first matrix by the columns of the second. The second matrix only has one column so to perform this multiplication we can do the following:
 
 {$$}
+\,
 \begin{pmatrix}
 1&1&1\\
 3&-2&1\\
