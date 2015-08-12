@@ -218,8 +218,6 @@ The least squares equation becomes simpler as well as it is the following cross-
 
 So now we are ready to determine which values of {$$}\beta{/$$} minimize the above. There are a series of rules that permit us to compute partial derivatives equations in matrix notation. By equating the derivative to 0 and solving for the {$$}\beta{/$$} we will have our solution. The only one we need here tells us that the derivative of the above equation is:
 
-
-
 {$$}
 2 \mathbf{X}^\top (\mathbf{Y} - \mathbf{X} \boldsymbol{\hat{\beta}})=0
 {/$$}
@@ -234,5 +232,34 @@ So now we are ready to determine which values of {$$}\beta{/$$} minimize the abo
 {/$$}
 
 and we have our solution. We usually put a hat on the {$$}\beta{/$$} that solves this, {$$}\hat{\beta}{/$$} as it is an estimate of the "real" {$$}\beta{/$$} that generated the data.
+
+Note: that the least squares are like a square (multiply something by itself) and that this formula is similar to the derivative of {$$}f(x)^2{/$$} being {$$}2f(x)f'(x){/$$}. 
+
+Let's see how it works in R
+
+
+```r
+library(UsingR)
+x=father.son$fheight
+y=father.son$sheight
+X <- cbind(1,x)
+betahat <- solve(t(X)%*%X)%*%t(X)%*%y
+###or
+betahat <- solve(crossprod(X))%*%crossprod(X,y)
+```
+
+
+Now we can see the results of this by computing the estimated {$$}\hat{\beta}_0+\hat{\beta}_1 x{/$$} for any value of {$$}x{/$$}:
+
+
+```r
+newx <- seq(min(x),max(x),len=100)
+X <- cbind(1,newx)
+fitted <- X%*%betahat
+plot(x,y,xlab="Father's height",ylab="Son's height")
+lines(newx,fitted,col=2)
+```
+
+![plot of chunk unnamed-chunk-7](images/matrix_algebra_examples-unnamed-chunk-7-1.png) 
 
 
