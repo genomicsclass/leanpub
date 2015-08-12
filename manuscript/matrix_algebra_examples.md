@@ -141,4 +141,12 @@ Y_2\\
 \vdots\\
 Y_N
 \end{pmatrix}
+,
+\mathbf{X} = \begin{pmatrix}
+1&x_1\\
+1&x_2\\
+\vdots\\
+1&x_N
+\end{pmatrix}
 {/$$}
+{$$}
