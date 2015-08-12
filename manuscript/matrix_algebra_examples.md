@@ -238,4 +238,113 @@ Note: that the least squares are like a square (multiply something by itself) an
 Let's see how it works in R
 
 
+```r
+library(UsingR)
+x=father.son$fheight
+y=father.son$sheight
+X <- cbind(1,x)
+betahat <- solve(t(X)%*%X)%*%t(X)%*%y
+###or
+betahat <- solve(crossprod(X))%*%crossprod(X,y)
+```
+
+
+Now we can see the results of this by computing the estimated {$$}\hat{\beta}_0+\hat{\beta}_1 x{/$$} for any value of {$$}x{/$$}:
+
+
+```r
+newx <- seq(min(x),max(x),len=100)
+X <- cbind(1,newx)
+fitted <- X%*%betahat
+plot(x,y,xlab="Father's height",ylab="Son's height")
+lines(newx,fitted,col=2)
+```
+
+![plot of chunk unnamed-chunk-7](images/matrix_algebra_examples-unnamed-chunk-7-1.png) 
+
+This {$$}\hat{\boldsymbol{\beta}}=(\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{Y}{/$$} is one of the most widely used results in data analysis. One of the beauties of this approach is that we can use in many different situations, for example our falling object problem. 
+ 
+
+```r
+set.seed(1)
+g <- 9.8 ## meters per second
+n <- 25
+tt <- seq(0,3.4,len=n) ##time in secs, t is a base function
+d <- 56.67  - 0.5*g*tt^2 + rnorm(n,sd=1)
+```
+
+Note we are using almost the same exact code:
+
+
+
+```r
+X <- cbind(1,tt,tt^2)
+y <- d
+betahat <- solve(crossprod(X))%*%crossprod(X,y)
+newtt <- seq(min(tt),max(tt),len=100)
+X <- cbind(1,newtt,newtt^2)
+fitted <- X%*%betahat
+plot(tt,y,xlab="Time",ylab="Height")
+lines(newtt,fitted,col=2)
+```
+
+![plot of chunk unnamed-chunk-9](images/matrix_algebra_examples-unnamed-chunk-9-1.png) 
+
+Note the resulting estimates are what we expect:
+
+
+```r
+betahat
+```
+
+```
+##          [,1]
+##    56.5317368
+## tt  0.5013565
+##    -5.0386455
+```
+
+The Tower of Pisa is about 56 meters high, there is no initial velocity and half the constant of gravity is 9.8/2=4.9.
+
+### The `lm` function
+R has a very convenient function that fits these models. We will learn more about this function later. But here is a preview:
+
+
+```r
+X <- cbind(tt,tt^2)
+fit=lm(y~X)
+summary(fit)
+```
+
+```
+## 
+## Call:
+## lm(formula = y ~ X)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.5295 -0.4882  0.2537  0.6560  1.5455 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  56.5317     0.5451 103.701   <2e-16 ***
+## Xtt           0.5014     0.7426   0.675    0.507    
+## X            -5.0386     0.2110 -23.884   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.9822 on 22 degrees of freedom
+## Multiple R-squared:  0.9973,	Adjusted R-squared:  0.997 
+## F-statistic:  4025 on 2 and 22 DF,  p-value: < 2.2e-16
+```
+
+Note that we obtain the same values as above.
+
+
+### Summary
+
+We have shown how write linear models using linear algebra. We are going to do this for several examples many of which are related to designed experiments. We showed how to obtain least squares estimates. But keep in mind the because {$$}y{/$$} is a random variable, these estimates are random as well. In a later section we will learn how to compute standard error for this estimates and use this to perform inference.
+
+
+
 
