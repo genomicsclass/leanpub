@@ -30,8 +30,8 @@
 ##course2 matrix_algebra_examples
 
 ### Chapter 5: Linear Models
-expressing_design_formula.md
-##course2 linear_models_in_practice
+##course2 expressing_design_formula
+linear_models_in_practice.md
 ##course2 standard_errors
 ##course2 interactions_and_contrasts
 ##course2 pages/collinearity
