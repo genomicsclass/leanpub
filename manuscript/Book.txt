@@ -40,7 +40,7 @@
 
 ### Chapter 6: Multiple comparisons
 intro_to_highthroughput_data.md
-inference_for_highthroughput.html).md
+inference_for_highthroughput.md
 ##course3 eda_for_highthroughput.html)
 ## Chapter 6: Distance, clustering and dimension reduction
 ##distance
