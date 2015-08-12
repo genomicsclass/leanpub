@@ -268,9 +268,9 @@ If you follow the matrix multiplication rule above you notice this works out:
 {$$}
 \mathbf{XI} = 
 \begin{pmatrix}
-  a x_{1,1} & \dots & a x_{1,p}\\
+   x_{1,1} & \dots &  x_{1,p}\\
   & \vdots & \\
-  a x_{N,1} & \dots & a  x_{N,p}
+   x_{N,1} & \dots &   x_{N,p}
 \end{pmatrix}
 \begin{pmatrix}
 1&0&0&\dots&0&0\\
