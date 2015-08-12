@@ -33,8 +33,8 @@
 ##course2 expressing_design_formula
 ##course2 linear_models_in_practice
 ##course2 standard_errors
-##course2 interactions_and_contrasts
-collinearity.md
+interactions_and_contrasts.md
+##course2 collinearity
 ##course2 qr_and_regression
 ##course2 linear_models_going_further
 
