@@ -134,16 +134,6 @@ gives us the same answer as our matrix multiplication example.
 
 Now we are ready to put all this to use. Let's start with Galton's example. If we define these matrices
 
-{$$}
-\mathbf{Y} = \begin{pmatrix}
-Y_1\\
-Y_2\\
-\vdots\\
-Y_N
-\end{pmatrix}
-{/$$}
-
-
 Then we can write the model 
 
 {$$} 
