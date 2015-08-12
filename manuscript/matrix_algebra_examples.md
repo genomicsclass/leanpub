@@ -160,4 +160,14 @@ Y_N
 \varepsilon_N
 \end{pmatrix}
 {/$$}
-{$$}
+
+
+
+Then we can write the model 
+
+{$$} 
+Y_i = \beta_0 + \beta_1 x_i + \varepsilon, i=1,\dots,N 
+{/$$}
+
+as 
+
