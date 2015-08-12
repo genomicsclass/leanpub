@@ -27,10 +27,10 @@
 #course2 intro_using_regression
 ##course2 matrix_notation
 ##course2 matrix_operations
-matrix_algebra_examples.md
+##course2 matrix_algebra_examples
 
 ### Chapter 5: Linear Models
-##course2 expressing_design_formula
+expressing_design_formula.md
 ##course2 linear_models_in_practice
 ##course2 standard_errors
 ##course2 interactions_and_contrasts
