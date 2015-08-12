@@ -26,8 +26,8 @@
 ## Chapter 4 - Matrix Algebra
 #course2 intro_using_regression
 ##course2 matrix_notation
-matrix_operations.md
-##course2 matrix_algebra_examples
+##course2 matrix_operations
+matrix_algebra_examples.md
 
 ### Chapter 5: Linear Models
 ##course2 expressing_design_formula
