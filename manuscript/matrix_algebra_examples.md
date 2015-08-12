@@ -198,3 +198,11 @@ Y_N
 \end{pmatrix}
 {/$$}
 
+or simply: 
+
+{$$}
+\mathbf{Y}=\mathbf{X}\boldsymbol{\beta}+\boldsymbol{\varepsilon}
+{/$$}
+
+which is a much simpler way to write it. 
+
