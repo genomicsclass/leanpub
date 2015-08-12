@@ -31,8 +31,8 @@
 
 ### Chapter 5: Linear Models
 ##course2 expressing_design_formula
-linear_models_in_practice.md
-##course2 standard_errors
+##course2 linear_models_in_practice
+standard_errors.md
 ##course2 interactions_and_contrasts
 ##course2 pages/collinearity
 ##course2 qr_and_regression
