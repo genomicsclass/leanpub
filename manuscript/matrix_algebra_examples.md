@@ -168,6 +168,7 @@ Y_i = \beta_0 + \beta_1 x_i + \varepsilon, i=1,\dots,N
 as 
 
 {$$}
+\,
 \begin{pmatrix}
 Y_1\\
 Y_2\\
