@@ -229,3 +229,10 @@ So now we are ready to determine which values of {$$}\beta{/$$} minimize the abo
 {/$$}
 
 
+{$$}
+\boldsymbol{\hat{\beta}} = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{Y}   
+{/$$}
+
+and we have our solution. We usually put a hat on the {$$}\beta{/$$} that solves this, {$$}\hat{\beta}{/$$} as it is an estimate of the "real" {$$}\beta{/$$} that generated the data.
+
+
