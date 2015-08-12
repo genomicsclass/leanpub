@@ -148,5 +148,16 @@ Y_N
 \vdots\\
 1&x_N
 \end{pmatrix}
+,
+\mathbf{\beta} = \begin{pmatrix}
+\beta_0\\
+\beta_1
+\end{pmatrix} \mbox{ and }
+\mathbf{\varepsilon} = \begin{pmatrix}
+\varepsilon_1\\
+\varepsilon_2\\
+\vdots\\
+\varepsilon_N
+\end{pmatrix}
 {/$$}
 {$$}
