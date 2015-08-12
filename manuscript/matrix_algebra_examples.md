@@ -218,3 +218,14 @@ The least squares equation becomes simpler as well as it is the following cross-
 
 So now we are ready to determine which values of {$$}\beta{/$$} minimize the above. There are a series of rules that permit us to compute partial derivatives equations in matrix notation. By equating the derivative to 0 and solving for the {$$}\beta{/$$} we will have our solution. The only one we need here tells us that the derivative of the above equation is:
 
+
+
+{$$}
+2 \mathbf{X}^\top (\mathbf{Y} - \mathbf{X} \boldsymbol{\hat{\beta}})=0
+{/$$}
+
+{$$}
+\mathbf{X}^\top \mathbf{X} \boldsymbol{\hat{\beta}} = \mathbf{X}^\top \mathbf{Y}   
+{/$$}
+
+
