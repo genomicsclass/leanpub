@@ -1,11 +1,5 @@
-<<<<<<< HEAD
-lsefrontmatter introduction
-course1 getting_started
-=======
 ##frontmatter introduction
 ##course1 getting_started
->>>>>>> d68cfb7de117e21d9c8748a925dc2371ff7087d7
-## need to add something about functions and sapply
 
 ##Chapter 1 - Inference
 
