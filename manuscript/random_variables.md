@@ -1,13 +1,13 @@
---- 
-layout: page 
-title: Introduction to Random Variables 
---- 
+---
+layout: page
+title: Introduction to Random Variables
+---
 
 
 
-# Inference 
+# Inference
 
-<a name="introduction"></a> 
+<a name="introduction"></a>
 
 
 ## Introduction 
@@ -20,315 +20,315 @@ Note that the abstract has this statement:
 
 > "Body weight was higher in mice fed the high-fat diet already after the first week, due to higher dietary intake in combination with lower metabolic efficiency." 
 
-To support this claim they provide the following in the results section: 
+To support this claim they provide the following in the results section:
 
-> "Already during the first week after introduction of high-fat diet, body weight increased significantly more in the high-fat diet–fed mice (+1.6 ± 0.1 g) than in the normal diet–fed mice (+0.2 {$$}\pm {/$$} 0.1 g; P < 0.001)." 
+> "Already during the first week after introduction of high-fat diet, body weight increased significantly more in the high-fat diet–fed mice (+1.6 ± 0.1 g) than in the normal diet–fed mice (+0.2 {$$}\pm{/$$} 0.1 g; P < 0.001)."
 
-What does P < 0.001 mean? What are {$$}\pm {/$$} included? In this class we will learn what this means and learn to compute these values in R. The first step is to understand what is a random variable. To do this, we will use data from a mouse database (provided by Karen Svenson via Gary Churchill and Dan Gatti and partially funded by P50 GM070683.) We will import the data with R and explain random variables and null distributions using R programming. 
+What does P < 0.001 mean? What are {$$}\pm{/$$} included? In this class we will learn what this means and learn to compute these values in R. The first step is to understand what is a random variable. To do this, we will use data from a mouse database (provided by Karen Svenson via Gary Churchill and Dan Gatti and partially funded by P50 GM070683.) We will import the data with R and explain random variables and null distributions using R programming.
 
-If you have the file in your working directory, you can read it with just one line. 
+If you have the file in your working directory, you can read it with just one line.
 
-```r 
-dat=read.csv("femaleMiceWeights.csv") 
-``` 
+```r
+dat=read.csv("femaleMiceWeights.csv")
+```
 
-### Our first look at data 
+### Our first look at data
 
-We are interested in determining if following a given diet makes mice heavier after several weeks. This data was produced by ordering 24 mice from The Jackson Lab, randomly assigning either chow or high fat (hf) diet. After several weeks we weighed each mice and obtained this data: 
-
-
-```r 
-dat 
-``` 
-
-``` 
-## Diet Bodyweight 
-## 1 chow 21.51 
-## 2 chow 28.14 
-## 3 chow 24.04 
-## 4 chow 23.45 
-## 5 chow 23.68 
-## 6 chow 19.79 
-## 7 chow 28.40 
-## 8 chow 20.98 
-## 9 chow 22.51 
-## 10 chow 20.10 
-## 11 chow 26.91 
-## 12 chow 26.25 
-## 13 hf 25.71 
-## 14 hf 26.37 
-## 15 hf 22.80 
-## 16 hf 25.34 
-## 17 hf 24.97 
-## 18 hf 28.14 
-## 19 hf 29.58 
-## 20 hf 30.92 
-## 21 hf 34.02 
-## 22 hf 21.90 
-## 23 hf 31.53 
-## 24 hf 20.73 
-``` 
-
-So are the hf mice heavier? Note that mouse 24 at 20.73 grams is one the lightest mice while 21 at 34.02 is one of the heaviest. Both are on the hf diet. Just from looking at the data we see there is *variability*. Claims such as the one above usually refer to the averages. So let's look at the average of each group: 
+We are interested in determining if following a given diet makes mice heavier after several weeks. This data was produced by ordering 24 mice from The Jackson Lab, randomly assigning either chow or high fat (hf) diet. After several weeks we weighed each mice and obtained this data:
 
 
-```r 
-library(dplyr) 
-control <- filter(dat,Diet=="chow") %>% select(Bodyweight) %>% unlist 
-treatment <- filter(dat,Diet=="hf") %>% select(Bodyweight) %>% unlist 
-print( mean(treatment) ) 
-``` 
+```r
+dat
+```
 
-``` 
-## [1] 26.83417 
-``` 
+```
+##    Diet Bodyweight
+## 1  chow      21.51
+## 2  chow      28.14
+## 3  chow      24.04
+## 4  chow      23.45
+## 5  chow      23.68
+## 6  chow      19.79
+## 7  chow      28.40
+## 8  chow      20.98
+## 9  chow      22.51
+## 10 chow      20.10
+## 11 chow      26.91
+## 12 chow      26.25
+## 13   hf      25.71
+## 14   hf      26.37
+## 15   hf      22.80
+## 16   hf      25.34
+## 17   hf      24.97
+## 18   hf      28.14
+## 19   hf      29.58
+## 20   hf      30.92
+## 21   hf      34.02
+## 22   hf      21.90
+## 23   hf      31.53
+## 24   hf      20.73
+```
 
-```r 
-print( mean(control) ) 
-``` 
+So are the hf mice heavier? Note that mouse 24 at 20.73 grams is one the lightest mice while 21 at 34.02 is one of the heaviest. Both are on the hf diet. Just from looking at the data we see there is *variability*. Claims such as the one above usually refer to the averages. So let's look at the average of each group:
 
-``` 
-## [1] 23.81333 
-``` 
 
-```r 
-obsdiff <- mean(treatment)-mean(control) 
-print(obsdiff) 
-``` 
+```r
+library(dplyr)
+control <- filter(dat,Diet=="chow") %>% select(Bodyweight) %>% unlist
+treatment <- filter(dat,Diet=="hf") %>% select(Bodyweight) %>% unlist
+print( mean(treatment) )
+```
 
-``` 
-## [1] 3.020833 
-``` 
+```
+## [1] 26.83417
+```
+
+```r
+print( mean(control) )
+```
+
+```
+## [1] 23.81333
+```
+
+```r
+obsdiff <- mean(treatment)-mean(control)
+print(obsdiff)
+```
+
+```
+## [1] 3.020833
+```
 
 So the hf diet mice are about 10% heavier. Are we done? Why do we need p-values and confidence intervals? The reason is that these averages are random variables. They can take many values. 
 
 Note that if we repeat the experiment, we will obtain 24 new mice from The Jackson Laboratory and, after randomly assigning them to each diet, we will get a different mean. Every time we repeat this experiment, we get a different value. We call this type of quantity a *random variable*. 
 
-<a name="random_variable"></a> 
+<a name="random_variable"></a>
 
-## Random variables 
+## Random variables
 
 Let's see what a random variable is. Imagine we actually have the weight of all control female mice and can upload them to R. In Statistics we refer to this as *the population*. These are all the control mice available from which we sampled 24. Note that in practice we do not have access to the population. We have a special data set that we're using here to illustrate concepts. 
 
-Read-in the data either from your home directory or from dagdata: 
+Read-in the data either from your home directory or from dagdata:
 
-```r 
-library(downloader) 
-url <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/femaleControlsPopulation.csv" 
-filename <- "femaleControlsPopulation.csv" 
-if (!file.exists(filename)) download(url,destfile=filename) 
-population <- read.csv(filename) 
-population <- unlist(population) #turn it into a numeric 
-``` 
+```r
+library(downloader)
+url <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/femaleControlsPopulation.csv"
+filename <- "femaleControlsPopulation.csv"
+if (!file.exists(filename)) download(url,destfile=filename)
+population <- read.csv(filename)
+population <- unlist(population) #turn it into a numeric
+```
 
-Now let's sample 12 mice three times and see how the average changes. 
+Now let's sample 12 mice three times and see how the average changes.
 
 
-```r 
-control <- sample(population,12) 
-mean(control) 
-``` 
+```r
+control <- sample(population,12)
+mean(control)
+```
 
-``` 
-## [1] 24.11333 
-``` 
+```
+## [1] 24.11333
+```
 
-```r 
-control <- sample(population,12) 
-mean(control) 
-``` 
+```r
+control <- sample(population,12)
+mean(control)
+```
 
-``` 
-## [1] 24.40667 
-``` 
+```
+## [1] 24.40667
+```
 
-```r 
-control <- sample(population,12) 
-mean(control) 
-``` 
+```r
+control <- sample(population,12)
+mean(control)
+```
 
-``` 
-## [1] 23.84 
-``` 
+```
+## [1] 23.84
+```
 
-Note how the average varies. We can continue to do this over and over again and start learning something about the... 
+Note how the average varies. We can continue to do this over and over again and start learning something about the...
 
-<a name="null_distribution"></a> 
+<a name="null_distribution"></a>
 
-## The Null Hypothesis 
+## The Null Hypothesis
 
 Now let's go back to our average difference of `obsdiff`. As scientists we need to be skeptics. How do we know that this `obsdiff` is due to the diet? What happens if we give all 24 the same diet? Will we see a difference this big? Statisticians refer to this scenario as the *null hypothesis*. The name "null" is used to remind us that we are acting as skeptics: we give credence to the possibility that there is no difference. 
 
-Because we have access to the population, we can actually observe as many values as we want of the difference of the averages when the diet has no effect. We can do this by randomly sampling 24 control mice, giving them the same diet, and then recording the difference in mean between them to randomly split groups. Here is the code: 
+Because we have access to the population, we can actually observe as many values as we want of the difference of the averages when the diet has no effect. We can do this by randomly sampling 24 control mice, giving them the same diet, and then recording the difference in mean between them to randomly split groups. Here is the code:
 
 
-```r 
-###12 control mice 
-control <- sample(population,12) 
-##another 12 control mice that we act as if they were not 
-treatment <- sample(population,12) 
-print(mean(treatment) - mean(control)) 
-``` 
+```r
+###12 control mice
+control <- sample(population,12)
+##another 12 control mice that we act as if they were not
+treatment <- sample(population,12)
+print(mean(treatment) - mean(control))
+```
 
-``` 
-## [1] 0.5575 
-``` 
+```
+## [1] 0.5575
+```
 
-Now let's do it 10,000 times. We will use a "for-loop", an operation that lets us automatize this (a more efficient approach that we will learn later is to use `replicate`) 
-
-
-```r 
-n <- 10000 
-null <- vector("numeric",n) 
-for(i in 1:n){ 
-control <- sample(population,12) 
-treatment <- sample(population,12) 
-null[i] <- mean(treatment) - mean(control) 
-} 
-``` 
-
-The values in `null` form what we call the *null distribution*. We will define this more formally below. 
-
-So what percent are bigger than `obsdiff`? 
-
-```r 
-mean(null>=obsdiff) 
-``` 
-
-``` 
-## [1] 0.0138 
-``` 
-
-Only a small percent of the 1,000 simulations. So as skeptics what do we conclude? When there is no diet effect, we see value `diff` as big as the one we observed only 1.5% of the time. This is what is known as a p-value, which we will define more formally later in the book. 
-
-<a name="distributions"></a> 
-
-## Distributions 
-
-We have explained what we mean by *null* in the context of null hypothesis, but what exactly is a distribution? 
-The simplest way to think of a *distribution* is as a compact description of many numbers. For example, suppose you have measured the heights of all men in a population. Imagine you need to describe these numbers to someone that has no idea what these heights are, for example an alien that has never visited earth. Suppose all these heights are in contained in the following dataset: 
+Now let's do it 10,000 times. We will use a "for-loop", an operation that lets us automatize this (a more efficient approach that we will learn later is to use `replicate`)
 
 
-```r 
-library(UsingR) 
-x=father.son$fheight 
-``` 
-One approach to summarizing this numbers is to simply list them all out for the alien to see. Here are 10 randomly selected heights of 1,078. 
+```r
+n <- 10000
+null <- vector("numeric",n)
+for(i in 1:n){
+  control <- sample(population,12)
+  treatment <- sample(population,12)
+  null[i] <- mean(treatment) - mean(control)
+}
+```
+
+The values in `null` form what we call the *null distribution*. We will define this more formally below.
+
+So what percent are bigger than `obsdiff`?
+
+```r
+mean(null>=obsdiff)
+```
+
+```
+## [1] 0.0138
+```
+
+Only a small percent of the 1,000 simulations. So as skeptics what do we conclude? When there is no diet effect, we see value `diff` as big as the one we observed only 1.5% of the time. This is what is known as a p-value, which we will define more formally later in the book.
+
+<a name="distributions"></a>
+
+## Distributions
+
+We have explained what we mean by *null* in the context of null hypothesis, but what exactly is a distribution?
+The simplest way to think of a *distribution* is as a compact description of many numbers. For example, suppose you have measured the heights of all men in a population. Imagine you need to describe these numbers to someone that has no idea what these heights are, for example an alien that has never visited earth. Suppose all these heights are in contained in the following dataset:
 
 
-```r 
-round(sample(x,10),1) 
-``` 
-
-``` 
-## [1] 67.4 64.9 62.9 69.2 72.3 69.3 65.9 65.2 69.8 69.1 
-``` 
-#### Cumulative Distribution Function 
-From scanning through these numbers we start getting a rough idea of what the entire list looks like, but it is certainly inefficient. We can quickly improve on this approach by defining and visualizing a _distribution_. To define a distribution we compute, for all possible values of {$$}a {/$$} , the proportion of numbers in our list that are below {$$}a {/$$} . We use the following notation: 
-
-{$$}F(a) \equiv \mbox{Pr}(x \leq a) {/$$} 
-
-This is called the cumulative distribution function (CDF). When the CDF is derived from data, as opposed to theoretically, we also call it the empirical CDF (ecdf). We can plot {$$}F(a) {/$$} versus {$$}a {/$$} like this: 
+```r
+library(UsingR)
+x=father.son$fheight
+```
+One approach to summarizing this numbers is to simply list them all out for the alien to see. Here are 10 randomly selected heights of 1,078.
 
 
-```r 
-smallest <- floor( min(x) ) 
-largest <- ceiling( max(x) ) 
-values <- seq(smallest, largest,len=300) 
-heightecdf <- ecdf(x) 
-plot(values, heightecdf(values), type="l") 
-``` 
+```r
+round(sample(x,10),1)
+```
+
+```
+##  [1] 67.4 64.9 62.9 69.2 72.3 69.3 65.9 65.2 69.8 69.1
+```
+#### Cumulative Distribution Function
+From scanning through these numbers we start getting a rough idea of what the entire list looks like, but it is certainly inefficient. We can quickly improve on this approach by defining and visualizing a _distribution_. To define a distribution we compute, for all possible values of {$$}a{/$$}, the proportion of numbers in our list that are below {$$}a{/$$}. We use the following notation:
+
+{$$} F(a) \equiv \mbox{Pr}(x \leq a) {/$$}
+
+This is called the cumulative distribution function (CDF). When the CDF is derived from data, as opposed to theoretically, we also call it the empirical CDF (ecdf). We can plot {$$}F(a){/$$} versus {$$}a{/$$} like this:
+
+
+```r
+smallest <- floor( min(x) )
+largest <- ceiling( max(x) )
+values <- seq(smallest, largest,len=300)
+heightecdf <- ecdf(x)
+plot(values, heightecdf(values), type="l")
+```
 
 ![plot of chunk unnamed-chunk-11](images/random_variables-unnamed-chunk-11-1.png) 
 
-#### Histograms 
+#### Histograms
 
-The `ecdf` function is a function that returns a function that is not typical. For that reason, we won't it discuss further here. Furthermore, the ecdf is actually not as popular as histograms, which give us the same information, but show us the proportion of values in intervals: 
+The `ecdf` function is a function that returns a function that is not typical. For that reason, we won't it discuss further here. Furthermore, the ecdf is actually not as popular as histograms, which give us the same information, but show us the proportion of values in intervals:
 
-{$$}\mbox{Pr}(a \leq x \leq b) = F(b) - F(a) {/$$} 
+{$$} \mbox{Pr}(a \leq x \leq b) = F(b) - F(a) {/$$}
 
-Plotting these heights as bars is what we call a _histogram_. It is a more useful plot because we are usually more interested in intervals: such and such percent are between 70 inches and 71 inches, etc. It is also easier to distinguish different types (families) of distributions by looking at histograms. Here is a histogram of heights: 
+Plotting these heights as bars is what we call a _histogram_. It is a more useful plot because we are usually more interested in intervals: such and such percent are between 70 inches and 71 inches, etc. It is also easier to distinguish different types (families) of distributions by looking at histograms. Here is a histogram of heights:
 
 
-```r 
-hist(x) 
-``` 
+```r
+hist(x)
+```
 
-We can specify the bins and add better labels in the following way: 
+We can specify the bins and add better labels in the following way:
 
-```r 
-bins <- seq(smallest, largest) 
-hist(x,breaks=bins,xlab="Height",main="Adult men heights") 
-``` 
+```r
+bins <- seq(smallest, largest)
+hist(x,breaks=bins,xlab="Height",main="Adult men heights")
+```
 
 ![plot of chunk histogram](images/random_variables-histogram-1.png) 
 
 Showing this plot to the alien is much more informative than showing numbers. Note that with this simple plot we can approximate the number of individuals in any given interval. For example, there are about 70 individuals over six feet (72 inches) tall. 
 
 
-## Probability Distribution 
+## Probability Distribution
 
-Summarizing lists of numbers is one powerful use of distribution. An even more important use is describing the possible outcomes of a random variable. Because, unlike fixed list of numbers, random variables are not observed, instead of proportion, we describe probabilities. For example, if we pick a random height for our list, then the probability of falling between {$$}a {/$$} and {$$}b {/$$} is denoted with: 
+Summarizing lists of numbers is one powerful use of distribution. An even more important use is describing the possible outcomes of a random variable. Because, unlike fixed list of numbers, random variables are not observed, instead of proportion, we describe probabilities. For example, if we pick a random height for our list, then the probability of falling between {$$}a{/$$} and {$$}b{/$$} is denoted with:
 
-{$$}\mbox{Pr}(a \leq X \leq b) = F(b) - F(a) {/$$} 
+{$$} \mbox{Pr}(a \leq X \leq b) = F(b) - F(a) {/$$}
 
-Note that the {$$}X {/$$} is now capitalized to distinguish it as a random variable and that the equation above defines the probability distribution of the random variable. Knowing this distribution is incredibly useful in science. For example, in the case above, if we know the distribution of the difference in mean when the null hypothesis is true, referred to as the _null distribution_, we can compute the probability of observing a value as large as we did, referred to as a _p-value_. In a previous section we ran what is called a _Monte Carlo_ simulation (we will provide more details on Monte Carlo simulation in a later section) and we obtained 10,000 outcomes of the random variable under the null hypothesis. Let's repeat the loop above, but this time let's add a point to the figure every time we re-run the experiment. If you run this code you can see the null distribution forming as the observed values stack on top of each other. 
+Note that the {$$}X{/$$} is now capitalized to distinguish it as a random variable and that the equation above defines the probability distribution of the random variable. Knowing this distribution is incredibly useful in science. For example, in the case above, if we know the distribution of the difference in mean when the null hypothesis is true, referred to as the _null distribution_, we can compute the probability of observing a value as large as we did, referred to as a _p-value_. In a previous section we ran what is called a _Monte Carlo_ simulation (we will provide more details on Monte Carlo simulation in a later section) and we obtained 10,000 outcomes of the random variable under the null hypothesis.  Let's repeat the loop above, but this time let's add a point to the figure every time we re-run the experiment. If you run this code you can see the null distribution forming as the observed values stack on top of each other.
 
 
-```r 
-n <- 100 
-plot(0,0,xlim=c(-5,5),ylim=c(1,30),type="n") 
-totals <- vector("numeric",11) 
-for(i in 1:n){ 
-control <- sample(population,12) 
-treatment <- sample(population,12) 
-nulldiff <- mean(treatment) - mean(control) 
-j <- pmax(pmin(round(nulldiff)+6,11),1) 
-totals[j]<-totals[j]+1 
-text(j-6,totals[j],pch=15,round(nulldiff,1)) 
-##if(i < 15) scan() ##You can add this line to interactively see values appear 
-} 
-``` 
+```r
+n <- 100
+plot(0,0,xlim=c(-5,5),ylim=c(1,30),type="n")
+totals <- vector("numeric",11)
+for(i in 1:n){
+  control <- sample(population,12)
+  treatment <- sample(population,12)
+  nulldiff <- mean(treatment) - mean(control)
+  j <- pmax(pmin(round(nulldiff)+6,11),1)
+  totals[j]<-totals[j]+1
+  text(j-6,totals[j],pch=15,round(nulldiff,1))
+  ##if(i < 15) scan() ##You can add this line to interactively see values appear
+  }
+```
 
 ![Illustration of the null distribution](images/random_variables-unnamed-chunk-12-1.png) 
 
-The figure above amounts to a histogram. From an actual histogram we can see that values as large as `obsdiff` are relatively rare: 
+The figure above amounts to a histogram. From an actual histogram we can see that values as large as `obsdiff` are relatively rare:
 
 
-```r 
-hist(null, freq=TRUE) 
-abline(v=obsdiff) 
-``` 
+```r
+hist(null, freq=TRUE)
+abline(v=obsdiff)
+```
 
 ![plot of chunk unnamed-chunk-13](images/random_variables-unnamed-chunk-13-1.png) 
 
 
-An important point to keep in mind here is that while we defined {$$}Pr(a) {/$$} by counting cases, we will learn how in some circumstances mathematics gives us formulas for {$$}Pr(a) {/$$} that save us the trouble of computing them as we did here. One example of this powerful approach uses the normal distribution approximation: 
+An important point to keep in mind here is that while we defined {$$}Pr(a){/$$} by counting cases, we will learn how in some circumstances mathematics gives us formulas for {$$}Pr(a){/$$} that save us the trouble of computing them as we did here. One example of this powerful approach uses the normal distribution approximation:
 
-<a name="normal_distribution"></a> 
+<a name="normal_distribution"></a>
 
-## Normal Distribution 
+## Normal Distribution
 
-The probability distribution we see above approximates one that is very common in a nature: the bell curve or normal distribution or Gaussian distribution. When the histogram of a list of numbers approximates the normal distribution, we can use a convenient mathematical formula to approximate the proportion of value or outcomes in any given interval: 
+The probability distribution we see above approximates one that is very common in a nature: the bell curve or normal distribution or Gaussian distribution. When the histogram of a list of numbers approximates the normal distribution, we can use a convenient mathematical formula to approximate the proportion of value or outcomes in any given interval:
 
 {$$}
-\mbox{Pr}(a < x < b) = \int_a^b \frac{1}{\sqrt{2\pi\sigma^2}} \exp{\left( \frac{-(x-\mu)^2}{2 \sigma^2} \right)} \, dx 
-{/$$} 
+\mbox{Pr}(a < x < b) = \int_a^b \frac{1}{\sqrt{2\pi\sigma^2}} \exp{\left( \frac{-(x-\mu)^2}{2 \sigma^2} \right)} \, dx
+{/$$}
 
-Here {$$}\mu {/$$} and {$$}\sigma {/$$} are referred to as the mean and standard deviation of the population (we explain these in more detail in another section). If this approximation holds for our list, then the population mean and variance of our list can be used in the formula above. An example of this would be when we noted above that only 1.5% of values on the null distribution were above `obsdiff`. We can compute the proportion of values below a value `x` with `pnorm(x,mu,sigma)` without knowing all the values. The normal approximation works very well here: 
+Here {$$}\mu{/$$} and {$$}\sigma{/$$} are referred to as the mean and standard deviation of the population (we explain these in more detail in another section). If this approximation holds for our list, then the population mean and variance of our list can be used in the formula above. An example of this would be when we noted above that only 1.5% of values on the null distribution were above `obsdiff`. We can compute the proportion of values below a value `x` with `pnorm(x,mu,sigma)` without knowing all the values. The normal approximation works very well here:
 
 
-```r 
+```r
 1-pnorm(obsdiff,mean(null),sd(null)) 
-``` 
+```
 
-``` 
-## [1] 0.01391929 
-``` 
+```
+## [1] 0.01391929
+```
 
-Later we will learn there is a mathematical explanation for this. A very useful characteristic of this approximation is that one only needs to know {$$}\mu {/$$} and {$$}\sigma {/$$} to describe the entire distribution. From this we can compute the proportion of values in any interval. 
+Later we will learn there is a mathematical explanation for this. A very useful characteristic of this approximation is that one only needs to know {$$}\mu{/$$} and {$$}\sigma{/$$} to describe the entire distribution. From this we can compute the proportion of values in any interval. 
 
-### Summary 
+### Summary
 
 So computing a p-value for the difference in diet for the mice was pretty easy, right? But why are we not done? Note that to make the calculation we did the equivalent of buying all the mice available from The Jackson Laboratory and performing our experiment over and over again to define the null distribution. This is not something we can do in practice. Statistical Inference is the mathematical theory that permits you to approximate this with only the data from your sample, i.e. the original 24 mice. This is what we will learn in the following sections. 
 

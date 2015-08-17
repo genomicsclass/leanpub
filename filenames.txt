@@ -1,45 +1,54 @@
+<<<<<<< HEAD
 lsefrontmatter introduction
 course1 getting_started
+=======
+##frontmatter introduction
+##course1 getting_started
+>>>>>>> d68cfb7de117e21d9c8748a925dc2371ff7087d7
 ## need to add something about functions and sapply
 
 ##Chapter 1 - Inference
 
-course1 random_variables
-course1 populations_and_samples 
-course1 clt_and_t-distribution	 
-course1 clt_in_practice
-course1 t-tests_in_practice
-course1 confidence_intervals
-course1 power_calculations
-course1 monte_carlo
-course1 permutation_tests
-course1 association_tests
+#course1 random_variables
+#course1 populations_and_samples 
+#course1 clt_and_t-distribution	 
+#course1 clt_in_practice
+#course1 t-tests_in_practice
+#course1 confidence_intervals
+#course1 power_calculations
+#course1 monte_carlo
+#course1 permutation_tests
+#course1 association_tests
 
 ##Chapter 2 - EDA
-course1 exploratory_data_analysis_2
-course1 plots_to_avoid
+#course1 exploratory_data_analysis_2
+#course1 plots_to_avoid
 
 ##Chapter 3 - Robust Statistics
-course1 robust_summaries
-course1 ranktest
+#course1 robust_summaries
+#course1 ranktest
 
-## Chapter 3 - Matrix Algebra
-##course2 intro_using_regression
+## Chapter 4 - Matrix Algebra
+#course2 intro_using_regression
 ##course2 matrix_notation
 ##course2 matrix_operations
 ##course2 matrix_algebra_examples
-### Chapter 4: Linear Models
+
+### Chapter 5: Linear Models
 ##course2 expressing_design_formula
 ##course2 linear_models_in_practice
 ##course2 standard_errors
 ##course2 interactions_and_contrasts
-##course2 pages/collinearity
+##course2 collinearity
 ##course2 qr_and_regression
 ##course2 linear_models_going_further
-### Chapter 5: Multiple comparisons
-##course3 intro_to_highthroughput_data
-##course3 inference_for_highthroughput.html)
-##course3 eda_for_highthroughput.html)
+
+### Chapter 6: inference for high-dimensional data
+course3 intro_to_highthroughput_data
+course3 inference_for_highthroughput
+course3 multiple_testing
+##course3 eda_for_highthroughput.html
+
 ## Chapter 6: Distance, clustering and dimension reduction
 ##distance
 ##svd
