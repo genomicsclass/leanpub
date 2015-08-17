@@ -38,10 +38,12 @@
 ##course2 qr_and_regression
 ##course2 linear_models_going_further
 
-### Chapter 6: Multiple comparisons
+### Chapter 6: inference for high-dimensional data
 course3 intro_to_highthroughput_data
 course3 inference_for_highthroughput
-##course3 eda_for_highthroughput.html)
+course3 multiple_testing
+##course3 eda_for_highthroughput.html
+
 ## Chapter 6: Distance, clustering and dimension reduction
 ##distance
 ##svd
