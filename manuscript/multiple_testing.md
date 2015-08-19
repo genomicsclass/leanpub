@@ -277,7 +277,7 @@ sum(pvals < 0.05/10000)
 
 Note that by requiring a FWER {$$}\leq{/$$} 0.05 we are practically assuring 0 power (sensitivy) and that the specifcity reqruiement is over-kill. A widely used alternative to the FWER is the false discover rate (FDR). The idea behind FDR is to cosider the random variable {$$}Q \equiv V/R{/$$} with {$$}Q=0{/$$} when {$$}R=0{/$$} and {$$}V=0{/$$}. Note that {$$}R=0{/$$} (nothing called significant) implies {$$}V=0{/$$} (no false positives). So {$$}Q{/$$} is a random variable that can take values between 0 and 1 and we can define a rate by considering the average of {$$}Q{/$$}. To better understand this concept. Here we compute {$$}Q{/$$} for the procedure: call everything p-value < 0.05 significant.
 
-Before running the simulation we are going to _vectortize_ the code. Meaning that instead of using `sapply` to run `m` tests, we will create a matrix with all data in one call to sample. This code runs several times faster than the code above which is necessary here due to the fact that we will be generating several simulations.
+Before running the simulation we are going to _vectortize_ the code. Meaning that instead of using `sapply` to run `m` tests, we will create a matrix with all data in one call to sample. This code runs several times faster than the code above which is necessary here due to the fact that we will be generating several simulations. Understanding this chuck of code, and how it equivalent to the code above using `sapply` will take a you long way in helping you code efficiently in R.
 
 
 ```r
@@ -364,7 +364,7 @@ As we consider a lower a lower p-value cut-off, the number of feautres detected 
 
 ### Benjamini-Hochberg (Advanced)
 
-We want to construct a procedure that guarantees the FDR to be below a certain level {$$}\alpha{/$$}. For any given {$$}\alpah{/$$}, the Benjamini-Hochberg (1995) procedure is very practicaly because it simply requires we are able compute p-values for each of the individual tests and this permits a  procedures to be defined.
+We want to construct a procedure that guarantees the FDR to be below a certain level {$$}\alpha{/$$}. For any given {$$}\alpha{/$$}, the Benjamini-Hochberg (1995) procedure is very practicaly because it simply requires we are able compute p-values for each of the individual tests and this permits a  procedures to be defined.
 
 The procedure is as follows:order the p-values in increasing order: {$$}p_{(1)},\dots,p_{(m)}. Then define {/$$}k{$$} to be the largest {/$$}i{$$} for which
 
@@ -406,7 +406,7 @@ we simply type the following:
 fdr <- p.adjust(pvals, method="fdr")
 mypar(1,1)
 plot(pvals,fdr,log="xy")
-abline(h=0.25,v=cutoff) ##cutoff was computed above
+abline(h=alpha,v=cutoff) ##cutoff was computed above
 ```
 
 ![plot of chunk unnamed-chunk-18](images/multiple_testing-unnamed-chunk-18-1.png) 
@@ -480,11 +480,11 @@ In the approach proposed by Storey we condition on having a non-empty list, whic
 \mbox{pFDR} = E\left( \frac{V}{R} \mid R>0\right) 
 {$$}
 
-A second distinction is that while Benjamin and Hochberg's procedure controls under the worse case scenario in which all null hypotheses are true ({/$$}m=m_0{$$}), Storey proposes we actually try to estimate {/$$}m_0{$$} from the data. Because in high-througput experiment we have so much data, this is certainly posible. The general idea is to use pick a relativel high value p-value cut-off, call it {/$$}\lamba{$$}, and assume that tests obtaining p-values {/$$}>\lamba{$$} are moslty from  cases in which the null hypothesis hold. We can then estimate {/$$}\pi_0 = m_0/m{$$} as: 
+A second distinction is that while Benjamin and Hochberg's procedure controls under the worse case scenario in which all null hypotheses are true ({/$$}m=m_0{$$}), Storey proposes we actually try to estimate {/$$}m_0{$$} from the data. Because in high-througput experiment we have so much data, this is certainly posible. The general idea is to use pick a relativel high value p-value cut-off, call it {/$$}\lambda{$$}, and assume that tests obtaining p-values {/$$}>\lambda{$$} are moslty from  cases in which the null hypothesis hold. We can then estimate {/$$}\pi_0 = m_0/m{$$} as: 
 {/$$}
 \hat{\pi}_0 = \frac{\#\left\{p_i > \lambda \right\} }{ (1-\lambda) m }
 {$$}
-Ther are more sophisticated procedures than this, but they follow the same general idea. Here is an example setting {/$$}\lamba=0.1{$$}. Using the p-values computed above we have:
+Ther are more sophisticated procedures than this, but they follow the same general idea. Here is an example setting {/$$}\lambda=0.1{$$}. Using the p-values computed above we have:
 
 
 ```r
