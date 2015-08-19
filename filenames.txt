@@ -44,13 +44,15 @@
 course3 eda_for_highthroughput
 
 ## Chapter 6: Distance, clustering and dimension reduction
+course3 distance
 ##distance
-##svd
+##sad
 ##mds
 ##clustering_and_heatmaps
 ## Chapter 7: Practical Machine Learning
 ##machine_learning.html)
 ##croossvalidation.html)
+
 ## Chapter 8 - Batch effects
 ##confounding.html
 ##adjusting_with_linar_models.html)
