@@ -23,3 +23,15 @@ to create _heatmaps_ a distance is computed explicitely. Heatmaps are widely use
 
 In these plots the measurements, which are stored in a matrix, are represented with colors after the columns and rows have been clustered. 
 Here we will learn the necessary mathematics and computing skill to understand and create heatmaps. We start by reviewing the mathematical definition of distance. 
+
+
+## Euclidean Distance
+
+As a review, let's define the distance between two points, {$$}A{/$$} and {$$}B{/$$}, on a cartesian plane.
+
+![plot of chunk unnamed-chunk-1](images/distance-unnamed-chunk-1-1.png) 
+
+The euclidean distance between {$$}A{/$$} and {$$}B{/$$} is simply
+
+{$$}\sqrt{ (A_x-B_x)^2 + (A_y-B_y)^2}{/$$}
+
