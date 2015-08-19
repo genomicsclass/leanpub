@@ -73,7 +73,7 @@ table(tissue) ## tissue[i] tells us what tissue is represented by e[,i]
 
 We are interested in describing distance between samples in the context of this dataset. We might also be interested in finding genes that _behave similarly_ across samples.
 
-To define distance we need to know what points are since mathematical distance is computed between points. With high dimensional data, points are no longer on the cartesian plan. Instead they are in higher dimensions. For example, sample {$$}i{/$$} is defined by a point in 22,215 dimesional space: {$$}(Y_{1,i},\dots,Y_{22215,i})'{/$$}. Feature {$$}g{/$$} is defined by a point in 189 dimensions {$$}(Y_{g,189},\dots,Y_{g,189})'{/$$}
+To define distance we need to know what points are since mathematical distance is computed between points. With high dimensional data, points are no longer on the cartesian plan. Instead they are in higher dimensions. For example, sample {$$}i{/$$} is defined by a point in 22,215 dimesional space: {$$}(Y_{1,i},\dots,Y_{22215,i})^\top{/$$}. Feature {$$}g{/$$} is defined by a point in 189 dimensions {$$}(Y_{g,189},\dots,Y_{g,189})^\top{/$$}
 
 Once we define points, the Euclidean distance is defined in a very similar way as it is defined for two dimensions. For example, the  distance between two samples {$$}i{/$$} and {$$}j{/$$} is
 
@@ -85,4 +85,92 @@ and the distance between two features {$$}h{/$$} and {$$}g{/$$} as:
 {$$}
 d(h,g) = \sqrt{ \sum_{i=1}^{189} (Y_{h,i}-Y_{g,i})^2 }
 {/$$}
+
+
+### Distance with Matrix Algebra
+
+The distance between samples {$$}i{/$$} and {$$}j{/$$} can be written as
+
+{$$} d(i,j) = (\mathbf{Y}_i - \mathbf{Y}_j)^\top(\mathbf{Y}_i - \mathbf{Y}_j){/$$}
+
+With {$$}\mathbf{Y}_i{/$$} and {$$}\mathbf{Y}_j{/$$} coliumns {$$}i{/$$} and {$$}j{/$$}. This result can be very convinient in practice as computations can be made much faster using matrix multiplication.
+
+### Examples
+
+We can now use the formulas above to compute distance. Let's compute distance between samples 1 and 2, both kidneys, and then to 87, a colon.
+
+
+```r
+x <- e[,1]
+y <- e[,2]
+z <- e[,87]
+sqrt(sum((x-y)^2))
+```
+
+```
+## [1] 85.8546
+```
+
+```r
+sqrt(sum((x-z)^2))
+```
+
+```
+## [1] 122.8919
+```
+
+As expected the kidneys are closer to each other. A faster way to compute this is using matrix algebra
+
+
+```r
+sqrt( crossprod(x-y) )
+```
+
+```
+##         [,1]
+## [1,] 85.8546
+```
+
+```r
+sqrt( crossprod(x-z) )
+```
+
+```
+##          [,1]
+## [1,] 122.8919
+```
+
+Now to compute all the distances at once we have the function `dist`. Because it computes the distance between each row, and here we are interested in the distance between samples we transpose the matrix
+
+
+```r
+d <- dist(t(e))
+class(d)
+```
+
+```
+## [1] "dist"
+```
+
+Note that this produces the an object of class `dist` and to access to entries we need to coerce into a matrix:
+
+
+```r
+as.matrix(d)[1,2]
+```
+
+```
+## [1] 85.8546
+```
+
+```r
+as.matrix(d)[1,87]
+```
+
+```
+## [1] 122.8919
+```
+
+It is important to keep in mind that if we run `dist` on `e` it will compute all pairwise distances between genes. This will try to create a {$$}22215 \times 22215{/$$} matrix that may kill crash your R sessions.
+
 
