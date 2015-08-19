@@ -41,10 +41,10 @@
 #course3 intro_to_highthroughput_data
 #course3 inference_for_highthroughput
 ##course3 multiple_testing
-eda_for_highthroughput.md
+#course3 eda_for_highthroughput
 
 ## Chapter 6: Distance, clustering and dimension reduction
-#course3 distance
+distance.md
 ##distance
 ##sad
 ##mds
