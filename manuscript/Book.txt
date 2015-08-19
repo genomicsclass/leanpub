@@ -1,6 +1,5 @@
 ##frontmatter introduction
 ##course1 getting_started
-## need to add something about functions and sapply
 
 ##Chapter 1 - Inference
 
@@ -38,10 +37,12 @@
 ##course2 qr_and_regression
 ##course2 linear_models_going_further
 
-### Chapter 6: Multiple comparisons
-intro_to_highthroughput_data.md
-inference_for_highthroughput.md
-##course3 eda_for_highthroughput.html)
+### Chapter 6: inference for high-dimensional data
+#course3 intro_to_highthroughput_data
+#course3 inference_for_highthroughput
+multiple_testing.md
+##course3 eda_for_highthroughput.html
+
 ## Chapter 6: Distance, clustering and dimension reduction
 ##distance
 ##svd
