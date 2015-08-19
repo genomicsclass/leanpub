@@ -44,7 +44,7 @@
 eda_for_highthroughput.md
 
 ## Chapter 6: Distance, clustering and dimension reduction
-distance.md
+#course3 distance
 ##distance
 ##sad
 ##mds
