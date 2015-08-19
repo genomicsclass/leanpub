@@ -55,24 +55,12 @@ Another plot we can make to get an overall idea of the results is to make histog
 
 
 ```r
-mypar2(1,2)
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "mypar2"
-```
-
-```r
+mypar(1,2)
 hist(nullpvals,ylim=c(0,1400))
-```
-
-![plot of chunk unnamed-chunk-5](images/eda_for_highthroughput-unnamed-chunk-5-1.png) 
-
-```r
 hist(pvals,ylim=c(0,1400))
 ```
 
-![plot of chunk unnamed-chunk-5](images/eda_for_highthroughput-unnamed-chunk-5-2.png) 
+![plot of chunk unnamed-chunk-5](images/eda_for_highthroughput-unnamed-chunk-5-1.png) 
 
 When we expect most hypothesis to be null and we don't see a uniform p-value distribution, it might be indicative of unexpected properties such as correlated samples. 
 
@@ -105,14 +93,7 @@ A quick look at a summary of the distribution using boxplots immediately highlig
 
 ```r
 library(rafalib)
-mypar2(1,1)
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "mypar2"
-```
-
-```r
+mypar(1,1)
 boxplot(ge,range=0,names=1:ncol(e),col=ifelse(1:ncol(ge)==49,1,2))
 ```
 
@@ -132,14 +113,7 @@ We can also plot all the histograms. Because we have so much data we create hist
 
 
 ```r
-mypar2(1,1)
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "mypar2"
-```
-
-```r
+mypar(1,1)
 shist(ge,unit=0.5)
 ```
 
