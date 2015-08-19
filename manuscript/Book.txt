@@ -40,8 +40,8 @@
 ### Chapter 6: inference for high-dimensional data
 #course3 intro_to_highthroughput_data
 #course3 inference_for_highthroughput
-multiple_testing.md
-##course3 eda_for_highthroughput.html
+##course3 multiple_testing
+eda_for_highthroughput.md
 
 ## Chapter 6: Distance, clustering and dimension reduction
 ##distance
