@@ -183,32 +183,32 @@ mean(minpval>=1)
 
 So our FWER is 1! This is not what we were hoping for. If we want it to be lower than {$$}\alpha=0.05{/$$} we failed miserably. 
 
-So what do we do to make the probability of a mistake lower than {$$}\alpha$? Using the derivation above we can  change the procedure by selecting a more stringent cutoff, previously 0.01, to lower our probability of at least one mistake to be 5%. Namely, by noting that 
+So what do we do to make the probability of a mistake lower than {$$}\alpha{/$$} ? Using the derivation above we can  change the procedure by selecting a more stringent cutoff, previously 0.01, to lower our probability of at least one mistake to be 5%. Namely, by noting that 
 
-{/$$}\mbox{Pr}(\mbox{at least one rejection}) =  1-(1-k)^{10000}{$$}
+{$$}\mbox{Pr}(\mbox{at least one rejection}) =  1-(1-k)^{10000}{/$$}
 
-and solving for {/$$}k{$$} we get {/$$}1-(1-k)^{10000}=0.05 \implies k = 1-0.95^{1/10000} \approx 0.000005{$$}
+and solving for {$$}k{/$$} we get {$$}1-(1-k)^{10000}=0.05 \implies k = 1-0.95^{1/10000} \approx 0.000005{/$$}
 
 Using this cutoff is known as . This now gives a specific example of a _procedure_. This one is actually called Sidak's procedure. Specifically, we we defnining a set of instructions, such as "reject all the null hypothesis for which p-values < 0.000005". Then, knowing the p-values are random variables, we use statistical theory to compute how many mistakes, on average, we are expected to make if we follow this procedure. More precisely we compute bounds on these rates, meaning that we show that they are smaller than some predermined value. There is a preference in the life sciences to err on the side of being conservative.
 
 A problem with Sidak's procedure is that it assumes the tests are independent. It therefore only controls FWER when this assumption holds. The Bonferroni correction is more general in that it controls FWER even if the tests are not independent. 
 As with Sidak's procedure we start by noting that 
 
-{/$$}FWER = \mbox{Pr}(V>0) \leq \mbox{Pr}(V>0 \mid \mbox{all nulls are true}){$$}
+{$$}FWER = \mbox{Pr}(V>0) \leq \mbox{Pr}(V>0 \mid \mbox{all nulls are true}){/$$}
 
 or using the notation from the table above:
 
-{/$$}\mbox{Pr}(V>0) \leq \mbox{Pr}(V>0 \mid m_1=0){$$}
+{$$}\mbox{Pr}(V>0) \leq \mbox{Pr}(V>0 \mid m_1=0){/$$}
 
-The Bonferroni procedure sets {/$$}k=\alpha/m{$$} since we can shows that:
+The Bonferroni procedure sets {$$}k=\alpha/m{/$$} since we can shows that:
 
-{/$$}
+{$$}
 \begin{align*}
 \mbox{Pr}(V>0 \,\mid \, m_1=0) &= \mbox{Pr}\left( \min_i \{p_i\} \leq \frac{\alpha}{m} \mid m_1=0 \right)\\
  &\leq \sum_{i=1}^m\leq \left(p_i \leq \frac{\alpha}{m} \right)\\
  &= m \frac{\alpha}{m}=\alpha
 \end{align*}
-{$$}
+{/$$}
 
 Note that controlling the FWER at 0.05 is a very conservative approach. Using the p-values computed in the previous section:
 
@@ -257,7 +257,7 @@ sum(pvals < 0.05/10000)
 
 ## False Discovery Rate 
 
-There are many situations for which requiring an FWER of 0.05 does not make sense as it is much to strict. For example, consider the very common exercise of running a preliminary small study to determine a handful of candidate genes. This is referred to as a _discovery_ driven project or experiment. We may be in search of an unknown causative gene and more than willing to perform follow up studies with many more samples on just the candidates. If we develop a procedure that produces, for example, a list of 10 genes of which 1 or 2 pan out as important, the experiment is a resounding success. Note that with a small sample size, the only way to achiev a FWER {/$$}\leq{$$} 0.05 is with an empty list of genes. We already saw in the previous section that despite 1,000 diets being effective we ended up with a list with just 2. Change the sample size to 6 and you very likely get 0:
+There are many situations for which requiring an FWER of 0.05 does not make sense as it is much to strict. For example, consider the very common exercise of running a preliminary small study to determine a handful of candidate genes. This is referred to as a _discovery_ driven project or experiment. We may be in search of an unknown causative gene and more than willing to perform follow up studies with many more samples on just the candidates. If we develop a procedure that produces, for example, a list of 10 genes of which 1 or 2 pan out as important, the experiment is a resounding success. Note that with a small sample size, the only way to achiev a FWER {$$}\leq{/$$} 0.05 is with an empty list of genes. We already saw in the previous section that despite 1,000 diets being effective we ended up with a list with just 2. Change the sample size to 6 and you very likely get 0:
 
 
 ```r
@@ -275,7 +275,7 @@ sum(pvals < 0.05/10000)
 ## [1] 0
 ```
 
-Note that by requiring a FWER {/$$}\leq{$$} 0.05 we are practically assuring 0 power (sensitivy) and that the specifcity reqruiement is over-kill. A widely used alternative to the FWER is the false discover rate (FDR). The idea behind FDR is to cosider the random variable {/$$}Q \equiv V/R{$$} with {/$$}Q=0{$$} when {/$$}R=0{$$} and {/$$}V=0{$$}. Note that {/$$}R=0{$$} (nothing called significant) implies {/$$}V=0{$$} (no false positives). So {/$$}Q{$$} is a random variable that can take values between 0 and 1 and we can define a rate by considering the average of {/$$}Q{$$}. To better understand this concept. Here we compute {/$$}Q{$$} for the procedure: call everything p-value < 0.05 significant.
+Note that by requiring a FWER {$$}\leq{/$$} 0.05 we are practically assuring 0 power (sensitivy) and that the specifcity reqruiement is over-kill. A widely used alternative to the FWER is the false discover rate (FDR). The idea behind FDR is to cosider the random variable {$$}Q \equiv V/R{/$$} with {$$}Q=0{/$$} when {$$}R=0{/$$} and {$$}V=0{/$$}. Note that {$$}R=0{/$$} (nothing called significant) implies {$$}V=0{/$$} (no false positives). So {$$}Q{/$$} is a random variable that can take values between 0 and 1 and we can define a rate by considering the average of {$$}Q{/$$}. To better understand this concept. Here we compute {$$}Q{/$$} for the procedure: call everything p-value < 0.05 significant.
 
 Before running the simulation we are going to _vectortize_ the code. Meaning that instead of using `sapply` to run `m` tests, we will create a matrix with all data in one call to sample. This code runs several times faster than the code above which is necessary here due to the fact that we will be generating several simulations. Understanding this chuck of code, and how it equivalent to the code above using `sapply` will take a you long way in helping you code efficiently in R.
 
@@ -360,17 +360,17 @@ abline(h=m0/100)
 
 ![plot of chunk unnamed-chunk-16](images/multiple_testing-unnamed-chunk-16-1.png) 
 
-As we consider a lower a lower p-value cut-off, the number of feautres detected decreases (loss of sensitivity) but our FDR also decreases (gain of specificity). So how do we decide? One approach is to set a desired FDR level {/$$}\alpha{$$}, and then develop procedures that control the error rate: FDR  {/$$}\leq \alpha{$$}.
+As we consider a lower a lower p-value cut-off, the number of feautres detected decreases (loss of sensitivity) but our FDR also decreases (gain of specificity). So how do we decide? One approach is to set a desired FDR level {$$}\alpha{/$$}, and then develop procedures that control the error rate: FDR  {$$}\leq \alpha{/$$}.
 
 ### Benjamini-Hochberg (Advanced)
 
-We want to construct a procedure that guarantees the FDR to be below a certain level {/$$}\alpha{$$}. For any given {/$$}\alpha{$$}, the Benjamini-Hochberg (1995) procedure is very practicaly because it simply requires we are able compute p-values for each of the individual tests and this permits a  procedures to be defined.
+We want to construct a procedure that guarantees the FDR to be below a certain level {$$}\alpha{/$$}. For any given {$$}\alpha{/$$}, the Benjamini-Hochberg (1995) procedure is very practicaly because it simply requires we are able compute p-values for each of the individual tests and this permits a  procedures to be defined.
 
-The procedure is as follows:order the p-values in increasing order: {/$$}p_{(1)},\dots,p_{(m)}. Then define {$$}k{/$$} to be the largest {$$}i{/$$} for which
+The procedure is as follows:order the p-values in increasing order: {$$}p_{(1)},\dots,p_{(m)}. Then define {/$$}k{$$} to be the largest {/$$}i{$$} for which
 
-{$$}p_{(i)} \leq \frac{i}{m}\alpha{/$$}
+{/$$}p_{(i)} \leq \frac{i}{m}\alpha{$$}
 
-The procedure is to reject tests with p-values larger than {$$}p_{(k)}{/$$}. Here is an example of how we would select the {$$}k{/$$} with code using the p-values computed above:
+The procedure is to reject tests with p-values larger than {/$$}p_{(k)}{$$}. Here is an example of how we would select the {/$$}k{$$} with code using the p-values computed above:
 
 
 ```r
@@ -444,7 +444,7 @@ print(FDR)
 ## [1] 0.03556253
 ```
 
-The FDR is lower than 0.05. This is to be expceted because we need to be conservative to assure the FDR {$$}\leq{/$$} 0.05 for any value of {$$}m_0{/$$}, for example for the extreme case where every hypothesis tested is null: {$$}m=m_0{/$$}. If you re-do the simulation above for this case you will find that the FDR increases. 
+The FDR is lower than 0.05. This is to be expceted because we need to be conservative to assure the FDR {/$$}\leq{$$} 0.05 for any value of {/$$}m_0{$$}, for example for the extreme case where every hypothesis tested is null: {/$$}m=m_0{$$}. If you re-do the simulation above for this case you will find that the FDR increases. 
 
 Finally, note that the `p.adjust`function has several options for error rate controling procedures:
 
@@ -463,28 +463,28 @@ It is important to keep in mind that these options differ not just different app
 ?p.adjust
 ```
 
-In summary, requiring that  FDR {$$}leq{/$$} 0.05 is a much more lineant requirement FWER {$$}leq{/$$} 0.05. Although we will end up with more false positives, FDR gives us much more power. This makes it particularly appropriate for discovery phase experiments where we may accept FDR levels much higher than 0.05.
+In summary, requiring that  FDR {/$$}leq{$$} 0.05 is a much more lineant requirement FWER {/$$}leq{$$} 0.05. Although we will end up with more false positives, FDR gives us much more power. This makes it particularly appropriate for discovery phase experiments where we may accept FDR levels much higher than 0.05.
 
 ## Direct approach to FDR  and q-values (Advanced)
 
 Here we review the results described by John D. Storey in
-J. R. Statist. Soc. B (2002). One major distinction between Storey's approach the Benjamni and Hochberg's is that we are no longer going to set a {$$}\alpha{/$$} level a-priori. Because in many high-throughput we are interested in obtaining some list for validation, we can instead decide before hand that we will consdier all tests with {$$}p-values{/$$} smaller than 0.01. We then want to attach an estimate of an error rate. Using this approach we then we are guaranteed to have {$$}R>0{/$$}. Note that in the FDR definition above we assigned {$$}Q=0{/$$} in the case that {$$}R=V=0{/$$}. We are therefore computing 
+J. R. Statist. Soc. B (2002). One major distinction between Storey's approach the Benjamni and Hochberg's is that we are no longer going to set a {/$$}\alpha{$$} level a-priori. Because in many high-throughput we are interested in obtaining some list for validation, we can instead decide before hand that we will consdier all tests with {/$$}p-values{$$} smaller than 0.01. We then want to attach an estimate of an error rate. Using this approach we then we are guaranteed to have {/$$}R>0{$$}. Note that in the FDR definition above we assigned {/$$}Q=0{$$} in the case that {/$$}R=V=0{$$}. We are therefore computing 
 
-{$$}
+{/$$}
 \mbox{FDR} = E\left( \frac{V}{R} \mid R>0\right) \mbox{Pr}(R>0)
-{/$$}
-
-In the approach proposed by Storey we condition on having a non-empty list, which implies {$$}R>0{/$$}, and we instead compute the _positive FDR_ 
-
 {$$}
+
+In the approach proposed by Storey we condition on having a non-empty list, which implies {/$$}R>0{$$}, and we instead compute the _positive FDR_ 
+
+{/$$}
 \mbox{pFDR} = E\left( \frac{V}{R} \mid R>0\right) 
-{/$$}
-
-A second distinction is that while Benjamin and Hochberg's procedure controls under the worse case scenario in which all null hypotheses are true ({$$}m=m_0{/$$}), Storey proposes we actually try to estimate {$$}m_0{/$$} from the data. Because in high-througput experiment we have so much data, this is certainly posible. The general idea is to use pick a relativel high value p-value cut-off, call it {$$}\lambda{/$$}, and assume that tests obtaining p-values {$$}>\lambda{/$$} are moslty from  cases in which the null hypothesis hold. We can then estimate {$$}\pi_0 = m_0/m{/$$} as: 
 {$$}
-\hat{\pi}_0 = \frac{\#\left\{p_i > \lambda \right\} }{ (1-\lambda) m }
+
+A second distinction is that while Benjamin and Hochberg's procedure controls under the worse case scenario in which all null hypotheses are true ({/$$}m=m_0{$$}), Storey proposes we actually try to estimate {/$$}m_0{$$} from the data. Because in high-througput experiment we have so much data, this is certainly posible. The general idea is to use pick a relativel high value p-value cut-off, call it {/$$}\lambda{$$}, and assume that tests obtaining p-values {/$$}>\lambda{$$} are moslty from  cases in which the null hypothesis hold. We can then estimate {/$$}\pi_0 = m_0/m{$$} as: 
 {/$$}
-Ther are more sophisticated procedures than this, but they follow the same general idea. Here is an example setting {$$}\lambda=0.1{/$$}. Using the p-values computed above we have:
+\hat{\pi}_0 = \frac{\#\left\{p_i > \lambda \right\} }{ (1-\lambda) m }
+{$$}
+Ther are more sophisticated procedures than this, but they follow the same general idea. Here is an example setting {/$$}\lambda=0.1{$$}. Using the p-values computed above we have:
 
 
 ```r
@@ -504,11 +504,11 @@ print(pi0) ##this is close to the trye pi0=0.9
 ## [1] 0.9311111
 ```
 
-With this estimate in place we can, for example, alter the Benjamini and Hochberg procedure to select the {$$}k{/$$} to be the largest value so that 
+With this estimate in place we can, for example, alter the Benjamini and Hochberg procedure to select the {/$$}k{$$} to be the largest value so that 
 
-{$$}\hat{\pi}_0 p_{(i)} \leq \frac{i}{m}\alpha{/$$}
+{/$$}\hat{\pi}_0 p_{(i)} \leq \frac{i}{m}\alpha{$$}
 
-However, instead of doing this we compute a _q-value_ for each test. If a feature resulted in a p-value of {$$}p{/$$}, the q-value is the estimated pFDR for a list of all the features with a p-value at least as small as {$$}p{/$$}.
+However, instead of doing this we compute a _q-value_ for each test. If a feature resulted in a p-value of {/$$}p{$$}, the q-value is the estimated pFDR for a list of all the features with a p-value at least as small as {/$$}p{$$}.
 
 In R this can be computed with the `qvalue` function in the `qvalue` package:
 
@@ -521,7 +521,7 @@ plot(pvals,qvals)
 ```
 
 ![plot of chunk unnamed-chunk-23](images/multiple_testing-unnamed-chunk-23-1.png) 
-we also obtain the estimate of {$$}\hat{\pi}_0{/$$}:
+we also obtain the estimate of {/$$}\hat{\pi}_0{$$}:
 
 
 ```r
@@ -531,4 +531,4 @@ res$pi0
 ```
 ## [1] 0.8813727
 ```
-Note that this function uses a more sophisticated approach at estimatein {$$}\pi_0{/$$} than what is described above.
+Note that this function uses a more sophisticated approach at estimatein {/$$}\pi_0{$$} than what is described above.
