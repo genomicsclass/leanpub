@@ -56,7 +56,7 @@ prop.table(tab)
 ```
 ## winners
 ##     0     1     2     3     4 
-## 0.606 0.286 0.092 0.013 0.003
+## 0.614 0.302 0.072 0.010 0.002
 ```
 
 For cases like this, where {$$}N{/$$} is very large but {$$}p{/$$} is small enough to make {$$}N \times p{/$$} (call it {$$}\lambda{/$$}) a number between 0 and 10, then then {$$}S{/$$} can be shown to follow a Poisson a distribution which has a simple parametric form:
@@ -325,7 +325,7 @@ In a later module we will learn about empirical bayes approaches to improve esti
 {$$}
 s^2 \sim s_0^2 F_{d,d_0}
 {/$$}
-with {$$}d{/$$} the degrees of freedom involved in computing {$$}s^2$; for example in a case comparing 3 verus 3, the degrees of freedom would be 4. This leaves two free parameters to adjust to the data. Here {/$$}d{$$} will control the location and {/$$}s_0{$$} will control the scale. Here are some examples plotted on top of the histogram from the real data
+with {$$}d{/$$} the degrees of freedom involved in computing {$$}s^2{/$$} ; for example in a case comparing 3 verus 3, the degrees of freedom would be 4. This leaves two free parameters to adjust to the data. Here {$$}d{/$$} will control the location and {$$}s_0{/$$} will control the scale. Here are some examples plotted on top of the histogram from the real data
 
 ```r
 library(rafalib)
@@ -342,7 +342,7 @@ for(d in c(1,5,10)){
 ```
 
 ![plot of chunk unnamed-chunk-14](images/modeling-unnamed-chunk-14-1.png) 
-Now which {/$$}s_0{$$} and {/$$}d{$$} fit our data best? This is a rather advanced to topic as the MLE does not perform well for this particular distribution (we refer to Smyth (2004)). The Bioconductor limma package provides a function to estimate these parameters
+Now which {$$}s_0{/$$} and {$$}d{/$$} fit our data best? This is a rather advanced to topic as the MLE does not perform well for this particular distribution (we refer to Smyth (2004)). The Bioconductor limma package provides a function to estimate these parameters
 
 
 ```r
