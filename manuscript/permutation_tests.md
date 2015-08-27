@@ -8,7 +8,7 @@ title: Permutation tests
 
 
 ## Permutation Tests
-Suppose we have a situation in which none of the standard mathematical statistical approximation apply. We have computed a summary statistic, such as the difference in mean, but do not have a useful approximation such as that provided by the CLT. In practice, we do not have access to all values in the population so we can't perform a simulation as done above. Permutation can be useful in these scenarios. 
+Suppose we have a situation in which none of the standard mathematical statistical approximations apply. We have computed a summary statistic, such as the difference in mean, but do not have a useful approximation, such as that provided by the CLT. In practice, we do not have access to all values in the population so we can't perform a simulation as done above. Permutation tests can be useful in these scenarios. 
 
 We are back to the scenario were we only have 10 measurements for each group.
 
@@ -23,7 +23,7 @@ treatment <- filter(dat,Diet=="hf") %>% select(Bodyweight) %>% unlist
 obsdiff <- mean(treatment)-mean(control)
 ```
 
-In previous sections we have shown parametric approaches that help determine if the observed difference significant. Permutations tests take advantage of the fact that if randomly shuffle of the cases and control labels then the null is true. So we shuffle the case and control labels, and assume that the ensuing distribution approximates the null distribution. Here is how we generate a null distribution by shuffling the data 1,000 times.
+In previous sections, we showed parametric approaches that helped determine if the observed difference is significant. Permutation tests take advantage of the fact that if we randomly shuffle the cases and control labels, then the null is true. So we shuffle the case and control labels and assume that the ensuing distribution approximates the null distribution. Here is how we generate a null distribution by shuffling the data 1,000 times:
 
 
 ```r
@@ -67,7 +67,7 @@ mean(abs(avgdiff) > abs(obsdiff))
 ## Error in mean(abs(avgdiff) > abs(obsdiff)): object 'avgdiff' not found
 ```
 
-Now let's repeat this experiment for smaller dataset. We create a smaller dataset by sampling:
+Now let's repeat this experiment for a smaller dataset. We create a smaller dataset by sampling:
 
 
 ```r
@@ -79,7 +79,7 @@ obsdiff <- mean(treatment,control)
 ```
 ## Error in mean.default(treatment, control): 'trim' must be numeric of length one
 ```
-and repeat the exercise
+and repeat the exercise:
 
 
 
@@ -112,8 +112,8 @@ abline(v=obsdif)
 ## Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): object 'obsdif' not found
 ```
 
-Note that now, the observed difference is not significant using this approach. It is important to keep in mind that there is no theoretical guarantee that the null distribution estimated from permutations approximates the actual null distribution. Note for example that if there is a real differences between the populations, some of the permutations will be unbalanced and will contain some of samples that explain this difference. This implies that the null distribution created with permutations will have larger tails than the actual null distribution. This is why permutations result in conservative p-values. For this reason when  we have few samples we can't do permutations. 
+Now the observed difference is not significant using this approach. Keep in mind that there is no theoretical guarantee that the null distribution estimated from permutations approximates the actual null distribution. For example, if there is a real difference between the populations, some of the permutations will be unbalanced and will contain some samples that explain this difference. This implies that the null distribution created with permutations will have larger tails than the actual null distribution. This is why permutations result in conservative p-values. For this reason, when we have few samples, we can't do permutations. 
 
-Note also that permutations tests still have assumptions: samples are assumed to be independent. If there is hidden structure in your data, then permutation tests can actually end up with null distributions that underestimate the details because the permutations may destroy the existing structure in the original data.
+Note also that permutations tests still have assumptions: samples are assumed to be independent. If there is hidden structure in your data, then permutation tests can result in estimated null distributions that underestimate the size of tails because the permutations may destroy the existing structure in the original data.
 
 
