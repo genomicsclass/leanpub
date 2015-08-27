@@ -22,7 +22,7 @@ For the explanation of projections we will use the standard matrix algebra notat
 
 
 
-If we let {$$}Y = \begin{pmatrix} 2& 3\end{pmatrix}^\top{/$$} we can plot it like this:
+If we let {$$}Y = \begin{pmatrix} 2 \\ 3\end{pmatrix}{/$$} we can plot it like this:
 
 
 ```r
@@ -32,16 +32,16 @@ arrows(0,0,2,3,lwd=3)
 text(2,3," Y",pos=4,cex=3)
 ```
 
-<img src="images/projections-unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
+![plot of chunk unnamed-chunk-2](images/projections-unnamed-chunk-2-1.png) 
 
 We can immediately define a coordinate system by projecting this vector to the space defined by 
 {$$}\begin{pmatrix} 1\\ 0\end{pmatrix}{/$$} (the x-axis) and {$$}\begin{pmatrix} 0\\ 1\end{pmatrix}{/$$} (the y-axis). The projections of {$$}Y{/$$} to the subspace defined by these points are 2 and 3 respectively:
 
 {$$}
-\begin{aligned}
+\begin{align*}
 Y &= \begin{pmatrix} 2 \\ 3\end{pmatrix} \\
 &=2  \begin{pmatrix} 1\\ 0\end{pmatrix} + 3 \begin{pmatrix} 0\\ 1\end{pmatrix} 
-\end{aligned}{/$$}
+\end{align*}{/$$}
 
 We say that {$$}2{/$$} and {$$}3{/$$} are the _coordinates_ and that 
 {$$}\begin{pmatrix} 1\\ 0\end{pmatrix} \mbox{and} \begin{pmatrix} 0\\1 \end{pmatrix} \mbox{are the basis}{/$$}
