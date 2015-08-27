@@ -1,5 +1,5 @@
 ---
-title: "Central Limit Theorem in practice"
+title: "Central Limit Theorem in Practice"
 layout: page
 ---
 
@@ -53,7 +53,7 @@ print(mu_hf - mu_control)
 
 Compute the population standard deviations as well. Note that we do not use the R function `sd` because this is to compute the population based estimates that divide by the sample size - 1. 
 
-We can see that with R code
+We can see that with R code:
 
 ```r
 x<-controlPopulation
@@ -89,7 +89,7 @@ sd_hf <- popsd(hfPopulation)
 sd_control <- popsd(controlPopulation)
 ```
 
-Remember, that in practice we do not get to compute these population parameters,
+Remember that in practice we do not get to compute these population parameters.
 These are values we do not get to see. In general, we want to estimate them from samples. 
 
 ```r
@@ -109,7 +109,7 @@ res <-  sapply(Ns,function(n){
 })
 ```
 
-Now we can use qq-plots to see how well CLT approximations  works for these. If in fact the normal distribution is a good approximation the points should fall on a straight line when compared to normal quantiles. The more it deviates, the worse the approximation.  We also show, in the title, the average and SD of the observed distribution showing how the SD decreases with {$$}\sqrt{N}{/$$} as predicted. 
+Now we can use qq-plots to see how well CLT approximations works for these. If in fact the normal distribution is a good approximation, the points should fall on a straight line when compared to normal quantiles. The more it deviates, the worse the approximation. We also show, in the title, the average and SD of the observed distribution which demonstrates how the SD decreases with {$$}\sqrt{N}{/$$} as predicted. 
 
 ```r
 library(rafalib)
@@ -142,7 +142,7 @@ for(i in seq(along=Ns)){
 
 ![plot of chunk unnamed-chunk-10](images/clt_in_practice-unnamed-chunk-10-1.png) ![plot of chunk unnamed-chunk-10](images/clt_in_practice-unnamed-chunk-10-2.png) ![plot of chunk unnamed-chunk-10](images/clt_in_practice-unnamed-chunk-10-3.png) ![plot of chunk unnamed-chunk-10](images/clt_in_practice-unnamed-chunk-10-4.png) 
 
-Here we see a pretty good fit even for 3. Why is this? Because the population itself is relatively close to normally distributed, the averages are close to normal as well, (the sum of normals is normals). Now in practice we actually calculate a ratio, we divide by the estimate standard deviation. Here is where the sample size starts to matter more.
+Here we see a pretty good fit even for 3. Why is this? Because the population itself is relatively close to normally distributed, the averages are close to normal as well (the sum of normals is normals). In practice we actually calculate a ratio: we divide by the estimated standard deviation. Here is where the sample size starts to matter more.
 
 
 ```r
@@ -173,9 +173,9 @@ for(i in seq(along=Ns)){
 
 ![plot of chunk unnamed-chunk-11](images/clt_in_practice-unnamed-chunk-11-1.png) ![plot of chunk unnamed-chunk-11](images/clt_in_practice-unnamed-chunk-11-2.png) ![plot of chunk unnamed-chunk-11](images/clt_in_practice-unnamed-chunk-11-3.png) ![plot of chunk unnamed-chunk-11](images/clt_in_practice-unnamed-chunk-11-4.png) 
 
-Now we see that for {$$}N=3{/$$} the CLT does not provide a usable approximation. For {$$}N=12{/$$} their is a slight deviation at the higher values, although the approximation appears useful. For 25 and 50 the approximation is spot on. 
+So we see that for {$$}N=3{/$$} the CLT does not provide a usable approximation. For {$$}N=12{/$$} there is a slight deviation at the higher values, although the approximation appears useful. For 25 and 50 the approximation is spot on. 
 
-Note that this simulation is not meant as proof that {$$}N=12{/$$} is large enough, in general. It only applies to this dataset and, as mentioned above, we will not be able to perform this simulation in most situation. We only use the simulation to illustrate the concepts behind the CLT. In future sections we will describe approaches we actually use in practice.
+This simulation only proves that {$$}N=12{/$$} is large enough in this case, not in general. As mentioned above, we will not be able to perform this simulation in most situations. We only use the simulation to illustrate the concepts behind the CLT. In future sections we will describe the approaches we actually use in practice.
 
 
 
