@@ -5,7 +5,7 @@ title: Distance lecture
 
 
 
-# Distance, clustering and dimension reduction
+# Distance and dimension reduction
 
 ## Introduction
 
