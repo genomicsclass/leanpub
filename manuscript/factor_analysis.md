@@ -42,34 +42,7 @@ A graphical look shows that the correlation suggest a grouping into STEM and hum
 
 In the figure below high correlations are red, no correlation is white and negative correlations are blue.
 
-
-```
-## Error in rev(brewer.pal(11, "RdBu")): could not find function "brewer.pal"
-```
-
-```
-## Error in image.default(1:ncol(Y), 1:ncol(Y), cor(Y)[, 6:1], xaxt = "n", : object 'cols' not found
-```
-
-```
-## Error in axis(1, 1:ncol(Y), colnames(Y), las = 2): plot.new has not been called yet
-```
-
-```
-## Error in axis(2, 1:ncol(Y), rev(colnames(Y)), las = 2): plot.new has not been called yet
-```
-
-```
-## Error in image.default(1:ncol(Y), 1:ncol(Y), cor(eps)[, 6:1], xaxt = "n", : object 'cols' not found
-```
-
-```
-## Error in axis(1, 1:ncol(Y), colnames(Y), las = 2): plot.new has not been called yet
-```
-
-```
-## Error in axis(2, 1:ncol(Y), rev(colnames(Y)), las = 2): plot.new has not been called yet
-```
+![plot of chunk unnamed-chunk-3](images/factor_analysis-unnamed-chunk-3-1.png) 
 
 
 ### Factor model
@@ -135,20 +108,11 @@ cors=cor(Y-rowMeans(Y))
 
 mypar()
 cols=colorRampPalette(brewer.pal(9,"Blues"))(100)
-```
-
-```
-## Error in match(x, table, nomatch = 0L): could not find function "brewer.pal"
-```
-
-```r
 par(mar = c(8.1, 8.1, 3.5, 2.1))
 image(1:n,1:n,cors,xaxt="n",yaxt="n",col=cols,xlab="",ylab="",zlim=c(-1,1))
 ```
 
-```
-## Error in image.default(1:n, 1:n, cors, xaxt = "n", yaxt = "n", col = cols, : object 'cols' not found
-```
+![plot of chunk unnamed-chunk-6](images/factor_analysis-unnamed-chunk-6-1.png) 
 
 Two factors will not be enough to model the observed correlation structure. But a more general factor model can be useful:
 
