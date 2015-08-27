@@ -44,9 +44,9 @@ introduction.md
 #course3 eda_for_highthroughput
 
 ### Chapter 7: Statistical Modeling
-modeling.md
+#course3 modeling
 bayes.md
-hierarchical_models.md
+#course3 hierarchical_models
 
 ### Chapter 8: Distance and dimension reduction
 ##course3 distance
