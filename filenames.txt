@@ -45,12 +45,12 @@
 
 ## Chapter 6: Distance, clustering and dimension reduction
 course3 distance
-##distance
-##sad
+course3 clustering_and_heatmaps
+##svd
 ##mds
-##clustering_and_heatmaps
+
 ## Chapter 7: Practical Machine Learning
-##machine_learning.html)
+##machine_learnning.html)
 ##croossvalidation.html)
 
 ## Chapter 8 - Batch effects

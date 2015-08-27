@@ -28,7 +28,7 @@
 ##course2 matrix_operations
 ##course2 matrix_algebra_examples
 
-### Chapter 5: Linear Models
+### Chapter 5 - Linear Models
 ##course2 expressing_design_formula
 ##course2 linear_models_in_practice
 ##course2 standard_errors
@@ -37,28 +37,38 @@
 ##course2 qr_and_regression
 ##course2 linear_models_going_further
 
-### Chapter 6: inference for high-dimensional data
+### Chapter 6 - inference for high-dimensional data
 #course3 intro_to_highthroughput_data
 #course3 inference_for_highthroughput
 ##course3 multiple_testing
 #course3 eda_for_highthroughput
 
-## Chapter 6: Distance, clustering and dimension reduction
-distance.md
-##distance
-##sad
-##mds
-##clustering_and_heatmaps
-## Chapter 7: Practical Machine Learning
-##machine_learning.html)
-##croossvalidation.html)
+### Chapter 7 - Statistical Models 
+#course3 modeling
+#course3 bayes
+#course3 hierarchical_models
 
-## Chapter 8 - Batch effects
-##confounding.html
-##adjusting_with_linar_models.html)
-##projections.html)
-##rotations.html)
-##PCA.html)
-##factor_analysis.html)
-##eda_with_pca.html)
-##adjusting_with_factor_analysis.html)
+
+## Chapter 8: Distance and dimension reduction
+course3 distance
+course3 pca_motivation
+course3 svd
+course3 projections
+course3 rotations
+course3 PCA
+course3 mds
+
+## Chapter 9: Practical Machine Learning
+##course3 clustering_and_heatmaps
+##course3 conditional_expectations
+##course3 smoothing
+##course3 machine_learning
+##cross3 croossvalidation
+
+## Chapter 10 - Batch effects
+##course3 intro_to_batch_effects
+##course3 confounding
+##course3 eda_with_pca
+##course3 adjusting_with_linar_models
+##course3 factor_analysis
+##course3 adjusting_with_factor_analysis
