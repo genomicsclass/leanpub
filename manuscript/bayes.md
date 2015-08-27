@@ -14,7 +14,9 @@ One distinguishing characteristic of high-throuhgput data is that we make many m
 
 We start by reviewing Bayes theorem. We do this using a hypothetical Cystic Fibrosis test as an example. Suppose a test for cystic fibrosis has an accuracy of 99%. We will use the following notation:
 
-{$$}\mbox{Prob}(+ \mid D=1)=0.99, \mbox{Prob}(- \mid D=0)=0.99,{/$$}
+{$$}
+\mbox{Prob}(+ \mid D=1)=0.99, \mbox{Prob}(- \mid D=0)=0.99 
+{/$$}
 
 with {$$}+{/$$} meaning a positive test and {$$}D{/$$} representing if you actually have (1) the disease or not (0).
 
@@ -27,10 +29,10 @@ Suppose we select random person and they test postive, what is the probability t
 This equation applied to our problem becomes:
 
 {$$}
-\begin{eqnarray*}
+\begin{align*}
 \mbox{Prob}(D=1 \mid +) & = & \frac{ P(+ \mid D=1) \cdot P(D=1)} {\mbox{Prob}(+)} \\
-& = & \frac{\mbox{Prob}(+ \mid D=0)\cdot P(D)} {\mbox{Prob}(+ \mid D) \cdot P(D) + \mbox{Prob}(+ \mid D=1) \mbox{Prob}( D=0)} \\
-\end{eqnarray*}
+& = & \frac{\mbox{Prob}(+ \mid D=0)\cdot P(D)} {\mbox{Prob}(+ \mid D) \cdot P(D) + \mbox{Prob}(+ \mid D=1) \mbox{Prob}( D=0)} 
+\end{align*}
 {/$$}
 
 Pluging in the numbers we get:
@@ -46,6 +48,14 @@ Note that this says that despite the test having 0.99 accuracy, the probabilty o
 The following simulation is meant help you visualize Bayes Theorem. We start by randomely selection 1500 people from a population in which the disease in question has a 5% prevalence.
 
 
+```r
+set.seed(3)
+prev <- 1/20
+##Later, we are arranging 1000 people in 80 rows and 20 columns
+M <- 50 ; N <- 30
+##do they have the disease?
+d<-rbinom(N*M,1,p=prev)
+```
 
 Now each person gets the test which is correct 90% of the time
 
@@ -90,7 +100,6 @@ The proportions of red in the top plot shows {$$}\mbox{Pr}(D=1){/$$}. The bottom
 
 
 
-
 ### Bayes in Practice
 
 
@@ -118,7 +127,7 @@ This is for all players (>500 AB) 2010, 2011, 2012
 
 
 
-![plot of chunk unnamed-chunk-6](images/bayes-unnamed-chunk-6-1.png) 
+![plot of chunk unnamed-chunk-5](images/bayes-unnamed-chunk-5-1.png) 
 
 Average is .275 and SD is 0.027
 
@@ -140,10 +149,10 @@ Hierarchichal Model
 
 Pick a random player, then what is their batting average
 
-{$$}\begin{eqnarray*}
+{$$}\begin{align*}
 \theta &\sim& N(\mu, \tau^2) \mbox{ is called a prior}\\
 Y \mid \theta &\sim& N(\theta, \sigma^2) \mbox{ is called a sampling distribution}
-\end{eqnarray*}{/$$}
+\end{align*}{/$$}
 
 Two levels of variability:
 
@@ -152,10 +161,10 @@ Two levels of variability:
 
 Hierarchichal Model
 
-{$$}\begin{eqnarray*}
+{$$}\begin{align*}
 \theta &\sim& N(\mu, \tau^2) \mbox{ is called a prior}\\
 Y \mid \theta &\sim& N(\theta, \sigma^2) \mbox{ is called a sampling distribution}
-\end{eqnarray*}{/$$}
+\end{align*}{/$$}
 
 * {$$}\theta{/$$} is our players "intrinsic" average value
 * {$$}\mu{/$$} is the average of all players
@@ -168,10 +177,10 @@ Hierarchichal Model
 
 Here are the equations with our data
 
-{$$}\begin{eqnarray*}
+{$$}\begin{align*}
 \theta &\sim& N(.275, .027^2) \\
 Y \mid \theta &\sim& N(\theta, .110^2) 
-\end{eqnarray*}{/$$}
+\end{align*}{/$$}
 
 
 Posterior Distribution
@@ -179,10 +188,13 @@ Posterior Distribution
 The continuous version of Bayes rule can be used here
 
 {$$}
-\begin{eqnarray*}
-f_{\theta\mid Y}(\theta\mid Y)&=&\frac{f_{Y\mid \theta}(Y\mid \theta) f_{\theta}(\theta)}{f_Y(Y)}\\
-&=&\frac{f_{Y\mid \theta}(Y\mid \theta) f_{\theta}(\theta)}{\int_{\theta}f_{Y\mid \theta}(Y\mid \theta)f_{\theta}(\theta)}\\
-\end{eqnarray*}
+\begin{align*}
+f_{ \theta \mid Y} (\theta\mid Y) &=&
+\frac{f_{Y\mid \theta}(Y\mid \theta) f_{\theta}(\theta)
+}{f_Y(Y)}\\
+&=&\frac{f_{Y\mid \theta}(Y\mid \theta) f_{\theta}(\theta)}
+{\int_{\theta}f_{Y\mid \theta}(Y\mid \theta)f_{\theta}(\theta)}
+\end{align*}
 {/$$}
 
 We are particularly interested in the {$$}\theta{/$$} that maximizes {$$}f_{\theta\mid Y}(\theta\mid Y){/$$}.
@@ -195,11 +207,11 @@ Posterior Distribution
 We can show the average of this distribution is the following:
 
 {$$}
-\begin{eqnarray*}
+\begin{align*}
 \mbox{E}(\theta\mid y) &=& B \mu + (1-B) Y\\
 &=& \mu + (1-B)(Y-\mu)\\
 B &=& \frac{\sigma^2}{\sigma^2+\tau^2}
-\end{eqnarray*}
+\end{align*}
 {/$$}
 
 
@@ -208,12 +220,12 @@ Posterior Distribution
 In the case of José Iglesias, we have:
 
 {$$}
-\begin{eqnarray*}
-E(\theta \mid Y=.450) &=& B \times .275 + (1 - B) \times .450 \\
+\begin{align*}
+\mbox{E}(\theta \mid Y=.450) &=& B \times .275 + (1 - B) \times .450 \\
 &=& .275 + (1 - B)(.450 - .260) \\
 B &=&\frac{.110^2}{.110^2 + .027^2} = 0.943\\
-E(\theta \mid Y=450) &\approx& .285\\
-\end{eqnarray*}
+\mbox{E}(\theta \mid Y=450) &\approx& .285
+\end{align*}
 {/$$}
 
 Posterior Distribution
@@ -221,10 +233,8 @@ Posterior Distribution
 The variance can be shown to be:
 
 {$$}
-\begin{eqnarray*}
 \mbox{var}(\theta\mid y) &=& \frac{1}{1/\sigma^2+1/\tau^2}
-&=& \frac{1}{1/.110^2 + 1/.027^2}
-\end{eqnarray*}
+= \frac{1}{1/.110^2 + 1/.027^2}
 {/$$}
 
 In our example the SD is 0.026
