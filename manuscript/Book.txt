@@ -1,51 +1,51 @@
 introduction.md
-#course1 getting_started
+getting_started.md
 
 #chapter 1 - Inference
 
-#course1 random_variables
-#course1 populations_and_samples
-#course1 clt_and_t-distribution
-#course1 clt_in_practice
-#course1 t-tests_in_practice
-#course1 confidence_intervals
-#course1 power_calculations
-#course1 monte_carlo
-#course1 permutation_tests
-#course1 association_tests
+random_variables.md
+populations_and_samples.md
+clt_and_t-distribution.md
+clt_in_practice.md
+t-tests_in_practice.md
+confidence_intervals.md
+power_calculations.md
+monte_carlo.md
+permutation_tests.md
+association_tests.md
 
 #chapter 2 - EDA
-#course1 exploratory_data_analysis_2
-#course1 plots_to_avoid
+exploratory_data_analysis_2.md
+plots_to_avoid.md
 
 #chapter 3 - Robust Statistics
-#course1 robust_summaries
-#course1 ranktest
+robust_summaries.md
+ranktest.md
 
 ## Chapter 4 - Matrix Algebra
-#course2 intro_using_regression
-#course2 matrix_notation
-#course2 matrix_operations
-#course2 matrix_algebra_examples
+intro_using_regression.md
+matrix_notation.md
+matrix_operations.md
+matrix_algebra_examples.md
 
 ### Chapter 5: Linear Models
-#course2 expressing_design_formula
-#course2 linear_models_in_practice
-#course2 standard_errors
-#course2 interactions_and_contrasts
-#course2 collinearity
-#course2 qr_and_regression
-#course2 linear_models_going_further
+expressing_design_formula.md
+linear_models_in_practice.md
+standard_errors.md
+interactions_and_contrasts.md
+collinearity.md
+qr_and_regression.md
+linear_models_going_further.md
 
 ### Chapter 6: inference for high-dimensional data
-#course3 intro_to_highthroughput_data
-#course3 inference_for_highthroughput
-#course3 multiple_testing
-#course3 eda_for_highthroughput
+intro_to_highthroughput_data.md
+inference_for_highthroughput.md
+multiple_testing.md
+eda_for_highthroughput.md
 
 ### Chapter 7: Statistical Modeling
-#course3 modeling
-#course3 bayes
+modeling.md
+bayes.md
 hierarchical_models.md
 
 ### Chapter 8: Distance and dimension reduction
