@@ -64,8 +64,8 @@
 #course3 crossvalidation
 
 ## Chapter 10 - Batch effects
-intro_to_batch_effects.md
-#course3 confounding
+#course3 intro_to_batch_effects
+confounding.md
 #course3 eda_with_pca
 #course3 adjusting_with_linar_models
 #course3 factor_analysis
