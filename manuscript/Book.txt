@@ -38,10 +38,10 @@ qr_and_regression.md
 linear_models_going_further.md
 
 ### Chapter 6: inference for high-dimensional data
-#course3 intro_to_highthroughput_data
-#course3 inference_for_highthroughput
-#course3 multiple_testing
-#course3 eda_for_highthroughput
+intro_to_highthroughput_data.md
+inference_for_highthroughput.md
+multiple_testing.md
+eda_for_highthroughput.md
 
 ### Chapter 7: Statistical Modeling
 #course3 modeling
