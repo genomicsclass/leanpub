@@ -52,8 +52,8 @@
 #course3 distance
 #course3 pca_motivation
 #course3 projections
-rotations.md
-#course3 mds
+#course3 rotations
+mds.md
 #course3 PCA
 
 ## Chapter 9: Practical Machine Learning
