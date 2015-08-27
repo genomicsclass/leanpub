@@ -88,41 +88,41 @@ and {$$}L \subset \mathbb{R}^N{/$$} is the space spanned by
 {$$}\vec{v}=\begin{pmatrix} 1\\ \vdots \\  1\end{pmatrix};
 L = \{ c \vec{v}; c \in \mathbb{R}\}{/$$}
 
-Note that in this space all components of the vectors are the same number so we can think as this space represents the constants: in the projection each dimension will be the same value. So what {$$}c{/$$} minimizes distance between {$$}c\vec{v}{/$$} and {$$}\vec{y}$? 
+Note that in this space all components of the vectors are the same number so we can think as this space represents the constants: in the projection each dimension will be the same value. So what {$$}c{/$$} minimizes distance between {$$}c\vec{v}{/$$} and {$$}\vec{y}{/$$} ? 
 
-Note that when talking about problems like this, we sometimes use 2 dimensional figures such as the one above. We simply abstract and think of {/$$}\vec{y}{$$} as point in {/$$}N-dimensions{$$} and {/$$}L{$$} as a subspace defined by a smaller number of values, in this case just one: {/$$}c{$$}. 
+Note that when talking about problems like this, we sometimes use 2 dimensional figures such as the one above. We simply abstract and think of {$$}\vec{y}{/$$} as point in {$$}N-dimensions{/$$} and {$$}L{/$$} as a subspace defined by a smaller number of values, in this case just one: {$$}c{/$$}. 
 
 Getting back to our question, we know that the projection is 
 
-{/$$}\hat{c} = \frac{\vec{y}\cdot\vec{v}}
-{\vec{v}\cdot\vec{v}}{$$}
+{$$}\hat{c} = \frac{\vec{y}\cdot\vec{v}}
+{\vec{v}\cdot\vec{v}}{/$$}
 
 which in this case is the average:
 
-{/$$}
+{$$}
 \hat{c} = \frac{\vec{y}\cdot\vec{v}}
 {\vec{v}\cdot\vec{v}} = \frac{\sum_{i=1}^N Y_i}{\sum_{i=1}^N 1} = \bar{Y}
-{$$}
+{/$$}
 
 
 Note that here it would have been just as easy to use calculus:
 
-{/$$}\frac{\partial}{\partial c}\sum_{i=1}^N (Y_i - c)^2 = 0 \implies 
- - 2 \sum_{i=1}^N (Y_i - \hat{c}) = 0 \implies{$$}
+{$$}\frac{\partial}{\partial c}\sum_{i=1}^N (Y_i - c)^2 = 0 \implies 
+ - 2 \sum_{i=1}^N (Y_i - \hat{c}) = 0 \implies{/$$}
 
-{/$$} N c = \sum_{i=1}^N Y_i \implies \hat{c}=\bar{Y}{$$}
+{$$} N c = \sum_{i=1}^N Y_i \implies \hat{c}=\bar{Y}{/$$}
 
 
 
 ### Example: Regression is also a projection
  
-Let us give a slightly more complicated example. Simple linear regression can also be explained with projections.  Our data {/$$}\mathbf{Y}{$$} (we are no longer going to use the {/$$}\vec{y}{$$} notation) is a again an {/$$}N-dimensional{$$} vector and our model predicts {/$$}Y_i{$$} with a line {/$$}\beta_0 + \beta_1 X_i{$$}. We want to find the {/$$}\beta_0{$$} and {/$$}\beta_1{$$} the minimize the distance between {/$$}Y{$$} and the space defined by:
+Let us give a slightly more complicated example. Simple linear regression can also be explained with projections.  Our data {$$}\mathbf{Y}{/$$} (we are no longer going to use the {$$}\vec{y}{/$$} notation) is a again an {$$}N-dimensional{/$$} vector and our model predicts {$$}Y_i{/$$} with a line {$$}\beta_0 + \beta_1 X_i{/$$}. We want to find the {$$}\beta_0{/$$} and {$$}\beta_1{/$$} the minimize the distance between {$$}Y{/$$} and the space defined by:
 
-{/$$} L = \{ \beta_0 \vec{v}_0 + \beta_1 \vec{v}_1 ; \vec{\beta}=(\beta_0,\beta_1) \in \mathbb{R}^2 \}{$$}
+{$$} L = \{ \beta_0 \vec{v}_0 + \beta_1 \vec{v}_1 ; \vec{\beta}=(\beta_0,\beta_1) \in \mathbb{R}^2 \}{/$$}
 
 with 
 
-{/$$}
+{$$}
 \vec{v}_0=
 \begin{pmatrix}
 1\\
@@ -138,26 +138,26 @@ X_{2}\\
 \vdots \\
 X_{N}\\
 \end{pmatrix} 
-{$$}
+{/$$}
 
 
-Our {/$$}N\times 2{$$} matrix {/$$}\mathbf{X}{$$} is {/$$}[ \vec{v}_0 \,\, \vec{v}_1]{$$} and any point in {/$$}L{$$} can be written as {/$$}X\vec{\beta}{$$}. 
+Our {$$}N\times 2{/$$} matrix {$$}\mathbf{X}{/$$} is {$$}[ \vec{v}_0 \,\, \vec{v}_1]{/$$} and any point in {$$}L{/$$} can be written as {$$}X\vec{\beta}{/$$}. 
 
 The equation for the multidimensional version of orthogonal projection is:
 
-{/$$}X^\top (\vec{y}-X\vec{\beta}) = 0{$$}
+{$$}X^\top (\vec{y}-X\vec{\beta}) = 0{/$$}
 
 We have we have seen before and gives us:
 
-{/$$}X^\top (\vec{y}-X\hat{\beta}) = 0{$$}
+{$$}X^\top (\vec{y}-X\hat{\beta}) = 0{/$$}
 
-{/$$}X^\top X \hat{\beta}=  X^\top \vec{y} {$$}
+{$$}X^\top X \hat{\beta}=  X^\top \vec{y} {/$$}
 
-{/$$}\hat{\beta}= (X^\top X)^{-1}X^\top \vec{y}{$$}
+{$$}\hat{\beta}= (X^\top X)^{-1}X^\top \vec{y}{/$$}
 
-And the projection to {/$$}L{$$} is therefore:
+And the projection to {$$}L{/$$} is therefore:
 
-{/$$}X (X^\top X)^{-1}X^\top \vec{y}{$$}
+{$$}X (X^\top X)^{-1}X^\top \vec{y}{/$$}
 
 
 
