@@ -1,9 +1,6 @@
 ---
-title: "Introduction to Linear Models"
-author: "Rafa"
-date: "January 31, 2015"
-output: html_document
 layout: page
+title: "Introduction to Linear Models"
 ---
 
 
@@ -205,7 +202,7 @@ When studying the father-son data, Galton made a fascinating discovery using exp
 
 He noted that if he tabulated the number of father-son height pairs and followed all the x,y values having the same totals in the table, they formed an ellipsis. In the plot above, made by Galton, you see the ellipsis formed by the pairs having 3 cases. This then led to modeling this data as correlated bivariate normal. 
 
-{$$} Pr(X<a,Y<b) = \\
+{$$} Pr(X<a,Y<b) = 
 \int_{-\infty}^{a} \int_{-\infty}^{b} \frac{1}{2\pi\sigma_x\sigma_y\sqrt{1-\rho^2}}
 \exp{ \left\{
 \frac{1}{2(1-\rho^2)}
@@ -217,6 +214,6 @@ He noted that if he tabulated the number of father-son height pairs and followed
 }
 {/$$}
 
-Now we can use math to show that if you keep {$$}X{/$$} fixed (condition to be {$$}x{/$$}) the distribution of {$$}Y{/$$} is normally distributed with mean: {$$}\mu_x +\sigma_y \rho \left(\frac{x-\mu_x}{\sigma_x}\right){/$$} and standard deviation {$$}\sigma_y \sqrt{1-\rho^2}{/$$}. Note that {$$}\rho{/$$} is the correlation between {$$}Y{/$$} and {$$}X{/$$} and this implies that if we fix {$$}X=x{/$$}, {$$}Y{/$$} does in fact follow a linear model. Homework: what are {$$}\beta_0{/$$} and {$$}\beta_1{/$$} in terms of {$$}\mu_x,\mu_y,\sigma_x,\sigma_y{/$$}, and {$$}\rho$? It turns out that the least squares estimate of {/$$}\beta_1{$$} can be written in terms of the sample correlation and standard deviations.
+Now we can use math to show that if you keep {$$}X{/$$} fixed (condition to be {$$}x{/$$}) the distribution of {$$}Y{/$$} is normally distributed with mean: {$$}\mu_x +\sigma_y \rho \left(\frac{x-\mu_x}{\sigma_x}\right){/$$} and standard deviation {$$}\sigma_y \sqrt{1-\rho^2}{/$$}. Note that {$$}\rho{/$$} is the correlation between {$$}Y{/$$} and {$$}X{/$$} and this implies that if we fix {$$}X=x{/$$}, {$$}Y{/$$} does in fact follow a linear model. Homework: what are {$$}\beta_0{/$$} and {$$}\beta_1{/$$} in terms of {$$}\mu_x,\mu_y,\sigma_x,\sigma_y{/$$}, and {$$}\rho{/$$} ? It turns out that the least squares estimate of {$$}\beta_1{/$$} can be written in terms of the sample correlation and standard deviations.
 
 
