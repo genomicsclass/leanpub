@@ -146,3 +146,20 @@ Confidence interval?
 Hierarchichal Model
 
 Pick a random player, then what is their batting average
+
+{$$}\begin{align*}
+\theta &\sim N(\mu, \tau^2) \mbox{ is called a prior}\\
+Y \mid \theta &\sim N(\theta, \sigma^2) \mbox{ is called a sampling distribution}
+\end{align*}{/$$}
+
+Two levels of variability:
+
+* Player to player variability
+* Variability due to luck when batting
+
+Hierarchichal Model
+
+{$$}\begin{align*}
+\theta &\sim N(\mu, \tau^2) \mbox{ is called a prior}\\
+Y \mid \theta &\sim N(\theta, \sigma^2) \mbox{ is called a sampling distribution}
+\end{align*}{/$$}
