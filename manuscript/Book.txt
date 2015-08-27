@@ -4,15 +4,15 @@ getting_started.md
 #chapter 1 - Inference
 
 random_variables.md
-#course1 populations_and_samples
-#course1 clt_and_t-distribution
-#course1 clt_in_practice
-#course1 t-tests_in_practice
-#course1 confidence_intervals
-#course1 power_calculations
-#course1 monte_carlo
-#course1 permutation_tests
-#course1 association_tests
+populations_and_samples.md
+clt_and_t-distribution.md
+clt_in_practice.md
+t-tests_in_practice.md
+confidence_intervals.md
+power_calculations.md
+monte_carlo.md
+permutation_tests.md
+association_tests.md
 
 #chapter 2 - EDA
 #course1 exploratory_data_analysis_2
