@@ -53,8 +53,8 @@
 #course3 pca_motivation
 #course3 projections
 #course3 rotations
-mds.md
-#course3 PCA
+#course3 mds
+PCA.md
 
 ## Chapter 9: Practical Machine Learning
 ##course3 clustering_and_heatmaps
