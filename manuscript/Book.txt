@@ -1,5 +1,5 @@
 introduction.md
-getting_started.md
+#course1 getting_started
 
 #chapter 1 - Inference
 
