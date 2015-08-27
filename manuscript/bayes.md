@@ -87,49 +87,14 @@ plot(people,col=negativecols,pch=16,xaxt="n",yaxt="n",xlab="",ylab="",main=paste
 
 The proportions of red in the top plot shows {$$}\mbox{Pr}(D=1){/$$}. The bottom left shows {$$}\mbox{Pr}(D=1 \mid +){/$$} and the bottom right shows {$$}\mbox{Pr}(D=0 \mid +){/$$}.
 
-If you have ImageMagic installed on your computer, you can create an animated gif with code below. Note that the computation will make several gifs so it might take some time to compute. Make sure to pick a `filename` that does not already exist in the working directory.
 
 
-```r
-set.seed(3)
-prev <- 1/20
-acc <- 0.90
-##For the animation we use 10 x 40 
-N <- 20; M <- 80
-x<-rbinom(N*M,1,p=prev)
-cols <- c("grey","red")
-people <- expand.grid(1:M,N:1)
-people2 <- expand.grid(1:(M/2),N:1)
-
-cols1 <- cols[x+1]
-cols2 <- rep(NA,length(cols1));count2<-1
-cols3 <- rep(NA,length(cols1));count3<-1
-
-library(rafalib)
-library(animation)
-filename <- 'bayes.gif'
-saveGIF({
-i=1
-while(count3 <= N*M/2 & count2 <= N*M/2){
-  test <- sample(100,1);min=round(100*acc)
-  mypar()
-  layout(matrix(c(1,2,1,3),2,2))
-  plot(people,col=cols1,pch=16,xaxt="n",yaxt="n",xlab="",ylab="",main=paste0("Population: ",round(mean(x)*100),"% are red"))
-  if(test>min) axis(side=1,M/2,"X",col="red",tick=FALSE,cex.axis=3,line=1.5) else axis(side=1,M/2,"O",col="black",tick=FALSE,cex.axis=2,line=1.5)
-  points(people[i,],pch=1,cex=1.5)
-  if(all(is.na(cols2))) plot(people2,type="n",pch=16,xaxt="n",yaxt="n",xlab="",ylab="",main="Tested Positive") else plot(people2,col=cols2,pch=16,xaxt="n",yaxt="n",xlab="",ylab="",main=paste0("Tested Positive: ",round(mean(cols2=="red",na.rm=TRUE)*100),"% are red"))
-  if(all(is.na(cols3))) plot(people2,type="n",pch=16,xaxt="n",yaxt="n",xlab="",ylab="",main="Tested Negative") else plot(people2,col=cols3,pch=16,xaxt="n",yaxt="n",xlab="",ylab="",main=paste0("Tested Negative: ",round(mean(cols3=="red",na.rm=TRUE)*100,1),"% are red"))
-  outcome <- ifelse(x[i]==1, as.numeric(test<=min), as.numeric(test>min))
-  if(outcome==0) {cols3[count3]<-cols1[i];count3<-count3+1} else {cols2[count2]<-cols1[i];count2<-count2+1}
-  i<-i+1
-  }},filename, interval = .1, ani.width = 800, ani.height = 500)
-```
 
 
 ### Bayes in Practice
 
 
-![iglesias](http://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Jos%C3%A9_Iglesias_on_September_28%2C_2012.jpg/902px-Jos%C3%A9_Iglesias_on_September_28%2C_2012.jpg)
+<!-- ![iglesias](http://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Jos%C3%A9_Iglesias_on_September_28%2C_2012.jpg/902px-Jos%C3%A9_Iglesias_on_September_28%2C_2012.jpg) -->
 
 
 José Iglesias 2013
@@ -147,32 +112,13 @@ Ted Williams in 1941!
 
 Distribution of AVG 
 ===
+
 This is for all players (>500 AB) 2010, 2011, 2012
 
-### 
 
-```
-## 
-## Attaching package: 'dplyr'
-## 
-## The following object is masked from 'package:Biobase':
-## 
-##     combine
-## 
-## The following objects are masked from 'package:BiocGenerics':
-## 
-##     combine, intersect, setdiff, union
-## 
-## The following object is masked from 'package:stats':
-## 
-##     filter
-## 
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
 
-<img src="images/bayes-unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
+
+![plot of chunk unnamed-chunk-6](images/bayes-unnamed-chunk-6-1.png) 
 
 Average is .275 and SD is 0.027
 
