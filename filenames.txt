@@ -65,8 +65,8 @@
 
 ## Chapter 10 - Batch effects
 course3 intro_to_batch_effects
-course3 confounding
-course3 eda_with_pca
-course3 adjusting_with_linar_models
-course3 factor_analysis
-course3 adjusting_with_factor_analysis
+#course3 confounding
+#course3 eda_with_pca
+#course3 adjusting_with_linar_models
+#course3 factor_analysis
+#course3 adjusting_with_factor_analysis
