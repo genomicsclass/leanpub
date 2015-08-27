@@ -11,7 +11,7 @@ title: Smoothing
 
 Smoothing is a very powerful technique used all across data analsysis. The general idea is to group data points that are expected to have similar expectations and 
 
-The following data are from measurements from replicated RNA. We consider that data used in an the MA-plot ( {$$}Y$=log ratios and {/$$}A$=averages) and take down-sample in a way that balances the number of points for different strata of {$$}A{/$$}:
+The following data are from measurements from replicated RNA. We consider that data used in an the MA-plot ( {$$}Y$=log ratios and {/$$}A{$$} = averages) and take down-sample in a way that balances the number of points for different strata of {/$$}A{$$}:
 
 
 ```r
@@ -43,7 +43,7 @@ X <- X[o]
 Y <- Y[o]
 ```
 
-In the MA plot we see that there {$$}Y{/$$} depends on {$$}X{/$$}. Note that this this dependence must be a bias because these are based on replicates which means {$$}Y{/$$} should be 0 on average regardless of {$$}X{/$$}. We want to predict {$$}f(x)=E(Y \mid X=x){/$$} so that we can remove this bias.
+In the MA plot we see that there {/$$}Y{$$} depends on {/$$}X{$$}. Note that this this dependence must be a bias because these are based on replicates which means {/$$}Y{$$} should be 0 on average regardless of {/$$}X{$$}. We want to predict {/$$}f(x)=\mbox{E}(Y \mid X=x){$$} so that we can remove this bias.
 
 
 ```r
@@ -54,7 +54,7 @@ plot(X,Y)
 
 ![plot of chunk unnamed-chunk-2](images/smoothing-unnamed-chunk-2-1.png) 
 
-Note that linear regression is biased does not capture the apparent curvature in {$$}f(x){/$$}:
+Note that linear regression is biased does not capture the apparent curvature in {/$$}f(x){$$}:
 
 ![plot of chunk unnamed-chunk-3](images/smoothing-unnamed-chunk-3-1.png) 
 
@@ -62,7 +62,7 @@ Note for example that points above the fitted line (green) and those below (purp
 
 ## Bin Smoothing
 
-Instead of fitting a line, let's go back to the idea of stratifying and computing the mean. This is referred to as _bin smoothing_. Now, if we stratify by {$$}x{/$$} The general idea is that the underlying curve is "smooth" enough that in small bins it is approximately constant which implies all the {$$}Y{/$$} in that bin have the same expected value. For example, in the plot below we highlight points in a bin centered at 8.6 as well as the points of a bin centered at 12.1 if we us bins of size 1. We also show  and the fitted mean values for the {$$}Y{/$$} in those bin (dashed lines):
+Instead of fitting a line, let's go back to the idea of stratifying and computing the mean. This is referred to as _bin smoothing_. Now, if we stratify by {/$$}x{$$} The general idea is that the underlying curve is "smooth" enough that in small bins it is approximately constant which implies all the {/$$}Y{$$} in that bin have the same expected value. For example, in the plot below we highlight points in a bin centered at 8.6 as well as the points of a bin centered at 12.1 if we us bins of size 1. We also show  and the fitted mean values for the {/$$}Y{$$} in those bin (dashed lines):
 
 
 ```r
@@ -86,7 +86,7 @@ lines(c(min(X[ind]),max(X[ind])),c(fit,fit),col=2,lty=2,lwd=4)
 
 ![plot of chunk unnamed-chunk-4](images/smoothing-unnamed-chunk-4-1.png) 
 
-By computing this mean for bins around every point we form an estimate of the underlying curve {$$}f(x){/$$} :
+By computing this mean for bins around every point we form an estimate of the underlying curve {/$$}f(x){$$} :
 
 
 ```r
@@ -143,6 +143,7 @@ lines(c(a,b),fit$coef[1]+fit$coef[2]*c(a,b),col=2,lty=2,lwd=3)
 ![plot of chunk unnamed-chunk-7](images/smoothing-unnamed-chunk-7-1.png) 
 
 Here are 12 steps of the process:
+
 
 ```r
 mypar (4,3)
