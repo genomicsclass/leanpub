@@ -11,8 +11,20 @@ title: Rotations
 One of the most useful applications of projections relates to coordinate rotations. In data analysis, simple rotations can result in easier to visualize and interpreter data. We will described the mathematics behind rotations and give some data analysis examples.
  
 In our previous section we used the following example: 
+
 {$$}
-Y = \begin{pmatrix} 2 \\ 3\end{pmatrix} = 2  \begin{pmatrix} 1\\ 0\end{pmatrix} + 3 \begin{pmatrix} 0\\ 1\end{pmatrix} 
+Y = \begin{pmatrix} 2 \\ 
+3 
+\end{pmatrix} 
+= 
+2  
+\begin{pmatrix} 1\\
+0 
+\end{pmatrix} + 
+3 
+\begin{pmatrix} 0\\ 
+1 
+\end{pmatrix} 
 {/$$}
 
 and noted that {$$}2{/$$} and {$$}3{/$$} are the _coordinates_
