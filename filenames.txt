@@ -15,8 +15,8 @@ course1 permutation_tests
 course1 association_tests
 
 #chapter 2 - EDA
-#course1 exploratory_data_analysis_2
-#course1 plots_to_avoid
+course1 exploratory_data_analysis_2
+course1 plots_to_avoid
 
 #chapter 3 - Robust Statistics
 #course1 robust_summaries
