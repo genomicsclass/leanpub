@@ -59,9 +59,9 @@
 ## Chapter 9: Practical Machine Learning
 ##course3 clustering_and_heatmaps
 #course3 conditional_expectation
-smoothing.md
-#course3 machine_learning
-#course3 crossvalidation
+#course3 smoothing
+machine_learning.md
+crossvalidation.md
 
 ## Chapter 10 - Batch effects
 #course3 intro_to_batch_effects
