@@ -4,15 +4,15 @@ course1 getting_started
 #chapter 1 - Inference
 
 course1 random_variables
-#course1 populations_and_samples 
-#course1 clt_and_t-distribution	 
-#course1 clt_in_practice
-#course1 t-tests_in_practice
-#course1 confidence_intervals
-#course1 power_calculations
-#course1 monte_carlo
-#course1 permutation_tests
-#course1 association_tests
+course1 populations_and_samples 
+course1 clt_and_t-distribution	 
+course1 clt_in_practice
+course1 t-tests_in_practice
+course1 confidence_intervals
+course1 power_calculations
+course1 monte_carlo
+course1 permutation_tests
+course1 association_tests
 
 #chapter 2 - EDA
 #course1 exploratory_data_analysis_2
