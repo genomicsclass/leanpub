@@ -29,13 +29,13 @@ matrix_operations.md
 matrix_algebra_examples.md
 
 ### Chapter 5: Linear Models
-#course2 expressing_design_formula
-#course2 linear_models_in_practice
-#course2 standard_errors
-#course2 interactions_and_contrasts
-#course2 collinearity
-#course2 qr_and_regression
-#course2 linear_models_going_further
+expressing_design_formula.md
+linear_models_in_practice.md
+standard_errors.md
+interactions_and_contrasts.md
+collinearity.md
+qr_and_regression.md
+linear_models_going_further.md
 
 ### Chapter 6: inference for high-dimensional data
 #course3 intro_to_highthroughput_data
