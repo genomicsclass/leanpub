@@ -35,3 +35,65 @@ This equation applied to our problem becomes:
 \end{align*}
 {/$$}
 
+Pluging in the numbers we get:
+
+{$$}
+\frac{0.99 \cdot 0.0025}{0.99 \cdot 0.0025 + 0.01 \cdot (.9975)}  =  0.02 
+{/$$}
+
+Note that this says that despite the test having 0.99 accuracy, the probabilty of having disease given a positive test in 0.02. This may appear counterintutive to some. The reason why this is the case is because we have to factor in the very rare probability that a person, chosen at random, has the disease. To see the 
+
+### Simulation
+
+The following simulation is meant help you visualize Bayes Theorem. We start by randomely selection 1500 people from a population in which the disease in question has a 5% prevalence.
+
+
+```r
+set.seed(3)
+prev <- 1/20
+##Later, we are arranging 1000 people in 80 rows and 20 columns
+M <- 50 ; N <- 30
+##do they have the disease?
+d<-rbinom(N*M,1,p=prev)
+```
+
+Now each person gets the test which is correct 90% of the time
+
+```r
+accuracy <- 0.9
+test <- rep(NA,N*M)
+##do controls test positive?
+test[d==1]  <- rbinom(sum(d==1), 1, p=accuracy)
+##do cases test positive?
+test[d==0]  <- rbinom(sum(d==0), 1, p=1-accuracy)
+```
+
+Because there are so many more controls than cases, even with low false positive rate, we get enough so that we have more controls than cases in the tested-positive group:
+
+
+```r
+cols <- c("grey","red")
+people <- expand.grid(1:M,N:1)
+allcols <- cols[d+1] ##Cases will be red
+
+positivecols <- allcols
+positivecols[test==0] <- NA ##remove non-positives
+
+negativecols <- allcols
+negativecols[test==1] <- NA ##remove non-positives
+
+library(rafalib)
+mypar()
+layout(matrix(c(1,2,1,3),2,2),width=c(0.35,0.65))
+###plot of all people
+plot(people,col=allcols,pch=16,xaxt="n",yaxt="n",xlab="",ylab="",main=paste0("Population: ",round(mean(d)*100),"% are red"))
+
+plot(people,col=positivecols,pch=16,xaxt="n",yaxt="n",xlab="",ylab="",main=paste("Tested Positive:",round(mean(d[test==1])*100),"% are red"))
+
+plot(people,col=negativecols,pch=16,xaxt="n",yaxt="n",xlab="",ylab="",main=paste("Tested Negative:",round(mean(d[test==0])*100,1),"% are red"))
+```
+
+![plot of chunk unnamed-chunk-3](images/bayes-unnamed-chunk-3-1.png) 
+
+The proportions of red in the top plot shows {$$}\mbox{Pr}(D=1){/$$}. The bottom left shows {$$}\mbox{Pr}(D=1 \mid +){/$$} and the bottom right shows {$$}\mbox{Pr}(D=0 \mid +){/$$}.
+
