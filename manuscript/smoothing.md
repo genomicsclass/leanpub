@@ -23,10 +23,12 @@ data(SpikeIn95)
 
 ##Example with two columns
 i=10;j=9
+
 ##remove the spiked in genes and take random sample
 siNames<-colnames(pData(SpikeIn95))
 ind <- which(!probeNames(SpikeIn95)%in%siNames)
 pms <- pm(SpikeIn95)[ ind ,c(i,j)]
+
 ##pick a representative sample for A and order A
 Y=log2(pms[,1])-log2(pms[,2])
 X=(log2(pms[,1])+log2(pms[,2]))/2
@@ -55,6 +57,7 @@ plot(X,Y)
 Note that linear regression is biased does not capture the apparent curvature in {$$}f(x){/$$}:
 
 ![plot of chunk unnamed-chunk-3](images/smoothing-unnamed-chunk-3-1.png) 
+
 Note for example that points above the fitted line (green) and those below (purple) are not evenly distributed.
 
 ## Bin Smoothing
@@ -83,7 +86,8 @@ lines(c(min(X[ind]),max(X[ind])),c(fit,fit),col=2,lty=2,lwd=4)
 
 ![plot of chunk unnamed-chunk-4](images/smoothing-unnamed-chunk-4-1.png) 
 
-By computing this mean for bins around every point we form an estimate of the underlying curve {$$}f(x){/$$}:
+By computing this mean for bins around every point we form an estimate of the underlying curve {$$}f(x){/$$} :
+
 
 ```r
 windowSize<-0.5
