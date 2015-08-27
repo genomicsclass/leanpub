@@ -37,7 +37,7 @@ nullpvals <- rowttests(randomData,g)$p.value
 
 ### Volcano plots
 
-As we described in the Introduction chapter, reporting only p-values is a mistake when we can also report effect sizes. With high-throughput data we can visualize the results by making a plot. The idea behind a _volcano plot_ is to show these for all features. In the y-axis we plot -log (base 10) p-values and on the x-axis the effect size. By using - log (base 10) the "highly significant" features appear at the top of the plot. Using log also permits us to better distinguish between small and very small p-values, for example 0.01 and {$$}10^6{/$$}.  Here is the volcano plot for our results above:
+As we described above, reporting only p-values is a mistake when we can also report effect sizes. With high-throughput data we can visualize the results by making a plot. The idea behind a _volcano plot_ is to show these for all features. In the y-axis we plot -log (base 10) p-values and on the x-axis the effect size. By using - log (base 10) the "highly significant" features appear at the top of the plot. Using log also permits us to better distinguish between small and very small p-values, for example 0.01 and {$$}10^6{/$$}.  Here is the volcano plot for our results above:
 
 
 ```r
