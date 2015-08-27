@@ -24,9 +24,9 @@ ranktest.md
 
 ## Chapter 4 - Matrix Algebra
 intro_using_regression.md
-matrix_notation.md
-matrix_operations.md
-matrix_algebra_examples.md
+#course2 matrix_notation
+#course2 matrix_operations
+#course2 matrix_algebra_examples
 
 ### Chapter 5: Linear Models
 #course2 expressing_design_formula
