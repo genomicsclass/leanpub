@@ -8,15 +8,15 @@ layout: page
 
 
 
-## The QR decomposition (Advanced)
+## The QR Factorization (Advanced)
 
-We have seen that to calculate the LSE we need to invert a marix. We have shown how to use solve. It turns out that solve is not a stable solution. When coding LSE computation we use the QR decomposition.
+We have seen that in order to calculate the LSE, we need to invert a matrix. We have shown how to use solve. However, solve is not a stable solution. When coding LSE computation, we use the QR decomposition.
 
 
 ### Inverting {$$}\mathbf{X^\top X}{/$$}
 
 
-To miminize the RSS: 
+To minimize the RSS: 
 
 {$$}
 (\mathbf{Y}-\mathbf{X}\boldsymbol{\beta})^\top
@@ -35,11 +35,11 @@ The solution is:
 \boldsymbol{\hat{\beta}} = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{Y}   
 {/$$}
 
-Thus  we need to compute {$$}(\mathbf{X}^\top \mathbf{X})^{-1}{/$$}
+Thus, we need to compute {$$}(\mathbf{X}^\top \mathbf{X})^{-1}{/$$}
 
-### `solve` is unstable
+### `solve` Is Unstable
 
-Here we construct an extreme case 
+Here we construct an extreme case:
 
 
 ```r
@@ -57,7 +57,7 @@ The standard R function for inverse gives an error:
 solve(crossprod(X)) %*% crossprod(X,y)
 ```
 
-To see why this happens look at {$$}(\mathbf{X}^\top \mathbf{X}){/$$}
+To see why this happens, look at {$$}(\mathbf{X}^\top \mathbf{X}){/$$}
 
 
 
@@ -74,27 +74,27 @@ log10(crossprod(X))
 ##   9.203 11.810 14.434 17.070
 ```
 
-Note the difference of several orders of magnitude. On a digitial computer we have a limited range of numbers which makes some numbers seem like 0 which leads to division by 0 errors.
+Note the difference of several orders of magnitude. On a digital computer, we have a limited range of numbers which makes some numbers seem like 0, which in turn leads to division by 0 errors.
 
-# The QR Factorization 
+### The Factorization 
 
-The QR factorization is based on a mathematical result that tells us that we can decompose any  full rank {$$}N\times p{/$$} matrix {$$}\mathbf{X}{/$$}  as
+The QR factorization is based on a mathematical result that tells us that we can decompose any full rank {$$}N\times p{/$$} matrix {$$}\mathbf{X}{/$$} as:
 
 {$$}
 \mathbf{X = QR}
 {/$$}
 
-with 
+with:
 
 * {$$}\mathbf{Q}{/$$} a {$$}N \times p{/$$} matrix with  {$$}\mathbf{Q^\top Q=I}{/$$}
 * {$$}\mathbf{R}{/$$} a {$$}p \times p{/$$} upper triangular matrix.
 
-Upper triangular matrices are very convinient for solving system of equations.
+Upper triangular matrices are very convenient for solving system of equations.
 
-### Example of Upper Triangular Matrix
+### Example Of Upper Triangular Matrix
 
-In the example below, the matrix on the left is upper triangular: It only has 0s below the diagonal.
-Note that this facilitates solving the system of equations greatly:
+In the example below, the matrix on the left is upper triangular: it only has 0s below the diagonal.
+This facilitates solving the system of equations greatly:
 
 {$$}
 \,
@@ -116,9 +116,9 @@ c\\
 \end{pmatrix}
 {/$$}
 
-We immediately know that {$$}c=1{/$$} which implies that {$$}b+2=4{/$$} which implies  {$$}b=2{/$$} and thuse {$$}a+4-1=6{/$$} so {$$}a = 3{/$$}. Writing an algorithm to do this is straigh-forward for any upper triangular matrix.
+We immediately know that {$$}c=1{/$$}, which implies that {$$}b+2=4{/$$}. This in turn suggests {$$}b=2{/$$} and thus {$$}a+4-1=6{/$$} so {$$}a = 3{/$$}. Writing an algorithm to do this is straight-forward for any upper triangular matrix.
 
-### Finding LSE with QR 
+### Finding LSE With QR 
 
 If we rewrite the equations of the LSE using {$$}\mathbf{QR}{/$$} instead of {$$}\mathbf{X}{/$$} we have:
 
@@ -134,9 +134,9 @@ If we rewrite the equations of the LSE using {$$}\mathbf{QR}{/$$} instead of {$$
 
 {$$}\mathbf{R} \boldsymbol{\beta} = \mathbf{Q}^\top \mathbf{Y}{/$$}
 
-{$$}\mathbf{R}{/$$} being upper triangular makes solving this more stable. Also beacuse {$$}\mathbf{Q}^\top\mathbf{Q}=\mathbf{I}{/$$} we know that the columns of {$$}\mathbf{Q}{/$$} are in the same scale which stabilizes the right side. 
+{$$}\mathbf{R}{/$$} being upper triangular makes solving this more stable. Also because {$$}\mathbf{Q}^\top\mathbf{Q}=\mathbf{I}{/$$} we know that the columns of {$$}\mathbf{Q}{/$$} are in the same scale which stabilizes the right side. 
 
-Now we are ready to find LSE using the QR decomposition. To solve 
+Now we are ready to find LSE using the QR decomposition. To solve:
 
 {$$}\mathbf{R} \boldsymbol{\beta} = \mathbf{Q}^\top \mathbf{Y}{/$$}
 
@@ -157,7 +157,7 @@ R <- qr.R( QR )
 ## [4,] 1.0000
 ```
 
-Note that in practice we do not need to do any of this due to the built in `solve.qr` function:
+In practice we do not need to do any of this due to the built-in `solve.qr` function:
 
 
 ```r
@@ -175,7 +175,7 @@ QR <- qr(X)
 
 
 
-### Fitted values
+### Fitted Values
 
 This factorization also simplifies the calculation for fitted values:
 
@@ -197,11 +197,11 @@ lines(x,fitted,col=2)
 
 ### Standard Errors
 
-To obtain the standard errors of the LSE we note that
+To obtain the standard errors of the LSE we note that:
 
 {$$}(\mathbf{X^\top X})^{-1} = (\mathbf{R^\top Q^\top QR})^{-1} = (\mathbf{R^\top R})^{-1}{/$$}
 
-The function `chol2inv` is specifically designed to find this inverse. So all we do is the following
+The function `chol2inv` is specifically designed to find this inverse. So all we do is the following:
 
 
 ```r
@@ -220,7 +220,7 @@ cbind(betahat,SE)
 ##   1.0000 4.802e-08
 ```
 
-Note that this gives us identical results to the `lm` function.
+This gives us identical results to the `lm` function.
 
 
 ```r
