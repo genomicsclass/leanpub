@@ -12,10 +12,8 @@ One of the most useful applications of projections relates to coordinate rotatio
  
 In our previous section we used the following example: 
 {$$}
-\begin{align*}
-Y &= \begin{pmatrix} 2 \\ 3\end{pmatrix} \\
-&=2  \begin{pmatrix} 1\\ 0\end{pmatrix} + 3 \begin{pmatrix} 0\\ 1\end{pmatrix} 
-\end{align*}{/$$}
+Y = \begin{pmatrix} 2 \\ 3\end{pmatrix} = 2  \begin{pmatrix} 1\\ 0\end{pmatrix} + 3 \begin{pmatrix} 0\\ 1\end{pmatrix} 
+{/$$}
 
 and noted that {$$}2{/$$} and {$$}3{/$$} are the _coordinates_
 
