@@ -45,16 +45,16 @@ introduction.md
 
 ### Chapter 7: Statistical Modeling
 #course3 modeling
-bayes.md
+#course3 bayes
 hierarchical_models.md
 
 ### Chapter 8: Distance and dimension reduction
-##course3 distance
-##course3 pca_motivation
-##course3 projections
-##course3 rotations
-##course3 mds
-##course3 PCA
+distance.md
+pca_motivation.md
+projections.md
+rotations.md
+mds.md
+PCA.md
 
 ## Chapter 9: Practical Machine Learning
 ##course3 clustering_and_heatmaps
