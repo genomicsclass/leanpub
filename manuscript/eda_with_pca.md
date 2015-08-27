@@ -124,20 +124,12 @@ A first step in determining how much sample correlation induced_structure_ there
 
 
 ```r
+library(RColorBrewer)
 cols=colorRampPalette(brewer.pal(9,"Blues"))(100)
-```
-
-```
-## Error in match(x, table, nomatch = 0L): could not find function "brewer.pal"
-```
-
-```r
 image ( cor(y) ,col=cols)
 ```
 
-```
-## Error in image.default(cor(y), col = cols): object 'cols' not found
-```
+![plot of chunk unnamed-chunk-11](images/eda_with_pca-unnamed-chunk-11-1.png) 
 
 Here we are using the term _structure_ to refer to the deviation from what one would see if the samples were in fact independent from each other. 
 
@@ -178,7 +170,7 @@ plot(s$v[,1],s$v[,2],col=cols,pch=16,
 legend("bottomleft",levels(eth),col=seq(along=levels(eth)),pch=16)
 ```
 
-<img src="images/eda_with_pca-unnamed-chunk-14-1.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" style="display: block; margin: auto;" />
+![plot of chunk unnamed-chunk-14](images/eda_with_pca-unnamed-chunk-14-1.png) 
 
 There is a very clear association between the first PC and ethnicity. However, we also see that for the orange points there are sub-clusters. We know from previous analyzes that ethnicity and preprocessing date are correlated:
 
@@ -210,7 +202,7 @@ plot(s$v[,1],s$v[,2],col=cols,pch=16,
 legend("bottomleft",levels(year),col=seq(along=levels(year)),pch=16)
 ```
 
-<img src="images/eda_with_pca-unnamed-chunk-16-1.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" style="display: block; margin: auto;" />
+![plot of chunk unnamed-chunk-16](images/eda_with_pca-unnamed-chunk-16-1.png) 
 
 Year is also very correlated with the first PC. So which variable is driving this? Given the high level of confounding it is not easy to parse out but below and in the assessment questions we provide some further exploratory approaches.
 
