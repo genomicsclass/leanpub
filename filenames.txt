@@ -1,5 +1,5 @@
 frontmatter introduction
-course1 getting_started
+#course1 getting_started
 
 #chapter 1 - Inference
 
