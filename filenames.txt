@@ -45,8 +45,8 @@ frontmatter introduction
 
 ### Chapter 7: Statistical Modeling
 course3 modeling
-#course3 bayes
-#course3 hierarchical_models
+course3 bayes
+course3 hierarchical_models
 
 ### Chapter 8:  Distance and dimension reduction
 ##course3 distance
