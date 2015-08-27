@@ -163,3 +163,93 @@ Hierarchichal Model
 \theta &\sim N(\mu, \tau^2) \mbox{ is called a prior}\\
 Y \mid \theta &\sim N(\theta, \sigma^2) \mbox{ is called a sampling distribution}
 \end{align*}{/$$}
+
+Here {$$}\theta{/$$} is our players "intrinsic" average value, {$$}\mu{/$$} is the average of all players, {$$}\tau{/$$} is the SD of all players, {$$}Y{/$$} is the observed average, and 
+{$$}\sigma{/$$} is the variability due to luck at each AB.
+
+
+Hierarchichal Model
+
+Here are the equations with our data
+
+{$$}\begin{align*}
+\theta &\sim N(.275, .027^2) \\
+Y \mid \theta &\sim N(\theta, .110^2) 
+\end{align*}{/$$}
+
+
+Posterior Distribution
+
+The continuous version of Bayes rule can be used here
+
+{$$}
+\begin{align*}
+f_{ \theta \mid Y} (\theta\mid Y) &=
+\frac{f_{Y\mid \theta}(Y\mid \theta) f_{\theta}(\theta)
+}{f_Y(Y)}\\
+&= \frac{f_{Y\mid \theta}(Y\mid \theta) f_{\theta}(\theta)}
+{\int_{\theta}f_{Y\mid \theta}(Y\mid \theta)f_{\theta}(\theta)}
+\end{align*}
+{/$$}
+
+We are particularly interested in the {$$}\theta{/$$} that maximizes {$$}f_{\theta\mid Y}(\theta\mid Y){/$$}.
+
+In our case, these can be shown to be normal so we want the average {$$}\mbox{E}(\theta\mid y){/$$}
+
+
+Posterior Distribution
+
+We can show the average of this distribution is the following:
+
+{$$}
+\begin{align*}
+\mbox{E}(\theta\mid y) &=& B \mu + (1-B) Y\\
+&= \mu + (1-B)(Y-\mu)\\
+B &= \frac{\sigma^2}{\sigma^2+\tau^2}
+\end{align*}
+{/$$}
+
+
+Posterior Distribution
+
+In the case of José Iglesias, we have:
+
+{$$}
+\begin{align*}
+\mbox{E}(\theta \mid Y=.450) &=& B \times .275 + (1 - B) \times .450 \\
+&= .275 + (1 - B)(.450 - .260) \\
+B &=\frac{.110^2}{.110^2 + .027^2} = 0.943\\
+\mbox{E}(\theta \mid Y=450) &\approx& .285
+\end{align*}
+{/$$}
+
+Posterior Distribution
+
+The variance can be shown to be:
+
+{$$}
+\mbox{var}(\theta\mid y) &=& \frac{1}{1/\sigma^2+1/\tau^2}
+= \frac{1}{1/.110^2 + 1/.027^2}
+{/$$}
+
+In our example the SD is 0.026
+
+
+Final Results:
+
+
+|Month|At Bat| Hits| AVG |
+|-----|------|-----|-----|
+|April|20|9|.450|
+|May|26|11|.423|
+|June|86|34|.395|
+|July|83|17|.205|
+|August|85|25|.294|
+|September|50|10|.200|
+|Total w/o April|330|97|.293|
+
+Frequentist confidence interval = .450 {$$}\pm{/$$} 0.220
+
+Empirical Bayes credible interval = .285 {$$}\pm{/$$} 0.052
+
+Actual = .293
