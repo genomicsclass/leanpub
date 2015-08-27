@@ -12,10 +12,10 @@ One of the most useful applications of projections relates to coordinate rotatio
  
 In our previous section we used the following example: 
 {$$}
-\begin{aligned}
+\begin{align*}
 Y &= \begin{pmatrix} 2 \\ 3\end{pmatrix} \\
 &=2  \begin{pmatrix} 1\\ 0\end{pmatrix} + 3 \begin{pmatrix} 0\\ 1\end{pmatrix} 
-\end{aligned}{/$$}
+\end{align*}{/$$}
 
 and noted that {$$}2{/$$} and {$$}3{/$$} are the _coordinates_
 
@@ -23,14 +23,7 @@ and noted that {$$}2{/$$} and {$$}3{/$$} are the _coordinates_
 
 ```r
 library(rafalib)
-mypar2(1,1)
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "mypar2"
-```
-
-```r
+mypar()
 plot(c(-2,4),c(-2,4),xlab="Dimension 1",ylab="Dimension 2",type="n",xaxt="n",yaxt="n",bty="n")
 text(rep(0,6),c(c(-2,-1),c(1:4)),as.character(c(c(-2,-1),c(1:4))),pos=2)
 text(c(c(-2,-1),c(1:4)),rep(0,6),as.character(c(c(-2,-1),c(1:4))),pos=1)
@@ -46,10 +39,10 @@ text(2,3," Y",pos=4,cex=3)
 But note that, mathematically, we can represent the point {$$}(2,3){/$$} with other linear combinations:
 
 {$$}
-\begin{aligned}
+\begin{align*}
 Y &= \begin{pmatrix} 2 \\ 3\end{pmatrix} \\
 &= 2.5 \begin{pmatrix} 1\\ 1\end{pmatrix} + -1 \begin{pmatrix} \phantom{-}0.5\\ -0.5\end{pmatrix} 
-\end{aligned}{/$$}
+\end{align*}{/$$}
 
 The new coordinates are:
 
@@ -60,14 +53,7 @@ Graphically we can see that the coordinates are the projections to the spaces de
 
 ```r
 library(rafalib)
-mypar2(1,1)
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "mypar2"
-```
-
-```r
+mypar()
 plot(c(-2,4),c(-2,4),xlab="Dimension 1",ylab="Dimension 2",type="n",xaxt="n",yaxt="n",bty="n")
 text(rep(0,6),c(c(-2,-1),c(1:4)),as.character(c(c(-2,-1),c(1:4))),pos=2)
 text(c(c(-2,-1),c(1:4)),rep(0,6),as.character(c(c(-2,-1),c(1:4))),pos=1)
