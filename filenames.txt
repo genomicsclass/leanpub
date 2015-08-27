@@ -44,15 +44,13 @@
 #course3 eda_for_highthroughput
 
 ### Chapter 7: Statistical Modeling
-#course3
-#course3
+#course3 modeling#course3
 #course3 bayes
-#course3
 #course3 hierarchical_models
 
 ### Chapter 8:  Distance and dimension reduction
 course3 distance
-#course3 pca_motivation
+course3 pca_motivation
 #course3 projections
 #course3 rotations
 #course3 mds
