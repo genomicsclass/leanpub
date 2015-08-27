@@ -68,5 +68,5 @@
 #course3 confounding
 #course3 eda_with_pca
 #course3 adjusting_with_linear_models
-course3 factor_analysis
-#course3 adjusting_with_factor_analysis
+#course3 factor_analysis
+course3 adjusting_with_factor_analysis

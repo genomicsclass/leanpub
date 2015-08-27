@@ -46,14 +46,7 @@ icolors <- colorRampPalette(rev(brewer.pal(11,"RdYlBu")))(100)
 ```
 
 ```r
-mypar2(1,2)
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "mypar2"
-```
-
-```r
+mypar(1,2)
 image(t(mat),xaxt="n",yaxt="n",col=icolors)
 ```
 
@@ -98,14 +91,7 @@ Here is a plot of dates for each sample, with color representing month:
 
 ```r
 times <-sampleInfo$date 
-mypar2(1,1)
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "mypar2"
-```
-
-```r
+mypar(1,1)
 o=order(times)
 plot(times[o],pch=21,bg=as.fumeric(batch)[o],ylab="date")
 ```
@@ -155,19 +141,12 @@ plot(s$d^2/sum(s$d^2),ylab="% variance explained",xlab="Principal component")
 In fact, the first six or so PC seem to be at least partially driven by date:
 
 ```r
-mypar2(3,4)
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "mypar2"
-```
-
-```r
+mypar(3,4)
 for(i in 1:12)
 boxplot(split(s$v[,i],times))
 ```
 
-![plot of chunk unnamed-chunk-6](images/adjusting_with_factor_analysis-unnamed-chunk-6-1.png) ![plot of chunk unnamed-chunk-6](images/adjusting_with_factor_analysis-unnamed-chunk-6-2.png) ![plot of chunk unnamed-chunk-6](images/adjusting_with_factor_analysis-unnamed-chunk-6-3.png) ![plot of chunk unnamed-chunk-6](images/adjusting_with_factor_analysis-unnamed-chunk-6-4.png) ![plot of chunk unnamed-chunk-6](images/adjusting_with_factor_analysis-unnamed-chunk-6-5.png) ![plot of chunk unnamed-chunk-6](images/adjusting_with_factor_analysis-unnamed-chunk-6-6.png) ![plot of chunk unnamed-chunk-6](images/adjusting_with_factor_analysis-unnamed-chunk-6-7.png) ![plot of chunk unnamed-chunk-6](images/adjusting_with_factor_analysis-unnamed-chunk-6-8.png) ![plot of chunk unnamed-chunk-6](images/adjusting_with_factor_analysis-unnamed-chunk-6-9.png) ![plot of chunk unnamed-chunk-6](images/adjusting_with_factor_analysis-unnamed-chunk-6-10.png) ![plot of chunk unnamed-chunk-6](images/adjusting_with_factor_analysis-unnamed-chunk-6-11.png) ![plot of chunk unnamed-chunk-6](images/adjusting_with_factor_analysis-unnamed-chunk-6-12.png) 
+![plot of chunk unnamed-chunk-6](images/adjusting_with_factor_analysis-unnamed-chunk-6-1.png) 
 
 
 What happens if we simply remove the top six PC from the data and then perform a t-test? 
@@ -184,27 +163,16 @@ This does remove the batch effect, but it seems we have also removed much of the
 
 
 ```r
-mypar2(1,2)
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "mypar2"
-```
-
-```r
+mypar(1,2)
 hist(res$p.value[which(!chr%in%c("chrX","chrY") )],main="",ylim=c(0,1300))
-```
 
-![plot of chunk unnamed-chunk-8](images/adjusting_with_factor_analysis-unnamed-chunk-8-1.png) 
-
-```r
 plot(res$dm,-log10(res$p.value))
 points(res$dm[which(chr=="chrX")],-log10(res$p.value[which(chr=="chrX")]),col=1,pch=16)
 points(res$dm[which(chr=="chrY")],-log10(res$p.value[which(chr=="chrY")]),col=2,pch=16,xlab="Effect size",ylab="-log10(p-value)")
 legend("bottomright",c("chrX","chrY"),col=1:2,pch=16)
 ```
 
-![plot of chunk unnamed-chunk-8](images/adjusting_with_factor_analysis-unnamed-chunk-8-2.png) 
+![plot of chunk unnamed-chunk-8](images/adjusting_with_factor_analysis-unnamed-chunk-8-1.png) 
 
 <a name="sva"></a>
 ### Factor Analysis
@@ -221,7 +189,9 @@ library(sva)
 ```
 
 ```
-## Error in library(sva): there is no package called 'sva'
+## Loading required package: mgcv
+## Loading required package: nlme
+## This is mgcv 1.8-6. For overview type 'help("mgcv-package")'.
 ```
 
 ```r
@@ -268,31 +238,14 @@ svafit <- sva(geneExpression,mod)
 ```
 
 ```
-## Error in eval(expr, envir, enclos): could not find function "sva"
+## Number of significant surrogate variables is:  5 
+## Iteration (out of 5 ):1  2  3  4  5
 ```
 
 ```r
 svaX<-model.matrix(~sex+svafit$sv)
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'svafit' not found
-```
-
-```r
 lmfit <- lmFit(geneExpression,svaX)
-```
-
-```
-## Error in lmFit(geneExpression, svaX): object 'svaX' not found
-```
-
-```r
 tt<- lmfit$coef[,2]*sqrt(lmfit$df.residual)/(2*lmfit$sigma)
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'lmfit' not found
 ```
 
 There is an observable improvement over all other approaches:
@@ -301,34 +254,16 @@ There is an observable improvement over all other approaches:
 ```r
 res <- data.frame(dm= -lmfit$coef[,2],
                   p.value=2*(1-pt(abs(tt),lmfit$df.residual[1]) ) )
-```
-
-```
-## Error in data.frame(dm = -lmfit$coef[, 2], p.value = 2 * (1 - pt(abs(tt), : object 'lmfit' not found
-```
-
-```r
-mypar2(1,2)
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "mypar2"
-```
-
-```r
+mypar(1,2)
 hist(res$p.value[which(!chr%in%c("chrX","chrY") )],main="",ylim=c(0,1300))
-```
 
-![plot of chunk unnamed-chunk-11](images/adjusting_with_factor_analysis-unnamed-chunk-11-1.png) 
-
-```r
 plot(res$dm,-log10(res$p.value))
 points(res$dm[which(chr=="chrX")],-log10(res$p.value[which(chr=="chrX")]),col=1,pch=16)
 points(res$dm[which(chr=="chrY")],-log10(res$p.value[which(chr=="chrY")]),col=2,pch=16,xlab="Effect size",ylab="-log10(p-value)")
 legend("bottomright",c("chrX","chrY"),col=1:2,pch=16)
 ```
 
-![plot of chunk unnamed-chunk-11](images/adjusting_with_factor_analysis-unnamed-chunk-11-2.png) 
+![plot of chunk unnamed-chunk-11](images/adjusting_with_factor_analysis-unnamed-chunk-11-1.png) 
 
 
 And here is a decompose of the data into sex effects, surrogate variables, and independent noise:
@@ -336,38 +271,10 @@ And here is a decompose of the data into sex effects, surrogate variables, and i
 
 ```r
 Batch<- lmfit$coef[geneindex,3:7]%*%t(svaX[,3:7])
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'lmfit' not found
-```
-
-```r
 Signal<-lmfit$coef[geneindex,1:2]%*%t(svaX[,1:2])
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'lmfit' not found
-```
-
-```r
 error <- geneExpression[geneindex,]-Signal-Batch
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'Signal' not found
-```
-
-```r
 ##demean for plot
 Signal <-Signal-rowMeans(Signal)
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'Signal' not found
-```
-
-```r
 mat <- geneExpression[geneindex,]-rowMeans(geneExpression[geneindex,])
 mypar(1,4,mar = c(2.75, 4.5, 2.6, 1.1))
 image(t(mat),col=icolors,zlim=c(-5,5),xaxt="n",yaxt="n")
@@ -382,7 +289,7 @@ image(t(Signal),col=icolors,zlim=c(-5,5),xaxt="n",yaxt="n")
 ```
 
 ```
-## Error in t(Signal): object 'Signal' not found
+## Error in image.default(t(Signal), col = icolors, zlim = c(-5, 5), xaxt = "n", : object 'icolors' not found
 ```
 
 ```r
@@ -390,7 +297,7 @@ image(t(Batch),col=icolors,zlim=c(-5,5),xaxt="n",yaxt="n")
 ```
 
 ```
-## Error in t(Batch): object 'Batch' not found
+## Error in image.default(t(Batch), col = icolors, zlim = c(-5, 5), xaxt = "n", : object 'icolors' not found
 ```
 
 ```r
@@ -398,7 +305,7 @@ image(t(error),col=icolors,zlim=c(-5,5),xaxt="n",yaxt="n")
 ```
 
 ```
-## Error in t(error): object 'error' not found
+## Error in image.default(t(error), col = icolors, zlim = c(-5, 5), xaxt = "n", : object 'icolors' not found
 ```
 
 
