@@ -30,8 +30,8 @@ This equation applied to our problem becomes:
 
 {$$}
 \begin{align*}
-\mbox{Prob}(D=1 \mid +) & = & \frac{ P(+ \mid D=1) \cdot P(D=1)} {\mbox{Prob}(+)} \\
-& = & \frac{\mbox{Prob}(+ \mid D=0)\cdot P(D)} {\mbox{Prob}(+ \mid D) \cdot P(D) + \mbox{Prob}(+ \mid D=1) \mbox{Prob}( D=0)} 
+\mbox{Prob}(D=1 \mid +) & =  \frac{ P(+ \mid D=1) \cdot P(D=1)} {\mbox{Prob}(+)} \\
+& =  \frac{\mbox{Prob}(+ \mid D=0)\cdot P(D)} {\mbox{Prob}(+ \mid D) \cdot P(D) + \mbox{Prob}(+ \mid D=1) \mbox{Prob}( D=0)} 
 \end{align*}
 {/$$}
 
@@ -98,8 +98,6 @@ plot(people,col=negativecols,pch=16,xaxt="n",yaxt="n",xlab="",ylab="",main=paste
 The proportions of red in the top plot shows {$$}\mbox{Pr}(D=1){/$$}. The bottom left shows {$$}\mbox{Pr}(D=1 \mid +){/$$} and the bottom right shows {$$}\mbox{Pr}(D=0 \mid +){/$$}.
 
 
-
-
 ### Bayes in Practice
 
 
@@ -150,8 +148,8 @@ Hierarchichal Model
 Pick a random player, then what is their batting average
 
 {$$}\begin{align*}
-\theta &\sim& N(\mu, \tau^2) \mbox{ is called a prior}\\
-Y \mid \theta &\sim& N(\theta, \sigma^2) \mbox{ is called a sampling distribution}
+\theta &\sim N(\mu, \tau^2) \mbox{ is called a prior}\\
+Y \mid \theta &\sim N(\theta, \sigma^2) \mbox{ is called a sampling distribution}
 \end{align*}{/$$}
 
 Two levels of variability:
@@ -162,8 +160,8 @@ Two levels of variability:
 Hierarchichal Model
 
 {$$}\begin{align*}
-\theta &\sim& N(\mu, \tau^2) \mbox{ is called a prior}\\
-Y \mid \theta &\sim& N(\theta, \sigma^2) \mbox{ is called a sampling distribution}
+\theta &\sim N(\mu, \tau^2) \mbox{ is called a prior}\\
+Y \mid \theta &\sim N(\theta, \sigma^2) \mbox{ is called a sampling distribution}
 \end{align*}{/$$}
 
 * {$$}\theta{/$$} is our players "intrinsic" average value
@@ -178,8 +176,8 @@ Hierarchichal Model
 Here are the equations with our data
 
 {$$}\begin{align*}
-\theta &\sim& N(.275, .027^2) \\
-Y \mid \theta &\sim& N(\theta, .110^2) 
+\theta &\sim N(.275, .027^2) \\
+Y \mid \theta &\sim N(\theta, .110^2) 
 \end{align*}{/$$}
 
 
@@ -189,10 +187,10 @@ The continuous version of Bayes rule can be used here
 
 {$$}
 \begin{align*}
-f_{ \theta \mid Y} (\theta\mid Y) &=&
+f_{ \theta \mid Y} (\theta\mid Y) &=
 \frac{f_{Y\mid \theta}(Y\mid \theta) f_{\theta}(\theta)
 }{f_Y(Y)}\\
-&=&\frac{f_{Y\mid \theta}(Y\mid \theta) f_{\theta}(\theta)}
+&= \frac{f_{Y\mid \theta}(Y\mid \theta) f_{\theta}(\theta)}
 {\int_{\theta}f_{Y\mid \theta}(Y\mid \theta)f_{\theta}(\theta)}
 \end{align*}
 {/$$}
@@ -209,8 +207,8 @@ We can show the average of this distribution is the following:
 {$$}
 \begin{align*}
 \mbox{E}(\theta\mid y) &=& B \mu + (1-B) Y\\
-&=& \mu + (1-B)(Y-\mu)\\
-B &=& \frac{\sigma^2}{\sigma^2+\tau^2}
+&= \mu + (1-B)(Y-\mu)\\
+B &= \frac{\sigma^2}{\sigma^2+\tau^2}
 \end{align*}
 {/$$}
 
@@ -222,8 +220,8 @@ In the case of José Iglesias, we have:
 {$$}
 \begin{align*}
 \mbox{E}(\theta \mid Y=.450) &=& B \times .275 + (1 - B) \times .450 \\
-&=& .275 + (1 - B)(.450 - .260) \\
-B &=&\frac{.110^2}{.110^2 + .027^2} = 0.943\\
+&= .275 + (1 - B)(.450 - .260) \\
+B &=\frac{.110^2}{.110^2 + .027^2} = 0.943\\
 \mbox{E}(\theta \mid Y=450) &\approx& .285
 \end{align*}
 {/$$}
