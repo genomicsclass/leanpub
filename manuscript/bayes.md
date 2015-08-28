@@ -124,6 +124,20 @@ This is for all players (>500 AB) 2010, 2011, 2012
 
 
 
+
+```
+## 
+## Attaching package: 'dplyr'
+## 
+## The following object is masked from 'package:stats':
+## 
+##     filter
+## 
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
 ![plot of chunk unnamed-chunk-5](images/bayes-unnamed-chunk-5-1.png) 
 
 Average is .275 and SD is 0.027
@@ -139,9 +153,7 @@ What is the SE of our estimate?
 \sqrt{\frac{.450 (1-.450)}{20}}=.111
 {/$$}
 
-Confidence interval?
-
-.450-.222 to .450+.222 = .228 to .672
+Confidence interval? .450-.222 to .450+.222 = .228 to .672
 
 Hierarchichal Model
 
@@ -206,7 +218,7 @@ We can show the average of this distribution is the following:
 
 {$$}
 \begin{align*}
-\mbox{E}(\theta\mid y) &=& B \mu + (1-B) Y\\
+\mbox{E}(\theta\mid y) &= B \mu + (1-B) Y\\
 &= \mu + (1-B)(Y-\mu)\\
 B &= \frac{\sigma^2}{\sigma^2+\tau^2}
 \end{align*}
@@ -219,10 +231,10 @@ In the case of José Iglesias, we have:
 
 {$$}
 \begin{align*}
-\mbox{E}(\theta \mid Y=.450) &=& B \times .275 + (1 - B) \times .450 \\
+\mbox{E}(\theta \mid Y=.450) &= B \times .275 + (1 - B) \times .450 \\
 &= .275 + (1 - B)(.450 - .260) \\
 B &=\frac{.110^2}{.110^2 + .027^2} = 0.943\\
-\mbox{E}(\theta \mid Y=450) &\approx& .285
+\mbox{E}(\theta \mid Y=450) &\approx .285
 \end{align*}
 {/$$}
 
@@ -231,7 +243,7 @@ Posterior Distribution
 The variance can be shown to be:
 
 {$$}
-\mbox{var}(\theta\mid y) &=& \frac{1}{1/\sigma^2+1/\tau^2}
+\mbox{var}(\theta\mid y) = \frac{1}{1/\sigma^2+1/\tau^2}
 = \frac{1}{1/.110^2 + 1/.027^2}
 {/$$}
 
