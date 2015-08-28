@@ -46,7 +46,7 @@ introduction.md
 ### Chapter 7: Statistical Modeling
 #course3 modeling
 bayes.md
-#course3 hierarchical_models
+hierarchical_models.md
 
 ### Chapter 8: Distance and dimension reduction
 #course3 distance
