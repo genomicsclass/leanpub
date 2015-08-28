@@ -1,0 +1,6 @@
+intro_to_batch_effects.md
+confounding.md
+eda_with_pca.md
+adjusting_with_linear_models.md
+factor_analysis.md
+adjusting_with_factor_analysis.md
