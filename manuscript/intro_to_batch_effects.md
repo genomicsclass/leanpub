@@ -34,7 +34,7 @@ And can construct a confidence interval by
 
 {$$}
 \bar{Y}_i 
-2 \pm \s_i / sqrt{N} \mbox{ with } s_i^2= 
+2 \pm \s_i / \sqrt{N} \mbox{ with } s_i^2= 
 \frac{1}{N-1} (Y_ij - 
 \bar{Y}_i)^2
 {/$$}
@@ -53,7 +53,7 @@ From the plot it is quite clear that the variability of {$$}\gamma{/$$} across l
 Note that we can also view {$$}\gamma{/$$} as a random variable. In this case, each laboratory has an error term {$$}\gamma_i{/$$} that is the same across measurements from that lab. Under this interpretation the problem is that 
 
 {$$}
- \s_i / sqrt{N} \mbox{ with } s_i^2= 
+ \s_i / \sqrt{N} \mbox{ with } s_i^2= 
 \frac{1}{N-1} (Y_ij - 
 \bar{Y}_i)^2
 {/$$}
