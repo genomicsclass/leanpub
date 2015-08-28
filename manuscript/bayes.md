@@ -159,10 +159,12 @@ Two levels of variability:
 
 Hierarchichal Model
 
-{$$}\begin{align*}
+{$$}
+\begin{align*}
 \theta &\sim N(\mu, \tau^2) \mbox{ is called a prior}\\
 Y \mid \theta &\sim N(\theta, \sigma^2) \mbox{ is called a sampling distribution}
-\end{align*}{/$$}
+\end{align*}
+{/$$}
 
 Here {$$}\theta{/$$} is our players "intrinsic" average value, {$$}\mu{/$$} is the average of all players, {$$}\tau{/$$} is the SD of all players, {$$}Y{/$$} is the observed average, and 
 {$$}\sigma{/$$} is the variability due to luck at each AB.
@@ -172,10 +174,12 @@ Hierarchichal Model
 
 Here are the equations with our data
 
-{$$}\begin{align*}
+{$$}
+\begin{align*}
 \theta &\sim N(.275, .027^2) \\
 Y \mid \theta &\sim N(\theta, .110^2) 
-\end{align*}{/$$}
+\end{align*}
+{/$$}
 
 
 Posterior Distribution
