@@ -1,4 +1,3 @@
-{line-numbers=off}
 {frontmatter}
 
 # Introduction
