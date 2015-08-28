@@ -124,6 +124,9 @@ with(tt, plot(s, -log10(p.value), cex=.8, pch=16,
 
 ![plot of chunk unnamed-chunk-1](images/unnamed-chunk-1-2.png) 
 
+Now with limma
+
+
 ```r
 library(limma)
 ```
@@ -147,7 +150,10 @@ with(limmares, plot(dm, -log10(p.value),cex=.8, pch=16,
 abline(h=2,v=c(-.2,.2), lty=2)
 ```
 
-![plot of chunk unnamed-chunk-1](images/unnamed-chunk-1-3.png) 
+![plot of chunk unnamed-chunk-2](images/unnamed-chunk-2-1.png) 
+
+Shrink
+
 
 ```r
 n <- 40
@@ -162,4 +168,4 @@ segments((tt$s^2)[idx],rep(.1,n),
          ebfit$s2.post[idx],rep(.9,n))
 ```
 
-![plot of chunk unnamed-chunk-1](images/unnamed-chunk-1-4.png) 
+![plot of chunk unnamed-chunk-3](images/unnamed-chunk-3-1.png) 
