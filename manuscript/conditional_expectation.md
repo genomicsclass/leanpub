@@ -28,7 +28,7 @@ hist(y,breaks=seq(min(y),max(y)))
 abline(v=mean(y),col=2)
 ```
 
-![plot of chunk unnamed-chunk-1](images/conditional_expectation-unnamed-chunk-1-1.png) 
+![plot of chunk unnamed-chunk-1](images/R/conditional_expectation-unnamed-chunk-1-1.png) 
 
 In this case we can also approximate the distribution of {$$}Y{/$$} as normal which implies the mean maximizes the probability density. 
 
@@ -41,13 +41,13 @@ plot(x,y,xlab="Father's height in inches",ylab="Son's height in inches",main=pas
 abline(v=c(-0.35,0.35)+71,col="red")
 ```
 
-![plot of chunk unnamed-chunk-2](images/conditional_expectation-unnamed-chunk-2-1.png) 
+![plot of chunk unnamed-chunk-2](images/R/conditional_expectation-unnamed-chunk-2-1.png) 
 
 ```r
 hist(y[x==71],xlab="Heights",nc=8,main="",xlim=range(y))
 ```
 
-![plot of chunk unnamed-chunk-2](images/conditional_expectation-unnamed-chunk-2-2.png) 
+![plot of chunk unnamed-chunk-2](images/R/conditional_expectation-unnamed-chunk-2-2.png) 
 
 <a name="regression"></a>
 
@@ -70,13 +70,13 @@ abline(v=c(-0.35,0.35)+71,col="red")
 abline(lm(y~x),col=1)
 ```
 
-![plot of chunk unnamed-chunk-3](images/conditional_expectation-unnamed-chunk-3-1.png) 
+![plot of chunk unnamed-chunk-3](images/R/conditional_expectation-unnamed-chunk-3-1.png) 
 
 ```r
 hist(y[x==71],xlab="Heights",nc=8,main="",xlim=range(y))
 ```
 
-![plot of chunk unnamed-chunk-3](images/conditional_expectation-unnamed-chunk-3-2.png) 
+![plot of chunk unnamed-chunk-3](images/R/conditional_expectation-unnamed-chunk-3-2.png) 
 
 In this particular case the regression line provides an optimal prediction function for {$$}Y{/$$}. But this is not generally true.
 
