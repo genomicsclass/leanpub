@@ -53,7 +53,7 @@ qqnorm(betahat)
 qqline(betahat)
 ```
 
-![plot of chunk unnamed-chunk-2](images/standard_errors-unnamed-chunk-2-1.png) 
+![plot of chunk unnamed-chunk-2](images/R/standard_errors-unnamed-chunk-2-1.png) 
 
 Because {$$}\hat{\beta}{/$$} is a linear combination of the data which we made normal in our simulation, it is also normal as seen in the qq-plot above. Also, the mean of the distribution is the true parameter {$$}-0.5g{/$$}, as confirmed by the Monte Carlo simulation performed above.
 
@@ -121,13 +121,13 @@ mypar2(1,2)
 qqnorm(betahat[,1]);qqline(betahat[,1])
 ```
 
-![plot of chunk unnamed-chunk-7](images/standard_errors-unnamed-chunk-7-1.png) 
+![plot of chunk unnamed-chunk-7](images/R/standard_errors-unnamed-chunk-7-1.png) 
 
 ```r
 qqnorm(betahat[,2]);qqline(betahat[,2])
 ```
 
-![plot of chunk unnamed-chunk-7](images/standard_errors-unnamed-chunk-7-2.png) 
+![plot of chunk unnamed-chunk-7](images/R/standard_errors-unnamed-chunk-7-2.png) 
 
 We also see that the correlation of our estimates is negative:
 
