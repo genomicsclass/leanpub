@@ -50,7 +50,7 @@ With 1,000 Monte Carlo simulated occurrences of this random variable, we can now
 hist(ttests)
 ```
 
-![plot of chunk unnamed-chunk-4](images/monte_carlo-unnamed-chunk-4-1.png) 
+![plot of chunk unnamed-chunk-4](images/R/monte_carlo-unnamed-chunk-4-1.png) 
 
 So is the distribution of this t-statistic well approximated by the normal distribution? In the next chapter we will introduce quantile-quantile plots, which provide a useful visual inspection of how well one distribution approximates another. As we will explain later, if points fall on the identity line, it means the approximation is a good one.
 
@@ -60,7 +60,7 @@ qqnorm(ttests)
 abline(0,1)
 ```
 
-![plot of chunk unnamed-chunk-5](images/monte_carlo-unnamed-chunk-5-1.png) 
+![plot of chunk unnamed-chunk-5](images/R/monte_carlo-unnamed-chunk-5-1.png) 
 
 This looks like a very good approximation. So, for this particular population, a sample size of 10 was large enough to use the CLT approximation. How about 3? 
 
@@ -71,7 +71,7 @@ qqnorm(ttests)
 abline(0,1)
 ```
 
-![plot of chunk unnamed-chunk-6](images/monte_carlo-unnamed-chunk-6-1.png) 
+![plot of chunk unnamed-chunk-6](images/R/monte_carlo-unnamed-chunk-6-1.png) 
 
 Now we see that the large quantiles (referred to by statisticians as the _tails_) are larger than expected. In the previous module we explained that when the sample size is not large enough and the *population values* follow a normal distribution, then the t-distribution is a better approximation. Our simulation results seem to confirm this:
 
@@ -82,7 +82,7 @@ qqplot(qt(qs,df=2*3-2),ttests,xlim=c(-6,6),ylim=c(-6,6))
 abline(0,1)
 ```
 
-![plot of chunk unnamed-chunk-7](images/monte_carlo-unnamed-chunk-7-1.png) 
+![plot of chunk unnamed-chunk-7](images/R/monte_carlo-unnamed-chunk-7-1.png) 
 
 The t-distribution is a much better approximation in this case, but it is still not perfect. This is due to the fact that the original data is not that well approximated by the normal distribution.
 
@@ -92,7 +92,7 @@ qqnorm(controlPopulation)
 qqline(controlPopulation)
 ```
 
-![plot of chunk unnamed-chunk-8](images/monte_carlo-unnamed-chunk-8-1.png) 
+![plot of chunk unnamed-chunk-8](images/R/monte_carlo-unnamed-chunk-8-1.png) 
 
 
 ### Parametric Simulations for the Observations
