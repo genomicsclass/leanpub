@@ -11,12 +11,10 @@ layout: page
 Let's use our data to see how well the central limit approximates sample averages from our data. We will leverage our entire population dataset to compare the results we obtain by actually sampling from the distribution to what the CLT predicts.  
 
 
+
+
 ```r
-library(downloader)
-url <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/mice_pheno.csv"
-filename <- tempfile()
-download(url,destfile=filename)
-dat <- read.csv(filename)
+dat <- read.csv("mice_pheno.csv") ##file was previously downloaded
 head(dat)
 ```
 
@@ -111,6 +109,7 @@ res <-  sapply(Ns,function(n){
 
 Now we can use qq-plots to see how well CLT approximations works for these. If in fact the normal distribution is a good approximation, the points should fall on a straight line when compared to normal quantiles. The more it deviates, the worse the approximation. We also show, in the title, the average and SD of the observed distribution which demonstrates how the SD decreases with {$$}\sqrt{N}{/$$} as predicted. 
 
+
 ```r
 library(rafalib)
 ```
@@ -125,14 +124,7 @@ library(rafalib)
 ```
 
 ```r
-mypar2(2,2)
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "mypar2"
-```
-
-```r
+mypar(2,2)
 for(i in seq(along=Ns)){
   title <- paste("N=",Ns[i],"Avg=",signif(mean(res[,i]),3),"SD=",signif(popsd(res[,i]),3)) ##popsd defined above
   qqnorm(res[,i],main=title)
@@ -140,7 +132,7 @@ for(i in seq(along=Ns)){
 }
 ```
 
-![plot of chunk unnamed-chunk-10](images/R/clt_in_practice-unnamed-chunk-10-1.png) ![plot of chunk unnamed-chunk-10](images/R/clt_in_practice-unnamed-chunk-10-2.png) ![plot of chunk unnamed-chunk-10](images/R/clt_in_practice-unnamed-chunk-10-3.png) ![plot of chunk unnamed-chunk-10](images/R/clt_in_practice-unnamed-chunk-10-4.png) 
+![Quantile versus quantile plot of simulated differences versus theoretical normal distribution for four different sample sizes.](images/R/clt_in_practice-effect_size_qqplot-1.png) 
 
 Here we see a pretty good fit even for 3. Why is this? Because the population itself is relatively close to normally distributed, the averages are close to normal as well (the sum of normals is normals). In practice we actually calculate a ratio: we divide by the estimated standard deviation. Here is where the sample size starts to matter more.
 
@@ -157,21 +149,14 @@ computetstat <- function(n){
 res <-  sapply(Ns,function(n){
   replicate(B,computetstat(n))
 })
-mypar2(2,2)
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "mypar2"
-```
-
-```r
+mypar(2,2)
 for(i in seq(along=Ns)){
   qqnorm(res[,i],main=Ns[i])
   qqline(res[,i],col=2)
 }
 ```
 
-![plot of chunk unnamed-chunk-11](images/R/clt_in_practice-unnamed-chunk-11-1.png) ![plot of chunk unnamed-chunk-11](images/R/clt_in_practice-unnamed-chunk-11-2.png) ![plot of chunk unnamed-chunk-11](images/R/clt_in_practice-unnamed-chunk-11-3.png) ![plot of chunk unnamed-chunk-11](images/R/clt_in_practice-unnamed-chunk-11-4.png) 
+![Quantile versus quantile plot of simulated ratios versus theoretical normal distribution for four different sample sizes.](images/R/clt_in_practice-t_test_qqplot-1.png) 
 
 So we see that for {$$}N=3{/$$} the CLT does not provide a usable approximation. For {$$}N=12{/$$} there is a slight deviation at the higher values, although the approximation appears useful. For 25 and 50 the approximation is spot on. 
 
