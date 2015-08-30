@@ -239,7 +239,7 @@ heightecdf <- ecdf(x)
 plot(values, heightecdf(values), type="l")
 ```
 
-![plot of chunk unnamed-chunk-11](images/random_variables-unnamed-chunk-11-1.png) 
+![plot of chunk unnamed-chunk-11](images/R/random_variables-unnamed-chunk-11-1.png) 
 
 #### Histograms
 
@@ -261,7 +261,7 @@ bins <- seq(smallest, largest)
 hist(x,breaks=bins,xlab="Height",main="Adult men heights")
 ```
 
-![plot of chunk histogram](images/random_variables-histogram-1.png) 
+![plot of chunk histogram](images/R/random_variables-histogram-1.png) 
 
 Showing this plot to the alien is much more informative than showing numbers. Note that with this simple plot we can approximate the number of individuals in any given interval. For example, there are about 70 individuals over six feet (72 inches) tall. 
 
@@ -290,7 +290,7 @@ for(i in 1:n){
   }
 ```
 
-![Illustration of the null distribution](images/random_variables-unnamed-chunk-12-1.png) 
+![Illustration of the null distribution](images/R/random_variables-unnamed-chunk-12-1.png) 
 
 The figure above amounts to a histogram. From an actual histogram we can see that values as large as `obsdiff` are relatively rare:
 
@@ -300,7 +300,7 @@ hist(null, freq=TRUE)
 abline(v=obsdiff)
 ```
 
-![plot of chunk unnamed-chunk-13](images/random_variables-unnamed-chunk-13-1.png) 
+![plot of chunk unnamed-chunk-13](images/R/random_variables-unnamed-chunk-13-1.png) 
 
 
 An important point to keep in mind here is that while we defined {$$}Pr(a){/$$} by counting cases, we will learn how in some circumstances mathematics gives us formulas for {$$}Pr(a){/$$} that save us the trouble of computing them as we did here. One example of this powerful approach uses the normal distribution approximation:
