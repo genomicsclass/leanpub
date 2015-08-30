@@ -109,7 +109,7 @@ plot(times[o],pch=21,bg=as.fumeric(batch)[o],ylab="date")
 ## Error in as.fumeric(batch): 'x' must be a character
 ```
 
-![plot of chunk unnamed-chunk-3](images/adjusting_with_factor_analysis-unnamed-chunk-3-1.png) 
+![plot of chunk unnamed-chunk-3](images/R/adjusting_with_factor_analysis-unnamed-chunk-3-1.png) 
 There is more than one day per month. Could day have an effects as well?
 
 
@@ -126,7 +126,7 @@ plot(s$v[o,1],pch=21,cex=1.25,bg=cols[o],ylab="First PC",xaxt="n",xlab="")
 legend("topleft",c("batch 1","batch 2"),col=1:2,lty=1,box.lwd=0)
 ```
 
-![plot of chunk unnamed-chunk-4](images/adjusting_with_factor_analysis-unnamed-chunk-4-1.png) 
+![plot of chunk unnamed-chunk-4](images/R/adjusting_with_factor_analysis-unnamed-chunk-4-1.png) 
 
 Day seems to be highly correlated and explained a high percentage of the variability:
 
@@ -136,7 +136,7 @@ mypar(1,1)
 plot(s$d^2/sum(s$d^2),ylab="% variance explained",xlab="Principal component")
 ```
 
-![plot of chunk unnamed-chunk-5](images/adjusting_with_factor_analysis-unnamed-chunk-5-1.png) 
+![plot of chunk unnamed-chunk-5](images/R/adjusting_with_factor_analysis-unnamed-chunk-5-1.png) 
 
 In fact, the first six or so PC seem to be at least partially driven by date:
 
@@ -146,7 +146,7 @@ for(i in 1:12)
 boxplot(split(s$v[,i],times))
 ```
 
-![plot of chunk unnamed-chunk-6](images/adjusting_with_factor_analysis-unnamed-chunk-6-1.png) 
+![plot of chunk unnamed-chunk-6](images/R/adjusting_with_factor_analysis-unnamed-chunk-6-1.png) 
 
 
 What happens if we simply remove the top six PC from the data and then perform a t-test? 
@@ -172,7 +172,7 @@ points(res$dm[which(chr=="chrY")],-log10(res$p.value[which(chr=="chrY")]),col=2,
 legend("bottomright",c("chrX","chrY"),col=1:2,pch=16)
 ```
 
-![plot of chunk unnamed-chunk-8](images/adjusting_with_factor_analysis-unnamed-chunk-8-1.png) 
+![plot of chunk unnamed-chunk-8](images/R/adjusting_with_factor_analysis-unnamed-chunk-8-1.png) 
 
 <a name="sva"></a>
 ### Factor Analysis
@@ -263,7 +263,7 @@ points(res$dm[which(chr=="chrY")],-log10(res$p.value[which(chr=="chrY")]),col=2,
 legend("bottomright",c("chrX","chrY"),col=1:2,pch=16)
 ```
 
-![plot of chunk unnamed-chunk-11](images/adjusting_with_factor_analysis-unnamed-chunk-11-1.png) 
+![plot of chunk unnamed-chunk-11](images/R/adjusting_with_factor_analysis-unnamed-chunk-11-1.png) 
 
 
 And here is a decompose of the data into sex effects, surrogate variables, and independent noise:
