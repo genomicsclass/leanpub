@@ -40,7 +40,7 @@ stripchart(list(x,y),vertical=TRUE,ylim=c(-7,7),ylab="Observations",pch=21,bg=1,
 abline(h=0)
 ```
 
-![plot of chunk unnamed-chunk-2](images/ranktest-unnamed-chunk-2-1.png) 
+![plot of chunk unnamed-chunk-2](images/R/ranktest-unnamed-chunk-2-1.png) 
 
 ```r
 xrank<-rank(c(x,y))[seq(along=x)]
@@ -50,7 +50,7 @@ ws <- sapply(x,function(z) rank(c(z,y))[1]-1)
 text(rep(1.05,length(ws)),xrank,ws)
 ```
 
-![plot of chunk unnamed-chunk-2](images/ranktest-unnamed-chunk-2-2.png) 
+![plot of chunk unnamed-chunk-2](images/R/ranktest-unnamed-chunk-2-2.png) 
 
 ```r
 W <-sum(ws) 
