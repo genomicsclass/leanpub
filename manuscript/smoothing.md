@@ -52,11 +52,11 @@ mypar (1,1)
 plot(X,Y)
 ```
 
-![plot of chunk unnamed-chunk-2](images/smoothing-unnamed-chunk-2-1.png) 
+![plot of chunk unnamed-chunk-2](images/R/smoothing-unnamed-chunk-2-1.png) 
 
 Note that linear regression is biased does not capture the apparent curvature in {$$}f(x){/$$}:
 
-![plot of chunk unnamed-chunk-3](images/smoothing-unnamed-chunk-3-1.png) 
+![plot of chunk unnamed-chunk-3](images/R/smoothing-unnamed-chunk-3-1.png) 
 
 Note for example that points above the fitted line (green) and those below (purple) are not evenly distributed.
 
@@ -84,7 +84,7 @@ points(X[ind],Y[ind],bg=3,pch=21)
 lines(c(min(X[ind]),max(X[ind])),c(fit,fit),col=2,lty=2,lwd=4)
 ```
 
-![plot of chunk unnamed-chunk-4](images/smoothing-unnamed-chunk-4-1.png) 
+![plot of chunk unnamed-chunk-4](images/R/smoothing-unnamed-chunk-4-1.png) 
 
 By computing this mean for bins around every point we form an estimate of the underlying curve {$$}f(x){/$$} :
 
@@ -107,11 +107,11 @@ for(i in seq(along=centers)){
 }
 ```
 
-![plot of chunk unnamed-chunk-5](images/smoothing-unnamed-chunk-5-1.png) 
+![plot of chunk unnamed-chunk-5](images/R/smoothing-unnamed-chunk-5-1.png) 
 
 The final result looks like this:
 
-![plot of chunk unnamed-chunk-6](images/smoothing-unnamed-chunk-6-1.png) 
+![plot of chunk unnamed-chunk-6](images/R/smoothing-unnamed-chunk-6-1.png) 
 
 
 ## Loess
@@ -140,7 +140,7 @@ a <- min(X[ind]);b <- max(X[ind])
 lines(c(a,b),fit$coef[1]+fit$coef[2]*c(a,b),col=2,lty=2,lwd=3)
 ```
 
-![plot of chunk unnamed-chunk-7](images/smoothing-unnamed-chunk-7-1.png) 
+![plot of chunk unnamed-chunk-7](images/R/smoothing-unnamed-chunk-7-1.png) 
 
 Here are 12 steps of the process:
 
@@ -166,11 +166,11 @@ for(i in seq(along=centers)){
 }
 ```
 
-![plot of chunk unnamed-chunk-8](images/smoothing-unnamed-chunk-8-1.png) 
+![plot of chunk unnamed-chunk-8](images/R/smoothing-unnamed-chunk-8-1.png) 
 
 This results is a smoother fit since we use larger sample sizes to estimate our local parameters:
 
-![plot of chunk unnamed-chunk-9](images/smoothing-unnamed-chunk-9-1.png) 
+![plot of chunk unnamed-chunk-9](images/R/smoothing-unnamed-chunk-9-1.png) 
 
 The that function `loess` performs this analysis for us:
 
@@ -186,5 +186,5 @@ plot(X,Y,col="darkgrey",pch=16)
 lines(newx,smooth,col="black",lwd=3)
 ```
 
-![plot of chunk unnamed-chunk-10](images/smoothing-unnamed-chunk-10-1.png) 
+![plot of chunk unnamed-chunk-10](images/R/smoothing-unnamed-chunk-10-1.png) 
 
