@@ -93,7 +93,7 @@ plot(people,col=positivecols,pch=16,xaxt="n",yaxt="n",xlab="",ylab="",main=paste
 plot(people,col=negativecols,pch=16,xaxt="n",yaxt="n",xlab="",ylab="",main=paste("Tested Negative:",round(mean(d[test==0])*100,1),"% are red"))
 ```
 
-![plot of chunk unnamed-chunk-3](images/bayes-unnamed-chunk-3-1.png) 
+![plot of chunk unnamed-chunk-3](images/R/bayes-unnamed-chunk-3-1.png) 
 
 The proportions of red in the top plot shows {$$}\mbox{Pr}(D=1){/$$}. The bottom left shows {$$}\mbox{Pr}(D=1 \mid +){/$$} and the bottom right shows {$$}\mbox{Pr}(D=0 \mid +){/$$}.
 
@@ -101,7 +101,7 @@ The proportions of red in the top plot shows {$$}\mbox{Pr}(D=1){/$$}. The bottom
 ### Bayes in Practice
 
 
-<!-- ![iglesias](images/downloads/902px-Jos%C3%A9_Iglesias_on_September_28%2C_2012.jpg) -->
+<!-- ![iglesias](http://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Jos%C3%A9_Iglesias_on_September_28%2C_2012.jpg/902px-Jos%C3%A9_Iglesias_on_September_28%2C_2012.jpg) -->
 
 
 José Iglesias 2013
@@ -138,7 +138,7 @@ This is for all players (>500 AB) 2010, 2011, 2012
 ##     intersect, setdiff, setequal, union
 ```
 
-![plot of chunk unnamed-chunk-5](images/bayes-unnamed-chunk-5-1.png) 
+![plot of chunk unnamed-chunk-5](images/R/bayes-unnamed-chunk-5-1.png) 
 
 Average is .275 and SD is 0.027
 
