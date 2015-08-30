@@ -43,7 +43,7 @@ mypar(1,1)
 image(t(mat),xaxt="n",yaxt="n",col=icolors)
 ```
 
-![plot of chunk unnamed-chunk-2](images/adjusting_with_linear_models-unnamed-chunk-2-1.png) 
+![plot of chunk unnamed-chunk-2](images/R/adjusting_with_linear_models-unnamed-chunk-2-1.png) 
 
 In what follows, we will imitate the typical analysis we would do in practice. We will act as if we don't know which genes are supposed to be differentially expressed between males and females. 
 
@@ -69,7 +69,7 @@ index <- which(qvals<0.1)
 abline(h=-log10(max(res$p.value[index])))
 ```
 
-![plot of chunk unnamed-chunk-3](images/adjusting_with_linear_models-unnamed-chunk-3-1.png) 
+![plot of chunk unnamed-chunk-3](images/R/adjusting_with_linear_models-unnamed-chunk-3-1.png) 
 
 ```r
 cat("Total genes with q-value < 0.1:",length(index))
@@ -176,7 +176,7 @@ index <- which(qvals<0.1)
 abline(h=-log10(max(res$p.value[index])))
 ```
 
-![plot of chunk unnamed-chunk-6](images/adjusting_with_linear_models-unnamed-chunk-6-1.png) 
+![plot of chunk unnamed-chunk-6](images/R/adjusting_with_linear_models-unnamed-chunk-6-1.png) 
 
 ```r
 cat("Total genes with q-value < 0.1:",length(index))
@@ -293,7 +293,7 @@ index <- which(qvals<0.1)
 abline(h=-log10(max(res$p.value[index])))
 ```
 
-![plot of chunk unnamed-chunk-12](images/adjusting_with_linear_models-unnamed-chunk-12-1.png) 
+![plot of chunk unnamed-chunk-12](images/R/adjusting_with_linear_models-unnamed-chunk-12-1.png) 
 
 ```r
 cat("Total genes with q-value < 0.1:",length(index))
