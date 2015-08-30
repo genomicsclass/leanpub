@@ -84,7 +84,7 @@ with(tt, plot(-dm, -log10(p.value), cex=.8, pch=16,
 abline(h=2,v=c(-.2,.2), lty=2)
 ```
 
-![plot of chunk unnamed-chunk-1](images/hierarchical_models-unnamed-chunk-1-1.png) 
+![plot of chunk unnamed-chunk-1](images/R/hierarchical_models-unnamed-chunk-1-1.png) 
 
 Note that we cut-off the range of the y-axis at 4.5 but there is one blue point with a p-value smaller than {$$}10^{-6}{/$$}. Two finding stand out from this plot. The first is that only one of the positives would be found to be significant with a standar 5% FDR cutoff:
 
@@ -121,7 +121,7 @@ with(tt, plot(s, -log10(p.value), cex=.8, pch=16,
               col=cols))
 ```
 
-![plot of chunk unnamed-chunk-4](images/hierarchical_models-unnamed-chunk-4-1.png) 
+![plot of chunk unnamed-chunk-4](images/R/hierarchical_models-unnamed-chunk-4-1.png) 
 
 Here is where a hierarchical model can be useful. If we can make an assumption about the distribution of these variances across genes, then we can improve estimate by "adjusting" estimates that are "too small" according to this distribution. In a previous section we described how the F-distribution provides approximates the distribution of the observed variances.
 
@@ -172,7 +172,7 @@ segments((tt$s^2)[idx],rep(.1,n),
          ebfit$s2.post[idx],rep(.9,n))
 ```
 
-![plot of chunk unnamed-chunk-5](images/hierarchical_models-unnamed-chunk-5-1.png) 
+![plot of chunk unnamed-chunk-5](images/R/hierarchical_models-unnamed-chunk-5-1.png) 
 
 An important aspect of this adjustment is that genes having a very small sample deviation close to 0 are no longer close to 0. We can now create a version of the t-test that instead of the sample standard deviation uses this posterior mean or "shrunken" estimate of the variance. Once we do this, the improvements can be seen clearly in the volcano plot
 
@@ -185,7 +185,7 @@ with(limmares, plot(dm, -log10(p.value),cex=.8, pch=16,
 abline(h=2,v=c(-.2,.2), lty=2)
 ```
 
-![plot of chunk unnamed-chunk-6](images/hierarchical_models-unnamed-chunk-6-1.png) 
+![plot of chunk unnamed-chunk-6](images/R/hierarchical_models-unnamed-chunk-6-1.png) 
 
 The number of false positives in the top 10 is now reduced to 2. 
 
