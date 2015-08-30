@@ -44,7 +44,7 @@ segments(0,3,2,3,lty=2)
 text(2,3," Y",pos=4,cex=3)
 ```
 
-<img src="images/rotations-unnamed-chunk-1-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" style="display: block; margin: auto;" />
+<img src="images/R/rotations-unnamed-chunk-1-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" style="display: block; margin: auto;" />
 
 But note that, mathematically, we can represent the point {$$}(2,3){/$$} with other linear combinations:
 
@@ -81,7 +81,7 @@ segments(x2[1]*c2,x2[2]*c2,y[1],y[2],lty=2)
 text(2,3," Y",pos=4,cex=3)
 ```
 
-<img src="images/rotations-unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
+<img src="images/R/rotations-unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
 
 We can go back and forth between these two representations of {$$}(2,3){/$$} using matrix multiplication.
 
@@ -104,11 +104,11 @@ A^{-1}= \begin{pmatrix} 0.5& 0.5 \\ 1 &-1\end{pmatrix}
 
 Here are 100 two dimensional points {$$}Y{/$$}
 
-<img src="images/rotations-unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
+<img src="images/R/rotations-unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
 
 Here are the rotations: {$$}Z = A^{-1} Y{/$$}
 
-<img src="images/rotations-unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
+<img src="images/R/rotations-unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
 
 Note that what we have done here is change rotate the data so that the first coordinate of {$$}Z{/$$} is the average height while the second is the differences between twin heights. 
 
