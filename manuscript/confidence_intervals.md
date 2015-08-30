@@ -128,7 +128,7 @@ for(i in 1:B){
 }
 ```
 
-![plot of chunk unnamed-chunk-8](images/confidence_intervals-unnamed-chunk-8-1.png) 
+![plot of chunk unnamed-chunk-8](images/R/confidence_intervals-unnamed-chunk-8-1.png) 
 
 You can run this repeatedly to see what happens. You will see that about in about 5% of the cases, we fail to cover {$$}\mu_X{/$$}.
 
@@ -156,7 +156,7 @@ for(i in 1:B){
 }
 ```
 
-![plot of chunk unnamed-chunk-9](images/confidence_intervals-unnamed-chunk-9-1.png) 
+![plot of chunk unnamed-chunk-9](images/R/confidence_intervals-unnamed-chunk-9-1.png) 
 
 Despite the intervals being larger (we are dividing by {$$}\sqrt{5}{/$$} instead of {$$}\sqrt{30}{/$$}), we see many more intervals not covering {$$}\mu_X{/$$}. This is because the CLT is incorrectly telling us that the distribution of the `mean(hf)` is approximately normal when in fact it has a fatter tail. This mistake affects us in the calculation of `Q`, which assumes a normal distribution and uses `qnorm`. The t-distribution might be more appropriate. All we have to do is re-run the above, but change how we calculate `Q`: use `qt` instead of `qnorm`
 
@@ -179,7 +179,7 @@ for(i in 1:B){
 }
 ```
 
-![plot of chunk unnamed-chunk-10](images/confidence_intervals-unnamed-chunk-10-1.png) 
+![plot of chunk unnamed-chunk-10](images/R/confidence_intervals-unnamed-chunk-10-1.png) 
 
 Now the intervals are made bigger. This is because the t-distribution has fatter tails and therefore:
 
