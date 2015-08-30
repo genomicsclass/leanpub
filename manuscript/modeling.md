@@ -21,7 +21,7 @@ qqnorm(nonsmokers)
 qqline(nonsmokers)
 ```
 
-![plot of chunk unnamed-chunk-1](images/modeling-unnamed-chunk-1-1.png) 
+![plot of chunk unnamed-chunk-1](images/R/modeling-unnamed-chunk-1-1.png) 
 
 But this doesn not imply that every dataset we collect will follow a normal distribtion. Example are: coin tosses, the numner of people who win the lottery, and US incomes.The normal is not the only parametric distribution that is available from modeling. Here we show we describe some useful parametric distribution and their use in genomics. For many more please consult these books [CITE books]
 
@@ -47,7 +47,7 @@ tab=table(winners)
 plot(tab)
 ```
 
-![plot of chunk unnamed-chunk-2](images/modeling-unnamed-chunk-2-1.png) 
+![plot of chunk unnamed-chunk-2](images/R/modeling-unnamed-chunk-2-1.png) 
 
 ```r
 prop.table(tab)
@@ -55,8 +55,8 @@ prop.table(tab)
 
 ```
 ## winners
-##     0     1     2     3     4 
-## 0.600 0.308 0.079 0.012 0.001
+##     0     1     2     3     5     8 
+## 0.610 0.305 0.071 0.011 0.002 0.001
 ```
 
 For cases like this, where {$$}N{/$$} is very large but {$$}p{/$$} is small enough to make {$$}N \times p{/$$} (call it {$$}\lambda{/$$}) a number between 0 and 10, then then {$$}S{/$$} can be shown to follow a Poisson a distribution which has a simple parametric form:
@@ -84,7 +84,7 @@ library(rafalib)
 splot(log2(lambdas),log2(y/x),subset=ind)
 ```
 
-![plot of chunk unnamed-chunk-3](images/modeling-unnamed-chunk-3-1.png) 
+![plot of chunk unnamed-chunk-3](images/R/modeling-unnamed-chunk-3-1.png) 
 Note that for lower values of lambda there is much more variability and that if we were to report anything with a fold change of 2 or more the number of false positives would be quite high for low.
 
 
@@ -151,7 +151,7 @@ ind=which(y>0 & x>0)##make sure no 0s due to ratio and log
 splot((log2(x)+log2(y))/2,log(x/y),subset=ind)
 ```
 
-![plot of chunk unnamed-chunk-6](images/modeling-unnamed-chunk-6-1.png) 
+![plot of chunk unnamed-chunk-6](images/R/modeling-unnamed-chunk-6-1.png) 
 
 When it comes to modeling, one limitation of the Poisson model is 
 that it lacks flexibility when it comes to scale. Note that the Poisson only has one parameter which determins its mean {$$}\lambda{/$$} which is also its variance (standard deviation squared).
@@ -181,7 +181,7 @@ splot(means,vars,log="xy",subset=which(means>0&vars>0)) ##plot a subset of data
 abline(0,1,col=2,lwd=2)
 ```
 
-![plot of chunk unnamed-chunk-7](images/modeling-unnamed-chunk-7-1.png) 
+![plot of chunk unnamed-chunk-7](images/R/modeling-unnamed-chunk-7-1.png) 
 
 Note that the variability plotted here includes biological variability which the motivation for the Poisson does not include. In a later module we learn about a the negative binomial distribution which combines the sampling variability of a Poisson and biological variability. The negative binomial permits has two parameters and permits more flexibility for count data. The Poisson is a special case of the negative bionomial distribution.
 
@@ -200,7 +200,7 @@ mypar(1,1)
 hist(counts)
 ```
 
-![plot of chunk unnamed-chunk-8](images/modeling-unnamed-chunk-8-1.png) 
+![plot of chunk unnamed-chunk-8](images/R/modeling-unnamed-chunk-8-1.png) 
 The counts do appear to follow a Poisson distribution. But what is the rate {$$}\lambda{/$$}. The most common approach to estimating this rate is _maximum likelihood estimation_. To find the maximum likelihood estimate (MLE) we note that these data are independent and the probability of observing the values we observed is
 {$$}
 \Pr(X_1=k_1,\dots,X_n=k_n;\lambda) = \prod_{i=1}^n \lambda^{k_i} / k_i! \exp ( -\lambda)
@@ -221,7 +221,7 @@ mle=optimize(l,c(0,10),maximum=TRUE)
 abline(v=mle$maximum)
 ```
 
-![plot of chunk unnamed-chunk-9](images/modeling-unnamed-chunk-9-1.png) 
+![plot of chunk unnamed-chunk-9](images/R/modeling-unnamed-chunk-9-1.png) 
 If you work out the math and do a bit of calculus you realize that this is particularly simple example for which the MLE is the avearge
 
 ```r
@@ -239,7 +239,7 @@ qqplot(theoretical,counts)
 abline(0,1)
 ```
 
-![plot of chunk unnamed-chunk-11](images/modeling-unnamed-chunk-11-1.png) 
+![plot of chunk unnamed-chunk-11](images/R/modeling-unnamed-chunk-11-1.png) 
 
 
 ## Distributions for positive continuos values
@@ -291,7 +291,7 @@ shist(biosds,unit=0.1,col=1,xlim=c(0,1.5))
 shist(techsds,unit=0.1,col=2,add=TRUE)
 ```
 
-![plot of chunk unnamed-chunk-12](images/modeling-unnamed-chunk-12-1.png) 
+![plot of chunk unnamed-chunk-12](images/R/modeling-unnamed-chunk-12-1.png) 
 
 First notice that the normal distribution is not appropriate here since the right tail is rather large. Also, because SDs are strictly positive there is a limitation to how symmetric this distribution can be.
 A qqplot shows it very clearly
@@ -301,7 +301,7 @@ qqnorm(biosds)
 qqline(biosds)
 ```
 
-![plot of chunk unnamed-chunk-13](images/modeling-unnamed-chunk-13-1.png) 
+![plot of chunk unnamed-chunk-13](images/R/modeling-unnamed-chunk-13-1.png) 
 
 There are parametric distributions that posses these properties (striclty positive and _heavy_ right tails). Two example sarethe _gamma_ and _F_ distributions. The desnity of the gamma distribution is defined by 
 {$$}
@@ -341,7 +341,7 @@ for(d in c(1,5,10)){
   }
 ```
 
-![plot of chunk unnamed-chunk-14](images/modeling-unnamed-chunk-14-1.png) 
+![plot of chunk unnamed-chunk-14](images/R/modeling-unnamed-chunk-14-1.png) 
 Now which {$$}s_0{/$$} and {$$}d{/$$} fit our data best? This is a rather advanced to topic as the MLE does not perform well for this particular distribution (we refer to Smyth (2004)). The Bioconductor limma package provides a function to estimate these parameters
 
 
@@ -373,5 +373,5 @@ k=sum(tmp$density)/sum(dd) ##a normalizing constant to assure same area in plot
 lines(sds,dd*k,type="l",col=2,lwd=2)
 ```
 
-![plot of chunk unnamed-chunk-15](images/modeling-unnamed-chunk-15-1.png) 
+![plot of chunk unnamed-chunk-15](images/R/modeling-unnamed-chunk-15-1.png) 
 Apart for one outlier, this is not a bad fit at all. This approximation will come in very handy when we learn about emprical Bayes.
