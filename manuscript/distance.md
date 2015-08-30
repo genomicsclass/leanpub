@@ -29,7 +29,7 @@ Here we will learn the necessary mathematics and computing skill to understand a
 
 As a review, let's define the distance between two points, {$$}A{/$$} and {$$}B{/$$}, on a cartesian plane.
 
-![plot of chunk unnamed-chunk-1](images/distance-unnamed-chunk-1-1.png) 
+![plot of chunk unnamed-chunk-1](images/R/distance-unnamed-chunk-1-1.png) 
 
 The euclidean distance between {$$}A{/$$} and {$$}B{/$$} is simply
 
