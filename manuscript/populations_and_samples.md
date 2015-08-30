@@ -6,7 +6,6 @@ layout: page
 
 ## Populations, Samples and Estimates 
 
-### Introduction
 
 Now that we have introduced the idea of a random variable, a null distribution, and a p-value, we are ready to describe the mathematical theory that permits us to compute p-values in practice. We will also learn about confidence intervals and power calculations. 
 
@@ -18,7 +17,7 @@ A first step in statistical inference is to understand what population you are i
 ```r
 library(downloader)
 url <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/mice_pheno.csv"
-filename <- tempfile()
+filename <- "mice_pheno.csv"
 download(url,destfile=filename)
 dat <- read.csv(filename)
 ```
@@ -71,6 +70,9 @@ In the previous chapter, we obtained samples of 12 mice from each population. We
 
 Since we want to know if {$$}\mu_Y - \mu_X{/$$} is 0, we consider the sample version: {$$}\bar{Y}-\bar{X}{/$$}  with 
 
-{$$}\bar{X}=\frac{1}{M} \sum_{i=1}^M X_i \mbox{ and }\bar{Y}=\frac{1}{N} \sum_{i=1}^N Y_i{/$$}.
+{$$}
+\bar{X}=\frac{1}{M} \sum_{i=1}^M X_i 
+\mbox{ and }\bar{Y}=\frac{1}{N} \sum_{i=1}^N Y_i.
+{/$$}
 
 Note that this difference of averages is also a random variable. Previously we learned about the behavior of random variables with an exercise that involved repeatedly sampling from the original distribution. Of course, this is not an exercise that we can execute in practice. In this particular case it would involve buying 24 mice over and over again. Here we described the mathematical theory that mathematically relates {$$}\bar{X}{/$$} to {$$}\mu_X{/$$} and {$$}\bar{Y}{/$$} to {$$}\mu_Y{/$$}, that will in turn help us understand the relationship between {$$}\bar{Y}-\bar{X}{/$$}  and {$$}\mu_Y - \mu_X{/$$}. Specifically, we will describe how the Central Limit Theorem permits us to use an approximation to answer this question as well as the widely used t-distribution.
