@@ -35,22 +35,7 @@ We start by reading in the data. A first important step is to identify which row
 
 ```r
 library(dplyr)
-```
 
-```
-## 
-## Attaching package: 'dplyr'
-## 
-## The following object is masked from 'package:stats':
-## 
-##     filter
-## 
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-```r
 dat <- read.csv("femaleMiceWeights.csv") #previously downloaded
 
 control <- filter(dat,Diet=="chow") %>% select(Bodyweight) %>% unlist
@@ -136,7 +121,7 @@ qqnorm(treatment);qqline(treatment,col=2)
 qqnorm(control);qqline(control,col=2)
 ```
 
-![plot of chunk unnamed-chunk-8](images/R/t-tests_in_practice-unnamed-chunk-8-1.png) 
+![Quantile-quantile plots for sample against theoretical normal distribution.](images/R/t-tests_in_practice-data_qqplot-1.png) 
 
 If we use this approximation, then statistical theory tells us that the distribution of the random variable `tstat` follows a t-distribution. This is a much more complicated distribution than the normal that depends on another parameter called degrees of freedom. R has a nice function that actually computes everything for us.
 
