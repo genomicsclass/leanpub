@@ -14,7 +14,7 @@ We have already mentioned principal component analysis (PCA) above and noted its
 We started the motivation for dimension reduction with a simulated example and showed a rotation that is  very much related to PCA.
 
 
-![plot of chunk simulate twin heights again](images/PCA-simulate twin heights again-1.png) 
+![plot of chunk simulate twin heights again](images/R/PCA-simulate twin heights again-1.png) 
 
 Here we explain specifically what are the principal components (PCs).
 
@@ -40,7 +40,7 @@ apply(Y,2,function(y) segments(y[1],0,y[1],y[2],lty=2))
 points(Y[1,],rep(0,ncol(Y)),col=2,pch=16,cex=0.75)
 ```
 
-![plot of chunk unnamed-chunk-1](images/PCA-unnamed-chunk-1-1.png) 
+![plot of chunk unnamed-chunk-1](images/R/PCA-unnamed-chunk-1-1.png) 
 
 Can we find a direction with higher variability? How about:
 
@@ -63,7 +63,7 @@ for(i in seq(along=w))
 points(t(Z), col=2, pch=16, cex=0.5)
 ```
 
-![plot of chunk unnamed-chunk-2](images/PCA-unnamed-chunk-2-1.png) 
+![plot of chunk unnamed-chunk-2](images/R/PCA-unnamed-chunk-2-1.png) 
 
 This relates to the difference between twins which we know is small. The sum of squares confirms this.
 
@@ -88,7 +88,7 @@ for(i in seq(along=w))
 points(t(Z),col=2,pch=16,cex=0.5)
 ```
 
-![plot of chunk unnamed-chunk-3](images/PCA-unnamed-chunk-3-1.png) 
+![plot of chunk unnamed-chunk-3](images/R/PCA-unnamed-chunk-3-1.png) 
 
 This is a re-scaled average height which has higher sum of squares. There is mathematical procedure for determining which {$$}\mathbf{v}{/$$} maximizes the sum of squares and the SVD provides it for us.
 
@@ -134,7 +134,7 @@ for(i in 1:nrow(Y) ){
 }
 ```
 
-![plot of chunk unnamed-chunk-5](images/PCA-unnamed-chunk-5-1.png) 
+![plot of chunk unnamed-chunk-5](images/R/PCA-unnamed-chunk-5-1.png) 
 
 The loadings can be found this way:
 
