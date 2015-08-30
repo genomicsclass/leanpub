@@ -16,11 +16,11 @@ Here we introduce the main concepts needed to understand ML along with two speci
 
 In a previous section we covered the very simple one-predictor case. Most of ML is concerned with cases with more than one predictor. For illustration purposes we move to a case in which {$$}X{/$$} is two dimensional and {$$}Y{/$$} is binary. We simulate a situation with a non-linear relationship using an example from Hastie, Tibshirani and Friedman's book. In the plot below we show the actual values of {$$}f(x_1,x_2)=E(Y \mid X_1=x_1,X_2=x_2){/$$} using colors
 
-![plot of chunk unnamed-chunk-1](images/machine_learning-unnamed-chunk-1-1.png) 
+![plot of chunk unnamed-chunk-1](images/R/machine_learning-unnamed-chunk-1-1.png) 
 
 If we should {$$}E(Y \mid X=x)>0.5{/$$} in red and the rest in blue we see the boundary region in which we switch from predicting from 0 to 1.
 
-![plot of chunk unnamed-chunk-2](images/machine_learning-unnamed-chunk-2-1.png) 
+![plot of chunk unnamed-chunk-2](images/R/machine_learning-unnamed-chunk-2-1.png) 
 
 The above plots relate to the "truth" that we do not get to see. A typical first step in an ML is to use a sample to estimate {$$}f(x){/$$} 
 
@@ -30,7 +30,7 @@ Now make a plot of training data and test data
 plot(x,pch=21,bg=cols,xlab="X1",ylab="X2",xlim=XLIM,ylim=YLIM)
 ```
 
-![plot of chunk unnamed-chunk-3](images/machine_learning-unnamed-chunk-3-1.png) 
+![plot of chunk unnamed-chunk-3](images/R/machine_learning-unnamed-chunk-3-1.png) 
 
 We will review two specif ML techniques. First, we need to review the main concept we use to evaluate the performance of these methods. 
 
@@ -56,7 +56,7 @@ plot(x,pch=21,bg=cols,xlab="X1",ylab="X2",xlim=XLIM,ylim=YLIM)
 plot(test,pch=21,bg=colstest,xlab="X1",ylab="X2",xlim=XLIM,ylim=YLIM)
 ```
 
-![plot of chunk unnamed-chunk-5](images/machine_learning-unnamed-chunk-5-1.png) 
+![plot of chunk unnamed-chunk-5](images/R/machine_learning-unnamed-chunk-5-1.png) 
 
 The reason for this is to detect over-training  by testing on a different data than the one used to fit  model. We will see how important this is.
 
@@ -122,7 +122,7 @@ points(newx,col=colshat,pch=16,cex=0.35)
 points(test,bg=cols,pch=21)
 ```
 
-![plot of chunk unnamed-chunk-9](images/machine_learning-unnamed-chunk-9-1.png) 
+![plot of chunk unnamed-chunk-9](images/R/machine_learning-unnamed-chunk-9-1.png) 
 
 Note that the error rates in the test and train sets are quite similar. Thus do not seem to be over-training. This is not surprising as we are fitting a 2 parameter model to 400 data points. However note that the boundary is a line. Because we are fitting plane to the data, there is no other option here. The linear regression method is too rigid. The rigid makes it stable and avoids over training but it also keeps the model from adapting to the non-linear relationship between {$$}Y{/$$} and {$$}X{/$$}. We saw this before in the smoothing section. The next ML technique we consider is similar to the smoothing techniques described before.
 
@@ -175,7 +175,7 @@ for(k in c(1,200)){
 ## KNN prediction error in train: 0.2825
 ```
 
-![plot of chunk unnamed-chunk-10](images/machine_learning-unnamed-chunk-10-1.png) 
+![plot of chunk unnamed-chunk-10](images/R/machine_learning-unnamed-chunk-10-1.png) 
 
 ```
 ## KNN prediction error in test: 0.295
@@ -242,7 +242,7 @@ abline(h=bayes.error,col=6)
 legend("bottomright",c("Train","Test","Bayes"),col=c(4,5,6),lty=c(2,3,1),box.lwd=0)
 ```
 
-![plot of chunk unnamed-chunk-11](images/machine_learning-unnamed-chunk-11-1.png) 
+![plot of chunk unnamed-chunk-11](images/R/machine_learning-unnamed-chunk-11-1.png) 
 
 
 
