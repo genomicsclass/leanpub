@@ -16,7 +16,7 @@ x[23] <- 100 ##mistake made in 23th measurement
 boxplot(x)
 ```
 
-![plot of chunk unnamed-chunk-1](images/robust_summaries-unnamed-chunk-1-1.png) 
+![plot of chunk unnamed-chunk-1](images/R/robust_summaries-unnamed-chunk-1-1.png) 
 In statistics we refer to these type of points as _outliers_. A small number of outliers can throw off an entire analysis. For example, notice how the following one point results in the sample mean and sample variance being very far from the 0 and 1 respectively.
 
 ```r
@@ -79,7 +79,7 @@ plot(x,y,main=paste0("correlation=",round(cor(x,y),3)),pch=21,bg=1,xlim=c(-3,100
 abline(0,1)
 ```
 
-![plot of chunk unnamed-chunk-5](images/robust_summaries-unnamed-chunk-5-1.png) 
+![plot of chunk unnamed-chunk-5](images/R/robust_summaries-unnamed-chunk-5-1.png) 
 
 The Spearman correlation follows the general idea of median and MAD, that of using quantiles.  The idea is simple: we convert each dataset to ranks an then compute correlation:
 
@@ -90,7 +90,7 @@ plot(rank(x),rank(y),main=paste0("correlation=",round(cor(x,y,method="spearman")
 abline(0,1)
 ```
 
-![plot of chunk unnamed-chunk-6](images/robust_summaries-unnamed-chunk-6-1.png) 
+![plot of chunk unnamed-chunk-6](images/R/robust_summaries-unnamed-chunk-6-1.png) 
 
 
 So if these statistics are robust to outliers, why would we ever use the non-robust version? In general, if we know there are outliers, then median and MAD are recommended over the mean and standard deviation counterparts. However, in the inference modules we learn of an example in which robust statistics are less powerful than the non-robust versions.
@@ -111,7 +111,7 @@ Reporting ratios or fold changes are common in the life science. Suppose you are
 hist(ratios)
 ```
 
-![plot of chunk unnamed-chunk-8](images/robust_summaries-unnamed-chunk-8-1.png) 
+![plot of chunk unnamed-chunk-8](images/R/robust_summaries-unnamed-chunk-8-1.png) 
 
 The problem here is that ratios are not symmetrical around 1. For example, 1/32 is much closer to 1 than 32/1. Taking logs takes care of this problem:
 
@@ -121,7 +121,7 @@ logratios <- log2(ratios)
 hist(logratios)
 ```
 
-![plot of chunk unnamed-chunk-9](images/robust_summaries-unnamed-chunk-9-1.png) 
+![plot of chunk unnamed-chunk-9](images/R/robust_summaries-unnamed-chunk-9-1.png) 
 
 The log of ratios are of course symmetric around 0 because:
 
@@ -143,14 +143,14 @@ plot(x)
 abline(h=1)
 ```
 
-![plot of chunk unnamed-chunk-10](images/robust_summaries-unnamed-chunk-10-1.png) 
+![plot of chunk unnamed-chunk-10](images/R/robust_summaries-unnamed-chunk-10-1.png) 
 
 ```r
 plot(log2(x))
 abline(h=0)
 ```
 
-![plot of chunk unnamed-chunk-10](images/robust_summaries-unnamed-chunk-10-2.png) 
+![plot of chunk unnamed-chunk-10](images/R/robust_summaries-unnamed-chunk-10-2.png) 
 
 
 The log transformation is also commonly used because fold changes are the most widely used quantification of interest. Note that a fold change of 100 can be a ratio of 100/1 or 1/100. However, 1/100 is much closer to 1 (no fold change) than 100: ratios are not symmetric about 1.
@@ -165,7 +165,7 @@ text(seq(along=y),y,Names,cex=1.5)
 abline(h=1)
 ```
 
-![plot of chunk unnamed-chunk-11](images/robust_summaries-unnamed-chunk-11-1.png) 
+![plot of chunk unnamed-chunk-11](images/R/robust_summaries-unnamed-chunk-11-1.png) 
 
 ```r
 plot(seq(along=y),y,xlab="",ylab="",type="n",log="y",xaxt="n")
@@ -173,7 +173,7 @@ text(seq(along=y),y,Names,cex=1.5)
 abline(h=1)
 ```
 
-![plot of chunk unnamed-chunk-11](images/robust_summaries-unnamed-chunk-11-2.png) 
+![plot of chunk unnamed-chunk-11](images/R/robust_summaries-unnamed-chunk-11-2.png) 
 
 ## Footnotes <a name="foot"></a>
 
