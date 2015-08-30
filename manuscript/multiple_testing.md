@@ -307,7 +307,7 @@ mypar(1,1)
 hist(Qs) ##Q is a random variable, this is its distribution
 ```
 
-![plot of chunk unnamed-chunk-14](images/multiple_testing-unnamed-chunk-14-1.png) 
+![plot of chunk unnamed-chunk-14](images/R/multiple_testing-unnamed-chunk-14-1.png) 
 
 ```r
 FDR=mean(Qs)
@@ -336,7 +336,7 @@ hist(pvals,breaks=seq(0,1,0.05))
 abline(h=m0/20)
 ```
 
-![plot of chunk unnamed-chunk-15](images/multiple_testing-unnamed-chunk-15-1.png) 
+![plot of chunk unnamed-chunk-15](images/R/multiple_testing-unnamed-chunk-15-1.png) 
 The first bar on the left represents cases with p-values smaller than 0.05. From the horizontal line we can infer that about 1/2 are false positives. This is in agreement with an FDR of 0.50. If we look at the bar for 0.01 we see can infer a lower FDR, as expected, but would call less features significant.
 
 
@@ -345,7 +345,7 @@ hist(pvals,breaks=seq(0,1,0.01))
 abline(h=m0/100)
 ```
 
-![plot of chunk unnamed-chunk-16](images/multiple_testing-unnamed-chunk-16-1.png) 
+![plot of chunk unnamed-chunk-16](images/R/multiple_testing-unnamed-chunk-16-1.png) 
 
 As we consider a lower a lower p-value cut-off, the number of features detected decreases (loss of sensitivity), but our FDR also decreases (gain of specificity). So how do we decide? One approach is to set a desired FDR level {$$}\alpha{/$$}, and then develop procedures that control the error rate: FDR  {$$}\leq \alpha{/$$}.
 
@@ -372,7 +372,7 @@ plot(i[1:15],sort(pvals)[1:15],main="Close-up")
 abline(0,i/m*alpha)
 ```
 
-![plot of chunk unnamed-chunk-17](images/multiple_testing-unnamed-chunk-17-1.png) 
+![plot of chunk unnamed-chunk-17](images/R/multiple_testing-unnamed-chunk-17-1.png) 
 
 ```r
 k <- max( which( sort(pvals) < i/m*alpha) )
@@ -396,7 +396,7 @@ plot(pvals,fdr,log="xy")
 abline(h=alpha,v=cutoff) ##cutoff was computed above
 ```
 
-![plot of chunk unnamed-chunk-18](images/multiple_testing-unnamed-chunk-18-1.png) 
+![plot of chunk unnamed-chunk-18](images/R/multiple_testing-unnamed-chunk-18-1.png) 
 
 We can run a Monte-Carlo simulation to confirm that the FDR is in fact lower than .05. Note that we compute all p-values first, and then use these to decide which get called.
 
@@ -420,7 +420,7 @@ mypar(1,1)
 hist(Qs) ##Q is a random variable, this is its distribution
 ```
 
-![plot of chunk unnamed-chunk-19](images/multiple_testing-unnamed-chunk-19-1.png) 
+![plot of chunk unnamed-chunk-19](images/R/multiple_testing-unnamed-chunk-19-1.png) 
 
 ```r
 FDR=mean(Qs)
@@ -481,7 +481,7 @@ pi0=sum(pvals> lambda) /((1-lambda)*m)
 abline(h= pi0)
 ```
 
-![plot of chunk unnamed-chunk-22](images/multiple_testing-unnamed-chunk-22-1.png) 
+![plot of chunk unnamed-chunk-22](images/R/multiple_testing-unnamed-chunk-22-1.png) 
 
 ```r
 print(pi0) ##this is close to the trye pi0=0.9
@@ -507,7 +507,7 @@ qvals <- res$qvalues
 plot(pvals,qvals)
 ```
 
-![plot of chunk unnamed-chunk-23](images/multiple_testing-unnamed-chunk-23-1.png) 
+![plot of chunk unnamed-chunk-23](images/R/multiple_testing-unnamed-chunk-23-1.png) 
 we also obtain the estimate of {/$$}\hat{\pi}_0{$$}:
 
 

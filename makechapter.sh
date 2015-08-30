@@ -60,7 +60,7 @@ git add $2.md
 
 if [ $imgcount -gt 0 ]
 then
-git add images/$2*
+git add images/R/$2*
 fi
 
 git commit -am "adding $2 to book"
