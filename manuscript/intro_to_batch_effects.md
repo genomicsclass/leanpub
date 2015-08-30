@@ -11,7 +11,7 @@ One often overlooked complication with high-throughput studies is batch effects,
 
 Batch effects are the biggest challenge faced by genomics research, especially in context of precision medicine. The precense of batch effects in one form or another have been reported among most if not all high-throughput technologies [Leet et all (2010) Nature Reviews Genetics 11, 733-739]. But batch effects are not specific to genomics technology. In fact, in a 1972 paper, WJ Youden describes batch effects in the context of empirical estimates of phyisical constants. He pointed out the "subjective character of present estimates" of physical constants and how estimates changed from laboratory to laboratory. For example, in Table 1 Youden shows the following estimates of the astronomical unit from different laboratories. The reports included an estimate of spread (what we now would call confidence interval)
 
-![plot of chunk unnamed-chunk-1](images/intro_to_batch_effects-unnamed-chunk-1-1.png) 
+![plot of chunk unnamed-chunk-1](images/R/intro_to_batch_effects-unnamed-chunk-1-1.png) 
 
 Judging by the variability across labs and the fact that the reported bounds do not cover this variabilty shows very clearly that each group of measurement includes a bias that is consistent within group but not across. This type of variability is what we call a batch effect. Note that there are laboratories that reported two estimates (purple and orange) and batch effects are seen across the two different measurements from the same laboratories as well. 
 
