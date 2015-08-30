@@ -101,7 +101,7 @@ hist(hfPopulation)
 hist(controlPopulation)
 ```
 
-![plot of chunk unnamed-chunk-3](images/clt_and_t-distribution-unnamed-chunk-3-1.png) 
+![plot of chunk unnamed-chunk-3](images/R/clt_and_t-distribution-unnamed-chunk-3-1.png) 
 
 We can use qq-plots to confirm that the distributions are relatively close to being normally distributed.
 
@@ -112,7 +112,7 @@ qqnorm(hfPopulation);qqline(hfPopulation)
 qqnorm(controlPopulation);qqline(controlPopulation)
 ```
 
-![plot of chunk unnamed-chunk-4](images/clt_and_t-distribution-unnamed-chunk-4-1.png) 
+![plot of chunk unnamed-chunk-4](images/R/clt_and_t-distribution-unnamed-chunk-4-1.png) 
 
 The larger the sample, the more forgiving the result is to the weakness of this approximation. In the next section we will see that for this particular dataset the t-distribution works well even for sample sizes as small as 3.
 
