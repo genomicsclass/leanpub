@@ -260,7 +260,7 @@ plot(x,y,xlab="Father's height",ylab="Son's height")
 lines(newx,fitted,col=2)
 ```
 
-![plot of chunk unnamed-chunk-7](images/matrix_algebra_examples-unnamed-chunk-7-1.png) 
+![plot of chunk unnamed-chunk-7](images/R/matrix_algebra_examples-unnamed-chunk-7-1.png) 
 
 This {$$}\hat{\boldsymbol{\beta}}=(\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{Y}{/$$} is one of the most widely used results in data analysis. One of the advantages of this approach is that we can use it in many different situations.  For example, in our falling object problem. 
  
@@ -288,7 +288,7 @@ plot(tt,y,xlab="Time",ylab="Height")
 lines(newtt,fitted,col=2)
 ```
 
-![plot of chunk unnamed-chunk-9](images/matrix_algebra_examples-unnamed-chunk-9-1.png) 
+![plot of chunk unnamed-chunk-9](images/R/matrix_algebra_examples-unnamed-chunk-9-1.png) 
 
 And the resulting estimates are what we expect:
 
