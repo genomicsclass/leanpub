@@ -94,7 +94,7 @@ plot(Xsmall,col=as.fumeric(y))
 legend("topleft",levels(factor(y)),fill=seq_along(levels(factor(y))))
 ```
 
-![plot of chunk unnamed-chunk-4](images/crossvalidation-unnamed-chunk-4-1.png) 
+![plot of chunk unnamed-chunk-4](images/R/crossvalidation-unnamed-chunk-4-1.png) 
 
 Now we can try out the K-nearest neighbors method on a single fold:
 
@@ -158,7 +158,7 @@ Now we can plot the mean misclassification rate for each value of k:
 plot(ks, res, type="o")
 ```
 
-![plot of chunk unnamed-chunk-7](images/crossvalidation-unnamed-chunk-7-1.png) 
+![plot of chunk unnamed-chunk-7](images/R/crossvalidation-unnamed-chunk-7-1.png) 
 
 
 Finally, to show that gene expression can perfectly predict tissue, we use 5 dimensions instead of 2 and note we get perfect prediction
@@ -180,6 +180,6 @@ res <- sapply(ks, function(k) {
 plot(ks, res, type="o",ylim=c(0,0.20))
 ```
 
-![plot of chunk unnamed-chunk-8](images/crossvalidation-unnamed-chunk-8-1.png) 
+![plot of chunk unnamed-chunk-8](images/R/crossvalidation-unnamed-chunk-8-1.png) 
 
 Important note: We applied `cmdscale` to the entire dataset to create a smaller one for illustration purposes. However, in a real machine learning application all transformations of the data must be applied separately on the test and training dataset.
