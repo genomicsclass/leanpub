@@ -19,8 +19,8 @@ sed 's/\$\$/@@@@/g' $2.md |
     sed 's/:\$/:@@@@/g' |
     sed 's/@@@@/\$\$/g' |
     sed 's/\$\$/{\$\$}/g' |
-    sed 's/(figure\//(images\//g' |
-    sed 's/\"figure\//\"images\//g'> $2.md
+    sed 's/(figure\//(images\/R\//g' |
+    sed 's/\"figure\//\"images\/R\//g'> $2.md
     
 awk '
 BEGIN {count = 0;}
@@ -49,7 +49,7 @@ imgcount=`ls -1 ../labs/$1/figure/$2* 2> /dev/null | wc -l`
  
 if [ $imgcount -gt 0 ]
 then
-mv ../labs/$1/figure/$2* manuscript/images/
+mv ../labs/$1/figure/$2* manuscript/images/R/
 fi
 
 
