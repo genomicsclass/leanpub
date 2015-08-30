@@ -49,7 +49,7 @@ pvals <- replicate(B,{
 hist(pvals)
 ```
 
-![plot of chunk unnamed-chunk-3](images/inference_for_highthroughput-unnamed-chunk-3-1.png) 
+![plot of chunk unnamed-chunk-3](images/R/inference_for_highthroughput-unnamed-chunk-3-1.png) 
 As implied by the histogram, in this case the distribution of the p-value is uniformly distributed. In fact, we can show theoretically that when the null hypothesis is true, this is always the case. For the case in which we use the CLT, we have that the null hypothesis {$$}H_0{/$$} implies that our test statistic {$$}Z{/$$}  follows a normal distribution with mean 0 and SD 1 thus:
 
 {$$}
@@ -92,7 +92,7 @@ qqnorm(e[g==0])
 qqline(e[g==0])
 ```
 
-![plot of chunk unnamed-chunk-5](images/inference_for_highthroughput-unnamed-chunk-5-1.png) 
+![plot of chunk unnamed-chunk-5](images/R/inference_for_highthroughput-unnamed-chunk-5-1.png) 
 
 The qq-plots show that the data is well approximated by the normal approximation so apply a t-test. The t-test does not find this gene to be statistically significant:
 
