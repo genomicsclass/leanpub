@@ -38,35 +38,23 @@ We are interested in determining if following a given diet makes mice heavier af
 
 
 ```r
-dat
+head(dat) 
 ```
 
 ```
-##    Diet Bodyweight
-## 1  chow      21.51
-## 2  chow      28.14
-## 3  chow      24.04
-## 4  chow      23.45
-## 5  chow      23.68
-## 6  chow      19.79
-## 7  chow      28.40
-## 8  chow      20.98
-## 9  chow      22.51
-## 10 chow      20.10
-## 11 chow      26.91
-## 12 chow      26.25
-## 13   hf      25.71
-## 14   hf      26.37
-## 15   hf      22.80
-## 16   hf      25.34
-## 17   hf      24.97
-## 18   hf      28.14
-## 19   hf      29.58
-## 20   hf      30.92
-## 21   hf      34.02
-## 22   hf      21.90
-## 23   hf      31.53
-## 24   hf      20.73
+##   Diet Bodyweight
+## 1 chow      21.51
+## 2 chow      28.14
+## 3 chow      24.04
+## 4 chow      23.45
+## 5 chow      23.68
+## 6 chow      19.79
+```
+
+In RStuidio, you can vie the entire dataset with
+
+```r
+View(dat)
 ```
 
 So are the hf mice heavier? Note that mouse 24 at 20.73 grams is one the lightest mice while 21 at 34.02 is one of the heaviest. Both are on the hf diet. Just from looking at the data we see there is *variability*. Claims such as the one above usually refer to the averages. So let's look at the average of each group:
@@ -236,10 +224,11 @@ smallest <- floor( min(x) )
 largest <- ceiling( max(x) )
 values <- seq(smallest, largest,len=300)
 heightecdf <- ecdf(x)
-plot(values, heightecdf(values), type="l")
+plot(values, heightecdf(values), type="l",
+     xlab="a (Height in inches)",ylab="Pr(x <= a)")
 ```
 
-![plot of chunk unnamed-chunk-11](images/R/random_variables-unnamed-chunk-11-1.png) 
+![Empirical cummulative distribution function for height.](images/R/random_variables-ecdf-1.png) 
 
 #### Histograms
 
@@ -258,10 +247,10 @@ We can specify the bins and add better labels in the following way:
 
 ```r
 bins <- seq(smallest, largest)
-hist(x,breaks=bins,xlab="Height",main="Adult men heights")
+hist(x,breaks=bins,xlab="Height (in inches)",main="Adult men heights")
 ```
 
-![plot of chunk histogram](images/R/random_variables-histogram-1.png) 
+![Histogram for heights.](images/R/random_variables-histogram-1.png) 
 
 Showing this plot to the alien is much more informative than showing numbers. Note that with this simple plot we can approximate the number of individuals in any given interval. For example, there are about 70 individuals over six feet (72 inches) tall. 
 
@@ -277,7 +266,7 @@ Note that the {$$}X{/$$} is now capitalized to distinguish it as a random variab
 
 ```r
 n <- 100
-plot(0,0,xlim=c(-5,5),ylim=c(1,30),type="n")
+plot(0,0,xlim=c(-5,5),ylim=c(1,30),type="n",xlab="Observed differences (grams)",ylab="Frequency")
 totals <- vector("numeric",11)
 for(i in 1:n){
   control <- sample(population,12)
@@ -290,7 +279,7 @@ for(i in 1:n){
   }
 ```
 
-![Illustration of the null distribution](images/R/random_variables-unnamed-chunk-12-1.png) 
+![Illustration of the null distribution.](images/R/random_variables-null_distribution_illustration-1.png) 
 
 The figure above amounts to a histogram. From an actual histogram we can see that values as large as `obsdiff` are relatively rare:
 
@@ -300,7 +289,7 @@ hist(null, freq=TRUE)
 abline(v=obsdiff)
 ```
 
-![plot of chunk unnamed-chunk-13](images/R/random_variables-unnamed-chunk-13-1.png) 
+![Null distribution with observed difference marked with vertical line.](images/R/random_variables-null_and_obs-1.png) 
 
 
 An important point to keep in mind here is that while we defined {$$}Pr(a){/$$} by counting cases, we will learn how in some circumstances mathematics gives us formulas for {$$}Pr(a){/$$} that save us the trouble of computing them as we did here. One example of this powerful approach uses the normal distribution approximation:
