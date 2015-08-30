@@ -140,7 +140,7 @@ for(i in seq(along=Ns)){
 }
 ```
 
-![plot of chunk unnamed-chunk-10](images/clt_in_practice-unnamed-chunk-10-1.png) ![plot of chunk unnamed-chunk-10](images/clt_in_practice-unnamed-chunk-10-2.png) ![plot of chunk unnamed-chunk-10](images/clt_in_practice-unnamed-chunk-10-3.png) ![plot of chunk unnamed-chunk-10](images/clt_in_practice-unnamed-chunk-10-4.png) 
+![plot of chunk unnamed-chunk-10](images/R/clt_in_practice-unnamed-chunk-10-1.png) ![plot of chunk unnamed-chunk-10](images/R/clt_in_practice-unnamed-chunk-10-2.png) ![plot of chunk unnamed-chunk-10](images/R/clt_in_practice-unnamed-chunk-10-3.png) ![plot of chunk unnamed-chunk-10](images/R/clt_in_practice-unnamed-chunk-10-4.png) 
 
 Here we see a pretty good fit even for 3. Why is this? Because the population itself is relatively close to normally distributed, the averages are close to normal as well (the sum of normals is normals). In practice we actually calculate a ratio: we divide by the estimated standard deviation. Here is where the sample size starts to matter more.
 
@@ -171,7 +171,7 @@ for(i in seq(along=Ns)){
 }
 ```
 
-![plot of chunk unnamed-chunk-11](images/clt_in_practice-unnamed-chunk-11-1.png) ![plot of chunk unnamed-chunk-11](images/clt_in_practice-unnamed-chunk-11-2.png) ![plot of chunk unnamed-chunk-11](images/clt_in_practice-unnamed-chunk-11-3.png) ![plot of chunk unnamed-chunk-11](images/clt_in_practice-unnamed-chunk-11-4.png) 
+![plot of chunk unnamed-chunk-11](images/R/clt_in_practice-unnamed-chunk-11-1.png) ![plot of chunk unnamed-chunk-11](images/R/clt_in_practice-unnamed-chunk-11-2.png) ![plot of chunk unnamed-chunk-11](images/R/clt_in_practice-unnamed-chunk-11-3.png) ![plot of chunk unnamed-chunk-11](images/R/clt_in_practice-unnamed-chunk-11-4.png) 
 
 So we see that for {$$}N=3{/$$} the CLT does not provide a usable approximation. For {$$}N=12{/$$} there is a slight deviation at the higher values, although the approximation appears useful. For 25 and 50 the approximation is spot on. 
 
