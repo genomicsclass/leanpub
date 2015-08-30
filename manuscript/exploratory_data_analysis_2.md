@@ -38,7 +38,7 @@ plot(normalqs,qs,xlab="Normal percentiles",ylab="Height percentiles")
 abline(0,1) ##identity line
 ```
 
-![plot of chunk unnamed-chunk-2](images/exploratory_data_analysis_2-unnamed-chunk-2-1.png) 
+![plot of chunk unnamed-chunk-2](images/R/exploratory_data_analysis_2-unnamed-chunk-2-1.png) 
 Note how close these values are. Also, note that we can see these qqplots with less code:
 
 ```r
@@ -46,7 +46,7 @@ qqnorm(x)
 qqline(x) 
 ```
 
-![plot of chunk unnamed-chunk-3](images/exploratory_data_analysis_2-unnamed-chunk-3-1.png) 
+![plot of chunk unnamed-chunk-3](images/R/exploratory_data_analysis_2-unnamed-chunk-3-1.png) 
 However, the `qqnorm` function plots against a standard normal distribution. This is why the line has slope `popsd(x)` and intercept `mean(x)`.
 
 In the example above, the points match the line very well. In fact, we can run Monte Carlo simulations to see that we see plots like this for data known to be normally distributed.
@@ -60,7 +60,7 @@ qqnorm(x)
 qqline(x)
 ```
 
-![plot of chunk unnamed-chunk-4](images/exploratory_data_analysis_2-unnamed-chunk-4-1.png) 
+![plot of chunk unnamed-chunk-4](images/R/exploratory_data_analysis_2-unnamed-chunk-4-1.png) 
 
 We can also get a sense for how non-normally distributed data looks. Here we generate data from the t-distribution with different degrees of freedom. Note that the smaller the degrees of freedoms, the fatter the tails.
 
@@ -75,7 +75,7 @@ for(df in dfs){
 }
 ```
 
-![plot of chunk unnamed-chunk-5](images/exploratory_data_analysis_2-unnamed-chunk-5-1.png) 
+![plot of chunk unnamed-chunk-5](images/R/exploratory_data_analysis_2-unnamed-chunk-5-1.png) 
 
 <a name="scatterplots"></a>
 
@@ -93,7 +93,7 @@ y=father.son$sheight
 plot(x,y,xlab="Father's height in inches",ylab="Son's height in inches",main=paste("correlation =",signif(cor(x,y),2)))
 ```
 
-![plot of chunk unnamed-chunk-6](images/exploratory_data_analysis_2-unnamed-chunk-6-1.png) 
+![plot of chunk unnamed-chunk-6](images/R/exploratory_data_analysis_2-unnamed-chunk-6-1.png) 
 
 The scatter plot shows a general trend: the taller the father, the taller to son. A summary of this trend is the correlation coefficient which in this cases is 0.5. We motivate this statistic by trying to predict the son's height using the father's height. 
 
@@ -108,7 +108,7 @@ groups <- split(y,round(x))
 boxplot(groups)
 ```
 
-![plot of chunk unnamed-chunk-7](images/exploratory_data_analysis_2-unnamed-chunk-7-1.png) 
+![plot of chunk unnamed-chunk-7](images/R/exploratory_data_analysis_2-unnamed-chunk-7-1.png) 
 
 ```r
 print(mean(y[ round(x) == 72]))
@@ -147,7 +147,7 @@ for(i in c(5,8,11,14)){
 }
 ```
 
-![plot of chunk unnamed-chunk-8](images/exploratory_data_analysis_2-unnamed-chunk-8-1.png) 
+![plot of chunk unnamed-chunk-8](images/R/exploratory_data_analysis_2-unnamed-chunk-8-1.png) 
 
 
 Now we come back to defining correlation. Mathematical statistics tells us that when two variables follow a bivariate normal distribution, then for any given value of {$$}x{/$$}, the average of the {$$}Y{/$$} in pairs for which {$$}X=x{/$$} is:
@@ -180,4 +180,4 @@ plot(fatherheights,means,ylab="average of strata of son heights",ylim=range(fath
 abline(0,cor(x,y))
 ```
 
-![plot of chunk unnamed-chunk-9](images/exploratory_data_analysis_2-unnamed-chunk-9-1.png) 
+![plot of chunk unnamed-chunk-9](images/R/exploratory_data_analysis_2-unnamed-chunk-9-1.png) 
