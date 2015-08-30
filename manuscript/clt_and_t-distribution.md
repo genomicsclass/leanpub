@@ -8,7 +8,6 @@ layout: page
 
 ## Central Limit Theorem and t-distribution
 
-### Introduction
 
 Below we will discuss the Central Limit Theorem (CLT) and the t-distribution, both of which help us make important calculations related to probabilities. Both are frequently used in science to test statistical hypotheses. To use these, we have to make assumptions, different ones for the CLT and the t-distribution. However, if the assumptions are true, then we are able to calculate the exact probabilities of events through the use of mathematical formula.
 
@@ -101,7 +100,7 @@ hist(hfPopulation)
 hist(controlPopulation)
 ```
 
-![plot of chunk unnamed-chunk-3](images/R/clt_and_t-distribution-unnamed-chunk-3-1.png) 
+![Histograms of all weights for both populations.](images/R/clt_and_t-distribution-population_histograms-1.png) 
 
 We can use qq-plots to confirm that the distributions are relatively close to being normally distributed.
 
@@ -112,7 +111,7 @@ qqnorm(hfPopulation);qqline(hfPopulation)
 qqnorm(controlPopulation);qqline(controlPopulation)
 ```
 
-![plot of chunk unnamed-chunk-4](images/R/clt_and_t-distribution-unnamed-chunk-4-1.png) 
+![Quantile-quantile plots of all weights for both populations](images/R/clt_and_t-distribution-population_qqplots-1.png) 
 
 The larger the sample, the more forgiving the result is to the weakness of this approximation. In the next section we will see that for this particular dataset the t-distribution works well even for sample sizes as small as 3.
 

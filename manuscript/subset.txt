@@ -1,6 +1,10 @@
-intro_to_batch_effects.md
-confounding.md
-eda_with_pca.md
-adjusting_with_linear_models.md
-factor_analysis.md
-adjusting_with_factor_analysis.md
+random_variables.md
+populations_and_samples.md
+clt_and_t-distribution.md
+clt_in_practice.md
+t-tests_in_practice.md
+confidence_intervals.md
+power_calculations.md
+monte_carlo.md
+permutation_tests.md
+association_tests.md
