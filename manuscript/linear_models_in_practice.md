@@ -22,7 +22,7 @@ stripchart(dat$Bodyweight ~ dat$Diet, vertical=TRUE, method="jitter",
            main="Bodyweight over Diet")
 ```
 
-![plot of chunk unnamed-chunk-1](images/linear_models_in_practice-unnamed-chunk-1-1.png) 
+![plot of chunk unnamed-chunk-1](images/R/linear_models_in_practice-unnamed-chunk-1-1.png) 
 
 We can see that the high fat diet group appears to have higher weights on average, although there is overlap between the two samples.
 
@@ -231,7 +231,7 @@ abline(h=coefs[1]+coefs[2],col=cols[2])
 legend("right",names(coefs),fill=cols,cex=.75,bg="white")
 ```
 
-![plot of chunk unnamed-chunk-7](images/linear_models_in_practice-unnamed-chunk-7-1.png) 
+![plot of chunk unnamed-chunk-7](images/R/linear_models_in_practice-unnamed-chunk-7-1.png) 
 
 ## Comparing Simple Two Group lm To A t-test
 
