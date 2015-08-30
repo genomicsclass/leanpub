@@ -29,7 +29,7 @@ boxplot(spider$friction ~ spider$type * spider$leg,
         main="Comparison of friction coefficients of different leg pairs ")
 ```
 
-![plot of chunk unnamed-chunk-1](images/interactions_and_contrasts-unnamed-chunk-1-1.png) 
+![plot of chunk unnamed-chunk-1](images/R/interactions_and_contrasts-unnamed-chunk-1-1.png) 
 
 ### Initial Visual Inspection Of The Data
 
@@ -156,7 +156,7 @@ library(rafalib)
 imagemat(X, main="Model matrix for linear model with one variable")
 ```
 
-![plot of chunk unnamed-chunk-5](images/interactions_and_contrasts-unnamed-chunk-5-1.png) 
+![plot of chunk unnamed-chunk-5](images/R/interactions_and_contrasts-unnamed-chunk-5-1.png) 
 
 ### Examining The Coefficients
 
@@ -178,7 +178,7 @@ abline(h=coefs[1]+coefs[2],col=cols[2])
 legend("right",names(coefs),fill=cols,cex=.75,bg="white")
 ```
 
-![plot of chunk unnamed-chunk-6](images/interactions_and_contrasts-unnamed-chunk-6-1.png) 
+![plot of chunk unnamed-chunk-6](images/R/interactions_and_contrasts-unnamed-chunk-6-1.png) 
 
 ### A Linear Model With Two Variables
 
@@ -212,7 +212,7 @@ head(X)
 imagemat(X, main="Model matrix for linear model with two factors")
 ```
 
-![plot of chunk unnamed-chunk-7](images/interactions_and_contrasts-unnamed-chunk-7-1.png) 
+![plot of chunk unnamed-chunk-7](images/R/interactions_and_contrasts-unnamed-chunk-7-1.png) 
 
 The first column is the intercept, and so it has 1's for all samples. The second column has 1's for the push samples, and we can see that there are four groups of them. Finally, the third, fourth and fifth columns have 1's for the L2, L3 and L4 samples. The L1 samples do not have a column, because *L1* is the reference level for `leg`, as is *pull* for the `type` variable.
 
@@ -312,7 +312,7 @@ arrows(8+a,coefs[1]+coefs[5],8+a,coefs[1]+coefs[5]+coefs[2],lwd=3,col=cols[2],le
 legend("right",names(coefs),fill=cols,cex=.75,bg="white")
 ```
 
-![plot of chunk unnamed-chunk-10](images/interactions_and_contrasts-unnamed-chunk-10-1.png) 
+![plot of chunk unnamed-chunk-10](images/R/interactions_and_contrasts-unnamed-chunk-10-1.png) 
 
 Because we have 8 groups and only 5 coefficients, the fitted means (the tips of the arrows) do not line up exactly with the mean of each group, like they did for the previous example of a two group linear model.
 
@@ -570,7 +570,7 @@ head(X)
 imagemat(X, main="Model matrix for linear model with interactions")
 ```
 
-![plot of chunk unnamed-chunk-18](images/interactions_and_contrasts-unnamed-chunk-18-1.png) 
+![plot of chunk unnamed-chunk-18](images/R/interactions_and_contrasts-unnamed-chunk-18-1.png) 
 
 Columns 6-8 (`typepush:legL2`, `typepush:legL3`, and `typepush:legL4`) are the product of the 2nd column (`typepush`) and the 3-5 columns (the three `leg` columns). Looking at the last column, for example, the `typepush:legL4` column will give an extra term {$$}\beta_{\textrm{push,L4}}{/$$} to those samples which are both push samples and leg pair L4 samples. This will account for when the mean samples in the L4-push group are not simply the addition of the main push coefficient and the main L4 coefficient.
 
@@ -646,7 +646,7 @@ arrows(8+a,coefs[1]+coefs[5]+coefs[2],8+a,coefs[1]+coefs[5]+coefs[2]+coefs[8],lw
 legend("right",names(coefs),fill=cols,cex=.75,bg="white")
 ```
 
-![plot of chunk unnamed-chunk-20](images/interactions_and_contrasts-unnamed-chunk-20-1.png) 
+![plot of chunk unnamed-chunk-20](images/R/interactions_and_contrasts-unnamed-chunk-20-1.png) 
 
 ### Contrasts
 
@@ -885,7 +885,7 @@ head(X)
 imagemat(X, main="Model matrix for linear model with group variable")
 ```
 
-![plot of chunk unnamed-chunk-27](images/interactions_and_contrasts-unnamed-chunk-27-1.png) 
+![plot of chunk unnamed-chunk-27](images/R/interactions_and_contrasts-unnamed-chunk-27-1.png) 
 
 We can run the linear model with the familiar call:
 
@@ -942,7 +942,7 @@ for (i in 1:8) {
 legend("right",names(coefs),fill=cols,cex=.75,bg="white")
 ```
 
-![plot of chunk unnamed-chunk-29](images/interactions_and_contrasts-unnamed-chunk-29-1.png) 
+![plot of chunk unnamed-chunk-29](images/R/interactions_and_contrasts-unnamed-chunk-29-1.png) 
 
 ### Simple Contrasts Using The Contrast package
 
