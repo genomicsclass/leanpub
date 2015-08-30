@@ -193,7 +193,7 @@ fitted <- tcrossprod(Q)%*%y
 lines(x,fitted,col=2)
 ```
 
-<img src="images/qr_and_regression-unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
+<img src="images/R/qr_and_regression-unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
 
 ### Standard Errors
 
