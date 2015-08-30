@@ -45,7 +45,7 @@ plot(results$dm,-log10(results$p.value),
      xlab="Effect size",ylab="- log (base 10) p-values")
 ```
 
-![plot of chunk unnamed-chunk-4](images/eda_for_highthroughput-unnamed-chunk-4-1.png) 
+![plot of chunk unnamed-chunk-4](images/R/eda_for_highthroughput-unnamed-chunk-4-1.png) 
 
 Many features with very small p-values but small effect sizes, as we see here, are sometimes indicative of problematic data.
 
@@ -60,7 +60,7 @@ hist(nullpvals,ylim=c(0,1400))
 hist(pvals,ylim=c(0,1400))
 ```
 
-![plot of chunk unnamed-chunk-5](images/eda_for_highthroughput-unnamed-chunk-5-1.png) 
+![plot of chunk unnamed-chunk-5](images/R/eda_for_highthroughput-unnamed-chunk-5-1.png) 
 
 When we expect most hypothesis to be null and we don't see a uniform p-value distribution, it might be indicative of unexpected properties such as correlated samples. 
 
@@ -73,7 +73,7 @@ permresults <- rowttests(geneExpression,permg)
 hist(permresults$p.value)
 ```
 
-![plot of chunk unnamed-chunk-6](images/eda_for_highthroughput-unnamed-chunk-6-1.png) 
+![plot of chunk unnamed-chunk-6](images/R/eda_for_highthroughput-unnamed-chunk-6-1.png) 
 
 ### Data boxplots and histogram
 
@@ -97,7 +97,7 @@ mypar(1,1)
 boxplot(ge,range=0,names=1:ncol(e),col=ifelse(1:ncol(ge)==49,1,2))
 ```
 
-![plot of chunk unnamed-chunk-8](images/eda_for_highthroughput-unnamed-chunk-8-1.png) 
+![plot of chunk unnamed-chunk-8](images/R/eda_for_highthroughput-unnamed-chunk-8-1.png) 
 
 Note that the number of samples is a bit too large here making it hard to see the boxes. One can instead simply show the boxplot summaries without (cite Karl Broman):
 
@@ -107,7 +107,7 @@ qs <- t(apply(ge,2,quantile,prob=c(0.05,0.25,0.5,0.75,0.95)))
 matplot(qs,type="l",lty=1)
 ```
 
-![plot of chunk unnamed-chunk-9](images/eda_for_highthroughput-unnamed-chunk-9-1.png) 
+![plot of chunk unnamed-chunk-9](images/R/eda_for_highthroughput-unnamed-chunk-9-1.png) 
 
 We can also plot all the histograms. Because we have so much data we create histograms using small bins, then smooth the heights of the bars and then plot _smooth histograms_. We re-calibrate the height of these smooth curves so that if a bar is made with base of size "unit" and height given by the curve at {$$}x_0{/$$}, the area approximates the number of points in  region of size "unit" centered at {$$}x_0{/$$}:
 
@@ -117,7 +117,7 @@ mypar(1,1)
 shist(ge,unit=0.5)
 ```
 
-![plot of chunk unnamed-chunk-10](images/eda_for_highthroughput-unnamed-chunk-10-1.png) 
+![plot of chunk unnamed-chunk-10](images/R/eda_for_highthroughput-unnamed-chunk-10-1.png) 
 
 ### MA plot
 
@@ -132,7 +132,7 @@ plot(x,y)
 plot((x+y)/2,x-y)
 ```
 
-![plot of chunk unnamed-chunk-11](images/eda_for_highthroughput-unnamed-chunk-11-1.png) 
+![plot of chunk unnamed-chunk-11](images/R/eda_for_highthroughput-unnamed-chunk-11-1.png) 
 
 Note that once we rotate the plot, the fact that these data have differences of about 
 
