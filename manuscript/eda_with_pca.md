@@ -77,7 +77,7 @@ mypar()
 hist(chryexp)
 ```
 
-![plot of chunk unnamed-chunk-7](images/eda_with_pca-unnamed-chunk-7-1.png) 
+![plot of chunk unnamed-chunk-7](images/R/eda_with_pca-unnamed-chunk-7-1.png) 
 
 So we can predict sex this way:
 
@@ -129,7 +129,7 @@ cols=colorRampPalette(brewer.pal(9,"Blues"))(100)
 image ( cor(y) ,col=cols)
 ```
 
-![plot of chunk unnamed-chunk-11](images/eda_with_pca-unnamed-chunk-11-1.png) 
+![plot of chunk unnamed-chunk-11](images/R/eda_with_pca-unnamed-chunk-11-1.png) 
 
 Here we are using the term _structure_ to refer to the deviation from what one would see if the samples were in fact independent from each other. 
 
@@ -142,7 +142,7 @@ d0 <- svd(y0)$d
 plot(d0^2/sum(d0^2),ylim=c(0,.25))
 ```
 
-![plot of chunk unnamed-chunk-12](images/eda_with_pca-unnamed-chunk-12-1.png) 
+![plot of chunk unnamed-chunk-12](images/R/eda_with_pca-unnamed-chunk-12-1.png) 
 
 Instead we see this:
 
@@ -151,7 +151,7 @@ Instead we see this:
 plot(s$d^2/sum(s$d^2))
 ```
 
-![plot of chunk unnamed-chunk-13](images/eda_with_pca-unnamed-chunk-13-1.png) 
+![plot of chunk unnamed-chunk-13](images/R/eda_with_pca-unnamed-chunk-13-1.png) 
 
 At least 20 or so PCs appear to be higher than what we would expect with independent data. A next step is to try to explain these PCs with measured variables. Is this driven by ethnicity? sex? date? something else?
 
@@ -170,7 +170,7 @@ plot(s$v[,1],s$v[,2],col=cols,pch=16,
 legend("bottomleft",levels(eth),col=seq(along=levels(eth)),pch=16)
 ```
 
-![plot of chunk unnamed-chunk-14](images/eda_with_pca-unnamed-chunk-14-1.png) 
+![plot of chunk unnamed-chunk-14](images/R/eda_with_pca-unnamed-chunk-14-1.png) 
 
 There is a very clear association between the first PC and ethnicity. However, we also see that for the orange points there are sub-clusters. We know from previous analyzes that ethnicity and preprocessing date are correlated:
 
@@ -202,7 +202,7 @@ plot(s$v[,1],s$v[,2],col=cols,pch=16,
 legend("bottomleft",levels(year),col=seq(along=levels(year)),pch=16)
 ```
 
-![plot of chunk unnamed-chunk-16](images/eda_with_pca-unnamed-chunk-16-1.png) 
+![plot of chunk unnamed-chunk-16](images/R/eda_with_pca-unnamed-chunk-16-1.png) 
 
 Year is also very correlated with the first PC. So which variable is driving this? Given the high level of confounding it is not easy to parse out but below and in the assessment questions we provide some further exploratory approaches.
 
@@ -233,7 +233,7 @@ for(i in 1:4){
   }
 ```
 
-![plot of chunk unnamed-chunk-18](images/eda_with_pca-unnamed-chunk-18-1.png) 
+![plot of chunk unnamed-chunk-18](images/R/eda_with_pca-unnamed-chunk-18-1.png) 
 
 Here we see that month has a very strong correlation with the first PC as well as some of the others. In cases such as these in which we have many samples, we can use an analysis of variance to see which PCs correlate with month:
 
@@ -247,7 +247,7 @@ mypar()
 plot(corr)
 ```
 
-![plot of chunk unnamed-chunk-19](images/eda_with_pca-unnamed-chunk-19-1.png) 
+![plot of chunk unnamed-chunk-19](images/R/eda_with_pca-unnamed-chunk-19-1.png) 
 
 We see a very strong correlation with the first PC. An relatively strong correlations for the first 20 or so PCs.
 We can also compute F-statistics comparing within month to across month variability:
@@ -265,7 +265,7 @@ p <- length(unique(month))
 abline(h=sqrt(qf(0.995,p-1,ncol(s$v)-1)))
 ```
 
-![plot of chunk unnamed-chunk-20](images/eda_with_pca-unnamed-chunk-20-1.png) 
+![plot of chunk unnamed-chunk-20](images/R/eda_with_pca-unnamed-chunk-20-1.png) 
 
 In the assessments we will see how we can use the PCs as estimates in factor analysis to improve model estimates.
 
