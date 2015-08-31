@@ -67,13 +67,13 @@ barplot(browsers,main="Browser Usage (August 2013)")
 
 Note that we can now pretty easily determine the percentages by following a horizontal line to the x-axis. Do avoid 3-D version since it obfuscates the plot and removes this particular advantage.
 
-![3-D version](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig2b.png)
+![3-D version](images/downloads/fig2b.png)
 
 
 
 Even worse than pie charts are donut plots.
 
-![Donut plot](http://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Donut-Chart.svg/360px-Donut-Chart.svg.png)
+![Donut plot](images/downloads/360px-Donut-Chart.svg.png)
 
 The reason is that by removing the center, we remove one of the visual cues for determining the different areas: the angles. There is no reason to ever use a donut to display data.
 
@@ -81,7 +81,7 @@ The reason is that by removing the center, we remove one of the visual cues for 
 
 While barplots are useful for showing percentages, they are incorrectly used to display data from two groups being compared. Specifically, barplots are created with height equal to the group means; an antenna is added at the top to represent standard errors. This plot is simply showing two numbers per groups and the plot adds nothing:
 
-![Bad bar plots](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig1c.png)
+![Bad bar plots](images/downloads/fig1c.png)
 
 Much more informative is to summarize with a boxplot. If the number of points is small enough, we might as well add them to the plot. When the number of points is too large for us to see them, just showing a boxplot is preferable.
 
@@ -112,7 +112,7 @@ Notice how much more we see here: the center, spread, range and the points thems
 
 This problem is magnified when our data has outliers or very large tails. In the plot below there appears to be very large and consistent differences between the two groups:
 
-![Bar plots with outliers](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig3c.png)
+![Bar plots with outliers](images/downloads/fig3c.png)
 
 However, a quick look at the data demonstrates that this difference is mostly driven by just two points. A version showing the data in the log-scale is much more informative. 
 
@@ -233,7 +233,7 @@ These are referred to as Bland-Altman plots or MA plots in the genomics literatu
 
 A common task in data analysis is the comparison of two groups. When the dataset is small and data are paired, for example the outcomes before and after a treatment, two color barplots are unfortunately often used to display the results:
 
-![Barplot for two variables](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig6r_e.png)
+![Barplot for two variables](images/downloads/fig6r_e.png)
 
 There are better ways of showing these data to illustrate that there is an increase after treatment. One is to simply make a scatterplot, which shows that most points are above the identity line. Another alternative is to plot the differences against the before values.
 
@@ -280,7 +280,7 @@ boxplot(before,after,names=c("Before","After"),ylab="Response")
 
 The figure below shows three curves. Pseudo 3D is used, but it is not clear why. Maybe to separate the three curves? Notice how difficult it is to determine the values of the curves at any given point:
 
-![Gratuitous 3-D](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig8b.png)
+![Gratuitous 3-D](images/downloads/fig8b.png)
 
 This plot can be made better by simply using color to distinguish the three lines:
 
@@ -309,7 +309,7 @@ legend(1,0.4,c("Drug A","Drug B","Drug C"),lwd=2, col=1:3)
 
 In this example we generate data with a simulation. We are studying a dose response relationship between two groups: treatment and control. We have three groups of measurements for both control and treatment. Comparing treatment and control using the common barplot:
 
-![Ingoring important factors](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig9d.png)
+![Ingoring important factors](images/downloads/fig9d.png)
 
 Instead we should show each curve. We can use color to distinguish treatment and control and dashed and solid lines to distinguish the original data from the mean of the three groups.
 
