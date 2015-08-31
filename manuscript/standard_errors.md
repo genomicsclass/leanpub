@@ -29,7 +29,7 @@ n <- 25
 tt <- seq(0,3.4,len=n) ##time in secs, t is a base function
 X <-cbind(1,tt,tt^2)
 ##create X'X^-1 X'
-A <- solve(crossprod(X))%*%t(X)
+A <- solve(crossprod(X)) %*% t(X)
 betahat<-replicate(B,{
   y <- h0 + v0*tt  - 0.5*g*tt^2 + rnorm(n,sd=1)
   betahats <- A%*%y
@@ -53,7 +53,7 @@ qqnorm(betahat)
 qqline(betahat)
 ```
 
-![plot of chunk unnamed-chunk-2](images/R/standard_errors-unnamed-chunk-2-1.png) 
+![Distribution of estimated regression coefficients obtained from Monte Carlo simulated falling object data. The left is a histogram and on the right we have a qq-plot against normal theoretical quantiles.](images/R/standard_errors-regression_estimates_normally_distributed-1.png) 
 
 Because {$$}\hat{\beta}{/$$} is a linear combination of the data which we made normal in our simulation, it is also normal as seen in the qq-plot above. Also, the mean of the distribution is the true parameter {$$}-0.5g{/$$}, as confirmed by the Monte Carlo simulation performed above.
 
@@ -110,24 +110,12 @@ By making qq-plots, we see that our estimates are approximately normal random va
 
 
 ```r
-mypar2(1,2)
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "mypar2"
-```
-
-```r
+mypar(1,2)
 qqnorm(betahat[,1]);qqline(betahat[,1])
-```
-
-![plot of chunk unnamed-chunk-7](images/R/standard_errors-unnamed-chunk-7-1.png) 
-
-```r
 qqnorm(betahat[,2]);qqline(betahat[,2])
 ```
 
-![plot of chunk unnamed-chunk-7](images/R/standard_errors-unnamed-chunk-7-2.png) 
+![Distribution of estimated regression coefficients obtained from Monte Carlo simulated father son height data. The left is a histogram and on the right we have a qq-plot against normal theoretical quantiles.](images/R/standard_errors-regression_estimates_normally_distributed2-1.png) 
 
 We also see that the correlation of our estimates is negative:
 
