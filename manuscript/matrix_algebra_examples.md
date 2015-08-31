@@ -243,9 +243,9 @@ library(UsingR)
 x=father.son$fheight
 y=father.son$sheight
 X <- cbind(1,x)
-betahat <- solve(t(X)%*%X)%*%t(X)%*%y
+betahat <- solve( t(X) %*% X ) %*% t(X) %*% y
 ###or
-betahat <- solve(crossprod(X))%*%crossprod(X,y)
+betahat <- solve( crossprod(X) ) %*% crossprod( X, y )
 ```
 
 
@@ -260,7 +260,7 @@ plot(x,y,xlab="Father's height",ylab="Son's height")
 lines(newx,fitted,col=2)
 ```
 
-![plot of chunk unnamed-chunk-7](images/R/matrix_algebra_examples-unnamed-chunk-7-1.png) 
+![Galton's data with fitted regression line.](images/R/matrix_algebra_examples-galton_regression_line-1.png) 
 
 This {$$}\hat{\boldsymbol{\beta}}=(\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{Y}{/$$} is one of the most widely used results in data analysis. One of the advantages of this approach is that we can use it in many different situations.  For example, in our falling object problem. 
  
@@ -288,7 +288,7 @@ plot(tt,y,xlab="Time",ylab="Height")
 lines(newtt,fitted,col=2)
 ```
 
-![plot of chunk unnamed-chunk-9](images/R/matrix_algebra_examples-unnamed-chunk-9-1.png) 
+![Fitted parabola to simulated data for distance travelled versus time of falling object measured with error.](images/R/matrix_algebra_examples-gravity_with_fitted_parabola-1.png) 
 
 And the resulting estimates are what we expect:
 
