@@ -27,33 +27,18 @@ In previous sections, we showed parametric approaches that helped determine if t
 
 
 ```r
+N <- 12
 avgdiff <- replicate(1000, {
     all <- sample(c(control,treatment))
     newcontrols <- all[1:N]
     newtreatments <- all[(N+1):(2*N)]
-  return(mean(smokersstar) - mean(nonsmokersstar))
+  return(mean(newtreatments) - mean(newcontrols))
 })
-```
-
-```
-## Error in FUN(X[[i]], ...): object 'N' not found
-```
-
-```r
 hist(avgdiff)
+abline(v=obsdiff)
 ```
 
-```
-## Error in hist(avgdiff): object 'avgdiff' not found
-```
-
-```r
-abline(v=obsdif)
-```
-
-```
-## Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): object 'obsdif' not found
-```
+![Histogram of differece between averages from permutations. Vertical line shows the observed difference.](images/R/permutation_tests-diff_hist-1.png) 
 
 How many of the null means are bigger than the observed value? That proportion would be the p-value for the null.
 
@@ -64,20 +49,17 @@ mean(abs(avgdiff) > abs(obsdiff))
 ```
 
 ```
-## Error in mean(abs(avgdiff) > abs(obsdiff)): object 'avgdiff' not found
+## [1] 0.073
 ```
 
 Now let's repeat this experiment for a smaller dataset. We create a smaller dataset by sampling:
 
 
 ```r
-control <- sample(control,5)
-treatment <- sample(treatment,5)
-obsdiff <- mean(treatment,control)
-```
-
-```
-## Error in mean.default(treatment, control): 'trim' must be numeric of length one
+N <- 5
+control <- sample(control,N)
+treatment <- sample(treatment,N)
+obsdiff <- mean(treatment)- mean(control)
 ```
 and repeat the exercise:
 
@@ -88,29 +70,13 @@ avgdiff <- replicate(1000, {
     all <- sample(c(control,treatment))
     newcontrols <- all[1:N]
     newtreatments <- all[(N+1):(2*N)]
-  return(mean(smokersstar) - mean(nonsmokersstar))
+  return(mean(newtreatments) - mean(newcontrols))
 })
-```
-
-```
-## Error in FUN(X[[i]], ...): object 'N' not found
-```
-
-```r
 hist(avgdiff)
+abline(v=obsdiff)
 ```
 
-```
-## Error in hist(avgdiff): object 'avgdiff' not found
-```
-
-```r
-abline(v=obsdif)
-```
-
-```
-## Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): object 'obsdif' not found
-```
+![Histogram of differece between averages from permutations for smaller sample size. Vertical line shows the observed difference.](images/R/permutation_tests-diff_hist_N50-1.png) 
 
 Now the observed difference is not significant using this approach. Keep in mind that there is no theoretical guarantee that the null distribution estimated from permutations approximates the actual null distribution. For example, if there is a real difference between the populations, some of the permutations will be unbalanced and will contain some samples that explain this difference. This implies that the null distribution created with permutations will have larger tails than the actual null distribution. This is why permutations result in conservative p-values. For this reason, when we have few samples, we can't do permutations. 
 
