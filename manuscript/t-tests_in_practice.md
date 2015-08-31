@@ -117,8 +117,12 @@ As described earlier, the statistical theory offers another useful result. If th
 ```r
 library(rafalib)
 mypar(1,2)
-qqnorm(treatment);qqline(treatment,col=2)
-qqnorm(control);qqline(control,col=2)
+
+qqnorm(treatment)
+qqline(treatment,col=2)
+
+qqnorm(control)
+qqline(control,col=2)
 ```
 
 ![Quantile-quantile plots for sample against theoretical normal distribution.](images/R/t-tests_in_practice-data_qqplot-1.png) 
@@ -168,15 +172,15 @@ Later, in the power calculation section, we will describe type I and type II err
 Now that we have gone over the concepts, we can show the relatively simple code that one actually would run to compute a t-test: 
 
 
-```r
-dat <- read.csv(filename)
-```
 
-```
-## Error in read.table(file = file, header = header, sep = sep, quote = quote, : object 'filename' not found
-```
+
+
 
 ```r
+library(dplyr)
+
+dat <- read.csv("mice_pheno.csv")
+
 control <- filter(dat,Diet=="chow") %>% select(Bodyweight) 
 
 treatment <- filter(dat,Diet=="hf") %>% select(Bodyweight) 
@@ -189,13 +193,13 @@ t.test(treatment,control)
 ## 	Welch Two Sample t-test
 ## 
 ## data:  treatment and control
-## t = 2.0552, df = 20.236, p-value = 0.053
+## t = 7.1932, df = 735.02, p-value = 1.563e-12
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.04296563  6.08463229
+##  2.231533 3.906857
 ## sample estimates:
 ## mean of x mean of y 
-##  26.83417  23.81333
+##  30.48201  27.41281
 ```
 
 The arguments to `t.test` can be data.frames and thus we do not need to unlist them into numeric objects.
