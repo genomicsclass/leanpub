@@ -12,17 +12,15 @@ We will demonstrate how to analyze the high fat diet data using linear models in
 We start by reading in the data and creating a quick stripchart:
 
 
+
+
 ```r
-url <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/femaleMiceWeights.csv"
-filename <- "femaleMiceWeights.csv"
-library(downloader)
-if (!file.exists(filename)) download(url, filename)
-dat <- read.csv(filename)
+dat <- read.csv("femaleMiceWeights.csv") ##previously downloaded
 stripchart(dat$Bodyweight ~ dat$Diet, vertical=TRUE, method="jitter",
            main="Bodyweight over Diet")
 ```
 
-![plot of chunk unnamed-chunk-1](images/R/linear_models_in_practice-unnamed-chunk-1-1.png) 
+![Mice bodyweights stratified by diet.](images/R/linear_models_in_practice-bodyweight_by_diet_stripchart-1.png) 
 
 We can see that the high fat diet group appears to have higher weights on average, although there is overlap between the two samples.
 
@@ -231,7 +229,7 @@ abline(h=coefs[1]+coefs[2],col=cols[2])
 legend("right",names(coefs),fill=cols,cex=.75,bg="white")
 ```
 
-![plot of chunk unnamed-chunk-7](images/R/linear_models_in_practice-unnamed-chunk-7-1.png) 
+![Estimated linear model coefficients for bodyweight data illustrated with arrows.](images/R/linear_models_in_practice-parameter_estimate_illustration-1.png) 
 
 ## Comparing Simple Two Group lm To A t-test
 
