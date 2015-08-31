@@ -106,7 +106,7 @@ which covers {$$}\mu_X{/$$} or `mean(chowPopulation)`. However, we can take anot
 ```r
 library(rafalib)
 B <- 250
-mypar(1,1)
+mypar()
 plot(mean(chowPopulation)+c(-7,7),c(1,1),type="n",
      xlab="weight",ylab="interval",ylim=c(1,B))
 abline(v=mean(chowPopulation))
@@ -133,6 +133,7 @@ For {$$}N=30{/$$} the CLT works very well. However, if {$$}N=5{/$$}, do these co
 
 
 ```r
+mypar()
 plot(mean(chowPopulation)+c(-7,7),c(1,1),type="n",
      xlab="weight",ylab="interval",ylim=c(1,B))
 abline(v=mean(chowPopulation))
@@ -155,14 +156,15 @@ Despite the intervals being larger (we are dividing by {$$}\sqrt{5}{/$$} instead
 
 
 ```r
-plot(mean(chowPopulation)+c(-7,7),c(1,1),type="n",
-     xlab="weight",ylab="interval",ylim=c(1,B))
+mypar()
+plot(mean(chowPopulation) + c(-7,7), c(1,1), type="n",
+     xlab="weight", ylab="interval", ylim=c(1,B))
 abline(v=mean(chowPopulation))
 ##Q <- qnorm(1- 0.05/2) ##no longer normal so use:
 Q <- qt(1- 0.05/2, df=4)
 N<-5
 for(i in 1:B){
-  hf <- sample(chowPopulation,N)
+  hf <- sample(chowPopulation, N)
   se=sd(hf)/sqrt(N)
   interval <- c(mean(hf)-Q*se, mean(hf)+Q*se )
   covered<-mean(chowPopulation)<= interval[2] & mean(chowPopulation)>=interval[1]
@@ -205,18 +207,7 @@ Suppose you use CLT and report {$$}\Delta \pm 2 s_\Delta/\sqrt{N}{/$$} as a 95% 
 Note that the confidence interval for the difference {$$}\Delta{/$$} is provided by the `t.test` function:
 
 
-```r
-library(downloader)
-url <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/femaleMiceWeights.csv"
-filename <- "femaleMiceWeights.csv"
-if (!file.exists(filename)) download(url,destfile=filename)
-dat <- read.csv(filename)
-controlIndex <- which(dat$Diet=="chow")
-treatmentIndex <- which(dat$Diet=="hf")
-control <- dat[controlIndex,2]
-treatment <- dat[treatmentIndex,2]
-t.test(treatment,control)
-```
+
 
 ```
 ## 
