@@ -29,7 +29,7 @@ boxplot(spider$friction ~ spider$type * spider$leg,
         main="Comparison of friction coefficients of different leg pairs ")
 ```
 
-![plot of chunk unnamed-chunk-1](images/R/interactions_and_contrasts-unnamed-chunk-1-1.png) 
+![Comparison of friction coefficients of spiders' different leg pairs](images/R/interactions_and_contrasts-spide_data-1.png) 
 
 ### Initial Visual Inspection Of The Data
 
@@ -151,12 +151,11 @@ Now we'll make a plot of the `X` matrix by putting a black block for the 1's in 
 
 
 ```r
-# library(devtools); install_github("ririzarr/rafalib")
 library(rafalib)
 imagemat(X, main="Model matrix for linear model with one variable")
 ```
 
-![plot of chunk unnamed-chunk-5](images/R/interactions_and_contrasts-unnamed-chunk-5-1.png) 
+![Model matrix for linear model with one variable.](images/R/interactions_and_contrasts-model_matrix_image-1.png) 
 
 ### Examining The Coefficients
 
@@ -178,7 +177,7 @@ abline(h=coefs[1]+coefs[2],col=cols[2])
 legend("right",names(coefs),fill=cols,cex=.75,bg="white")
 ```
 
-![plot of chunk unnamed-chunk-6](images/R/interactions_and_contrasts-unnamed-chunk-6-1.png) 
+![MIKELOVE add caption.](images/R/interactions_and_contrasts-spider_main_coef-1.png) 
 
 ### A Linear Model With Two Variables
 
@@ -212,7 +211,7 @@ head(X)
 imagemat(X, main="Model matrix for linear model with two factors")
 ```
 
-![plot of chunk unnamed-chunk-7](images/R/interactions_and_contrasts-unnamed-chunk-7-1.png) 
+![Image of more complex model matrix.](images/R/interactions_and_contrasts-model_matrix_image2-1.png) 
 
 The first column is the intercept, and so it has 1's for all samples. The second column has 1's for the push samples, and we can see that there are four groups of them. Finally, the third, fourth and fifth columns have 1's for the L2, L3 and L4 samples. The L1 samples do not have a column, because *L1* is the reference level for `leg`, as is *pull* for the `type` variable.
 
@@ -312,7 +311,7 @@ arrows(8+a,coefs[1]+coefs[5],8+a,coefs[1]+coefs[5]+coefs[2],lwd=3,col=cols[2],le
 legend("right",names(coefs),fill=cols,cex=.75,bg="white")
 ```
 
-![plot of chunk unnamed-chunk-10](images/R/interactions_and_contrasts-unnamed-chunk-10-1.png) 
+![MIKELOVE](images/R/interactions_and_contrasts-spider_interactions-1.png) 
 
 Because we have 8 groups and only 5 coefficients, the fitted means (the tips of the arrows) do not line up exactly with the mean of each group, like they did for the previous example of a two group linear model.
 
@@ -415,23 +414,40 @@ library(contrast)
 ```
 
 ```
-## Error in library(contrast): there is no package called 'contrast'
+## Loading required package: rms
+## Loading required package: Hmisc
+## Loading required package: methods
+## Loading required package: grid
+## Loading required package: lattice
+## Loading required package: survival
+## Loading required package: Formula
+## Loading required package: ggplot2
+## 
+## Attaching package: 'Hmisc'
+## 
+## The following objects are masked from 'package:base':
+## 
+##     format.pval, round.POSIXt, trunc.POSIXt, units
+## 
+## Loading required package: SparseM
+## 
+## Attaching package: 'SparseM'
+## 
+## The following object is masked from 'package:base':
+## 
+##     backsolve
 ```
 
 ```r
 L3vsL2 <- contrast(fitTL,list(leg="L3",type="pull"),list(leg="L2",type="pull"))
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "contrast"
-```
-
-```r
 L3vsL2
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'L3vsL2' not found
+## lm model parameter contrast
+## 
+##     Contrast       S.E.      Lower      Upper     t  df Pr(>|t|)
+##  -0.01142949 0.04319685 -0.0964653 0.07360632 -0.26 277   0.7915
 ```
 
 We can show that the effect size estimate is just the difference between two coefficients. The contrast vector used by `contrast` is stored as `X` within the resulting object:
@@ -451,7 +467,16 @@ coefs[4] - coefs[3]
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'L3vsL2' not found
+##   (Intercept) typepush legL2 legL3 legL4
+## 1           0        0    -1     1     0
+## attr(,"assign")
+## [1] 0 1 2 2 2
+## attr(,"contrasts")
+## attr(,"contrasts")$type
+## [1] "contr.treatment"
+## 
+## attr(,"contrasts")$leg
+## [1] "contr.treatment"
 ```
 
 ```r
@@ -459,7 +484,8 @@ cT %*% beta
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'cT' not found
+##          [,1]
+## 1 -0.01142949
 ```
 
 What about the standard error and t-statistic? As before, the t-statistic is the estimate (`Contrast`) divided by the standard error (`S.E.`). The standard error of the contrast estimate is formed by multiplying the contrast vector {$$}\mathbf{c}{/$$} on either side of the estimated covariance matrix, {$$}\Sigma \equiv \mathrm{Var}(\hat{\boldsymbol{\beta}}){/$$}:
@@ -495,7 +521,8 @@ sqrt(cT %*% Sigma %*% t(cT))
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'cT' not found
+##            1
+## 1 0.04319685
 ```
 
 ```r
@@ -503,7 +530,7 @@ L3vsL2$SE
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'L3vsL2' not found
+## [1] 0.04319685
 ```
 
 Again, to show it doesn't matter if we had picked `type="push"`. The reason it does not change the contrast is because it leads to addition of the `typepush` effect on both sides of the difference, which cancels out.
@@ -511,18 +538,20 @@ Again, to show it doesn't matter if we had picked `type="push"`. The reason it d
 
 ```r
 L3vsL2.equiv <- contrast(fitTL,list(leg="L3",type="push"),list(leg="L2",type="push"))
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "contrast"
-```
-
-```r
 L3vsL2.equiv$X
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'L3vsL2.equiv' not found
+##   (Intercept) typepush legL2 legL3 legL4
+## 1           0        0    -1     1     0
+## attr(,"assign")
+## [1] 0 1 2 2 2
+## attr(,"contrasts")
+## attr(,"contrasts")$type
+## [1] "contr.treatment"
+## 
+## attr(,"contrasts")$leg
+## [1] "contr.treatment"
 ```
 
 ## A Linear Model With Interactions
@@ -570,7 +599,7 @@ head(X)
 imagemat(X, main="Model matrix for linear model with interactions")
 ```
 
-![plot of chunk unnamed-chunk-18](images/R/interactions_and_contrasts-unnamed-chunk-18-1.png) 
+![Image of model matrix with interactions.](images/R/interactions_and_contrasts-model_matrix_with_interaction_image-1.png) 
 
 Columns 6-8 (`typepush:legL2`, `typepush:legL3`, and `typepush:legL4`) are the product of the 2nd column (`typepush`) and the 3-5 columns (the three `leg` columns). Looking at the last column, for example, the `typepush:legL4` column will give an extra term {$$}\beta_{\textrm{push,L4}}{/$$} to those samples which are both push samples and leg pair L4 samples. This will account for when the mean samples in the L4-push group are not simply the addition of the main push coefficient and the main L4 coefficient.
 
@@ -646,7 +675,7 @@ arrows(8+a,coefs[1]+coefs[5]+coefs[2],8+a,coefs[1]+coefs[5]+coefs[2]+coefs[8],lw
 legend("right",names(coefs),fill=cols,cex=.75,bg="white")
 ```
 
-![plot of chunk unnamed-chunk-20](images/R/interactions_and_contrasts-unnamed-chunk-20-1.png) 
+![MIKELOVE](images/R/interactions_and_contrasts-spider_interactions2-1.png) 
 
 ### Contrasts
 
@@ -654,29 +683,18 @@ Again we will show how to combine coefficients from the model using *contrasts*.
 
 
 ```r
-library(contrast)
-```
-
-```
-## Error in library(contrast): there is no package called 'contrast'
-```
-
-```r
+library(contrast) ##Available from CRAN
 L2push.vs.pull <- contrast(fitX,
                    list(leg="L2", type = "push"), 
                    list(leg="L2", type = "pull"))
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "contrast"
-```
-
-```r
 L2push.vs.pull
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'L2push.vs.pull' not found
+## lm model parameter contrast
+## 
+##  Contrast      S.E.      Lower      Upper     t  df Pr(>|t|)
+##    -0.618 0.0695372 -0.7548951 -0.4811049 -8.89 274        0
 ```
 
 ```r
@@ -741,29 +759,32 @@ We can't make this contrast using the `contrast` function shown before, but we c
 
 
 ```r
-# install.packages("multcomp")
-library(multcomp)
+library(multcomp) ##Available from CRAN
 ```
 
 ```
-## Error in library(multcomp): there is no package called 'multcomp'
+## Loading required package: mvtnorm
+## Loading required package: TH.data
 ```
 
 ```r
 C <- matrix(c(0,0,0,0,0,-1,1,0), 1)
 L3vsL2interaction <- glht(fitX, linfct=C)
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "glht"
-```
-
-```r
 summary(L3vsL2interaction)
 ```
 
 ```
-## Error in summary(L3vsL2interaction): object 'L3vsL2interaction' not found
+## 
+## 	 Simultaneous Tests for General Linear Hypotheses
+## 
+## Fit: lm(formula = friction ~ type + leg + type:leg, data = spider)
+## 
+## Linear Hypotheses:
+##        Estimate Std. Error t value Pr(>|t|)    
+## 1 == 0 -0.27988    0.07893  -3.546  0.00046 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## (Adjusted p values reported -- single-step method)
 ```
 
 ```r
@@ -885,7 +906,7 @@ head(X)
 imagemat(X, main="Model matrix for linear model with group variable")
 ```
 
-![plot of chunk unnamed-chunk-27](images/R/interactions_and_contrasts-unnamed-chunk-27-1.png) 
+![MIKELOVE](images/R/interactions_and_contrasts-matrix_model_image_group_variable-1.png) 
 
 We can run the linear model with the familiar call:
 
@@ -942,7 +963,7 @@ for (i in 1:8) {
 legend("right",names(coefs),fill=cols,cex=.75,bg="white")
 ```
 
-![plot of chunk unnamed-chunk-29](images/R/interactions_and_contrasts-unnamed-chunk-29-1.png) 
+![MIKELOVE](images/R/interactions_and_contrasts-estimated_group_variables-1.png) 
 
 ### Simple Contrasts Using The Contrast package
 
@@ -953,18 +974,14 @@ While we cannot perform an F test with this formulation, we can easily contrast 
 groupL2push.vs.pull <- contrast(fitG,
                                 list(group = "L2push"), 
                                 list(group = "L2pull"))
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "contrast"
-```
-
-```r
 groupL2push.vs.pull
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'groupL2push.vs.pull' not found
+## lm model parameter contrast
+## 
+##   Contrast      S.E.      Lower      Upper     t  df Pr(>|t|)
+## 1   -0.618 0.0695372 -0.7548951 -0.4811049 -8.89 274        0
 ```
 
 ```r
@@ -980,26 +997,29 @@ coefs[4] - coefs[3]
 
 We can also make pair-wise comparisons of the push vs. pull difference. For example, if we want to compare the push vs. pull difference in leg pair L3 vs. leg pair L2:
 
-{$$} (L3push - L3 pull) - (L2push - L2pull) {/$$}
+{$$} (\mbox{L3push} - \mbox{L3pull}) - (\mbox{L2push} - \mbox{L2pull}) {/$$}
 
-{$$} = L3 push + L2 pull - L3pull - L2push {/$$}
+{$$} = \mbox{L3 push} + \mbox{L2pull} - \mbox{L3pull} - \mbox{L2push} {/$$}
 
 
 ```r
 C <- matrix(c(0,0,1,-1,-1,1,0,0), 1)
 groupL3vsL2interaction <- glht(fitG, linfct=C)
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "glht"
-```
-
-```r
 summary(groupL3vsL2interaction)
 ```
 
 ```
-## Error in summary(groupL3vsL2interaction): object 'groupL3vsL2interaction' not found
+## 
+## 	 Simultaneous Tests for General Linear Hypotheses
+## 
+## Fit: lm(formula = friction ~ 0 + group, data = spider)
+## 
+## Linear Hypotheses:
+##        Estimate Std. Error t value Pr(>|t|)    
+## 1 == 0 -0.27988    0.07893  -3.546  0.00046 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## (Adjusted p values reported -- single-step method)
 ```
 
 ```r
