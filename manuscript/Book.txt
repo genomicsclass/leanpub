@@ -3,20 +3,20 @@
 
 #chapter 1 - Inference
 
-random_variables.md
-populations_and_samples.md
-clt_and_t-distribution.md
-clt_in_practice.md
-t-tests_in_practice.md
-confidence_intervals.md
-power_calculations.md
-monte_carlo.md
-permutation_tests.md
-association_tests.md
+#course1 random_variables
+#course1 populations_and_samples
+#course1 clt_and_t-distribution
+#course1 clt_in_practice
+#course1 t-tests_in_practice
+#course1 confidence_intervals
+#course1 power_calculations
+#course1 monte_carlo
+#course1 permutation_tests
+#course1 association_tests
 
 #chapter 2 - EDA
-#course1 exploratory_data_analysis_2
-#course1 plots_to_avoid
+exploratory_data_analysis_2.md
+plots_to_avoid.md
 
 #chapter 3 - Robust Statistics
 #course1 robust_summaries
