@@ -20,12 +20,7 @@ Throughout this book we use random number generators. This implies that many of 
 
 
 ```r
-?sed.seed
-```
-
-```
-## No documentation for 'sed.seed' in specified packages and libraries:
-## you could try '??sed.seed'
+?sed.seet
 ```
 
 
