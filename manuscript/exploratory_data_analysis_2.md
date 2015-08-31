@@ -23,7 +23,7 @@ To corroborate that the normal distribution is in fact a good approximation, we 
 
 
 ```r
-library(UsingR)
+library(UsingR) ##available from CRAN
 x=father.son$fheight
 ```
 
@@ -38,15 +38,18 @@ plot(normalqs,qs,xlab="Normal percentiles",ylab="Height percentiles")
 abline(0,1) ##identity line
 ```
 
-![plot of chunk unnamed-chunk-2](images/R/exploratory_data_analysis_2-unnamed-chunk-2-1.png) 
+![First example of qqplot. Here we compute the theoretical quantiles ourselves.](images/R/exploratory_data_analysis_2-qqplot_example1-1.png) 
+
 Note how close these values are. Also, note that we can see these qqplots with less code:
+
 
 ```r
 qqnorm(x)
 qqline(x) 
 ```
 
-![plot of chunk unnamed-chunk-3](images/R/exploratory_data_analysis_2-unnamed-chunk-3-1.png) 
+![Second example of qqplot. Here we use the function qqnorm which computes the theoretical noraml quantiles automatically.](images/R/exploratory_data_analysis_2-qqplot_example2-1.png) 
+
 However, the `qqnorm` function plots against a standard normal distribution. This is why the line has slope `popsd(x)` and intercept `mean(x)`.
 
 In the example above, the points match the line very well. In fact, we can run Monte Carlo simulations to see that we see plots like this for data known to be normally distributed.
@@ -60,7 +63,7 @@ qqnorm(x)
 qqline(x)
 ```
 
-![plot of chunk unnamed-chunk-4](images/R/exploratory_data_analysis_2-unnamed-chunk-4-1.png) 
+![Example of the qqnorm function. Here we apply it to numbers generated to follow a normal distribution.](images/R/exploratory_data_analysis_2-qqnorm_example-1.png) 
 
 We can also get a sense for how non-normally distributed data looks. Here we generate data from the t-distribution with different degrees of freedom. Note that the smaller the degrees of freedoms, the fatter the tails.
 
@@ -75,7 +78,7 @@ for(df in dfs){
 }
 ```
 
-![plot of chunk unnamed-chunk-5](images/R/exploratory_data_analysis_2-unnamed-chunk-5-1.png) 
+![We generate t-distributed data for four degrees of freedom and plot qqplots agains normal theoretical quantiles.](images/R/exploratory_data_analysis_2-qqnorm_of_t-1.png) 
 
 <a name="scatterplots"></a>
 
@@ -85,7 +88,6 @@ The methods described above relate to _univariate_ variables. In the biomedical 
 
 
 ```r
-# install.packages("UsingR")
 library(UsingR)
 data("father.son")
 x=father.son$fheight
@@ -93,7 +95,7 @@ y=father.son$sheight
 plot(x,y,xlab="Father's height in inches",ylab="Son's height in inches",main=paste("correlation =",signif(cor(x,y),2)))
 ```
 
-![plot of chunk unnamed-chunk-6](images/R/exploratory_data_analysis_2-unnamed-chunk-6-1.png) 
+![Heights of father and son pairs plotted against each other.](images/R/exploratory_data_analysis_2-scatterplot-1.png) 
 
 The scatter plot shows a general trend: the taller the father, the taller to son. A summary of this trend is the correlation coefficient which in this cases is 0.5. We motivate this statistic by trying to predict the son's height using the father's height. 
 
@@ -103,12 +105,13 @@ Suppose we are asked to guess the height of randomly select sons. The average he
 
 Note that the father is taller than average. Specifically, he is 1.7 standard deviations taller than the average father. So should we predict that the son is also 1.75 standard deviations taller? It turns out this would be an overestimate. To see this we look at all the sons with fathers who are about 72 inches. We do this by _stratifying_ the son heights.
 
+
 ```r
 groups <- split(y,round(x)) 
 boxplot(groups)
 ```
 
-![plot of chunk unnamed-chunk-7](images/R/exploratory_data_analysis_2-unnamed-chunk-7-1.png) 
+![plot of chunk boxplot](images/R/exploratory_data_analysis_2-boxplot-1.png) 
 
 ```r
 print(mean(y[ round(x) == 72]))
@@ -123,7 +126,12 @@ Stratification followed by boxplots lets us see the distribution of each group. 
 
 A pair of random variables {$$}(X,y){/$$} is considered to be approximated by bivariate normal when the proportion of values below, for example, {$$}x{/$$} and {$$}y{/$$} is approximated by this expression:
 
-{$$} Pr(X<a,Y<b) = \int_{-\infty}^{a} \int_{-\infty}^{b} \frac{1}{2\pi\sigma_x\sigma_y\sqrt{1-\rho^2}}
+{$$} 
+Pr(X<a,Y<b) = 
+{/$$}
+
+{$$}
+\int_{-\infty}^{a} \int_{-\infty}^{b} \frac{1}{2\pi\sigma_x\sigma_y\sqrt{1-\rho^2}}
 \exp{ \left(
 \frac{1}{2(1-\rho^2)}
 \left[\left(\frac{x-\mu_x}{\sigma_x}\right)^2 -  
@@ -147,7 +155,7 @@ for(i in c(5,8,11,14)){
 }
 ```
 
-![plot of chunk unnamed-chunk-8](images/R/exploratory_data_analysis_2-unnamed-chunk-8-1.png) 
+![qqplots of son heights for four strata defined by father heights.](images/R/exploratory_data_analysis_2-qqnorm_of_strata-1.png) 
 
 
 Now we come back to defining correlation. Mathematical statistics tells us that when two variables follow a bivariate normal distribution, then for any given value of {$$}x{/$$}, the average of the {$$}Y{/$$} in pairs for which {$$}X=x{/$$} is:
@@ -180,4 +188,4 @@ plot(fatherheights,means,ylab="average of strata of son heights",ylim=range(fath
 abline(0,cor(x,y))
 ```
 
-![plot of chunk unnamed-chunk-9](images/R/exploratory_data_analysis_2-unnamed-chunk-9-1.png) 
+![Average son height of each strata plotted against father heights defeining the strata](images/R/exploratory_data_analysis_2-scatterplot2-1.png) 
