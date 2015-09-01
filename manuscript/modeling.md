@@ -45,8 +45,8 @@ prop.table(tab)
 
 ```
 ## winners
-##     0     1     2     3 
-## 0.611 0.303 0.076 0.010
+##     0     1     2     3     4 
+## 0.624 0.287 0.081 0.007 0.001
 ```
 
 For cases like this, where {$$}N{/$$} is very large, but {$$}p{/$$} is small enough to make {$$}N \times p{/$$} (call it {$$}\lambda{/$$}) a number between 0 and 10, then {$$}S{/$$} can be shown to follow a Poisson a distribution which has a simple parametric form:
@@ -289,18 +289,6 @@ Now which {$$}s_0{/$$} and {$$}d{/$$} fit our data best? This is a rather advanc
 
 ```r
 library(limma)
-```
-
-```
-## 
-## Attaching package: 'limma'
-## 
-## The following object is masked from 'package:BiocGenerics':
-## 
-##     plotMA
-```
-
-```r
 estimates=fitFDist(biosds^2,11)
 
 theoretical<- sqrt(qf((seq(0,999)+0.5)/1000,11,estimates$df2)*estimates$scale)
