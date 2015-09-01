@@ -7,6 +7,8 @@ title: Conditional probabilities and expectations
 
 ## Conditional probabilities and expectations
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/conditional_expectation.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/conditional_expectation.Rmd)
+
 Prediction problems can be divided into categorical and continuous outcomes. However, many of the algorithms can be applied to both due to the connection between conditional probabilities and conditional expectations. 
 
 In categorical problems, for example binary outcome, if we know the probability of {$$}Y{/$$} being a 1 given that we know the value of the predictors {$$}X=(X_1,\dots,X_p)^\top{/$$} then we can optimize our predictions. We write this probability like this {$$}f(x)=\mbox{Pr}(Y=1 \mid X=x){/$$}. Note that {$$}Y{/$$} is a random variable which implies we are not guaranteed perfect prediction (unless these probabilities are 1 or 0). You can think of this probability as the proportion of the population with covariates {$$}X=x{/$$} that is a 1.
@@ -28,7 +30,7 @@ hist(y,breaks=seq(min(y),max(y)))
 abline(v=mean(y),col=2)
 ```
 
-![Histogram of son heights.](images/R/conditional_expectation-height_hist-1.png) 
+![Histogram of son heights.](images/R/conditional_expectation-tmp-height_hist-1.png) 
 
 In this case we can also approximate the distribution of {$$}Y{/$$} as normal which implies the mean maximizes the probability density. 
 
@@ -43,11 +45,13 @@ abline(v=c(-0.35,0.35)+71,col="red")
 hist(y[x==71],xlab="Heights",nc=8,main="",xlim=range(y))
 ```
 
-![Son versus father height (left) with the red lines denoting the stratum defined by conditioning on fathers being 71 inches tall. Conditional distribution: son height distribution of stratum defined by 71 inch fathers.](images/R/conditional_expectation-conditional_distribution-1.png) 
+![Son versus father height (left) with the red lines denoting the stratum defined by conditioning on fathers being 71 inches tall. Conditional distribution: son height distribution of stratum defined by 71 inch fathers.](images/R/conditional_expectation-tmp-conditional_distribution-1.png) 
 
 <a name="regression"></a>
 
 ## Stratification
+
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/conditional_expectation.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/conditional_expectation.Rmd)
 
 The best guess is still the expectation, but our strata has changed from all the data to only the {$$}Y{/$$} with {$$}X=71{/$$}. So we can stratify and take the average which is the conditional expectations. Out prediction for any {$$}x{/$$} is therefore:
 {$$}
@@ -73,7 +77,7 @@ hist(y[x==71],xlab="Heights",nc=8,main="",xlim=range(y))
 abline(v = fit$coef[1] + fit$coef[2]*71, col=1)
 ```
 
-![Son versus father height showing predicted heights based on regression line (left). Conditional distribution with vertical line representing regression prediction.](images/R/conditional_expectation-regression-1.png) 
+![Son versus father height showing predicted heights based on regression line (left). Conditional distribution with vertical line representing regression prediction.](images/R/conditional_expectation-tmp-regression-1.png) 
 
 In this particular case the regression line provides an optimal prediction function for {$$}Y{/$$}. But this is not generally true.
 
