@@ -12,6 +12,8 @@ title: Introduction to Random Variables
 
 ## Introduction 
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/random_variables.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/random_variables.Rmd)
+
 
 
 This course introduces the statistical concepts necessary to understand p-values and confidence intervals. These terms are ubiquitous in the life science literature. Let's use [this paper](http://diabetes.diabetesjournals.org/content/53/suppl_3/S215.full]) as an example. 
@@ -96,6 +98,8 @@ Note that if we repeat the experiment, we will obtain 24 new mice from The Jacks
 
 ## Random variables
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/random_variables.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/random_variables.Rmd)
+
 Let's see what a random variable is. Imagine we actually have the weight of all control female mice and can upload them to R. In Statistics we refer to this as *the population*. These are all the control mice available from which we sampled 24. Note that in practice we do not have access to the population. We have a special data set that we're using here to illustrate concepts. 
 
 Read-in the data either from your home directory or from dagdata:
@@ -145,13 +149,15 @@ Note how the average varies. We can continue to do this over and over again and 
 
 ## The Null Hypothesis
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/random_variables.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/random_variables.Rmd)
+
 Now let's go back to our average difference of `obsdiff`. As scientists we need to be skeptics. How do we know that this `obsdiff` is due to the diet? What happens if we give all 24 the same diet? Will we see a difference this big? Statisticians refer to this scenario as the *null hypothesis*. The name "null" is used to remind us that we are acting as skeptics: we give credence to the possibility that there is no difference. 
 
 Because we have access to the population, we can actually observe as many values as we want of the difference of the averages when the diet has no effect. We can do this by randomly sampling 24 control mice, giving them the same diet, and then recording the difference in mean between them to randomly split groups. Here is the code:
 
 
 ```r
-###12 control mice
+##12 control mice
 control <- sample(population,12)
 ##another 12 control mice that we act as if they were not
 treatment <- sample(population,12)
@@ -193,6 +199,8 @@ Only a small percent of the 1,000 simulations. So as skeptics what do we conclud
 
 ## Distributions
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/random_variables.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/random_variables.Rmd)
+
 We have explained what we mean by *null* in the context of null hypothesis, but what exactly is a distribution?
 The simplest way to think of a *distribution* is as a compact description of many numbers. For example, suppose you have measured the heights of all men in a population. Imagine you need to describe these numbers to someone that has no idea what these heights are, for example an alien that has never visited earth. Suppose all these heights are in contained in the following dataset:
 
@@ -228,7 +236,7 @@ plot(values, heightecdf(values), type="l",
      xlab="a (Height in inches)",ylab="Pr(x <= a)")
 ```
 
-![Empirical cummulative distribution function for height.](images/R/random_variables-ecdf-1.png) 
+![Empirical cummulative distribution function for height.](images/R/random_variables-tmp-ecdf-1.png) 
 
 #### Histograms
 
@@ -250,12 +258,14 @@ bins <- seq(smallest, largest)
 hist(x,breaks=bins,xlab="Height (in inches)",main="Adult men heights")
 ```
 
-![Histogram for heights.](images/R/random_variables-histogram-1.png) 
+![Histogram for heights.](images/R/random_variables-tmp-histogram-1.png) 
 
 Showing this plot to the alien is much more informative than showing numbers. Note that with this simple plot we can approximate the number of individuals in any given interval. For example, there are about 70 individuals over six feet (72 inches) tall. 
 
 
 ## Probability Distribution
+
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/random_variables.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/random_variables.Rmd)
 
 Summarizing lists of numbers is one powerful use of distribution. An even more important use is describing the possible outcomes of a random variable. Because, unlike fixed list of numbers, random variables are not observed, instead of proportion, we describe probabilities. For example, if we pick a random height for our list, then the probability of falling between {$$}a{/$$} and {$$}b{/$$} is denoted with:
 
@@ -279,7 +289,7 @@ for(i in 1:n){
   }
 ```
 
-![Illustration of the null distribution.](images/R/random_variables-null_distribution_illustration-1.png) 
+![Illustration of the null distribution.](images/R/random_variables-tmp-null_distribution_illustration-1.png) 
 
 The figure above amounts to a histogram. From an actual histogram we can see that values as large as `obsdiff` are relatively rare:
 
@@ -289,7 +299,7 @@ hist(null, freq=TRUE)
 abline(v=obsdiff)
 ```
 
-![Null distribution with observed difference marked with vertical line.](images/R/random_variables-null_and_obs-1.png) 
+![Null distribution with observed difference marked with vertical line.](images/R/random_variables-tmp-null_and_obs-1.png) 
 
 
 An important point to keep in mind here is that while we defined {$$}Pr(a){/$$} by counting cases, we will learn how in some circumstances mathematics gives us formulas for {$$}Pr(a){/$$} that save us the trouble of computing them as we did here. One example of this powerful approach uses the normal distribution approximation:
@@ -297,6 +307,8 @@ An important point to keep in mind here is that while we defined {$$}Pr(a){/$$} 
 <a name="normal_distribution"></a>
 
 ## Normal Distribution
+
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/random_variables.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/random_variables.Rmd)
 
 The probability distribution we see above approximates one that is very common in a nature: the bell curve or normal distribution or Gaussian distribution. When the histogram of a list of numbers approximates the normal distribution, we can use a convenient mathematical formula to approximate the proportion of value or outcomes in any given interval:
 
