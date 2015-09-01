@@ -7,6 +7,8 @@ title: Hierarchical Models
 
 ## Hierarchical Models
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/hierarchical_models.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/hierarchical_models.Rmd)
+
 In this section use the mathematical theory described an approach that has become widely applied in the analysis of high-throughput data. The general idea is to build a _hierachichal model_ with two levels. One level described variability across samples/units, and the other describes variability across features. The first level of variation is accounted for my all the models and approaches we have described here, for example the model that leads to the t-test. The second level provides power by permitting us to "borrow" information from all features to inform the inference performed on each one. 
 
 Here we describe on specific case that is currently the most widely used approach to inference with gene expression data. It is the model implemented by the `limma` Bioconductor package. This idea has been adapted to develop methods for other data types such as RNAseq CITE.
@@ -32,7 +34,7 @@ with(tt, plot(-dm, -log10(p.value), cex=.8, pch=16,
 abline(h=2,v=c(-.2,.2), lty=2)
 ```
 
-![Volcano plot for t-test comparing two groups. Spiked-in genes are denoted with blue. Among the rest of the genes, those with p-value < 0.01 are denoted with red.](images/R/hierarchical_models-volcano-plot-1.png) 
+![Volcano plot for t-test comparing two groups. Spiked-in genes are denoted with blue. Among the rest of the genes, those with p-value < 0.01 are denoted with red.](images/R/hierarchical_models-tmp-volcano-plot-1.png) 
 
 Note that we cut-off the range of the y-axis at 4.5 but there is one blue point with a p-value smaller than {$$}10^{-6}{/$$}. Two finding stand out from this plot. The first is that only one of the positives would be found to be significant with a standard 5% FDR cutoff:
 
@@ -69,7 +71,7 @@ with(tt, plot(s, -log10(p.value), cex=.8, pch=16,
               col=cols))
 ```
 
-![p-values versus standard deviation estimates.](images/R/hierarchical_models-pval_versus_sd-1.png) 
+![p-values versus standard deviation estimates.](images/R/hierarchical_models-tmp-pval_versus_sd-1.png) 
 
 Here is where a hierarchical model can be useful. If we can make an assumption about the distribution of these variances across genes, then we can improve estimate by "adjusting" estimates that are "too small" according to this distribution. In a previous section we described how the F-distribution provides approximates the distribution of the observed variances.
 
@@ -108,7 +110,7 @@ segments((tt$s^2)[idx],rep(.1,n),
          ebfit$s2.post[idx],rep(.9,n))
 ```
 
-![Illustration of how estimates shrink towards the prior expectation. Forty genes spanning the range of values were selected.](images/R/hierarchical_models-shrinkage-1.png) 
+![Illustration of how estimates shrink towards the prior expectation. Forty genes spanning the range of values were selected.](images/R/hierarchical_models-tmp-shrinkage-1.png) 
 
 An important aspect of this adjustment is that genes having a very small sample deviation close to 0 are no longer close to 0. We can now create a version of the t-test that instead of the sample standard deviation uses this posterior mean or "shrunken" estimate of the variance. We refer to these are _moderated_ t-tests. Once we do this, the improvements can be seen clearly in the volcano plot
 
@@ -121,7 +123,7 @@ with(limmares, plot(dm, -log10(p.value),cex=.8, pch=16,
 abline(h=2,v=c(-.2,.2), lty=2)
 ```
 
-![Volcano plot for moderated t-test comparing two groups. Spiked-in genes are denoted with blue. Among the rest of the genes, those with p-value < 0.01 are denoted with red.](images/R/hierarchical_models-volcano-plot2-1.png) 
+![Volcano plot for moderated t-test comparing two groups. Spiked-in genes are denoted with blue. Among the rest of the genes, those with p-value < 0.01 are denoted with red.](images/R/hierarchical_models-tmp-volcano-plot2-1.png) 
 
 The number of false positives in the top 10 is now reduced to 2. 
 
