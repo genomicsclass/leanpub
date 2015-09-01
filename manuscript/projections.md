@@ -11,7 +11,7 @@ Now that we have described the concept of dimension reduction and some of the ap
 
 As a review, remember that projections minimize distance between points and subspace
 
-![Illustration of projection](images/downloads/Linalg_projection_3.png)
+![Illustration of projection](http://upload.wikimedia.org/wikipedia/commons/8/84/Linalg_projection_3.png)
 
 In the figure above the point on top is pointing to a point in space. In this particular cartoon the space is two dimensional but we should be thinking abstractly. The space is represented by the Cartesian plan and the line on which the little person stands is a subspace of points. The projection to this subspace is the place that is closes to the original point. Geometry tells us that we can find this closest point by dropping a perpendicular line (dotted line) from the point to the space. The little person is standing on the projection.  The amount this person had to walk from the origin to the new projected point is referred to as _the coordinate_. 
 
@@ -69,7 +69,7 @@ The following R code confirms this equation works:
 
 
 ```r
-mypar()
+mypar(1,1)
 plot(c(0,4),c(0,4),xlab="Dimension 1",ylab="Dimension 2",type="n")
 arrows(0,0,2,3,lwd=3)
 abline(0,0.5,col="red",lwd=3) #if x=2c and y=c then slope is 0.5 (y=0.5x)
