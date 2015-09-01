@@ -45,7 +45,7 @@
 #course3 eda_for_highthroughput
 
 ### Chapter 7: Statistical Modeling
-#course3 modeling
+modeling.md
 #course3 bayes
 #course3 hierarchical_models
 
