@@ -11,14 +11,10 @@ R markdown document for this section available from [https://github.com/genomics
 
 ### Introduction
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/t-tests_in_practice.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/t-tests_in_practice.Rmd)
-
 We will now demonstrate how to obtain a p-value in practice. We begin by loading experimental data and walking you through the steps used to form a t-statistics and compute a p-value. We can perform this task with just a few lines of code (go to end of section to see them). However, to understand the concepts, we will construct a t-statistic from "scratch".
 
 
 ### Setting The Random Seed
-
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/t-tests_in_practice.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/t-tests_in_practice.Rmd)
 Before we continue we briefly explain the following important line of code:
 
 
@@ -32,8 +28,6 @@ Throughout this book we use random number generators. This implies that many of 
 
 
 ### Read-in and Prepare Data
-
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/t-tests_in_practice.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/t-tests_in_practice.Rmd)
 We start by reading in the data. A first important step is to identify which rows are associated with treatment and control, and computing the difference in mean.
 
 ```r
@@ -173,8 +167,6 @@ It may be confusing that one approximation gave us one p-value and another gave 
 Later, in the power calculation section, we will describe type I and type II errors. As a preview, we will point out that the test based on the CLT approximation is more likely to incorrectly reject the null (false positive), while the t-distribution is more likely to incorrectly accept the null (false negative).
 
 ### Running the t-test in Practice
-
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/t-tests_in_practice.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/t-tests_in_practice.Rmd)
 
 Now that we have gone over the concepts, we can show the relatively simple code that one actually would run to compute a t-test: 
 

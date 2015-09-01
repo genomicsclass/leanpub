@@ -7,7 +7,7 @@ cd ../labs/$1
 
 linetoadd="R markdown document for this section available from \[https\:\/\/github.com\/genomicsclass\/labs\/tree\/master\/$1\/$2.Rmd\]\(https\:\/\/github.com\/genomicsclass\/labs\/tree\/master\/$1\/$2.Rmd\)"
 
-sed '/^##/a \
+sed '/^## /a \
 \'$'\n@@@@@@
 ' $2.Rmd | sed 's/@@@@@@/'"$linetoadd"'/' > $2-tmp.Rmd
 
