@@ -10,6 +10,8 @@ In this book we will be using the [R](https://cran.r-project.org/) programming l
 
 ## Installing R
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/getting_started.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/getting_started.Rmd)
+
 The first step is to install R. You can download and install R from the [Comprehensive R Archive Network](https://cran.r-project.org/) (CRAN). It is relatively straightforward, but if you need further help you can try the following resources:
 
 * [Installing R on Windows](https://github.com/genomicsclass/windows#installing-r). 
@@ -18,9 +20,13 @@ The first step is to install R. You can download and install R from the [Compreh
 
 ## Installing RStudio
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/getting_started.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/getting_started.Rmd)
+
 The next step is to install RStudio. Technically you can run all the code shown here without installing RStudio, but we highly recommend this integrated development environment (IDE). Instructions are [here](http://www.rstudio.com/products/rstudio/download/) and for Windows we have special [instructions](https://github.com/genomicsclass/windows).
 
 ## Learn R Basics
+
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/getting_started.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/getting_started.Rmd)
 
 The first homework assignment is to complete an R tutorial to familiarize yourself with the basics of programming and R syntax. If you are already familiar you can skip to the next section.
 
@@ -52,11 +58,13 @@ and that the hashtag symbol represents comments and are not interpreted:
 
 
 ```r
-## This is just a comment
+##This is just a comment
 ```
 
 
 ## Installing Packages
+
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/getting_started.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/getting_started.Rmd)
 
 The first R command we will run is `install.packages`. If you took the `swirl` tutorial you already did this. R only includes a basic set of functions. It can do much more than this, but not everybody needs everything so we instead make some functions via packages. Many of these functions are stored in CRAN. Note that these packages are vetted. You can easily install from within R if you know the name of the function. As an example, we are going to install the packages `rafalib` and `downloader` which we use in our first data analysis examples:
 
@@ -77,6 +85,8 @@ library(downloader)
 From now on you will see that we sometimes load packages without installing them. This is because once you install the package, it remains in place and only needs to be loaded. If you try to load a package and get an error, it probably means you need to install it.
 
 ## Importing Data Into R
+
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/getting_started.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/getting_started.Rmd)
 
 The first step when getting ready to analyze data is to read-in the data into R. There are several ways to do this and we will discuss three of them. But you only need to learn one to follow along. 
 
@@ -165,7 +175,7 @@ The file we are working with is actually included in this package. So once you i
 
 
 ```r
-dir <- system.file(package="dagdata") ##This function extracts the location of package
+dir <- system.file(package="dagdata") #This function extracts the location of package
 list.files(dir)
 ```
 
@@ -175,7 +185,7 @@ list.files(dir)
 ```
 
 ```r
-list.files(file.path(dir,"extdata")) ## we know external data is in this directory
+list.files(file.path(dir,"extdata")) #We know external data is in this directory
 ```
 
 ```
@@ -195,13 +205,15 @@ dat <- read.csv(filename)
 
 ## Brief Introduction To `dplyr`
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/getting_started.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/getting_started.Rmd)
+
 The learning curve for R syntax is slow. One of the harder aspects that requires getting used to is subsetting data tables. The `dplyr` packages brings these tasks closer to English and we are therefore going to introduce two simple functions: one is used to subset and the other to select columns.
 
 Take a look at the dataset we read-in:
 
 ```r
 dat <- read.csv(filename)
-head(dat) ##In R Studio use View(dat)
+head(dat) #In R Studio use View(dat)
 ```
 
 ```
@@ -219,7 +231,7 @@ Note that there are two types of diets, which are denoted in the first column. N
 
 ```r
 library(dplyr) 
-chow <- filter(dat, Diet=="chow") ##keep only the ones with chow diet
+chow <- filter(dat, Diet=="chow") #keep only the ones with chow diet
 head(chow)
 ```
 
