@@ -46,7 +46,7 @@ prop.table(tab)
 ```
 ## winners
 ##     0     1     2     3     4 
-## 0.611 0.286 0.088 0.014 0.001
+## 0.605 0.304 0.077 0.011 0.003
 ```
 
 For cases like this, where {$$}N{/$$} is very large, but {$$}p{/$$} is small enough to make {$$}N \times p{/$$} (call it {$$}\lambda{/$$}) a number between 0 and 10, then {$$}S{/$$} can be shown to follow a Poisson a distribution which has a simple parametric form:
@@ -247,19 +247,23 @@ qqline(biosds)
 ![Normal qq-plot for sample standard deviations.](images/R/modeling-sd_qqplot-1.png) 
 
 There are parametric distributions that posses these properties (strictly positive and _heavy_ right tails). Two examples are the _gamma_ and _F_ distributions. The density of the gamma distribution is defined by: 
+
 {$$}
 f(x;\alpha,\beta)=\frac{\beta^\alpha x^{\alpha-1}\exp{-\beta x}}{\Gamma(\alpha)}
 {/$$}
+
 It is defined by two parameters {$$}\alpha{/$$} and {$$}\beta{/$$} that can, indirectly, control location and scale. They also control the shape of the distribution. For more on this distribution please refer to [CITE BOOKs]. 
 
 Two special cases of the gamma distribution are the chi-squared distribution, which we used earlier to analyze a 2x2 table and the exponential distribution, which we will use later in this section. For chi-square we {$$}\alpha=\nu/2{/$$} and {$$}\beta=2{/$$} with {$$}\nu{/$$} the degrees of freedom. For exponential we have {$$}\alpha=1{/$$} and {$$}\beta=\lambda{/$$} the rate.
 
 The F-distribution comes up in analysis of variance (ANOVA). It is also always positive and has large right tails. Two parameters control its shape:
+
 {$$}
 f(x,d_1,d_2)=\frac{1}{B\left( \frac{d_1}{2},\frac{d_2}{2}\right)}
   \left(\frac{d_1}{d_2}\right)^{\frac{d_1}{2}}  
   x^{\frac{d_1}{2}-1}\left(1+\frac{d1}{d2}x\right)^{-\frac{d_1+d_2}{2}}
 {/$$}  
+
 with {$$}B{/$$} the _beta function_ and {$$}d_1{/$$} and {$$}d_2{/$$} are called the degrees of freedom for reasons having to do with how it arises in ANOVA. A third parameter is sometimes used with the F-distribution, which is a scale parameter.
 
 ### Modeling The Variance
