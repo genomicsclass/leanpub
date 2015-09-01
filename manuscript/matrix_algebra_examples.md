@@ -10,7 +10,7 @@ layout: page
 
 ## Examples 
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course2/matrix_algebra_examples.Rmd](https://github.com/genomicsclass/labs/tree/master/course2/matrix_algebra_examples.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course2/matrix_algebra_examples.Rmd).
 
 Now we are ready to see how matrix algebra can be useful when analyzing data. We start with some simple examples and eventually arrive at the main one: how to write linear models with matrix algebra notation and solve the least squares problem.
 
