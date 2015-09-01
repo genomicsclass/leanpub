@@ -7,7 +7,7 @@ title: Hierarchical Models
 
 ## Hierarchical Models
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/hierarchical_models.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/hierarchical_models.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/hierarchical_models.Rmd).
 
 In this section use the mathematical theory described an approach that has become widely applied in the analysis of high-throughput data. The general idea is to build a _hierachichal model_ with two levels. One level described variability across samples/units, and the other describes variability across features. The first level of variation is accounted for my all the models and approaches we have described here, for example the model that leads to the t-test. The second level provides power by permitting us to "borrow" information from all features to inform the inference performed on each one. 
 
