@@ -25,4 +25,4 @@ do
 done
 cd ..
 git add manuscript/images/downloads/*
-git commit -am "added images"; git push
+git commit -am "adding images"; git push
