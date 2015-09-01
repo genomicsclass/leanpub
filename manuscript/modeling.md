@@ -17,6 +17,8 @@ But this does not imply that every dataset we collect will follow a normal distr
 
 ## The Binomial Distribution
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/modeling.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/modeling.Rmd)
+
 A distribution that one should be familiar is the binomial distribution. It describes the probability of the total number of observed heads {$$}S=k{/$$} heads when tossing {$$}N{/$$} heads as
 
 {$$}
@@ -26,6 +28,8 @@ A distribution that one should be familiar is the binomial distribution. It desc
 with {$$}p{/$$} the probability of observing a head in one coin toss.  {$$}S/N{/$$} is the average of independent random variables and thus the CLT tells us that {$$}S{/$$} is approximately normal. This distribution is used by some of the variant callers and genotypers based on NGS to decide if the data is consistent 
 
 ## The Poisson Distribution
+
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/modeling.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/modeling.Rmd)
 
 The number of people that win the lottery follows a binomial distribution (we assume each person buys one ticket). The number of "tosses" {$$}N{/$$} is the number of people that buy tickets and very large. However, the number of people that win the lottery oscillates between 0 and 3. So why does CLT not hold? One can explain this mathematically, but the intuition is that with most of the average so close to and also constrained to be larger than 0, it is impossible for the distribution to be normal. Here is a quick simulation:
 
@@ -38,7 +42,7 @@ tab=table(winners)
 plot(tab)
 ```
 
-![Number of people that win the lottery obtained from Monte Carlo simulation.](images/R/modeling-lottery_winners_outcomes-1.png) 
+![Number of people that win the lottery obtained from Monte Carlo simulation.](images/R/modeling-tmp-lottery_winners_outcomes-1.png) 
 
 ```r
 prop.table(tab)
@@ -46,8 +50,8 @@ prop.table(tab)
 
 ```
 ## winners
-##     0     1     2     3     4     5 
-## 0.592 0.313 0.076 0.014 0.004 0.001
+##     0     1     2     3     4 
+## 0.631 0.286 0.072 0.008 0.003
 ```
 
 For cases like this, where {$$}N{/$$} is very large, but {$$}p{/$$} is small enough to make {$$}N \times p{/$$} (call it {$$}\lambda{/$$}) a number between 0 and 10, then {$$}S{/$$} can be shown to follow a Poisson a distribution which has a simple parametric form:
@@ -76,12 +80,14 @@ library(rafalib)
 splot(log2(lambdas),log2(y/x),subset=ind)
 ```
 
-![MA plot of simulated RNAseq data. Replicated measurements follow a Poisson distribution.](images/R/modeling-rna_seq_simulation-1.png) 
+![MA plot of simulated RNAseq data. Replicated measurements follow a Poisson distribution.](images/R/modeling-tmp-rna_seq_simulation-1.png) 
 
 Note that for lower values of lambda there is much more variability and if we were to report anything with a fold change of 2 or more, the number of false positives would be quite high for low.
 
 
 ## NGS Experiments And The Poisson Distribution
+
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/modeling.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/modeling.Rmd)
 
 
 ```r
@@ -106,7 +112,7 @@ ind=which(y>0 & x>0)##make sure no 0s due to ratio and log
 splot((log2(x)+log2(y))/2,log(x/y),subset=ind)
 ```
 
-![MA plot of replicated RNAseq data.](images/R/modeling-RNAseq_MAplot-1.png) 
+![MA plot of replicated RNAseq data.](images/R/modeling-tmp-RNAseq_MAplot-1.png) 
 
 When it comes to modeling, one limitation of the Poisson model is that it lacks flexibility when it comes to scale. The Poisson only has one parameter which determines its mean {$$}\lambda{/$$}, which is also its variance (standard deviation squared).
 
@@ -124,12 +130,14 @@ splot(means,vars,log="xy",subset=which(means>0&vars>0)) ##plot a subset of data
 abline(0,1,col=2,lwd=2)
 ```
 
-![Variance versus mean plot. Summaries were obtained from the RNAseq data.](images/R/modeling-var_vs_mean-1.png) 
+![Variance versus mean plot. Summaries were obtained from the RNAseq data.](images/R/modeling-tmp-var_vs_mean-1.png) 
 
 Note that the variability plotted here includes biological variability, which the motivation for the Poisson does not include. In a later module we learn about the negative binomial distribution which combines the sampling variability of a Poisson and biological variability. The negative binomial has two parameters and permits more flexibility for count data. The Poisson is a special case of the negative binomial distribution.
 
 
 ## Maximum Likelihood Estimation
+
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/modeling.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/modeling.Rmd)
 
 We use palindrome locations in the HMCV genome as example. We read in the locations of the palindrome and then count the number of palindromes in each 4,000 basepair segments.
 
@@ -147,7 +155,7 @@ mypar(1,1)
 hist(counts)
 ```
 
-![Palindrome count histogram.](images/R/modeling-palindrome_count_histogram-1.png) 
+![Palindrome count histogram.](images/R/modeling-tmp-palindrome_count_histogram-1.png) 
 
 The counts do appear to follow a Poisson distribution. But what is the rate {$$}\lambda{/$$} ? The most common approach to estimating this rate is _maximum likelihood estimation_. To find the maximum likelihood estimate (MLE) we note that these data are independent and the probability of observing the values we observed is:
 
@@ -176,7 +184,7 @@ mle=optimize(l,c(0,10),maximum=TRUE)
 abline(v=mle$maximum)
 ```
 
-![Likelihood versus lambda.](images/R/modeling-mle-1.png) 
+![Likelihood versus lambda.](images/R/modeling-tmp-mle-1.png) 
 
 If you work out the math and do a bit of calculus, you realize that this is a particularly simple example for which the MLE is the average.
 
@@ -196,10 +204,12 @@ qqplot(theoretical,counts)
 abline(0,1)
 ```
 
-![Observed counts versus theoretical Poisson counts.](images/R/modeling-obs_versus_theoretical_Poisson_count-1.png) 
+![Observed counts versus theoretical Poisson counts.](images/R/modeling-tmp-obs_versus_theoretical_Poisson_count-1.png) 
 
 
 ## Distributions For Positive Continuous Values
+
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/modeling.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/modeling.Rmd)
 
 In a previous module we learned that different genes vary differently across biological replicates. In a latter module [advanced inference/differential expression] we will demonstrate that knowing this distribution can help improve downstream analysis. 
 
@@ -208,7 +218,7 @@ So can we model the distribution of these standard errors? Are they normal? Note
 
 ```r
 library(Biobase)
-library(maPooling) ##install with install_github("genomicsclass/maPooling")
+library(maPooling) ##available from course github repo
 
 data(maPooling)
 pd=pData(maPooling)
@@ -235,7 +245,7 @@ shist(techsds,unit=0.1,col=2,add=TRUE)
 legend("topright",c("Biological","Technical"), col=c(1,2))
 ```
 
-![Histograms of biological variance and technical variance.](images/R/modeling-bio_sd_versus_tech_sd-1.png) 
+![Histograms of biological variance and technical variance.](images/R/modeling-tmp-bio_sd_versus_tech_sd-1.png) 
 
 First notice that the normal distribution is not appropriate here since the right tail is rather large. Also, because SDs are strictly positive, there is a limitation to how symmetric this distribution can be.
 A qqplot shows this very clearly:
@@ -245,7 +255,7 @@ qqnorm(biosds)
 qqline(biosds)
 ```
 
-![Normal qq-plot for sample standard deviations.](images/R/modeling-sd_qqplot-1.png) 
+![Normal qq-plot for sample standard deviations.](images/R/modeling-tmp-sd_qqplot-1.png) 
 
 There are parametric distributions that posses these properties (strictly positive and _heavy_ right tails). Two examples are the _gamma_ and _F_ distributions. The density of the gamma distribution is defined by: 
 
@@ -291,7 +301,7 @@ for(d in c(1,5,10)){
 }
 ```
 
-![Histograms of sample standard deviations and densities of estimated distributions.](images/R/modeling-modeling_variance-1.png) 
+![Histograms of sample standard deviations and densities of estimated distributions.](images/R/modeling-tmp-modeling_variance-1.png) 
 
 Now which {$$}s_0{/$$} and {$$}d{/$$} fit our data best? This is a rather advanced topic as the MLE does not perform well for this particular distribution (we refer to Smyth (2004)). The Bioconductor limma package provides a function to estimate these parameters:
 
@@ -312,5 +322,5 @@ k=sum(tmp$density)/sum(dd) ##a normalizing constant to assure same area in plot
 lines(sds,dd*k,type="l",col=2,lwd=2)
 ```
 
-![qq-plot (left) and density (right) demonstrate that model fits data well.](images/R/modeling-variance_model_fit-1.png) 
+![qq-plot (left) and density (right) demonstrate that model fits data well.](images/R/modeling-tmp-variance_model_fit-1.png) 
 Apart from one outlier, this is not a bad fit at all. This approximation will come in very handy when we learn about empirical Bayes.
