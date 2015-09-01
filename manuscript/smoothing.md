@@ -15,10 +15,11 @@ The following data are from measurements from replicated RNA. We consider that d
 
 
 ```r
+##Following three packages are available from Bioconductor
 library(Biobase)
-##rafalib::install_bioc(c("SpikeIn","hgu95acdf")
 library(SpikeIn)
 library(hgu95acdf)
+
 data(SpikeIn95)
 
 ##Example with two columns
@@ -48,15 +49,24 @@ In the MA plot we see that there {$$}Y{/$$} depends on {$$}X{/$$}. Note that thi
 
 ```r
 library(rafalib)
-mypar (1,1)
+mypar()
 plot(X,Y)
 ```
 
-![plot of chunk unnamed-chunk-2](images/R/smoothing-unnamed-chunk-2-1.png) 
+![MAplot comparing gene expression from two arrays.](images/R/smoothing-MAplot-1.png) 
 
-Note that linear regression is biased does not capture the apparent curvature in {$$}f(x){/$$}:
+Note that linear regression does not capture the apparent curvature in {$$}f(x){/$$}:
 
-![plot of chunk unnamed-chunk-3](images/R/smoothing-unnamed-chunk-3-1.png) 
+
+```r
+mypar()
+plot(X,Y)
+fit <- lm(Y~X)
+points(X,Y,pch=21,bg=ifelse(Y>fit$fitted,1,3))
+abline(fit,col=2,lwd=4,lty=2)
+```
+
+![MAplot comparing gene expression from two arrays with fitted regression line.](images/R/smoothing-MAplot_with_regression_line-1.png) 
 
 Note for example that points above the fitted line (green) and those below (purple) are not evenly distributed.
 
@@ -84,7 +94,7 @@ points(X[ind],Y[ind],bg=3,pch=21)
 lines(c(min(X[ind]),max(X[ind])),c(fit,fit),col=2,lty=2,lwd=4)
 ```
 
-![plot of chunk unnamed-chunk-4](images/R/smoothing-unnamed-chunk-4-1.png) 
+![MAplot comparing gene expression from two arrays with bin smoother fit shown for two points.](images/R/smoothing-binsmoother-1.png) 
 
 By computing this mean for bins around every point we form an estimate of the underlying curve {$$}f(x){/$$} :
 
@@ -107,11 +117,18 @@ for(i in seq(along=centers)){
 }
 ```
 
-![plot of chunk unnamed-chunk-5](images/R/smoothing-unnamed-chunk-5-1.png) 
+![Illustration of how bin smoothing estimates a curve. howing in 12 steps of process.](images/R/smoothing-bin_smoothing_demo-1.png) 
 
 The final result looks like this:
 
-![plot of chunk unnamed-chunk-6](images/R/smoothing-unnamed-chunk-6-1.png) 
+
+```r
+mypar (1,1)
+plot(X,Y,col="darkgrey",pch=16)
+lines(centers,smooth,col="black",lwd=3)
+```
+
+![MA-plot with curve obtained with bin smooth shown.](images/R/smoothing-bin_smooth_final-1.png) 
 
 
 ## Loess
@@ -124,6 +141,7 @@ centers <- seq(min(X),max(X),0.1)
 mypar (1,1)
 plot(X,Y,col="darkgrey",pch=16)
 windowSize <- 1.25
+
 i <- 25
 center<-centers[i]
 ind=which(X>center-windowSize & X<center+windowSize)
@@ -131,6 +149,7 @@ fit<-lm(Y~X,subset=ind)
 points(X[ind],Y[ind],bg=3,pch=21)
 a <- min(X[ind]);b <- max(X[ind])
 lines(c(a,b),fit$coef[1]+fit$coef[2]*c(a,b),col=2,lty=2,lwd=3)
+
 i <- 60
 center<-centers[i]
 ind=which(X>center-windowSize & X<center+windowSize)
@@ -140,7 +159,7 @@ a <- min(X[ind]);b <- max(X[ind])
 lines(c(a,b),fit$coef[1]+fit$coef[2]*c(a,b),col=2,lty=2,lwd=3)
 ```
 
-![plot of chunk unnamed-chunk-7](images/R/smoothing-unnamed-chunk-7-1.png) 
+![MAplot comparing gene expression from two arrays with bin local regression fit shown for two points.](images/R/smoothing-loess-1.png) 
 
 Here are 12 steps of the process:
 
@@ -166,11 +185,18 @@ for(i in seq(along=centers)){
 }
 ```
 
-![plot of chunk unnamed-chunk-8](images/R/smoothing-unnamed-chunk-8-1.png) 
+![Illustration of how loess estimates a curves. Showing in 12 steps of process. ](images/R/smoothing-loess_demo-1.png) 
 
 This results is a smoother fit since we use larger sample sizes to estimate our local parameters:
 
-![plot of chunk unnamed-chunk-9](images/R/smoothing-unnamed-chunk-9-1.png) 
+
+```r
+mypar (1,1)
+plot(X,Y,col="darkgrey",pch=16)
+lines(centers,smooth,col="black",lwd=3)
+```
+
+![MA-plot with curve obtained with by loess shown.](images/R/smoothing-loess_final-1.png) 
 
 The that function `loess` performs this analysis for us:
 
@@ -181,10 +207,10 @@ fit <- loess(Y~X, degree=1, span=1/3)
 newx <- seq(min(X),max(X),len=100) 
 smooth <- predict(fit,newdata=data.frame(X=newx))
 
-mypar (1,1)
+mypar ()
 plot(X,Y,col="darkgrey",pch=16)
 lines(newx,smooth,col="black",lwd=3)
 ```
 
-![plot of chunk unnamed-chunk-10](images/R/smoothing-unnamed-chunk-10-1.png) 
+![Loess fitted with the loess function.](images/R/smoothing-loess2-1.png) 
 
