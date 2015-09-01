@@ -6,6 +6,8 @@ title: Cross-validation
 
 ## Cross-validation
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/crossvalidation.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/crossvalidation.Rmd)
+
 Here we describe *cross-validation*: one of the fundamental methods in machine learning for picking parameters in a prediction / machine learning task.
 
 Suppose we have a prediction algorithm which is going to predict the class of some observations using a number of features. For example, we will use the gene expression values to predict the tissue type in our tissues gene expression dataset.
@@ -93,7 +95,7 @@ plot(Xsmall,col=as.fumeric(y))
 legend("topleft",levels(factor(y)),fill=seq_along(levels(factor(y))))
 ```
 
-![First two PCs of the tissue gene expression data with color representing tissue. We use these two PCs as our two predictors throughout.](images/R/crossvalidation-mds-1.png) 
+![First two PCs of the tissue gene expression data with color representing tissue. We use these two PCs as our two predictors throughout.](images/R/crossvalidation-tmp-mds-1.png) 
 
 Now we can try out the K-nearest neighbors method on a single fold:
 
@@ -131,21 +133,21 @@ Now we will create a loop, which tries out each value of k from 1 to 12, and run
 set.seed(1)
 ks <- 1:12
 res <- sapply(ks, function(k) {
-  # try out each version of k from 1 to 12
+  ##try out each version of k from 1 to 12
   
   res.k <- sapply(seq_along(idx), function(i) {
-    # loop over each of the 5 cross-validation folds
+    ##loop over each of the 5 cross-validation folds
 
-    # predict the held-out samples using k nearest neighbors
+    ##predict the held-out samples using k nearest neighbors
     pred <- knn(train = Xsmall[ -idx[[i]], ],
                 test = Xsmall[ idx[[i]], ],
                 cl = y[ -idx[[i]] ], k = k)
 
-    # the ratio of misclassified samples
+    ##the ratio of misclassified samples
     mean(y[ idx[[i]] ] != pred)
   })
   
-  # average over the 5 folds
+  ##average over the 5 folds
   mean(res.k)
 })
 ```
@@ -157,7 +159,7 @@ Now we can plot the mean misclassification rate for each value of k:
 plot(ks, res, type="o")
 ```
 
-![Misclassification error versus number of neighbors.](images/R/crossvalidation-misclassification_error-1.png) 
+![Misclassification error versus number of neighbors.](images/R/crossvalidation-tmp-misclassification_error-1.png) 
 
 
 Finally, to show that gene expression can perfectly predict tissue, we use 5 dimensions instead of 2 and note we get perfect prediction
@@ -179,6 +181,6 @@ res <- sapply(ks, function(k) {
 plot(ks, res, type="o",ylim=c(0,0.20))
 ```
 
-![Misclassification error versus number of neighbors when we use five dimensions instead of 2.](images/R/crossvalidation-misclassification_error2-1.png) 
+![Misclassification error versus number of neighbors when we use five dimensions instead of 2.](images/R/crossvalidation-tmp-misclassification_error2-1.png) 
 
 Important note: We applied `cmdscale` to the entire dataset to create a smaller one for illustration purposes. However, in a real machine learning application all transformations of the data must be applied separately on the test and training dataset.
