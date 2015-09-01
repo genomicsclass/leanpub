@@ -7,12 +7,18 @@ layout: page
 
 ## t-tests In Practice
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/t-tests_in_practice.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/t-tests_in_practice.Rmd)
+
 ### Introduction
+
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/t-tests_in_practice.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/t-tests_in_practice.Rmd)
 
 We will now demonstrate how to obtain a p-value in practice. We begin by loading experimental data and walking you through the steps used to form a t-statistics and compute a p-value. We can perform this task with just a few lines of code (go to end of section to see them). However, to understand the concepts, we will construct a t-statistic from "scratch".
 
 
 ### Setting The Random Seed
+
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/t-tests_in_practice.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/t-tests_in_practice.Rmd)
 Before we continue we briefly explain the following important line of code:
 
 
@@ -26,6 +32,8 @@ Throughout this book we use random number generators. This implies that many of 
 
 
 ### Read-in and Prepare Data
+
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/t-tests_in_practice.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/t-tests_in_practice.Rmd)
 We start by reading in the data. A first important step is to identify which rows are associated with treatment and control, and computing the difference in mean.
 
 ```r
@@ -106,6 +114,8 @@ Now there is a problem. CLT works for large samples, but is 12 large enough? A r
 
 ## The t-distribution in Practice
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/t-tests_in_practice.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/t-tests_in_practice.Rmd)
+
 As described earlier, the statistical theory offers another useful result. If the distribution of the population is normal, then we can work out the exact distribution of the t-statistic without the need for the CLT. Note that this is a big "if" given that, with small samples, it is hard to check if the population is normal. But for something like weight, we suspect that the population distribution is likely well approximated by normal and use this approximation. Furthermore, we can look at qq-plot for the sample. This shows that the approximation is at least close:
 
 
@@ -120,7 +130,7 @@ qqnorm(control)
 qqline(control,col=2)
 ```
 
-![Quantile-quantile plots for sample against theoretical normal distribution.](images/R/t-tests_in_practice-data_qqplot-1.png) 
+![Quantile-quantile plots for sample against theoretical normal distribution.](images/R/t-tests_in_practice-tmp-data_qqplot-1.png) 
 
 If we use this approximation, then statistical theory tells us that the distribution of the random variable `tstat` follows a t-distribution. This is a much more complicated distribution than the normal that depends on another parameter called degrees of freedom. R has a nice function that actually computes everything for us.
 
@@ -163,6 +173,8 @@ It may be confusing that one approximation gave us one p-value and another gave 
 Later, in the power calculation section, we will describe type I and type II errors. As a preview, we will point out that the test based on the CLT approximation is more likely to incorrectly reject the null (false positive), while the t-distribution is more likely to incorrectly accept the null (false negative).
 
 ### Running the t-test in Practice
+
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/t-tests_in_practice.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/t-tests_in_practice.Rmd)
 
 Now that we have gone over the concepts, we can show the relatively simple code that one actually would run to compute a t-test: 
 

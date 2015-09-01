@@ -35,7 +35,7 @@ course2 standard_errors
 course2 interactions_and_contrasts
 course2 collinearity
 course2 qr_and_regression
-course2 linear_models_going_further
+###course2 linear_models_going_further
 
 ### Chapter 6: inference for high-dimensional data
 ## Notes: explain three ways to install

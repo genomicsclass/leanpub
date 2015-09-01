@@ -3,9 +3,17 @@
 printf "  *** knit file, fix latex, and move to  *** \n\n"
 
 cd ../labs/$1
-Rscript --no-init-file -e "library(knitr); knit('$2.Rmd')"
 
-sed 's/\$\$/@@@@/g' $2.md |
+
+linetoadd="R markdown document for this section available from \[https\:\/\/github.com\/genomicsclass\/labs\/tree\/master\/$1\/$2.Rmd\]\(https\:\/\/github.com\/genomicsclass\/labs\/tree\/master\/$1\/$2.Rmd\)"
+
+sed '/^##/a \
+\'$'\n@@@@@@
+' $2.Rmd | sed 's/@@@@@@/'"$linetoadd"'/' > $2-tmp.Rmd
+
+Rscript --no-init-file -e "library(knitr); knit('$2-tmp.Rmd')"
+
+sed 's/\$\$/@@@@/g' $2-tmp.md |
     sed 's/ \$/ @@@@/g' |
     sed 's/\$ /@@@@ /g' |
     sed 's/\$\./@@@@\./g' |
@@ -21,6 +29,8 @@ sed 's/\$\$/@@@@/g' $2.md |
     sed 's/\$\$/{\$\$}/g' |
     sed 's/(figure\//(images\/R\//g' |
     sed 's/\"figure\//\"images\/R\//g'> $2.md
+
+rm $2-tmp.md
     
 awk '
 BEGIN {count = 0;}
