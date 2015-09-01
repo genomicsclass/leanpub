@@ -17,7 +17,7 @@ We will describe powerful technique for exploratory data analysis based on _dime
 
 We consider an example with twin heights. Here we simulate 100 two dimensional points that represent the number of standard deviations each individual is from the mean height. Each pair of points is a pair of twins:
 
-![plot of chunk simulate twin heights](images/R/pca_motivation-simulate twin heights-1.png) 
+![Simulated twin pair heights.](images/R/pca_motivation-simulate twin heights-1.png) 
 
 To help with the illustration, if this where high-throughput gene expression data, the twin pairs are the {$$}N{/$$} samples  and the two heights would represnet gene expresssion from 2 genes. Note that we can compute the distance between any two samples. For example, here is the distance between the two orange points above:
 
@@ -43,9 +43,9 @@ z2 = (y[1,]-y[2,])   ## the difference
 
 z = rbind( z1, z2) ## matrix now same dimensions as y
 
+thelim <- c(-3,3)
 mypar(1,2)
 
-thelim <- c(-3,3)
 plot(y[1,],y[2,],xlab="Twin 1 (standardized height)",ylab="Twin 2 (standardized height)",xlim=thelim,ylim=thelim)
 points(y[1,1:2],y[2,1:2],col=2,pch=16)
 
@@ -53,7 +53,7 @@ plot(z[1,],z[2,],xlim=thelim,ylim=thelim,xlab="Average height",ylab="Differnece 
 points(z[1,1:2],z[2,1:2],col=2,pch=16)
 ```
 
-![plot of chunk unnamed-chunk-2](images/R/pca_motivation-unnamed-chunk-2-1.png) 
+![Twin height scatter plot (left) and MA-plot (right).](images/R/pca_motivation-rotation-1.png) 
 
 
 Later we will start using linear algebra to represent transformation of the data such as this. Here we can see that to get `z` we multiplied `y` by the matrix
@@ -68,7 +68,8 @@ A = \,
 z = A y
 {/$$}
 
-Also note that can transform back by simply multiplying by {$$}A^{-1}{/$$}
+Also note that can transform back by simply multiplying by {$$}A^{-1}{/$$} as follows:
+
 {$$}
 A^{-1} = \,
 \begin{pmatrix}
@@ -108,7 +109,7 @@ plot(as.numeric(d),as.numeric(d2)) #as.numeric turns distnaces into long vector
 abline(0,1,col=2)
 ```
 
-![plot of chunk unnamed-chunk-3](images/R/pca_motivation-unnamed-chunk-3-1.png) 
+![plot of chunk unnamed-chunk-2](images/R/pca_motivation-unnamed-chunk-2-1.png) 
 
 We call this particular transformation a _rotation_ of `y`. 
 
@@ -124,7 +125,7 @@ plot(z[1,],z[2,],xlim=thelim,ylim=thelim,xlab="Average height",ylab="Differnece 
 points(z[1,1:2],z[2,1:2],col=2,pch=16)
 ```
 
-![plot of chunk unnamed-chunk-4](images/R/pca_motivation-unnamed-chunk-4-1.png) 
+![plot of chunk unnamed-chunk-3](images/R/pca_motivation-unnamed-chunk-3-1.png) 
 
 The reason we applied this transformation in the first place was because we noticed that to compute the distances between points we followed a direction along the diagonal in the oritinal plot which after the rotation falls on the horizontal, or the the first dimension of `z`. So this rotation actually achieves what we orginally wanted: we can preserve the distances between points with just one dimension. Let's remove the second dimension of `z` and recompute distances:
 
@@ -137,7 +138,7 @@ plot(as.numeric(d),as.numeric(d3))
 abline(0,1)
 ```
 
-![plot of chunk unnamed-chunk-5](images/R/pca_motivation-unnamed-chunk-5-1.png) 
+![plot of chunk unnamed-chunk-4](images/R/pca_motivation-unnamed-chunk-4-1.png) 
 
 The distance computed with just the one dimensions provide a very good approximation to the actual distance provide a very useful dimension reduction: from 2 dimension to 1. This first dimension of the transformed data is acually the first _principal component_. This idea motivates the use of principal component analysis (PCA) and the singular value decomposition (SVD) to achieve dimension reduction more generally. 
 
