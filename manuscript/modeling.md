@@ -18,6 +18,7 @@ But this does not imply that every dataset we collect will follow a normal distr
 ## The Binomial Distribution
 
 A distribution that one should be familiar is the binomial distribution. It describes the probability of the total number of observed heads {$$}S=k{/$$} heads when tossing {$$}N{/$$} heads as
+
 {$$}
 \mbox{Pr}(S=k) = {N \choose k}p^k (1-p)^{N-k}
 {/$$}
@@ -45,8 +46,8 @@ prop.table(tab)
 
 ```
 ## winners
-##     0     1     2     3     4 
-## 0.605 0.304 0.077 0.011 0.003
+##     0     1     2     3     4     6 
+## 0.586 0.312 0.087 0.013 0.001 0.001
 ```
 
 For cases like this, where {$$}N{/$$} is very large, but {$$}p{/$$} is small enough to make {$$}N \times p{/$$} (call it {$$}\lambda{/$$}) a number between 0 and 10, then {$$}S{/$$} can be shown to follow a Poisson a distribution which has a simple parametric form:
