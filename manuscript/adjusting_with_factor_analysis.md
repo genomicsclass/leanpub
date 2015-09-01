@@ -18,10 +18,23 @@ data(GSE5859Subset)
 Here is an image we showed earlier with a subset of genes showing both the sex effect and time effects, along with sample to sample correlations (computed on all genes) showing the complex structure of the data:
 
 
+
 ```r
 library(rafalib)
+library(RColorBrewer)
 library(genefilter)
+```
 
+```
+## 
+## Attaching package: 'genefilter'
+## 
+## The following object is masked from 'package:base':
+## 
+##     anyNA
+```
+
+```r
 sex <- sampleInfo$group
 
 batch <- factor(format(sampleInfo$date,"%m"))
@@ -39,46 +52,17 @@ geneindex<-c(ind2,ind0,ind1)
 mat<-geneExpression[geneindex,]
 mat <- mat -rowMeans(mat)
 icolors <- colorRampPalette(rev(brewer.pal(11,"RdYlBu")))(100)
-```
 
-```
-## Error in rev(brewer.pal(11, "RdYlBu")): could not find function "brewer.pal"
-```
-
-```r
 mypar(1,2)
 image(t(mat),xaxt="n",yaxt="n",col=icolors)
-```
-
-```
-## Error in image.default(t(mat), xaxt = "n", yaxt = "n", col = icolors): object 'icolors' not found
-```
-
-```r
 y <- geneExpression - rowMeans(geneExpression)
 image(1:ncol(y),1:ncol(y),cor(y),col=icolors,zlim=c(-1,1),
        xaxt="n",xlab="",yaxt="n",ylab="")
-```
-
-```
-## Error in image.default(1:ncol(y), 1:ncol(y), cor(y), col = icolors, zlim = c(-1, : object 'icolors' not found
-```
-
-```r
 axis(2,1:ncol(y),sex,las=2)
-```
-
-```
-## Error in axis(2, 1:ncol(y), sex, las = 2): plot.new has not been called yet
-```
-
-```r
 axis(1,1:ncol(y),sex,las=2)
 ```
 
-```
-## Error in axis(1, 1:ncol(y), sex, las = 2): plot.new has not been called yet
-```
+![Image of subset gene expression data (left) and image of correlations for this dataset (right).](images/R/adjusting_with_factor_analysis-correlation_image-1.png) 
 
 
 
@@ -93,40 +77,29 @@ Here is a plot of dates for each sample, with color representing month:
 times <-sampleInfo$date 
 mypar(1,1)
 o=order(times)
-plot(times[o],pch=21,bg=as.fumeric(batch)[o],ylab="date")
-```
-
-```
-## Error in as.fumeric(batch): 'x' must be a character
-```
-
-```r
+plot(times[o],pch=21,bg=as.numeric(batch)[o],ylab="date")
 o=order(times)
-plot(times[o],pch=21,bg=as.fumeric(batch)[o],ylab="date")
+plot(times[o],pch=21,bg=as.numeric(batch)[o],ylab="date")
 ```
 
-```
-## Error in as.fumeric(batch): 'x' must be a character
-```
-
-![plot of chunk unnamed-chunk-3](images/R/adjusting_with_factor_analysis-unnamed-chunk-3-1.png) 
+![Dates with color denoting month.](images/R/adjusting_with_factor_analysis-what_is_batch-1.png) 
 There is more than one day per month. Could day have an effects as well?
 
 
 ### PCA
 
-Here is a plot of the first principal component ordered by data:
+Here is a plot of the first principal component ordered by date:
 
 ```r
 s <- svd(y)
 mypar(1,1)
 o<-order(times)
-cols <- as.numeric( factor(times))
+cols <- as.numeric( batch)
 plot(s$v[o,1],pch=21,cex=1.25,bg=cols[o],ylab="First PC",xaxt="n",xlab="")
-legend("topleft",c("batch 1","batch 2"),col=1:2,lty=1,box.lwd=0)
+legend("topleft",c("Month 1","Month 2"),col=1:2,pch=16,box.lwd=0)
 ```
 
-![plot of chunk unnamed-chunk-4](images/R/adjusting_with_factor_analysis-unnamed-chunk-4-1.png) 
+![First PC plotted against ordered by date with colors representing month.](images/R/adjusting_with_factor_analysis-PC1_versus_time-1.png) 
 
 Day seems to be highly correlated and explained a high percentage of the variability:
 
@@ -136,17 +109,18 @@ mypar(1,1)
 plot(s$d^2/sum(s$d^2),ylab="% variance explained",xlab="Principal component")
 ```
 
-![plot of chunk unnamed-chunk-5](images/R/adjusting_with_factor_analysis-unnamed-chunk-5-1.png) 
+![Variance explained.](images/R/adjusting_with_factor_analysis-variance_explained-1.png) 
 
 In fact, the first six or so PC seem to be at least partially driven by date:
 
 ```r
 mypar(3,4)
 for(i in 1:12)
-boxplot(split(s$v[,i],times))
+days <- gsub("2005-","",times)  
+boxplot(split(s$v[,i],gsub("2005-","",days)))
 ```
 
-![plot of chunk unnamed-chunk-6](images/R/adjusting_with_factor_analysis-unnamed-chunk-6-1.png) 
+![First 12 PCs stratified by dates.](images/R/adjusting_with_factor_analysis-PCs_stratified_by_time-1.png) 
 
 
 What happens if we simply remove the top six PC from the data and then perform a t-test? 
@@ -172,13 +146,12 @@ points(res$dm[which(chr=="chrY")],-log10(res$p.value[which(chr=="chrY")]),col=2,
 legend("bottomright",c("chrX","chrY"),col=1:2,pch=16)
 ```
 
-![plot of chunk unnamed-chunk-8](images/R/adjusting_with_factor_analysis-unnamed-chunk-8-1.png) 
+![p-value histogram and volcano plot after blindly removing the first two PCs.](images/R/adjusting_with_factor_analysis-pval_hist_and_volcano_after_removing_PCs-1.png) 
 
 <a name="sva"></a>
-### Factor Analysis
+### Surrogate Variable Analysis
 
 An alternative is to fit models with both the covariate of interest, as well as those believed to be batches. An example of an approach that does this is Surrogate Variable Analysis (SVA).
-
 
 The basic idea of SVA is to first estimate the factors, but taking care not to include the outcome of interest. To do this, an interactive approach is used in which each row is given a weight and then these weights are used in the SVD calculation with higher weights given to rows not associated with the outcome of interest and associated with batches. Below is a demonstration of two iterations. The three images are the data (for a subset of genes), the weights, and the estimated first factor.
 
@@ -213,7 +186,7 @@ for(b in 1:2){
   ## Weighted SVD
   surrogate <- svd( y*weights)$v[,1]
   
-  image(matrix(weights[geneindex],nrow=1),,xaxt="n",yaxt="n",col=brewer.pal(9,"Blues"))
+  image(matrix(weights[geneindex],nrow=1),xaxt="n",yaxt="n",col=brewer.pal(9,"Blues"))
   plot(surrogate[cind],bg=sex[cind]+1,pch=21,xlab="",xaxt="n",ylab="Surrogate variable",ylim=c(-.5,.5),cex=1.5)
   axis(side=1,seq(along=dates),dates[cind],las=2)
   abline(v=12.5)
@@ -224,8 +197,16 @@ for(b in 1:2){
 ```
 
 ```
-## Error in image.default(1:ncol(mat), 1:nrow(mat), t(mat[, cind] * weights[geneindex]), : object 'icolors' not found
+## Number of significant surrogate variables is:  5 
+## Iteration (out of 1 ):1
 ```
+
+```
+## Number of significant surrogate variables is:  5 
+## Iteration (out of 2 ):1  2
+```
+
+![Illustration of iterative procedure used by SVA. Only two iterations are shown.](images/R/adjusting_with_factor_analysis-illustration_of_sva-1.png) 
 
 
 The above is an illustration of the algorithm. To actually run SVA we follow the this code. In this case, SVA picks the number of surrogate values or factors for us.
@@ -263,7 +244,7 @@ points(res$dm[which(chr=="chrY")],-log10(res$p.value[which(chr=="chrY")]),col=2,
 legend("bottomright",c("chrX","chrY"),col=1:2,pch=16)
 ```
 
-![plot of chunk unnamed-chunk-11](images/R/adjusting_with_factor_analysis-unnamed-chunk-11-1.png) 
+![p-value histogram and volcano plot obtained with SVA.](images/R/adjusting_with_factor_analysis-pval_hist_and_volcano_sva-1.png) 
 
 
 And here is a decompose of the data into sex effects, surrogate variables, and independent noise:
@@ -278,34 +259,11 @@ Signal <-Signal-rowMeans(Signal)
 mat <- geneExpression[geneindex,]-rowMeans(geneExpression[geneindex,])
 mypar(1,4,mar = c(2.75, 4.5, 2.6, 1.1))
 image(t(mat),col=icolors,zlim=c(-5,5),xaxt="n",yaxt="n")
-```
-
-```
-## Error in image.default(t(mat), col = icolors, zlim = c(-5, 5), xaxt = "n", : object 'icolors' not found
-```
-
-```r
 image(t(Signal),col=icolors,zlim=c(-5,5),xaxt="n",yaxt="n")
-```
-
-```
-## Error in image.default(t(Signal), col = icolors, zlim = c(-5, 5), xaxt = "n", : object 'icolors' not found
-```
-
-```r
 image(t(Batch),col=icolors,zlim=c(-5,5),xaxt="n",yaxt="n")
-```
-
-```
-## Error in image.default(t(Batch), col = icolors, zlim = c(-5, 5), xaxt = "n", : object 'icolors' not found
-```
-
-```r
 image(t(error),col=icolors,zlim=c(-5,5),xaxt="n",yaxt="n")
 ```
 
-```
-## Error in image.default(t(error), col = icolors, zlim = c(-5, 5), xaxt = "n", : object 'icolors' not found
-```
+![Original data split into three sources of variability estimated by SVA: sex-related signal, surrogate-variable induced structure and indepedent error.](images/R/adjusting_with_factor_analysis-different_sources_of_var-1.png) 
 
 
