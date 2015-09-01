@@ -11,7 +11,7 @@ Machine learning is a very broad topic and a highly active research area. In the
 
 ## Clustering 
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/clustering_and_heatmaps.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/clustering_and_heatmaps.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/clustering_and_heatmaps.Rmd).
 
 We will demonstrate the concepts and code needed to perform clusturing analysis with the tissue gene expression data:
 
