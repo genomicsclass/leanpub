@@ -14,13 +14,80 @@ Similar to inference in the context of regression, Machine Learning (ML) studies
 
 Here we introduce the main concepts needed to understand ML along with two specific algorithms: regression and k nearest neighbors (knn). Note there are dozens of popular algorithms that we do not cover here are some 
 
-In a previous section we covered the very simple one-predictor case. Most of ML is concerned with cases with more than one predictor. For illustration purposes we move to a case in which {$$}X{/$$} is two dimensional and {$$}Y{/$$} is binary. We simulate a situation with a non-linear relationship using an example from Hastie, Tibshirani and Friedman's book. In the plot below we show the actual values of {$$}f(x_1,x_2)=E(Y \mid X_1=x_1,X_2=x_2){/$$} using colors
+In a previous section we covered the very simple one-predictor case. Most of ML is concerned with cases with more than one predictor. For illustration purposes we move to a case in which {$$}X{/$$} is two dimensional and {$$}Y{/$$} is binary. We simulate a situation with a non-linear relationship using an example from Hastie, Tibshirani and Friedman's book. In the plot below we show the actual values of {$$}f(x_1,x_2)=E(Y \mid X_1=x_1,X_2=x_2){/$$} using colors. The following code is used to create a relatively complex conditional probability function. We create the test and train data we use later.
 
-![plot of chunk unnamed-chunk-1](images/R/machine_learning-unnamed-chunk-1-1.png) 
+
+```r
+library(rafalib)
+library(RColorBrewer)
+hmcol <- colorRampPalette(rev(brewer.pal(11, "Spectral")))(100)
+mycols=c(hmcol[1],hmcol[100])
+
+set.seed(1)
+##create covariates and outcomes
+##outcomes are alwasy 50 0s and 50 1s
+s2=0.15
+
+##pick means to create a non linear conditional expectation
+library(MASS)
+M0 <- mvrnorm(10,c(1,0),s2*diag(2)) ##generate 10 means
+M1 <- rbind(mvrnorm(3,c(1,1),s2*diag(2)),
+            mvrnorm(3,c(0,1),s2*diag(2)),
+            mvrnorm(4,c(0,0),s2*diag(2)))
+
+###funciton to generate random pairs
+s<- sqrt(1/5)
+N=200
+makeX <- function(M,n=N,sigma=s*diag(2)){
+  z <- sample(1:10,n,replace=TRUE) ##pick n at random from above 10
+  m <- M[z,] ##these are the n vectors (2 components)
+  return(t(apply(m,1,function(mu) mvrnorm(1,mu,sigma)))) ##the final values
+}
+
+
+###create the training set and the test set
+x0 <- makeX(M0)##the final values for y=0 (green)
+testx0 <- makeX(M0)
+x1 <- makeX(M1)
+testx1 <-makeX(M1)
+x <- rbind(x0,x1) ## one matrix with everything
+test <- rbind(testx0,testx1)
+y <- c(rep(0,N),rep(1,N)) #the outcomes
+ytest <- c(rep(0,N),rep(1,N))
+cols <- mycols[c(rep(1,N),rep(2,N))]
+colstest <- cols
+
+##Create a grid so we can predict all of X,Y
+GS <- 150 ##grid size is GS x GS
+XLIM <- c(min(c(x[,1],test[,1])),max(c(x[,1],test[,1])))
+tmpx <- seq(XLIM[1],XLIM[2],len=GS)
+YLIM <- c(min(c(x[,2],test[,2])),max(c(x[,2],test[,2])))
+tmpy <- seq(YLIM[1],YLIM[2],len=GS)
+newx <- expand.grid(tmpx,tmpy) #grid used to show color contour of predictions
+
+###Bayes rule: best possible answer
+p <- function(x){ ##probability of Y given X
+  p0 <- mean(dnorm(x[1],M0[,1],s)*dnorm(x[2],M0[,2],s))
+  p1 <- mean(dnorm(x[1],M1[,1],s)*dnorm(x[2],M1[,2],s))
+  p1/(p0+p1)
+}
+
+###Create the bayesrule prediction
+bayesrule <- apply(newx,1,p)
+colshat <- bayesrule
+
+colshat <- hmcol[floor(bayesrule*100)+1]
+
+mypar()
+plot(x,type="n",xlab="X1",ylab="X2",xlim=XLIM,ylim=YLIM)
+points(newx,col=colshat,pch=16,cex=0.35)
+```
+
+![Probability of Y=1 as a function of X1 and X2. Red is close to 1, yellow close 0.5 nad blue close to 0.](images/R/machine_learning-conditional_prob-1.png) 
 
 If we should {$$}E(Y \mid X=x)>0.5{/$$} in red and the rest in blue we see the boundary region in which we switch from predicting from 0 to 1.
 
-![plot of chunk unnamed-chunk-2](images/R/machine_learning-unnamed-chunk-2-1.png) 
+![Bayes rule. The line devides part the space for which probability os larger than 0.5 (red) and lower than 0.5 (blue).](images/R/machine_learning-bayes_rule-1.png) 
 
 The above plots relate to the "truth" that we do not get to see. A typical first step in an ML is to use a sample to estimate {$$}f(x){/$$} 
 
@@ -30,7 +97,7 @@ Now make a plot of training data and test data
 plot(x,pch=21,bg=cols,xlab="X1",ylab="X2",xlim=XLIM,ylim=YLIM)
 ```
 
-![plot of chunk unnamed-chunk-3](images/R/machine_learning-unnamed-chunk-3-1.png) 
+![Data generated using the probability map above.](images/R/machine_learning-data-1.png) 
 
 We will review two specif ML techniques. First, we need to review the main concept we use to evaluate the performance of these methods. 
 
@@ -56,7 +123,7 @@ plot(x,pch=21,bg=cols,xlab="X1",ylab="X2",xlim=XLIM,ylim=YLIM)
 plot(test,pch=21,bg=colstest,xlab="X1",ylab="X2",xlim=XLIM,ylim=YLIM)
 ```
 
-![plot of chunk unnamed-chunk-5](images/R/machine_learning-unnamed-chunk-5-1.png) 
+![Training data (left) and test data (right)](images/R/machine_learning-test_train-1.png) 
 
 The reason for this is to detect over-training  by testing on a different data than the one used to fit  model. We will see how important this is.
 
@@ -122,7 +189,7 @@ points(newx,col=colshat,pch=16,cex=0.35)
 points(test,bg=cols,pch=21)
 ```
 
-![plot of chunk unnamed-chunk-9](images/R/machine_learning-unnamed-chunk-9-1.png) 
+![We estimate the probability of 1 with a linear regression model with X1 and X2 as predictors. The resulting prediction map is divided in to parts that are larger than 0.5 (red) and lower than 0.5 (blue).](images/R/machine_learning-regression_prediction-1.png) 
 
 Note that the error rates in the test and train sets are quite similar. Thus do not seem to be over-training. This is not surprising as we are fitting a 2 parameter model to 400 data points. However note that the boundary is a line. Because we are fitting plane to the data, there is no other option here. The linear regression method is too rigid. The rigid makes it stable and avoids over training but it also keeps the model from adapting to the non-linear relationship between {$$}Y{/$$} and {$$}X{/$$}. We saw this before in the smoothing section. The next ML technique we consider is similar to the smoothing techniques described before.
 
@@ -175,7 +242,7 @@ for(k in c(1,200)){
 ## KNN prediction error in train: 0.2825
 ```
 
-![plot of chunk unnamed-chunk-10](images/R/machine_learning-unnamed-chunk-10-1.png) 
+![Prediction regions obtained with kNN for k=1 (top) and k=200 (bottom). We show both train (left) and test data (right)](images/R/machine_learning-knn-1.png) 
 
 ```
 ## KNN prediction error in test: 0.295
@@ -242,7 +309,7 @@ abline(h=bayes.error,col=6)
 legend("bottomright",c("Train","Test","Bayes"),col=c(4,5,6),lty=c(2,3,1),box.lwd=0)
 ```
 
-![plot of chunk unnamed-chunk-11](images/R/machine_learning-unnamed-chunk-11-1.png) 
+![Prediction error in train (pink) and test (green) versus number of neighbors. The yellow line represents what one obtains with Bayes Rule.](images/R/machine_learning-bayes_rule2-1.png) 
 
 
 
