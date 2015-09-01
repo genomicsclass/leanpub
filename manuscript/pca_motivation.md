@@ -83,6 +83,7 @@ y = A^{-1} z
 ### Rotations 
 
 Note in the plot above the distance between the two orange points remains roughly the same, relative to the other points. This actually true for all pairs of points. A simple re-scaling of the transformation we performed above will actually make the distances to be exactly the same. What we will do is multiply by a scalar so that the standard deviations of each point is preserved. If you think of the columns of `y` as indpendent random variables with standard deviation {$$}\sigma{/$$} then note that the standard deviations of of {$$}M{/$$} and {$$}A{/$$} are 
+
 {$$}
 \mbox{sd}[ Z_1 ] = \mbox{sd}[ (Y_1 + Y_2) / 2 ] = \frac{1}{\sqrt{2}} \sigma \mbox{ and } \mbox{sd}[ Z_2] = \mbox{sd}[ Y_1 - Y_2  ] = {\sqrt{2}} \sigma 
 {/$$}
@@ -96,6 +97,7 @@ A = \frac{1}{\sqrt{2}}
 1&-1\\
 \end{pmatrix}
 {/$$}
+
 then the SD of the columns of {$$}Y{/$$} are the same as the variance of the columsn {$$}Z{/$$}. Note that {$$}A^{-1}A=I{/$$} making {$$}A{/$$}. We call matrices with this properties _orthogonal_ and it guarantees the SD-preserving properties described above. The distances are now exactly preserved:
 
 
@@ -109,7 +111,7 @@ plot(as.numeric(d),as.numeric(d2)) #as.numeric turns distnaces into long vector
 abline(0,1,col=2)
 ```
 
-![plot of chunk unnamed-chunk-2](images/R/pca_motivation-unnamed-chunk-2-1.png) 
+![Distance computed from original data and after rotation is the same.](images/R/pca_motivation-rotation_preserves_dist-1.png) 
 
 We call this particular transformation a _rotation_ of `y`. 
 
@@ -125,7 +127,7 @@ plot(z[1,],z[2,],xlim=thelim,ylim=thelim,xlab="Average height",ylab="Differnece 
 points(z[1,1:2],z[2,1:2],col=2,pch=16)
 ```
 
-![plot of chunk unnamed-chunk-3](images/R/pca_motivation-unnamed-chunk-3-1.png) 
+![Twin height scatter plot (left) and after rotation (right).](images/R/pca_motivation-rotation2-1.png) 
 
 The reason we applied this transformation in the first place was because we noticed that to compute the distances between points we followed a direction along the diagonal in the oritinal plot which after the rotation falls on the horizontal, or the the first dimension of `z`. So this rotation actually achieves what we orginally wanted: we can preserve the distances between points with just one dimension. Let's remove the second dimension of `z` and recompute distances:
 
@@ -138,7 +140,7 @@ plot(as.numeric(d),as.numeric(d3))
 abline(0,1)
 ```
 
-![plot of chunk unnamed-chunk-4](images/R/pca_motivation-unnamed-chunk-4-1.png) 
+![Distance computed with just one dimension after rotation versus actual distance.](images/R/pca_motivation-approx dist-1.png) 
 
 The distance computed with just the one dimensions provide a very good approximation to the actual distance provide a very useful dimension reduction: from 2 dimension to 1. This first dimension of the transformed data is acually the first _principal component_. This idea motivates the use of principal component analysis (PCA) and the singular value decomposition (SVD) to achieve dimension reduction more generally. 
 
