@@ -8,7 +8,7 @@ title: Bayesian Statistics
 
 ## Bayesian Statistics
 
-One distinguishing characteristic of high-throuhgput data is that we make many measure of related outcomes. For example, we measure the expression of thousands of genes, or the height of thousands of peaks represneting protein binding, or the methyaltion levels across several CpGs. However, most of the statistical inference approach we have shown here treat each feature independently and pretty much ignores data from other features. We will learn how using statistical models we can gain power by modeling features jointly. The most succsefull of these models are what we refer to as hiearchical models which are best explained in the context of Bayesian statistics.
+One distinguishing characteristic of high-throughput data is that we make many measure of related outcomes. For example, we measure the expression of thousands of genes, or the height of thousands of peaks representing protein binding, or the methylation levels across several CpGs. However, most of the statistical inference approach we have shown here treat each feature independently and pretty much ignores data from other features. We will learn how using statistical models we can gain power by modeling features jointly. The most successful of these models are what we refer to as hierarchical models which are best explained in the context of Bayesian statistics.
 
 ### Bayes theorem
 
@@ -20,7 +20,7 @@ We start by reviewing Bayes theorem. We do this using a hypothetical Cystic Fibr
 
 with {$$}+{/$$} meaning a positive test and {$$}D{/$$} representing if you actually have (1) the disease or not (0).
 
-Suppose we select random person and they test postive, what is the probability that they have the disease?  We write this as {$$}\mbox{Prob}(D=1 \mid +)?{/$$}. The  cystic fibrosis rate is 1 in 3,900 which implies that  {$$}\mbox{Prob}(D)=0.0025{/$$}. To answer this question we will use Bayes Theorem, which in general  tells us that
+Suppose we select random person and they test positive, what is the probability that they have the disease?  We write this as {$$}\mbox{Prob}(D=1 \mid +)?{/$$}. The  cystic fibrosis rate is 1 in 3,900 which implies that  {$$}\mbox{Prob}(D=1)=0.0025{/$$}. To answer this question we will use Bayes Theorem, which in general  tells us that
 
 {$$}
 \mbox{Pr}(A \mid B)  =  \frac{\mbox{Pr}(B \mid A)\mbox{Pr}(A)}{\mbox{Pr}(B)} 
@@ -31,21 +31,21 @@ This equation applied to our problem becomes:
 {$$}
 \begin{align*}
 \mbox{Prob}(D=1 \mid +) & =  \frac{ P(+ \mid D=1) \cdot P(D=1)} {\mbox{Prob}(+)} \\
-& =  \frac{\mbox{Prob}(+ \mid D=0)\cdot P(D)} {\mbox{Prob}(+ \mid D) \cdot P(D) + \mbox{Prob}(+ \mid D=1) \mbox{Prob}( D=0)} 
+& =  \frac{\mbox{Prob}(+ \mid D=1)\cdot P(D=1)} {\mbox{Prob}(+ \mid D=1) \cdot P(D=1) + \mbox{Prob}(+ \mid D=0) \mbox{Prob}( D=0)} 
 \end{align*}
 {/$$}
 
-Pluging in the numbers we get:
+Plugging in the numbers we get:
 
 {$$}
 \frac{0.99 \cdot 0.0025}{0.99 \cdot 0.0025 + 0.01 \cdot (.9975)}  =  0.02 
 {/$$}
 
-Note that this says that despite the test having 0.99 accuracy, the probabilty of having disease given a positive test in 0.02. This may appear counterintutive to some. The reason why this is the case is because we have to factor in the very rare probability that a person, chosen at random, has the disease. To see the 
+Note that this says that despite the test having 0.99 accuracy, the probability of having disease given a positive test in 0.02. This may appear counterintuitive to some. The reason why this is the case is because we have to factor in the very rare probability that a person, chosen at random, has the disease. To see the 
 
 ### Simulation
 
-The following simulation is meant help you visualize Bayes Theorem. We start by randomely selection 1500 people from a population in which the disease in question has a 5% prevalence.
+The following simulation is meant help you visualize Bayes Theorem. We start by randomly selection 1500 people from a population in which the disease in question has a 5% prevalence.
 
 
 ```r
@@ -93,7 +93,7 @@ plot(people,col=positivecols,pch=16,xaxt="n",yaxt="n",xlab="",ylab="",main=paste
 plot(people,col=negativecols,pch=16,xaxt="n",yaxt="n",xlab="",ylab="",main=paste("Tested Negative:",round(mean(d[test==0])*100,1),"% are red"))
 ```
 
-![plot of chunk unnamed-chunk-3](images/R/bayes-unnamed-chunk-3-1.png) 
+![Simulation demonstrating Bayes theorem. Top plot shows every individual with red denoting cases. Each one takes a test and with 90% gives correct answer. Those called positive (either by correctly or incorrectly) are put in the bottom left pane. Those called negative in the bottom right.](images/R/bayes-simulation-1.png) 
 
 The proportions of red in the top plot shows {$$}\mbox{Pr}(D=1){/$$}. The bottom left shows {$$}\mbox{Pr}(D=1 \mid +){/$$} and the bottom right shows {$$}\mbox{Pr}(D=0 \mid +){/$$}.
 
@@ -101,7 +101,7 @@ The proportions of red in the top plot shows {$$}\mbox{Pr}(D=1){/$$}. The bottom
 ### Bayes in Practice
 
 
-<!-- ![iglesias](images/downloads/902px-Jos%C3%A9_Iglesias_on_September_28%2C_2012.jpg) -->
+<!-- ![iglesias](http://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Jos%C3%A9_Iglesias_on_September_28%2C_2012.jpg/902px-Jos%C3%A9_Iglesias_on_September_28%2C_2012.jpg) -->
 
 
 José Iglesias 2013
@@ -124,21 +124,7 @@ This is for all players (>500 AB) 2010, 2011, 2012
 
 
 
-
-```
-## 
-## Attaching package: 'dplyr'
-## 
-## The following object is masked from 'package:stats':
-## 
-##     filter
-## 
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-![plot of chunk unnamed-chunk-5](images/R/bayes-unnamed-chunk-5-1.png) 
+![Batting average histograms for 2010, 2011, and 2012.](images/R/bayes-batting_averages-1.png) 
 
 Average is .275 and SD is 0.027
 
