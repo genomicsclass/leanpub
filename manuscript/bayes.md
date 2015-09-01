@@ -101,7 +101,7 @@ The proportions of red in the top plot shows {$$}\mbox{Pr}(D=1){/$$}. The bottom
 ### Bayes in Practice
 
 
-<!-- ![iglesias](images/downloads/902px-Jos%C3%A9_Iglesias_on_September_28%2C_2012.jpg) -->
+<!-- ![iglesias](http://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Jos%C3%A9_Iglesias_on_September_28%2C_2012.jpg/902px-Jos%C3%A9_Iglesias_on_September_28%2C_2012.jpg) -->
 
 
 José Iglesias 2013
@@ -123,20 +123,6 @@ This is for all players (>500 AB) 2010, 2011, 2012
 
 
 
-
-
-```
-## 
-## Attaching package: 'dplyr'
-## 
-## The following object is masked from 'package:stats':
-## 
-##     filter
-## 
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
 
 ![Batting average histograms for 2010, 2011, and 2012.](images/R/bayes-batting_averages-1.png) 
 
