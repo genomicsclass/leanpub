@@ -45,8 +45,8 @@ prop.table(tab)
 
 ```
 ## winners
-##     0     1     2     3     4 
-## 0.604 0.305 0.075 0.013 0.003
+##     0     1     2     3 
+## 0.611 0.303 0.076 0.010
 ```
 
 For cases like this, where {$$}N{/$$} is very large, but {$$}p{/$$} is small enough to make {$$}N \times p{/$$} (call it {$$}\lambda{/$$}) a number between 0 and 10, then {$$}S{/$$} can be shown to follow a Poisson a distribution which has a simple parametric form:
@@ -148,14 +148,14 @@ hist(counts)
 
 ![Palindrom count histogram.](images/R/modeling-palindrome_count_histogram-1.png) 
 
-The counts do appear to follow a Poisson distribution. But what is the rate {$$}\lambda$? The most common approach to estimating this rate is _maximum likelihood estimation_. To find the maximum likelihood estimate (MLE) we note that these data are independent and the probability of observing the values we observed is:
-{/$$}
+The counts do appear to follow a Poisson distribution. But what is the rate {$$}\lambda{/$$} ? The most common approach to estimating this rate is _maximum likelihood estimation_. To find the maximum likelihood estimate (MLE) we note that these data are independent and the probability of observing the values we observed is:
+{$$}
 \Pr(X_1=k_1,\dots,X_n=k_n;\lambda) = \prod_{i=1}^n \lambda^{k_i} / k_i! \exp ( -\lambda)
-{$$}
-The MLE is the value of lambda that maximizes the _likeihlood_. 
 {/$$}
-L(\lambda; X_1=k_1,\dots,X_n=k_1)=\exp\left\{\sum_{i=1}^n \log \Pr(X_i=k_i;\lambda)\right\}
+The MLE is the value of lambda that maximizes the _likeihlood_. 
 {$$}
+L(\lambda; X_1=k_1,\dots,X_n=k_1)=\exp\left\{\sum_{i=1}^n \log \Pr(X_i=k_i;\lambda)\right\}
+{/$$}
 In practice it is more convenient to maximize the log-likelihood
 
 
@@ -203,7 +203,7 @@ So can we model the distribution of these standard errors? Are they normal? Note
 
 ```r
 library(Biobase)
-library(maPooling) ##install from github: install_github("genomicsclass/maPooling")
+library(maPooling) ##install with install_github("genomicsclass/maPooling")
 
 data(maPooling)
 pd=pData(maPooling)
@@ -243,28 +243,28 @@ qqline(biosds)
 ![Normal qq-plot for sample standard deviations.](images/R/modeling-sd_qqplot-1.png) 
 
 There are parametric distributions that posses these properties (strictly positive and _heavy_ right tails). Two examples are the _gamma_ and _F_ distributions. The density of the gamma distribution is defined by: 
-{/$$}
-f(x;\alpha,\beta)=\frac{\beta^\alpha x^{\alpha-1}\exp{-\beta x}}{\Gamma(\alpha)}
 {$$}
-It is defined by two parameters {/$$}\alpha{$$} and {/$$}\beta{$$} that can, indirectly, control location and scale. They also control the shape of the distribution. For more on this distribution please refer to [CITE BOOKs]. 
+f(x;\alpha,\beta)=\frac{\beta^\alpha x^{\alpha-1}\exp{-\beta x}}{\Gamma(\alpha)}
+{/$$}
+It is defined by two parameters {$$}\alpha{/$$} and {$$}\beta{/$$} that can, indirectly, control location and scale. They also control the shape of the distribution. For more on this distribution please refer to [CITE BOOKs]. 
 
-Two special cases of the gamma distribution are the chi-squared distribution, which we used earlier to analyze a 2x2 table and the exponential distribution, which we will use later in this section. For chi-square we {/$$}\alpha=\nu/2{$$} and {/$$}\beta=2{$$} with {/$$}\nu{$$} the degrees of freedom. For exponential we have {/$$}\alpha=1{$$} and {/$$}\beta=\lambda{$$} the rate.
+Two special cases of the gamma distribution are the chi-squared distribution, which we used earlier to analyze a 2x2 table and the exponential distribution, which we will use later in this section. For chi-square we {$$}\alpha=\nu/2{/$$} and {$$}\beta=2{/$$} with {$$}\nu{/$$} the degrees of freedom. For exponential we have {$$}\alpha=1{/$$} and {$$}\beta=\lambda{/$$} the rate.
 
 The F-distribution comes up in analysis of variance (ANOVA). It is also always positive and has large right tails. Two parameters control its shape:
-{/$$}
+{$$}
 f(x,d_1,d_2)=\frac{1}{B\left( \frac{d_1}{2},\frac{d_2}{2}\right)}
   \left(\frac{d_1}{d_2}\right)^{\frac{d_1}{2}}  
   x^{\frac{d_1}{2}-1}\left(1+\frac{d1}{d2}x\right)^{-\frac{d_1+d_2}{2}}
-{$$}  
-with {/$$}B{$$} the _beta function_ and {/$$}d_1{$$} and {/$$}d_2{$$} are called the degrees of freedom for reasons having to do with how it arises in ANOVA. A third parameter is sometimes used with the F-distribution, which is a scale parameter.
+{/$$}  
+with {$$}B{/$$} the _beta function_ and {$$}d_1{/$$} and {$$}d_2{/$$} are called the degrees of freedom for reasons having to do with how it arises in ANOVA. A third parameter is sometimes used with the F-distribution, which is a scale parameter.
 
 ### Modeling The Variance
 
-In a later module we will learn about empirical Bayes approaches to improve estimates of variance. In these cases it is mathematically convenient (see Bayesian book) to model the distribution of the variance {/$$}\sigma^2{$$}. The hierarchical model (described here [Smyth 2004]) to the mean and variance implies (see paper for details) that the sample standard deviation of genes follows scaled F-statistics:
-{/$$}
-s^2 \sim s_0^2 F_{d,d_0}
+In a later module we will learn about empirical Bayes approaches to improve estimates of variance. In these cases it is mathematically convenient (see Bayesian book) to model the distribution of the variance {$$}\sigma^2{/$$}. The hierarchical model (described here [Smyth 2004]) to the mean and variance implies (see paper for details) that the sample standard deviation of genes follows scaled F-statistics:
 {$$}
-with {/$$}d{$$} the degrees of freedom involved in computing {/$$}s^2{$$} ; For example, in a case comparing 3 versus 3, the degrees of freedom would be 4. This leaves two free parameters to adjust to the data. Here {/$$}d{$$} will control the location and {/$$}s_0{$$} will control the scale. Here are some examples plotted on top of the histogram from the real data:
+s^2 \sim s_0^2 F_{d,d_0}
+{/$$}
+with {$$}d{/$$} the degrees of freedom involved in computing {$$}s^2{/$$} ; For example, in a case comparing 3 versus 3, the degrees of freedom would be 4. This leaves two free parameters to adjust to the data. Here {$$}d{/$$} will control the location and {$$}s_0{/$$} will control the scale. Here are some examples plotted on top of the histogram from the real data:
 
 
 ```r
@@ -284,7 +284,7 @@ for(d in c(1,5,10)){
 
 ![Histograms of sample standard deviations and densities of estimated distributions.](images/R/modeling-modeling_variance-1.png) 
 
-Now which {/$$}s_0{$$} and {/$$}d{$$} fit our data best? This is a rather advanced topic as the MLE does not perform well for this particular distribution (we refer to Smyth (2004)). The Bioconductor limma package provides a function to estimate these parameters:
+Now which {$$}s_0{/$$} and {$$}d{/$$} fit our data best? This is a rather advanced topic as the MLE does not perform well for this particular distribution (we refer to Smyth (2004)). The Bioconductor limma package provides a function to estimate these parameters:
 
 
 ```r
