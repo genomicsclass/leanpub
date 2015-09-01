@@ -8,6 +8,8 @@ title: Adjusting for Batch Effects with Linear Models
 
 ## Data Example
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/adjusting_with_linear_models.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/adjusting_with_linear_models.Rmd)
+
 To illustrate how we can adjust for batch effects using statistical methods, we will create a data example in which the outcome of interest is confounded with batch, but not completely. We will also select a outcome for which we have an expectation of what genes should be diferentially expressed. Namely, we make sex the outcome of interest and expect genes on the Y chromosome to be diferentially expressed. We may also see genes from the X chromosome as differentially expressed since some escape X inactivation. The example dataset is below.
 
 
@@ -50,7 +52,7 @@ mypar(1,1)
 image(t(mat),xaxt="n",yaxt="n",col=icolors)
 ```
 
-![Image of gene expression data for genes selected to show difference in group as well as the batch effect along with some randomely chosen genes.](images/R/adjusting_with_linear_models-image_of_subset-1.png) 
+![Image of gene expression data for genes selected to show difference in group as well as the batch effect along with some randomely chosen genes.](images/R/adjusting_with_linear_models-tmp-image_of_subset-1.png) 
 
 In what follows, we will imitate the typical analysis we would do in practice. We will act as if we don't know which genes are supposed to be differentially expressed between males and females. 
 
@@ -76,7 +78,7 @@ index <- which(qvals<0.1)
 abline(h=-log10(max(res$p.value[index])))
 ```
 
-![p-value histogram and volcano plot for comparison between sexes. The Y chromosome genes (considered to be positives) are highlighted in red. The X chromosome genes (a subset is considered to be positives) are shown in green.](images/R/adjusting_with_linear_models-pvalue_hist_and_volcano_plots-1.png) 
+![p-value histogram and volcano plot for comparison between sexes. The Y chromosome genes (considered to be positives) are highlighted in red. The X chromosome genes (a subset is considered to be positives) are shown in green.](images/R/adjusting_with_linear_models-tmp-pvalue_hist_and_volcano_plots-1.png) 
 
 ```r
 cat("Total genes with q-value < 0.1:",length(index))
@@ -105,6 +107,8 @@ cat("Number of selected genes on chrX:", sum(chr[index]=="chrX",na.rm=TRUE))
 The histogram is not flat. Instead, low p-values are over-represented. More than half of the genes on the final list are autosomal.
 
 ## Adjusting for Batch Effects with Linear Models
+
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/adjusting_with_linear_models.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/adjusting_with_linear_models.Rmd)
 
 We have already observed that processing date has an effect on gene expression.  We will therefore try to _adjust_ for this by including it a model.  When we perform a t-test comparing the two groups, it is equivalent to fitting the following linear model:
 
@@ -183,7 +187,7 @@ index <- which(qvals<0.1)
 abline(h=-log10(max(res$p.value[index])))
 ```
 
-![p-value histogram and volcano plot for comparison between sexes after adjustement for month. The Y chromosome genes (considered to be positives) are highlighted in red. The X chromosome genes (a subset is considered to be positives) are shown in green.](images/R/adjusting_with_linear_models-pvalue_hist_and_volcano_plots2-1.png) 
+![p-value histogram and volcano plot for comparison between sexes after adjustement for month. The Y chromosome genes (considered to be positives) are highlighted in red. The X chromosome genes (a subset is considered to be positives) are shown in green.](images/R/adjusting_with_linear_models-tmp-pvalue_hist_and_volcano_plots2-1.png) 
 
 ```r
 cat("Total genes with q-value < 0.1:",length(index))
@@ -213,6 +217,8 @@ There is a great improvement in specificity (less false positives) without much 
 
 
 ## A Note On Computing Efficiency
+
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/adjusting_with_linear_models.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/adjusting_with_linear_models.Rmd)
 
 In the code above, the design matrix does not change within the iterations we are computing {$$}(X^\top X)^{-1}{/$$} repeatedly and applying to each gene. Instead we can perform this calculation in one matrix algebra calculation by computing it once and then obtaining all the betas by multiplying {$$}(X^\top X)^{-1}X^\top Y{/$$} with the columns of {$$}Y{/$$} representing genes in this case. The `limma` package has an implementation of this idea (using the QR decomposition). Note how much faster this is:
 
@@ -251,8 +257,7 @@ We will cover `limma` in more detail in a later section.
 
 
 ```r
-##install_bioc("sva")
-library(sva)
+library(sva) #available from Bioconductor
 ```
 
 ```
@@ -299,7 +304,7 @@ index <- which(qvals<0.1)
 abline(h=-log10(max(res$p.value[index])))
 ```
 
-![p-value histogram and volcano plot for comparison between sexes for Combat. The Y chromosome genes (considered to be positives) are highlighted in red. The X chromosome genes (a subset is considered to be positives) are shown in green.](images/R/adjusting_with_linear_models-pvalue_hist_and_volcano_plots3-1.png) 
+![p-value histogram and volcano plot for comparison between sexes for Combat. The Y chromosome genes (considered to be positives) are highlighted in red. The X chromosome genes (a subset is considered to be positives) are shown in green.](images/R/adjusting_with_linear_models-tmp-pvalue_hist_and_volcano_plots3-1.png) 
 
 ```r
 cat("Total genes with q-value < 0.1:",length(index))
