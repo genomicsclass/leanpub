@@ -54,11 +54,11 @@ Based on the plot above we hypothesize that there are two hidden factors {$$}\ma
 Y_{ij} = \alpha_{i,1} W_{1,j} + \alpha_{i,2} W_{2,j} + \varepsilon_{ij}
 {/$$}
 
-The interpretation of these parameters are as follows: {$$}\alpha_{i,1}{/$$} is the overall ability for student {$$}i{/$$} and {$$}\alpha_{i,2}{/$$} is the  difference in ability between the two subgroups for student {$$}i{/$$}. Can we estimate the {$$}W{/$$} and {$$}\alpha$? 
+The interpretation of these parameters are as follows: {$$}\alpha_{i,1}{/$$} is the overall ability for student {$$}i{/$$} and {$$}\alpha_{i,2}{/$$} is the  difference in ability between the two subgroups for student {$$}i{/$$}. Can we estimate the {$$}W{/$$} and {$$}\alpha{/$$} ? 
 
 ### Factor analysis and PCA
 
-The first two principal components estimate {/$$}W_1{$$} and {/$$}W_2{$$} [we need to add reference for the math]
+The first two principal components estimate {$$}W_1{/$$} and {$$}W_2{/$$} [we need to add reference for the math]
 
 
 ```r
@@ -77,9 +77,9 @@ round(W,1)
 Note that, as expected, the first factor is close to a constant and will help explain the observed correlation across all subjects, while the second is a factor that differs between STEM and humanities and 
 We can use these estimate in the model:
 
-{/$$}
-Y_{ij} = \alpha_{i,1} \hat{W}_{1,j} + \alpha_{i,2} \hat{W}_{2,j} + \varepsilon_{ij}
 {$$}
+Y_{ij} = \alpha_{i,1} \hat{W}_{1,j} + \alpha_{i,2} \hat{W}_{2,j} + \varepsilon_{ij}
+{/$$}
  
 and we can now fit the model:
 
@@ -101,42 +101,6 @@ In high throughput data is is quite common to see correlation structure. For exa
 
 ```r
 library(Biobase)
-```
-
-```
-## Loading required package: BiocGenerics
-## Loading required package: methods
-## Loading required package: parallel
-## 
-## Attaching package: 'BiocGenerics'
-## 
-## The following objects are masked from 'package:parallel':
-## 
-##     clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
-##     clusterExport, clusterMap, parApply, parCapply, parLapply,
-##     parLapplyLB, parRapply, parSapply, parSapplyLB
-## 
-## The following object is masked from 'package:stats':
-## 
-##     xtabs
-## 
-## The following objects are masked from 'package:base':
-## 
-##     anyDuplicated, append, as.data.frame, as.vector, cbind,
-##     colnames, do.call, duplicated, eval, evalq, Filter, Find, get,
-##     intersect, is.unsorted, lapply, Map, mapply, match, mget,
-##     order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
-##     rbind, Reduce, rep.int, rownames, sapply, setdiff, sort,
-##     table, tapply, union, unique, unlist, unsplit
-## 
-## Welcome to Bioconductor
-## 
-##     Vignettes contain introductory material; view with
-##     'browseVignettes()'. To cite Bioconductor, see
-##     'citation("Biobase")', and for packages 'citation("pkgname")'.
-```
-
-```r
 library(GSE5859)
 data(GSE5859)
 n <- nrow(pData(e))
@@ -147,7 +111,6 @@ cors=cor(Y-rowMeans(Y))
 mypar()
 
 cols=colorRampPalette(rev(brewer.pal(11,"RdBu")))(100)
-par(mar = c(8.1, 8.1, 3.5, 2.1))
 image(1:n,1:n,cors,xaxt="n",yaxt="n",col=cols,xlab="",ylab="",zlim=c(-1,1))
 ```
 
@@ -155,10 +118,10 @@ image(1:n,1:n,cors,xaxt="n",yaxt="n",col=cols,xlab="",ylab="",zlim=c(-1,1))
 
 Two factors will not be enough to model the observed correlation structure. But a more general factor model can be useful:
 
-{/$$}
-Y_{ij} = \sum_{k=1}^K \alpha_{i,k} W_{j,k} + \varepsilon_{ij}
 {$$}
+Y_{ij} = \sum_{k=1}^K \alpha_{i,k} W_{j,k} + \varepsilon_{ij}
+{/$$}
 
-And we can use PCA to estimate {/$$}\mathbf{W}_1,\dots,\mathbf{W}_K{$$}. Choosing {/$$}k{$$} is a challenge and in the next section we describe how exploratory data analysis might help.
+And we can use PCA to estimate {$$}\mathbf{W}_1,\dots,\mathbf{W}_K{/$$}. Choosing {$$}k{/$$} is a challenge and in the next section we describe how exploratory data analysis might help.
 
 
