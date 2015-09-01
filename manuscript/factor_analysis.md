@@ -7,6 +7,8 @@ title: Factor Analysis
 
 ## Factor Analysis
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/factor_analysis.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/factor_analysis.Rmd)
+
 
 Many of the statistical ideas applied to correcting for batch effects come from Factor Analysis. Factor Analysis has was first developed over a century ago. Pearson noted that the between subject grades were correlated between subjects when the correlation was computed across students. To explain this he posed a model having one factor that was common across subjects for each student that explained this correlation:
 
@@ -43,7 +45,7 @@ A graphical look shows that the correlation suggest a grouping into STEM and hum
 
 In the figure below high correlations are red, no correlation is white and negative correlations are blue.
 
-![Images of correlation between columns. High correlation is red, no correlation is white and negative correlation is blue.](images/R/factor_analysis-correlation_images-1.png) 
+![Images of correlation between columns. High correlation is red, no correlation is white and negative correlation is blue.](images/R/factor_analysis-tmp-correlation_images-1.png) 
 
 
 ### Factor model
@@ -114,7 +116,7 @@ cols=colorRampPalette(rev(brewer.pal(11,"RdBu")))(100)
 image(1:n,1:n,cors,xaxt="n",yaxt="n",col=cols,xlab="",ylab="",zlim=c(-1,1))
 ```
 
-![Image of correlations. Cell i,j  represents correlation between samples i and j. Red is high, white is 0 and red is negative.](images/R/factor_analysis-gene_expression_correlations-1.png) 
+![Image of correlations. Cell i,j  represents correlation between samples i and j. Red is high, white is 0 and red is negative.](images/R/factor_analysis-tmp-gene_expression_correlations-1.png) 
 
 Two factors will not be enough to model the observed correlation structure. But a more general factor model can be useful:
 
