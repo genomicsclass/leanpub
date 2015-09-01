@@ -7,7 +7,7 @@ layout: page
 
 ## Linear Models In Practice
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course2/linear_models_in_practice.Rmd](https://github.com/genomicsclass/labs/tree/master/course2/linear_models_in_practice.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course2/linear_models_in_practice.Rmd).
 
 We will demonstrate how to analyze the high fat diet data using linear models instead of directly applying a t-test. We will demonstrate how, ultimately, these two approaches are equivalent. 
 
@@ -132,7 +132,7 @@ dat$Diet <- relevel(dat$Diet, ref="chow")
 
 ## The Mathematics Behind lm()
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course2/linear_models_in_practice.Rmd](https://github.com/genomicsclass/labs/tree/master/course2/linear_models_in_practice.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course2/linear_models_in_practice.Rmd).
 
 Before we use our shortcut for running linear models, `lm`, we want to review what will happen internally. Inside of `lm`, we will form the design matrix {$$}\mathbf{X}{/$$}, and calculate the {$$}\boldsymbol{\beta}{/$$} which minimizes the sum of squares, as described in a previous lecture. The formula for this solution is:
 
@@ -237,7 +237,7 @@ legend("right",names(coefs),fill=cols,cex=.75,bg="white")
 
 ## Comparing Simple Two Group lm To A t-test
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course2/linear_models_in_practice.Rmd](https://github.com/genomicsclass/labs/tree/master/course2/linear_models_in_practice.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course2/linear_models_in_practice.Rmd).
 
 To make a connection with material presented earlier, this simple linear model is actually giving us the same result (the t-statistic and p-value) for the difference as a specific kind of t-test. This is the t-test between two groups with the assumption that both groups have the same variance. This was encoded into our linear model when we assumed that the errors {$$}\boldsymbol{\varepsilon}{/$$} were all equally distributed.
 
