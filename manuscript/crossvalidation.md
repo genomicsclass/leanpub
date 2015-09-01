@@ -6,7 +6,7 @@ title: Cross-validation
 
 ## Cross-validation
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/crossvalidation.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/crossvalidation.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/crossvalidation.Rmd).
 
 Here we describe *cross-validation*: one of the fundamental methods in machine learning for picking parameters in a prediction / machine learning task.
 
