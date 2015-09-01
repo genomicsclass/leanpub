@@ -50,12 +50,12 @@ modeling.md
 #course3 hierarchical_models
 
 ### Chapter 8: Distance and dimension reduction
-distance.md
-pca_motivation.md
-projections.md
-rotations.md
-mds.md
-PCA.md
+#course3 distance
+#course3 pca_motivation
+#course3 projections
+#course3 rotations
+#course3 mds
+#course3 PCA
 
 ## Chapter 9: Practical Machine Learning
 #course3 clustering_and_heatmaps
