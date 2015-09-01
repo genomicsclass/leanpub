@@ -45,8 +45,8 @@ prop.table(tab)
 
 ```
 ## winners
-##     0     1     2     3     4 
-## 0.600 0.317 0.069 0.011 0.003
+##     0     1     2     3     4     5 
+## 0.623 0.312 0.055 0.008 0.001 0.001
 ```
 
 For cases like this, where {$$}N{/$$} is very large, but {$$}p{/$$} is small enough to make {$$}N \times p{/$$} (call it {$$}\lambda{/$$}) a number between 0 and 10, then {$$}S{/$$} can be shown to follow a Poisson a distribution which has a simple parametric form:
@@ -154,11 +154,12 @@ The counts do appear to follow a Poisson distribution. But what is the rate {$$}
 \Pr(X_1=k_1,\dots,X_n=k_n;\lambda) = \prod_{i=1}^n \lambda^{k_i} / k_i! \exp ( -\lambda)
 {/$$}
 
-The MLE is the value of lambda that maximizes the _likeihlood_. 
+The MLE is the value of {$$}\lambda{/$$} that maximizes the likeihlood:. 
 
 {$$}
-L(\lambda; X_1=k_1,\dots,X_n=k_1)=\exp\left\{\sum_{i=1}^n \log \Pr(X_i=k_i;\lambda)\right\}
+\mbox{L}(\lambda; X_1=k_1,\dots,X_n=k_1)=\exp\left\{\sum_{i=1}^n \log \Pr(X_i=k_i;\lambda)\right\}
 {/$$}
+
 In practice it is more convenient to maximize the log-likelihood
 
 
