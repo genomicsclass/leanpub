@@ -8,6 +8,8 @@ title: Bayesian Statistics
 
 ## Bayesian Statistics
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/bayes.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/bayes.Rmd)
+
 One distinguishing characteristic of high-throughput data is that we make many measure of related outcomes. For example, we measure the expression of thousands of genes, or the height of thousands of peaks representing protein binding, or the methylation levels across several CpGs. However, most of the statistical inference approach we have shown here treat each feature independently and pretty much ignores data from other features. We will learn how using statistical models we can gain power by modeling features jointly. The most successful of these models are what we refer to as hierarchical models which are best explained in the context of Bayesian statistics.
 
 ### Bayes theorem
@@ -93,7 +95,7 @@ plot(people,col=positivecols,pch=16,xaxt="n",yaxt="n",xlab="",ylab="",main=paste
 plot(people,col=negativecols,pch=16,xaxt="n",yaxt="n",xlab="",ylab="",main=paste("Tested Negative:",round(mean(d[test==0])*100,1),"% are red"))
 ```
 
-![Simulation demonstrating Bayes theorem. Top plot shows every individual with red denoting cases. Each one takes a test and with 90% gives correct answer. Those called positive (either correctly or incorrectly) are put in the bottom left pane. Those called negative in the bottom right.](images/R/bayes-simulation-1.png) 
+![Simulation demonstrating Bayes theorem. Top plot shows every individual with red denoting cases. Each one takes a test and with 90% gives correct answer. Those called positive (either correctly or incorrectly) are put in the bottom left pane. Those called negative in the bottom right.](images/R/bayes-tmp-simulation-1.png) 
 
 The proportions of red in the top plot shows {$$}\mbox{Pr}(D=1){/$$}. The bottom left shows {$$}\mbox{Pr}(D=1 \mid +){/$$} and the bottom right shows {$$}\mbox{Pr}(D=0 \mid +){/$$}.
 
@@ -101,7 +103,7 @@ The proportions of red in the top plot shows {$$}\mbox{Pr}(D=1){/$$}. The bottom
 ### Bayes in Practice
 
 
-<!-- ![iglesias](images/downloads/902px-Jos%C3%A9_Iglesias_on_September_28%2C_2012.jpg) -->
+<!-- ![iglesias](http://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Jos%C3%A9_Iglesias_on_September_28%2C_2012.jpg/902px-Jos%C3%A9_Iglesias_on_September_28%2C_2012.jpg) -->
 
 
 José Iglesias 2013
@@ -124,7 +126,7 @@ This is for all players (>500 AB) 2010, 2011, 2012
 
 
 
-![Batting average histograms for 2010, 2011, and 2012.](images/R/bayes-batting_averages-1.png) 
+![Batting average histograms for 2010, 2011, and 2012.](images/R/bayes-tmp-batting_averages-1.png) 
 
 Average is .275 and SD is 0.027
 
