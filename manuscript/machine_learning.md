@@ -6,6 +6,8 @@ title: Class Prediction
 
 ## Class Prediction
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/machine_learning.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/machine_learning.Rmd)
+
 Here we give brief introduction to the main machine learning topic: class predictio. In fact, many refer to class prediction as machine learnine and we actually use the two terms interchangibly. Some of the examples we give follow examples from the book The Elements of Statistical Learning: Data Mining, Inference, and Prediction, by Trevor Hastie, Robert Tibshirani and Jerome Friedman. A free PDF of this book can be found at the following URL:
 
 <http://statweb.stanford.edu/~tibs/ElemStatLearn/>
@@ -50,7 +52,7 @@ x0 <- makeX(M0)##the final values for y=0 (green)
 testx0 <- makeX(M0)
 x1 <- makeX(M1)
 testx1 <-makeX(M1)
-x <- rbind(x0,x1) ## one matrix with everything
+x <- rbind(x0,x1) ##one matrix with everything
 test <- rbind(testx0,testx1)
 y <- c(rep(0,N),rep(1,N)) #the outcomes
 ytest <- c(rep(0,N),rep(1,N))
@@ -83,11 +85,11 @@ plot(x,type="n",xlab="X1",ylab="X2",xlim=XLIM,ylim=YLIM)
 points(newx,col=colshat,pch=16,cex=0.35)
 ```
 
-![Probability of Y=1 as a function of X1 and X2. Red is close to 1, yellow close 0.5 nad blue close to 0.](images/R/machine_learning-conditional_prob-1.png) 
+![Probability of Y=1 as a function of X1 and X2. Red is close to 1, yellow close 0.5 nad blue close to 0.](images/R/machine_learning-tmp-conditional_prob-1.png) 
 
 If we should {$$}E(Y \mid X=x)>0.5{/$$} in red and the rest in blue we see the boundary region in which we switch from predicting from 0 to 1.
 
-![Bayes rule. The line devides part the space for which probability os larger than 0.5 (red) and lower than 0.5 (blue).](images/R/machine_learning-bayes_rule-1.png) 
+![Bayes rule. The line devides part the space for which probability os larger than 0.5 (red) and lower than 0.5 (blue).](images/R/machine_learning-tmp-bayes_rule-1.png) 
 
 The above plots relate to the "truth" that we do not get to see. A typical first step in an ML is to use a sample to estimate {$$}f(x){/$$} 
 
@@ -97,7 +99,7 @@ Now make a plot of training data and test data
 plot(x,pch=21,bg=cols,xlab="X1",ylab="X2",xlim=XLIM,ylim=YLIM)
 ```
 
-![Data generated using the probability map above.](images/R/machine_learning-data-1.png) 
+![Data generated using the probability map above.](images/R/machine_learning-tmp-data-1.png) 
 
 We will review two specif ML techniques. First, we need to review the main concept we use to evaluate the performance of these methods. 
 
@@ -111,7 +113,7 @@ x0 <- makeX(M0)##the final values for y=0 (green)
 testx0 <- makeX(M0)
 x1 <- makeX(M1)
 testx1 <-makeX(M1)
-x <- rbind(x0,x1) ## one matrix with everything
+x <- rbind(x0,x1) ##one matrix with everything
 test <- rbind(testx0,testx1)
 ```
 
@@ -123,7 +125,7 @@ plot(x,pch=21,bg=cols,xlab="X1",ylab="X2",xlim=XLIM,ylim=YLIM)
 plot(test,pch=21,bg=colstest,xlab="X1",ylab="X2",xlim=XLIM,ylim=YLIM)
 ```
 
-![Training data (left) and test data (right)](images/R/machine_learning-test_train-1.png) 
+![Training data (left) and test data (right)](images/R/machine_learning-tmp-test_train-1.png) 
 
 The reason for this is to detect over-training  by testing on a different data than the one used to fit  model. We will see how important this is.
 
@@ -189,7 +191,7 @@ points(newx,col=colshat,pch=16,cex=0.35)
 points(test,bg=cols,pch=21)
 ```
 
-![We estimate the probability of 1 with a linear regression model with X1 and X2 as predictors. The resulting prediction map is divided in to parts that are larger than 0.5 (red) and lower than 0.5 (blue).](images/R/machine_learning-regression_prediction-1.png) 
+![We estimate the probability of 1 with a linear regression model with X1 and X2 as predictors. The resulting prediction map is divided in to parts that are larger than 0.5 (red) and lower than 0.5 (blue).](images/R/machine_learning-tmp-regression_prediction-1.png) 
 
 Note that the error rates in the test and train sets are quite similar. Thus do not seem to be over-training. This is not surprising as we are fitting a 2 parameter model to 400 data points. However note that the boundary is a line. Because we are fitting plane to the data, there is no other option here. The linear regression method is too rigid. The rigid makes it stable and avoids over training but it also keeps the model from adapting to the non-linear relationship between {$$}Y{/$$} and {$$}X{/$$}. We saw this before in the smoothing section. The next ML technique we consider is similar to the smoothing techniques described before.
 
@@ -238,7 +240,7 @@ for(k in c(1,200)){
 ## KNN prediction error in train: 0.2825
 ```
 
-![Prediction regions obtained with kNN for k=1 (top) and k=200 (bottom). We show both train (left) and test data (right)](images/R/machine_learning-knn-1.png) 
+![Prediction regions obtained with kNN for k=1 (top) and k=200 (bottom). We show both train (left) and test data (right)](images/R/machine_learning-tmp-knn-1.png) 
 
 ```
 ## KNN prediction error in test: 0.295
@@ -283,7 +285,7 @@ abline(h=bayes.error,col=6)
 legend("bottomright",c("Train","Test","Bayes"),col=c(4,5,6),lty=c(2,3,1),box.lwd=0)
 ```
 
-![Prediction error in train (pink) and test (green) versus number of neighbors. The yellow line represents what one obtains with Bayes Rule.](images/R/machine_learning-bayes_rule2-1.png) 
+![Prediction error in train (pink) and test (green) versus number of neighbors. The yellow line represents what one obtains with Bayes Rule.](images/R/machine_learning-tmp-bayes_rule2-1.png) 
 
 
 
