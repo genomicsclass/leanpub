@@ -6,7 +6,7 @@ layout: page
 
 ## Populations, Samples and Estimates 
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/populations_and_samples.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/populations_and_samples.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/populations_and_samples.Rmd).
 
 
 Now that we have introduced the idea of a random variable, a null distribution, and a p-value, we are ready to describe the mathematical theory that permits us to compute p-values in practice. We will also learn about confidence intervals and power calculations. 
