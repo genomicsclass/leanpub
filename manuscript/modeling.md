@@ -45,8 +45,8 @@ prop.table(tab)
 
 ```
 ## winners
-##     0     1     2     3     4 
-## 0.624 0.287 0.081 0.007 0.001
+##     0     1     2     3     4     5 
+## 0.632 0.280 0.070 0.016 0.001 0.001
 ```
 
 For cases like this, where {$$}N{/$$} is very large, but {$$}p{/$$} is small enough to make {$$}N \times p{/$$} (call it {$$}\lambda{/$$}) a number between 0 and 10, then {$$}S{/$$} can be shown to follow a Poisson a distribution which has a simple parametric form:
@@ -149,10 +149,13 @@ hist(counts)
 ![Palindrom count histogram.](images/R/modeling-palindrome_count_histogram-1.png) 
 
 The counts do appear to follow a Poisson distribution. But what is the rate {$$}\lambda{/$$} ? The most common approach to estimating this rate is _maximum likelihood estimation_. To find the maximum likelihood estimate (MLE) we note that these data are independent and the probability of observing the values we observed is:
+
 {$$}
 \Pr(X_1=k_1,\dots,X_n=k_n;\lambda) = \prod_{i=1}^n \lambda^{k_i} / k_i! \exp ( -\lambda)
 {/$$}
+
 The MLE is the value of lambda that maximizes the _likeihlood_. 
+
 {$$}
 L(\lambda; X_1=k_1,\dots,X_n=k_1)=\exp\left\{\sum_{i=1}^n \log \Pr(X_i=k_i;\lambda)\right\}
 {/$$}
