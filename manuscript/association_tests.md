@@ -10,7 +10,7 @@ layout: page
 
 ## Association Tests
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/association_tests.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/association_tests.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/association_tests.Rmd).
 
 The statistical tests we have covered up to now leave out a substantial portion of life science projects. Specifically, we are referring to data that is binary, categorical and ordinal. To give a very specific example, consider genetic data where you have two genotypes (AA/Aa or aa) for cases and controls for a given disease. The statistical question is if genotype and disease are associated. As in the examples we have been studying, we have two populations: AA/Aa and aa and numeric data for each. So why can't we perform a t-test? Note that the data is either 0 (control) or 1 (cases). It is pretty clear that this data is not normally distributed so the t-distribution approximation is certainly out of the question. We could use CLT if the sample size is large enough; otherwise we can use association tests.
 
