@@ -7,7 +7,7 @@ layout: page
 
 ## Interactions And Contrasts
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course2/interactions_and_contrasts.Rmd](https://github.com/genomicsclass/labs/tree/master/course2/interactions_and_contrasts.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course2/interactions_and_contrasts.Rmd).
 
 As a running example to learn about more complex linear models, we will be using a dataset which compares the different frictional coefficients on the different legs of a spider. Specifically, we will be determining whether more friction comes from a pushing or pulling motion of the leg. The original paper from which the data was provided is:
 
@@ -557,7 +557,7 @@ L3vsL2.equiv$X
 
 ## A Linear Model With Interactions
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course2/interactions_and_contrasts.Rmd](https://github.com/genomicsclass/labs/tree/master/course2/interactions_and_contrasts.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course2/interactions_and_contrasts.Rmd).
 
 As we saw in the previous linear model, we assumed that the push vs. pull effect was the same for all of the leg pairs (the same orange arrow). You can easily see that this does not capture the data that well; that is, the tips of the arrows did not line up perfectly with the group averages. For the L1 leg pair, the push vs. pull coefficient overshot, and for the L3 leg pair, the push vs. pull coefficient was too small.
 
