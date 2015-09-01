@@ -37,7 +37,7 @@ We can perform hierarchical clustering based on the distances defined above, usi
 
 ```r
 library(rafalib)
-mypar(1,1)
+mypar()
 hc <- hclust(d)
 hc
 ```
@@ -53,30 +53,30 @@ hc
 ```
 
 ```r
-plot(hc,labels=tissue)
+plot(hc,labels=tissue,cex=0.5)
 ```
 
-![plot of chunk unnamed-chunk-3](images/R/clustering_and_heatmaps-unnamed-chunk-3-1.png) 
+![Dendrogram showing hierarchical clustering of tisuse gene expression data.](images/R/clustering_and_heatmaps-dendrogram-1.png) 
 
 Does this technique "discover" the clusters defined by the different tissues? In this case it is not easy to see the different tissues so we add colors by using the `mypclust` function from the `rafalib` package. 
  
 
 ```r
-myplclust(hc, labels=tissue, lab.col=as.fumeric(tissue))
+myplclust(hc, labels=tissue, lab.col=as.fumeric(tissue), cex=0.5)
 ```
 
-![plot of chunk unnamed-chunk-4](images/R/clustering_and_heatmaps-unnamed-chunk-4-1.png) 
+![Dendrogram showing hierarchical clustering of tisuse gene expression data with colors denoting tissues.](images/R/clustering_and_heatmaps-color_dendrogram-1.png) 
 
 Keep in mind that hierarchical clustering does not define specific clusters, but rather defines the dendrogram above. From the dendogram we can decipher the distance between any two groups by looking at the height at which the two groups split into two. To define clusters we need to "cut the tree" at some distance  and group all samples that are within that distance into  groups below. To visualize this, we draw a horizontal line a the height we wish to cut and this defines the 
 that line. We use 120 as an example:
 
 
 ```r
-myplclust(hc, labels=tissue, lab.col=as.fumeric(tissue))
+myplclust(hc, labels=tissue, lab.col=as.fumeric(tissue),cex=0.5)
 abline(h=120)
 ```
 
-![plot of chunk unnamed-chunk-5](images/R/clustering_and_heatmaps-unnamed-chunk-5-1.png) 
+![Dendrogram showing hierarchical clustering of tisuse gene expression data with colors denoting tissues. Horizontal line defines actual clusters.](images/R/clustering_and_heatmaps-color_dendrogram2-1.png) 
 
 If we use the line above to cut the tree into clusters, we can examine how the clusters overlap with the actual tissues:
 
@@ -126,12 +126,6 @@ We can also cluster with the `kmeans` function to perform k-means clustering. As
 
 
 ```r
-plot(e[1,], e[2,])
-```
-
-![plot of chunk unnamed-chunk-8](images/R/clustering_and_heatmaps-unnamed-chunk-8-1.png) 
-
-```r
 set.seed(1)
 km <- kmeans(t(e[1:2,]), centers=7)
 names(km)
@@ -144,16 +138,12 @@ names(km)
 ```
 
 ```r
+mypar(1,2)
+plot(e[1,], e[2,], col=as.fumeric(tissue), pch=16)
 plot(e[1,], e[2,], col=km$cluster, pch=16)
 ```
 
-![plot of chunk unnamed-chunk-8](images/R/clustering_and_heatmaps-unnamed-chunk-8-2.png) 
-
-```r
-plot(e[1,], e[2,], col=as.fumeric(tissue), pch=16)
-```
-
-![plot of chunk unnamed-chunk-8](images/R/clustering_and_heatmaps-unnamed-chunk-8-3.png) 
+![Plot of gene expression for first two genes (order of appearance in data) with color representing tissue (left) and clusters found with kmeans (right).](images/R/clustering_and_heatmaps-kmeans-1.png) 
 
 ```r
 table(true=tissue,cluster=km$cluster)
@@ -176,18 +166,15 @@ We can instead perform k-means clustering using all of the genes. To visualize t
 
 
 ```r
-mds <- cmdscale(d)
-plot(mds[,1], mds[,2]) 
-```
-
-![plot of chunk unnamed-chunk-9](images/R/clustering_and_heatmaps-unnamed-chunk-9-1.png) 
-
-```r
 km <- kmeans(t(e), centers=7)
+mds <- cmdscale(d)
+
+mypar(1,2)
+plot(mds[,1], mds[,2]) 
 plot(mds[,1], mds[,2], col=km$cluster, pch=16)
 ```
 
-![plot of chunk unnamed-chunk-9](images/R/clustering_and_heatmaps-unnamed-chunk-9-2.png) 
+![Plot of gene expression for first two PCs  with color representing tissues (left) and clusters found using all genes (right).](images/R/clustering_and_heatmaps-kmeans_mds-1.png) 
 
 ```r
 table(true=tissue,cluster=km$cluster)
@@ -214,8 +201,7 @@ Heatmaps are useful plots for visualizing the measurements for a subset of rows 
 
 
 ```r
-# install.packages("RColorBrewer")
-library(RColorBrewer)
+library(RColorBrewer) 
 hmcol <- colorRampPalette(brewer.pal(9, "GnBu"))(100)
 ```
 
@@ -247,14 +233,14 @@ Now we can plot a heatmap of these genes:
 heatmap(e[idx,], col=hmcol)
 ```
 
-![plot of chunk unnamed-chunk-12](images/R/clustering_and_heatmaps-unnamed-chunk-12-1.png) 
+![Heatmap created using the 40 most variable genes.](images/R/clustering_and_heatmaps-heatmap-1.png) 
 
 The `heatmap.2` function in the `gplots` package on CRAN is a bit more
 customized. For example, it stretches to fill the window. Here we add colors to indicate the tissue on the top:
 
 
 ```r
-library(gplots) ##Install from CRAN for heatmap.2 function
+library(gplots) ##Available from CRAN
 cols <- palette(brewer.pal(8, "Dark2"))[as.fumeric(tissue)]
 head(cbind(colnames(e),cols))
 ```
@@ -276,6 +262,6 @@ heatmap.2(e[idx,], labCol=tissue,
           col=hmcol)
 ```
 
-![plot of chunk unnamed-chunk-13](images/R/clustering_and_heatmaps-unnamed-chunk-13-1.png) 
+![Heatmap created using the 40 most variable genes and the function heatmap.2.](images/R/clustering_and_heatmaps-heatmap.2-1.png) 
 
 
