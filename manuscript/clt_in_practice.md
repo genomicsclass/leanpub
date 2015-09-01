@@ -10,7 +10,7 @@ layout: page
 
 ## Central Limit Theorem In Practice
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/clt_in_practice.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/clt_in_practice.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/clt_in_practice.Rmd).
 
 Let's use our data to see how well the central limit approximates sample averages from our data. We will leverage our entire population dataset to compare the results we obtain by actually sampling from the distribution to what the CLT predicts.  
 
