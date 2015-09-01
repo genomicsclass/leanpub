@@ -7,6 +7,8 @@ title: Modeling Batch Effects with Factor Analysis
 
 ##  Modeling Batch Effects with Factor Analysis
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/adjusting_with_factor_analysis.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/adjusting_with_factor_analysis.Rmd)
+
 To illustrate how we can adjust for batch effects using statistical methods, we continue to use our subset example with sex as the outcome of interest, and with months purposely somewhat confounded with sex. 
 
 
@@ -33,7 +35,7 @@ chr <- geneAnnotation$CHR
 
 tt<-rowttests(geneExpression,batch)
 
-ind1 <- which(chr=="chrY") ##real differences
+ind1 <- which(chr=="chrY") #real differences
 ind2 <- setdiff(c(order(tt$dm)[1:25],order(-tt$dm)[1:25]),ind1)
 
 set.seed(1)
@@ -52,7 +54,7 @@ axis(2,1:ncol(y),sex,las=2)
 axis(1,1:ncol(y),sex,las=2)
 ```
 
-![Image of subset gene expression data (left) and image of correlations for this dataset (right).](images/R/adjusting_with_factor_analysis-correlation_image-1.png) 
+![Image of subset gene expression data (left) and image of correlations for this dataset (right).](images/R/adjusting_with_factor_analysis-tmp-correlation_image-1.png) 
 
 
 
@@ -72,7 +74,7 @@ o=order(times)
 plot(times[o],pch=21,bg=as.numeric(batch)[o],ylab="date")
 ```
 
-![Dates with color denoting month.](images/R/adjusting_with_factor_analysis-what_is_batch-1.png) 
+![Dates with color denoting month.](images/R/adjusting_with_factor_analysis-tmp-what_is_batch-1.png) 
 There is more than one day per month. Could day have an effects as well?
 
 
@@ -89,7 +91,7 @@ plot(s$v[o,1],pch=21,cex=1.25,bg=cols[o],ylab="First PC",xaxt="n",xlab="")
 legend("topleft",c("Month 1","Month 2"),col=1:2,pch=16,box.lwd=0)
 ```
 
-![First PC plotted against ordered by date with colors representing month.](images/R/adjusting_with_factor_analysis-PC1_versus_time-1.png) 
+![First PC plotted against ordered by date with colors representing month.](images/R/adjusting_with_factor_analysis-tmp-PC1_versus_time-1.png) 
 
 Day seems to be highly correlated and explained a high percentage of the variability:
 
@@ -99,7 +101,7 @@ mypar(1,1)
 plot(s$d^2/sum(s$d^2),ylab="% variance explained",xlab="Principal component")
 ```
 
-![Variance explained.](images/R/adjusting_with_factor_analysis-variance_explained-1.png) 
+![Variance explained.](images/R/adjusting_with_factor_analysis-tmp-variance_explained-1.png) 
 
 In fact, the first six or so PC seem to be at least partially driven by date:
 
@@ -111,14 +113,14 @@ for(i in 1:12){
 }
 ```
 
-![First 12 PCs stratified by dates.](images/R/adjusting_with_factor_analysis-PCs_stratified_by_time-1.png) 
+![First 12 PCs stratified by dates.](images/R/adjusting_with_factor_analysis-tmp-PCs_stratified_by_time-1.png) 
 
 
 What happens if we simply remove the top six PC from the data and then perform a t-test? 
 
 
 ```r
-D <- s$d; D[1:4]<-0 ##take out first 2
+D <- s$d; D[1:4]<-0 #take out first 2
 cleandat <- sweep(s$u,2,D,"*")%*%t(s$v)
 res <-rowttests(cleandat,factor(sex))
 ```
@@ -137,7 +139,7 @@ points(res$dm[which(chr=="chrY")],-log10(res$p.value[which(chr=="chrY")]),col=2,
 legend("bottomright",c("chrX","chrY"),col=1:2,pch=16)
 ```
 
-![p-value histogram and volcano plot after blindly removing the first two PCs.](images/R/adjusting_with_factor_analysis-pval_hist_and_volcano_after_removing_PCs-1.png) 
+![p-value histogram and volcano plot after blindly removing the first two PCs.](images/R/adjusting_with_factor_analysis-tmp-pval_hist_and_volcano_after_removing_PCs-1.png) 
 
 <a name="sva"></a>
 ### Surrogate Variable Analysis
@@ -174,8 +176,8 @@ for(b in 1:2){
   
   svafit <- sva(y,mod,B=b,n.sv=5)
   weights = svafit$pprob.gam*(1-svafit$pprob.b)
-  ## Weighted SVD
-  surrogate <- svd( y*weights)$v[,1]
+  
+  surrogate <- svd( y*weights)$v[,1]#Weighted SVD
   
   image(matrix(weights[geneindex],nrow=1),xaxt="n",yaxt="n",col=brewer.pal(9,"Blues"))
   plot(surrogate[cind],bg=sex[cind]+1,pch=21,xlab="",xaxt="n",ylab="Surrogate variable",ylim=c(-.5,.5),cex=1.5)
@@ -197,7 +199,7 @@ for(b in 1:2){
 ## Iteration (out of 2 ):1  2
 ```
 
-![Illustration of iterative procedure used by SVA. Only two iterations are shown.](images/R/adjusting_with_factor_analysis-illustration_of_sva-1.png) 
+![Illustration of iterative procedure used by SVA. Only two iterations are shown.](images/R/adjusting_with_factor_analysis-tmp-illustration_of_sva-1.png) 
 
 
 The above is an illustration of the algorithm. To actually run SVA we follow the this code. In this case, SVA picks the number of surrogate values or factors for us.
@@ -235,7 +237,7 @@ points(res$dm[which(chr=="chrY")],-log10(res$p.value[which(chr=="chrY")]),col=2,
 legend("bottomright",c("chrX","chrY"),col=1:2,pch=16)
 ```
 
-![p-value histogram and volcano plot obtained with SVA.](images/R/adjusting_with_factor_analysis-pval_hist_and_volcano_sva-1.png) 
+![p-value histogram and volcano plot obtained with SVA.](images/R/adjusting_with_factor_analysis-tmp-pval_hist_and_volcano_sva-1.png) 
 
 
 And here is a decompose of the data into sex effects, surrogate variables, and independent noise:
@@ -255,6 +257,6 @@ image(t(Batch),col=icolors,zlim=c(-5,5),xaxt="n",yaxt="n")
 image(t(error),col=icolors,zlim=c(-5,5),xaxt="n",yaxt="n")
 ```
 
-![Original data split into three sources of variability estimated by SVA: sex-related signal, surrogate-variable induced structure and indepedent error.](images/R/adjusting_with_factor_analysis-different_sources_of_var-1.png) 
+![Original data split into three sources of variability estimated by SVA: sex-related signal, surrogate-variable induced structure and indepedent error.](images/R/adjusting_with_factor_analysis-tmp-different_sources_of_var-1.png) 
 
 
