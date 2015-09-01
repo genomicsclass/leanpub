@@ -11,7 +11,7 @@ title: Distance lecture
 
 Many of the analysis we perform with high-dimensional data relate directly or inderictly to distance. For example many clustering and machine learning techniques rely on being able to define distance using features or predictors. The concept of distance can be generalized from  physical distance. For example, we cluster animals into groups. When we do this, we put animals that are "close" in the same group:
 
-<img src="images/animals.png" align="middle" width="300">
+![Clustering of animals based](images/handmade/animals.png)
 
 Any time we cluster individuals into separate groups we are, explicitely or implicitely computing a distance. 
 
