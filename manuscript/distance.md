@@ -17,7 +17,7 @@ Any time we cluster individuals into separate groups we are, explicitely or impl
 
 to create _heatmaps_ a distance is computed explicitely. Heatmaps are widely used in genomics and other highthroughput fields:
 
-![Example of heatmap](images/Heatmap.png)
+![Example of heatmap](images/handmade/Heatmap.png)
 
 [Image Source: Heatmap, Gaeddal, 01.28.2007](http://commons.wikimedia.org/wiki/File:Heatmap.png) 
 
