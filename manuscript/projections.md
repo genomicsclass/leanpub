@@ -7,11 +7,13 @@ title: Projections
 
 ## Projections
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/projections.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/projections.Rmd)
+
 Now that we have described the concept of dimension reduction and some of the applications of SVD and principal component analysis, we focus on more details related to mathematics behind these. We start with _projections_. A projection is linear models concept that help us understand many of the mathematical operations we perform on high-dimensional data. For the details you can review projects in a linear algebra book. Here we provide a quick review and then provide some data analysis related examples. 
 
 As a review, remember that projections minimize distance between points and subspace
 
-![Illustration of projection](images/downloads/Linalg_projection_3.png)
+![Illustration of projection](http://upload.wikimedia.org/wikipedia/commons/8/84/Linalg_projection_3.png)
 
 In the figure above the point on top is pointing to a point in space. In this particular cartoon the space is two dimensional but we should be thinking abstractly. The space is represented by the Cartesian plan and the line on which the little person stands is a subspace of points. The projection to this subspace is the place that is closes to the original point. Geometry tells us that we can find this closest point by dropping a perpendicular line (dotted line) from the point to the space. The little person is standing on the projection.  The amount this person had to walk from the origin to the new projected point is referred to as _the coordinate_. 
 
@@ -32,7 +34,7 @@ arrows(0,0,2,3,lwd=3)
 text(2,3," Y",pos=4,cex=3)
 ```
 
-![Geometric representation of Y](images/R/projections-point-1.png) 
+![Geometric representation of Y](images/R/projections-tmp-point-1.png) 
 
 We can immediately define a coordinate system by projecting this vector to the space defined by 
 {$$}\begin{pmatrix} 1\\ 0\end{pmatrix}{/$$} (the x-axis) and {$$}\begin{pmatrix} 0\\ 1\end{pmatrix}{/$$} (the y-axis). The projections of {$$}Y{/$$} to the subspace defined by these points are 2 and 3 respectively:
@@ -81,7 +83,7 @@ segments(x[1]*cc,x[2]*cc,y[1],y[2],lty=2)
 text(x[1]*cc,x[2]*cc,expression(hat(Y)),pos=4,cex=3)
 ```
 
-![Projection of Y onto new subspace.](images/R/projections-projection-1.png) 
+![Projection of Y onto new subspace.](images/R/projections-tmp-projection-1.png) 
 
 Note that if {$$}\vec{v}{/$$} was such that {$$}\vec{v}\cdot \vec{v}=1{/$$},  then {$$}\hat{c}{/$$} is simply {$$}\vec{y} \cdot \vec{v}{/$$} and the space {$$}L{/$$} does not change. This simplification is one reason we like orthogonal matrices. 
 
