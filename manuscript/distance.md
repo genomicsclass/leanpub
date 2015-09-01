@@ -17,7 +17,7 @@ Any time we cluster individuals into separate groups we are, explicitely or impl
 
 to create _heatmaps_ a distance is computed explicitely. Heatmaps are widely used in genomics and other highthroughput fields:
 
-<img src="images/Heatmap.png" align="middle" width="300">
+![Example of heatmap](images/Heatmap.png)
 
 [Image Source: Heatmap, Gaeddal, 01.28.2007](http://commons.wikimedia.org/wiki/File:Heatmap.png) 
 
@@ -29,7 +29,7 @@ Here we will learn the necessary mathematics and computing skill to understand a
 
 As a review, let's define the distance between two points, {$$}A{/$$} and {$$}B{/$$}, on a cartesian plane.
 
-![plot of chunk unnamed-chunk-1](images/R/distance-unnamed-chunk-1-1.png) 
+![](images/R/distance-unnamed-chunk-1-1.png) 
 
 The euclidean distance between {$$}A{/$$} and {$$}B{/$$} is simply
 
