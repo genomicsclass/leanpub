@@ -7,6 +7,23 @@ title: Distance lecture
 
 # Distance and dimension reduction
 
+## Introduction
+
+Many of the analysis we perform with high-dimensional data relate directly or inderictly to distance. For example many clustering and machine learning techniques rely on being able to define distance using features or predictors. The concept of distance can be generalized from  physical distance. For example, we cluster animals into groups. When we do this, we put animals that are "close" in the same group:
+
+![Clustering of animals based](images/handmade/animals.png)
+
+Any time we cluster individuals into separate groups we are, explicitely or implicitely computing a distance. 
+
+to create _heatmaps_ a distance is computed explicitely. Heatmaps are widely used in genomics and other highthroughput fields:
+
+![Example of heatmap](images/handmade/Heatmap.png)
+
+[Image Source: Heatmap, Gaeddal, 01.28.2007](http://commons.wikimedia.org/wiki/File:Heatmap.png) 
+
+In these plots the measurements, which are stored in a matrix, are represented with colors after the columns and rows have been clustered. 
+Here we will learn the necessary mathematics and computing skill to understand and create heatmaps. We start by reviewing the mathematical definition of distance. 
+
 
 ## Euclidean Distance
 
@@ -61,7 +78,7 @@ To define distance we need to know what points are since mathematical distance i
 Once we define points, the Euclidean distance is defined in a very similar way as it is defined for two dimensions. For example, the  distance between two samples {$$}i{/$$} and {$$}j{/$$} is
 
 {$$}
-\mboxx{dist}(i,j) = \sqrt{ \sum_{g=1}^{22215} (Y_{g,i}-Y_{g,j })^2 }
+\mbox{dist}(i,j) = \sqrt{ \sum_{g=1}^{22215} (Y_{g,i}-Y_{g,j })^2 }
 {/$$}
 
 and the distance between two features {$$}h{/$$} and {$$}g{/$$} as:
@@ -75,7 +92,7 @@ and the distance between two features {$$}h{/$$} and {$$}g{/$$} as:
 
 The distance between samples {$$}i{/$$} and {$$}j{/$$} can be written as
 
-{$$} d(i,j) = (\mathbf{Y}_i - \mathbf{Y}_j)^\top(\mathbf{Y}_i - \mathbf{Y}_j){/$$}
+{$$} \mbox{dist}(i,j) = (\mathbf{Y}_i - \mathbf{Y}_j)^\top(\mathbf{Y}_i - \mathbf{Y}_j){/$$}
 
 With {$$}\mathbf{Y}_i{/$$} and {$$}\mathbf{Y}_j{/$$} coliumns {$$}i{/$$} and {$$}j{/$$}. This result can be very convinient in practice as computations can be made much faster using matrix multiplication.
 
