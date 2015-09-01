@@ -8,7 +8,7 @@ layout: page
 
 ## Central Limit Theorem and t-distribution
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/clt_and_t-distribution.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/clt_and_t-distribution.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/clt_and_t-distribution.Rmd).
 
 
 Below we will discuss the Central Limit Theorem (CLT) and the t-distribution, both of which help us make important calculations related to probabilities. Both are frequently used in science to test statistical hypotheses. To use these, we have to make assumptions, different ones for the CLT and the t-distribution. However, if the assumptions are true, then we are able to calculate the exact probabilities of events through the use of mathematical formula.
