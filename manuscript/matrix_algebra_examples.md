@@ -10,6 +10,8 @@ layout: page
 
 ## Examples 
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course2/matrix_algebra_examples.Rmd](https://github.com/genomicsclass/labs/tree/master/course2/matrix_algebra_examples.Rmd)
+
 Now we are ready to see how matrix algebra can be useful when analyzing data. We start with some simple examples and eventually arrive at the main one: how to write linear models with matrix algebra notation and solve the least squares problem.
 
 
@@ -260,16 +262,16 @@ plot(x,y,xlab="Father's height",ylab="Son's height")
 lines(newx,fitted,col=2)
 ```
 
-![Galton's data with fitted regression line.](images/R/matrix_algebra_examples-galton_regression_line-1.png) 
+![Galton's data with fitted regression line.](images/R/matrix_algebra_examples-tmp-galton_regression_line-1.png) 
 
 This {$$}\hat{\boldsymbol{\beta}}=(\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{Y}{/$$} is one of the most widely used results in data analysis. One of the advantages of this approach is that we can use it in many different situations.  For example, in our falling object problem. 
  
 
 ```r
 set.seed(1)
-g <- 9.8 ## meters per second
+g <- 9.8 #meters per second
 n <- 25
-tt <- seq(0,3.4,len=n) ##time in secs, t is a base function
+tt <- seq(0,3.4,len=n) #time in secs, t is a base function
 d <- 56.67  - 0.5*g*tt^2 + rnorm(n,sd=1)
 ```
 
@@ -288,7 +290,7 @@ plot(tt,y,xlab="Time",ylab="Height")
 lines(newtt,fitted,col=2)
 ```
 
-![Fitted parabola to simulated data for distance travelled versus time of falling object measured with error.](images/R/matrix_algebra_examples-gravity_with_fitted_parabola-1.png) 
+![Fitted parabola to simulated data for distance travelled versus time of falling object measured with error.](images/R/matrix_algebra_examples-tmp-gravity_with_fitted_parabola-1.png) 
 
 And the resulting estimates are what we expect:
 
