@@ -29,20 +29,20 @@
 #course2 matrix_algebra_examples
 
 ### Chapter 5: Linear Models
-expressing_design_formula.md
-linear_models_in_practice.md
-standard_errors.md
-interactions_and_contrasts.md
-collinearity.md
-qr_and_regression.md
-linear_models_going_further.md
+#course2 expressing_design_formula
+#course2 linear_models_in_practice
+#course2 standard_errors
+#course2 interactions_and_contrasts
+#course2 collinearity
+#course2 qr_and_regression
+#course2 linear_models_going_further
 
 ### Chapter 6: inference for high-dimensional data
 ## Notes: explain hree ways to install
-#course3 intro_to_highthroughput_data
-#course3 inference_for_highthroughput
-#course3 multiple_testing
-#course3 eda_for_highthroughput
+intro_to_highthroughput_data.md
+inference_for_highthroughput.md
+multiple_testing.md
+eda_for_highthroughput.md
 
 ### Chapter 7: Statistical Modeling
 #course3 modeling
