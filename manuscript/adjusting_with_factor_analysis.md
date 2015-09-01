@@ -7,7 +7,7 @@ title: Modeling Batch Effects with Factor Analysis
 
 ##  Modeling Batch Effects with Factor Analysis
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/adjusting_with_factor_analysis.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/adjusting_with_factor_analysis.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/adjusting_with_factor_analysis.Rmd).
 
 To illustrate how we can adjust for batch effects using statistical methods, we continue to use our subset example with sex as the outcome of interest, and with months purposely somewhat confounded with sex. 
 
