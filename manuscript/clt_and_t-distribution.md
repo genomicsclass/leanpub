@@ -8,6 +8,8 @@ layout: page
 
 ## Central Limit Theorem and t-distribution
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/clt_and_t-distribution.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/clt_and_t-distribution.Rmd)
+
 
 Below we will discuss the Central Limit Theorem (CLT) and the t-distribution, both of which help us make important calculations related to probabilities. Both are frequently used in science to test statistical hypotheses. To use these, we have to make assumptions, different ones for the CLT and the t-distribution. However, if the assumptions are true, then we are able to calculate the exact probabilities of events through the use of mathematical formula.
 
@@ -83,7 +85,7 @@ Here we will use the mice phenotype data as an example. We start by creating two
 ```r
 library(dplyr)
 
-dat <- read.csv("mice_pheno.csv") ## We downloaded this file in a previous section
+dat <- read.csv("mice_pheno.csv") #We downloaded this file in a previous section
 
 controlPopulation <- filter(dat,Sex == "F" & Diet == "chow") %>%  select(Bodyweight) %>% unlist
 
@@ -100,7 +102,7 @@ hist(hfPopulation)
 hist(controlPopulation)
 ```
 
-![Histograms of all weights for both populations.](images/R/clt_and_t-distribution-population_histograms-1.png) 
+![Histograms of all weights for both populations.](images/R/clt_and_t-distribution-tmp-population_histograms-1.png) 
 
 We can use qq-plots to confirm that the distributions are relatively close to being normally distributed.
 
@@ -111,7 +113,7 @@ qqnorm(hfPopulation);qqline(hfPopulation)
 qqnorm(controlPopulation);qqline(controlPopulation)
 ```
 
-![Quantile-quantile plots of all weights for both populations.](images/R/clt_and_t-distribution-population_qqplots-1.png) 
+![Quantile-quantile plots of all weights for both populations.](images/R/clt_and_t-distribution-tmp-population_qqplots-1.png) 
 
 The larger the sample, the more forgiving the result is to the weakness of this approximation. In the next section we will see that for this particular dataset the t-distribution works well even for sample sizes as small as 3.
 
