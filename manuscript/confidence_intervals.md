@@ -11,6 +11,8 @@ layout: page
 
 ## Confidence Intervals
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/confidence_intervals.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/confidence_intervals.Rmd)
+
 We have described how to compute p-values which are ubiquitous in the life sciences. However, we do not recommend reporting p-values as the only statistical summary of your results. The reason is simple: statistical significance does not guarantee scientific significance. With large enough sample sizes, one might detect a statistically significance difference in weight of, say, 1 microgram. But is this an important finding? Would we say a diet results in higher weight if the increase is less than a fraction of a percent? The problem with reporting only p-values is that you will not provide a very important piece of information: the effect sizes.
 
 A much more attractive alternative is to report confidence intervals. A confidence interval includes information about your estimated effect size and the uncertainty associated with this estimate. Here we use the mice data to illustrate the concept behind confidence intervals.
@@ -120,7 +122,7 @@ for(i in 1:B){
 }
 ```
 
-![We show 250 random realizations of 95% confidence intervals. The color denotes if the interval fell on the parameter or not.](images/R/confidence_intervals-confidence_interval_n30-1.png) 
+![We show 250 random realizations of 95% confidence intervals. The color denotes if the interval fell on the parameter or not.](images/R/confidence_intervals-tmp-confidence_interval_n30-1.png) 
 
 You can run this repeatedly to see what happens. You will see that about in about 5% of the cases, we fail to cover {$$}\mu_X{/$$}.
 
@@ -149,7 +151,7 @@ for(i in 1:B){
 }
 ```
 
-![We show 250 random realizations of 95% confidence intervals, but now for a smaller sample size. The confidence interval is based on the CLT approximation. The color denotes if the interval fell on the parameter or not.](images/R/confidence_intervals-confidence_interval_n5-1.png) 
+![We show 250 random realizations of 95% confidence intervals, but now for a smaller sample size. The confidence interval is based on the CLT approximation. The color denotes if the interval fell on the parameter or not.](images/R/confidence_intervals-tmp-confidence_interval_n5-1.png) 
 
 Despite the intervals being larger (we are dividing by {$$}\sqrt{5}{/$$} instead of {$$}\sqrt{30}{/$$}), we see many more intervals not covering {$$}\mu_X{/$$}. This is because the CLT is incorrectly telling us that the distribution of the `mean(hf)` is approximately normal when in fact it has a fatter tail. This mistake affects us in the calculation of `Q`, which assumes a normal distribution and uses `qnorm`. The t-distribution might be more appropriate. All we have to do is re-run the above, but change how we calculate `Q`: use `qt` instead of `qnorm`
 
@@ -173,7 +175,7 @@ for(i in 1:B){
 }
 ```
 
-![We show 250 random realizations of 95% confidence intervals, but now for a smaller sample size. The confidence is now based on the t-distribution approximation. The color denotes if the interval fell on the parameter or not.](images/R/confidence_intervals-confidence_interval_tdist_n5-1.png) 
+![We show 250 random realizations of 95% confidence intervals, but now for a smaller sample size. The confidence is now based on the t-distribution approximation. The color denotes if the interval fell on the parameter or not.](images/R/confidence_intervals-tmp-confidence_interval_tdist_n5-1.png) 
 
 Now the intervals are made bigger. This is because the t-distribution has fatter tails and therefore:
 
