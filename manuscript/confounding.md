@@ -7,7 +7,7 @@ title: Confounding
 
 ## Confounding
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/confounding.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/confounding.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/confounding.Rmd).
 
 Batch effects have the most devasting effects when they are _counfounded_ with outcomes of interest. Here we described coufounding generally and how it relates to data interpretation.
 
@@ -167,7 +167,7 @@ Simpson's Paradox is commonly seen in baseball statistics. Here is a well known 
 
 ## Confounding: High-throughput Example
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/confounding.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/confounding.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/confounding.Rmd).
 
 To describe the problem of confoudning with a real example we will use a dataset from a paper [CITE] that claimed that roughly 50% of genes where differentially expressed when comparing blood from two ethnic groups. We include the data in one of our data packages:
 
