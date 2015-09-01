@@ -7,7 +7,7 @@ title: Principal Components Analysis
 
 ## Principal Component Analysis 
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/PCA.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/PCA.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/PCA.Rmd).
 
 We have already mentioned principal component analysis (PCA) above and noted its relation to the SVD. Here we provide further mathematical details. 
 
