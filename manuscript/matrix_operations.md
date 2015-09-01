@@ -10,7 +10,7 @@ layout: page
 
 ## Matrix Operations
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course2/matrix_operations.Rmd](https://github.com/genomicsclass/labs/tree/master/course2/matrix_operations.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course2/matrix_operations.Rmd).
 
 In the previous section we motivated the use of matrix algebra with this system of equations:
 
