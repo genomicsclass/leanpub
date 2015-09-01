@@ -11,7 +11,7 @@ One often overlooked complication with high-throughput studies is batch effects,
 
 Batch effects are the biggest challenge faced by genomics research, especially in context of precision medicine. The precense of batch effects in one form or another have been reported among most if not all high-throughput technologies [Leet et all (2010) Nature Reviews Genetics 11, 733-739]. But batch effects are not specific to genomics technology. In fact, in a 1972 paper, WJ Youden describes batch effects in the context of empirical estimates of phyisical constants. He pointed out the "subjective character of present estimates" of physical constants and how estimates changed from laboratory to laboratory. For example, in Table 1 Youden shows the following estimates of the astronomical unit from different laboratories. The reports included an estimate of spread (what we now would call confidence interval)
 
-![plot of chunk unnamed-chunk-1](images/R/intro_to_batch_effects-unnamed-chunk-1-1.png) 
+![Estimates of the astronomical, unit with estimates of spread, verus year it was reported. The two laboratories that reported more than one estimate are shown in color.](images/R/intro_to_batch_effects-astronomical_units-1.png) 
 
 Judging by the variability across labs and the fact that the reported bounds do not cover this variabilty shows very clearly that each group of measurement includes a bias that is consistent within group but not across. This type of variability is what we call a batch effect. Note that there are laboratories that reported two estimates (purple and orange) and batch effects are seen across the two different measurements from the same laboratories as well. 
 
@@ -60,7 +60,29 @@ Note that we can also view {$$}\gamma{/$$} as a random variable. In this case, e
 \bar{Y}_i)^2
 {/$$}
 
-is an underestimate of the standard error since it does not account for the variance introduced by {$$}\gamma{/$$}
+is an underestimate of the standard error since it does not account for the variance introduced by {$$}\gamma{/$$}.
+
+Note that with data from several laboratories we can in fact estiamte the {$$}\gamma$s if we assume they average out to 0. Or we can consider them to be random effects and simply estimate a new estimte and standard error with all measurements:
+
+
+```r
+avg <- mean(dat[,3])
+se <- sd(dat[,3]) / sqrt(nrow(dat))
+cat("95% confidence interaval is: [",avg-1.96*se,",", avg+1.96*se,"]")
+```
+
+```
+## 95% confidence interaval is: [ 92.8727 , 92.98542 ]
+```
+
+```r
+cat("which does include the current estimate is:",current)
+```
+
+```
+## which does include the current estimate is: 92.95604
+```
+
 
 Youden's paper also includes batch effect examples from more recent estimates of the speed of light as well as estimates of the gravity constant. Here we demonstrate the widespread presence and complex nature of batch effects in high-thorugput biological measurements. 
 
