@@ -7,7 +7,7 @@ title: Conditional probabilities and expectations
 
 ## Conditional probabilities and expectations
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/conditional_expectation.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/conditional_expectation.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/conditional_expectation.Rmd).
 
 Prediction problems can be divided into categorical and continuous outcomes. However, many of the algorithms can be applied to both due to the connection between conditional probabilities and conditional expectations. 
 
@@ -51,7 +51,7 @@ hist(y[x==71],xlab="Heights",nc=8,main="",xlim=range(y))
 
 ## Stratification
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/conditional_expectation.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/conditional_expectation.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/conditional_expectation.Rmd).
 
 The best guess is still the expectation, but our strata has changed from all the data to only the {$$}Y{/$$} with {$$}X=71{/$$}. So we can stratify and take the average which is the conditional expectations. Out prediction for any {$$}x{/$$} is therefore:
 {$$}
