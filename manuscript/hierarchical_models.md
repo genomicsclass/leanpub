@@ -93,18 +93,6 @@ In the plot above we can see how the variance estimate _shrink_ for 40 genes:
 
 ```r
 library(limma)
-```
-
-```
-## 
-## Attaching package: 'limma'
-## 
-## The following object is masked from 'package:BiocGenerics':
-## 
-##     plotMA
-```
-
-```r
 fit <- lmFit(rma95, model.matrix(~ fac))
 ebfit <- ebayes(fit)
 
