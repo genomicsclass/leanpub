@@ -12,6 +12,8 @@ library(rafalib)
 
 ## Procedures
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/multiple_testing.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/multiple_testing.Rmd)
+
 In the previous section we learned how p-values are no longer a useful quantity to interpret when dealing with high-dimensional data. This is because we are testing many _features_ at the same time. We refer to this as the _multiple comparison_ or _multiple testing_ or _multiplicity_ problem. The definition of a p-value does not provide a useful quantification here. Again, because when we test many hypotheses simultaneously, a list based simply on a small p-values cut-off of, say 0.01, can result in many false positives with high probability. Here we define terms that are more appropriate in the context of high-throughput data.
 
 The most widely used approach to the multiplicity problem is to define a _procedure_ and then estimate an informative _error rate_ for this procedure. The procedures are typically flexible through parameters or cutoffs that let us control specificity and sensitivity. An example of a procedure is: 
@@ -24,6 +26,8 @@ Note that changing the {$$}\alpha{/$$} permits us to adjust specificity and sens
 Next we define the _error rates_  that we will try to estimate and control.
 
 ## Error Rates
+
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/multiple_testing.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/multiple_testing.Rmd)
 
 Throughout this section we will be using the type I error and type II error terminology. We will also refer to them as false positives and false negatives respectively. Keep in mind that specificity relates to type I errors, while sensitivity relates to type II errors.
 
@@ -125,7 +129,7 @@ The first column of the table above shows us {$$}V{/$$} and {$$}S{/$$}. Note tha
 
 
 ```r
-B <- 10 ## number of simulations
+B <- 10 ##number of simulations
 VandS <- replicate(B,{
   calls <- sapply(1:m, function(i){
     control <- sample(population,N)
@@ -154,6 +158,8 @@ VandS <- replicate(B,{
 This motivates the definition of error rates. We can, for example, estimate probability that {$$}V{/$$} is larger than 0. This is interpreted as the probability of making at least one type I error among the 10,000 tests. In the example we made many more than 1 in every single simulation, so we suspect this probability is very practically 1. When {$$}m=1{/$$}, this probability is equivalent to the p-value. When we have a multiple tests situation, we call it the Family Wide Error Rate (FWER) and it relates to a technique that is widely used: The Bonferroni Correction.
 
 ## The Bonferroni Correction 
+
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/multiple_testing.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/multiple_testing.Rmd)
 
 Now that we have learned about the Family Wide Error Rate (FWER), we describe what we can actually do to control it.  In practice we want to choose a _procedure_ that guarantees the FWER is smaller than a predetermined value such as 0.05. We can keep it general and instead of 0.05, use {$$}\alpha{/$$} in our derivations.
 
@@ -256,6 +262,8 @@ sum(pvals < 0.05/10000)
 
 ## False Discovery Rate 
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/multiple_testing.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/multiple_testing.Rmd)
+
 There are many situations for which requiring an FWER of 0.05 does not make sense as it is much too strict. For example, consider the very common exercise of running a preliminary small study to determine a handful of candidate genes. This is referred to as a _discovery_ driven project or experiment. We may be in search of an unknown causative gene and more than willing to perform follow up studies with many more samples on just the candidates. If we develop a procedure that produces, for example, a list of 10 genes of which 1 or 2 pan out as important, the experiment is a resounding success. Note that with a small sample size, the only way to achieve a FWER {$$}\leq{/$$} 0.05 is with an empty list of genes. We already saw in the previous section that despite 1,000 diets being effective, we ended up with a list with just 2. Change the sample size to 6 and you very likely get 0:
 
 
@@ -282,7 +290,7 @@ Before running the simulation we are going to _vectortize_ the code. This means 
 ```r
 library(genefilter) ##rowttests is here
 set.seed(1)
-## Define groups to be used with rowttests
+##Define groups to be used with rowttests
 g <- factor( c(rep(0,N),rep(1,N)) )
 B <- 100 ## number of simulations
 Qs <- replicate(B,{
@@ -307,7 +315,7 @@ mypar(1,1)
 hist(Qs) ##Q is a random variable, this is its distribution
 ```
 
-![Q (false positives divided by number of features called significant) is a random variable. Here we generated a distribution with a Monte Carlo simulation.](images/R/multiple_testing-Q_distribution-1.png) 
+![Q (false positives divided by number of features called significant) is a random variable. Here we generated a distribution with a Monte Carlo simulation.](images/R/multiple_testing-tmp-Q_distribution-1.png) 
 
 ```r
 FDR=mean(Qs)
@@ -336,7 +344,7 @@ hist(pvals,breaks=seq(0,1,0.05))
 abline(h=m0/20)
 ```
 
-![Histogram of p-values. Monte Carlo simulation was used to generate data with m_1 genes having differences between groups.](images/R/multiple_testing-pval_hist-1.png) 
+![Histogram of p-values. Monte Carlo simulation was used to generate data with m_1 genes having differences between groups.](images/R/multiple_testing-tmp-pval_hist-1.png) 
 The first bar on the left represents cases with p-values smaller than 0.05. From the horizontal line we can infer that about 1/2 are false positives. This is in agreement with an FDR of 0.50. If we look at the bar for 0.01 we see can infer a lower FDR, as expected, but would call less features significant.
 
 
@@ -345,7 +353,7 @@ hist(pvals,breaks=seq(0,1,0.01))
 abline(h=m0/100)
 ```
 
-![Histogram of p-values with breaks at every 0.01. Monte Carlo simulation was used to generate data with m_1 genes having differences between groups.](images/R/multiple_testing-pval_hist2-1.png) 
+![Histogram of p-values with breaks at every 0.01. Monte Carlo simulation was used to generate data with m_1 genes having differences between groups.](images/R/multiple_testing-tmp-pval_hist2-1.png) 
 
 As we consider a lower a lower p-value cut-off, the number of features detected decreases (loss of sensitivity), but our FDR also decreases (gain of specificity). So how do we decide? One approach is to set a desired FDR level {$$}\alpha{/$$}, and then develop procedures that control the error rate: FDR  {$$}\leq \alpha{/$$}.
 
@@ -372,7 +380,7 @@ plot(i[1:15],sort(pvals)[1:15],main="Close-up")
 abline(0,i/m*alpha)
 ```
 
-![Plotting p-values plotted against their rank illustrates the Benjamini-Hochberg procedure. The plot on the right is a close-up of the plot on the left.](images/R/multiple_testing-pvalue_vs_rank_plot-1.png) 
+![Plotting p-values plotted against their rank illustrates the Benjamini-Hochberg procedure. The plot on the right is a close-up of the plot on the left.](images/R/multiple_testing-tmp-pvalue_vs_rank_plot-1.png) 
 
 ```r
 k <- max( which( sort(pvals) < i/m*alpha) )
@@ -396,21 +404,21 @@ plot(pvals,fdr,log="xy")
 abline(h=alpha,v=cutoff) ##cutoff was computed above
 ```
 
-![FDR estimates plotted against p-value.](images/R/multiple_testing-fdr-versus-pval-1.png) 
+![FDR estimates plotted against p-value.](images/R/multiple_testing-tmp-fdr-versus-pval-1.png) 
 
 We can run a Monte-Carlo simulation to confirm that the FDR is in fact lower than .05. Note that we compute all p-values first, and then use these to decide which get called.
 
 
 ```r
 alpha <- 0.05
-B <- 100 ## number of simulations. We should increase for more precision
+B <- 100 ##number of simulations. We should increase for more precision
 Qs <- replicate(B,{
   controls <- matrix(sample(population, N*m, replace=TRUE),nrow=m)
   treatments <-  matrix(sample(population, N*m, replace=TRUE),nrow=m)
   treatments[which(!nullHypothesis),]<-treatments[which(!nullHypothesis),]+delta
   dat <- cbind(controls,treatments)
   pvals <- rowttests(dat,g)$p.value 
-  ## then the FDR
+  ##then the FDR
   calls <- p.adjust(pvals,method="fdr") < alpha
   R=sum(calls)
   Q=ifelse(R>0,sum(nullHypothesis & calls)/R,0)
@@ -420,7 +428,7 @@ mypar(1,1)
 hist(Qs) ##Q is a random variable, this is its distribution
 ```
 
-![Histogram of Q (false positives divided by number of features called significant) when the alternative hypothesis is true for some features.](images/R/multiple_testing-Q_distribution2-1.png) 
+![Histogram of Q (false positives divided by number of features called significant) when the alternative hypothesis is true for some features.](images/R/multiple_testing-tmp-Q_distribution2-1.png) 
 
 ```r
 FDR=mean(Qs)
@@ -454,6 +462,8 @@ In summary, requiring that FDR {$$}leq{/$$} 0.05 is a much more lenient requirem
 
 ## Direct Approach to FDR and q-values (Advanced)
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/multiple_testing.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/multiple_testing.Rmd)
+
 Here we review the results described by John D. Storey in J. R. Statist. Soc. B (2002). One major distinction between Storey's approach and Benjamini and Hochberg's is that we are no longer going to set a {$$}\alpha{/$$} level a priori. Because in many high-throughput we are interested in obtaining some list for validation, we can instead decide beforehand that we will consider all tests with {$$}p-values{/$$} smaller than 0.01. We then want to attach an estimate of an error rate. Using this approach, we are guaranteed to have {$$}R>0{/$$}. Note that in the FDR definition above we assigned {$$}Q=0{/$$} in the case that {$$}R=V=0{/$$}. We are therefore computing: 
 
 {$$}
@@ -480,7 +490,7 @@ pi0=sum(pvals> lambda) /((1-lambda)*m)
 abline(h= pi0)
 ```
 
-![p-value histogram with pi0 estimate.](images/R/multiple_testing-pi0_estimate-1.png) 
+![p-value histogram with pi0 estimate.](images/R/multiple_testing-tmp-pi0_estimate-1.png) 
 
 ```r
 print(pi0) ##this is close to the trye pi0=0.9
@@ -506,7 +516,7 @@ qvals <- res$qvalues
 plot(pvals,qvals)
 ```
 
-![Q-values versus p-values.](images/R/multiple_testing-qval_vs_pval-1.png) 
+![Q-values versus p-values.](images/R/multiple_testing-tmp-qval_vs_pval-1.png) 
 we also obtain the estimate of {$$}\hat{\pi}_0{/$$}:
 
 
