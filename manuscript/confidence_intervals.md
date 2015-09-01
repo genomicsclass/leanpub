@@ -11,7 +11,7 @@ layout: page
 
 ## Confidence Intervals
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/confidence_intervals.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/confidence_intervals.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/confidence_intervals.Rmd).
 
 We have described how to compute p-values which are ubiquitous in the life sciences. However, we do not recommend reporting p-values as the only statistical summary of your results. The reason is simple: statistical significance does not guarantee scientific significance. With large enough sample sizes, one might detect a statistically significance difference in weight of, say, 1 microgram. But is this an important finding? Would we say a diet results in higher weight if the increase is less than a fraction of a percent? The problem with reporting only p-values is that you will not provide a very important piece of information: the effect sizes.
 
