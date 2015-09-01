@@ -307,7 +307,7 @@ mypar(1,1)
 hist(Qs) ##Q is a random variable, this is its distribution
 ```
 
-![plot of chunk unnamed-chunk-14](images/R/multiple_testing-unnamed-chunk-14-1.png) 
+![Q (false positives divide by number of features called significant) is a random variable. Here we generated a distribution with a Monte Carlo simulation.](images/R/multiple_testing-Q_distribution-1.png) 
 
 ```r
 FDR=mean(Qs)
@@ -336,7 +336,7 @@ hist(pvals,breaks=seq(0,1,0.05))
 abline(h=m0/20)
 ```
 
-![plot of chunk unnamed-chunk-15](images/R/multiple_testing-unnamed-chunk-15-1.png) 
+![Histogram of p-values. Monte Carlo simulation was used to generate data with m_1 genes having differences between groups.](images/R/multiple_testing-pval_hist-1.png) 
 The first bar on the left represents cases with p-values smaller than 0.05. From the horizontal line we can infer that about 1/2 are false positives. This is in agreement with an FDR of 0.50. If we look at the bar for 0.01 we see can infer a lower FDR, as expected, but would call less features significant.
 
 
@@ -345,7 +345,7 @@ hist(pvals,breaks=seq(0,1,0.01))
 abline(h=m0/100)
 ```
 
-![plot of chunk unnamed-chunk-16](images/R/multiple_testing-unnamed-chunk-16-1.png) 
+![Histogram of p-values with breaks at every 0.01. Monte Carlo simulation was used to generate data with m_1 genes having differences between groups.](images/R/multiple_testing-pval_hist2-1.png) 
 
 As we consider a lower a lower p-value cut-off, the number of features detected decreases (loss of sensitivity), but our FDR also decreases (gain of specificity). So how do we decide? One approach is to set a desired FDR level {$$}\alpha{/$$}, and then develop procedures that control the error rate: FDR  {$$}\leq \alpha{/$$}.
 
@@ -353,11 +353,11 @@ As we consider a lower a lower p-value cut-off, the number of features detected 
 
 We want to construct a procedure that guarantees the FDR to be below a certain level {$$}\alpha{/$$}. For any given {$$}\alpha{/$$}, the Benjamini-Hochberg (1995) procedure is very practical because it simply requires that we are able to compute p-values for each of the individual tests and this permits a procedure to be defined.
 
-For the procedure order the p-values in increasing order: {$$}p_{(1)},\dots,p_{(m)}. Then define {/$$}k{$$} to be the largest {/$$}i{$$} for which
+For the procedure order the p-values in increasing order: {$$}p_{(1)},\dots,p_{(m)}{/$$}. Then define {$$}k{/$$} to be the largest {$$}i{/$$} for which
 
-{/$$}p_{(i)} \leq \frac{i}{m}\alpha{$$}
+{$$}p_{(i)} \leq \frac{i}{m}\alpha{/$$}
 
-The procedure is to reject tests with p-values larger than {/$$}p_{(k)}{$$}. Here is an example of how we would select the {/$$}k{$$} with code using the p-values computed above:
+The procedure is to reject tests with p-values larger than {$$}p_{(k)}{/$$}. Here is an example of how we would select the {$$}k{/$$} with code using the p-values computed above:
 
 
 ```r
@@ -372,7 +372,7 @@ plot(i[1:15],sort(pvals)[1:15],main="Close-up")
 abline(0,i/m*alpha)
 ```
 
-![plot of chunk unnamed-chunk-17](images/R/multiple_testing-unnamed-chunk-17-1.png) 
+![Plotting p-values plotted against their rank illustrates the Benjamini-Hochberg procedure. The plot on the right is a close-up of plot on the left.](images/R/multiple_testing-pvalue_vs_rank_plot-1.png) 
 
 ```r
 k <- max( which( sort(pvals) < i/m*alpha) )
@@ -396,7 +396,7 @@ plot(pvals,fdr,log="xy")
 abline(h=alpha,v=cutoff) ##cutoff was computed above
 ```
 
-![plot of chunk unnamed-chunk-18](images/R/multiple_testing-unnamed-chunk-18-1.png) 
+![FDR estimates plotted against p-value.](images/R/multiple_testing-fdr-versus-pval-1.png) 
 
 We can run a Monte-Carlo simulation to confirm that the FDR is in fact lower than .05. Note that we compute all p-values first, and then use these to decide which get called.
 
@@ -420,7 +420,7 @@ mypar(1,1)
 hist(Qs) ##Q is a random variable, this is its distribution
 ```
 
-![plot of chunk unnamed-chunk-19](images/R/multiple_testing-unnamed-chunk-19-1.png) 
+![Histogram of Q (false positives divide by number of features called significant) when the alternative hypothesis is true for some features.](images/R/multiple_testing-Q_distribution2-1.png) 
 
 ```r
 FDR=mean(Qs)
@@ -431,7 +431,7 @@ print(FDR)
 ## [1] 0.03556253
 ```
 
-The FDR is lower than 0.05. This is to be expected because we need to be conservative to assure the FDR {/$$}\leq{$$} 0.05 for any value of {/$$}m_0{$$}, such as for the extreme case where every hypothesis tested is null: {/$$}m=m_0{$$}. If you re-do the simulation above for this case, you will find that the FDR increases. 
+The FDR is lower than 0.05. This is to be expected because we need to be conservative to assure the FDR {$$}\leq{/$$} 0.05 for any value of {$$}m_0{/$$}, such as for the extreme case where every hypothesis tested is null: {$$}m=m_0{/$$}. If you re-do the simulation above for this case, you will find that the FDR increases. 
 
 Finally, note that the `p.adjust` function has several options for error rate controlling procedures:
 
@@ -450,28 +450,27 @@ It is important to keep in mind that these options offer not just different appr
 ?p.adjust
 ```
 
-In summary, requiring that FDR {/$$}leq{$$} 0.05 is a much more lineant requirement FWER {/$$}leq{$$} 0.05. Although we will end up with more false positives, FDR gives us much more power. This makes it particularly appropriate for discovery phase experiments where we may accept FDR levels much higher than 0.05.
+In summary, requiring that FDR {$$}leq{/$$} 0.05 is a much more lenient requirement FWER {$$}leq{/$$} 0.05. Although we will end up with more false positives, FDR gives us much more power. This makes it particularly appropriate for discovery phase experiments where we may accept FDR levels much higher than 0.05.
 
 ## Direct Approach to FDR and q-values (Advanced)
 
-Here we review the results described by John D. Storey in
-J. R. Statist. Soc. B (2002). One major distinction between Storey's approach and Benjamini and Hochberg's is that we are no longer going to set a {/$$}\alpha{$$} level a-priori. Because in many high-throughput we are interested in obtaining some list for validation, we can instead decide beforehand that we will consider all tests with {/$$}p-values{$$} smaller than 0.01. We then want to attach an estimate of an error rate. Using this approach, we then are guaranteed to have {/$$}R>0{$$}. Note that in the FDR definition above we assigned {/$$}Q=0{$$} in the case that {/$$}R=V=0{$$}. We are therefore computing: 
+Here we review the results described by John D. Storey in J. R. Statist. Soc. B (2002). One major distinction between Storey's approach and Benjamini and Hochberg's is that we are no longer going to set a {$$}\alpha{/$$} level a priori. Because in many high-throughput we are interested in obtaining some list for validation, we can instead decide beforehand that we will consider all tests with {$$}p-values{/$$} smaller than 0.01. We then want to attach an estimate of an error rate. Using this approach, we are guaranteed to have {$$}R>0{/$$}. Note that in the FDR definition above we assigned {$$}Q=0{/$$} in the case that {$$}R=V=0{/$$}. We are therefore computing: 
 
-{/$$}
+{$$}
 \mbox{FDR} = E\left( \frac{V}{R} \mid R>0\right) \mbox{Pr}(R>0)
-{$$}
-
-In the approach proposed by Storey we condition on having a non-empty list, which implies {/$$}R>0{$$}, and we instead compute the _positive FDR_ 
-
 {/$$}
+
+In the approach proposed by Storey we condition on having a non-empty list, which implies {$$}R>0{/$$} , and we instead compute the _positive FDR_ 
+
+{$$}
 \mbox{pFDR} = E\left( \frac{V}{R} \mid R>0\right) 
-{$$}
-
-A second distinction is that while Benjamin and Hochberg's procedure controls under the worse case scenario in which all null hypotheses are true ({/$$}m=m_0{$$}), Storey proposes we actually try to estimate {/$$}m_0{$$} from the data. Because in high-throughput experiment we have so much data, this is certainly possible. The general idea is to pick a relatively high value p-value cut-off, call it {/$$}\lambda{$$}, and assume that tests obtaining p-values {/$$}>\lambda{$$} are mostly from cases in which the null hypothesis hold. We can then estimate {/$$}\pi_0 = m_0/m{$$} as: 
 {/$$}
-\hat{\pi}_0 = \frac{\#\left\{p_i > \lambda \right\} }{ (1-\lambda) m }
+
+A second distinction is that while Benjamini and Hochberg's procedure controls under the worse case scenario, in which all null hypotheses are true ( {$$}m=m_0{/$$} ), Storey proposes we actually try to estimate {$$}m_0{/$$} from the data. Because in high-throughput experiment we have so much data, this is certainly possible. The general idea is to pick a relatively high value p-value cut-off, call it {$$}\lambda{/$$}, and assume that tests obtaining p-values {$$}>\lambda{/$$} are mostly from cases in which the null hypothesis hold. We can then estimate {$$}\pi_0 = m_0/m{/$$} as: 
 {$$}
-There are more sophisticated procedures than this, but they follow the same general idea. Here is an example setting {/$$}\lambda=0.1{$$}. Using the p-values computed above we have:
+\hat{\pi}_0 = \frac{\#\left\{p_i > \lambda \right\} }{ (1-\lambda) m }
+{/$$}
+There are more sophisticated procedures than this, but they follow the same general idea. Here is an example setting {$$}\lambda=0.1{/$$}. Using the p-values computed above we have:
 
 
 ```r
@@ -481,7 +480,7 @@ pi0=sum(pvals> lambda) /((1-lambda)*m)
 abline(h= pi0)
 ```
 
-![plot of chunk unnamed-chunk-22](images/R/multiple_testing-unnamed-chunk-22-1.png) 
+![p-value histogram with pi0 estimate.](images/R/multiple_testing-pi0_estimate-1.png) 
 
 ```r
 print(pi0) ##this is close to the trye pi0=0.9
@@ -491,11 +490,11 @@ print(pi0) ##this is close to the trye pi0=0.9
 ## [1] 0.9311111
 ```
 
-With this estimate in place we can, for example, alter the Benjamini and Hochberg procedures to select the {/$$}k{$$} to be the largest value so that: 
+With this estimate in place we can, for example, alter the Benjamini and Hochberg procedures to select the {$$}k{/$$} to be the largest value so that: 
 
-{/$$}\hat{\pi}_0 p_{(i)} \leq \frac{i}{m}\alpha{$$}
+{$$}\hat{\pi}_0 p_{(i)} \leq \frac{i}{m}\alpha{/$$}
 
-However, instead of doing this we compute a _q-value_ for each test. If a feature resulted in a p-value of {/$$}p{$$}, the q-value is the estimated pFDR for a list of all the features with a p-value at least as small as {/$$}p{$$}.
+However, instead of doing this we compute a _q-value_ for each test. If a feature resulted in a p-value of {$$}p{/$$}, the q-value is the estimated pFDR for a list of all the features with a p-value at least as small as {$$}p{/$$}.
 
 In R this can be computed with the `qvalue` function in the `qvalue` package:
 
@@ -507,8 +506,8 @@ qvals <- res$qvalues
 plot(pvals,qvals)
 ```
 
-![plot of chunk unnamed-chunk-23](images/R/multiple_testing-unnamed-chunk-23-1.png) 
-we also obtain the estimate of {/$$}\hat{\pi}_0{$$}:
+![Q-values versus p-values.](images/R/multiple_testing-qval_vs_pval-1.png) 
+we also obtain the estimate of {$$}\hat{\pi}_0{/$$}:
 
 
 ```r
@@ -518,4 +517,4 @@ res$pi0
 ```
 ## [1] 0.8813727
 ```
-This function uses a more sophisticated approach at estimating {/$$}\pi_0{$$} than what is described above.
+This function uses a more sophisticated approach at estimating {$$}\pi_0{/$$} than what is described above.
