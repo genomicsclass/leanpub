@@ -12,7 +12,7 @@ library(rafalib)
 
 ## Procedures
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/multiple_testing.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/multiple_testing.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/multiple_testing.Rmd).
 
 In the previous section we learned how p-values are no longer a useful quantity to interpret when dealing with high-dimensional data. This is because we are testing many _features_ at the same time. We refer to this as the _multiple comparison_ or _multiple testing_ or _multiplicity_ problem. The definition of a p-value does not provide a useful quantification here. Again, because when we test many hypotheses simultaneously, a list based simply on a small p-values cut-off of, say 0.01, can result in many false positives with high probability. Here we define terms that are more appropriate in the context of high-throughput data.
 
@@ -27,7 +27,7 @@ Next we define the _error rates_  that we will try to estimate and control.
 
 ## Error Rates
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/multiple_testing.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/multiple_testing.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/multiple_testing.Rmd).
 
 Throughout this section we will be using the type I error and type II error terminology. We will also refer to them as false positives and false negatives respectively. Keep in mind that specificity relates to type I errors, while sensitivity relates to type II errors.
 
@@ -159,7 +159,7 @@ This motivates the definition of error rates. We can, for example, estimate prob
 
 ## The Bonferroni Correction 
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/multiple_testing.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/multiple_testing.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/multiple_testing.Rmd).
 
 Now that we have learned about the Family Wide Error Rate (FWER), we describe what we can actually do to control it.  In practice we want to choose a _procedure_ that guarantees the FWER is smaller than a predetermined value such as 0.05. We can keep it general and instead of 0.05, use {$$}\alpha{/$$} in our derivations.
 
@@ -262,7 +262,7 @@ sum(pvals < 0.05/10000)
 
 ## False Discovery Rate 
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/multiple_testing.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/multiple_testing.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/multiple_testing.Rmd).
 
 There are many situations for which requiring an FWER of 0.05 does not make sense as it is much too strict. For example, consider the very common exercise of running a preliminary small study to determine a handful of candidate genes. This is referred to as a _discovery_ driven project or experiment. We may be in search of an unknown causative gene and more than willing to perform follow up studies with many more samples on just the candidates. If we develop a procedure that produces, for example, a list of 10 genes of which 1 or 2 pan out as important, the experiment is a resounding success. Note that with a small sample size, the only way to achieve a FWER {$$}\leq{/$$} 0.05 is with an empty list of genes. We already saw in the previous section that despite 1,000 diets being effective, we ended up with a list with just 2. Change the sample size to 6 and you very likely get 0:
 
@@ -462,7 +462,7 @@ In summary, requiring that FDR {$$}leq{/$$} 0.05 is a much more lenient requirem
 
 ## Direct Approach to FDR and q-values (Advanced)
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/multiple_testing.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/multiple_testing.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/multiple_testing.Rmd).
 
 Here we review the results described by John D. Storey in J. R. Statist. Soc. B (2002). One major distinction between Storey's approach and Benjamini and Hochberg's is that we are no longer going to set a {$$}\alpha{/$$} level a priori. Because in many high-throughput we are interested in obtaining some list for validation, we can instead decide beforehand that we will consider all tests with {$$}p-values{/$$} smaller than 0.01. We then want to attach an estimate of an error rate. Using this approach, we are guaranteed to have {$$}R>0{/$$}. Note that in the FDR definition above we assigned {$$}Q=0{/$$} in the case that {$$}R=V=0{/$$}. We are therefore computing: 
 
