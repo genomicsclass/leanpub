@@ -9,6 +9,8 @@ title: Distance lecture
 
 ## Introduction
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/distance.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/distance.Rmd)
+
 Many of the analysis we perform with high-dimensional data relate directly or indirectly to distance. For example many clustering and machine learning techniques rely on being able to define distance using features or predictors. The concept of distance can be generalized from  physical distance. For example, we cluster animals into groups. When we do this, we put animals that are "close" in the same group:
 
 ![Clustering of animals based](images/handmade/animals.png)
@@ -27,9 +29,11 @@ Here we will learn the necessary mathematics and computing skill to understand a
 
 ## Euclidean Distance
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/distance.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/distance.Rmd)
+
 As a review, let's define the distance between two points, {$$}A{/$$} and {$$}B{/$$}, on a Cartesian plane.
 
-![](images/R/distance-unnamed-chunk-1-1.png) 
+![](images/R/distance-tmp-unnamed-chunk-1-1.png) 
 
 The euclidean distance between {$$}A{/$$} and {$$}B{/$$} is simply
 
@@ -37,6 +41,8 @@ The euclidean distance between {$$}A{/$$} and {$$}B{/$$} is simply
 
 
 ## Distance in high dimensions
+
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/distance.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/distance.Rmd)
 
 We introduce a data set with gene expression measurements for 22,215 genes from 189 samples. The R objects can be downloaded like this:
 
@@ -60,7 +66,7 @@ dim(e) ##e contains the expression data
 ```
 
 ```r
-table(tissue) ## tissue[i] tells us what tissue is represented by e[,i]
+table(tissue) ##tissue[i] tells us what tissue is represented by e[,i]
 ```
 
 ```
