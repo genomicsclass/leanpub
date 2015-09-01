@@ -63,8 +63,6 @@ then
 git add images/R/$2*
 fi
 
-./downloadimages.sh 
-
 git commit -am "adding $2 to book"
 
 printf "\n  *** done! *** \n\n"
