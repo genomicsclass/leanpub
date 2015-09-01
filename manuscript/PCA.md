@@ -18,10 +18,10 @@ We started the motivation for dimension reduction with a simulated example and s
 
 Here we explain specifically what are the principal components (PCs).
 
-Let {$$}\mathbf{Y}{/$$} be {$$}2 \times N{/$$} matrix representing our data. The analogy is that we measure expression from 2 genes and each column is a sample.Suppose we are given the task of finding a  {$$}2 \times 1{/$$} vector {$$}\mathbf{u}_1{/$$} such that {$$}\mathbf{u}_1^\top \mathbf{v}_1 = 1{/$$}
-and it maximizes {$$}(\mathbf{u}_1^\top\mathbf{Y})^\top (\mathbf{u}_1^\top\mathbf{Y}){/$$}. This can be viewed as a projection of each sample or column of {$$}\mathbf{Y}{/$$} into the subspace spanned by {$$}\mathbf{u}_1{/$$}. So we are looking for a transformation in which the coordinates show high variability.
+Let {{$$}}\mathbf{Y}{{/$$}} be {{$$}}2 \times N{{/$$}} matrix representing our data. The analogy is that we measure expression from 2 genes and each column is a sample.Suppose we are given the task of finding a  {{$$}}2 \times 1{{/$$}} vector {{$$}}\mathbf{u}_1{{/$$}} such that {{$$}}\mathbf{u}_1^\top \mathbf{v}_1 = 1{{/$$}}
+and it maximizes {{$$}}(\mathbf{u}_1^\top\mathbf{Y})^\top (\mathbf{u}_1^\top\mathbf{Y}){{/$$}}. This can be viewed as a projection of each sample or column of {{$$}}\mathbf{Y}{{/$$}} into the subspace spanned by {{$$}}\mathbf{u}_1{{/$$}}. So we are looking for a transformation in which the coordinates show high variability.
 
-Let's try {$$}\mathbf{u}=(1,0)^\top{/$$}. This projection simply gives us the height of twin 1 shown in orange below. The sum of squares is shown in the title.
+Let's try {{$$}}\mathbf{u}=(1,0)^\top{{/$$}}. This projection simply gives us the height of twin 1 shown in orange below. The sum of squares is shown in the title.
 
 
 ```r
@@ -44,8 +44,8 @@ points(Y[1,],rep(0,ncol(Y)),col=2,pch=16,cex=0.75)
 
 Can we find a direction with higher variability? How about:
 
-{$$}\mathbf{u} =\begin{pmatrix}1\\-1\end{pmatrix}{/$$} ? This does not satisfy {$$}\mathbf{u}^\top\mathbf{u}= 1{/$$} so let's instead try
-{$$}\mathbf{u} =\begin{pmatrix}1/\sqrt{2}\\-1/\sqrt{2}\end{pmatrix}{/$$} 
+{{$$}}\mathbf{u} =\begin{pmatrix}1\\-1\end{pmatrix}{{/$$}} ? This does not satisfy {{$$}}\mathbf{u}^\top\mathbf{u}= 1{{/$$}} so let's instead try
+{{$$}}\mathbf{u} =\begin{pmatrix}1/\sqrt{2}\\-1/\sqrt{2}\end{pmatrix}{{/$$}} 
 
 
 ```r
@@ -69,7 +69,7 @@ This relates to the difference between twins which we know is small. The sum of 
 
 Finally, let's try:
 
-{$$}\mathbf{u} =\begin{pmatrix}1/\sqrt{2}\\1/\sqrt{2}\end{pmatrix}{/$$} 
+{{$$}}\mathbf{u} =\begin{pmatrix}1/\sqrt{2}\\1/\sqrt{2}\end{pmatrix}{{/$$}} 
 
 
 ```r
@@ -90,29 +90,29 @@ points(t(Z),col=2,pch=16,cex=0.5)
 
 ![plot of chunk unnamed-chunk-3](images/R/PCA-unnamed-chunk-3-1.png) 
 
-This is a re-scaled average height which has higher sum of squares. There is mathematical procedure for determining which {$$}\mathbf{v}{/$$} maximizes the sum of squares and the SVD provides it for us.
+This is a re-scaled average height which has higher sum of squares. There is mathematical procedure for determining which {{$$}}\mathbf{v}{{/$$}} maximizes the sum of squares and the SVD provides it for us.
 
 ### The Principal Components
 
 The orthogonal vector that maximizes the sum of squares
 
-{$$}(\mathbf{u}_1^\top\mathbf{Y})^\top(\mathbf{u}_1^\top\mathbf{Y}){/$$} 
+{{$$}}(\mathbf{u}_1^\top\mathbf{Y})^\top(\mathbf{u}_1^\top\mathbf{Y}){{/$$}} 
 
-{$$}\mathbf{u}_1^\top\mathbf{Y}{/$$} is referred to as the first PC. The _weights_ {$$}\mathbf{u}{/$$} used to obtain this PC are referred to as the _loadings_. Using  the language of rotations it is also referred to as the _direction_ of the first PC, which are the new coordinates.
+{{$$}}\mathbf{u}_1^\top\mathbf{Y}{{/$$}} is referred to as the first PC. The _weights_ {{$$}}\mathbf{u}{{/$$}} used to obtain this PC are referred to as the _loadings_. Using  the language of rotations it is also referred to as the _direction_ of the first PC, which are the new coordinates.
 
 To obtain the second PC, we repeat the exercise above but for the residuals:
 
-{$$}\mathbf{r} = \mathbf{Y} - \mathbf{u}_1^\top \mathbf{Yv}_1 {/$$}
+{{$$}}\mathbf{r} = \mathbf{Y} - \mathbf{u}_1^\top \mathbf{Yv}_1 {{/$$}}
 
 The second PC is the vector with the following propoerties: 
 
-{$$} \mathbf{v}_2^\top \mathbf{v}_2=1{/$$}
+{{$$}} \mathbf{v}_2^\top \mathbf{v}_2=1{{/$$}}
 
-{$$} \mathbf{v}_2^\top \mathbf{v}_1=0{/$$} 
+{{$$}} \mathbf{v}_2^\top \mathbf{v}_1=0{{/$$}} 
 
-and maximizes  {$$}(\mathbf{rv}_2)^\top \mathbf{rv}_2{/$$}.
+and maximizes  {{$$}}(\mathbf{rv}_2)^\top \mathbf{rv}_2{{/$$}}.
 
-When {$$}Y{/$$} is {$$}N \times m{/$$} we repeat to find 3rd, 4th, ..., m-th PCs
+When {{$$}}Y{{/$$}} is {{$$}}N \times m{{/$$}} we repeat to find 3rd, 4th, ..., m-th PCs
 
 ### `prcomp`
 
