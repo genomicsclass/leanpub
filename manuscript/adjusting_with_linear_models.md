@@ -12,6 +12,7 @@ To illustrate how we can adjust for batch effects using statistical methods, we 
 
 
 ```r
+##available from course github repository
 library(GSE5859Subset)
 data(GSE5859Subset)
 ```
@@ -38,12 +39,18 @@ ind0 <- setdiff(sample(seq(along=tt$dm),50),c(ind2,ind1))
 geneindex<-c(ind2,ind0,ind1)
 mat<-geneExpression[geneindex,]
 mat <- mat -rowMeans(mat)
+```
+
+The object `mat` contains the subset of the data we will show in the plots. By looking at an image we see the Y chromosome genes as well as those most affected by month:
+
+
+```r
 icolors <- colorRampPalette(rev(brewer.pal(11,"RdYlBu")))(100)
 mypar(1,1)
 image(t(mat),xaxt="n",yaxt="n",col=icolors)
 ```
 
-![plot of chunk unnamed-chunk-2](images/R/adjusting_with_linear_models-unnamed-chunk-2-1.png) 
+![Image of gene expression data for genes selected to show difference in group as well as the batch effect along with some randomely chosen genes.](images/R/adjusting_with_linear_models-image_of_subset-1.png) 
 
 In what follows, we will imitate the typical analysis we would do in practice. We will act as if we don't know which genes are supposed to be differentially expressed between males and females. 
 
@@ -69,7 +76,7 @@ index <- which(qvals<0.1)
 abline(h=-log10(max(res$p.value[index])))
 ```
 
-![plot of chunk unnamed-chunk-3](images/R/adjusting_with_linear_models-unnamed-chunk-3-1.png) 
+![p-value histogram and volcano plot for comparison between sexes. The Y chromosome genes (considered to be positives) are highlighted in red. The X chromosome genes (a subset is considered to be positives) are shown in green.](images/R/adjusting_with_linear_models-pvalue_hist_and_volcano_plots-1.png) 
 
 ```r
 cat("Total genes with q-value < 0.1:",length(index))
@@ -176,7 +183,7 @@ index <- which(qvals<0.1)
 abline(h=-log10(max(res$p.value[index])))
 ```
 
-![plot of chunk unnamed-chunk-6](images/R/adjusting_with_linear_models-unnamed-chunk-6-1.png) 
+![p-value histogram and volcano plot for comparison between sexes after adjustement for month. The Y chromosome genes (considered to be positives) are highlighted in red. The X chromosome genes (a subset is considered to be positives) are shown in green.](images/R/adjusting_with_linear_models-pvalue_hist_and_volcano_plots2-1.png) 
 
 ```r
 cat("Total genes with q-value < 0.1:",length(index))
@@ -238,8 +245,7 @@ pvals <- 2*pt(-abs(ttest),fit$df)
 We will cover `limma` in more detail in a later section.
 
 
-
-## Combat
+### Combat
 
  Combat [NEED CITATION] is a popular method and is based on using linear models to adjust for batch effects. It fits a hierarchical model (we will learn about these in the next section) to estimate and remove row specific batch effects. Combat uses a modular approach. In a first step, what is considered to be a batch effect is removed:
 
@@ -293,7 +299,7 @@ index <- which(qvals<0.1)
 abline(h=-log10(max(res$p.value[index])))
 ```
 
-![plot of chunk unnamed-chunk-12](images/R/adjusting_with_linear_models-unnamed-chunk-12-1.png) 
+![p-value histogram and volcano plot for comparison between sexes for Combat. The Y chromosome genes (considered to be positives) are highlighted in red. The X chromosome genes (a subset is considered to be positives) are shown in green.](images/R/adjusting_with_linear_models-pvalue_hist_and_volcano_plots3-1.png) 
 
 ```r
 cat("Total genes with q-value < 0.1:",length(index))
