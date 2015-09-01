@@ -13,6 +13,7 @@ Many of the statistical ideas applied to correcting for batch effects come from 
 {$$}
 Y_ij = \alpha_i W_1 + \varepsilon_{ij}
 {/$$}
+
 with {$$}Y_{ij}{/$$} the grade for individual {$$}i{/$$} on subject {$$}j{/$$} and {$$}\alpha_i{/$$} representing the ability of student {$$}i{/$$} to obtain good grades. 
 
 In this example, {$$}W_1{/$$} is a constant. Here we will motivate factor analysis with a slightly more complicated situation that resembles the presence of batch effects. We generate random grande
@@ -42,7 +43,7 @@ A graphical look shows that the correlation suggest a grouping into STEM and hum
 
 In the figure below high correlations are red, no correlation is white and negative correlations are blue.
 
-![plot of chunk unnamed-chunk-3](images/R/factor_analysis-unnamed-chunk-3-1.png) 
+![Images of correlation between columns. High correlation is red, no correlation is white and negative correlation is blue.](images/R/factor_analysis-correlation_images-1.png) 
 
 
 ### Factor model
@@ -75,6 +76,7 @@ round(W,1)
 
 Note that, as expected, the first factor is close to a constant and will help explain the observed correlation across all subjects, while the second is a factor that differs between STEM and humanities and 
 We can use these estimate in the model:
+
 {/$$}
 Y_{ij} = \alpha_{i,1} \hat{W}_{1,j} + \alpha_{i,2} \hat{W}_{2,j} + \varepsilon_{ij}
 {$$}
@@ -99,6 +101,42 @@ In high throughput data is is quite common to see correlation structure. For exa
 
 ```r
 library(Biobase)
+```
+
+```
+## Loading required package: BiocGenerics
+## Loading required package: methods
+## Loading required package: parallel
+## 
+## Attaching package: 'BiocGenerics'
+## 
+## The following objects are masked from 'package:parallel':
+## 
+##     clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
+##     clusterExport, clusterMap, parApply, parCapply, parLapply,
+##     parLapplyLB, parRapply, parSapply, parSapplyLB
+## 
+## The following object is masked from 'package:stats':
+## 
+##     xtabs
+## 
+## The following objects are masked from 'package:base':
+## 
+##     anyDuplicated, append, as.data.frame, as.vector, cbind,
+##     colnames, do.call, duplicated, eval, evalq, Filter, Find, get,
+##     intersect, is.unsorted, lapply, Map, mapply, match, mget,
+##     order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
+##     rbind, Reduce, rep.int, rownames, sapply, setdiff, sort,
+##     table, tapply, union, unique, unlist, unsplit
+## 
+## Welcome to Bioconductor
+## 
+##     Vignettes contain introductory material; view with
+##     'browseVignettes()'. To cite Bioconductor, see
+##     'citation("Biobase")', and for packages 'citation("pkgname")'.
+```
+
+```r
 library(GSE5859)
 data(GSE5859)
 n <- nrow(pData(e))
@@ -107,12 +145,13 @@ Y=exprs(e)[,o]
 cors=cor(Y-rowMeans(Y))
 
 mypar()
-cols=colorRampPalette(brewer.pal(9,"Blues"))(100)
+
+cols=colorRampPalette(rev(brewer.pal(11,"RdBu")))(100)
 par(mar = c(8.1, 8.1, 3.5, 2.1))
 image(1:n,1:n,cors,xaxt="n",yaxt="n",col=cols,xlab="",ylab="",zlim=c(-1,1))
 ```
 
-![plot of chunk unnamed-chunk-6](images/R/factor_analysis-unnamed-chunk-6-1.png) 
+![Image of correlations. Cell i,j  represents correlation between samples i and j. Red is high, white is 0 and red is negative.](images/R/factor_analysis-gene_expression_correlations-1.png) 
 
 Two factors will not be enough to model the observed correlation structure. But a more general factor model can be useful:
 
