@@ -28,7 +28,7 @@ hist(y,breaks=seq(min(y),max(y)))
 abline(v=mean(y),col=2)
 ```
 
-![plot of chunk unnamed-chunk-1](images/R/conditional_expectation-unnamed-chunk-1-1.png) 
+![Histogram of son heights.](images/R/conditional_expectation-height_hist-1.png) 
 
 In this case we can also approximate the distribution of {$$}Y{/$$} as normal which implies the mean maximizes the probability density. 
 
@@ -37,21 +37,18 @@ Now imagine we are given more information. We are told the the father of this ra
 
 
 ```r
+mypar(1,2)
 plot(x,y,xlab="Father's height in inches",ylab="Son's height in inches",main=paste("correlation =",signif(cor(x,y),2)))
 abline(v=c(-0.35,0.35)+71,col="red")
-```
-
-![plot of chunk unnamed-chunk-2](images/R/conditional_expectation-unnamed-chunk-2-1.png) 
-
-```r
 hist(y[x==71],xlab="Heights",nc=8,main="",xlim=range(y))
 ```
 
-![plot of chunk unnamed-chunk-2](images/R/conditional_expectation-unnamed-chunk-2-2.png) 
+![Son versus father height (left) with the red lines denoting the stratum defined by conditioning on fathers being 71 inches tall. Conditional distribution: son height distribution of stratum defined by 71 inch fathers.](images/R/conditional_expectation-conditional_distribution-1.png) 
 
 <a name="regression"></a>
 
 ## Stratification
+
 The best guess is still the expectation, but our strata has changed from all the data to only the {$$}Y{/$$} with {$$}X=71{/$$}. So we can stratify and take the average which is the conditional expectations. Out prediction for any {$$}x{/$$} is therefore:
 {$$}
 f(x) = E(Y \mid X=x)
@@ -65,18 +62,18 @@ and if we estimate these five parameters from the sample we get the regression l
 
 
 ```r
+mypar(1,2)
 plot(x,y,xlab="Father's height in inches",ylab="Son's height in inches",main=paste("correlation =",signif(cor(x,y),2)))
 abline(v=c(-0.35,0.35)+71,col="red")
-abline(lm(y~x),col=1)
-```
 
-![plot of chunk unnamed-chunk-3](images/R/conditional_expectation-unnamed-chunk-3-1.png) 
+fit <- lm(y~x)
+abline(fit,col=1)
 
-```r
 hist(y[x==71],xlab="Heights",nc=8,main="",xlim=range(y))
+abline(v = fit$coef[1] + fit$coef[2]*71, col=1)
 ```
 
-![plot of chunk unnamed-chunk-3](images/R/conditional_expectation-unnamed-chunk-3-2.png) 
+![Son versus father height showing predicted heights based on regression line (left). Conditional distribution with vertical line representing regression prediction.](images/R/conditional_expectation-regression-1.png) 
 
 In this particular case the regression line provides an optimal prediction function for {$$}Y{/$$}. But this is not generally true.
 
