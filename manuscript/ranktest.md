@@ -7,6 +7,8 @@ title: Rank tests
 
 ## Wilcoxon Rank Sum Test
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/ranktest.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/ranktest.Rmd)
+
 We learned how the sample mean and SD are susceptible to outliers. The t-test is based on these measures and is susceptible as well. The Wilcox rank test (equivalent to the Mann-Whitney test) provides and alternative. In the code below we perform a t-test on data for which the null is true. However, we change one sum observation by mistakes in each sample and the values incorrectly entered are different.Here we see that the t-test results in a small p-value, while the Wilcoxon test does not:
 
 
@@ -55,7 +57,7 @@ ws <- sapply(x,function(z) rank(c(z,y))[1]-1)
 text( rep(1.05,length(ws)), xrank, ws, cex=0.8)
 ```
 
-<img src="images/R/ranktest-rank-test-illustration-1.png" title="plot of chunk rank-test-illustration" alt="plot of chunk rank-test-illustration"  />
+<img src="images/R/ranktest-tmp-rank-test-illustration-1.png" title="plot of chunk rank-test-illustration" alt="plot of chunk rank-test-illustration"  />
 
 ```r
 W <-sum(ws) 
