@@ -10,7 +10,7 @@ title: Monte Carlo methods
 
 ## Monte Carlo Simulation
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/monte_carlo.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/monte_carlo.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/monte_carlo.Rmd).
 
 Computers can be used to generate pseudo-random numbers. For practical purposes these pseudo-random numbers can be used to imitate random variables from the real world. This permits us to examine properties of random variables using a computer instead of theoretical or analytical derivations. One very useful aspect of this concept is that we can create *simulated* data to test out ideas or competing methods without actually having to perform laboratory experiments.
 
