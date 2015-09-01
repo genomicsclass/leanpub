@@ -6,6 +6,8 @@ Scientific fields that have traditionally relied upon simple data analysis techn
 
 ## What Does This Book Cover?
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/introduction.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/introduction.Rmd)
+
 This book will cover several of the statistical concepts and data analytic skills needed to succeed in data-driven life science research. We go from relatively basic concepts related to computed p-values to advanced topics related to analyzing high-throughput data.
 
 We start with one of the most important topics in statistics and in the life sciences: statistical inference. Inference is the use of probability to learn population features from data. A typical example is deciphering if two groups (for example, cases versus controls) are different on average. Specific topics covered include the t-test, confidence intervals, association tests, Monte Carlo methods, permutation tests and statistical power. We make use of approximations made possible by mathematical theory, such as the Central Limit Theorem, as well as techniques made possible by modern computing. We will learn how to compute p-values and confidence intervals and implement basic data analyses. Throughout the book we will describe visualization techniques in R that are useful for exploring new data sets. For example, we will use these to learn when to apply robust statistical techniques.
@@ -19,6 +21,8 @@ We then cover the concepts of distance and dimension reduction. We will introduc
 We end by learning about batch effects and how component and factor analysis are used to deal with this challenge. In particular, we will examine confounding, show examples of batch effects, make the connection to factor analysis, and describe surrogate variable analysis. 
 
 ## How Is This Book Different?
+
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/introduction.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/introduction.Rmd)
 
 While statistics textbooks focus on mathematics, this book focuses on using a computer to perform data analysis. Instead of explaining the mathematics and theory and then showing examples, we start by stating a practical data related challenge. We then provide computer code that provide a solution to the problem and also helps illustrate the concepts behind the solution. By running the code yourself, and seeing data generation and analysis happen live, you will get a better intuition for the concepts, the mathematics, and the theory.
 
