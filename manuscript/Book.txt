@@ -35,7 +35,7 @@ standard_errors.md
 interactions_and_contrasts.md
 collinearity.md
 qr_and_regression.md
-linear_models_going_further.md
+###course2 linear_models_going_further
 
 ### Chapter 6: inference for high-dimensional data
 ## Notes: explain three ways to install
