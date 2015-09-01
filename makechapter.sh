@@ -4,6 +4,8 @@ printf "  *** knit file, fix latex, and move to  *** \n\n"
 
 cd ../labs/$1
 
+## Before we knit we create  temporary file
+## and add a link to the Rmd markdown after every subsection
 
 linetoadd="R markdown document for this section available \[here]\(https\:\/\/github.com\/genomicsclass\/labs\/tree\/master\/$1\/$2.Rmd\)."
 
@@ -11,7 +13,10 @@ sed '/^## /a \
 \'$'\n@@@@@@
 ' $2.Rmd | sed 's/@@@@@@/'"$linetoadd"'/' > $2-tmp.Rmd
 
+## Now we knit
 Rscript --no-init-file -e "library(knitr); knit('$2-tmp.Rmd')"
+
+### Here we are converting the $ used by latex to $$ used by jekyll
 
 sed 's/\$\$/@@@@/g' $2-tmp.md |
     sed 's/ \$/ @@@@/g' |
@@ -30,8 +35,12 @@ sed 's/\$\$/@@@@/g' $2-tmp.md |
     sed 's/(figure\//(images\/R\//g' |
     sed 's/\"figure\//\"images\/R\//g'> $2.md
 
+rm $2-tmp.Rmd
 rm $2-tmp.md
-    
+  
+### Here we are converting the $$ used by latex and jekyll to
+### in {$$} {\$$} used by leanpub
+  
 awk '
 BEGIN {count = 0;}
 {
@@ -54,6 +63,9 @@ print line;
 
 #rm $2.md
 cd ../../leanpub
+
+
+## move the images into leanpub directory and add to github
 
 imgcount=`ls -1 ../labs/$1/figure/$2* 2> /dev/null | wc -l`
  
