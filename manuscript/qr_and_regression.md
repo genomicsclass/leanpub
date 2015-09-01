@@ -10,6 +10,8 @@ layout: page
 
 ## The QR Factorization (Advanced)
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course2/qr_and_regression.Rmd](https://github.com/genomicsclass/labs/tree/master/course2/qr_and_regression.Rmd)
+
 We have seen that in order to calculate the LSE, we need to invert a matrix. We have shown how to use solve. However, solve is not a stable solution. When coding LSE computation, we use the QR decomposition.
 
 
@@ -193,7 +195,7 @@ fitted <- tcrossprod(Q)%*%y
 lines(x,fitted,col=2)
 ```
 
-<img src="images/R/qr_and_regression-unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
+<img src="images/R/qr_and_regression-tmp-unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
 
 ### Standard Errors
 
