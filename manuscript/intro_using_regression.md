@@ -15,6 +15,8 @@ library(rafalib)
 ```
 ## Motivating Examples
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course2/intro_using_regression.Rmd](https://github.com/genomicsclass/labs/tree/master/course2/intro_using_regression.Rmd)
+
 ### Objects Falling
 
 Imagine you are Galileo in the 16th century trying to describe the velocity of a falling object. An assistant climbs the Tower of Pisa and drops a ball, while several others record the position at different times. Let's simulate some data using the equations we know today and adding some measurement error:
@@ -22,7 +24,7 @@ Imagine you are Galileo in the 16th century trying to describe the velocity of a
 
 ```r
 set.seed(1)
-g <- 9.8 ## meters per second
+g <- 9.8 ##meters per second
 n <- 25
 tt <- seq(0,3.4,len=n) ##time in secs, note: t is a base function
 d <- 56.67  - 0.5*g*tt^2 + rnorm(n,sd=1)
@@ -36,7 +38,7 @@ mypar()
 plot(tt,d,ylab="Distance in meters",xlab="Time in seconds")
 ```
 
-![Simulated data for distance travelled versus time of falling object measured with error.](images/R/intro_using_regression-gravity-1.png) 
+![Simulated data for distance travelled versus time of falling object measured with error.](images/R/intro_using_regression-tmp-gravity-1.png) 
 
 He does not know the exact equation, but by looking at the plot above he deduces that the position should follow a parabola. So he models the data with:
 
@@ -61,7 +63,7 @@ looks like this:
 plot(x,y,xlab="Father's height",ylab="Son's height")
 ```
 
-![Galton's data. Son heights versus father heights.](images/R/intro_using_regression-galton_data-1.png) 
+![Galton's data. Son heights versus father heights.](images/R/intro_using_regression-tmp-galton_data-1.png) 
 
 The sons' height does seem to increase linearly with fathers' height. In this case a model that describes the data is as follows:
 
@@ -81,7 +83,7 @@ mypar(1,1)
 stripchart(Bodyweight~Diet,data=dat,vertical=TRUE,method="jitter",pch=1,main="Mice weights")
 ```
 
-![Mouse weights under two diets.](images/R/intro_using_regression-mice_weights-1.png) 
+![Mouse weights under two diets.](images/R/intro_using_regression-tmp-mice_weights-1.png) 
 
 We want to estimate the difference in average weight between populations. We demonstrated how to do this using t-tests and confidence intervals based on the difference in sample averages. We can obtain the same exact results using a linear model:
 
@@ -122,7 +124,7 @@ with {$$}h_0{/$$} and {$$}v_0{/$$} the starting height and velocity respectively
 
 
 ```r
-g <- 9.8 ## meters per second
+g <- 9.8 ##meters per second
 n <- 25
 tt <- seq(0,3.4,len=n) ##time in secs, t is a base function
 f <- 56.67  - 0.5*g*tt^2
@@ -137,7 +139,7 @@ plot(tt,y,ylab="Distance in meters",xlab="Time in seconds")
 lines(tt,f,col=2)
 ```
 
-![Fitted model for simulated data for distance travelled versus time of falling object measured with error.](images/R/intro_using_regression-simulate_drop_data_with_fit-1.png) 
+![Fitted model for simulated data for distance travelled versus time of falling object measured with error.](images/R/intro_using_regression-tmp-simulate_drop_data_with_fit-1.png) 
 
 But we were pretending to be Galileo and so we don't know the parameters in the model. The data does suggest it is a parabola, so we model as such:
 
@@ -190,7 +192,7 @@ Beta2s<- seq(-10,0,len=100)
 lines(Beta2s,sapply(Beta2s,rss,Beta0=65,Beta1=0),col=2)
 ```
 
-![Residual sum of squares obtained for several values of the parameters.](images/R/intro_using_regression-rss_versus_estimate-1.png) 
+![Residual sum of squares obtained for several values of the parameters.](images/R/intro_using_regression-tmp-rss_versus_estimate-1.png) 
 
 Trial and error here is not going to work. Instead we can use calculus: take the partial derivatives, set them to 0 and solve. Of course, if we have many parameters, these equations can get rather complex. Linear algebra provides a compact and general way of solving this problem. 
 
@@ -198,7 +200,7 @@ Trial and error here is not going to work. Instead we can use calculus: take the
 ### More On Galton (Advanced)
 When studying the father-son data, Galton made a fascinating discovery using exploratory analysis.
 
-![Galton's plot](images/downloads/Galton's_correlation_diagram_1875.jpg) 
+![Galton's plot](http://upload.wikimedia.org/wikipedia/commons/b/b2/Galton's_correlation_diagram_1875.jpg) 
 
 He noted that if he tabulated the number of father-son height pairs and followed all the x,y values having the same totals in the table, they formed an ellipsis. In the plot above, made by Galton, you see the ellipsis formed by the pairs having 3 cases. This then led to modeling this data as correlated bivariate normal. 
 
