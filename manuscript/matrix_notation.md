@@ -10,6 +10,8 @@ layout: page
 
 ## Matrix Notation
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course2/matrix_notation.Rmd](https://github.com/genomicsclass/labs/tree/master/course2/matrix_notation.Rmd)
+
 Here we introduce the basics of matrix notation. Initially this may seem over-complicated, but once we discuss examples you will appreciate the power of using this notation to both explain and derive solutions, as well as implement them as R code. 
 
 ### The Language of Linear Models
@@ -19,6 +21,8 @@ Linear algebra notation actually simplifies the mathematical descriptions and ma
 The main point of this entire exercise is to show how we can write the models above, using matrix notation and then explain how this is useful for solving the least squares equation. We start by simply defining notation and matrix multiplication, but bear with us since we eventually get back to the practical application.
 
 ## Solving System of Equations
+
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course2/matrix_notation.Rmd](https://github.com/genomicsclass/labs/tree/master/course2/matrix_notation.Rmd)
 
 Linear algebra was created by mathematicians to solve systems of linear equations such as this:
 
@@ -70,6 +74,8 @@ c
 This section explains the notation used above. It turns that we can borrow this notation for linear models in statistics as well.
 
 ## Vectors, Matrices and Scalars
+
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course2/matrix_notation.Rmd](https://github.com/genomicsclass/labs/tree/master/course2/matrix_notation.Rmd)
 
 In the examples above the random variables associated with the data were represented by {$$}Y_1,\dots,Y_n{/$$}. We can think of this as a vector. In fact, in R we are already doing this:
 
