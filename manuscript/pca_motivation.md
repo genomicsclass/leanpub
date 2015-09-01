@@ -7,6 +7,8 @@ title: Dimension Reduction Motivation
 
 ## Dimension Reduction Motivation
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/pca_motivation.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/pca_motivation.Rmd)
+
 Visualizing data is one of the most, if not the most, important step in the analysis of high throughput data. The right visualization method may reveal problems with the experimental data that can render the results from a standard analysis, that is typically appropriate, completely useless. 
 
 We have shown methods for visualizing global properties of the columns of rows but plots that reveal relationships between columns or between rows are more complicated due to the high dimensionality of data. For example, to compare each of the 189 samples to each other we would have to create, for example, 17,766 MA-plots. Creating one single scatter plot of the data is impossible since points are very high dimensional. 
@@ -17,7 +19,7 @@ We will describe powerful technique for exploratory data analysis based on _dime
 
 We consider an example with twin heights. Here we simulate 100 two dimensional points that represent the number of standard deviations each individual is from the mean height. Each pair of points is a pair of twins:
 
-![Simulated twin pair heights.](images/R/pca_motivation-simulate twin heights-1.png) 
+![Simulated twin pair heights.](images/R/pca_motivation-tmp-simulate twin heights-1.png) 
 
 To help with the illustration, if this where high-throughput gene expression data, the twin pairs are the {$$}N{/$$} samples  and the two heights would represnet gene expresssion from 2 genes. Note that we can compute the distance between any two samples. For example, here is the distance between the two orange points above:
 
@@ -38,10 +40,10 @@ If we look back at the plot, and visualize a line between any pair of points, th
 
 
 ```r
-z1 = (y[1,]+y[2,])/2 ## the sum 
-z2 = (y[1,]-y[2,])   ## the difference
+z1 = (y[1,]+y[2,])/2 #the sum 
+z2 = (y[1,]-y[2,])   #the difference
 
-z = rbind( z1, z2) ## matrix now same dimensions as y
+z = rbind( z1, z2) #matrix now same dimensions as y
 
 thelim <- c(-3,3)
 mypar(1,2)
@@ -53,7 +55,7 @@ plot(z[1,],z[2,],xlim=thelim,ylim=thelim,xlab="Average height",ylab="Differnece 
 points(z[1,1:2],z[2,1:2],col=2,pch=16)
 ```
 
-![Twin height scatter plot (left) and MA-plot (right).](images/R/pca_motivation-rotation-1.png) 
+![Twin height scatter plot (left) and MA-plot (right).](images/R/pca_motivation-tmp-rotation-1.png) 
 
 
 Later we will start using linear algebra to represent transformation of the data such as this. Here we can see that to get `z` we multiplied `y` by the matrix
@@ -111,7 +113,7 @@ plot(as.numeric(d),as.numeric(d2)) #as.numeric turns distnaces into long vector
 abline(0,1,col=2)
 ```
 
-![Distance computed from original data and after rotation is the same.](images/R/pca_motivation-rotation_preserves_dist-1.png) 
+![Distance computed from original data and after rotation is the same.](images/R/pca_motivation-tmp-rotation_preserves_dist-1.png) 
 
 We call this particular transformation a _rotation_ of `y`. 
 
@@ -127,7 +129,7 @@ plot(z[1,],z[2,],xlim=thelim,ylim=thelim,xlab="Average height",ylab="Differnece 
 points(z[1,1:2],z[2,1:2],col=2,pch=16)
 ```
 
-![Twin height scatter plot (left) and after rotation (right).](images/R/pca_motivation-rotation2-1.png) 
+![Twin height scatter plot (left) and after rotation (right).](images/R/pca_motivation-tmp-rotation2-1.png) 
 
 The reason we applied this transformation in the first place was because we noticed that to compute the distances between points we followed a direction along the diagonal in the oritinal plot which after the rotation falls on the horizontal, or the the first dimension of `z`. So this rotation actually achieves what we orginally wanted: we can preserve the distances between points with just one dimension. Let's remove the second dimension of `z` and recompute distances:
 
@@ -140,7 +142,7 @@ plot(as.numeric(d),as.numeric(d3))
 abline(0,1)
 ```
 
-![Distance computed with just one dimension after rotation versus actual distance.](images/R/pca_motivation-approx dist-1.png) 
+![Distance computed with just one dimension after rotation versus actual distance.](images/R/pca_motivation-tmp-approx dist-1.png) 
 
 The distance computed with just the one dimensions provide a very good approximation to the actual distance provide a very useful dimension reduction: from 2 dimension to 1. This first dimension of the transformed data is acually the first _principal component_. This idea motivates the use of principal component analysis (PCA) and the singular value decomposition (SVD) to achieve dimension reduction more generally. 
 
