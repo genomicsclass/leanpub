@@ -7,6 +7,8 @@ title: Multidimensional scaling
 
 ## Multi-dimensional scaling plots
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/mds.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/mds.Rmd)
+
 We will motivate multi-dimensional scaling (MDS) plots with an gene expression example. To simpify the illustration we will only consider three tissues:
 
 
@@ -102,7 +104,7 @@ plot(PC1,PC2,pch=21,bg=as.numeric(group))
 legend("bottomright",levels(group),col=seq(along=levels(group)),pch=15,cex=1.5)
 ```
 
-![Multi-dimensional scaling (MDS) plot for tissue gene expression data.](images/R/mds-MDS-1.png) 
+![Multi-dimensional scaling (MDS) plot for tissue gene expression data.](images/R/mds-tmp-MDS-1.png) 
 
 Note that the point separate by tissue type as expected. Now, the accuracy of the approximation above depends on the proportion of variance explained by the first two principal components. As we showed above, we can quickly see this by plotting the variance explained plot:
 
@@ -111,7 +113,7 @@ Note that the point separate by tissue type as expected. Now, the accuracy of th
 plot(s$d^2/sum(s$d^2))
 ```
 
-![Variance examplained for each principal component.](images/R/mds-variance_explained-1.png) 
+![Variance examplained for each principal component.](images/R/mds-tmp-variance_explained-1.png) 
 
 Although the first two PCs explain over 50% of the variability, there is plenty of information that this plot does not show. However, it is an incredibly useful plot for obtaining a general idea of the distance between points. Also note, that we can plot other dimensions as well to search for patterns. Here are the 3rd and 4th PCs
 
@@ -124,7 +126,7 @@ plot(PC3,PC4,pch=21,bg=as.numeric(group))
 legend("bottomright",levels(group),col=seq(along=levels(group)),pch=15,cex=1.5)
 ```
 
-![Third and fourth principal components](images/R/mds-PC_3_and_4-1.png) 
+![Third and fourth principal components](images/R/mds-tmp-PC_3_and_4-1.png) 
 
 Note that the 4th PC shows a strong separation within the kidney samples. Later we will learn about batch effects which might explain this finding. 
 
@@ -144,7 +146,7 @@ plot(mds[,1],mds[,2],bg=as.numeric(group),pch=21,xlab="First dimension",ylab="Se
 legend("bottomleft",levels(group),col=seq(along=levels(group)),pch=15)
 ```
 
-![MDS computed with cmdscale function.](images/R/mds-mds2-1.png) 
+![MDS computed with cmdscale function.](images/R/mds-tmp-mds2-1.png) 
 Note that these two approaches are equivalent up to an arbirary sign change.
 
 
@@ -157,7 +159,7 @@ for(i in 1:2){
 }
 ```
 
-![Comparison of MDS first two PCs to SVD first two PCs.](images/R/mds-mds_same_as_svd-1.png) 
+![Comparison of MDS first two PCs to SVD first two PCs.](images/R/mds-tmp-mds_same_as_svd-1.png) 
 
 
 ### Why the arbitrary sign?
