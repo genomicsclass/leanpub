@@ -18,6 +18,8 @@ We have already introduced some EDA approaches for _univariate_ data, namely the
 
 ## Quantile Quantile Plots
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/exploratory_data_analysis_2.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/exploratory_data_analysis_2.Rmd)
+
 To corroborate that the normal distribution is in fact a good approximation, we can use quantile-quantile plots (QQ-plots). Quantiles are best understood by considering the special case of percentiles. The p-th percentile of a list of a distribution is defined as the number q that is bigger than p% of numbers. For example, the median 50-th percentile is the median. We can compute the percentiles for our list of heights
 
 
@@ -38,7 +40,7 @@ plot(normalqs,qs,xlab="Normal percentiles",ylab="Height percentiles")
 abline(0,1) ##identity line
 ```
 
-![First example of qqplot. Here we compute the theoretical quantiles ourselves.](images/R/exploratory_data_analysis_2-qqplot_example1-1.png) 
+![First example of qqplot. Here we compute the theoretical quantiles ourselves.](images/R/exploratory_data_analysis_2-tmp-qqplot_example1-1.png) 
 
 Note how close these values are. Also, note that we can see these qqplots with less code:
 
@@ -48,7 +50,7 @@ qqnorm(x)
 qqline(x) 
 ```
 
-![Second example of qqplot. Here we use the function qqnorm which computes the theoretical normal quantiles automatically.](images/R/exploratory_data_analysis_2-qqplot_example2-1.png) 
+![Second example of qqplot. Here we use the function qqnorm which computes the theoretical normal quantiles automatically.](images/R/exploratory_data_analysis_2-tmp-qqplot_example2-1.png) 
 
 However, the `qqnorm` function plots against a standard normal distribution. This is why the line has slope `popsd(x)` and intercept `mean(x)`.
 
@@ -63,7 +65,7 @@ qqnorm(x)
 qqline(x)
 ```
 
-![Example of the qqnorm function. Here we apply it to numbers generated to follow a normal distribution.](images/R/exploratory_data_analysis_2-qqnorm_example-1.png) 
+![Example of the qqnorm function. Here we apply it to numbers generated to follow a normal distribution.](images/R/exploratory_data_analysis_2-tmp-qqnorm_example-1.png) 
 
 We can also get a sense for how non-normally distributed data looks. Here we generate data from the t-distribution with different degrees of freedom. Note that the smaller the degrees of freedoms, the fatter the tails.
 
@@ -78,11 +80,13 @@ for(df in dfs){
 }
 ```
 
-![We generate t-distributed data for four degrees of freedom and plot qqplots against normal theoretical quantiles.](images/R/exploratory_data_analysis_2-qqnorm_of_t-1.png) 
+![We generate t-distributed data for four degrees of freedom and plot qqplots against normal theoretical quantiles.](images/R/exploratory_data_analysis_2-tmp-qqnorm_of_t-1.png) 
 
 <a name="scatterplots"></a>
 
 ## Scatterplots And Correlation
+
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/exploratory_data_analysis_2.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/exploratory_data_analysis_2.Rmd)
 
 The methods described above relate to _univariate_ variables. In the biomedical sciences, it is common to be interested in the relationship between two or more variables. A classic examples is the father/son height data used by Galton to understand heredity. If we were to summarize these data, we could use the two averages and two standard deviations as both distributions are well approximated by the normal distribution. This summary, however, fails to describe an important characteristic of the data.
 
@@ -95,11 +99,13 @@ y=father.son$sheight
 plot(x,y,xlab="Father's height in inches",ylab="Son's height in inches",main=paste("correlation =",signif(cor(x,y),2)))
 ```
 
-![Heights of father and son pairs plotted against each other.](images/R/exploratory_data_analysis_2-scatterplot-1.png) 
+![Heights of father and son pairs plotted against each other.](images/R/exploratory_data_analysis_2-tmp-scatterplot-1.png) 
 
 The scatter plot shows a general trend: the taller the father, the taller to son. A summary of this trend is the correlation coefficient which in this cases is 0.5. We motivate this statistic by trying to predict the son's height using the father's height. 
 
 ## Stratification
+
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/exploratory_data_analysis_2.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/exploratory_data_analysis_2.Rmd)
 
 Suppose we are asked to guess the height of randomly select sons. The average height, 68.7 inches, is the value with the highest proportion (see histogram) and would be our prediction. But what if we are told that the father is 72 inches tall, do we sill guess 68.7?
 
@@ -111,7 +117,7 @@ groups <- split(y,round(x))
 boxplot(groups)
 ```
 
-![plot of chunk boxplot](images/R/exploratory_data_analysis_2-boxplot-1.png) 
+![plot of chunk boxplot](images/R/exploratory_data_analysis_2-tmp-boxplot-1.png) 
 
 ```r
 print(mean(y[ round(x) == 72]))
@@ -123,6 +129,8 @@ print(mean(y[ round(x) == 72]))
 Stratification followed by boxplots lets us see the distribution of each group. The average height of sons with fathers that are 72 inches tall is 70.7 inches. We also see that the means of the strata appear to follow a straight line. This line is referred to as the regression line and its slope is related to the correlation. 
 
 ## Bi-variate Normal Distribution
+
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/exploratory_data_analysis_2.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/exploratory_data_analysis_2.Rmd)
 
 A pair of random variables {$$}(X,y){/$$} is considered to be approximated by bivariate normal when the proportion of values below, for example, {$$}x{/$$} and {$$}y{/$$} is approximated by this expression:
 
@@ -155,7 +163,7 @@ for(i in c(5,8,11,14)){
 }
 ```
 
-![qqplots of son heights for four strata defined by father heights.](images/R/exploratory_data_analysis_2-qqnorm_of_strata-1.png) 
+![qqplots of son heights for four strata defined by father heights.](images/R/exploratory_data_analysis_2-tmp-qqnorm_of_strata-1.png) 
 
 
 Now we come back to defining correlation. Mathematical statistics tells us that when two variables follow a bivariate normal distribution, then for any given value of {$$}x{/$$}, the average of the {$$}Y{/$$} in pairs for which {$$}X=x{/$$} is:
@@ -188,4 +196,4 @@ plot(fatherheights,means,ylab="average of strata of son heights",ylim=range(fath
 abline(0,cor(x,y))
 ```
 
-![Average son height of each strata plotted against father heights defining the strata](images/R/exploratory_data_analysis_2-scatterplot2-1.png) 
+![Average son height of each strata plotted against father heights defining the strata](images/R/exploratory_data_analysis_2-tmp-scatterplot2-1.png) 
