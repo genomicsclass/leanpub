@@ -10,6 +10,8 @@ layout: page
 
 ## Power Calculations 
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/power_calculations.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/power_calculations.Rmd)
+
 ### Introduction
 
 We have used the example of the effects of two different diets on the weight of mice. Because in this illustrative example we have access to the population, we know that in fact there is a substantial (about 10%) difference between the average weights of the two populations:
@@ -19,7 +21,7 @@ We have used the example of the effects of two different diets on the weight of 
 
 ```r
 library(dplyr)
-dat <- read.csv("mice_pheno.csv") ## We downloaded this file in a previous section
+dat <- read.csv("mice_pheno.csv") #Previously downloaded 
 
 controlPopulation <- filter(dat,Sex == "F" & Diet == "chow") %>%  select(Bodyweight) %>% unlist
 
@@ -154,7 +156,7 @@ For each of the three simulations the above code returns the proportion of times
 plot(Ns, power, type="b")
 ```
 
-![Power plotted against sample size.](images/R/power_calculations-power_versus_sample_size-1.png) 
+![Power plotted against sample size.](images/R/power_calculations-tmp-power_versus_sample_size-1.png) 
 
 Similarly, if we change the level `alpha` at which we reject, power changes. The smaller I want the chance of type I error to be, the less power I will have. We can see this by writing similar code, but keeping {$$}N{/$$} fixed and considering several values of `alpha`:
 
@@ -169,7 +171,7 @@ power <- sapply(alphas,function(alpha){
 plot(alphas, power, xlab="alpha", type="b", log="x")
 ```
 
-![Power plotted against cut-off.](images/R/power_calculations-power_versus_alpha-1.png) 
+![Power plotted against cut-off.](images/R/power_calculations-tmp-power_versus_alpha-1.png) 
 
 Note that the x-axis in this last plot is in the log scale.
 
