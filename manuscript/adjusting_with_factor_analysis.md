@@ -23,18 +23,8 @@ Here is an image we showed earlier with a subset of genes showing both the sex e
 library(rafalib)
 library(RColorBrewer)
 library(genefilter)
-```
 
-```
-## 
-## Attaching package: 'genefilter'
-## 
-## The following object is masked from 'package:base':
-## 
-##     anyNA
-```
 
-```r
 sex <- sampleInfo$group
 
 batch <- factor(format(sampleInfo$date,"%m"))
@@ -115,9 +105,10 @@ In fact, the first six or so PC seem to be at least partially driven by date:
 
 ```r
 mypar(3,4)
-for(i in 1:12)
-days <- gsub("2005-","",times)  
-boxplot(split(s$v[,i],gsub("2005-","",days)))
+for(i in 1:12){
+  days <- gsub("2005-","",times)  
+  boxplot(split(s$v[,i],gsub("2005-","",days)))
+}
 ```
 
 ![First 12 PCs stratified by dates.](images/R/adjusting_with_factor_analysis-PCs_stratified_by_time-1.png) 
