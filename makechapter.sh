@@ -5,7 +5,7 @@ printf "  *** knit file, fix latex, and move to  *** \n\n"
 cd ../labs/$1
 
 
-linetoadd="R markdown document for this section available \[here]\(https\:\/\/github.com\/genomicsclass\/labs\/tree\/master\/$1\/$2.Rmd\)"
+linetoadd="R markdown document for this section available \[here.]\(https\:\/\/github.com\/genomicsclass\/labs\/tree\/master\/$1\/$2.Rmd\)"
 
 sed '/^## /a \
 \'$'\n@@@@@@
