@@ -11,6 +11,8 @@ Many of the models we use in data analysis can be presented using matrix algebra
 
 ## The Design Matrix
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course2/expressing_design_formula.Rmd](https://github.com/genomicsclass/labs/tree/master/course2/expressing_design_formula.Rmd)
+
 Here we will show how to use the two base R functions:
 
 - `formula`
@@ -258,6 +260,8 @@ model.matrix(~ group*condition)
 
 ## Releveling
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course2/expressing_design_formula.Rmd](https://github.com/genomicsclass/labs/tree/master/course2/expressing_design_formula.Rmd)
+
 The level which is chosen for the *reference level* or *base level*. This is the level which is contrasted against and, by default, this is simply the first level alphabetically. We can specify that we want group 2 to be the base level by either using the `relevel` function or by providing the levels explicitly in the `factor` call:
 
 
@@ -351,6 +355,8 @@ model.matrix(~ group, data=data.frame(group=5:8))
 
 
 ## Continuous Variables
+
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course2/expressing_design_formula.Rmd](https://github.com/genomicsclass/labs/tree/master/course2/expressing_design_formula.Rmd)
 
 In the beginning of this lab, we assumed that we didn't want to encode the variable as a numeric, but in certain designs we might be interested in using numeric variables in the design formula, as opposed to converting them to a factor first. For example, we could be interested in testing various dosages of a treatment, where we expect a specific relationship between a measured quantity and the dosage, e.g. 0 mg, 10mg, 20mg. 
 
