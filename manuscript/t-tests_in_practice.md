@@ -7,7 +7,7 @@ layout: page
 
 ## t-tests In Practice
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/t-tests_in_practice.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/t-tests_in_practice.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/t-tests_in_practice.Rmd)
 
 ### Introduction
 
@@ -108,7 +108,7 @@ Now there is a problem. CLT works for large samples, but is 12 large enough? A r
 
 ## The t-distribution in Practice
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/t-tests_in_practice.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/t-tests_in_practice.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/t-tests_in_practice.Rmd)
 
 As described earlier, the statistical theory offers another useful result. If the distribution of the population is normal, then we can work out the exact distribution of the t-statistic without the need for the CLT. Note that this is a big "if" given that, with small samples, it is hard to check if the population is normal. But for something like weight, we suspect that the population distribution is likely well approximated by normal and use this approximation. Furthermore, we can look at qq-plot for the sample. This shows that the approximation is at least close:
 
