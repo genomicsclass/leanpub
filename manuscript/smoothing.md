@@ -9,6 +9,8 @@ title: Smoothing
 
 ## Smoothing 
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/smoothing.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/smoothing.Rmd)
+
 Smoothing is a very powerful technique used all across data analsysis. The general idea is to group data points that are expected to have similar expectations and 
 
 The following data are from measurements from replicated RNA. We consider that data used in an the MA-plot ( {$$}Y{/$$} = log ratios and {$$}A{/$$} = averages) and take down-sample in a way that balances the number of points for different strata of {$$}A{/$$}:
@@ -53,7 +55,7 @@ mypar()
 plot(X,Y)
 ```
 
-![MAplot comparing gene expression from two arrays.](images/R/smoothing-MAplot-1.png) 
+![MAplot comparing gene expression from two arrays.](images/R/smoothing-tmp-MAplot-1.png) 
 
 Note that linear regression does not capture the apparent curvature in {$$}f(x){/$$}:
 
@@ -66,11 +68,13 @@ points(X,Y,pch=21,bg=ifelse(Y>fit$fitted,1,3))
 abline(fit,col=2,lwd=4,lty=2)
 ```
 
-![MAplot comparing gene expression from two arrays with fitted regression line.](images/R/smoothing-MAplot_with_regression_line-1.png) 
+![MAplot comparing gene expression from two arrays with fitted regression line.](images/R/smoothing-tmp-MAplot_with_regression_line-1.png) 
 
 Note for example that points above the fitted line (green) and those below (purple) are not evenly distributed.
 
 ## Bin Smoothing
+
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/smoothing.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/smoothing.Rmd)
 
 Instead of fitting a line, let's go back to the idea of stratifying and computing the mean. This is referred to as _bin smoothing_. Now, if we stratify by {$$}x{/$$} The general idea is that the underlying curve is "smooth" enough that in small bins it is approximately constant which implies all the {$$}Y{/$$} in that bin have the same expected value. For example, in the plot below we highlight points in a bin centered at 8.6 as well as the points of a bin centered at 12.1 if we us bins of size 1. We also show  and the fitted mean values for the {$$}Y{/$$} in those bin (dashed lines):
 
@@ -94,7 +98,7 @@ points(X[ind],Y[ind],bg=3,pch=21)
 lines(c(min(X[ind]),max(X[ind])),c(fit,fit),col=2,lty=2,lwd=4)
 ```
 
-![MAplot comparing gene expression from two arrays with bin smoother fit shown for two points.](images/R/smoothing-binsmoother-1.png) 
+![MAplot comparing gene expression from two arrays with bin smoother fit shown for two points.](images/R/smoothing-tmp-binsmoother-1.png) 
 
 By computing this mean for bins around every point we form an estimate of the underlying curve {$$}f(x){/$$} :
 
@@ -117,7 +121,7 @@ for(i in seq(along=centers)){
 }
 ```
 
-![Illustration of how bin smoothing estimates a curve. howing in 12 steps of process.](images/R/smoothing-bin_smoothing_demo-1.png) 
+![Illustration of how bin smoothing estimates a curve. howing in 12 steps of process.](images/R/smoothing-tmp-bin_smoothing_demo-1.png) 
 
 The final result looks like this:
 
@@ -128,10 +132,12 @@ plot(X,Y,col="darkgrey",pch=16)
 lines(centers,smooth,col="black",lwd=3)
 ```
 
-![MA-plot with curve obtained with bin smooth shown.](images/R/smoothing-bin_smooth_final-1.png) 
+![MA-plot with curve obtained with bin smooth shown.](images/R/smoothing-tmp-bin_smooth_final-1.png) 
 
 
 ## Loess
+
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/smoothing.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/smoothing.Rmd)
  
 Local weighted regression (loess) is similar to bin smoothing. The difference is that we approximate the local behavior with a line or a parabola. This permits us to expand the bin sizes as seen below:
 
@@ -159,7 +165,7 @@ a <- min(X[ind]);b <- max(X[ind])
 lines(c(a,b),fit$coef[1]+fit$coef[2]*c(a,b),col=2,lty=2,lwd=3)
 ```
 
-![MAplot comparing gene expression from two arrays with bin local regression fit shown for two points.](images/R/smoothing-loess-1.png) 
+![MAplot comparing gene expression from two arrays with bin local regression fit shown for two points.](images/R/smoothing-tmp-loess-1.png) 
 
 Here are 12 steps of the process:
 
@@ -185,7 +191,7 @@ for(i in seq(along=centers)){
 }
 ```
 
-![Illustration of how loess estimates a curves. Showing in 12 steps of process. ](images/R/smoothing-loess_demo-1.png) 
+![Illustration of how loess estimates a curves. Showing in 12 steps of process. ](images/R/smoothing-tmp-loess_demo-1.png) 
 
 This results is a smoother fit since we use larger sample sizes to estimate our local parameters:
 
@@ -196,7 +202,7 @@ plot(X,Y,col="darkgrey",pch=16)
 lines(centers,smooth,col="black",lwd=3)
 ```
 
-![MA-plot with curve obtained with by loess shown.](images/R/smoothing-loess_final-1.png) 
+![MA-plot with curve obtained with by loess shown.](images/R/smoothing-tmp-loess_final-1.png) 
 
 The that function `loess` performs this analysis for us:
 
@@ -212,5 +218,5 @@ plot(X,Y,col="darkgrey",pch=16)
 lines(newx,smooth,col="black",lwd=3)
 ```
 
-![Loess fitted with the loess function.](images/R/smoothing-loess2-1.png) 
+![Loess fitted with the loess function.](images/R/smoothing-tmp-loess2-1.png) 
 
