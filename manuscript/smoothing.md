@@ -9,7 +9,7 @@ title: Smoothing
 
 ## Smoothing 
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/smoothing.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/smoothing.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/smoothing.Rmd).
 
 Smoothing is a very powerful technique used all across data analsysis. The general idea is to group data points that are expected to have similar expectations and 
 
@@ -74,7 +74,7 @@ Note for example that points above the fitted line (green) and those below (purp
 
 ## Bin Smoothing
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/smoothing.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/smoothing.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/smoothing.Rmd).
 
 Instead of fitting a line, let's go back to the idea of stratifying and computing the mean. This is referred to as _bin smoothing_. Now, if we stratify by {$$}x{/$$} The general idea is that the underlying curve is "smooth" enough that in small bins it is approximately constant which implies all the {$$}Y{/$$} in that bin have the same expected value. For example, in the plot below we highlight points in a bin centered at 8.6 as well as the points of a bin centered at 12.1 if we us bins of size 1. We also show  and the fitted mean values for the {$$}Y{/$$} in those bin (dashed lines):
 
@@ -137,7 +137,7 @@ lines(centers,smooth,col="black",lwd=3)
 
 ## Loess
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/smoothing.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/smoothing.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/smoothing.Rmd).
  
 Local weighted regression (loess) is similar to bin smoothing. The difference is that we approximate the local behavior with a line or a parabola. This permits us to expand the bin sizes as seen below:
 
