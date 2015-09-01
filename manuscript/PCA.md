@@ -7,6 +7,8 @@ title: Principal Components Analysis
 
 ## Principal Component Analysis 
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/PCA.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/PCA.Rmd)
+
 We have already mentioned principal component analysis (PCA) above and noted its relation to the SVD. Here we provide further mathematical details. 
 
 ### Example: Twin Heights
@@ -14,7 +16,7 @@ We have already mentioned principal component analysis (PCA) above and noted its
 We started the motivation for dimension reduction with a simulated example and showed a rotation that is  very much related to PCA.
 
 
-![Twin heights scatter plot.](images/R/PCA-simulate_twin_heights_again-1.png) 
+![Twin heights scatter plot.](images/R/PCA-tmp-simulate_twin_heights_again-1.png) 
 
 Here we explain specifically what are the principal components (PCs).
 
@@ -40,7 +42,7 @@ apply(Y,2,function(y) segments(y[1],0,y[1],y[2],lty=2))
 points(Y[1,],rep(0,ncol(Y)),col=2,pch=16,cex=0.75)
 ```
 
-<img src="images/R/PCA-projection_not_PC1-1.png" title="plot of chunk projection_not_PC1" alt="plot of chunk projection_not_PC1"  />
+<img src="images/R/PCA-tmp-projection_not_PC1-1.png" title="plot of chunk projection_not_PC1" alt="plot of chunk projection_not_PC1"  />
 
 Can we find a direction with higher variability? How about:
 
@@ -63,7 +65,7 @@ for(i in seq(along=w))
 points(t(Z), col=2, pch=16, cex=0.5)
 ```
 
-![Data projected onto space spanned by (1 0).](images/R/PCA-projection_not_PC1_either-1.png) 
+![Data projected onto space spanned by (1 0).](images/R/PCA-tmp-projection_not_PC1_either-1.png) 
 
 This relates to the difference between twins which we know is small. The sum of squares confirms this.
 
@@ -88,7 +90,7 @@ for(i in seq(along=w))
 points(t(Z),col=2,pch=16,cex=0.5)
 ```
 
-![Data projected onto space spanned by first PC.](images/R/PCA-PC1-1.png) 
+![Data projected onto space spanned by first PC.](images/R/PCA-tmp-PC1-1.png) 
 
 This is a re-scaled average height which has higher sum of squares. There is mathematical procedure for determining which {$$}\mathbf{v}{/$$} maximizes the sum of squares and the SVD provides it for us.
 
@@ -134,7 +136,7 @@ for(i in 1:nrow(Y) ){
 }
 ```
 
-![Plot showing SVD and prcomp give same results.](images/R/PCA-pca_svd-1.png) 
+![Plot showing SVD and prcomp give same results.](images/R/PCA-tmp-pca_svd-1.png) 
 
 The loadings can be found this way:
 
