@@ -18,7 +18,7 @@ We have already introduced some EDA approaches for _univariate_ data, namely the
 
 ## Quantile Quantile Plots
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/exploratory_data_analysis_2.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/exploratory_data_analysis_2.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/exploratory_data_analysis_2.Rmd).
 
 To corroborate that the normal distribution is in fact a good approximation, we can use quantile-quantile plots (QQ-plots). Quantiles are best understood by considering the special case of percentiles. The p-th percentile of a list of a distribution is defined as the number q that is bigger than p% of numbers. For example, the median 50-th percentile is the median. We can compute the percentiles for our list of heights
 
@@ -86,7 +86,7 @@ for(df in dfs){
 
 ## Scatterplots And Correlation
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/exploratory_data_analysis_2.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/exploratory_data_analysis_2.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/exploratory_data_analysis_2.Rmd).
 
 The methods described above relate to _univariate_ variables. In the biomedical sciences, it is common to be interested in the relationship between two or more variables. A classic examples is the father/son height data used by Galton to understand heredity. If we were to summarize these data, we could use the two averages and two standard deviations as both distributions are well approximated by the normal distribution. This summary, however, fails to describe an important characteristic of the data.
 
@@ -105,7 +105,7 @@ The scatter plot shows a general trend: the taller the father, the taller to son
 
 ## Stratification
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/exploratory_data_analysis_2.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/exploratory_data_analysis_2.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/exploratory_data_analysis_2.Rmd).
 
 Suppose we are asked to guess the height of randomly select sons. The average height, 68.7 inches, is the value with the highest proportion (see histogram) and would be our prediction. But what if we are told that the father is 72 inches tall, do we sill guess 68.7?
 
@@ -130,7 +130,7 @@ Stratification followed by boxplots lets us see the distribution of each group. 
 
 ## Bi-variate Normal Distribution
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/exploratory_data_analysis_2.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/exploratory_data_analysis_2.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/exploratory_data_analysis_2.Rmd).
 
 A pair of random variables {$$}(X,y){/$$} is considered to be approximated by bivariate normal when the proportion of values below, for example, {$$}x{/$$} and {$$}y{/$$} is approximated by this expression:
 
