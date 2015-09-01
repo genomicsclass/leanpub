@@ -12,6 +12,8 @@ library(rafalib)
 
 ## Basic Exploratory Data Analysis 
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/eda_for_highthroughput.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/eda_for_highthroughput.Rmd)
+
 An under-appreciated advantage of working with high-throughput data is that problems with the data are sometimes more easily exposed than with low-throughput data. The fact that we have thousands of measurements permits us to see problems that are not apparent when only a few measurements are available. A powerful way to detect these problems is with exploratory data analysis (EDA). Here we review some of the plots that allow us to detect quality problems.
 We will use the results obtained from applying t-test to data from a gene expression dataset:
 
@@ -45,7 +47,7 @@ plot(results$dm,-log10(results$p.value),
      xlab="Effect size",ylab="- log (base 10) p-values")
 ```
 
-<img src="images/R/eda_for_highthroughput-volcano_plot-1.png" title="plot of chunk volcano_plot" alt="plot of chunk volcano_plot"  />
+<img src="images/R/eda_for_highthroughput-tmp-volcano_plot-1.png" title="plot of chunk volcano_plot" alt="plot of chunk volcano_plot"  />
 
 Many features with very small p-values but small effect sizes, as we see here, are sometimes indicative of problematic data.
 
@@ -60,7 +62,7 @@ hist(nullpvals,ylim=c(0,1400))
 hist(pvals,ylim=c(0,1400))
 ```
 
-![P-value histogram. We show a simulated case in which all null hypotheses are true (left) and p-values from the gene expression described above.](images/R/eda_for_highthroughput-pval-hist-1.png) 
+![P-value histogram. We show a simulated case in which all null hypotheses are true (left) and p-values from the gene expression described above.](images/R/eda_for_highthroughput-tmp-pval-hist-1.png) 
 
 When we expect most hypothesis to be null and we don't see a uniform p-value distribution, it might be indicative of unexpected properties, such as correlated samples. 
 
@@ -73,7 +75,7 @@ permresults <- rowttests(geneExpression,permg)
 hist(permresults$p.value)
 ```
 
-![Histogram obtained after permuting labels.](images/R/eda_for_highthroughput-pval-hist2-1.png) 
+![Histogram obtained after permuting labels.](images/R/eda_for_highthroughput-tmp-pval-hist2-1.png) 
 
 ### Data Boxplots and Histograms
 
@@ -97,7 +99,7 @@ mypar(1,1)
 boxplot(ge,range=0,names=1:ncol(e),col=ifelse(1:ncol(ge)==49,1,2))
 ```
 
-![Boxplot for log-scale expression for all samples.](images/R/eda_for_highthroughput-boxplots-1.png) 
+![Boxplot for log-scale expression for all samples.](images/R/eda_for_highthroughput-tmp-boxplots-1.png) 
 
 Note that the number of samples is a bit too large here making it hard to see the boxes. One can instead simply show the boxplot summaries without (cite Karl Broman):
 
@@ -107,7 +109,7 @@ qs <- t(apply(ge,2,quantile,prob=c(0.05,0.25,0.5,0.75,0.95)))
 matplot(qs,type="l",lty=1)
 ```
 
-![The 0.05, 0.25, 0.5, 0.75, and 0.95 quantiles are plotted for each sample.](images/R/eda_for_highthroughput-kaboxplot-1.png) 
+![The 0.05, 0.25, 0.5, 0.75, and 0.95 quantiles are plotted for each sample.](images/R/eda_for_highthroughput-tmp-kaboxplot-1.png) 
 
 We can also plot all the histograms. Because we have so much data we create histograms using small bins, then smooth the heights of the bars and then plot _smooth histograms_. We re-calibrate the height of these smooth curves so that if a bar is made with base of size "unit" and height given by the curve at {$$}x_0{/$$}, the area approximates the number of points in region of size "unit" centered at {$$}x_0{/$$}:
 
@@ -117,7 +119,7 @@ mypar(1,1)
 shist(ge,unit=0.5)
 ```
 
-![Smooth histograms for each sample.](images/R/eda_for_highthroughput-shist-1.png) 
+![Smooth histograms for each sample.](images/R/eda_for_highthroughput-tmp-shist-1.png) 
 
 ### MA Plot
 
@@ -132,7 +134,7 @@ plot(x,y)
 plot((x+y)/2,x-y)
 ```
 
-![Scatter plot (left) and M versus A plot (right) for the same data.](images/R/eda_for_highthroughput-maplot-1.png) 
+![Scatter plot (left) and M versus A plot (right) for the same data.](images/R/eda_for_highthroughput-tmp-maplot-1.png) 
 
 Note that once we rotate the plot, the fact that these data have differences of about:
 
