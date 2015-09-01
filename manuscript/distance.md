@@ -82,6 +82,7 @@ d(i,j) = \sqrt{ \sum_{g=1}^{22215} (Y_{g,i}-Y_{g,j })^2 }
 {/$$}
 
 and the distance between two features {$$}h{/$$} and {$$}g{/$$} as:
+
 {$$}
 d(h,g) = \sqrt{ \sum_{i=1}^{189} (Y_{h,i}-Y_{g,i})^2 }
 {/$$}
