@@ -7,9 +7,13 @@ title: Discovering Batch Effects with EDA
 
 
 ##  Discovering Batch Effects with EDA 
+
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/eda_with_pca.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/eda_with_pca.Rmd)
 Now that we understand PCA we are going to demonstrate how we use it in practice with an emphasis on  exploratory data analysis. To illustrate we will go through an actual dataset that has not be sanitized for teaching purposes. We start with the raw data as it was provided in the public repository. The only step we did for you is preprocess these data and create an R package with a preformed Bioconductor object.
 
 ## Gene Expression Data
+
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/eda_with_pca.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/eda_with_pca.Rmd)
 
 Start by loading the data:
 
@@ -77,7 +81,7 @@ mypar()
 hist(chryexp)
 ```
 
-![Histogram of median expresion y-axis. We can see females and males.](images/R/eda_with_pca-predict_sex-1.png) 
+![Histogram of median expresion y-axis. We can see females and males.](images/R/eda_with_pca-tmp-predict_sex-1.png) 
 
 So we can predict sex this way:
 
@@ -129,7 +133,7 @@ cols=colorRampPalette(rev(brewer.pal(11,"RdBu")))(100)
 image ( cor(y) ,col=cols,zlim=c(-1,1))
 ```
 
-![Image of correlations. Cell i,j  represents correlation between samples i and j. Red is high, white is 0 and red is negative.](images/R/eda_with_pca-correlations-1.png) 
+![Image of correlations. Cell i,j  represents correlation between samples i and j. Red is high, white is 0 and red is negative.](images/R/eda_with_pca-tmp-correlations-1.png) 
 
 Here we are using the term _structure_ to refer to the deviation from what one would see if the samples were in fact independent from each other. 
 
@@ -142,7 +146,7 @@ d0 <- svd(y0)$d
 plot(d0^2/sum(d0^2),ylim=c(0,.25))
 ```
 
-![Variance explained plot for simulated independent data.](images/R/eda_with_pca-null_variance_explained-1.png) 
+![Variance explained plot for simulated independent data.](images/R/eda_with_pca-tmp-null_variance_explained-1.png) 
 
 Instead we see this:
 
@@ -151,7 +155,7 @@ Instead we see this:
 plot(s$d^2/sum(s$d^2))
 ```
 
-![Variance explained plot for gene expression data.](images/R/eda_with_pca-variance_explained-1.png) 
+![Variance explained plot for gene expression data.](images/R/eda_with_pca-tmp-variance_explained-1.png) 
 
 At least 20 or so PCs appear to be higher than what we would expect with independent data. A next step is to try to explain these PCs with measured variables. Is this driven by ethnicity? sex? date? something else?
 
@@ -170,7 +174,7 @@ plot(s$v[,1],s$v[,2],col=cols,pch=16,
 legend("bottomleft",levels(eth),col=seq(along=levels(eth)),pch=16)
 ```
 
-![First two PCs for gene expression data with color representing ethnicity.](images/R/eda_with_pca-mds_plot-1.png) 
+![First two PCs for gene expression data with color representing ethnicity.](images/R/eda_with_pca-tmp-mds_plot-1.png) 
 
 There is a very clear association between the first PC and ethnicity. However, we also see that for the orange points there are sub-clusters. We know from previous analyzes that ethnicity and preprocessing date are correlated:
 
@@ -202,7 +206,7 @@ plot(s$v[,1],s$v[,2],col=cols,pch=16,
 legend("bottomleft",levels(year),col=seq(along=levels(year)),pch=16)
 ```
 
-![First two PCs for gene expression data with color representing processing year.](images/R/eda_with_pca-mds_plot2-1.png) 
+![First two PCs for gene expression data with color representing processing year.](images/R/eda_with_pca-tmp-mds_plot2-1.png) 
 
 Year is also very correlated with the first PC. So which variable is driving this? Given the high level of confounding it is not easy to parse out but below and in the assessment questions we provide some further exploratory approaches.
 
@@ -233,7 +237,7 @@ for(i in 1:4){
   }
 ```
 
-![Boxplot of first four PCs stratified by month](images/R/eda_with_pca-pc_boxplots-1.png) 
+![Boxplot of first four PCs stratified by month](images/R/eda_with_pca-tmp-pc_boxplots-1.png) 
 
 Here we see that month has a very strong correlation with the first PC as well as some of the others. In cases such as these in which we have many samples, we can use an analysis of variance to see which PCs correlate with month:
 
@@ -247,7 +251,7 @@ mypar()
 plot(seq(along=corr), corr, xlab="PC")
 ```
 
-![Adjusted R-squared after fitting a model with each month as a factor to each PC.](images/R/eda_with_pca-month_PC_corr-1.png) 
+![Adjusted R-squared after fitting a model with each month as a factor to each PC.](images/R/eda_with_pca-tmp-month_PC_corr-1.png) 
 
 We see a very strong correlation with the first PC. An relatively strong correlations for the first 20 or so PCs.
 We can also compute F-statistics comparing within month to across month variability:
@@ -265,7 +269,7 @@ p <- length(unique(month))
 abline(h=sqrt(qf(0.995,p-1,ncol(s$v)-1)))
 ```
 
-![Square root of F-statistics  from an analysis of variance to explain PCs with month.](images/R/eda_with_pca-fstat_month_PC-1.png) 
+![Square root of F-statistics  from an analysis of variance to explain PCs with month.](images/R/eda_with_pca-tmp-fstat_month_PC-1.png) 
 
 In the assessments we will see how we can use the PCs as estimates in factor analysis to improve model estimates.
 
