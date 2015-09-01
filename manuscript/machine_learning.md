@@ -6,7 +6,7 @@ title: Class Prediction
 
 ## Class Prediction
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/machine_learning.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/machine_learning.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/machine_learning.Rmd).
 
 Here we give brief introduction to the main machine learning topic: class predictio. In fact, many refer to class prediction as machine learnine and we actually use the two terms interchangibly. Some of the examples we give follow examples from the book The Elements of Statistical Learning: Data Mining, Inference, and Prediction, by Trevor Hastie, Robert Tibshirani and Jerome Friedman. A free PDF of this book can be found at the following URL:
 
