@@ -13,6 +13,8 @@ library(rafalib)
 
 ## Inference In Practice
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course3/inference_for_highthroughput.Rmd](https://github.com/genomicsclass/labs/tree/master/course3/inference_for_highthroughput.Rmd)
+
 Suppose we were given high-throughput gene expression data that was measured for several individuals in two populations. We are asked to report which genes have different average expression levels in the two populations. Note that if instead thousands of genes we were handed data from just one gene, we could simply apply the inference techniques that we have learned before. We could, for example, use a t-test or some other test. Here we review what changes when we consider high-throughput data.
 
 ### p-values Are Random Variables
@@ -47,7 +49,7 @@ pvals <- replicate(B,{
 hist(pvals)
 ```
 
-![P-value histogram for 10,000 tests in which null hypothesis is true.](images/R/inference_for_highthroughput-pvalue_hist-1.png) 
+![P-value histogram for 10,000 tests in which null hypothesis is true.](images/R/inference_for_highthroughput-tmp-pvalue_hist-1.png) 
 
 As implied by the histogram, in this case the distribution of the p-value is uniformly distributed. In fact, we can show theoretically that when the null hypothesis is true, this is always the case. For the case in which we use the CLT, we have that the null hypothesis {$$}H_0{/$$} implies that our test statistic {$$}Z{/$$}  follows a normal distribution with mean 0 and SD 1 thus:
 
@@ -95,7 +97,7 @@ qqnorm(e[g==0])
 qqline(e[g==0])
 ```
 
-![Normal qq-plots for one gene. Left plot shows first group and right plot shows second group.](images/R/inference_for_highthroughput-qqplots_for_one_gene-1.png) 
+![Normal qq-plots for one gene. Left plot shows first group and right plot shows second group.](images/R/inference_for_highthroughput-tmp-qqplots_for_one_gene-1.png) 
 
 The qq-plots show that the data is well approximated by the normal approximation so apply a t-test. The t-test does not find this gene to be statistically significant:
 
