@@ -6,7 +6,7 @@ Scientific fields that have traditionally relied upon simple data analysis techn
 
 ## What Does This Book Cover?
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/introduction.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/introduction.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/introduction.Rmd).
 
 This book will cover several of the statistical concepts and data analytic skills needed to succeed in data-driven life science research. We go from relatively basic concepts related to computed p-values to advanced topics related to analyzing high-throughput data.
 
@@ -22,7 +22,7 @@ We end by learning about batch effects and how component and factor analysis are
 
 ## How Is This Book Different?
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/introduction.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/introduction.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/introduction.Rmd).
 
 While statistics textbooks focus on mathematics, this book focuses on using a computer to perform data analysis. Instead of explaining the mathematics and theory and then showing examples, we start by stating a practical data related challenge. We then provide computer code that provide a solution to the problem and also helps illustrate the concepts behind the solution. By running the code yourself, and seeing data generation and analysis happen live, you will get a better intuition for the concepts, the mathematics, and the theory.
 
