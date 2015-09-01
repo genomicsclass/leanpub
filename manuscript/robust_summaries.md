@@ -32,7 +32,7 @@ cat("The average is",mean(x),"and the SD is",sd(x))
 
 ## The Median
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/robust_summaries.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/robust_summaries.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/robust_summaries.Rmd).
 
 The median, defined as the point having half the data larger and half the data smaller, is a summary statistic that is _robust_ to outliers. Note how much closer the median is to 0, the center of our actual distribution:
 
@@ -46,7 +46,7 @@ median(x)
 
 ## The Median Absolute Deviance
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/robust_summaries.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/robust_summaries.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/robust_summaries.Rmd).
 The median absolute deviance (MAD) is a robust summary for the standard deviation. It is defined by computing the differences between each point and the median and then taking the median of their absolute values:
 {$$}
  1.4826 \mbox{median}\{| X_i - \mbox{median}(X_i)|\}
@@ -64,7 +64,7 @@ mad(x)
 
 ## Spearman Correlation
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/robust_summaries.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/robust_summaries.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/robust_summaries.Rmd).
 Earlier we saw that the correlation is also sensitive to outliers. Here we construct a independent list of numbers, but for which a similar mistake was made for the same entry:
 
 
@@ -101,7 +101,7 @@ We also note that there is a [large statistical literature](#foot) on Robust Sta
 
 ## Symmetry of Log Ratios
 
-R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/robust_summaries.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/robust_summaries.Rmd)
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/robust_summaries.Rmd).
 
 Ratios are not symmetric. To see this we simulated data that, as ratio
 
