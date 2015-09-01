@@ -10,6 +10,8 @@ layout: page
 
 ## Matrix Operations
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course2/matrix_operations.Rmd](https://github.com/genomicsclass/labs/tree/master/course2/matrix_operations.Rmd)
+
 In the previous section we motivated the use of matrix algebra with this system of equations:
 
 
@@ -189,7 +191,7 @@ Here is a simple example. We can check to see if `abc=c(3,2,1)` is a solution:
 
 ```r
 X  <- matrix(c(1,3,2,1,-2,1,1,1,-1),3,3)
-abc <- c(3,2,1) ## use as an example
+abc <- c(3,2,1) #use as an example
 rbind( sum(X[1,]*abc), sum(X[2,]*abc), sum(X[3,]%*%abc))
 ```
 
@@ -293,7 +295,7 @@ If you follow the matrix multiplication rule above, you notice this works out:
 In R you can form an identity matrix this way:
 
 ```r
-n <- 5 ##pick dimensions
+n <- 5 #pick dimensions
 diag(n)
 ```
 
@@ -316,7 +318,7 @@ As we will see when we get to the section on applications to linear models, bein
 ```r
 X <- matrix(c(1,3,2,1,-2,1,1,1,-1),3,3)
 y <- matrix(c(6,2,1),3,1)
-solve(X)%*%y ##equivalent to solve(X,y)
+solve(X)%*%y #equivalent to solve(X,y)
 ```
 
 ```
