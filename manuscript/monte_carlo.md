@@ -10,6 +10,8 @@ title: Monte Carlo methods
 
 ## Monte Carlo Simulation
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/monte_carlo.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/monte_carlo.Rmd)
+
 Computers can be used to generate pseudo-random numbers. For practical purposes these pseudo-random numbers can be used to imitate random variables from the real world. This permits us to examine properties of random variables using a computer instead of theoretical or analytical derivations. One very useful aspect of this concept is that we can create *simulated* data to test out ideas or competing methods without actually having to perform laboratory experiments.
 
 Simulations can also be used to check theoretical or analytical results. Also, many of the theoretical results we use in statistics are based on asymptotics: they hold when the sample size goes to infinity. In practice, we never have an infinite number of samples so we may want to know how well the theory works with our actual sample size. Sometimes we can answer this question analytically, but not always. Simulations are extremely useful in these cases.
@@ -30,8 +32,8 @@ We will build a function that automatically generates a t-statistic under the nu
 
 ```r
 ttestgenerator <- function(n) {
-  # note that here we have a false "high fat" group where we actually
-  # sample from the nonsmokers. this is because we are modeling the *null*
+  #note that here we have a false "high fat" group where we actually
+  #sample from the nonsmokers. this is because we are modeling the *null*
   cases <- sample(controlPopulation,n)
   controls <- sample(controlPopulation,n)
   tstat <- (mean(cases)-mean(controls)) / 
@@ -48,7 +50,7 @@ With 1,000 Monte Carlo simulated occurrences of this random variable, we can now
 hist(ttests)
 ```
 
-![Histogram of 1000 Monte Carlo simulated t-statistics.](images/R/monte_carlo-ttest_hist-1.png) 
+![Histogram of 1000 Monte Carlo simulated t-statistics.](images/R/monte_carlo-tmp-ttest_hist-1.png) 
 
 So is the distribution of this t-statistic well approximated by the normal distribution? In the next chapter we will introduce quantile-quantile plots, which provide a useful visual inspection of how well one distribution approximates another. As we will explain later, if points fall on the identity line, it means the approximation is a good one.
 
@@ -58,7 +60,7 @@ qqnorm(ttests)
 abline(0,1)
 ```
 
-![Quantile-quantile plot comparing 1000 Monte Carlo simulated t-statistics to theoretical normal distribution.](images/R/monte_carlo-ttest_qqplot-1.png) 
+![Quantile-quantile plot comparing 1000 Monte Carlo simulated t-statistics to theoretical normal distribution.](images/R/monte_carlo-tmp-ttest_qqplot-1.png) 
 
 This looks like a very good approximation. So, for this particular population, a sample size of 10 was large enough to use the CLT approximation. How about 3? 
 
@@ -69,7 +71,7 @@ qqnorm(ttests)
 abline(0,1)
 ```
 
-![Quantile-quantile plot comparing 1000 Monte Carlo simulated t-statistics with three degrees of freedom to theoretical normal distribution.](images/R/monte_carlo-ttest_df3_qqplot-1.png) 
+![Quantile-quantile plot comparing 1000 Monte Carlo simulated t-statistics with three degrees of freedom to theoretical normal distribution.](images/R/monte_carlo-tmp-ttest_df3_qqplot-1.png) 
 
 Now we see that the large quantiles (referred to by statisticians as the _tails_) are larger than expected. In the previous module we explained that when the sample size is not large enough and the *population values* follow a normal distribution, then the t-distribution is a better approximation. Our simulation results seem to confirm this:
 
@@ -80,7 +82,7 @@ qqplot(qt(qs,df=2*3-2),ttests,xlim=c(-6,6),ylim=c(-6,6))
 abline(0,1)
 ```
 
-![Quantile-quantile plot comparing 1000 Monte Carlo simulated t-statistics with three degrees of freedom to theoretical t-distribution.](images/R/monte_carlo-ttest_v_tdist_qqplot-1.png) 
+![Quantile-quantile plot comparing 1000 Monte Carlo simulated t-statistics with three degrees of freedom to theoretical t-distribution.](images/R/monte_carlo-tmp-ttest_v_tdist_qqplot-1.png) 
 
 The t-distribution is a much better approximation in this case, but it is still not perfect. This is due to the fact that the original data is not that well approximated by the normal distribution.
 
@@ -90,7 +92,7 @@ qqnorm(controlPopulation)
 qqline(controlPopulation)
 ```
 
-![plot of chunk dat_qqplot](images/R/monte_carlo-dat_qqplot-1.png) 
+![plot of chunk dat_qqplot](images/R/monte_carlo-tmp-dat_qqplot-1.png) 
 
 ### Parametric Simulations for the Observations
 
