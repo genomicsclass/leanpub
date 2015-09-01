@@ -16,61 +16,9 @@ Here is a volcano showing effect sizes and p-value from applying a t-test to dat
 
 
 ```r
- ##rafalib::install_bioc("SpikeInSubset")
-library(SpikeInSubset)
-```
-
-```
-## Loading required package: Biobase
-## Loading required package: BiocGenerics
-## Loading required package: methods
-## Loading required package: parallel
-## 
-## Attaching package: 'BiocGenerics'
-## 
-## The following objects are masked from 'package:parallel':
-## 
-##     clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
-##     clusterExport, clusterMap, parApply, parCapply, parLapply,
-##     parLapplyLB, parRapply, parSapply, parSapplyLB
-## 
-## The following object is masked from 'package:stats':
-## 
-##     xtabs
-## 
-## The following objects are masked from 'package:base':
-## 
-##     anyDuplicated, append, as.data.frame, as.vector, cbind,
-##     colnames, do.call, duplicated, eval, evalq, Filter, Find, get,
-##     intersect, is.unsorted, lapply, Map, mapply, match, mget,
-##     order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
-##     rbind, Reduce, rep.int, rownames, sapply, setdiff, sort,
-##     table, tapply, union, unique, unlist, unsplit
-## 
-## Welcome to Bioconductor
-## 
-##     Vignettes contain introductory material; view with
-##     'browseVignettes()'. To cite Bioconductor, see
-##     'citation("Biobase")', and for packages 'citation("pkgname")'.
-## 
-## Loading required package: affy
-```
-
-```r
+library(SpikeInSubset) ##Available from Bioconductor
 data(rma95)
 library(genefilter)
-```
-
-```
-## 
-## Attaching package: 'genefilter'
-## 
-## The following object is masked from 'package:base':
-## 
-##     anyNA
-```
-
-```r
 fac <- factor(rep(1:2,each=3))
 tt <- rowttests(exprs(rma95),fac)
 smallp <- with(tt, p.value < .01)
@@ -84,7 +32,7 @@ with(tt, plot(-dm, -log10(p.value), cex=.8, pch=16,
 abline(h=2,v=c(-.2,.2), lty=2)
 ```
 
-![plot of chunk unnamed-chunk-1](images/R/hierarchical_models-unnamed-chunk-1-1.png) 
+![Volcano plot for t-test comparing two groups. Spiked-in genes are denoted with blue. Among the rest of the genes, those with p-value < 0.01 are denoted with red.](images/R/hierarchical_models-volcano-plot-1.png) 
 
 Note that we cut-off the range of the y-axis at 4.5 but there is one blue point with a p-value smaller than {$$}10^{-6}{/$$}. Two finding stand out from this plot. The first is that only one of the positives would be found to be significant with a standar 5% FDR cutoff:
 
@@ -121,7 +69,7 @@ with(tt, plot(s, -log10(p.value), cex=.8, pch=16,
               col=cols))
 ```
 
-![plot of chunk unnamed-chunk-4](images/R/hierarchical_models-unnamed-chunk-4-1.png) 
+![p-values versus standard deviation estimates.](images/R/hierarchical_models-pval_versus_sd-1.png) 
 
 Here is where a hierarchical model can be useful. If we can make an assumption about the distribution of these variances across genes, then we can improve estimate by "adjusting" estimates that are "too small" according to this distribution. In a previous section we described how the F-distribution provides approximates the distribution of the observed variances.
 
@@ -172,9 +120,9 @@ segments((tt$s^2)[idx],rep(.1,n),
          ebfit$s2.post[idx],rep(.9,n))
 ```
 
-![plot of chunk unnamed-chunk-5](images/R/hierarchical_models-unnamed-chunk-5-1.png) 
+![Illustration of how estimates shrink towards the prior expectation. Forty genes spanning the range of values were selected.](images/R/hierarchical_models-shrinkage-1.png) 
 
-An important aspect of this adjustment is that genes having a very small sample deviation close to 0 are no longer close to 0. We can now create a version of the t-test that instead of the sample standard deviation uses this posterior mean or "shrunken" estimate of the variance. Once we do this, the improvements can be seen clearly in the volcano plot
+An important aspect of this adjustment is that genes having a very small sample deviation close to 0 are no longer close to 0. We can now create a version of the t-test that instead of the sample standard deviation uses this posterior mean or "shrunken" estimate of the variance. We refer to these are _moderated_ t-tests. Once we do this, the improvements can be seen clearly in the volcano plot
 
 
 ```r
@@ -185,7 +133,7 @@ with(limmares, plot(dm, -log10(p.value),cex=.8, pch=16,
 abline(h=2,v=c(-.2,.2), lty=2)
 ```
 
-![plot of chunk unnamed-chunk-6](images/R/hierarchical_models-unnamed-chunk-6-1.png) 
+![Volcano plot for moderated t-test comparing two groups. Spiked-in genes are denoted with blue. Among the rest of the genes, those with p-value < 0.01 are denoted with red.](images/R/hierarchical_models-volcano-plot2-1.png) 
 
 The number of false positives in the top 10 is now reduced to 2. 
 
