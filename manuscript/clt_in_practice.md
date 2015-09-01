@@ -10,13 +10,15 @@ layout: page
 
 ## Central Limit Theorem In Practice
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course1/clt_in_practice.Rmd](https://github.com/genomicsclass/labs/tree/master/course1/clt_in_practice.Rmd)
+
 Let's use our data to see how well the central limit approximates sample averages from our data. We will leverage our entire population dataset to compare the results we obtain by actually sampling from the distribution to what the CLT predicts.  
 
 
 
 
 ```r
-dat <- read.csv("mice_pheno.csv") ##file was previously downloaded
+dat <- read.csv("mice_pheno.csv") #file was previously downloaded
 head(dat)
 ```
 
@@ -128,13 +130,13 @@ library(rafalib)
 ```r
 mypar(2,2)
 for(i in seq(along=Ns)){
-  title <- paste("N=",Ns[i],"Avg=",signif(mean(res[,i]),3),"SD=",signif(popsd(res[,i]),3)) ##popsd defined above
+  title <- paste("N=",Ns[i],"Avg=",signif(mean(res[,i]),3),"SD=",signif(popsd(res[,i]),3)) #popsd defined above
   qqnorm(res[,i],main=title)
   qqline(res[,i],col=2)
 }
 ```
 
-![Quantile versus quantile plot of simulated differences versus theoretical normal distribution for four different sample sizes.](images/R/clt_in_practice-effect_size_qqplot-1.png) 
+![Quantile versus quantile plot of simulated differences versus theoretical normal distribution for four different sample sizes.](images/R/clt_in_practice-tmp-effect_size_qqplot-1.png) 
 
 Here we see a pretty good fit even for 3. Why is this? Because the population itself is relatively close to normally distributed, the averages are close to normal as well (the sum of normals is normals). In practice we actually calculate a ratio: we divide by the estimated standard deviation. Here is where the sample size starts to matter more.
 
@@ -158,7 +160,7 @@ for(i in seq(along=Ns)){
 }
 ```
 
-![Quantile versus quantile plot of simulated ratios versus theoretical normal distribution for four different sample sizes.](images/R/clt_in_practice-t_test_qqplot-1.png) 
+![Quantile versus quantile plot of simulated ratios versus theoretical normal distribution for four different sample sizes.](images/R/clt_in_practice-tmp-t_test_qqplot-1.png) 
 
 So we see that for {$$}N=3{/$$} the CLT does not provide a usable approximation. For {$$}N=12{/$$} there is a slight deviation at the higher values, although the approximation appears useful. For 25 and 50 the approximation is spot on. 
 
