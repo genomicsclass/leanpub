@@ -7,6 +7,8 @@ layout: page
 
 ## Interactions And Contrasts
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course2/interactions_and_contrasts.Rmd](https://github.com/genomicsclass/labs/tree/master/course2/interactions_and_contrasts.Rmd)
+
 As a running example to learn about more complex linear models, we will be using a dataset which compares the different frictional coefficients on the different legs of a spider. Specifically, we will be determining whether more friction comes from a pushing or pulling motion of the leg. The original paper from which the data was provided is:
 
 Jonas O. Wolff  & Stanislav N. Gorb, [Radial arrangement of Janus-like setae permits friction control in spiders](http://dx.doi.org/10.1038/srep01101), Scientific Reports, 22 January 2013.
@@ -29,7 +31,7 @@ boxplot(spider$friction ~ spider$type * spider$leg,
         main="Comparison of friction coefficients of different leg pairs ")
 ```
 
-![Comparison of friction coefficients of spiders' different leg pairs.](images/R/interactions_and_contrasts-spide_data-1.png) 
+![Comparison of friction coefficients of spiders' different leg pairs.](images/R/interactions_and_contrasts-tmp-spide_data-1.png) 
 
 ### Initial Visual Inspection Of The Data
 
@@ -155,7 +157,7 @@ library(rafalib)
 imagemat(X, main="Model matrix for linear model with one variable")
 ```
 
-![Model matrix for linear model with one variable.](images/R/interactions_and_contrasts-model_matrix_image-1.png) 
+![Model matrix for linear model with one variable.](images/R/interactions_and_contrasts-tmp-model_matrix_image-1.png) 
 
 ### Examining The Coefficients
 
@@ -177,7 +179,7 @@ abline(h=coefs[1]+coefs[2],col=cols[2])
 legend("right",names(coefs),fill=cols,cex=.75,bg="white")
 ```
 
-![MIKELOVE add caption.](images/R/interactions_and_contrasts-spider_main_coef-1.png) 
+![MIKELOVE add caption.](images/R/interactions_and_contrasts-tmp-spider_main_coef-1.png) 
 
 ### A Linear Model With Two Variables
 
@@ -211,7 +213,7 @@ head(X)
 imagemat(X, main="Model matrix for linear model with two factors")
 ```
 
-![Image of more complex model matrix.](images/R/interactions_and_contrasts-model_matrix_image2-1.png) 
+![Image of more complex model matrix.](images/R/interactions_and_contrasts-tmp-model_matrix_image2-1.png) 
 
 The first column is the intercept, and so it has 1's for all samples. The second column has 1's for the push samples, and we can see that there are four groups of them. Finally, the third, fourth and fifth columns have 1's for the L2, L3 and L4 samples. The L1 samples do not have a column, because *L1* is the reference level for `leg`, as is *pull* for the `type` variable.
 
@@ -311,7 +313,7 @@ arrows(8+a,coefs[1]+coefs[5],8+a,coefs[1]+coefs[5]+coefs[2],lwd=3,col=cols[2],le
 legend("right",names(coefs),fill=cols,cex=.75,bg="white")
 ```
 
-![MIKELOVE](images/R/interactions_and_contrasts-spider_interactions-1.png) 
+![MIKELOVE](images/R/interactions_and_contrasts-tmp-spider_interactions-1.png) 
 
 Because we have 8 groups and only 5 coefficients, the fitted means (the tips of the arrows) do not line up exactly with the mean of each group, like they did for the previous example of a two group linear model.
 
@@ -356,7 +358,7 @@ However, we can demonstrate that the push vs. pull coefficient, `coefs[2]`, is n
 
 ```r
 means <- sapply(s, mean)
-# the sample size of push or pull groups for each leg pair
+##the sample size of push or pull groups for each leg pair
 ns <- sapply(s, length)[c(1,3,5,7)]
 (w <- ns/sum(ns))
 ```
@@ -409,8 +411,7 @@ An easy way to make these contrasts of two groups is to use the `contrast` funct
 
 
 ```r
-# install.packages("contrast")
-library(contrast)
+library(contrast) #Available from CRAN
 ```
 
 ```
@@ -556,6 +557,8 @@ L3vsL2.equiv$X
 
 ## A Linear Model With Interactions
 
+R markdown document for this section available from [https://github.com/genomicsclass/labs/tree/master/course2/interactions_and_contrasts.Rmd](https://github.com/genomicsclass/labs/tree/master/course2/interactions_and_contrasts.Rmd)
+
 As we saw in the previous linear model, we assumed that the push vs. pull effect was the same for all of the leg pairs (the same orange arrow). You can easily see that this does not capture the data that well; that is, the tips of the arrows did not line up perfectly with the group averages. For the L1 leg pair, the push vs. pull coefficient overshot, and for the L3 leg pair, the push vs. pull coefficient was too small.
 
 *Interaction* terms will help us overcome this problem by introducing additional terms to compensate for differences in the push vs. pull effect across the 4 groups. As we already have a push vs. pull term in the model, we only need to add three more terms to have the freedom to find leg-pair-specific push vs. pull differences. Interaction terms are added to the design matrix simply by multiplying the columns of the design matrix representing existing terms. 
@@ -599,7 +602,7 @@ head(X)
 imagemat(X, main="Model matrix for linear model with interactions")
 ```
 
-![Image of model matrix with interactions.](images/R/interactions_and_contrasts-model_matrix_with_interaction_image-1.png) 
+![Image of model matrix with interactions.](images/R/interactions_and_contrasts-tmp-model_matrix_with_interaction_image-1.png) 
 
 Columns 6-8 (`typepush:legL2`, `typepush:legL3`, and `typepush:legL4`) are the product of the 2nd column (`typepush`) and the 3-5 columns (the three `leg` columns). Looking at the last column, for example, the `typepush:legL4` column will give an extra term {$$}\beta_{\textrm{push,L4}}{/$$} to those samples which are both push samples and leg pair L4 samples. This will account for when the mean samples in the L4-push group are not simply the addition of the main push coefficient and the main L4 coefficient.
 
@@ -660,22 +663,22 @@ arrows(2+a,coefs[1],2+a,coefs[1]+coefs[2],lwd=3,col=cols[2],length=lgth)
 arrows(3+a,coefs[1],3+a,coefs[1]+coefs[3],lwd=3,col=cols[3],length=lgth)
 arrows(5+a,coefs[1],5+a,coefs[1]+coefs[4],lwd=3,col=cols[4],length=lgth)
 arrows(7+a,coefs[1],7+a,coefs[1]+coefs[5],lwd=3,col=cols[5],length=lgth)
-# now the interactions:
+#now the interactions:
 segments(3+a,coefs[1]+coefs[3],4+a,coefs[1]+coefs[3],lwd=3,col=cols[3])
 arrows(4+a,coefs[1]+coefs[3],4+a,coefs[1]+coefs[3]+coefs[2],lwd=3,col=cols[2],length=lgth)
 arrows(4+a,coefs[1]+coefs[2]+coefs[3],4+a,coefs[1]+coefs[2]+coefs[3]+coefs[6],lwd=3,col=cols[6],length=lgth)
-#
+
 segments(5+a,coefs[1]+coefs[4],6+a,coefs[1]+coefs[4],lwd=3,col=cols[4])
 arrows(6+a,coefs[1]+coefs[4],6+a,coefs[1]+coefs[4]+coefs[2],lwd=3,col=cols[2],length=lgth)
 arrows(6+a,coefs[1]+coefs[4]+coefs[2],6+a,coefs[1]+coefs[4]+coefs[2]+coefs[7],lwd=3,col=cols[7],length=lgth)
-#
+
 segments(7+a,coefs[1]+coefs[5],8+a,coefs[1]+coefs[5],lwd=3,col=cols[5])
 arrows(8+a,coefs[1]+coefs[5],8+a,coefs[1]+coefs[5]+coefs[2],lwd=3,col=cols[2],length=lgth)
 arrows(8+a,coefs[1]+coefs[5]+coefs[2],8+a,coefs[1]+coefs[5]+coefs[2]+coefs[8],lwd=3,col=cols[8],length=lgth)
 legend("right",names(coefs),fill=cols,cex=.75,bg="white")
 ```
 
-![MIKELOVE](images/R/interactions_and_contrasts-spider_interactions2-1.png) 
+![MIKELOVE](images/R/interactions_and_contrasts-tmp-spider_interactions2-1.png) 
 
 ### Contrasts
 
@@ -870,7 +873,7 @@ In this last section, we show an alternate way to specify the model where we sup
 
 
 ```r
-# earlier, we defined the 'group' column:
+##earlier, we defined the 'group' column:
 spider$group <- factor(paste0(spider$leg, spider$type))
 X <- model.matrix(~ 0 + group, data=spider)
 colnames(X)
@@ -906,7 +909,7 @@ head(X)
 imagemat(X, main="Model matrix for linear model with group variable")
 ```
 
-![MIKELOVE](images/R/interactions_and_contrasts-matrix_model_image_group_variable-1.png) 
+![MIKELOVE](images/R/interactions_and_contrasts-tmp-matrix_model_image_group_variable-1.png) 
 
 We can run the linear model with the familiar call:
 
@@ -963,7 +966,7 @@ for (i in 1:8) {
 legend("right",names(coefs),fill=cols,cex=.75,bg="white")
 ```
 
-![MIKELOVE](images/R/interactions_and_contrasts-estimated_group_variables-1.png) 
+![MIKELOVE](images/R/interactions_and_contrasts-tmp-estimated_group_variables-1.png) 
 
 ### Simple Contrasts Using The Contrast package
 
