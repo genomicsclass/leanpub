@@ -10,7 +10,7 @@ title: Rotations
 
 R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/rotations.Rmd).
 
-One of the most useful applications of projections relates to coordinate rotations. In data analysis, simple rotations can result in easier to visualize and interpreter data. We will described the mathematics behind rotations and give some data analysis examples.
+One of the most useful applications of projections relates to coordinate rotations. In data analysis, simple rotations can result in easier to visualize and interpret data. We will describe the mathematics behind rotations and give some data analysis examples.
  
 In our previous section we used the following example: 
 
@@ -48,7 +48,7 @@ text(2,3," Y",pos=4,cex=3)
 
 <img src="images/R/rotations-tmp-unnamed-chunk-1-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" style="display: block; margin: auto;" />
 
-But note that, mathematically, we can represent the point {$$}(2,3){/$$} with other linear combinations:
+However, mathematically we can represent the point {$$}(2,3){/$$} with other linear combinations:
 
 {$$}
 \begin{align*}
@@ -100,9 +100,9 @@ A= \begin{pmatrix} 1& \phantom{-}0.5\\ 1 & -0.5\end{pmatrix} \implies
 A^{-1}= \begin{pmatrix} 0.5& 0.5 \\ 1 &-1\end{pmatrix}
 {/$$}
 
-{$$}Z{/$$} and {$$}Y{/$$} carry the same information but in different _coordinate system_
+{$$}Z{/$$} and {$$}Y{/$$} carry the same information, but in different _coordinate system_
 
-### Example: twin Heights
+### Example: Twin Heights
 
 Here are 100 two dimensional points {$$}Y{/$$}
 
@@ -112,9 +112,9 @@ Here are the rotations: {$$}Z = A^{-1} Y{/$$}
 
 <img src="images/R/rotations-tmp-unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
 
-Note that what we have done here is change rotate the data so that the first coordinate of {$$}Z{/$$} is the average height while the second is the differences between twin heights. 
+What we have done here is rotate the data so that the first coordinate of {$$}Z{/$$} is the average height, while the second is the difference between twin heights. 
 
-In the following sections we will be using the singular value decomposition to find principal components. It is sometimes useful to think of the SVD as a rotation, for example, {$$}U^\top Y{/$$} that gives us a new coordiante system {$$}DV^\top{/$$} in which the dimensions are ordered by how much variance they explain. 
+In the following sections we will be using the singular value decomposition to find principal components. It is sometimes useful to think of the SVD as a rotation, for example, {$$}U^\top Y{/$$} that gives us a new coordinate system {$$}DV^\top{/$$} in which the dimensions are ordered by how much variance they explain. 
 
 
 
