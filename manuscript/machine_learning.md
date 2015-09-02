@@ -8,7 +8,7 @@ title: Class Prediction
 
 R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/machine_learning.Rmd).
 
-Here we give brief introduction to the main machine learning topic: class predictio. In fact, many refer to class prediction as machine learnine and we actually use the two terms interchangibly. Some of the examples we give follow examples from the book The Elements of Statistical Learning: Data Mining, Inference, and Prediction, by Trevor Hastie, Robert Tibshirani and Jerome Friedman. A free PDF of this book can be found at the following URL:
+Here we give a brief introduction to the main machine learning topic: class prediction. In fact, many refer to class prediction as machine learning and we actually use the two terms interchangeably. Some of the examples we give follow examples from the book The Elements of Statistical Learning: Data Mining, Inference, and Prediction, by Trevor Hastie, Robert Tibshirani and Jerome Friedman. A free PDF of this book can be found at the following URL:
 
 <http://statweb.stanford.edu/~tibs/ElemStatLearn/>
 
@@ -199,7 +199,7 @@ Note that the error rates in the test and train sets are quite similar. Thus do 
 
 ### K-nearest neighbor
 
-K-nearest neighbors (kNN) is similar to bin smoothing but it is easier to adapt to multiple dimensions. Basically for any point {$$}x{/$$} for which we want an estimate we look for the k nearest points and then take an average. We can now control flexibility through  {$$}k{/$$}. Here we compare {$$}k=1{/$$} and {$$}k=100{/$$}.
+K-nearest neighbors (kNN) is similar to bin smoothing, but it is easier to adapt to multiple dimensions. Basically, for any point {$$}x{/$$} for which we want an estimate, we look for the k nearest points and then take an average. We can now control flexibility through  {$$}k{/$$}. Here we compare {$$}k=1{/$$} and {$$}k=100{/$$}.
 
 
 ```r
@@ -240,13 +240,13 @@ for(k in c(1,200)){
 ## KNN prediction error in train: 0.2825
 ```
 
-![Prediction regions obtained with kNN for k=1 (top) and k=200 (bottom). We show both train (left) and test data (right)](images/R/machine_learning-tmp-knn-1.png) 
+![Prediction regions obtained with kNN for k=1 (top) and k=200 (bottom). We show both train (left) and test data (right).](images/R/machine_learning-tmp-knn-1.png) 
 
 ```
 ## KNN prediction error in test: 0.295
 ```
 
-Note that when {$$}k=1{/$$} we make no mistakes in the training test since every point is it's closes neighbor and it is equal to itself. Note that the we some islands of blue in the red area that once we move to the test set are more error prone. In the case {$$}k=100{/$$} we do not have this problem and we also see that we improve over linear regression
+Note that when {$$}k=1{/$$} we make no mistakes in the training test since every point is its closest neighbor and it is equal to itself. [CHECK] Note that the we some islands of blue in the red area that once we move to the test set are more error prone. In the case {$$}k=100{/$$} we do not have this problem and we also see that we improve over linear regression.
 
 ### Bayes Rule
 Here is a comparison of the test and train set errors for various values of {$$}k{/$$}. We also include the error rate that we would make if we actually knew {$$}\mbox{E}(Y \mid X_1=x1,X_2=x_2){/$$} referred to as _Bayes Rule_
