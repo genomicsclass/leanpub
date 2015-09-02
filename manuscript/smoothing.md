@@ -11,9 +11,9 @@ title: Smoothing
 
 R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/smoothing.Rmd).
 
-Smoothing is a very powerful technique used all across data analsysis. The general idea is to group data points that are expected to have similar expectations and 
+Smoothing is a very powerful technique used all across data analysis. The general idea is to group data points that are expected to have similar expectations and [RAFA]
 
-The following data are from measurements from replicated RNA. We consider that data used in an the MA-plot ( {$$}Y{/$$} = log ratios and {$$}A{/$$} = averages) and take down-sample in a way that balances the number of points for different strata of {$$}A{/$$}:
+The following data are from measurements from replicated RNA. We consider the data used in an MA-plot ( {$$}Y{/$$} = log ratios and {$$}A{/$$} = averages) and take down-sample in a way that balances the number of points for different strata of {$$}A{/$$}:
 
 
 ```r
@@ -46,7 +46,7 @@ X <- X[o]
 Y <- Y[o]
 ```
 
-In the MA plot we see that there {$$}Y{/$$} depends on {$$}X{/$$}. Note that this this dependence must be a bias because these are based on replicates which means {$$}Y{/$$} should be 0 on average regardless of {$$}X{/$$}. We want to predict {$$}f(x)=\mbox{E}(Y \mid X=x){/$$} so that we can remove this bias.
+In the MA plot we see that {$$}Y{/$$} depends on {$$}X{/$$}. This dependence must be a bias because these are based on replicates which means {$$}Y{/$$} should be 0 on average regardless of {$$}X{/$$}. We want to predict {$$}f(x)=\mbox{E}(Y \mid X=x){/$$} so that we can remove this bias.
 
 
 ```r
@@ -57,7 +57,7 @@ plot(X,Y)
 
 ![MAplot comparing gene expression from two arrays.](images/R/smoothing-tmp-MAplot-1.png) 
 
-Note that linear regression does not capture the apparent curvature in {$$}f(x){/$$}:
+Linear regression does not capture the apparent curvature in {$$}f(x){/$$}:
 
 
 ```r
@@ -70,13 +70,13 @@ abline(fit,col=2,lwd=4,lty=2)
 
 ![MAplot comparing gene expression from two arrays with fitted regression line.](images/R/smoothing-tmp-MAplot_with_regression_line-1.png) 
 
-Note for example that points above the fitted line (green) and those below (purple) are not evenly distributed.
+Note that the points above the fitted line (green) and those below (purple) are not evenly distributed.
 
 ## Bin Smoothing
 
 R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/smoothing.Rmd).
 
-Instead of fitting a line, let's go back to the idea of stratifying and computing the mean. This is referred to as _bin smoothing_. Now, if we stratify by {$$}x{/$$} The general idea is that the underlying curve is "smooth" enough that in small bins it is approximately constant which implies all the {$$}Y{/$$} in that bin have the same expected value. For example, in the plot below we highlight points in a bin centered at 8.6 as well as the points of a bin centered at 12.1 if we us bins of size 1. We also show  and the fitted mean values for the {$$}Y{/$$} in those bin (dashed lines):
+Instead of fitting a line, let's go back to the idea of stratifying and computing the mean. This is referred to as _bin smoothing_. Now, if we stratify by {$$}x{/$$} , the general idea is that the underlying curve is "smooth" enough that in small bins it is approximately constant, which implies that all the {$$}Y{/$$} in that bin have the same expected value. For example, in the plot below we highlight points in a bin centered at 8.6 as well as the points of a bin centered at 12.1 if we use bins of size 1. We also show and the fitted mean values for the {$$}Y{/$$} in those bin (dashed lines):
 
 
 ```r
@@ -191,9 +191,9 @@ for(i in seq(along=centers)){
 }
 ```
 
-![Illustration of how loess estimates a curves. Showing in 12 steps of process. ](images/R/smoothing-tmp-loess_demo-1.png) 
+![Illustration of how loess estimates a curves. Showing 12 steps of the process. ](images/R/smoothing-tmp-loess_demo-1.png) 
 
-This results is a smoother fit since we use larger sample sizes to estimate our local parameters:
+This results in a smoother fit since we use larger sample sizes to estimate our local parameters:
 
 
 ```r
@@ -204,7 +204,7 @@ lines(centers,smooth,col="black",lwd=3)
 
 ![MA-plot with curve obtained with by loess shown.](images/R/smoothing-tmp-loess_final-1.png) 
 
-The that function `loess` performs this analysis for us:
+The function `loess` performs this analysis for us:
 
 
 ```r
