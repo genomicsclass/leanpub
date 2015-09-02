@@ -5,11 +5,11 @@ title: Multidimensional scaling
 
 
 
-## Multi-dimensional scaling plots
+## Multi-Dimensional Scaling Plots
 
 R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/mds.Rmd).
 
-We will motivate multi-dimensional scaling (MDS) plots with an gene expression example. To simpify the illustration we will only consider three tissues:
+We will motivate multi-dimensional scaling (MDS) plots with a gene expression example. To simplify the illustration we will only consider three tissues:
 
 
 ```r
@@ -27,15 +27,15 @@ dim(mat)
 ## [1] 22215    99
 ```
 
-As an exploratory step, we wish to know if gene expression profiles stored in the columns of `mat` show more similariy between tissues than across tissues. Unfortunately, as mentioned above, we can't plot multi-dimensional points. In general, we prefer two-dimensional plots, but making plots for every pair of genes or every pair of samples is not practical. MDS plots become a powerful tool in this situation.
+As an exploratory step, we wish to know if gene expression profiles stored in the columns of `mat` show more similarity between tissues than across tissues. Unfortunately, as mentioned above, we can't plot multi-dimensional points. In general, we prefer two-dimensional plots, but making plots for every pair of genes or every pair of samples is not practical. MDS plots become a powerful tool in this situation.
 
-### Math behind MDS
+### The Math Behind MDS
 
-Now that we know about SVD and matrix algebra, understanding MDS is relatively straight forward. For illustrative purposes let's consider the SVD decompostion
+Now that we know about SVD and matrix algebra, understanding MDS is relatively straightforward. For illustrative purposes let's consider the SVD decomposition:
 
 {$$}\mathbf{Y} = \mathbf{UDV}^\top{/$$}
 
-and assume that the sum of squares of the first two columns {$$}\mathbf{U^\top Y=DV^\top}{/$$} is much larger than sum of square of all other columns. This can be written as 
+and assume that the sum of squares of the first two columns {$$}\mathbf{U^\top Y=DV^\top}{/$$} is much larger than sum of squares of all other columns. This can be written as: 
 {$$}d_1+ d_2 \gg d_3 +\ dots + d_n{/$$} with {$$}d_i{/$$} the i-th entry of the {$$}\mathbf{D}{/$$} matrix. When this happens then we have 
 
 {$$}\mathbf{Y}\approx [\mathbf{U}_1 \mathbf{U}_2] 
@@ -92,7 +92,7 @@ This derivation tells us that the distance between samples {$$}i{/$$} and {$$}j{
  (Z_{i,1}-Z_{j,1})^2 + (Z_{i,2}-Z_{j,2})^2
 {/$$}
 
-Because {$$}Z{/$$} is a two dimensional vector and we can visualize the distances between each sample by plotting {$$}\mathbf{Z}_1{/$$} versus {$$}\mathbf{Z}_2{/$$} and visualy inspect the distance between points. Here is this plot for our example dataset:
+Because {$$}Z{/$$} is a two dimensional vector and we can visualize the distances between each sample by plotting {$$}\mathbf{Z}_1{/$$} versus {$$}\mathbf{Z}_2{/$$} and visually inspect the distance between points. Here is this plot for our example dataset:
 
 
 ```r
@@ -113,7 +113,7 @@ Note that the point separate by tissue type as expected. Now, the accuracy of th
 plot(s$d^2/sum(s$d^2))
 ```
 
-![Variance examplained for each principal component.](images/R/mds-tmp-variance_explained-1.png) 
+![Variance explained for each principal component.](images/R/mds-tmp-variance_explained-1.png) 
 
 Although the first two PCs explain over 50% of the variability, there is plenty of information that this plot does not show. However, it is an incredibly useful plot for obtaining a general idea of the distance between points. Also note, that we can plot other dimensions as well to search for patterns. Here are the 3rd and 4th PCs
 
@@ -126,7 +126,7 @@ plot(PC3,PC4,pch=21,bg=as.numeric(group))
 legend("bottomright",levels(group),col=seq(along=levels(group)),pch=15,cex=1.5)
 ```
 
-![Third and fourth principal components](images/R/mds-tmp-PC_3_and_4-1.png) 
+![Third and fourth principal components.](images/R/mds-tmp-PC_3_and_4-1.png) 
 
 Note that the 4th PC shows a strong separation within the kidney samples. Later we will learn about batch effects which might explain this finding. 
 
@@ -134,7 +134,7 @@ Note that the 4th PC shows a strong separation within the kidney samples. Later 
 
 ### `cmdscale`
 
-Although above, we used the `svd` functiona, there is a special function that is specifcially made for MDS plots. It starts takes a distance object and then uses pricipal component analysis to provide the best approximation to this distance that can be obtained with {$$}k{/$$} dimensions. This function is more efficient because one does not have to perform the full SVD which can be time consuming. By default it returns a two dimensions but we can change that through the parameter `k`
+Although above, we used the `svd` functions, there is a special function that is specifically made for MDS plots. It starts takes a distance object and then uses principal component analysis to provide the best approximation to this distance that can be obtained with {$$}k{/$$} dimensions. This function is more efficient because one does not have to perform the full SVD which can be time consuming. By default it returns a two dimensions but we can change that through the parameter `k`
 
 
 ```r
@@ -147,7 +147,7 @@ legend("bottomleft",levels(group),col=seq(along=levels(group)),pch=15)
 ```
 
 ![MDS computed with cmdscale function.](images/R/mds-tmp-mds2-1.png) 
-Note that these two approaches are equivalent up to an arbirary sign change.
+Note that these two approaches are equivalent up to an arbitrary sign change.
 
 
 ```r
@@ -176,6 +176,6 @@ Note that in all calculations above we subtract the row means before we compute 
 \left\{ ( \mathbf{Y}_i- \mathbf{\mu} ) - ( \mathbf{Y}_j - \mathbf{\mu} ) \right\}^\top \left\{ (\mathbf{Y}_i- \mathbf{\mu}) - (\mathbf{Y}_j - \mathbf{\mu} ) \right\} = \left\{  \mathbf{Y}_i-  \mathbf{Y}_j  \right\}^\top \left\{ \mathbf{Y}_i - \mathbf{Y}_j  \right\}
 {$$}
 
-And becuase removing the row means reduces the total variation it can only make the SVD approximation better.
+And because removing the row means reduces the total variation it can only make the SVD approximation better.
 
 
