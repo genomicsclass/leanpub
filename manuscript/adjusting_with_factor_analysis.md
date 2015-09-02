@@ -17,7 +17,7 @@ library(GSE5859Subset)
 data(GSE5859Subset)
 ```
 
-Here is an image we showed earlier with a subset of genes showing both the sex effect and time effects, along with sample to sample correlations (computed on all genes) showing the complex structure of the data:
+Below is an image we showed earlier with a subset of genes showing both the sex effect and the time effects, along with sample to sample correlations (computed on all genes) showing the complex structure of the data:
 
 
 
@@ -60,7 +60,7 @@ axis(1,1:ncol(y),sex,las=2)
 
 We have seen how approaches that assume month explains the batch and use linear models perform relatively well. However, there was still room for improvement. This is most likely due to the fact that month is only a surrogate for some other variable that actually induces structure or between sample correlation.
 
-### What Is A Batch?
+#### What is a batch?
 
 Here is a plot of dates for each sample, with color representing month:
 
@@ -75,10 +75,10 @@ plot(times[o],pch=21,bg=as.numeric(batch)[o],ylab="date")
 ```
 
 ![Dates with color denoting month.](images/R/adjusting_with_factor_analysis-tmp-what_is_batch-1.png) 
-There is more than one day per month. Could day have an effects as well?
+There is more than one day per month. Could day have an effect as well?
 
 
-### PCA
+#### PCA
 
 Here is a plot of the first principal component ordered by date:
 
@@ -142,11 +142,11 @@ legend("bottomright",c("chrX","chrY"),col=1:2,pch=16)
 ![p-value histogram and volcano plot after blindly removing the first two PCs.](images/R/adjusting_with_factor_analysis-tmp-pval_hist_and_volcano_after_removing_PCs-1.png) 
 
 <a name="sva"></a>
-### Surrogate Variable Analysis
+#### Surrogate Variable Analysis
 
 An alternative is to fit models with both the covariate of interest, as well as those believed to be batches. An example of an approach that does this is Surrogate Variable Analysis (SVA).
 
-The basic idea of SVA is to first estimate the factors, but taking care not to include the outcome of interest. To do this, an interactive approach is used in which each row is given a weight and then these weights are used in the SVD calculation with higher weights given to rows not associated with the outcome of interest and associated with batches. Below is a demonstration of two iterations. The three images are the data (for a subset of genes), the weights, and the estimated first factor.
+The basic idea of SVA is to first estimate the factors, but taking care not to include the outcome of interest. To do this, an interactive approach is used in which each row is given a weight. These weights are then used in the SVD calculation with higher weights given to rows not associated with the outcome of interest and associated with batches. Below is a demonstration of two iterations. The three images are the data (for a subset of genes), the weights, and the estimated first factor.
 
 
 
@@ -202,7 +202,7 @@ for(b in 1:2){
 ![Illustration of iterative procedure used by SVA. Only two iterations are shown.](images/R/adjusting_with_factor_analysis-tmp-illustration_of_sva-1.png) 
 
 
-The above is an illustration of the algorithm. To actually run SVA we follow the this code. In this case, SVA picks the number of surrogate values or factors for us.
+The above is an illustration of the algorithm. To actually run SVA, we follow the code. In this case, SVA picks the number of surrogate values or factors for us.
 
 
 
