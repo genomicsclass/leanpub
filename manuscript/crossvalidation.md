@@ -25,8 +25,7 @@ library(tissuesGeneExpression)
 data(tissuesGeneExpression)
 ```
 
-For illustration purposes 
-let's drop one of the tissues which doesn't have many samples:
+For illustration purposes let's drop one of the tissues which doesn't have many samples:
 
 
 ```r
@@ -47,7 +46,7 @@ y <- tissue[ind]
 X <- t( e[,ind] )
 ```
 
-We will use the `createFolds` function from the `caret` package to make 5 folds of the data, which are balanced over the tissues. Don't be confused that the `createFolds` function uses the same letter 'k' as the k in K-nearest neighbors. These 'k' are unrelated.  The caret function `createFolds` is asking for how many folds to create, the 'N' from above. The `knn` function is asking how many closest observations to use to classify the test observations.
+We will use the `createFolds` function from the `caret` package to make 5 folds of the data, which are balanced over the tissues. Don't be confused that the `createFolds` function uses the same letter 'k' as the k in K-nearest neighbors. These 'k' are unrelated. The caret function `createFolds` is asking for how many folds to create, the 'N' from above. The `knn` function is asking how many closest observations to use to classify the test observations.
 
 
 ```r
@@ -162,7 +161,7 @@ plot(ks, res, type="o")
 ![Misclassification error versus number of neighbors.](images/R/crossvalidation-tmp-misclassification_error-1.png) 
 
 
-Finally, to show that gene expression can perfectly predict tissue, we use 5 dimensions instead of 2 and note we get perfect prediction
+Finally, to show that gene expression can perfectly predict tissue, we use 5 dimensions instead of 2, which results in perfect prediction:
 
 
 ```r
@@ -183,4 +182,4 @@ plot(ks, res, type="o",ylim=c(0,0.20))
 
 ![Misclassification error versus number of neighbors when we use five dimensions instead of 2.](images/R/crossvalidation-tmp-misclassification_error2-1.png) 
 
-Important note: We applied `cmdscale` to the entire dataset to create a smaller one for illustration purposes. However, in a real machine learning application all transformations of the data must be applied separately on the test and training dataset.
+Important note: we applied `cmdscale` to the entire dataset to create a smaller one for illustration purposes. However, in a real machine learning application, all transformations of the data must be applied separately on the test and training dataset.
