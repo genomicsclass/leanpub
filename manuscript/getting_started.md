@@ -84,7 +84,7 @@ library(downloader)
 
 From now on you will see that we sometimes load packages without installing them. This is because once you install the package, it remains in place and only needs to be loaded. If you try to load a package and get an error, it probably means you need to install it.
 
-## Importing Data Into R
+## Importing Data into R
 
 R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/getting_started.Rmd).
 
@@ -95,7 +95,7 @@ In the life sciences, small datasets such as the one used as an example in the n
 The first step is to find the file containing your data and know its *path*. 
 
 
-### Paths And The Working Directory
+#### Paths and the Working Directory
 
 When you are working in R it is useful to know your _working directory_. This is the directory or folder in which R will save or look for files by default. You can see your working directory by typing:
 
@@ -112,12 +112,12 @@ You can also change your working directory using the function `setwd`. Or you ca
 
 The functions that read and write files (there are several in R) assume you mean to look for files or write files in the working directory. Our recommended approach for beginners will have you reading and writing to the working directory. However, you can also type the [full path](http://www.computerhope.com/jargon/a/absopath.htm), which will work independently of the working directory.
 
-### Projects In RStudio
+#### Projects in RStudio
 
 We find that the simplest way to organize yourself is to start a Project in RStudio (Click on "File" and "New Project"). When creating the project, you will select a folder to be associated with it. You can then download all your data into this folder. Your working directory will be this folder.
 
 
-### Option 1: Download file with your Browser to your working directory
+#### Option 1: Download file with your browser to your working directory
 
 
 You can navigate to the `femaleMiceWeights.csv` file by visiting the data directory of dagadat on [GitHub](https://github.com/genomicsclass/dagdata/tree/master/inst/extdata). Note that if you navigate to the file, you need to click on *Raw* on the upper right hand corner of the data and then use your browser's "Save As" function to assure that the downloaded file is in a csv file. Note that some browsers add a suffix to your file name by default. You do not want this. You want your file to be called `femaleMiceWeights.csv`.
@@ -131,7 +131,7 @@ dat <- read.csv("femaleMiceWeights.csv")
 
 Note that if you did not receive any message then you probably read-in the file successfully.
 
-### Option 2: Download from within R
+#### Option 2: Download from within R
 
 We store many of the datasets used in this course on [GitHub](https://github.com/genomicsclass/). You can save these files directly from the internet to your computer using R. In this example we are using the `download.file` function in the `downloader` package to download the file to a specific location and then read it in. We assign it a random name and a random directory using the function `tempfile`, but you can change this so the file is saved as a directory of your choosing.
 
@@ -150,7 +150,6 @@ dat <- read.csv(filename)
 ```
 
 
-### Option 3: Installing packages from github (*Advanced*)
 
 Many of the datasets we include in this book are available as insider packages available from GitHub. The reason we use GitHub rather than CRAN is that on GitHub we do not have to vet packages, which gives us much more flexibility. 
 
@@ -203,7 +202,7 @@ dat <- read.csv(filename)
 ```
 
 
-## Brief Introduction To `dplyr`
+## Brief Introduction to `dplyr`
 
 R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/getting_started.Rmd).
 
