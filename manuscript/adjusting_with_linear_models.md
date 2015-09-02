@@ -10,7 +10,7 @@ title: Adjusting for Batch Effects with Linear Models
 
 R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/adjusting_with_linear_models.Rmd).
 
-To illustrate how we can adjust for batch effects using statistical methods, we will create a data example in which the outcome of interest is confounded with batch, but not completely. We will also select a outcome for which we have an expectation of what genes should be diferentially expressed. Namely, we make sex the outcome of interest and expect genes on the Y chromosome to be diferentially expressed. We may also see genes from the X chromosome as differentially expressed since some escape X inactivation. The example dataset is below.
+To illustrate how we can adjust for batch effects using statistical methods, we will create a data example in which the outcome of interest is confounded with batch, but not completely. We will also select an outcome for which we have an expectation of what genes should be diferentially expressed. Namely, we make sex the outcome of interest and expect genes on the Y chromosome to be diferentially expressed. We may also see genes from the X chromosome as differentially expressed since some escape X inactivation. The example dataset is below.
 
 
 ```r
@@ -52,15 +52,15 @@ mypar(1,1)
 image(t(mat),xaxt="n",yaxt="n",col=icolors)
 ```
 
-![Image of gene expression data for genes selected to show difference in group as well as the batch effect along with some randomely chosen genes.](images/R/adjusting_with_linear_models-tmp-image_of_subset-1.png) 
+![Image of gene expression data for genes selected to show difference in group as well as the batch effect, along with some randomly chosen genes.](images/R/adjusting_with_linear_models-tmp-image_of_subset-1.png) 
 
 In what follows, we will imitate the typical analysis we would do in practice. We will act as if we don't know which genes are supposed to be differentially expressed between males and females. 
 
-### Exploratory Data Analysis For Evaluation
+#### Exploratory Data Analysis for Evaluation
 
-Another reason we are using the dataset described above for illustrating different approaches is because we actually have a  reasonable idea of what to expect. Autosomal (not on chrX or chrY) genes on the list are likely false positives and chr Y are likely true positives. Chr X genes could go either way. This gives us the opportunity to compare different procedures. Since in practice we rarely know the "truth", these evaluations are not possible. Simulations are therefore commonly used for evaluation purposes: we know the truth because we construct the data. But simulations are at risk of not capturing all the nuances of real experimental data. This dataset is an experimental dataset. 
+Another reason we are using the dataset described above for illustrating different approaches is because we actually have a reasonable idea of what to expect. Autosomal (not on chrX or chrY) genes on the list are likely false positives and chrY are likely true positives. ChrX genes could go either way. This gives us the opportunity to compare different procedures. Since in practice we rarely know the "truth", these evaluations are not possible. Simulations are therefore commonly used for evaluation purposes: we know the truth because we construct the data. But simulations are at risk of not capturing all the nuances of real experimental data. This dataset is an experimental dataset. 
 
-In the next sections we will use the histogram p-values to evaluate the specificity (low false positive rates) of the batch adjustment procedures presented here. Because the autosomal genes are not expected to be differentially expressed, we should see a a flat p-value histogram. To evaluate sensitivity (low false negative rates), we will report the number of the reported genes on chrX and chrY. Below are the results for when we don't adjust and report genes with q-values smaller than 0.1. We also include a volcano plot with a horizontal dashed line separating genes called significant and those don't, and color used to highlight chrX and chrY genes.
+In the next sections we will use the histogram p-values to evaluate the specificity (low false positive rates) of the batch adjustment procedures presented here. Because the autosomal genes are not expected to be differentially expressed, we should see a a flat p-value histogram. To evaluate sensitivity (low false negative rates), we will report the number of the reported genes on chrX and chrY. Below are the results for when we don't adjust and report genes with q-values smaller than 0.1. [CHECK] We also include a volcano plot with a horizontal dashed line separating genes called significant and those don't, and color used to highlight chrX and chrY genes.
 
 
 ```r
@@ -78,7 +78,7 @@ index <- which(qvals<0.1)
 abline(h=-log10(max(res$p.value[index])))
 ```
 
-![p-value histogram and volcano plot for comparison between sexes. The Y chromosome genes (considered to be positives) are highlighted in red. The X chromosome genes (a subset is considered to be positives) are shown in green.](images/R/adjusting_with_linear_models-tmp-pvalue_hist_and_volcano_plots-1.png) 
+![p-value histogram and volcano plot for comparison between sexes. The Y chromosome genes (considered to be positives) are highlighted in red. The X chromosome genes (a subset is considered to be positive) are shown in green.](images/R/adjusting_with_linear_models-tmp-pvalue_hist_and_volcano_plots-1.png) 
 
 ```r
 cat("Total genes with q-value < 0.1:",length(index))
@@ -110,18 +110,18 @@ The histogram is not flat. Instead, low p-values are over-represented. More than
 
 R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/adjusting_with_linear_models.Rmd).
 
-We have already observed that processing date has an effect on gene expression.  We will therefore try to _adjust_ for this by including it a model.  When we perform a t-test comparing the two groups, it is equivalent to fitting the following linear model:
+We have already observed that processing date has an effect on gene expression.  We will therefore try to _adjust_ for this by including it in a model.  When we perform a t-test comparing the two groups, it is equivalent to fitting the following linear model:
 
 {$$}Y_{ij} = \alpha_j + x_i \beta_{j} + \varepsilon_{ij}{/$$}
 
-to each gene {$$}j{/$$} with {$$}x_i=1{/$$} if subject {$$}i{/$$} is female and 0 otherwise. Note that {$$}\beta_{j}{/$$} represent the estimated difference for gene {$$}j{/$$} and {$$}\varepsilon_{ij}{/$$} represents the within group variation. So what is the problem?
+to each gene {$$}j{/$$} with {$$}x_i=1{/$$} if subject {$$}i{/$$} is female and 0 otherwise. Note that {$$}\beta_{j}{/$$} represents the estimated difference for gene {$$}j{/$$} and {$$}\varepsilon_{ij}{/$$} represents the within group variation. So what is the problem?
 
 The theory we described in the linear models chapter assumes that the error terms are independent. We know that this is not the case for all genes because we know the error terms from October will be more alike to each other than the June error terms. We can _adjust_ for this by including a term that models this effect:
 
 
 {$$}Y_{ij} = \alpha_j + x_i \beta_{j} + z_i \gamma_j+\varepsilon_{ij}.{/$$}
 
-Here {$$}z_i=1{/$$} if sample {$$}i{/$$} was processed in October and 0 otherwise and {$$}\gamma_j{/$$} is the month effect for gene {$$}j{/$$}. Note that this an example of how linear models give us much more flexibility than procedures such as the t-test.
+Here {$$}z_i=1{/$$} if sample {$$}i{/$$} was processed in October and 0 otherwise and {$$}\gamma_j{/$$} is the month effect for gene {$$}j{/$$}. This an example of how linear models give us much more flexibility than procedures such as the t-test.
 
 We construct a model matrix that includes batch.
 
@@ -160,7 +160,7 @@ summary(fit)$coef
 ## Xbatch10    -1.23089977  0.2427379 -5.0709009 5.070727e-05
 ```
 
-We then fit this new model for each gene. For example, we can use `sapply` to recover the estimated coefficient and p-value in the following way:
+We then fit this new model for each gene. For instance, we can use `sapply` to recover the estimated coefficient and p-value in the following way:
 
 
 ```r
@@ -187,7 +187,7 @@ index <- which(qvals<0.1)
 abline(h=-log10(max(res$p.value[index])))
 ```
 
-![p-value histogram and volcano plot for comparison between sexes after adjustement for month. The Y chromosome genes (considered to be positives) are highlighted in red. The X chromosome genes (a subset is considered to be positives) are shown in green.](images/R/adjusting_with_linear_models-tmp-pvalue_hist_and_volcano_plots2-1.png) 
+![p-value histogram and volcano plot for comparison between sexes after adjustement for month. The Y chromosome genes (considered to be positives) are highlighted in red. The X chromosome genes (a subset is considered to be positive) are shown in green.](images/R/adjusting_with_linear_models-tmp-pvalue_hist_and_volcano_plots2-1.png) 
 
 ```r
 cat("Total genes with q-value < 0.1:",length(index))
@@ -213,14 +213,14 @@ cat("Number of selected genes on chrX:", sum(chr[index]=="chrX",na.rm=TRUE))
 ## Number of selected genes on chrX: 9
 ```
 
-There is a great improvement in specificity (less false positives) without much loss in sensitivity (we still find many chrY genes). However, we still see some bias in the histogram. In the following sections we will see that month does not perfectly account for the batch effect and better estimates are possible.
+There is a great improvement in specificity (less false positives) without much loss in sensitivity (we still find many chrY genes). However, we still see some bias in the histogram. In the following sections we will see that month does not perfectly account for the batch effect and that better estimates are possible.
 
 
-## A Note On Computing Efficiency
+## A Note on Computing Efficiency
 
 R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/adjusting_with_linear_models.Rmd).
 
-In the code above, the design matrix does not change within the iterations we are computing {$$}(X^\top X)^{-1}{/$$} repeatedly and applying to each gene. Instead we can perform this calculation in one matrix algebra calculation by computing it once and then obtaining all the betas by multiplying {$$}(X^\top X)^{-1}X^\top Y{/$$} with the columns of {$$}Y{/$$} representing genes in this case. The `limma` package has an implementation of this idea (using the QR decomposition). Note how much faster this is:
+In the code above, the design matrix does not change within the iterations we are computing {$$}(X^\top X)^{-1}{/$$} repeatedly and applying to each gene. Instead we can perform this calculation in one matrix algebra calculation by computing it once and then obtaining all the betas by multiplying {$$}(X^\top X)^{-1}X^\top Y{/$$} with the columns of {$$}Y{/$$} representing genes in this case. The `limma` package has an implementation of this idea (using the QR decomposition). Notice how much faster this is:
 
 
 ```r
@@ -251,7 +251,7 @@ pvals <- 2*pt(-abs(ttest),fit$df)
 We will cover `limma` in more detail in a later section.
 
 
-### Combat
+#### Combat
 
  Combat [NEED CITATION] is a popular method and is based on using linear models to adjust for batch effects. It fits a hierarchical model (we will learn about these in the next section) to estimate and remove row specific batch effects. Combat uses a modular approach. In a first step, what is considered to be a batch effect is removed:
 
@@ -288,7 +288,7 @@ Then the results can be used to fit a model with our variable of interest:
 res<-genefilter::rowttests(cleandat,factor(sex))
 ```
 
-In this case, the results are less specific than we obtain by fitting the simple linear model:
+In this case, the results are less specific than what we obtain by fitting the simple linear model:
 
 
 ```r
@@ -304,7 +304,7 @@ index <- which(qvals<0.1)
 abline(h=-log10(max(res$p.value[index])))
 ```
 
-![p-value histogram and volcano plot for comparison between sexes for Combat. The Y chromosome genes (considered to be positives) are highlighted in red. The X chromosome genes (a subset is considered to be positives) are shown in green.](images/R/adjusting_with_linear_models-tmp-pvalue_hist_and_volcano_plots3-1.png) 
+![p-value histogram and volcano plot for comparison between sexes for Combat. The Y chromosome genes (considered to be positives) are highlighted in red. The X chromosome genes (a subset is considered to be positive) are shown in green.](images/R/adjusting_with_linear_models-tmp-pvalue_hist_and_volcano_plots3-1.png) 
 
 ```r
 cat("Total genes with q-value < 0.1:",length(index))
