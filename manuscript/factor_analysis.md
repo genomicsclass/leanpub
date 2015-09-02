@@ -10,7 +10,7 @@ title: Factor Analysis
 R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/factor_analysis.Rmd).
 
 
-Many of the statistical ideas applied to correcting for batch effects come from Factor Analysis. Factor Analysis has was first developed over a century ago. Pearson noted that the between subject grades were correlated between subjects when the correlation was computed across students. To explain this he posed a model having one factor that was common across subjects for each student that explained this correlation:
+Many of the statistical ideas applied to correcting for batch effects come from Factor Analysis. Factor Analysis was first developed over a century ago. [CHECK] Pearson noted that the between subject grades were correlated between subjects when the correlation was computed across students. To explain this, he posed a model having one factor that was common across subjects for each student that explained this correlation:
 
 {$$}
 Y_ij = \alpha_i W_1 + \varepsilon_{ij}
@@ -18,12 +18,12 @@ Y_ij = \alpha_i W_1 + \varepsilon_{ij}
 
 with {$$}Y_{ij}{/$$} the grade for individual {$$}i{/$$} on subject {$$}j{/$$} and {$$}\alpha_i{/$$} representing the ability of student {$$}i{/$$} to obtain good grades. 
 
-In this example, {$$}W_1{/$$} is a constant. Here we will motivate factor analysis with a slightly more complicated situation that resembles the presence of batch effects. We generate random grande
+In this example, {$$}W_1{/$$} is a constant. Here we will motivate factor analysis with a slightly more complicated situation that resembles the presence of batch effects. We generate random grade
 {$$}\mathbf{Y}{/$$} is {$$}N \times 6{/$$} are grades in five different subjects for N children. 
 
 
 
-### Sample correlations
+#### Sample correlations
 
 Note we observe high correlation across five subject:
 
@@ -41,14 +41,14 @@ round(cor(Y),2)
 ## Classics 0.28    0.26 0.29 0.72 0.68     1.00
 ```
 
-A graphical look shows that the correlation suggest a grouping into STEM and humanities.
+A graphical look shows that the correlation suggests a grouping into STEM and humanities.
 
 In the figure below high correlations are red, no correlation is white and negative correlations are blue.
 
-![Images of correlation between columns. High correlation is red, no correlation is white and negative correlation is blue.](images/R/factor_analysis-tmp-correlation_images-1.png) 
+![Images of correlation between columns. High correlation is red, no correlation is white, and negative correlation is blue.](images/R/factor_analysis-tmp-correlation_images-1.png) 
 
 
-### Factor model
+#### Factor model
 
 Based on the plot above we hypothesize that there are two hidden factors {$$}\mathbf{W}_1{/$$} and {$$}\mathbf{W}_2{/$$} and to account for the observed correlation structure we model the data in the following way:
 
@@ -56,9 +56,9 @@ Based on the plot above we hypothesize that there are two hidden factors {$$}\ma
 Y_{ij} = \alpha_{i,1} W_{1,j} + \alpha_{i,2} W_{2,j} + \varepsilon_{ij}
 {/$$}
 
-The interpretation of these parameters are as follows: {$$}\alpha_{i,1}{/$$} is the overall ability for student {$$}i{/$$} and {$$}\alpha_{i,2}{/$$} is the  difference in ability between the two subgroups for student {$$}i{/$$}. Can we estimate the {$$}W{/$$} and {$$}\alpha{/$$} ? 
+The interpretation of these parameters are as follows: {$$}\alpha_{i,1}{/$$} is the overall ability for student {$$}i{/$$} and {$$}\alpha_{i,2}{/$$} is the difference in ability between the two subgroups for student {$$}i{/$$}. Can we estimate the {$$}W{/$$} and {$$}\alpha{/$$} ? 
 
-### Factor analysis and PCA
+#### Factor analysis and PCA
 
 The first two principal components estimate {$$}W_1{/$$} and {$$}W_2{/$$} [we need to add reference for the math]
 
@@ -76,8 +76,8 @@ round(W,1)
 ## [2,] -0.4    -0.5 -0.4 0.3  0.3      0.4
 ```
 
-Note that, as expected, the first factor is close to a constant and will help explain the observed correlation across all subjects, while the second is a factor that differs between STEM and humanities and 
-We can use these estimate in the model:
+As expected, the first factor is close to a constant and will help explain the observed correlation across all subjects, while the second is a factor that differs between STEM and humanities and [CHECK]
+We can use these estimateS in the model:
 
 {$$}
 Y_{ij} = \alpha_{i,1} \hat{W}_{1,j} + \alpha_{i,2} \hat{W}_{2,j} + \varepsilon_{ij}
@@ -96,9 +96,9 @@ var(as.vector(fit))/var(as.vector(Y))
 ```
 
 
-### Factor Analysis in General
+#### Factor analysis in general
 
-In high throughput data is is quite common to see correlation structure. For example, notice the complex correlations we see across samples in the plot below. These are the correlations for a gene expression experiment with columns ordered by data:
+In high-throughput data it is quite common to see correlation structure. For example, notice the complex correlations we see across samples in the plot below. These are the correlations for a gene expression experiment with columns ordered by data:
 
 
 ```r
@@ -118,12 +118,12 @@ image(1:n,1:n,cors,xaxt="n",yaxt="n",col=cols,xlab="",ylab="",zlim=c(-1,1))
 
 ![Image of correlations. Cell i,j  represents correlation between samples i and j. Red is high, white is 0 and red is negative.](images/R/factor_analysis-tmp-gene_expression_correlations-1.png) 
 
-Two factors will not be enough to model the observed correlation structure. But a more general factor model can be useful:
+Two factors will not be enough to model the observed correlation structure. However, a more general factor model can be useful:
 
 {$$}
 Y_{ij} = \sum_{k=1}^K \alpha_{i,k} W_{j,k} + \varepsilon_{ij}
 {/$$}
 
-And we can use PCA to estimate {$$}\mathbf{W}_1,\dots,\mathbf{W}_K{/$$}. Choosing {$$}k{/$$} is a challenge and in the next section we describe how exploratory data analysis might help.
+And we can use PCA to estimate {$$}\mathbf{W}_1,\dots,\mathbf{W}_K{/$$}. Choosing {$$}k{/$$} is a challenge. In the next section we describe how exploratory data analysis might help.
 
 
