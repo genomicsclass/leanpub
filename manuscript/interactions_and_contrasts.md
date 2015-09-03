@@ -179,7 +179,7 @@ abline(h=coefs[1]+coefs[2],col=cols[2])
 legend("right",names(coefs),fill=cols,cex=.75,bg="white")
 ```
 
-![MIKELOVE add caption.](images/R/interactions_and_contrasts-tmp-spider_main_coef-1.png) 
+![Diagram of the coefficients in the linear model. The green arrow indicates the Intercept term, which rises from zero to the mean of the reference group (here the 'pull' samples). The orange arrow indicates the difference between the push group and the pull group, which is negative in this example. The circles show the individual samples, jittered horizontally to avoid overplotting.](images/R/interactions_and_contrasts-tmp-spider_main_coef-1.png) 
 
 ### A Linear Model With Two Variables
 
@@ -289,7 +289,7 @@ coefs
 
 ### Examining The Coefficients
 
-We can make the same plot as before, with arrows for each of the coefficients in the model. The orange arrow represents the difference between the push and pull samples for all groups.
+We can make the same plot as before, with arrows for each of the coefficients in the model. 
 
 
 ```r
@@ -313,7 +313,7 @@ arrows(8+a,coefs[1]+coefs[5],8+a,coefs[1]+coefs[5]+coefs[2],lwd=3,col=cols[2],le
 legend("right",names(coefs),fill=cols,cex=.75,bg="white")
 ```
 
-![MIKELOVE](images/R/interactions_and_contrasts-tmp-spider_interactions-1.png) 
+![Diagram of the coefficients in the linear model. As before, the teal-green arrow represents the Intercept, which fits the mean of the reference group (here, the pull samples for leg L1). The purple, pink and yellow-green arrows represent differences between the three other leg groups and L1. The orange arrow represents the difference between the push and pull samples for all groups.](images/R/interactions_and_contrasts-tmp-spider_interactions-1.png) 
 
 Because we have 8 groups and only 5 coefficients, the fitted means (the tips of the arrows) do not line up exactly with the mean of each group, like they did for the previous example of a two group linear model.
 
@@ -678,7 +678,7 @@ arrows(8+a,coefs[1]+coefs[5]+coefs[2],8+a,coefs[1]+coefs[5]+coefs[2]+coefs[8],lw
 legend("right",names(coefs),fill=cols,cex=.75,bg="white")
 ```
 
-![MIKELOVE](images/R/interactions_and_contrasts-tmp-spider_interactions2-1.png) 
+![Diagram of the coefficients in the linear model. In the design with interaction terms, the orange arrow now indicates the push vs pull difference only for the reference group (L1), while three new arrows (yellow, brown and grey) indicate the additionally push vs pull differences in the non-reference groups (L2, L3 and L4) with respect to the reference group.](images/R/interactions_and_contrasts-tmp-spider_interactions2-1.png) 
 
 ### Contrasts
 
@@ -909,7 +909,7 @@ head(X)
 imagemat(X, main="Model matrix for linear model with group variable")
 ```
 
-![MIKELOVE](images/R/interactions_and_contrasts-tmp-matrix_model_image_group_variable-1.png) 
+![Image of model matrix for linear model with group variable.](images/R/interactions_and_contrasts-tmp-matrix_model_image_group_variable-1.png) 
 
 We can run the linear model with the familiar call:
 
@@ -966,7 +966,7 @@ for (i in 1:8) {
 legend("right",names(coefs),fill=cols,cex=.75,bg="white")
 ```
 
-![MIKELOVE](images/R/interactions_and_contrasts-tmp-estimated_group_variables-1.png) 
+![Diagram of the coefficients in the linear model, with each term representing the mean of a combination of leg and direction.](images/R/interactions_and_contrasts-tmp-estimated_group_variables-1.png) 
 
 ### Simple Contrasts Using The Contrast package
 
