@@ -25,6 +25,9 @@ while read line; do
 	fi
 done < filenames.txt > manuscript/Book.txt
 
+
+
+
 ./downloadimages.sh 
 
 git commit -m "editing Book.txt" manuscript/Book.txt
