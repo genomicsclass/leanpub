@@ -8,7 +8,7 @@ layout: page
 
 
 
-## Central Limit Theorem In Practice
+## Central Limit Theorem in Practice
 
 R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/clt_in_practice.Rmd).
 
@@ -53,7 +53,7 @@ print(mu_hf - mu_control)
 ## [1] 2.375517
 ```
 
-Compute the population standard deviations as well. Note that we do not use the R function `sd` because this is to compute the population based estimates that divide by the sample size - 1. 
+Compute the population standard deviations as well. We do not use the R function `sd` because this is to compute the population based estimates that divide by the sample size - 1. 
 
 We can see that with R code:
 
@@ -92,7 +92,7 @@ sd_control <- popsd(controlPopulation)
 ```
 
 Remember that in practice we do not get to compute these population parameters.
-These are values we do not get to see. In general, we want to estimate them from samples. 
+These are values we never see. In general, we want to estimate them from samples. 
 
 ```r
 N <- 12
