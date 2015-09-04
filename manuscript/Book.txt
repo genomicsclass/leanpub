@@ -1,73 +1,7 @@
 introduction.md
 getting_started.md
+getting_started_exercises.md
 
 #chapter 1 - Inference
 
 random_variables.md
-populations_and_samples.md
-clt_and_t-distribution.md
-clt_in_practice.md
-t-tests_in_practice.md
-confidence_intervals.md
-power_calculations.md
-monte_carlo.md
-permutation_tests.md
-association_tests.md
-
-#chapter 2 - EDA
-exploratory_data_analysis_2.md
-plots_to_avoid.md
-
-#chapter 3 - Robust Statistics
-robust_summaries.md
-ranktest.md
-
-## Chapter 4 - Matrix Algebra
-intro_using_regression.md
-matrix_notation.md
-matrix_operations.md
-matrix_algebra_examples.md
-
-### Chapter 5: Linear Models
-expressing_design_formula.md
-linear_models_in_practice.md
-standard_errors.md
-interactions_and_contrasts.md
-collinearity.md
-qr_and_regression.md
-###course2 linear_models_going_further
-
-### Chapter 6: inference for high-dimensional data
-## Notes: explain three ways to install
-intro_to_highthroughput_data.md
-inference_for_highthroughput.md
-multiple_testing.md
-eda_for_highthroughput.md
-
-### Chapter 7: Statistical Modeling
-modeling.md
-bayes.md
-hierarchical_models.md
-
-### Chapter 8: Distance and dimension reduction
-distance.md
-pca_motivation.md
-projections.md
-rotations.md
-mds.md
-PCA.md
-
-## Chapter 9: Practical Machine Learning
-clustering_and_heatmaps.md
-conditional_expectation.md
-smoothing.md
-machine_learning.md
-crossvalidation.md
-
-## Chapter 10 - Batch effects
-intro_to_batch_effects.md
-confounding.md
-eda_with_pca.md
-adjusting_with_linear_models.md
-factor_analysis.md
-adjusting_with_factor_analysis.md
