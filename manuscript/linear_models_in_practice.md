@@ -26,7 +26,7 @@ stripchart(dat$Bodyweight ~ dat$Diet, vertical=TRUE, method="jitter",
 
 We can see that the high fat diet group appears to have higher weights on average, although there is overlap between the two samples.
 
-### A Linear Model With One Variable
+#### A linear model with one variable
 
 For demonstration purposes, we will build the design matrix {$$}\mathbf{X}{/$$} using the formula `~ Diet`. The group with the 1's in the second column is determined by the level of `Diet` which comes second; that is, the non-reference level. 
 
@@ -213,7 +213,7 @@ summary(fit)
 ##   23.813333    3.020833
 ```
 
-### Examining The Coefficients
+#### Examining the coefficients
 
 The following large and clunky piece of code allows us to visualize the meaning of the coefficients with colored arrows:
 
@@ -235,7 +235,7 @@ legend("right",names(coefs),fill=cols,cex=.75,bg="white")
 
 ![Estimated linear model coefficients for bodyweight data illustrated with arrows.](images/R/linear_models_in_practice-tmp-parameter_estimate_illustration-1.png) 
 
-## Comparing Simple Two Group lm To A t-test
+## Comparing Simple Two Group lm to a t-test
 
 R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course2/linear_models_in_practice.Rmd).
 
