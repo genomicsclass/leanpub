@@ -7,7 +7,7 @@ title: Expressing design formula in R
 
 # Linear Models
 
-Many of the models we use in data analysis can be presented using matrix algebra. We refer to these types of models as _linear models_. Note that "linear"" here does not refer to lines but rather linear combinations. The representations we describe are convenient because we can write models more succinctly and we have the matrix algebra mathematical machinery to facilitate computation. In this chapter we will describe in some detail how we use matrix algebra to represent and fit.
+Many of the models we use in data analysis can be presented using matrix algebra. We refer to these types of models as _linear models_. "Linear"" here does not refer to lines, but rather to linear combinations. The representations we describe are convenient because we can write models more succinctly and we have the matrix algebra mathematical machinery to facilitate computation. In this chapter we will describe in some detail how we use matrix algebra to represent and fit.
 
 ## The Design Matrix
 
@@ -22,7 +22,7 @@ in order to produce *design matrices* (also known as *model matrices*) for a var
 
 For fitting linear models in R, we will directly provide a *formula* to the `lm` function. In this script, we will use the `model.matrix` function, which is used internally by the `lm` function. This will help us to connect the R *formula* with the matrix {$$}\mathbf{X}{/$$} from the equation {$$}\mathbf{Y} = \mathbf{X} \boldsymbol{\beta} + \boldsymbol{\varepsilon}{/$$} that we have seen. It will therefore help us interpret the results from `lm`.
 
-### Choice of Design
+#### Choice of design
 
 The choice of design matrix is a critical step in linear modeling as it encodes which coefficients will be fit in the model, as well as the inter-relationship between the samples. 
 
@@ -118,7 +118,7 @@ model.matrix(~ group)
 
 produces the same design matrix as our first code chunk.
 
-### More Groups
+#### More groups
 
 Using the same formula, we can accommodate modeling more groups:
 
@@ -170,9 +170,9 @@ model.matrix(~ group + 0)
 
 This group now fits a separate coefficient for each group. We will explore this design in more depth later on.
 
-### More Variables
+#### More variables
 
-We can simply add additional variables with a `+` sign, in order to build a design matrix which fits based on the information in additional variables:
+We can simply add additional variables with a `+` sign in order to build a design matrix which fits based on the information in additional variables:
 
 
 ```r
@@ -262,7 +262,7 @@ model.matrix(~ group*condition)
 
 R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course2/expressing_design_formula.Rmd).
 
-The level which is chosen for the *reference level* or *base level*. This is the level which is contrasted against and, by default, this is simply the first level alphabetically. We can specify that we want group 2 to be the base level by either using the `relevel` function or by providing the levels explicitly in the `factor` call:
+[CHECK] The level which is chosen for the *reference level* or *base level*. This is the level which is contrasted against and, by default, this is simply the first level alphabetically. We can specify that we want group 2 to be the base level by either using the `relevel` function or by providing the levels explicitly in the `factor` call:
 
 
 ```r
@@ -319,7 +319,7 @@ model.matrix(~ group)
 ## [1] "contr.treatment"
 ```
 
-### Where Does model.matrix Look For The Data?
+#### Where does model.matrix look for the data?
 
 The `model.matrix` function will grab the variable from the R environment, unless the data is explicitly provided as a dataframe to the `data` argument:
 
