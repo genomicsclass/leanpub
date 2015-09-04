@@ -1,6 +1,5 @@
 course1 introduction
 course1 getting_started
-course1 dplyr_intro
 
 #chapter 1 - Inference
 
