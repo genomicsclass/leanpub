@@ -15,7 +15,7 @@ R markdown document for this section available [here](https://github.com/genomic
 Now we are ready to see how matrix algebra can be useful when analyzing data. We start with some simple examples and eventually arrive at the main one: how to write linear models with matrix algebra notation and solve the least squares problem.
 
 
-### The Average
+#### The average
 
 To compute the sample average and variance of our data, we use these formulas {$$}\bar{Y}=\frac{1}{N} Y_i{/$$} and {$$}\mbox{var}(Y)=\frac{1}{N} \sum_{i=1}^N (Y_i - \bar{Y})^2{/$$}. We can represent these with matrix multiplication. First, define this {$$}N \times 1{/$$} matrix made just of 1s:
 
@@ -71,7 +71,7 @@ print(barY)
 ## [1,] 68.68407
 ```
 
-### The Variance
+#### The variance
 
 As we will see later, multiplying the transpose of a matrix with another is very common in statistics. In fact, it is so common that there is a function in R:
 
@@ -132,7 +132,7 @@ var(y) * (N-1) / N
 ```
 gives us the same answer as our matrix multiplication example.
 
-### Linear Models
+#### Linear models
 
 Now we are ready to put all this to use. Let's start with Galton's example. If we define these matrices:
  
@@ -209,9 +209,9 @@ or simply:
 which is a much simpler way to write it. 
 
 
-**Optional Homework**: write out the matrices multiplication and convince yourself that this is the case.
+[CHECK] **Optional Homework**: write out the matrices multiplication and convince yourself that this is the case.
 
-The least squares equation becomes simpler as well as it is the following cross-product:
+The least squares equation becomes simpler as well since it is the following cross-product:
 
 {$$}
 (\mathbf{Y}-\mathbf{X}\boldsymbol{\beta})^\top
@@ -264,7 +264,7 @@ lines(newx,fitted,col=2)
 
 ![Galton's data with fitted regression line.](images/R/matrix_algebra_examples-tmp-galton_regression_line-1.png) 
 
-This {$$}\hat{\boldsymbol{\beta}}=(\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{Y}{/$$} is one of the most widely used results in data analysis. One of the advantages of this approach is that we can use it in many different situations.  For example, in our falling object problem. 
+This {$$}\hat{\boldsymbol{\beta}}=(\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{Y}{/$$} is one of the most widely used results in data analysis. One of the advantages of this approach is that we can use it in many different situations.  For example, in our falling object problem: 
  
 
 ```r
@@ -308,7 +308,7 @@ betahat
 
 The Tower of Pisa is about 56 meters high, there is no initial velocity and half the constant of gravity is 9.8/2=4.9.
 
-### The `lm` Function
+#### The `lm` Function
 R has a very convenient function that fits these models. We will learn more about this function later, but here is a preview:
 
 
