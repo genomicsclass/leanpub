@@ -63,7 +63,7 @@ c
 Having described matrix notation, we will explain the operation we perform with them. For example, above we have matrix multiplication and we also have a symbol representing the inverse of a matrix. The importance of these operations and others will become clear once we present specific examples related to data analysis.
  
 
-### Multiplying By A Scalar
+#### Multiplying by a scalar
 
 We start with one of the simplest operations: scalar multiplication. If {$$}a{/$$} is scalar and {$$}\mathbf{X}{/$$} is a matrix, then:
 
@@ -106,9 +106,9 @@ print(a*X)
 ```
 
 
-### The Transpose
+#### The transpose
 
-The transpose is an operation that simply changes columns to rows. We use either a {$$}\top{/$$} to denote a transpose.He re is the technical definition. If X is as we defined it above, here is the transpose which will be {$$}p\times N{/$$}:
+The transpose is an operation that simply changes columns to rows. We use either a {$$}\top{/$$} to denote a transpose. The technical definition is as follows: if X is as we defined it above, here is the transpose which will be {$$}p\times N{/$$}:
 
 
 {$$}
@@ -153,7 +153,7 @@ t(X)
 ## [3,]    9   10   11   12
 ```
 
-### Matrix Multiplication
+#### Matrix multiplication
 
 We start by describing the matrix multiplication shown in the original system of equations example:
 
@@ -248,7 +248,7 @@ Here is the general definition of matrix multiplication of matrices {$$}A{/$$} a
 You can only take the product if the number of columns of the first matrix {$$}A{/$$} equals the number of rows of the second one {$$}X{/$$}. Also, the final matrix has the same row numbers as the first {$$}A{/$$} and the same column numbers as the second {$$}X{/$$}. 
 After you study the example below, you may want to come back and re-read the sections above.
 
-### The Identity Matrix
+#### The identity matrix
 
 The identity matrix is analogous to the number 1: if you multiply the identity matrix by another matrix, you get the same matrix. For this to happen we need it to be like this:
 
@@ -290,7 +290,7 @@ If you follow the matrix multiplication rule above, you notice this works out:
 {/$$}
 
 
-**Optional Homework**: use what you know about matrix multiplication to convince yourself that the above is correct.
+[CHECK] **Optional Homework**: use what you know about matrix multiplication to convince yourself that the above is correct.
 
 In R you can form an identity matrix this way:
 
@@ -308,7 +308,7 @@ diag(n)
 ## [5,]    0    0    0    0    1
 ```
 
-### The Inverse
+#### The inverse
 
 The inverse of matrix of {$$}X{/$$}, denoted with {$$}X^{-1}{/$$} has the property that, when multiplied, gives you the identity {$$}X^{-1}X=I{/$$}. Keep in mind that not all matrices have inverses. For example, a {$$}2\times 2{/$$} matrix with 1s in all its entries does not have an inverse. 
 
