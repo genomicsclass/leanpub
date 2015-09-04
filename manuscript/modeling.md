@@ -50,8 +50,8 @@ prop.table(tab)
 
 ```
 ## winners
-##     0     1     2     3     4     5 
-## 0.593 0.312 0.078 0.015 0.001 0.001
+##     0     1     2     3 
+## 0.614 0.284 0.093 0.009
 ```
 
 For cases like this, where {$$}N{/$$} is very large, but {$$}p{/$$} is small enough to make {$$}N \times p{/$$} (call it {$$}\lambda{/$$}) a number between 0 and 10, then {$$}S{/$$} can be shown to follow a Poisson a distribution which has a simple parametric form:
@@ -280,9 +280,11 @@ with {$$}B{/$$} the _beta function_ and {$$}d_1{/$$} and {$$}d_2{/$$} are called
 ### Modeling The Variance
 
 In a later module we will learn about empirical Bayes approaches to improve estimates of variance. In these cases it is mathematically convenient (see Bayesian book) to model the distribution of the variance {$$}\sigma^2{/$$}. The hierarchical model (described here [Smyth 2004]) to the mean and variance implies (see paper for details) that the sample standard deviation of genes follows scaled F-statistics:
+
 {$$}
 s^2 \sim s_0^2 F_{d,d_0}
 {/$$}
+
 with {$$}d{/$$} the degrees of freedom involved in computing {$$}s^2{/$$} ; For example, in a case comparing 3 versus 3, the degrees of freedom would be 4. This leaves two free parameters to adjust to the data. Here {$$}d{/$$} will control the location and {$$}s_0{/$$} will control the scale. Here are some examples plotted on top of the histogram from the real data:
 
 
@@ -310,16 +312,16 @@ Now which {$$}s_0{/$$} and {$$}d{/$$} fit our data best? This is a rather advanc
 library(limma)
 estimates=fitFDist(biosds^2,11)
 
-theoretical<- sqrt(qf((seq(0,999)+0.5)/1000,11,estimates$df2)*estimates$scale)
+theoretical<- sqrt(qf((seq(0,999)+0.5)/1000, 11, estimates$df2)*estimates$scale)
 observed <- biosds
 
 mypar(1,2)
 qqplot(theoretical,observed)
 abline(0,1)
-tmp=hist(biosds,main=paste("s_0 =",signif(estimates[[1]],2),"d =",signif(estimates[[2]],2)),xlab="sd",ylab="density",freq=FALSE,nc=100,xlim=c(0,1),ylim=c(0,9))
+tmp=hist(biosds,main=paste("s_0 =", signif(estimates[[1]],2), "d =", signif(estimates[[2]],2)), xlab="sd", ylab="density", freq=FALSE, nc=100, xlim=c(0,1), ylim=c(0,9))
 dd=df(sds^2/estimates$scale,11,estimates$df2)
 k=sum(tmp$density)/sum(dd) ##a normalizing constant to assure same area in plot
-lines(sds,dd*k,type="l",col=2,lwd=2)
+lines(sds, dd*k, type="l", col=2, lwd=2)
 ```
 
 ![qq-plot (left) and density (right) demonstrate that model fits data well.](images/R/modeling-tmp-variance_model_fit-1.png) 
