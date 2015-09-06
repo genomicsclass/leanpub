@@ -6,12 +6,17 @@ cd ../labs/$1
 
 ## Before we knit we create  temporary file
 ## and add a link to the Rmd markdown after every subsection
+## but only if not an exercise file
 
-linetoadd="R markdown document for this section available \[here]\(https\:\/\/github.com\/genomicsclass\/labs\/tree\/master\/$1\/$2.Rmd\)."
+if [[ ! "$2" =~ "_exercises" ]]
+then
+	linetoadd="R markdown document for this section available \[here]\(https\:\/\/github.com\/genomicsclass\/labs\/tree\/master\/$1\/$2.Rmd\)."
 
-sed '/^## /a \
+	sed '/^## /a \
 \'$'\n@@@@@@
 ' $2.Rmd | sed 's/@@@@@@/'"$linetoadd"'/' > $2-tmp.Rmd
+
+fi
 
 ## Now we knit
 Rscript --no-init-file -e "library(knitr); knit('$2-tmp.Rmd')"
@@ -59,9 +64,16 @@ for (i=1;i<=n;++i){
 }
 print line;
 }
-' $2.md > ../../leanpub/manuscript/$2.md
+' $2.md > $2-tmp.md
 
-#rm $2.md
+if [[ "$2" =~ "_exercises" ]]
+	./convert2exercise $2-tmp.md > ../../leanpub/manuscript/$2.md
+else
+	mv $2-tmp.md ../../leanpub/manuscript/$2.md
+fi
+
+rm $2.md
+
 cd ../../leanpub
 
 
