@@ -71,7 +71,18 @@ rm $2.md
 
 if [[ "$2" =~ "_exercises" ]]
 then
-	../../leanpub/convert2exercise.sh $2-tmp.md > $2.md
+	awk '
+	BEGIN {start=0; flag=1}
+	{
+	if ($0 ~ "## Exercises") { start = 1 } 
+	if ($0 ~ "```r") flag=0
+	if (start && flag) 
+		print "X>" $0
+	else 
+		print $0
+		if ($0 == "```") flag=1
+	}
+	' $2-tmp.md > $2.md
 else 
 	mv $2-tmp.md $2.md
 fi
