@@ -69,7 +69,7 @@ print line;
 
 if [[ "$2" =~ "_exercises" ]]
 then
-	../../leanpub/convert2exercise $2-tmp.md > ../../leanpub/manuscript/$2.md
+	../../leanpub/convert2exercise.sh $2-tmp.md > ../../leanpub/manuscript/$2.md
 else
 	mv $2-tmp.md ../../leanpub/manuscript/$2.md
 fi
