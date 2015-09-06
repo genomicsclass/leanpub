@@ -1,10 +1,10 @@
 course1 introduction
-#course1 getting_started
-#course1_exercises getting_started_exercises
+course1 getting_started
+course1_exercises getting_started_exercises
 
 #chapter 1 - Inference
 
-#course1 random_variables
+course1 random_variables
 #course1 populations_and_samples 
 #course1 clt_and_t-distribution	 
 #course1 clt_in_practice
