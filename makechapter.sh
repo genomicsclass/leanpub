@@ -85,16 +85,17 @@ then
 		if ($0 == "```") flag=1
 	}
 	' $2-tmp.md > $2.md
+	rm $2-tmp.md
 else 
 	printf "NO"
 	mv $2-tmp.md $2.md
 fi
 
+
 ##mv to leanpub and move over the final md
 
 cd ../../leanpub
-mv ../labs/$1/$2.md ./
-
+mv ../labs/$1/$2.md ./manuscript
 
 ## move the images into leanpub directory and add to github
 
