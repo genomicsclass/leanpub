@@ -68,6 +68,7 @@ print line;
 ' $2.md > $2-tmp.md
 
 if [[ "$2" =~ "_exercises" ]]
+then
 	./convert2exercise $2-tmp.md > ../../leanpub/manuscript/$2.md
 else
 	mv $2-tmp.md ../../leanpub/manuscript/$2.md
