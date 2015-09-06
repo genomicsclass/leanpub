@@ -67,6 +67,8 @@ print line;
 }
 ' $2.md > $2-tmp.md
 
+pwd
+
 if [[ "$2" =~ "_exercises" ]]
 then
 	../../leanpub/convert2exercise.sh $2-tmp.md > ../../leanpub/manuscript/$2.md
