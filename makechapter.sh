@@ -16,7 +16,7 @@ then
 \'$'\n@@@@@@
 ' $2.Rmd | sed 's/@@@@@@/'"$linetoadd"'/' > $2-tmp.Rmd
 else
-	cp $2 $2-tmp.Rmd
+	cp $2.Rmd $2-tmp.Rmd
 fi
 
 ## Now we knit
