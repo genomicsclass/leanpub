@@ -67,18 +67,19 @@ print line;
 }
 ' $2.md > $2-tmp.md
 
-pwd
+rm $2.md
 
 if [[ "$2" =~ "_exercises" ]]
 then
-	../../leanpub/convert2exercise.sh $2-tmp.md > ../../leanpub/manuscript/$2.md
-else
-	mv $2-tmp.md ../../leanpub/manuscript/$2.md
+	../../leanpub/convert2exercise.sh $2-tmp.md > $2.md
+else 
+	mv $2-tmp.md $2.md
 fi
 
-rm $2.md
+##mv to leanpub and move over the final md
 
 cd ../../leanpub
+mv ../labs/$1/$2.md ./
 
 
 ## move the images into leanpub directory and add to github
