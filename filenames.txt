@@ -1,5 +1,5 @@
 #course1 introduction
-#course1 getting_started
+course1 getting_started
 course1_exercises getting_started_exercises
 
 #chapter 1 - Inference
