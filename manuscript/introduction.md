@@ -1,6 +1,15 @@
 # Introduction
 
-The unprecedented advance in digital technology during the second half of the 20th century has produced a measurement revolution that is transforming science. In the life sciences, data analysis is now part of practically every research project. Genomics, in particular, is being driven by new measurement technologies that permit us to observe molecular entities for the first time and that are leading to discoveries analogous to discovering the microorganismand many others permitted by the invention of the microscope. Choice examples of these technologies are microarrays and next generation sequencing technology.  
+The unprecedented advance in digital technology during the second half
+of the 20th century has produced a measurement revolution that is
+transforming science. In the life sciences, data analysis is now part
+of practically every research project. Genomics, in particular, is
+being driven by new measurement technologies that permit us to observe
+molecular entities for the first time and that are leading to
+discoveries analogous to discovering the microorganism and many others
+permitted by the invention of the microscope. Choice examples of these
+technologies are microarrays and next generation sequencing
+technology. 
 
 Scientific fields that have traditionally relied upon simple data analysis techniques have been turned on their heads by these technologies. For example,  in the past, researchers would measure the transcription levels of a single gene of interest. Today, it is possible to measure all 20,000+ genes at once.  Advances such as these have brought about a shift from hypothesis to discovery-driven research. However, interpreting information extracted from these massive and complex datasets requires sophisticated statistical skills as one can easily be fooled by patterns arising by chance. This has greatly elevated the importance of statistics and data analysis in this field.
 
