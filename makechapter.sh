@@ -69,8 +69,10 @@ print line;
 
 rm $2.md
 
+### If exercises add the X>
 if [[ "$2" =~ "_exercises" ]]
 then
+	printf "YES"
 	awk '
 	BEGIN {start=0; flag=1}
 	{
@@ -84,6 +86,7 @@ then
 	}
 	' $2-tmp.md > $2.md
 else 
+	printf "NO"
 	mv $2-tmp.md $2.md
 fi
 
