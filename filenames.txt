@@ -30,6 +30,7 @@ course2 matrix_operations
 course2 matrix_algebra_examples
 
 ### Chapter 5: Linear Models
+course2 linear_models_intro
 course2 expressing_design_formula
 course2 linear_models_in_practice
 course2 standard_errors
