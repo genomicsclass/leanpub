@@ -30,6 +30,7 @@ matrix_operations.md
 matrix_algebra_examples.md
 
 ### Chapter 5: Linear Models
+linear_models_intro.md
 expressing_design_formula.md
 linear_models_in_practice.md
 standard_errors.md
@@ -53,6 +54,7 @@ hierarchical_models.md
 ### Chapter 8: Distance and dimension reduction
 distance.md
 pca_motivation.md
+svd.md
 projections.md
 rotations.md
 mds.md
