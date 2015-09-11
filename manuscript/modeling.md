@@ -9,11 +9,11 @@ title: Statistical Models
 
 "All models are wrong, but some are useful" -George E. P. Box
 
-When we see a p-value in the literature it means a probability distribution of some sort was used to quantify the null hypothesis. Many times deciding which probability distribution to use is relatively straightforward. For example, in the tea tasting challenge, any p-values in the scientific literature are based on sample averages, or least squares estimates from a linear model, and make use of the CLT to approximate the null distribution of their statistic as normal.
+When we see a p-value in the literature, it means a probability distribution of some sort was used to quantify the null hypothesis. Many times deciding which probability distribution to use is relatively straightforward. For example, in the tea tasting challenge any p-values in the scientific literature are based on sample averages, or least squares estimates from a linear model, and make use of the CLT to approximate the null distribution of their statistic as normal.
 
 The CLT is backed by theoretical results that guarantee that the approximation is accurate. However, we cannot always use this approximation, such as when our sample size is too small. In a previous module we described how the sample average can be approximated with t-distribution when the population data is approximately normal. However, there is no theoretical backing for this assumption. We are now *modeling*. In the case of height, we know from experience that this turns out to be a very good model. 
 
-But this does not imply that every dataset we collect will follow a normal distribution. Examples are: coin tosses, the number of people who win the lottery, and US incomes. The normal is not the only parametric distribution that is available from modeling. Here we describe some useful parametric distributions and their use in genomics. For many more please consult the following books: [CITE books]
+But this does not imply that every dataset we collect will follow a normal distribution. Some examples are: coin tosses, the number of people who win the lottery, and US incomes. The normal is not the only parametric distribution that is available from modeling. Here we describe some useful parametric distributions and their use in genomics. For many more please consult the following books: [CITE books]
 
 ## The Binomial Distribution
 
@@ -50,11 +50,11 @@ prop.table(tab)
 
 ```
 ## winners
-##     0     1     2     3     4 
-## 0.630 0.288 0.064 0.017 0.001
+##     0     1     2     3 
+## 0.606 0.307 0.074 0.013
 ```
 
-For cases like this, where {$$}N{/$$} is very large, but {$$}p{/$$} is small enough to make {$$}N \times p{/$$} (call it {$$}\lambda{/$$}) a number between 0 and 10, then {$$}S{/$$} can be shown to follow a Poisson a distribution which has a simple parametric form:
+For cases like this, where {$$}N{/$$} is very large, but {$$}p{/$$} is small enough to make {$$}N \times p{/$$} (call it {$$}\lambda{/$$}) a number between 0 and 10, then {$$}S{/$$} can be shown to follow a Poisson distribution which has a simple parametric form:
 
 {$$}
 \mbox{Pr}(S=k)=\frac{\lambda^k \exp{-\lambda}}{k!}
@@ -85,7 +85,7 @@ splot(log2(lambdas),log2(y/x),subset=ind)
 Note that for lower values of lambda there is much more variability and if we were to report anything with a fold change of 2 or more, the number of false positives would be quite high for low.
 
 
-## NGS Experiments And The Poisson Distribution
+## NGS Experiments and the Poisson Distribution
 
 R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/modeling.Rmd).
 
@@ -132,7 +132,7 @@ abline(0,1,col=2,lwd=2)
 
 ![Variance versus mean plot. Summaries were obtained from the RNAseq data.](images/R/modeling-tmp-var_vs_mean-1.png) 
 
-Note that the variability plotted here includes biological variability, which the motivation for the Poisson does not include. In a later module we learn about the negative binomial distribution which combines the sampling variability of a Poisson and biological variability. The negative binomial has two parameters and permits more flexibility for count data. The Poisson is a special case of the negative binomial distribution.
+The variability plotted here includes biological variability, which the motivation for the Poisson does not include. In a later module we learn about the negative binomial distribution which combines the sampling variability of a Poisson and biological variability. The negative binomial has two parameters and permits more flexibility for count data. The Poisson is a special case of the negative binomial distribution.
 
 
 ## Maximum Likelihood Estimation
@@ -207,7 +207,7 @@ abline(0,1)
 ![Observed counts versus theoretical Poisson counts.](images/R/modeling-tmp-obs_versus_theoretical_Poisson_count-1.png) 
 
 
-## Distributions For Positive Continuous Values
+## Distributions for Positive Continuous Values
 
 R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/modeling.Rmd).
 
@@ -277,7 +277,7 @@ f(x,d_1,d_2)=\frac{1}{B\left( \frac{d_1}{2},\frac{d_2}{2}\right)}
 
 with {$$}B{/$$} the _beta function_ and {$$}d_1{/$$} and {$$}d_2{/$$} are called the degrees of freedom for reasons having to do with how it arises in ANOVA. A third parameter is sometimes used with the F-distribution, which is a scale parameter.
 
-### Modeling The Variance
+#### Modeling the Variance
 
 In a later module we will learn about empirical Bayes approaches to improve estimates of variance. In these cases it is mathematically convenient (see Bayesian book) to model the distribution of the variance {$$}\sigma^2{/$$}. The hierarchical model (described here [Smyth 2004]) to the mean and variance implies (see paper for details) that the sample standard deviation of genes follows scaled F-statistics:
 
@@ -285,7 +285,7 @@ In a later module we will learn about empirical Bayes approaches to improve esti
 s^2 \sim s_0^2 F_{d,d_0}
 {/$$}
 
-with {$$}d{/$$} the degrees of freedom involved in computing {$$}s^2{/$$} ; For example, in a case comparing 3 versus 3, the degrees of freedom would be 4. This leaves two free parameters to adjust to the data. Here {$$}d{/$$} will control the location and {$$}s_0{/$$} will control the scale. Here are some examples plotted on top of the histogram from the real data:
+with {$$}d{/$$} the degrees of freedom involved in computing {$$}s^2{/$$} . For example, in a case comparing 3 versus 3, the degrees of freedom would be 4. This leaves two free parameters to adjust to the data. Here {$$}d{/$$} will control the location and {$$}s_0{/$$} will control the scale. Here are some examples plotted on top of the histogram from the real data:
 
 
 ```r
