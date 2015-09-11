@@ -58,7 +58,7 @@ PC2 = s$d[2]*s$v[,2]
 plot(PC1,PC2,xlim=c(-3,3),ylim=c(-3,3))
 ```
 
-![Second PC plotted against first PC for the twins height data](images/R/svd-tmp-unnamed-chunk-2-1.png) 
+![Second PC plotted against first PC for the twins height data](images/R/svd-tmp-PCAplot-1.png) 
 
 
 ### How is this useful?
@@ -104,7 +104,7 @@ If we look at the sum of squares of {$$}\mathbf{UD}{/$$} we see that the last fe
 plot(s$d)
 ```
 
-![Entries of the diagonal of D for gene expression data.](images/R/svd-tmp-unnamed-chunk-6-1.png) 
+![Entries of the diagonal of D for gene expression data.](images/R/svd-tmp-D_entries-1.png) 
 
 This implies that the last columns of `V` have a very small effect on the reconstruction of `Y`. To see this consider the extreme example in which the last entry of {$$}V{/$$} is 0. In this case the last column of {$$}V{/$$} is not needed at all. Because of the way the SVD is created, the columns of {$$}V, have less and less influence on the reconstruction of {/$$}Y{$$}. You commonly see this described as "explaining less varinace". This implies that for a large matrix, by the time you get to the last columns it is possible that there is not much left to "explain" As an example, we will look at what happens if we remove the four last column?
 
@@ -129,7 +129,7 @@ By looking at {/$$}d{$$}, we can see that in this particular dataset we can obta
 plot(s$d^2/sum(s$d^2)*100,ylab="Percent variability explained")
 ```
 
-![Percent variance explained by each principal component of gene expression data.](images/R/svd-tmp-unnamed-chunk-8-1.png) 
+![Percent variance explained by each principal component of gene expression data.](images/R/svd-tmp-percent_var_explained-1.png) 
 
 We can also make cumulative plot
 
@@ -138,7 +138,7 @@ We can also make cumulative plot
 plot(cumsum(s$d^2)/sum(s$d^2)*100,ylab="Percent variability explained",ylim=c(0,100),type="l")
 ```
 
-![Cumulative variance explained by principal components of gene expression data.](images/R/svd-tmp-unnamed-chunk-9-1.png) 
+![Cumulative variance explained by principal components of gene expression data.](images/R/svd-tmp-cum_variance_explained-1.png) 
 
 We see that although we start with just 125 dimensions we can approximate {/$$}Y{$$}:
 
@@ -150,7 +150,7 @@ resid <- Y - Yhat
 boxplot(resid,ylim=quantile(Y,c(0.01,0.99)),range=0)
 ```
 
-![Residuals from comparing a reconstructed gene expression table using 95 PCs to the original data with 189 dimensions.](images/R/svd-tmp-unnamed-chunk-10-1.png) 
+![Residuals from comparing a reconstructed gene expression table using 95 PCs to the original data with 189 dimensions.](images/R/svd-tmp-reconstruction_with_less_dimensions-1.png) 
 
 Therefore, by using only half as many dimensions we retain most of the variability in our data:
 
