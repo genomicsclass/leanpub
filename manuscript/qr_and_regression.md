@@ -15,7 +15,7 @@ R markdown document for this section available [here](https://github.com/genomic
 We have seen that in order to calculate the LSE, we need to invert a matrix. We have shown how to use solve. However, solve is not a stable solution. When coding LSE computation, we use the QR decomposition.
 
 
-### Inverting {$$}\mathbf{X^\top X}{/$$}
+#### Inverting {$$}\mathbf{X^\top X}{/$$}
 
 
 To minimize the RSS: 
@@ -39,7 +39,7 @@ The solution is:
 
 Thus, we need to compute {$$}(\mathbf{X}^\top \mathbf{X})^{-1}{/$$}
 
-### `solve` Is Unstable
+#### `solve` is unstable
 
 Here we construct an extreme case:
 
@@ -78,7 +78,7 @@ log10(crossprod(X))
 
 Note the difference of several orders of magnitude. On a digital computer, we have a limited range of numbers which makes some numbers seem like 0, which in turn leads to division by 0 errors.
 
-### The Factorization 
+#### The factorization 
 
 The QR factorization is based on a mathematical result that tells us that we can decompose any full rank {$$}N\times p{/$$} matrix {$$}\mathbf{X}{/$$} as:
 
@@ -93,7 +93,7 @@ with:
 
 Upper triangular matrices are very convenient for solving system of equations.
 
-### Example Of Upper Triangular Matrix
+#### Example of upper triangular matrix
 
 In the example below, the matrix on the left is upper triangular: it only has 0s below the diagonal.
 This facilitates solving the system of equations greatly:
@@ -120,7 +120,7 @@ c\\
 
 We immediately know that {$$}c=1{/$$}, which implies that {$$}b+2=4{/$$}. This in turn suggests {$$}b=2{/$$} and thus {$$}a+4-1=6{/$$} so {$$}a = 3{/$$}. Writing an algorithm to do this is straight-forward for any upper triangular matrix.
 
-### Finding LSE With QR 
+#### Finding LSE with QR 
 
 If we rewrite the equations of the LSE using {$$}\mathbf{QR}{/$$} instead of {$$}\mathbf{X}{/$$} we have:
 
@@ -177,7 +177,7 @@ QR <- qr(X)
 
 
 
-### Fitted Values
+#### Fitted values
 
 This factorization also simplifies the calculation for fitted values:
 
@@ -197,7 +197,7 @@ lines(x,fitted,col=2)
 
 <img src="images/R/qr_and_regression-tmp-unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
 
-### Standard Errors
+#### Standard errors
 
 To obtain the standard errors of the LSE we note that:
 
