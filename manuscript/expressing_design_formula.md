@@ -5,10 +5,6 @@ title: Expressing design formula in R
 
 
 
-# Linear Models
-
-Many of the models we use in data analysis can be presented using matrix algebra. We refer to these types of models as _linear models_. "Linear"" here does not refer to lines, but rather to linear combinations. The representations we describe are convenient because we can write models more succinctly and we have the matrix algebra mathematical machinery to facilitate computation. In this chapter we will describe in some detail how we use matrix algebra to represent and fit.
-
 ## The Design Matrix
 
 R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course2/expressing_design_formula.Rmd).
