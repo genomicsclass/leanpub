@@ -5,7 +5,7 @@ layout: page
 
 
 
-## Interactions And Contrasts
+## Interactions and Contrasts
 
 R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course2/interactions_and_contrasts.Rmd).
 
@@ -33,7 +33,7 @@ boxplot(spider$friction ~ spider$type * spider$leg,
 
 ![Comparison of friction coefficients of spiders' different leg pairs.](images/R/interactions_and_contrasts-tmp-spide_data-1.png) 
 
-### Initial Visual Inspection Of The Data
+#### Initial visual inspection of the data
 
 What we can immediately see are two trends: 
 
@@ -48,7 +48,7 @@ Alternative tests for comparing groups without transforming the values first are
 
 However, we will continue and show the different kinds of linear models using this dataset, setting aside the issue of different within-group variances.
 
-### A Linear Model With One Variable
+#### A linear model with one variable
 
 Just to remind ourselves about the simple two-group linear model, let's subset to the L1 leg pair, and run `lm`:
 
@@ -159,7 +159,7 @@ imagemat(X, main="Model matrix for linear model with one variable")
 
 ![Model matrix for linear model with one variable.](images/R/interactions_and_contrasts-tmp-model_matrix_image-1.png) 
 
-### Examining The Coefficients
+#### Examining the coefficients
 
 Now we will use a big chunk of code just to show how the coefficients from the linear model can be drawn as arrows. You wouldn't necessarily use this code in your daily practice, but it's helpful for visualizing what's going on in the linear model in your head.
 
@@ -181,9 +181,9 @@ legend("right",names(coefs),fill=cols,cex=.75,bg="white")
 
 ![Diagram of the coefficients in the linear model. The green arrow indicates the Intercept term, which rises from zero to the mean of the reference group (here the 'pull' samples). The orange arrow indicates the difference between the push group and the pull group, which is negative in this example. The circles show the individual samples, jittered horizontally to avoid overplotting.](images/R/interactions_and_contrasts-tmp-spider_main_coef-1.png) 
 
-### A Linear Model With Two Variables
+#### A linear model with two variables
 
-Now, we'll continue and examine the full dataset, including the observations from all leg pairs. In order to model both the leg pair differences and the push vs. pull difference, we need to include both terms in the formula. Let's see what kind of design matrix will be formed with two variables in the formula:
+Now we'll continue and examine the full dataset, including the observations from all leg pairs. In order to model both the leg pair differences and the push vs. pull difference, we need to include both terms in the formula. Let's see what kind of design matrix will be formed with two variables in the formula:
 
 
 ```r
@@ -259,7 +259,7 @@ summary(fitTL)
 ##   1.0539153  -0.7790071   0.1719216   0.1604921   0.2813382
 ```
 
-### Matrix Algebra Reminder
+#### Matrix algebra reminder
 
 We can do some quick matrix algebra to remind ourselves that the coefficients returned by `lm` are obtained with the following formula:
 
@@ -287,7 +287,7 @@ coefs
 ##   1.0539153  -0.7790071   0.1719216   0.1604921   0.2813382
 ```
 
-### Examining The Coefficients
+#### Examining the coefficients
 
 We can make the same plot as before, with arrows for each of the coefficients in the model. 
 
@@ -313,7 +313,7 @@ arrows(8+a,coefs[1]+coefs[5],8+a,coefs[1]+coefs[5]+coefs[2],lwd=3,col=cols[2],le
 legend("right",names(coefs),fill=cols,cex=.75,bg="white")
 ```
 
-![Diagram of the coefficients in the linear model. As before, the teal-green arrow represents the Intercept, which fits the mean of the reference group (here, the pull samples for leg L1). The purple, pink and yellow-green arrows represent differences between the three other leg groups and L1. The orange arrow represents the difference between the push and pull samples for all groups.](images/R/interactions_and_contrasts-tmp-spider_interactions-1.png) 
+![Diagram of the coefficients in the linear model. As before, the teal-green arrow represents the Intercept, which fits the mean of the reference group (here, the pull samples for leg L1). The purple, pink, and yellow-green arrows represent differences between the three other leg groups and L1. The orange arrow represents the difference between the push and pull samples for all groups.](images/R/interactions_and_contrasts-tmp-spider_interactions-1.png) 
 
 Because we have 8 groups and only 5 coefficients, the fitted means (the tips of the arrows) do not line up exactly with the mean of each group, like they did for the previous example of a two group linear model.
 
@@ -385,7 +385,7 @@ coefs[2]
 ## -0.7790071
 ```
 
-### Contrasting Coefficients
+#### Contrasting coefficients
 
 To introduce the concept of *contrasts*, first consider the comparisons which we can read off from the linear model summary:
 
@@ -555,7 +555,7 @@ L3vsL2.equiv$X
 ## [1] "contr.treatment"
 ```
 
-## A Linear Model With Interactions
+## A Linear Model with Interactions
 
 R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course2/interactions_and_contrasts.Rmd).
 
@@ -645,7 +645,7 @@ summary(fitX)
 coefs <- coef(fitX)
 ```
 
-### Examining The Coefficients
+#### Examining the coefficients
 
 Here is where the plot with arrows help us see what is going on with the interaction terms. The interaction terms (the yellow, brown and silver arrows), are extra terms which help us fit leg-pair-specific differences in the push vs. pull difference. The orange arrow now represents the push vs. pull difference for the reference leg pair, which is L1. If the interaction term is large, this means that the push vs. pull difference for that group is different than the push vs. pull difference in the reference leg pair.
 
@@ -680,7 +680,7 @@ legend("right",names(coefs),fill=cols,cex=.75,bg="white")
 
 ![Diagram of the coefficients in the linear model. In the design with interaction terms, the orange arrow now indicates the push vs pull difference only for the reference group (L1), while three new arrows (yellow, brown and grey) indicate the additionally push vs pull differences in the non-reference groups (L2, L3 and L4) with respect to the reference group.](images/R/interactions_and_contrasts-tmp-spider_interactions2-1.png) 
 
-### Contrasts
+#### Contrasts
 
 Again we will show how to combine coefficients from the model using *contrasts*. For some simple cases, we can use the contrast package. Suppose we want to know the push vs. pull effect for the L2 leg pair samples. We can see from the arrow plot that this is the orange arrow plus the yellow arrow. We can also specify this comparison with the `contrast` function:
 
@@ -710,7 +710,7 @@ coefs[2] + coefs[6]
 ```
 
 
-### Differences Of Differences
+#### Differences of differences
 
 As we mentioned above, the question of whether the push vs. pull difference is *different* in L2 compared to L1, is answered by a single term in the model: the `typepush:legL2` term corresponding to the yellow arrow in the plot. Similarly, we can test the L3 vs. L1 and L4 vs. L1 differences, straight from the summary table of the linear model:
 
@@ -746,7 +746,7 @@ summary(fitX)
 ## F-statistic: 188.3 on 7 and 274 DF,  p-value: < 2.2e-16
 ```
 
-### Difference Of Differences Not Involving The Reference Level
+#### Difference of differences not involving the reference level
 
 Suppose we want to know if the push vs. pull difference is *different* for the L3 leg pair vs. the L2 leg pair. Considering the arrows in the plot, the push vs. pull difference for a leg pair other then L1 is the `typepush` arrow plus the interaction term for that group.
 
@@ -799,9 +799,9 @@ coefs[7] - coefs[6]
 ##     -0.2798846
 ```
 
-### Testing All Differences Of Differences: Analysis Of Variance
+#### Testing all differences of differences: Analysis of variance
 
-Finally, suppose that we want to know if the push vs. pull difference is *different* across leg pairs in general. Here we are not comparing any two leg pairs in particular, but rather want to know if the three interaction terms which represent differences in the push vs. pull difference are larger than we would expect them to be; if the push vs pull difference was actually constant across the leg pairs.
+Finally, suppose that we want to know if the push vs. pull difference is *different* across leg pairs in general. Here we are not comparing any two leg pairs in particular, but rather want to know if the three interaction terms which represent differences in the push vs. pull difference are larger than we would expect them to be. We want to determine if the push vs pull difference was actually constant across the leg pairs.
 
 In statistics, such a question can be answered by an "analysis of variance", which is often abbreviated as *ANOVA*. The `anova` adds terms to the model in the sequence provided in the formula. With each additional term or set of terms, the function calculates the reduction in the sum of squares of the residuals. Let's first print this table and then examine the results in detail:
 
@@ -867,7 +867,7 @@ The p-value in the last column for the `type:leg` row can be interpreted as foll
 
 The [F distribution](http://en.wikipedia.org/wiki/F-distribution) has two parameters: one for the degrees of freedom of the numerator (the terms of interest) and one for the denominator (the residuals). In the case of the interactions row, this is 3, the number of interaction terms divided by 274, the number of samples minus the total number of coefficients.
 
-### A Different Specification Of The Same Model
+#### A different specification of the same model
 
 In this last section, we show an alternate way to specify the model where we suppose that each group has its own mean (that the push vs. pull effect is not the same for each leg pair). This specification is in some ways simpler, but it does not allow us to build the ANOVA table as above, because it does not split interaction terms out in the same way. Here we simply include a term for each unique combination of `type` and `leg`. We include a `0 +` in the formula because we do not want to include an intercept:
 
@@ -950,7 +950,7 @@ summary(fitG)
 coefs <- coef(fitG)
 ```
 
-### Examining The Coefficients
+#### Examining the coefficients
 
 Now we have eight arrows, one for each group. The arrow tips align directly with the mean of each group:
 
@@ -968,7 +968,7 @@ legend("right",names(coefs),fill=cols,cex=.75,bg="white")
 
 ![Diagram of the coefficients in the linear model, with each term representing the mean of a combination of leg and direction.](images/R/interactions_and_contrasts-tmp-estimated_group_variables-1.png) 
 
-### Simple Contrasts Using The Contrast package
+#### Simple contrasts using the contrast package
 
 While we cannot perform an F test with this formulation, we can easily contrast individual groups using the `contrast` function:
 
@@ -996,7 +996,7 @@ coefs[4] - coefs[3]
 ##      -0.618
 ```
 
-### Differences Of Differences When There Is No Intercept
+#### Differences of differences when there is no intercept
 
 We can also make pair-wise comparisons of the push vs. pull difference. For example, if we want to compare the push vs. pull difference in leg pair L3 vs. leg pair L2:
 
