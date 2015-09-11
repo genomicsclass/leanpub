@@ -37,7 +37,7 @@ randomData <- matrix(rnorm(n*m),m,n)
 nullpvals <- rowttests(randomData,g)$p.value
 ```
 
-### Volcano Plots
+#### Volcano Plots
 
 As we described above, reporting only p-values is a mistake when we can also report effect sizes. With high-throughput data, we can visualize the results by making a plot. The idea behind a _volcano plot_ is to show these for all features. In the y-axis we plot -log (base 10) p-values and on the x-axis we plot the effect size. By using - log (base 10), the "highly significant" features appear at the top of the plot. Using log also permits us to better distinguish between small and very small p-values, for example 0.01 and {$$}10^6{/$$}.  Here is the volcano plot for our results above:
 
@@ -49,11 +49,11 @@ plot(results$dm,-log10(results$p.value),
 
 <img src="images/R/eda_for_highthroughput-tmp-volcano_plot-1.png" title="plot of chunk volcano_plot" alt="plot of chunk volcano_plot"  />
 
-Many features with very small p-values but small effect sizes, as we see here, are sometimes indicative of problematic data.
+Many features with very small p-values, but small effect sizes as we see here, are sometimes indicative of problematic data.
 
-### p-value Histograms
+#### p-value Histograms
 
-Another plot we can make to get an overall idea of the results is to make histograms of p-values. Note that when we generate completely null data the histogram follows a uniform distribution (we will say more about this later). With our original data set we see a higher frequency of smaller p-values. 
+Another plot we can create to get an overall idea of the results is to make histograms of p-values. When we generate completely null data the histogram follows a uniform distribution (we will say more about this later). With our original data set we see a higher frequency of smaller p-values. 
 
 
 ```r
@@ -64,9 +64,9 @@ hist(pvals,ylim=c(0,1400))
 
 ![P-value histogram. We show a simulated case in which all null hypotheses are true (left) and p-values from the gene expression described above.](images/R/eda_for_highthroughput-tmp-pval-hist-1.png) 
 
-When we expect most hypothesis to be null and we don't see a uniform p-value distribution, it might be indicative of unexpected properties, such as correlated samples. 
+When we expect most hypothesis to be null and don't see a uniform p-value distribution, it might be indicative of unexpected properties, such as correlated samples. 
 
-Note that if we permute the outcomes and calculate p-values then, if the samples are independent, we should see a uniform distribution. With these data we do not:
+If we permute the outcomes and calculate p-values then, if the samples are independent, we should see a uniform distribution. With these data we do not:
 
 
 ```r
@@ -77,7 +77,7 @@ hist(permresults$p.value)
 
 ![Histogram obtained after permuting labels.](images/R/eda_for_highthroughput-tmp-pval-hist2-1.png) 
 
-### Data Boxplots and Histograms
+#### Data Boxplots and Histograms
 
 With high-throughput data we have thousands of measurements for each experimental unit. As mentioned earlier, this can help us detect quality issues. For example, if one sample has a completely different distribution than the rest, we might suspect there are problems. Although a complete change in distribution could be due to real biological differences, more often than not it is due to a technical problem. Here we load a large gene expression experiment available from Bioconductor. We "accidentally" use log instead of log2 on one of the samples.
 
@@ -121,9 +121,9 @@ shist(ge,unit=0.5)
 
 ![Smooth histograms for each sample.](images/R/eda_for_highthroughput-tmp-shist-1.png) 
 
-### MA Plot
+#### MA Plot
 
-Scatterplots and correlation are not the best tools to detect replication problems. Note, for example, that 1,2,3,4 and 100,200,300,400 are two lists with very different values yet have perfect correlation. A better measure of replication can be obtained from examining the differences between the values that should be the same. Therefore, a better plot is a rotation of the scatter plot containing the differences on the y-axis and the averages on the x-axis. This plot was originally named a Bland-Altman plot, but in the genomics world it is commonly referred to as an MA-plot. The name MA comes from plots of red log intensity minus (M) green intensities versus average (A) log intensities used with microarrays (MA) data.
+Scatterplots and correlation are not the best tools to detect replication problems. Note, for example, that 1,2,3,4 and 100,200,300,400 are two lists with very different values yet have perfect correlation. A better measure of replication can be obtained from examining the differences between the values that should be the same. Therefore, a better plot is a rotation of the scatterplot containing the differences on the y-axis and the averages on the x-axis. This plot was originally named a Bland-Altman plot, but in the genomics world it is commonly referred to as an MA-plot. The name MA comes from plots of red log intensity minus (M) green intensities versus average (A) log intensities used with microarrays (MA) data.
 
 
 ```r
