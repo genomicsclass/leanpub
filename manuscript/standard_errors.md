@@ -15,9 +15,9 @@ R markdown document for this section available [here](https://github.com/genomic
 We have shown how to find the least squares estimates with matrix algebra. These estimates are random variables as they are linear combinations of the data. For these estimates to be useful, we also need to compute their standard errors. Linear algebra also provides a powerful approach for this task. We provide several examples.
 
 
-### Falling Object
+#### Falling object
 
-It is useful to think about where randomness comes from. In our falling object example, randomness was introduced through measurement errors. Each time we rerun the experiment, a new set of measurement errors will be made. This implies that our data will change randomly, which in turn suggests that our estimates will change randomly. Our estimate of, for example, the gravitational constant will change every time we perform the experiment. The constant is fixed, but our estimates are not. To see this we can run a Monte Carlo simulation. Specifically, we will generate the data repeatedly and each time compute the estimate for the quadratic term.
+It is useful to think about where randomness comes from. In our falling object example, randomness was introduced through measurement errors. Each time we rerun the experiment, a new set of measurement errors will be made. This implies that our data will change randomly, which in turn suggests that our estimates will change randomly. For instance, our estimate of the gravitational constant will change every time we perform the experiment. The constant is fixed, but our estimates are not. To see this we can run a Monte Carlo simulation. Specifically, we will generate the data repeatedly and each time compute the estimate for the quadratic term.
 
 
 ```r
@@ -57,7 +57,7 @@ qqline(betahat)
 
 ![Distribution of estimated regression coefficients obtained from Monte Carlo simulated falling object data. The left is a histogram and on the right we have a qq-plot against normal theoretical quantiles.](images/R/standard_errors-tmp-regression_estimates_normally_distributed-1.png) 
 
-Because {$$}\hat{\beta}{/$$} is a linear combination of the data which we made normal in our simulation, it is also normal as seen in the qq-plot above. Also, the mean of the distribution is the true parameter {$$}-0.5g{/$$}, as confirmed by the Monte Carlo simulation performed above.
+Since {$$}\hat{\beta}{/$$} is a linear combination of the data which we made normal in our simulation, it is also normal as seen in the qq-plot above. Also, the mean of the distribution is the true parameter {$$}-0.5g{/$$}, as confirmed by the Monte Carlo simulation performed above.
 
 
 ```r
@@ -80,7 +80,7 @@ sd(betahat)
 
 Here we will show how we can compute the standard error without a Monte Carlo simulation.  Since in practice we do not know exactly how the errors are generated, we can't use the Monte Carlo approach.
 
-### Father And Son Heights
+#### Father and son heights
 
 In the father and son height examples, we have randomness because we have a random sample of father and son pairs. For the sake of illustration, let's assume that this is the entire population:
 
@@ -150,7 +150,7 @@ Other than that, this quantity does not have a useful interpretation in practice
 
 <a name="varcov"></a>
 
-### Variance Covariance Matrix
+#### Variance-covariance matrix
 
 As a first step we need to define the *variance-covariance matrix*, {$$}\boldsymbol{\Sigma}{/$$}. For a vector of random variables, {$$}\mathbf{Y}{/$$}, we define {$$}\boldsymbol{\Sigma}{/$$} as the matrix with the {$$}i,j{/$$} entry:
 
@@ -166,7 +166,7 @@ which implies that {$$}\boldsymbol{\Sigma} = \sigma^2 \mathbf{I}{/$$} with {$$}\
 
 Later, we will see a case, specifically the estimate coefficients of a linear model, {$$}\hat{\boldsymbol{\beta}}{/$$}, that has non-zero entries in the off diagonal elements of {$$}\boldsymbol{\Sigma}{/$$}. Furthermore, the diagonal elements will not be equal to a single value {$$}\sigma^2{/$$}.
 
-### Technical Note
+#### Technical note
 
 The standard approach to writing linear models either assumes the {$$}X{/$$} are fixed or that we are conditioning on them. Thus {$$}X\beta{/$$} has no variance as the {$$}X{/$$} is considered fixed. This is why we write {$$}\mbox{var}(Y_i) = \mbox{var}(\varepsilon_i)=\sigma^2{/$$}. This can cause confusion in practice because if you, for example, compute the following: 
 
@@ -202,7 +202,7 @@ Again, this is because we are not fixing `tt`.
 
 
 
-### Variance Of A Linear Combination 
+#### Variance of a linear combination 
 
 A useful result that linear algebra gives is that the variance covariance-matrix of a linear combination {$$}\mathbf{AY}{/$$} of {$$}\mathbf{Y}{/$$} can be computed as follows:
 
@@ -219,7 +219,7 @@ For example, if {$$}Y_1{/$$} and {$$}Y_2{/$$} are independent both with variance
 
 as we expect. We use this result to obtain the standard errors of the LSE (least squares estimate).
 
-### LSE Standard Errors
+#### LSE standard errors
 
 Note that {$$}\boldsymbol{\hat{\beta}}{/$$} is a linear combination of {$$}\mathbf{Y}{/$$}: {$$}\mathbf{AY}{/$$} with {$$}\mathbf{A}=\mathbf{(X^\top X)^{-1}X}^\top{/$$} so we can use the equation above to derive the variance of our estimates:
 
@@ -235,7 +235,7 @@ Note that {$$}\boldsymbol{\hat{\beta}}{/$$} is a linear combination of {$$}\math
 
 The diagonal of the square root of this matrix contains the standard error of our estimates. 
 
-### Estimating {$$}\sigma^2{/$$}
+#### Estimating {$$}\sigma^2{/$$}
 
 To obtain an actual estimate in practice from the formulas above, we need to estimate {$$}\sigma^2{/$$}. Previously we estimated the standard errors from the sample. However, the sample standard deviation of {$$}Y{/$$} is not {$$}\sigma{/$$} because {$$}Y{/$$} also includes variability introduced by the deterministic part of the model: {$$}\mathbf{X}\boldsymbol{\beta}{/$$}. The approach we take is to use the residuals. 
 
@@ -310,7 +310,7 @@ apply(betahat,2,sd)
 
 
 
-## Linear Combination Of Estimates
+## Linear Combination of Estimates
 
 R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course2/standard_errors.Rmd).
 
@@ -332,6 +332,36 @@ Using the above, we know how to compute the variance covariance matrix of {$$}\h
 
 R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course2/standard_errors.Rmd).
 
-We have shown how we can obtain standard errors for our estimates. However, as we learned in the first chapter, to perform inference we need to know the distribution of these random variables. The reason we went through the effort to compute the standard errors is because the CLT applies in linear models. If {$$}N{/$$} is large enough, then the LSE will be normally distributed with mean {$$}\boldsymbol{\beta}{/$$} and standard errors as described. For small samples, if the {$$}\varepsilon{/$$} are normally distributed, then the {$$}\hat{\beta}-\beta{/$$} follow a t-distribution. Proving this mathematically is rather advanced, but the results are extremely useful as it is how we construct p-values and confidence intervals in the context of linear models.
+We have shown how we can obtain standard errors for our estimates. However, as we learned in the first chapter, to perform inference we need to know the distribution of these random variables. The reason we went through the effort to compute the standard errors is because the CLT applies in linear models. If {$$}N{/$$} is large enough, then the LSE will be normally distributed with mean {$$}\boldsymbol{\beta}{/$$} and standard errors as described. For small samples, if the {$$}\varepsilon{/$$} are normally distributed, then the {$$}\hat{\beta}-\beta{/$$} follow a t-distribution. Proving this mathematically is rather advanced, but the results are extremely useful since it is how we construct p-values and confidence intervals in the context of linear models.
+
+## Code Versus Math
+
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course2/standard_errors.Rmd).
+
+The standard approach to writing linear models either assume the X are fixed or that we are conditioning on them. Thus  X*beta has no variance as the {$$}X{/$$} is considered fixed. This is why we write {$$}\mbox{var}(Y_i) = \mbox{var}(\varepsilon_i)=\sigma^2{/$$}. This can cause confusion in practice because if you, for example, compute the following: 
 
 
+```r
+x =  father.son$fheight
+beta =  c(34,0.5)
+var(beta[1]+beta[2]*x)
+```
+
+```
+## [1] 1.883576
+```
+
+it is nowhere near 0. This is an example in which we have to be careful in distinguishing code from math. The function var is simply computing the variance of the list we feed it, while the mathematical use of var is considering only quantities that are random variables. In the R code above, `x` is not fixed at all: we are letting it vary but when we write  {$$}\mboxv{var}(Y_i) = \sigma^2{/$$} we are imposing, mathematically, `x` to be fixed. Similarly if we use R to compute the variance of {$$}Y{/$$} in our object dropping example we obtain something very different than {$$}\sigma^2=1{/$$} (the known variance):
+
+
+```r
+n <- length(tt)
+y <- h0 + v0*tt  - 0.5*g*tt^2 + rnorm(n,sd=1)
+var(y)
+```
+
+```
+## [1] 315.3156
+```
+
+Again, this is because we are not fixing `tt`. 
