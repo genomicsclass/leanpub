@@ -4,16 +4,23 @@ layout: page
 ---
 
 
+
 ## Populations, Samples and Estimates 
 
 R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/populations_and_samples.Rmd).
-
 
 Now that we have introduced the idea of a random variable, a null distribution, and a p-value, we are ready to describe the mathematical theory that permits us to compute p-values in practice. We will also learn about confidence intervals and power calculations. 
 
 #### Population parameters
 
-A first step in statistical inference is to understand what population you are interested in. In the mouse weight example, we have two populations: female mice on control diets and female mice on high fat diets, with weight being the outcome of interest. We consider this population to be fixed, and the randomness comes from the sampling. One reason we have been using this dataset as an example is because we happen to have the weights of all the mice of this type. Here we download and read-in this dataset:
+A first step in statistical inference is to understand what population
+you are interested in. In the mouse weight example, we have two
+populations: female mice on control diets and female mice on high fat
+diets, with weight being the outcome of interest. We consider this
+population to be fixed, and the randomness comes from the
+sampling. One reason we have been using this dataset as an example is
+because we happen to have the weights of all the mice of this
+type. Here we download and read in this dataset:
 
 
 ```r
@@ -60,7 +67,7 @@ The mean:
 
 The variance:
 
-{$$}\sigma_X^2 = \frac{1}{m}\sum_{i=1}^m (x_i-\mu_x)^2 \mbox{ and } \sigma_Y^2 = \frac{1}{n} \sum_{i=1}^n (y_i-\mu_y)^2{/$$}
+{$$}\sigma_X^2 = \frac{1}{m}\sum_{i=1}^m (x_i-\mu_X)^2 \mbox{ and } \sigma_Y^2 = \frac{1}{n} \sum_{i=1}^n (y_i-\mu_Y)^2{/$$}
 
 with the standard deviation being the square root of the variance. We refer to such quantities that can be obtained from the population as _population parameters_. The question we started out asking can now be written mathematically: is {$$}\mu_Y - \mu_X = 0{/$$} ? 
 
@@ -68,7 +75,13 @@ Although in our illustration we have all the values and can check if this is tru
 
 #### Sample estimates
 
-In the previous chapter, we obtained samples of 12 mice from each population. We represent data from samples with capital letters to indicate that they are random. This is common practice in statistics, although it is not always followed. So the samples are {$$}X_1,\dots,X_M{/$$} and {$$}Y_1,\dots,Y_N{/$$} and, in this case, {$$}N=M=12{/$$}. In contrast, as we saw above, when we list out the values of the population, which are set and not random, we use small caps.
+In the previous chapter, we obtained samples of 12 mice from each
+population. We represent data from samples with capital letters to
+indicate that they are random. This is common practice in statistics,
+although it is not always followed. So the samples are {$$}X_1,\dots,X_M{/$$}
+and {$$}Y_1,\dots,Y_N{/$$} and, in this case, {$$}N=M=12{/$$}. In contrast, as we
+saw above, when we list out the values of the population, which are
+set and not random, we use lower-case letters.
 
 Since we want to know if {$$}\mu_Y - \mu_X{/$$} is 0, we consider the sample version: {$$}\bar{Y}-\bar{X}{/$$}  with 
 
@@ -77,4 +90,14 @@ Since we want to know if {$$}\mu_Y - \mu_X{/$$} is 0, we consider the sample ver
 \mbox{ and }\bar{Y}=\frac{1}{N} \sum_{i=1}^N Y_i.
 {/$$}
 
-Note that this difference of averages is also a random variable. Previously we learned about the behavior of random variables with an exercise that involved repeatedly sampling from the original distribution. Of course, this is not an exercise that we can execute in practice. In this particular case it would involve buying 24 mice over and over again. Here we described the mathematical theory that mathematically relates {$$}\bar{X}{/$$} to {$$}\mu_X{/$$} and {$$}\bar{Y}{/$$} to {$$}\mu_Y{/$$}, that will in turn help us understand the relationship between {$$}\bar{Y}-\bar{X}{/$$}  and {$$}\mu_Y - \mu_X{/$$}. Specifically, we will describe how the Central Limit Theorem permits us to use an approximation to answer this question as well as the widely used t-distribution.
+Note that this difference of averages is also a random
+variable. Previously we learned about the behavior of random variables
+with an exercise that involved repeatedly sampling from the original
+distribution. Of course, this is not an exercise that we can execute
+in practice. In this particular case it would involve buying 24 mice
+over and over again. Here we described the mathematical theory that
+mathematically relates {$$}\bar{X}{/$$} to {$$}\mu_X{/$$} and {$$}\bar{Y}{/$$} to {$$}\mu_Y{/$$},
+that will in turn help us understand the relationship between
+{$$}\bar{Y}-\bar{X}{/$$}  and {$$}\mu_Y - \mu_X{/$$}. Specifically, we will describe
+how the Central Limit Theorem permits us to use an approximation to
+answer this question as well as motivate the widely used t-distribution.
