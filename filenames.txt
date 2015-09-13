@@ -32,9 +32,9 @@
 
 
 #chapter 3 - Robust Statistics
-course1 robust_summaries
-course1 ranktest
-course1_exercises robust_summaries_exercises
+#course1 robust_summaries
+#course1 ranktest
+#course1_exercises robust_summaries_exercises
 
 ## Chapter 4 - Matrix Algebra
 course2 intro_using_regression
