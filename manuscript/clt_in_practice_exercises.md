@@ -104,11 +104,3 @@ A>    - B. These are two different assumptions. The t-distribution accounts for 
 A>    - C. The population data is probably not normally distributed so the t-distribution approximation is wrong.
 A>    - D. Neither assumption is useful. Both are wrong.
 A>
-A>
-A>
-A>
-A>
-A>
-A>  
-A>   
-A>   
