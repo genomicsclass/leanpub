@@ -39,5 +39,4 @@ A>
 A>6. One of the functions we will be using often is `sample`. Read the help file for sample using `?sample`. Now take a random sample of size 1 from the numbers 13 to 24 and report back the weight of the mouse represented by that row. Make sure to type `set.seed(1)` to ensure that everybody gets the same answer.
 A>
 A>
-A>
 A>  
