@@ -70,8 +70,8 @@ inference_for_highthroughput.md
 inference_for_highthroughput_exercises.md
 multiple_testing.md
 multiple_testing_exercises.md
-#course3 eda_for_highthroughput
-#course3_exercises eda_for_highthroughput_exercises
+eda_for_highthroughput.md
+eda_for_highthroughput_exercises.md
 
 ### Chapter 7: Statistical Modeling
 #course3 modeling
