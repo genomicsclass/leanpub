@@ -6,7 +6,7 @@ A>## Exercises
 A>
 A>With these exercises we hope to help you further grasp the concept that p-values are random variables and start laying the ground work for the development of procedures that control error rates. The calculations to compute error rates require us to understand the random behavior of p-values.
 A>
-A>We are going to ask you to perform some calculations related to introductory probability theory. One particular concept you need to grasp is statistical independence. You also will need to know that the probability of two random events that are statistically independent occurring is {$$}P( A \mbox{ and } B) = P(A)P(B){/$$}. Note that this is a consequence of the more general formula {$$}P(A and B) = P(A) P(B | A ){/$$}.
+A>We are going to ask you to perform some calculations related to introductory probability theory. One particular concept you need to grasp is statistical independence. You also will need to know that the probability of two random events that are statistically independent occurring is {$$}P( A \mbox{ and } B) = P(A)P(B){/$$}. Note that this is a consequence of the more general formula {$$}P(A \mbox{ and } B) = P(A) P(B | A ){/$$}.
 A>
 A>1. Assume the null is true and denote the p-value you would get if you ran a test as {$$}P{/$$}. Define the function {$$}f(x) = \mbox{Pr}(P>x){/$$} What does {$$}f(x){/$$} look like?
 A>    - A. A uniform distribution.
