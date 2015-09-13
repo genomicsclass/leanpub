@@ -112,6 +112,6 @@ eda_with_pca.md
 eda_with_pca_exercises.md
 adjusting_with_linear_models.md
 adjusting_with_factor_analysis_exercises.md
-#course3 factor_analysis
-#course3_exercises factor_analysis_exercises
+factor_analysis.md
+factor_analysis_exercises.md
 #course3 adjusting_with_factor_analysis
