@@ -68,8 +68,8 @@ course3 intro_to_highthroughput_data
 course3_exercises intro_to_highthroughput_data_exercises
 course3 inference_for_highthroughput
 course3_exercises inference_for_highthroughput_exercises
-#course3 multiple_testing
-#course3_exercises multiple_testing_exercises
+course3 multiple_testing
+course3_exercises multiple_testing_exercises
 #course3 eda_for_highthroughput
 #course3_exercises eda_for_highthroughput_exercises
 
@@ -107,7 +107,12 @@ course3_exercises inference_for_highthroughput_exercises
 ## Chapter 10 - Batch effects
 #course3 intro_to_batch_effects
 #course3 confounding
+#course3_exercises confounding_exercises
 #course3 eda_with_pca
+#course3_exercises eda_with_pca_exercises
 #course3 adjusting_with_linear_models
+#course3_exercises adjusting_with_factor_analysis_exercises
 #course3 factor_analysis
+#course3_exercises factor_analysis_exercises
 #course3 adjusting_with_factor_analysis
+#course3_exercises adjusting_with_factor_analysis_exercises
