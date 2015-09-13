@@ -35,9 +35,9 @@ A>
 A>
 A>5. We can show that the binomail approximation is approximately normal with {$$}N{/$$} is large and {$$}p{/$$} is not too close to 0 or 1. This means that 
 A>
-A>    {$$}\frac{S_N - \mbox{E}(S_N)}{ \sqrt{ \mbox{Var(S_N)}}} {/$$} 
+A>    {$$}\frac{S_N - \mbox{E}(S_N)}{ \sqrt{ \mbox{Var}(S_N)}}  {/$$} 
 A>
-A>    is approximately normal with mean 0 and SD 1. Using the results for sums of indepedent random variables we learned in a previos course, we can show that {$$}\mbox{E(S_N)} = Np{/$$} and {$$}\mbox{Var(S_n)}=Np(1-p){/$$}. 
+A>    is approximately normal with mean 0 and SD 1. Using the results for sums of indepedent random variables we learned in a previos course, we can show that {$$}\mbox{E}(S_N) = Np{/$$} and {$$}\mbox{Var}(S_n)=Np(1-p){/$$}. 
 A>
 A>    The genome has 3 billion bases. About  20% are C, 20% are G, 30% are T and 30% are A. Suppose you take a random interval of 20 bases, what is the exact probability that the GC-content (proportion of Gs of Cs) is greater than 0.35 and smaller or equal to 0.45 in this interval.
 A>
