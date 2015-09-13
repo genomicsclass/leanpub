@@ -47,7 +47,7 @@ A>
     fit$fitted.values
     ```
 A>    
-A>    What is the sum of the squared residuals (where residuals are given by {$$}r_i = Y_i - \hat{Y}_i){/$$} ?
+A>    What is the sum of the squared residuals (where residuals are given by {$$}r_i = Y_i - \hat{Y}_i{/$$} ?
 A>
 A>
 A>
