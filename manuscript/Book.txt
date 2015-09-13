@@ -66,8 +66,8 @@
 ### Chapter 6: inference for high-dimensional data
 intro_to_highthroughput_data.md
 intro_to_highthroughput_data_exercises.md
-#course3 inference_for_highthroughput
-#course3_exercises inference_for_highthroughput_exercises
+inference_for_highthroughput.md
+inference_for_highthroughput_exercises.md
 #course3 multiple_testing
 #course3_exercises multiple_testing_exercises
 #course3 eda_for_highthroughput
@@ -95,10 +95,14 @@ intro_to_highthroughput_data_exercises.md
 
 ## Chapter 9: Practical Machine Learning
 #course3 clustering_and_heatmaps
+#course3_exercises clustering_and_heatmaps_exercises
 #course3 conditional_expectation
+#course3_exercises conditional_expectation_exercises
 #course3 smoothing
+#course3_exercises smoothing_exercises
 #course3 machine_learning
 #course3 crossvalidation
+#course3_exercises cross_validation_exercises
 
 ## Chapter 10 - Batch effects
 #course3 intro_to_batch_effects
