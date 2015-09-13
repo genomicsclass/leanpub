@@ -64,10 +64,14 @@
 
 
 ### Chapter 6: inference for high-dimensional data
-#course3 intro_to_highthroughput_data
-#course3 inference_for_highthroughput
-#course3 multiple_testing
-#course3 eda_for_highthroughput
+intro_to_highthroughput_data.md
+intro_to_highthroughput_data_exercises.md
+inference_for_highthroughput.md
+inference_for_highthroughput_exercises.md
+multiple_testing.md
+multiple_testing_exercises.md
+eda_for_highthroughput.md
+eda_for_highthroughput_exercises.md
 
 ### Chapter 7: Statistical Modeling
 #course3 modeling
