@@ -55,12 +55,12 @@
 #course2_exercises linear_models_in_practice_exercises
 standard_errors.md
 standard_errors_exercises.md
-#course2 interactions_and_contrasts
-#course2_exercises interactions_and_contrasts_exercises
-#course2 collinearity
-#course2_exercises collinearity_exercises
-#course2 qr_and_regression
-#course2 linear_models_going_further
+interactions_and_contrasts.md
+interactions_and_contrasts_exercises.md
+collinearity.md
+collinearity_exercises.md
+qr_and_regression.md
+linear_models_going_further.md
 
 
 ### Chapter 6: inference for high-dimensional data
