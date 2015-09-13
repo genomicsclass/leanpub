@@ -41,26 +41,26 @@
 #course2_exercises intro_using_regression_exercises
 #course2 matrix_notation
 #course2_exercises matrix_notation_exercises
-matrix_operations.md
-matrix_operations_exercises.md
-matrix_algebra_examples.md
-matrix_algebra_examples_exercises.md
+#course2 matrix_operations
+#course2_exercises matrix_operations_exercises
+#course2 matrix_algebra_examples
+#course2_exercises matrix_algebra_examples_exercises
 
 ### Chapter 5: Linear Models
 linear_models_intro.md
 linear_models_intro_exercises.md
 expressing_design_formula.md
 expressing_design_formula_exercises.md
-linear_models_in_practice.md
-linear_models_in_practice_exercises.md
-standard_errors.md
-standard_errors_exercises.md
-interactions_and_contrasts.md
-interactions_and_contrasts_exercises.md
-collinearity.md
-collinearity_exercises.md
-qr_and_regression.md
-linear_models_going_further.md
+#course2 linear_models_in_practice
+#course2_exercises linear_models_in_practice_exercises
+#course2 standard_errors
+#course2_exercises standard_errors_exercises
+#course2 interactions_and_contrasts
+#course2_exercises interactions_and_contrasts_exercises
+#course2 collinearity
+#course2_exercises collinearity_exercises
+#course2 qr_and_regression
+#course2 linear_models_going_further
 
 
 ### Chapter 6: inference for high-dimensional data
