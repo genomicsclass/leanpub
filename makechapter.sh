@@ -78,13 +78,21 @@ then
 	BEGIN {start=0; flag=1}
 	{
 	if ($0 ~ "## Exercises") { start = 1 } 
-	if ($0 ~ "```r") flag=0
-	if (start && flag) 
-		print "A>" $0
-	else 
+	if ($0 ~ "```r")
+	{
+		flag=0
 		print $0
-		if ($0 == "```") flag=1
 	}
+	else
+	{
+		if (start && flag) print "A>" $0
+		else 
+		{
+			print $0
+			if ($0 ~ "```") flag=1
+		}
+	}
+}
 	' $2-tmp.md > $2.md
 	rm $2-tmp.md
 else 
@@ -118,7 +126,7 @@ then
 git add images/R/$2*
 fi
 
-git commit -am "adding $2 to book"
+git commit -am "adding $2 to book" > /dev/null
 
 printf "\n  *** done! *** \n\n"
 
