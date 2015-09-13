@@ -74,12 +74,12 @@
 #course3_exercises eda_for_highthroughput_exercises
 
 ### Chapter 7: Statistical Modeling
-#course3 modeling
+modeling.md
 modeling_exercises.md
-#course3 bayes
-#course3_exercises bayes_exercises
-#course3 hierarchical_models
-#course3_exercises hierarchical_models_exercises
+bayes.md
+bayes_exercises.md
+hierarchical_models.md
+hierarchical_models_exercises.md
 
 ### Chapter 8: Distance and dimension reduction
 #course3 distance
