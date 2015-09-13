@@ -7,16 +7,24 @@ course1_exercises dplyr_intro_exercises
 
 #chapter 1 - Inference
 
-#course1 random_variables
-#course1 populations_and_samples 
-#course1 clt_and_t-distribution	 
-#course1 clt_in_practice
-#course1 t-tests_in_practice
-#course1 confidence_intervals
-#course1 power_calculations
-#course1 monte_carlo
-#course1 permutation_tests
-#course1 association_tests
+course1 random_variables
+course1_exercises random_variables_exercises
+course1 populations_and_samples 
+course1_exercises populations_and_samples
+course1 clt_and_t-distribution	 
+course1_exercises clt_and_t-distribution_exercises
+course1 clt_in_practice
+course1_exercises clt_in_practice_exercises
+course1 t-tests_in_practice
+course1 confidence_intervals
+course1 power_calculations
+course1_exercises power_calculations_exercises
+course1 monte_carlo
+course1_exercises monte_carlo_exercises
+course1 permutation_tests
+course1_exercises permutation_tests_exercises
+course1 association_tests
+course1_exercises association_tests_exercises
 
 #chapter 2 - EDA
 #course1 exploratory_data_analysis_2
