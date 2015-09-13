@@ -1,6 +1,6 @@
-#course1 introduction
-#course1 getting_started
-##course1_exercises getting_started_exercises
+introduction.md
+getting_started.md
+getting_started_exercises.md
 
 #chapter 1 - Inference
 
