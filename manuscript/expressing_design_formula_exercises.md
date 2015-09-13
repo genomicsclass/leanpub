@@ -20,5 +20,4 @@ A>    - D. `~ B + C + treated`
 A>    
 A>
 A>
-A>
 A>Remember that using the `~` and the names for the two variables we want in the model will produce a design matrix controlling for all levels of day and all levels of condition. We do not use the levels in the design formula.
