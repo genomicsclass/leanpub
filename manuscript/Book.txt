@@ -47,12 +47,12 @@
 #course2_exercises matrix_algebra_examples_exercises
 
 ### Chapter 5: Linear Models
-linear_models_intro.md
-linear_models_intro_exercises.md
-expressing_design_formula.md
-expressing_design_formula_exercises.md
-#course2 linear_models_in_practice
-#course2_exercises linear_models_in_practice_exercises
+#course2 linear_models_intro
+#course2_exercises linear_models_intro_exercises
+#course2 expressing_design_formula
+#course2_exercises expressing_design_formula_exercises
+linear_models_in_practice.md
+linear_models_in_practice_exercises.md
 #course2 standard_errors
 #course2_exercises standard_errors_exercises
 #course2 interactions_and_contrasts
