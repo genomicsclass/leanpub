@@ -28,7 +28,7 @@ association_tests_exercises.md
 #chapter 2 - EDA
 exploratory_data_analysis_2.md
 plots_to_avoid.md
-exploratory_data_analysis_exercises.Rmd.md
+exploratory_data_analysis_exercises.md
 
 
 #chapter 3 - Robust Statistics
@@ -37,10 +37,14 @@ ranktest.md
 robust_summaries_exercises.md
 
 ## Chapter 4 - Matrix Algebra
-#course2 intro_using_regression
-#course2 matrix_notation
-#course2 matrix_operations
-#course2 matrix_algebra_examples
+intro_using_regression.md
+intro_using_regression_exercises.md
+matrix_notation.md
+matrix_notation_exercises.md
+matrix_operations.md
+matrix_operations_exercises.md
+matrix_algebra_examples.md
+matrix_algebra_examples.md
 
 ### Chapter 5: Linear Models
 #course2 linear_models_intro
