@@ -43,23 +43,23 @@ A>    What we want to do in practice is choose a _procedure_ that guarantees thi
 A>
 A>    We have already learned that the procedure "pick all the genes with p-value <0.05" fails  miserably as we have seen that {$$}Pr(V>0) \approx 1{/$$}. So what else can we do?
 A>
-A>    The Bonferroni procedure assumes we have computed p-values for each test and asks what constant {$$}k{/$$} should we pick so that the procedure "pick all genes with p-value less than {$$}k$" has {/$$}\mbox{Pr}(V>0) = 0.05{$$}. And we typically want to be conservative rather than lenient, so we accept a procedure that has {/$$}\mbox{Pr}(V>0) \leq 0.05{$$}. 
+A>    The Bonferroni procedure assumes we have computed p-values for each test and asks what constant {$$}k{/$$} should we pick so that the procedure "pick all genes with p-value less than {$$}k{/$$} has {$$}\mbox{Pr}(V>0) = 0.05{/$$}. And we typically want to be conservative rather than lenient, so we accept a procedure that has {$$}\mbox{Pr}(V>0) \leq 0.05{/$$}. 
 A>
 A>    So the first result we rely on is that this probability is largest when all the null hypotheses are true:
 A>
-A>    {/$$}\mbox{Pr}(V>0) \leq \mbox{Pr}(V>0 | \mbox{all nulls are true}){$$}
+A>    {$$}\mbox{Pr}(V>0) \leq \mbox{Pr}(V>0 | \mbox{all nulls are true}){/$$}
 A>
 A>    or using the notation in the video:
 A>
-A>    {/$$}\mbox{Pr}(V>0) \leq \mbox{Pr}(V>0 | m_1=0){$$}
+A>    {$$}\mbox{Pr}(V>0) \leq \mbox{Pr}(V>0 | m_1=0){/$$}
 A>
 A>    In an earlier assessment we showed that if the tests are independent then 
 A>
-A>    {/$$}\mbox{Pr}(V>0 | m_1) = 1-(1-k)^m{$$}
+A>    {$$}\mbox{Pr}(V>0 | m_1) = 1-(1-k)^m{/$$}
 A>
-A>    And we pick {/$$}k{$$} so that {/$$}1-(1-k)^m = \alpha \implies k = 1-(1-\alpha)^{1/m}{$$}
+A>    And we pick {$$}k{/$$} so that {$$}1-(1-k)^m = \alpha \implies k = 1-(1-\alpha)^{1/m}{/$$}
 A>
-A>    Now, this requires the tests to be independent. The Bonferroni procedure does not make this assumption and as we previously we sets {/$$}k=\alpha/m{$$} and shows that with this for this procedure {/$$}Pr(V>0) \leq \alpha{$$}. 
+A>    Now, this requires the tests to be independent. The Bonferroni procedure does not make this assumption and as we previously we sets {$$}k=\alpha/m{/$$} and shows that with this for this procedure {$$}Pr(V>0) \leq \alpha{/$$}. 
 A>
 A>
 A>    In R define 
@@ -68,7 +68,7 @@ A>
     alphas <- seq(0,0.25,0.01)
     ```
 A>  
-A>    Make a plot of {/$$}\alpha/m{$$} and {/$$}1-(1-\alpha)^{1/m}{$$} for various values of m>1. 
+A>    Make a plot of {$$}\alpha/m{/$$} and {$$}1-(1-\alpha)^{1/m}{/$$} for various values of m>1. 
 A>
 A>    Which procedure is more conservative Bonferroni's or Sidek's?
 A>    - A. The are the same
@@ -125,7 +125,7 @@ A>8. Apply the Bonferroni correction to achieve a FWER of 0.05. How many genes a
 A>
 A>
 A>
-A>9. Note that the FDR is a property of a list of features, not each specific feature. The q-value relates FDR to individual feature. To define the q-value we order features we tested by p-value then compute the FDRs for a list with the most significant, the two most significant, the three most significant, etc... The FDR of the list with the, say, {/$$}m{$$} most significant tests is defined as the q-value of the {/$$}m{$$}-th most significant feature. In other words, the q-value of a feature, is the FDR of the biggest list that includes that gene.
+A>9. Note that the FDR is a property of a list of features, not each specific feature. The q-value relates FDR to individual feature. To define the q-value we order features we tested by p-value then compute the FDRs for a list with the most significant, the two most significant, the three most significant, etc... The FDR of the list with the, say, {$$}m{/$$} most significant tests is defined as the q-value of the {$$}m{/$$}-th most significant feature. In other words, the q-value of a feature, is the FDR of the biggest list that includes that gene.
 A>
 A>    In R, we can compute the q-value of using the p.adjust function with the FDR option. Read the help file for p.adjust and the for our gene expression dataset compute the how many genes achieve an FDR < 0.05
 A>
@@ -138,7 +138,7 @@ A>    Using this estimate of the, how many genes have q-values below 0.05?
 A>
 A>
 A>
-A>11. Read the help file for qvalue and report the estimated proportion of genes for which the null hypothesis is true {/$$}\pi_0=m_0/m{$$}
+A>11. Read the help file for qvalue and report the estimated proportion of genes for which the null hypothesis is true {$$}\pi_0=m_0/m{/$$}
 A>
 A>
 A>
@@ -150,7 +150,7 @@ A>    - D. The qvalue function estimates the proportion of genes for which the n
 A>
 A>
 A>
-A>To get an idea of how {/$$}\pi_0{$$} is estimated, note that if we look at the histogram, {/$$}\pi_0{$$} roughly tells us the proportion that looks about uniform:
+A>To get an idea of how {$$}\pi_0{/$$} is estimated, note that if we look at the histogram, {$$}\pi_0{/$$} roughly tells us the proportion that looks about uniform:
 A>
 A>
 ```r
