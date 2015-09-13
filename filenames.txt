@@ -8,8 +8,8 @@ course1_exercises dplyr_intro_exercises
 
 course1 random_variables
 course1_exercises random_variables_exercises
-#course1 populations_and_samples 
-#course1_exercises populations_and_samples
+course1 populations_and_samples 
+course1_exercises populations_and_samples
 #course1 clt_and_t-distribution	 
 #course1_exercises clt_and_t-distribution_exercises
 #course1 clt_in_practice
