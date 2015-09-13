@@ -12,19 +12,19 @@ The learning curve for R syntax is slow. One of the harder aspects that requires
 Take a look at the dataset we read in:
 
 ```r
+filename <- "femaleMiceWeights.csv"
 dat <- read.csv(filename)
-```
-
-```
-## Error in read.table(file = file, header = header, sep = sep, quote = quote, : object 'filename' not found
-```
-
-```r
 head(dat) #In R Studio use View(dat)
 ```
 
 ```
-## Error in head(dat): object 'dat' not found
+##   Diet Bodyweight
+## 1 chow      21.51
+## 2 chow      28.14
+## 3 chow      24.04
+## 4 chow      23.45
+## 5 chow      23.68
+## 6 chow      19.79
 ```
 
 Note that there are two types of diets, which are denoted in the first column. Note also that if we want just the weights, we only need the second column. So if we want the weights for mice on the `chow` diet, we subset and filter like this:
@@ -33,18 +33,17 @@ Note that there are two types of diets, which are denoted in the first column. N
 ```r
 library(dplyr) 
 chow <- filter(dat, Diet=="chow") #keep only the ones with chow diet
-```
-
-```
-## Error in filter_(.data, .dots = lazyeval::lazy_dots(...)): object 'dat' not found
-```
-
-```r
 head(chow)
 ```
 
 ```
-## Error in head(chow): object 'chow' not found
+##   Diet Bodyweight
+## 1 chow      21.51
+## 2 chow      28.14
+## 3 chow      24.04
+## 4 chow      23.45
+## 5 chow      23.68
+## 6 chow      19.79
 ```
 
 And now we can select only the column with the values:
@@ -52,18 +51,17 @@ And now we can select only the column with the values:
 
 ```r
 chowVals <- select(chow,Bodyweight)
-```
-
-```
-## Error in select_(.data, .dots = lazyeval::lazy_dots(...)): object 'chow' not found
-```
-
-```r
 head(chowVals)
 ```
 
 ```
-## Error in head(chowVals): object 'chowVals' not found
+##   Bodyweight
+## 1      21.51
+## 2      28.14
+## 3      24.04
+## 4      23.45
+## 5      23.68
+## 6      19.79
 ```
 
 A nice feature of the `dplyr` function is that you can perform consecutive tasks by using what is called a "pipe".  In `dplyr` we use `%>%` to denote a pipe. This symbol tells the program to first do one thing and then do something else to the result of the first. So we can perform several data manipulations in one line.  For example:
@@ -71,10 +69,6 @@ A nice feature of the `dplyr` function is that you can perform consecutive tasks
 
 ```r
 chowVals <- filter(dat, Diet=="chow") %>% select(Bodyweight)
-```
-
-```
-## Error in filter_(.data, .dots = lazyeval::lazy_dots(...)): object 'dat' not found
 ```
 
 Note that in the second task we no longer have to specify the object we are editing since it is whatever comes from the previous call. 
@@ -86,7 +80,7 @@ class(dat)
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'dat' not found
+## [1] "data.frame"
 ```
 
 ```r
@@ -94,7 +88,7 @@ class(chowVals)
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'chowVals' not found
+## [1] "data.frame"
 ```
 
 For pedagogical reasons we will often want the final result to be a simple `numeric` vector. To obtain such a vector with `dplyr`, we can apply the `unlist` function which turns `lists`, such as `data.frames`, into `numeric` vectors:
@@ -102,18 +96,11 @@ For pedagogical reasons we will often want the final result to be a simple `nume
 
 ```r
 chowVals <- filter(dat, Diet=="chow") %>% select(Bodyweight) %>% unlist
-```
-
-```
-## Error in filter_(.data, .dots = lazyeval::lazy_dots(...)): object 'dat' not found
-```
-
-```r
 class( chowVals )
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'chowVals' not found
+## [1] "numeric"
 ```
 
 
@@ -122,10 +109,6 @@ To this in R without `dplyr` the code is the following:
 
 ```r
 chowVals <- dat[ dat$Diet=="chow", colnames(dat)=="Bodyweight"]
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'dat' not found
 ```
 
 
