@@ -64,15 +64,15 @@
 
 
 ### Chapter 6: inference for high-dimensional data
-course3 intro_to_highthroughput_data
-course3 inference_for_highthroughput
-course3 multiple_testing
-course3 eda_for_highthroughput
+#course3 intro_to_highthroughput_data
+#course3 inference_for_highthroughput
+#course3 multiple_testing
+#course3 eda_for_highthroughput
 
 ### Chapter 7: Statistical Modeling
-#course3 modeling
-#course3 bayes
-#course3 hierarchical_models
+course3 modeling
+course3 bayes
+course3 hierarchical_models
 
 ### Chapter 8:  Distance and dimension reduction
 #course3 distance
