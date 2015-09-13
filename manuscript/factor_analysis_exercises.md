@@ -14,10 +14,10 @@ data(GSE5859Subset)
 A>
 A>1. Suppose you want to make an MA plot of the first two samples `y = geneExpression[,1:2]`. Which of the following projections gives us the projection of {$$}y{/$$} so that column2 versus column 1 is an MA plot?
 A>
-A>    - A. {$$}y\begin{pmatrix} 1/\sqrt{2}&1/\sqrt{2} \\ 1\sqrt{2}&-1/\sqrt{2}\end{pmatrix} {/$$}
-A>    - B. {$$}y\begin{pmatrix} 1&1 \\ 1&-1\end{pmatrix} {/$$}
-A>    - C. {$$}\begin{pmatrix} 1&1 \\ 1&-1\end{pmatrix} y {/$$}
-A>    - D. {$$}\begin{pmatrix} 1&1 \\ 1&-1\end{pmatrix} y' {/$$}
+A>    - A. {$$}\, y\begin{pmatrix} 1/\sqrt{2}&1/\sqrt{2} \\ 1\sqrt{2}&-1/\sqrt{2}\end{pmatrix} {/$$}
+A>    - B. {$$}\, y\begin{pmatrix} 1&1 \\ 1&-1\end{pmatrix} {/$$}
+A>    - C. {$$}\, \begin{pmatrix} 1&1 \\ 1&-1\end{pmatrix} y {/$$}
+A>    - D. {$$}\, \begin{pmatrix} 1&1 \\ 1&-1\end{pmatrix} y' {/$$}
 A>
 A>
 A>
