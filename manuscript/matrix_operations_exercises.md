@@ -16,7 +16,7 @@ A>
 A>2. Solve the following system of equations using R:
 A>
 A>    
-A>{$$}\begin{align*}
+A>    {$$}\begin{align*}
 A>3a + 4b - 5c + d &= 10\\
 A>2a + 2b + 2c - d &= 5\\
 A>a -b + 5c - 5d &= 7\\
