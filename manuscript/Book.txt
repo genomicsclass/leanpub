@@ -74,7 +74,7 @@
 #course3_exercises eda_for_highthroughput_exercises
 
 ### Chapter 7: Statistical Modeling
-modeling.md
+#course3 modeling
 modeling_exercises.md
 #course3 bayes
 #course3_exercises bayes_exercises
