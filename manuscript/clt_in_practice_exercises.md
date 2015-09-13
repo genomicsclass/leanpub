@@ -5,6 +5,18 @@ layout: page
 
 A>## Exercises
 A>
+A>Exercises 3-13 use the mouse data set:
+A>
+A>    
+    ```r
+    library(downloader) 
+    url <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/femaleMiceWeights.csv"
+    filename <- basename(url)
+    download(url, destfile=filename)
+    dat <- read.csv("femaleMiceWeights.csv") 
+    ```
+A>
+A>
 A>1. The CLT is a result from probability theory. Much of probability theory was originally inspired by gambling and this theory is still used in practice by casinos. For example, they can estimate how many people need to play slots for there to be a 99.9999% probability of earning enough money to cover expenses. Let's try a simple example related to gambling.
 A>
 A>    Suppose we are interested in the proportion of times we see a 6 when rolling `n=100` die. This is a random variable which we can simulate with `x=sample(1:6, n, replace=TRUE)` and the proportion we are interested in can be expressed as an average: `mean(x==6)`. Because the die rolls are independent, the CLT applies. 
@@ -27,18 +39,7 @@ A>
 A>
 A>3. As we have already seen the CLT also applies to averages of quantitative data. A major difference with binary data for which we know the variance is {$$}p (1-p){/$$}, is that with quantitative data we need to estimate the population standard deviation. 
 A>
-A>    In several previous exercises we have illustrated statistical concepts with the unrealistic situation of having access to the entire population. In practice we do *not* have access to entire populations. Instead we obtain one random sample and need to reach conclusions analyzing that data. Here is the one random sample we get:
-A>   
-A>    
-    ```r
-    library(downloader) 
-    url <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/femaleMiceWeights.csv"
-    filename <- basename(url)
-    download(url, destfile=filename)
-    dat <- read.csv("femaleMiceWeights.csv") 
-    ```
-A>
-A>    We are presented with a typical simple dataset. We have 12 measurements for each of two populations:
+A>    In several previous exercises we have illustrated statistical concepts with the unrealistic situation of having access to the entire population. In practice we do *not* have access to entire populations. Instead we obtain one random sample and need to reach conclusions analyzing that data. `dat` is an example of a typical simple dataset representing just one sample. We have 12 measurements for each of two populations:
 A>   
 A>    
     ```r
@@ -85,7 +86,7 @@ A>11. Now we are ready to compute a p-value using the CLT. What is the probabili
 A>
 A>
 A>
-A>12.  CLT provides an approximation for cases in which the sample size is large. In practice we can't check the assumption because we only get to see 1 outcome (which you computed above). So if this approximation is off, so is our p-value. As described there is another approach that does not require a large sample size, but rather that the distribution of the population is approximately normal. We don't get to see this distribution so it is again an assumption. Although we can look at the distribution of the sample:
+A>12. CLT provides an approximation for cases in which the sample size is large. In practice we can't check the assumption because we only get to see 1 outcome (which you computed above). So if this approximation is off, so is our p-value. As described there is another approach that does not require a large sample size, but rather that the distribution of the population is approximately normal. We don't get to see this distribution so it is again an assumption. Although we can look at the distribution of the sample:
 A>    
 A>    
     ```r
