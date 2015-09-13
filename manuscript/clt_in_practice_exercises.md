@@ -78,7 +78,7 @@ A>
 A>10. If we apply the CLT, what is the distribution of this t-statistic?
 A>  - A. Normal with mean 0 and standard deviation 1.
 A>  - B. t-distributed with 22 degrees of freedom.
-A>  - C. Normal with mean 0 and standard deviation \sqrt{ \sigma_y^2 / 12 + \sigma_x^2 /12 }{$$}.
+A>  - C. Normal with mean 0 and standard deviation {$$}\sqrt{ \sigma_y^2 / 12 + \sigma_x^2 /12 }{/$$}.
 A>  - D. t-distributed with 12 degrees of freedom.
 A>  
 A>11. Now we are ready to compute a p-value using the CLT. What is the probability of observing a quantity as large as what we computed in 10 when the null distribution is true?
