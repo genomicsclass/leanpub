@@ -76,10 +76,10 @@
 ### Chapter 7: Statistical Modeling
 course3 modeling
 course3_exercises modeling_exercises
-course3 bayes
-course3_exercises bayes_exercises
-course3 hierarchical_models
-course3_exercises hierarchical_models_exercises
+#course3 bayes
+#course3_exercises bayes_exercises
+#course3 hierarchical_models
+#course3_exercises hierarchical_models_exercises
 
 ### Chapter 8:  Distance and dimension reduction
 #course3 distance
