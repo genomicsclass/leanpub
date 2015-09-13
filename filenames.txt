@@ -26,12 +26,15 @@ course1 association_tests
 course1_exercises association_tests_exercises
 
 #chapter 2 - EDA
-#course1 exploratory_data_analysis_2
-#course1 plots_to_avoid
+course1 exploratory_data_analysis_2
+course1 plots_to_avoid
+course1_exercises exploratory_data_analysis_exercises.Rmd
+
 
 #chapter 3 - Robust Statistics
-#course1 robust_summaries
-#course1 ranktest
+course1 robust_summaries
+course1 ranktest
+course1_exercises robust_summaries_exercises
 
 ## Chapter 4 - Matrix Algebra
 #course2 intro_using_regression
