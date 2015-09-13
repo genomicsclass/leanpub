@@ -75,7 +75,7 @@
 
 ### Chapter 7: Statistical Modeling
 course3 modeling
-course3_exercises modeling_exercises
+#course3_exercises modeling_exercises
 #course3 bayes
 #course3_exercises bayes_exercises
 #course3 hierarchical_models
