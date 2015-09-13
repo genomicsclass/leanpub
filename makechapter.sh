@@ -79,7 +79,7 @@ then
 	if ($0 ~ "## Exercises") { start = 1 } 
 	if ($0 ~ "```r") flag=0
 	if (start && flag) 
-		print "X>" $0
+		print "A>" $0
 	else 
 		print $0
 		if ($0 == "```") flag=1
