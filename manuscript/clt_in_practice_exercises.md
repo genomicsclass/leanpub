@@ -87,6 +87,7 @@ A>
 A>
 A>12.  CLT provides an approximation for cases in which the sample size is large. In practice we can't check the assumption because we only get to see 1 outcome (which you computed above). So if this approximation is off, so is our p-value. As described there is another approach that does not require a large sample size, but rather that the distribution of the population is approximately normal. We don't get to see this distribution so it is again an assumption. Although we can look at the distribution of the sample:
 A>    
+A>    
     ```r
     library(rafalib)
     mypar(1,2)
@@ -103,6 +104,7 @@ A>  - A. A sample size of 12 is not large enough so we have to use the t-distrib
 A>  - B. These are two different assumptions. The t-distribution accounts for the variability introduced by the estimation of the standard error and thus, under the null, large values are more probable under the null distribution.
 A>  - C. The population data is probably not normally distributed so the t-distribution approximation is wrong.
 A>  - D. Neither assumption is useful. Both are wrong.
+A>
 A>
 A>
 A>
