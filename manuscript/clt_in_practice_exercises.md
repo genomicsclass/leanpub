@@ -30,10 +30,10 @@ A>
 A>    In the example used in problem 1, the original data is binary (either 6 or not). In this case the success probability also affects the appropriateness of the CLT. With very low probabilities, we need larger sample sizes for the CLT to "kick in". 
 A>   
 A>    Run the simulation from exercise 1, but for different values of `p` and `n`. For which of the following is the normal approximation best?
-A>  - A. `p=0.5` and `n=5`
-A>  - B. `p=0.5` and `n=30`
-A>  - C. `p=0.01` and `n=30`
-A>  - D. `p=0.01` and `n=100`
+A>    - A. `p=0.5` and `n=5`
+A>    - B. `p=0.5` and `n=30`
+A>    - C. `p=0.01` and `n=30`
+A>    - D. `p=0.01` and `n=100`
 A>
 A>
 A>
@@ -54,10 +54,10 @@ A>
 A>
 A>
 A>4. We don't know {$$}\mu_X{/$$} but want to use {$$}\bar{X}{/$$} to understand {$$}\mu_X{/$$}. Which of the following uses CLT to understand how well {$$}\bar{X}{/$$} approximates {$$}\mu_X{/$$} ?
-A>  - A. {$$}\bar{X}{/$$} follows a normal distribution with mean 0 and standard deviation 1.
-A>  - B. {$$}\mu_X{/$$} follows a normal distribution with mean {$$}\bar{X}{/$$} and standard deviation {$$}\frac{\sigma_x}{\sqrt{12}}{/$$} where {$$}\sigma_x{/$$} is the population standard deviation.
-A>  - C. {$$}\bar{X}{/$$} follows a normal distribution with mean {$$}\mu_X{/$$} and standard deviation {$$}\sigma_x{/$$} where {$$}\sigma_x{/$$} is the population standard deviation.
-A>  - D. {$$}\bar{X}{/$$} follows a normal distribution with mean {$$}\mu_X{/$$} and standard deviation {$$}\frac{\sigma_x}{\sqrt{12}}{/$$} where {$$}\sigma_x{/$$} is the population standard deviation.
+A>    - A. {$$}\bar{X}{/$$} follows a normal distribution with mean 0 and standard deviation 1.
+A>    - B. {$$}\mu_X{/$$} follows a normal distribution with mean {$$}\bar{X}{/$$} and standard deviation {$$}\frac{\sigma_x}{\sqrt{12}}{/$$} where {$$}\sigma_x{/$$} is the population standard deviation.
+A>    - C. {$$}\bar{X}{/$$} follows a normal distribution with mean {$$}\mu_X{/$$} and standard deviation {$$}\sigma_x{/$$} where {$$}\sigma_x{/$$} is the population standard deviation.
+A>    - D. {$$}\bar{X}{/$$} follows a normal distribution with mean {$$}\mu_X{/$$} and standard deviation {$$}\frac{\sigma_x}{\sqrt{12}}{/$$} where {$$}\sigma_x{/$$} is the population standard deviation.
 A>
 A>
 A>5. The result above tells us the distribution of the following random variable: {$$}Z=\sqrt{12} \frac{\bar{X}-\mu_X}{\sigma_X}{/$$}. What does the CLT tell us is the mean of {$$}Z{/$$} (you don't need code):
@@ -71,23 +71,22 @@ A>
 A>
 A>8. Now we introduce the concept of a null hypothesis. We don't know {$$}\mu_x{/$$} nor {$$}\mu_y{/$$}. We want to quantify what the data say about the possibility that the diet has no effect: {$$}\mu_x=\mu_y{/$$}. If we use CLT then we approximate the distribution of {$$}\bar{X}{/$$} as normal with mean {$$}\mu_X{/$$} and standard deviation {$$}\sigma_X{/$$} and the distribution of {$$}\bar{Y}{/$$}  as normal with mean {$$}\mu_y{/$$} and standard deviation {$$}\sigma_y{/$$}. This implies that the difference {$$}\bar{Y}-\bar{X}{/$$} has mean {$$}0{/$$}. We described that the standard deviation of this statistic (the standard error) is {$$}\mbox{SE}( \bar{X}-\bar{Y}) = \sqrt{ \sigma_y^2 / 12 + \sigma_x^2 /12 }{/$$} and that we estimate the population standard deviations {$$}\sigma_x{/$$} and {$$}\sigma_y{/$$} with the sample estimates. What is the estimate of {$$}\mbox{SE}( \bar{X}-\bar{Y}) = \sqrt{ \sigma_y^2 / 12 + \sigma_x^2 /12 }{/$$} 
 A>
-A>
 A> 
 A>9. So now we can compute {$$}\bar{Y} - \bar{X}{/$$} as well as an estimate of this standard error and construct a t-statistic. What is this t-statistic?
 A>
 A>
 A>10. If we apply the CLT, what is the distribution of this t-statistic?
-A>  - A. Normal with mean 0 and standard deviation 1.
-A>  - B. t-distributed with 22 degrees of freedom.
-A>  - C. Normal with mean 0 and standard deviation {$$}\sqrt{ \sigma_y^2 / 12 + \sigma_x^2 /12 }{/$$}.
-A>  - D. t-distributed with 12 degrees of freedom.
+A>    - A. Normal with mean 0 and standard deviation 1.
+A>    - B. t-distributed with 22 degrees of freedom.
+A>    - C. Normal with mean 0 and standard deviation {$$}\sqrt{ \sigma_y^2 / 12 + \sigma_x^2 /12 }{/$$}.
+A>    - D. t-distributed with 12 degrees of freedom.
 A>  
 A>11. Now we are ready to compute a p-value using the CLT. What is the probability of observing a quantity as large as what we computed in 10 when the null distribution is true?
 A>
 A>
 A>
 A>12. CLT provides an approximation for cases in which the sample size is large. In practice we can't check the assumption because we only get to see 1 outcome (which you computed above). So if this approximation is off, so is our p-value. As described there is another approach that does not require a large sample size, but rather that the distribution of the population is approximately normal. We don't get to see this distribution so it is again an assumption. Although we can look at the distribution of the sample:
-A>    
+A>
 A>    
     ```r
     library(rafalib)
@@ -99,13 +98,11 @@ A>
 A>    The alternative approach is to assume the t-statistic follows distribution. What is the p-value under the t-distribution approximation (hint: use the `t.test` function)?
 A>
 A>
-A>
 A>13. With the CLT distribution we obtained a p-value smaller than 0.05 and with the t-distribution one that is larger. They can't both be right. What best describes the difference?
 A>    - A. A sample size of 12 is not large enough so we have to use the t-distribution approximation.
 A>    - B. These are two different assumptions. The t-distribution accounts for the variability introduced by the estimation of the standard error and thus, under the null, large values are more probable under the null distribution.
 A>    - C. The population data is probably not normally distributed so the t-distribution approximation is wrong.
 A>    - D. Neither assumption is useful. Both are wrong.
-A>
 A>
 A>
 A>
