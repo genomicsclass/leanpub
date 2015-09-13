@@ -110,11 +110,18 @@ shown in the following font:
 
 
 ```r
-x <- 2 y <- 3 print(x+y) 
+x <- 2 
+y <- 3 
+print(x+y) 
 ```
 
 and the results in different colors and preceded by two hash
 characters (*##*):
 
 
+```
+## [1] 5
+```
 
+We will provide links that will give you access to the raw R markdown
+code so you can easily follow along with the book by programming in R.
