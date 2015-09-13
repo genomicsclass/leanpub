@@ -73,7 +73,6 @@ rm $2.md
 ### If exercises add the X>
 if [[ "$2" =~ "_exercises" ]]
 then
-	printf "YES"
 	awk '
 	BEGIN {start=0; flag=1}
 	{
