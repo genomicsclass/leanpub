@@ -1,7 +1,6 @@
 introduction.md
 getting_started.md
 getting_started_exercises.md
-getting_started.md
 dplyr_intro.md
 dplyr_intro_exercises.md
 
