@@ -108,8 +108,8 @@
 intro_to_batch_effects.md
 confounding.md
 confounding_exercises.md
-#course3 eda_with_pca
-#course3_exercises eda_with_pca_exercises
+eda_with_pca.md
+eda_with_pca_exercises.md
 #course3 adjusting_with_linear_models
 #course3_exercises adjusting_with_factor_analysis_exercises
 #course3 factor_analysis
