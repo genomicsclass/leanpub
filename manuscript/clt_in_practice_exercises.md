@@ -3,33 +3,33 @@ title: "Central Limit Theorem in Practice Exercises"
 layout: page
 ---
 
-X>## Exercises
-X>
-X>1. The CLT is a result from probability theory. Much of probability theory was originally inspired by gambling and this theory is still used in practice by casinos. For example, they can estimate how many people need to play slots for there to be a 99.9999% probability of earning enough money to cover expenses. Let's try a simple example related to gambling.
-X>
-X>    Suppose we are interested in the proportion of times we see a 6 when rolling `n=100` die. This is a random variable which we can simulate with `x=sample(1:6, n, replace=TRUE)` and the proportion we are interested in can be expressed as an average: `mean(x==6)`. Because the die rolls are independent, the CLT applies. 
-X>
-X>    We want to roll `n` dice 10,000 times and keep these proportions. This random variable (proportion of 6s) has mean `p=1/6` and variance `p*(1-p)/n`. So according to CLT `z = (mean(x==6) - p) / sqrt(p*(1-p)/n)` should be normal with mean 0 and SD 1. Set the seed to 1, then use `replicate` to perform the simulation, and report what proportion of times `z` was larger than 2 in absolute value (CLT says it should be about 0.05).
-X>
-X>
-X>
-X>2. For the last simulation you can make a qqplot to confirm the normal approximation. Now, the CLT is an _asympototic_ result meaning it is closer and closer to being a perfect approximation as the sample size increases. In practice, however, we need to decide if it is appropriate for actual sample sizes. Is 10 enough? 15? 30?
-X>   
-X>    In the example used in problem 1, the original data is binary (either 6 or not). In this case the success probability also affects the appropriateness of the CLT. With very low probabilities, we need larger sample sizes for the CLT to "kick in". 
-X>   
-X>    Run the simulation from exercise 1, but for different values of `p` and `n`. For which of the following is the normal approximation best?
-X>  - A. `p=0.5` and `n=5`
-X>  - B. `p=0.5` and `n=30`
-X>  - C. `p=0.01` and `n=30`
-X>  - D. `p=0.01` and `n=100`
-X>
-X>
-X>
-X>3. As we have already seen the CLT also applies to averages of quantitative data. A major difference with binary data for which we know the variance is {$$}p (1-p){/$$}, is that with quantitative data we need to estimate the population standard deviation. 
-X>
-X>    In several previous exercises we have illustrated statistical concepts with the unrealistic situation of having access to the entire population. In practice we do *not* have access to entire populations. Instead we obtain one random sample and need to reach conclusions analyzing that data. Here is the one random sample we get:
-X>   
-X>    
+A>## Exercises
+A>
+A>1. The CLT is a result from probability theory. Much of probability theory was originally inspired by gambling and this theory is still used in practice by casinos. For example, they can estimate how many people need to play slots for there to be a 99.9999% probability of earning enough money to cover expenses. Let's try a simple example related to gambling.
+A>
+A>    Suppose we are interested in the proportion of times we see a 6 when rolling `n=100` die. This is a random variable which we can simulate with `x=sample(1:6, n, replace=TRUE)` and the proportion we are interested in can be expressed as an average: `mean(x==6)`. Because the die rolls are independent, the CLT applies. 
+A>
+A>    We want to roll `n` dice 10,000 times and keep these proportions. This random variable (proportion of 6s) has mean `p=1/6` and variance `p*(1-p)/n`. So according to CLT `z = (mean(x==6) - p) / sqrt(p*(1-p)/n)` should be normal with mean 0 and SD 1. Set the seed to 1, then use `replicate` to perform the simulation, and report what proportion of times `z` was larger than 2 in absolute value (CLT says it should be about 0.05).
+A>
+A>
+A>
+A>2. For the last simulation you can make a qqplot to confirm the normal approximation. Now, the CLT is an _asympototic_ result meaning it is closer and closer to being a perfect approximation as the sample size increases. In practice, however, we need to decide if it is appropriate for actual sample sizes. Is 10 enough? 15? 30?
+A>   
+A>    In the example used in problem 1, the original data is binary (either 6 or not). In this case the success probability also affects the appropriateness of the CLT. With very low probabilities, we need larger sample sizes for the CLT to "kick in". 
+A>   
+A>    Run the simulation from exercise 1, but for different values of `p` and `n`. For which of the following is the normal approximation best?
+A>  - A. `p=0.5` and `n=5`
+A>  - B. `p=0.5` and `n=30`
+A>  - C. `p=0.01` and `n=30`
+A>  - D. `p=0.01` and `n=100`
+A>
+A>
+A>
+A>3. As we have already seen the CLT also applies to averages of quantitative data. A major difference with binary data for which we know the variance is {$$}p (1-p){/$$}, is that with quantitative data we need to estimate the population standard deviation. 
+A>
+A>    In several previous exercises we have illustrated statistical concepts with the unrealistic situation of having access to the entire population. In practice we do *not* have access to entire populations. Instead we obtain one random sample and need to reach conclusions analyzing that data. Here is the one random sample we get:
+A>   
+A>    
     ```r
     library(downloader) 
     url <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/femaleMiceWeights.csv"
