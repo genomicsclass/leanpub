@@ -106,7 +106,7 @@ plot(s$d)
 
 ![Entries of the diagonal of D for gene expression data.](images/R/svd-tmp-D_entries-1.png) 
 
-This implies that the last columns of `V` have a very small effect on the reconstruction of `Y`. To see this consider the extreme example in which the last entry of {$$}V{/$$} is 0. In this case the last column of {$$}V{/$$} is not needed at all. Because of the way the SVD is created, the columns of {$$}V, have less and less influence on the reconstruction of {/$$}Y{$$}. You commonly see this described as "explaining less varinace". This implies that for a large matrix, by the time you get to the last columns it is possible that there is not much left to "explain" As an example, we will look at what happens if we remove the four last column?
+This implies that the last columns of `V` have a very small effect on the reconstruction of `Y`. To see this consider the extreme example in which the last entry of {$$}V{/$$} is 0. In this case the last column of {$$}V{/$$} is not needed at all. Because of the way the SVD is created, the columns of {$$}V{/$$}, have less and less influence on the reconstruction of {$$}Y{/$$}. You commonly see this described as "explaining less varinace". This implies that for a large matrix, by the time you get to the last columns it is possible that there is not much left to "explain" As an example, we will look at what happens if we remove the four last column?
 
 
 ```r
@@ -122,7 +122,7 @@ max(abs(resid))
 
 The larges residual is practically 0, meaning that we `Yhat` is practically the same as `Y`, yet we need 4 less dimensions to transmit the information.
 
-By looking at {/$$}d{$$}, we can see that in this particular dataset we can obtain a good approximation keeping only 94 columns. The following plots are useful for seeing how much of the variability is explained by each column:
+By looking at {$$}d{/$$}, we can see that in this particular dataset we can obtain a good approximation keeping only 94 columns. The following plots are useful for seeing how much of the variability is explained by each column:
 
 
 ```r
@@ -140,7 +140,7 @@ plot(cumsum(s$d^2)/sum(s$d^2)*100,ylab="Percent variability explained",ylim=c(0,
 
 ![Cumulative variance explained by principal components of gene expression data.](images/R/svd-tmp-cum_variance_explained-1.png) 
 
-We see that although we start with just 125 dimensions we can approximate {/$$}Y{$$}:
+We see that although we start with just 125 dimensions we can approximate {$$}Y{/$$}:
 
 
 ```r
@@ -165,7 +165,7 @@ var(as.vector(resid))/var(as.vector(Y))
 
 We say that we explain 96% of the variability.
 
-Note that we can compute this proportionfrom {/$$}D{$$}:
+Note that we can compute this proportionfrom {$$}D{/$$}:
 
 ```r
 1-sum(s$d[1:k]^2)/sum(s$d^2)
@@ -174,7 +174,7 @@ Note that we can compute this proportionfrom {/$$}D{$$}:
 ```
 ## [1] 0.04076899
 ```
-Thus the entries of {/$$}D{$$} tell us how much each
+Thus the entries of {$$}D{/$$} tell us how much each
 
 ### Highly correlated data
 
@@ -197,7 +197,7 @@ cor(Y)
 ## x 1.0000000 0.9998873
 ## x 0.9998873 1.0000000
 ```
-In this case, the second column adds very little "information" since all the entries of `Y[,1]-Y[,2]` are close to 0. Reporting `rowMeans(Y)` is even more efficient since `Y[,1]-rowMeans(Y)` and `Y[,2]-rowMeans(Y)` are even closer to 0. `rowMeans(Y)`  turns out to be the information represented in the first column on {/$$}U{$$}. The SVD helps us notice that we explain almost all the variability with just this first column:
+In this case, the second column adds very little "information" since all the entries of `Y[,1]-Y[,2]` are close to 0. Reporting `rowMeans(Y)` is even more efficient since `Y[,1]-rowMeans(Y)` and `Y[,2]-rowMeans(Y)` are even closer to 0. `rowMeans(Y)`  turns out to be the information represented in the first column on {$$}U{/$$}. The SVD helps us notice that we explain almost all the variability with just this first column:
 
 
 ```r
