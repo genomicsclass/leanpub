@@ -99,10 +99,10 @@ A>
 A>
 A>
 A>13. With the CLT distribution we obtained a p-value smaller than 0.05 and with the t-distribution one that is larger. They can't both be right. What best describes the difference?
-A>  - A. A sample size of 12 is not large enough so we have to use the t-distribution approximation.
-A>  - B. These are two different assumptions. The t-distribution accounts for the variability introduced by the estimation of the standard error and thus, under the null, large values are more probable under the null distribution.
-A>  - C. The population data is probably not normally distributed so the t-distribution approximation is wrong.
-A>  - D. Neither assumption is useful. Both are wrong.
+A>    - A. A sample size of 12 is not large enough so we have to use the t-distribution approximation.
+A>    - B. These are two different assumptions. The t-distribution accounts for the variability introduced by the estimation of the standard error and thus, under the null, large values are more probable under the null distribution.
+A>    - C. The population data is probably not normally distributed so the t-distribution approximation is wrong.
+A>    - D. Neither assumption is useful. Both are wrong.
 A>
 A>
 A>
