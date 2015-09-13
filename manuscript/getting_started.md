@@ -190,7 +190,7 @@ We store many of the datasets used in this course on [GitHub](https://github.com
 ```r
 library(downloader) ##use install.packages to install
 url <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/femaleMiceWeights.csv"
-filename <- tempfile() ## creates a random name for a temporary file
+filename <- "femaleMiceWeights.csv" ## creates a random name for a temporary file
 download(url, destfile=filename)
 ```
 
