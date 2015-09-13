@@ -20,7 +20,6 @@ A>
     v0 = 0
     n = 25
     tt = seq(0,3.4,len=n) ##time in secs, t is a base function
-    
     y = h0 + v0 *tt - 0.5* g*tt^2 + rnorm(n,sd=1)
     ```
 A>
