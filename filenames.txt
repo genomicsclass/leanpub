@@ -42,9 +42,9 @@
 #course2 matrix_notation
 #course2_exercises matrix_notation_exercises
 #course2 matrix_operations
-course2_exercises matrix_operations_exercises
+#course2_exercises matrix_operations_exercises
 course2 matrix_algebra_examples
-course2_exercises matrix_algebra_examples
+course2_exercises matrix_algebra_examples_exercises
 
 ### Chapter 5: Linear Models
 #course2 linear_models_intro
