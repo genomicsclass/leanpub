@@ -48,8 +48,7 @@ A>
 A>
 A>    Note how close these are. 
 A>
-A>7. Repeat question 4.1.3 but using an interval of 1000 bases. What is the difference (in absolute value) between the normal approximation and the exact distribution of the GC-content being greater than 0.35 and lesser or equal to 0.45.
-A>
+A>7. Repeat question 4.1.3 but using an interval of 1000 bases. What is the difference (in absolute value) between the normal approximation and the exact distribution of the GC-content being greater than 0.35 and lesser or equal to 0.45?
 A>
 A>
 A>8. The Cs in our genomes can be [_methylated_](http://en.wikipedia.org/wiki/DNA_methylation) or _unmethylated_. Suppose we have a large (millions) group of cells in which a proportion {$$}p{/$$} of a C of interest are methylated. We break up the DNA of these cells and randomely select pieces and end up with {$$}N{/$$} pieces that contain the C we care abut. This means that the probability of seing {$$}k{/$$} methylated Cs is binomial:
@@ -76,10 +75,10 @@ A>
     ```
 A>
 A>    Compare the apprximation and exact probabilty of the proportion of Cs being {$$}p{/$$}, {$$}k=1,\dots,N-1{/$$} plotting the exact versus approx for each {$$}p{/$$} and {$$}N{/$$} combination
-A>    -A. The normal approximation works well when {$$}p{/$$} is close to 0.5 even for small {$$}N=10{/$$}
-A>    -B. The normal apprximation breaks down when {$$}p{/$$} is close to 0 or 1 even for large {$$}N{/$$}
-A>    -C. When {$$}N{/$$} is 100 all approximations are spot on
-A>    -D. When {$$}p=0.01{/$$} the approximation are terrible for {$$}N=5,10,30{/$$} and only ok for {$$}N=100{/$$}
+A>    - A. The normal approximation works well when {$$}p{/$$} is close to 0.5 even for small {$$}N=10{/$$}
+A>    - B. The normal apprximation breaks down when {$$}p{/$$} is close to 0 or 1 even for large {$$}N{/$$}
+A>    - C. When {$$}N{/$$} is 100 all approximations are spot on.
+A>    - D. When {$$}p=0.01{/$$} the approximation are terrible for {$$}N=5,10,30{/$$} and only ok for {$$}N=100{/$$}
 A>
 A>
 A>9. We saw in the previous question that when {$$}p{/$$} is very small the normal approximation breaks down. If {$$}N{/$$} is very large then we can use the Poisson approximation. 
