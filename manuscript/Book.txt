@@ -12,8 +12,8 @@ populations_and_samples.md
 populations_and_samples.md
 clt_and_t-distribution.md
 clt_and_t-distribution_exercises.md
-#course1 clt_in_practice
-#course1_exercises clt_in_practice_exercises
+clt_in_practice.md
+clt_in_practice_exercises.md
 #course1 t-tests_in_practice
 #course1 confidence_intervals
 #course1 power_calculations
