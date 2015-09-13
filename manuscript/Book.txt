@@ -51,10 +51,10 @@
 #course2_exercises linear_models_intro_exercises
 #course2 expressing_design_formula
 #course2_exercises expressing_design_formula_exercises
-linear_models_in_practice.md
-linear_models_in_practice_exercises.md
+#course2 linear_models_in_practice
+#course2_exercises linear_models_in_practice_exercises
 standard_errors.md
-standard_errors_exercises.md
+#course2_exercises standard_errors_exercises
 #course2 interactions_and_contrasts
 #course2_exercises interactions_and_contrasts_exercises
 #course2 collinearity
