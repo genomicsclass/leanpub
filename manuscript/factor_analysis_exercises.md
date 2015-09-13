@@ -26,7 +26,7 @@ A>
 A>    - A. {$$}DV^\top{/$$} are the new coordinates for the projection {$$}U^\top Y{/$$}
 A>    - B. {$$}UD{/$$} are the new coordinates for the projection {$$}YV{/$$}
 A>    - C. {$$}D{/$$} are the coordinates of the projection {$$}U^\top Y{/$$}
-A>    - D. {$$}U^top Y{/$$} is a projection from an {$$}N{/$$}-dimensional to {$$}M{/$$}-dimensional subspace.  
+A>    - D. {$$}U^\top Y{/$$} is a projection from an {$$}N{/$$}-dimensional to {$$}M{/$$}-dimensional subspace.  
 A>
 A>
 A>
