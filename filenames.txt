@@ -53,21 +53,21 @@
 #course2_exercises expressing_design_formula_exercises
 #course2 linear_models_in_practice
 #course2_exercises linear_models_in_practice_exercises
-course2 standard_errors
-course2_exercises standard_errors_exercises
-course2 interactions_and_contrasts
-course2_exercises interactions_and_contrasts_exercises
-course2 collinearity
-course2_exercises collinearity_exercises
-course2 qr_and_regression
-course2 linear_models_going_further
+#course2 standard_errors
+#course2_exercises standard_errors_exercises
+#course2 interactions_and_contrasts
+#course2_exercises interactions_and_contrasts_exercises
+#course2 collinearity
+#course2_exercises collinearity_exercises
+#course2 qr_and_regression
+#course2 linear_models_going_further
 
 
 ### Chapter 6: inference for high-dimensional data
-#course3 intro_to_highthroughput_data
-#course3 inference_for_highthroughput
-#course3 multiple_testing
-#course3 eda_for_highthroughput
+course3 intro_to_highthroughput_data
+course3 inference_for_highthroughput
+course3 multiple_testing
+course3 eda_for_highthroughput
 
 ### Chapter 7: Statistical Modeling
 #course3 modeling
