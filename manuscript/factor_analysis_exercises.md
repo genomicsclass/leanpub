@@ -51,10 +51,10 @@ A>4. Based on the correlation plots above, we could argue that there are at leas
 A>
 A>    Which command gives us these estimates?
 A>
-A>    - A. pcs = svd(y)$v[1:2,]
-A>    - B. pcs = svd(y)$v[,1:2]
-A>    - C. pcs = svd(y)$u[,1:2]
-A>    - D. pcs = svd(y)$d[1:2]
+A>    - A. `pcs = svd(y)$v[1:2,]`
+A>    - B. `pcs = svd(y)$v[,1:2]`
+A>    - C. `pcs = svd(y)$u[,1:2]`
+A>    - D. `pcs = svd(y)$d[1:2]`
 A>
 A>
 A>
