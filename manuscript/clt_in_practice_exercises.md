@@ -37,78 +37,78 @@ A>
     download(url, destfile=filename)
     dat <- read.csv("femaleMiceWeights.csv") 
     ```
-
-    We are presented with a typical simple dataset. We have 12 measurements for each of two populations:
-   
-    
+A>
+A>    We are presented with a typical simple dataset. We have 12 measurements for each of two populations:
+A>   
+A>    
     ```r
     X <- filter(dat, Diet=="chow") %>% select(Bodyweight) %>% unlist
     Y <- filter(dat, Diet=="hf") %>% select(Bodyweight) %>% unlist
     ```
-
-    We think of {$$}X{/$$} as a random sample from the population of all mice in the control diet and {$$}Y{/$$} as a random sample from the population of all mice in the high fat diet. 
-   
-    If you define the parameter {$$}\mu_x{/$$} as the average of the control population. We estimate this parameter with the sample average {$$}\bar{X}{/$$}. What is the sample average?
-
-
-
-4. We don't know {$$}\mu_X{/$$} but want to use {$$}\bar{X}{/$$} to understand {$$}\mu_X{/$$}. Which of the following uses CLT to understand how well {$$}\bar{X}{/$$} approximates {$$}\mu_X{/$$} ?
-  - A. {$$}\bar{X}{/$$} follows a normal distribution with mean 0 and standard deviation 1.
-  - B. {$$}\mu_X{/$$} follows a normal distribution with mean {$$}\bar{X}{/$$} and standard deviation {$$}\frac{\sigma_x}{\sqrt{12}}{/$$} where {$$}\sigma_x{/$$} is the population standard deviation.
-  - C. {$$}\bar{X}{/$$} follows a normal distribution with mean {$$}\mu_X{/$$} and standard deviation {$$}\sigma_x{/$$} where {$$}\sigma_x{/$$} is the population standard deviation.
-  - D. {$$}\bar{X}{/$$} follows a normal distribution with mean {$$}\mu_X{/$$} and standard deviation {$$}\frac{\sigma_x}{\sqrt{12}}{/$$} where {$$}\sigma_x{/$$} is the population standard deviation.
-
-
-5. The result above tells us the distribution of the following random variable: {$$}Z=\sqrt{12} \frac{\bar{X}-\mu_X}{\sigma_X}{/$$}. What does the CLT tell us is the mean of {$$}Z{/$$} (you don't need code):
-
-
-6. The result of 4 and 5 tell us that we know the distribution of the difference between our estimate and what we want to estimate, but don't know. However, the equation involves the population standard deviation {$$}\sigma_X{/$$} which we don't know. Given what we discussed, what is your estimate of {$$}\sigma_x{/$$}.    
-
-
-7. Use the CLT to approximate the probability that our estimate {$$}\bar{X}{/$$} is off by more than 5.21 ounces from {$$}\mu_X{/$$}
-
-
-8. Now we introduce the concept of a null hypothesis. We don't know {$$}\mu_x{/$$} nor {$$}\mu_y{/$$}. We want to quantify what the data say about the possibility that the diet has no effect: {$$}\mu_x=\mu_y{/$$}. If we use CLT then we approximate the distribution of {$$}\bar{X}{/$$} as normal with mean {$$}\mu_X{/$$} and standard deviation {$$}\sigma_X{/$$} and the distribution of {$$}\bar{Y}{/$$}  as normal with mean {$$}\mu_y{/$$} and standard deviation {$$}\sigma_y{/$$}. This implies that the difference {$$}\bar{Y}-\bar{X}{/$$} has mean {$$}0{/$$}. We described that the standard deviation of this statistic (the standard error) is {$$}\mbox{SE}( \bar{X}-\bar{Y}) = \sqrt{ \sigma_y^2 / 12 + \sigma_x^2 /12 }{/$$} and that we estimate the population standard deviations {$$}\sigma_x{/$$} and {$$}\sigma_y{/$$} with the sample estimates. What is the estimate of {$$}\mbox{SE}( \bar{X}-\bar{Y}) = \sqrt{ \sigma_y^2 / 12 + \sigma_x^2 /12 }{/$$} 
-
-
- 
-9. So now we can compute {$$}\bar{Y} - \bar{X}{/$$} as well as an estimate of this standard error and construct a t-statistic. What is this t-statistic?
-
-
-10. If we apply the CLT, what is the distribution of this t-statistic?
-  - A. Normal with mean 0 and standard deviation 1.
-  - B. t-distributed with 22 degrees of freedom.
-  - C. Normal with mean 0 and standard deviation \sqrt{ \sigma_y^2 / 12 + \sigma_x^2 /12 }{$$}.
-  - D. t-distributed with 12 degrees of freedom.
-  
-11. Now we are ready to compute a p-value using the CLT. What is the probability of observing a quantity as large as what we computed in 10 when the null distribution is true?
-
-
-
-12.  CLT provides an approximation for cases in which the sample size is large. In practice we can't check the assumption because we only get to see 1 outcome (which you computed above). So if this approximation is off, so is our p-value. As described there is another approach that does not require a large sample size, but rather that the distribution of the population is approximately normal. We don't get to see this distribution so it is again an assumption. Although we can look at the distribution of the sample:
-    
+A>
+A>    We think of {$$}X{/$$} as a random sample from the population of all mice in the control diet and {$$}Y{/$$} as a random sample from the population of all mice in the high fat diet. 
+A>   
+A>    If you define the parameter {$$}\mu_x{/$$} as the average of the control population. We estimate this parameter with the sample average {$$}\bar{X}{/$$}. What is the sample average?
+A>
+A>
+A>
+A>4. We don't know {$$}\mu_X{/$$} but want to use {$$}\bar{X}{/$$} to understand {$$}\mu_X{/$$}. Which of the following uses CLT to understand how well {$$}\bar{X}{/$$} approximates {$$}\mu_X{/$$} ?
+A>  - A. {$$}\bar{X}{/$$} follows a normal distribution with mean 0 and standard deviation 1.
+A>  - B. {$$}\mu_X{/$$} follows a normal distribution with mean {$$}\bar{X}{/$$} and standard deviation {$$}\frac{\sigma_x}{\sqrt{12}}{/$$} where {$$}\sigma_x{/$$} is the population standard deviation.
+A>  - C. {$$}\bar{X}{/$$} follows a normal distribution with mean {$$}\mu_X{/$$} and standard deviation {$$}\sigma_x{/$$} where {$$}\sigma_x{/$$} is the population standard deviation.
+A>  - D. {$$}\bar{X}{/$$} follows a normal distribution with mean {$$}\mu_X{/$$} and standard deviation {$$}\frac{\sigma_x}{\sqrt{12}}{/$$} where {$$}\sigma_x{/$$} is the population standard deviation.
+A>
+A>
+A>5. The result above tells us the distribution of the following random variable: {$$}Z=\sqrt{12} \frac{\bar{X}-\mu_X}{\sigma_X}{/$$}. What does the CLT tell us is the mean of {$$}Z{/$$} (you don't need code):
+A>
+A>
+A>6. The result of 4 and 5 tell us that we know the distribution of the difference between our estimate and what we want to estimate, but don't know. However, the equation involves the population standard deviation {$$}\sigma_X{/$$} which we don't know. Given what we discussed, what is your estimate of {$$}\sigma_x{/$$}.    
+A>
+A>
+A>7. Use the CLT to approximate the probability that our estimate {$$}\bar{X}{/$$} is off by more than 5.21 ounces from {$$}\mu_X{/$$}
+A>
+A>
+A>8. Now we introduce the concept of a null hypothesis. We don't know {$$}\mu_x{/$$} nor {$$}\mu_y{/$$}. We want to quantify what the data say about the possibility that the diet has no effect: {$$}\mu_x=\mu_y{/$$}. If we use CLT then we approximate the distribution of {$$}\bar{X}{/$$} as normal with mean {$$}\mu_X{/$$} and standard deviation {$$}\sigma_X{/$$} and the distribution of {$$}\bar{Y}{/$$}  as normal with mean {$$}\mu_y{/$$} and standard deviation {$$}\sigma_y{/$$}. This implies that the difference {$$}\bar{Y}-\bar{X}{/$$} has mean {$$}0{/$$}. We described that the standard deviation of this statistic (the standard error) is {$$}\mbox{SE}( \bar{X}-\bar{Y}) = \sqrt{ \sigma_y^2 / 12 + \sigma_x^2 /12 }{/$$} and that we estimate the population standard deviations {$$}\sigma_x{/$$} and {$$}\sigma_y{/$$} with the sample estimates. What is the estimate of {$$}\mbox{SE}( \bar{X}-\bar{Y}) = \sqrt{ \sigma_y^2 / 12 + \sigma_x^2 /12 }{/$$} 
+A>
+A>
+A> 
+A>9. So now we can compute {$$}\bar{Y} - \bar{X}{/$$} as well as an estimate of this standard error and construct a t-statistic. What is this t-statistic?
+A>
+A>
+A>10. If we apply the CLT, what is the distribution of this t-statistic?
+A>  - A. Normal with mean 0 and standard deviation 1.
+A>  - B. t-distributed with 22 degrees of freedom.
+A>  - C. Normal with mean 0 and standard deviation \sqrt{ \sigma_y^2 / 12 + \sigma_x^2 /12 }{$$}.
+A>  - D. t-distributed with 12 degrees of freedom.
+A>  
+A>11. Now we are ready to compute a p-value using the CLT. What is the probability of observing a quantity as large as what we computed in 10 when the null distribution is true?
+A>
+A>
+A>
+A>12.  CLT provides an approximation for cases in which the sample size is large. In practice we can't check the assumption because we only get to see 1 outcome (which you computed above). So if this approximation is off, so is our p-value. As described there is another approach that does not require a large sample size, but rather that the distribution of the population is approximately normal. We don't get to see this distribution so it is again an assumption. Although we can look at the distribution of the sample:
+A>    
     ```r
     library(rafalib)
     mypar(1,2)
     qqnorm(X); qqline(X)
     qqnorm(Y); qqline(Y)
     ```
-
-    The alternative approach is to assume the t-statistic follows distribution. What is the p-value under the t-distribution approximation (hint: use the `t.test` function)?
-
-
-
-13. With the CLT distribution we obtained a p-value smaller than 0.05 and with the t-distribution one that is larger. They can't both be right. What best describes the difference?
-  - A. A sample size of 12 is not large enough so we have to use the t-distribution approximation.
-  - B. These are two different assumptions. The t-distribution accounts for the variability introduced by the estimation of the standard error and thus, under the null, large values are more probable under the null distribution.
-  - C. The population data is probably not normally distributed so the t-distribution approximation is wrong.
-  - D. Neither assumption is useful. Both are wrong.
-
-
-
-
-
-
-  
-   
-   
+A>
+A>    The alternative approach is to assume the t-statistic follows distribution. What is the p-value under the t-distribution approximation (hint: use the `t.test` function)?
+A>
+A>
+A>
+A>13. With the CLT distribution we obtained a p-value smaller than 0.05 and with the t-distribution one that is larger. They can't both be right. What best describes the difference?
+A>  - A. A sample size of 12 is not large enough so we have to use the t-distribution approximation.
+A>  - B. These are two different assumptions. The t-distribution accounts for the variability introduced by the estimation of the standard error and thus, under the null, large values are more probable under the null distribution.
+A>  - C. The population data is probably not normally distributed so the t-distribution approximation is wrong.
+A>  - D. Neither assumption is useful. Both are wrong.
+A>
+A>
+A>
+A>
+A>
+A>
+A>  
+A>   
+A>   
