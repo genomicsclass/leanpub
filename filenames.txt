@@ -1,7 +1,6 @@
 course1 introduction
 course1 getting_started
 course1_exercises getting_started_exercises
-course1 getting_started
 course1 dplyr_intro
 course1_exercises dplyr_intro_exercises
 

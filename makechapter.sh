@@ -20,7 +20,7 @@ else
 fi
 
 ## Now we knit
-Rscript --no-init-file -e "library(knitr); knit('$2-tmp.Rmd')"
+Rscript --no-init-file -e "library(knitr); knit('$2-tmp.Rmd', quiet=TRUE)"
 
 ### Here we are converting the $ used by latex to $$ used by jekyll
 
