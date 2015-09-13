@@ -68,7 +68,7 @@ intro_to_highthroughput_data.md
 intro_to_highthroughput_data_exercises.md
 inference_for_highthroughput.md
 inference_for_highthroughput_exercises.md
-#course3 multiple_testing
+multiple_testing.md
 #course3_exercises multiple_testing_exercises
 #course3 eda_for_highthroughput
 #course3_exercises eda_for_highthroughput_exercises
