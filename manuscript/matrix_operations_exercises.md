@@ -28,11 +28,11 @@ A>
 A>
 A>3. Load the following two matrices into R:
 A>
-A>
-```r
-a <- matrix(1:12, nrow=4)
-b <- matrix(1:15, nrow=3)
-```
+A>    
+    ```r
+    a <- matrix(1:12, nrow=4)
+    b <- matrix(1:15, nrow=3)
+    ```
 A>
 A>    Note the dimension of 'a' and the dimension of 'b'.
 A>

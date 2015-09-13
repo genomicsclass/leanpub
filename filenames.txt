@@ -37,11 +37,11 @@
 #course1_exercises robust_summaries_exercises
 
 ## Chapter 4 - Matrix Algebra
-course2 intro_using_regression
-course2_exercises intro_using_regression_exercises
-course2 matrix_notation
-course2_exercises matrix_notation_exercises
-course2 matrix_operations
+#course2 intro_using_regression
+#course2_exercises intro_using_regression_exercises
+#course2 matrix_notation
+#course2_exercises matrix_notation_exercises
+#course2 matrix_operations
 course2_exercises matrix_operations_exercises
 course2 matrix_algebra_examples
 course2_exercises matrix_algebra_examples
@@ -77,7 +77,7 @@ course2_exercises matrix_algebra_examples
 ### Chapter 8:  Distance and dimension reduction
 #course3 distance
 #course3 pca_motivation
-course3 svd
+#course3 svd
 #course3 projections
 #course3 rotations
 #course3 mds
