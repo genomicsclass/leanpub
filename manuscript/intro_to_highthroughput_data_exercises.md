@@ -17,7 +17,7 @@ A>## Downloading github repo genomicsclass/GSE5859Subset@master
 A>## Installing GSE5859Subset
 A>## '/Library/Frameworks/R.framework/Resources/bin/R' --no-site-file  \
 A>##   --no-environ --no-save --no-restore CMD INSTALL  \
-A>##   '/private/var/folders/kv/h18_5_qn1hj43r8pq5l0tddw0000gn/T/RtmpF7ZPbF/devtools13fca1acc1413/genomicsclass-GSE5859Subset-8ada5f4'  \
+A>##   '/private/var/folders/kv/h18_5_qn1hj43r8pq5l0tddw0000gn/T/RtmphFvXEv/devtools141e758427612/genomicsclass-GSE5859Subset-8ada5f4'  \
 A>##   --library='/Library/Frameworks/R.framework/Versions/3.2/Resources/library'  \
 A>##   --install-tests
 A>```
