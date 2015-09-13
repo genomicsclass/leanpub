@@ -5,13 +5,11 @@ layout: page
 
 A>## Exercises
 A>
-A>Exercises 3-13 use the mouse data set:
+A>Exercises 3-13 use the mouse data set we have previously downloaded:
 A>
 A>    
     ```r
-    library(downloader) 
-    url <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/femaleMiceWeights.csv"
-    filename <- basename(url)
+    filename <- "femaleMiceWeights.csv"
     download(url, destfile=filename)
     dat <- read.csv("femaleMiceWeights.csv") 
     ```
