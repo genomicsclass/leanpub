@@ -7,12 +7,14 @@ A>## Exercises
 A>
 A>Exercises 3-13 use the mouse data set we have previously downloaded:
 A>
-A>    
-    ```r
-    filename <- "femaleMiceWeights.csv"
-    download(url, destfile=filename)
-    dat <- read.csv("femaleMiceWeights.csv") 
-    ```
+A>
+```r
+library(downloader)
+url <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/femaleMiceWeights.csv"
+filename <- "femaleMiceWeights.csv"
+if(!file.exists("femaleMiceWeights.csv")) download(url,destfile=filename)
+dat <- read.csv(filenames) 
+```
 A>
 A>
 A>1. The CLT is a result from probability theory. Much of probability theory was originally inspired by gambling and this theory is still used in practice by casinos. For example, they can estimate how many people need to play slots for there to be a 99.9999% probability of earning enough money to cover expenses. Let's try a simple example related to gambling.
