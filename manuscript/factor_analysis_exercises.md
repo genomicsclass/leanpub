@@ -105,8 +105,7 @@ A>
 A>10. What is this correlation  (in absolute value)?
 A>
 A>
-A>11. Now instead of using month, which we have shown does not quite describe the batch,  add the two estimated factors in question 3.4.2
-A> to the linear model we used above.
+A>11. Now instead of using month, which we have shown does not quite describe the batch,  add the two estimated factors in exercise 9 to the linear model we used above.
 A>
 A>    
     ```r
