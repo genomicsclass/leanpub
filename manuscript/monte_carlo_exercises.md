@@ -36,7 +36,7 @@ A>
 A>5. Is the following statement true or false? If instead of generating the sample with `X=rnorm(15)` we generate to be binary data `X=rbinom(n=15,size=1,prob=0.5)` then the t-statistic `sqrt(15)*mean(X)/sd(X)` is approximated by a t-distribution with 14 degrees of freedom. 
 A>
 A>
-A>6. Is the following statement true or false? If instead of generating the sample with `X=rnorm(500)` we generate to be binary data `X=rbinom(n=500,size=1,prob=0.5)` then the t-statistic `sqrt(500)*mean(X)/sd(X)` is approximated by a t-distribution with 99 degrees of freedom. 
+A>6. Is the following statement true or false? If instead of generating the sample with `X=rnorm(N)` with `N=500`, we generate the data to be binary data `X=rbinom(n=500,size=1,prob=0.5)`, then the t-statistic `sqrt(N)*mean(X)/sd(X)` is approximated by a t-distribution with 499 degrees of freedom. 
 A>
 A>
 A>
