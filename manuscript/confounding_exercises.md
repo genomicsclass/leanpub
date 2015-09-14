@@ -12,6 +12,10 @@ library(dagdata)
 data(admissions)
 ```
 A>
+A>```
+A>## Warning in data(admissions): data set 'admissions' not found
+A>```
+A>
 A>Familiarize yourself with this table:
 A>
 A>
