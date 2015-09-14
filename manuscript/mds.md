@@ -15,52 +15,16 @@ We will motivate multi-dimensional scaling (MDS) plots with a gene expression ex
 ```r
 library(rafalib)
 library(tissuesGeneExpression)
-```
-
-```
-## Error in library(tissuesGeneExpression): there is no package called 'tissuesGeneExpression'
-```
-
-```r
 data(tissuesGeneExpression)
-```
-
-```
-## Warning in data(tissuesGeneExpression): data set 'tissuesGeneExpression'
-## not found
-```
-
-```r
 ##show matrix
 colind <- tissue%in%c("kidney","colon","liver")
-```
-
-```
-## Error in match(x, table, nomatch = 0L): object 'tissue' not found
-```
-
-```r
 mat <- e[,colind]
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'e' not found
-```
-
-```r
 group <- factor(tissue[colind])
-```
-
-```
-## Error in factor(tissue[colind]): object 'tissue' not found
-```
-
-```r
 dim(mat)
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'mat' not found
+## [1] 22215    99
 ```
 
 As an exploratory step, we wish to know if gene expression profiles stored in the columns of `mat` show more similarity between tissues than across tissues. Unfortunately, as mentioned above, we can't plot multi-dimensional points. In general, we prefer two-dimensional plots, but making plots for every pair of genes or every pair of samples is not practical. MDS plots become a powerful tool in this situation.
@@ -133,44 +97,14 @@ Because {$$}Z{/$$} is a two dimensional vector and we can visualize the distance
 
 ```r
 s <- svd(mat-rowMeans(mat))
-```
-
-```
-## Error in as.matrix(x): object 'mat' not found
-```
-
-```r
 PC1 <- s$d[1]*s$v[,1]
-```
-
-```
-## Error in eval(expr, envir, enclos): object 's' not found
-```
-
-```r
 PC2 <- s$d[2]*s$v[,2]
-```
-
-```
-## Error in eval(expr, envir, enclos): object 's' not found
-```
-
-```r
 mypar(1,1)
 plot(PC1,PC2,pch=21,bg=as.numeric(group))
-```
-
-```
-## Error in plot(PC1, PC2, pch = 21, bg = as.numeric(group)): object 'PC1' not found
-```
-
-```r
 legend("bottomright",levels(group),col=seq(along=levels(group)),pch=15,cex=1.5)
 ```
 
-```
-## Error in levels(group): object 'group' not found
-```
+![Multi-dimensional scaling (MDS) plot for tissue gene expression data.](images/R/mds-tmp-MDS-1.png) 
 
 Note that the point separate by tissue type as expected. Now, the accuracy of the approximation above depends on the proportion of variance explained by the first two principal components. As we showed above, we can quickly see this by plotting the variance explained plot:
 
@@ -179,45 +113,20 @@ Note that the point separate by tissue type as expected. Now, the accuracy of th
 plot(s$d^2/sum(s$d^2))
 ```
 
-```
-## Error in plot(s$d^2/sum(s$d^2)): object 's' not found
-```
+![Variance explained for each principal component.](images/R/mds-tmp-variance_explained-1.png) 
 
 Although the first two PCs explain over 50% of the variability, there is plenty of information that this plot does not show. However, it is an incredibly useful plot for obtaining a general idea of the distance between points. Also note, that we can plot other dimensions as well to search for patterns. Here are the 3rd and 4th PCs
 
 
 ```r
 PC3 <- s$d[3]*s$v[,3]
-```
-
-```
-## Error in eval(expr, envir, enclos): object 's' not found
-```
-
-```r
 PC4 <- s$d[4]*s$v[,4]
-```
-
-```
-## Error in eval(expr, envir, enclos): object 's' not found
-```
-
-```r
 mypar(1,1)
 plot(PC3,PC4,pch=21,bg=as.numeric(group))
-```
-
-```
-## Error in plot(PC3, PC4, pch = 21, bg = as.numeric(group)): object 'PC3' not found
-```
-
-```r
 legend("bottomright",levels(group),col=seq(along=levels(group)),pch=15,cex=1.5)
 ```
 
-```
-## Error in levels(group): object 'group' not found
-```
+![Third and fourth principal components.](images/R/mds-tmp-PC_3_and_4-1.png) 
 
 Note that the 4th PC shows a strong separation within the kidney samples. Later we will learn about batch effects which might explain this finding. 
 
@@ -230,36 +139,14 @@ Although above, we used the `svd` functions, there is a special function that is
 
 ```r
 d <- dist(t(mat))
-```
-
-```
-## Error in t(mat): object 'mat' not found
-```
-
-```r
 mds <- cmdscale(d)
-```
 
-```
-## Error in cmdscale(d): object 'd' not found
-```
-
-```r
 mypar()
 plot(mds[,1],mds[,2],bg=as.numeric(group),pch=21,xlab="First dimension",ylab="Second dimension")
-```
-
-```
-## Error in plot(mds[, 1], mds[, 2], bg = as.numeric(group), pch = 21, xlab = "First dimension", : object 'mds' not found
-```
-
-```r
 legend("bottomleft",levels(group),col=seq(along=levels(group)),pch=15)
 ```
 
-```
-## Error in levels(group): object 'group' not found
-```
+![MDS computed with cmdscale function.](images/R/mds-tmp-mds2-1.png) 
 Note that these two approaches are equivalent up to an arbitrary sign change.
 
 
@@ -272,9 +159,7 @@ for(i in 1:2){
 }
 ```
 
-```
-## Error in plot(mds[, i], s$d[i] * s$v[, i], main = paste("PC", i)): object 'mds' not found
-```
+![Comparison of MDS first two PCs to SVD first two PCs.](images/R/mds-tmp-mds_same_as_svd-1.png) 
 
 
 ### Why the arbitrary sign?
