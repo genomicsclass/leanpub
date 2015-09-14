@@ -23,14 +23,51 @@ Here, we start by describing linear regression in the context of prediction. We 
 library(rafalib)
 mypar(1,1)
 library(UsingR)
+```
+
+```
+## Error in library(UsingR): there is no package called 'UsingR'
+```
+
+```r
 data("father.son")
+```
+
+```
+## Warning in data("father.son"): data set 'father.son' not found
+```
+
+```r
 x=round(father.son$fheight) ##round to nearest inch
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'father.son' not found
+```
+
+```r
 y=round(father.son$sheight)
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'father.son' not found
+```
+
+```r
 hist(y,breaks=seq(min(y),max(y)))
+```
+
+```
+## Error in hist(y, breaks = seq(min(y), max(y))): object 'y' not found
+```
+
+```r
 abline(v=mean(y),col=2)
 ```
 
-![Histogram of son heights.](images/R/conditional_expectation-tmp-height_hist-1.png) 
+```
+## Error in mean(y): object 'y' not found
+```
 
 In this case, we can also approximate the distribution of {$$}Y{/$$} as normal, which implies the mean maximizes the probability density. 
 
@@ -41,11 +78,27 @@ Now imagine that we are given more information. We are told the father of this r
 ```r
 mypar(1,2)
 plot(x,y,xlab="Father's height in inches",ylab="Son's height in inches",main=paste("correlation =",signif(cor(x,y),2)))
+```
+
+```
+## Error in plot(x, y, xlab = "Father's height in inches", ylab = "Son's height in inches", : object 'x' not found
+```
+
+```r
 abline(v=c(-0.35,0.35)+71,col="red")
+```
+
+```
+## Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): plot.new has not been called yet
+```
+
+```r
 hist(y[x==71],xlab="Heights",nc=8,main="",xlim=range(y))
 ```
 
-![Son versus father height (left) with the red lines denoting the stratum defined by conditioning on fathers being 71 inches tall. Conditional distribution: son height distribution of stratum defined by 71 inch fathers.](images/R/conditional_expectation-tmp-conditional_distribution-1.png) 
+```
+## Error in hist(y[x == 71], xlab = "Heights", nc = 8, main = "", xlim = range(y)): object 'y' not found
+```
 
 <a name="regression"></a>
 
@@ -71,16 +124,51 @@ and if we estimate these five parameters from the sample we get the regression l
 ```r
 mypar(1,2)
 plot(x,y,xlab="Father's height in inches",ylab="Son's height in inches",main=paste("correlation =",signif(cor(x,y),2)))
+```
+
+```
+## Error in plot(x, y, xlab = "Father's height in inches", ylab = "Son's height in inches", : object 'x' not found
+```
+
+```r
 abline(v=c(-0.35,0.35)+71,col="red")
+```
 
+```
+## Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): plot.new has not been called yet
+```
+
+```r
 fit <- lm(y~x)
-abline(fit,col=1)
+```
 
+```
+## Error in eval(expr, envir, enclos): object 'y' not found
+```
+
+```r
+abline(fit,col=1)
+```
+
+```
+## Error in abline(fit, col = 1): object 'fit' not found
+```
+
+```r
 hist(y[x==71],xlab="Heights",nc=8,main="",xlim=range(y))
+```
+
+```
+## Error in hist(y[x == 71], xlab = "Heights", nc = 8, main = "", xlim = range(y)): object 'y' not found
+```
+
+```r
 abline(v = fit$coef[1] + fit$coef[2]*71, col=1)
 ```
 
-![Son versus father height showing predicted heights based on regression line (left). Conditional distribution with vertical line representing regression prediction.](images/R/conditional_expectation-tmp-regression-1.png) 
+```
+## Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): object 'fit' not found
+```
 
 In this particular case the regression line provides an optimal prediction function for {$$}Y{/$$}. But this is not generally true.
 
