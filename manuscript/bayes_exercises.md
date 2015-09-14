@@ -62,6 +62,7 @@ A>
 A>6. The Binomial is approximated by normal so our sampling distribution is approximately normal wih mean {$$}Y=0.45{/$$} and SD {$$}\sigma=0.11{/$$}. Earlier we used a baseball database to determine that our prior distribution is Normal with mean {$$}\mu=0.275{/$$} and SD {$$}\tau=0.027{/$$}. We also saw that this is the posterior mean prediction of the batting average. 
 A>
 A>    What is your Bayes prediction for the batting average going forward.
+A>   
 A>    {$$}
 A>\begin{align*}
 A>\mbox{E}(\theta|y) &= B \mu + (1-B) Y\\
