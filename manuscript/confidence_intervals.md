@@ -126,8 +126,9 @@ pnorm(2) - pnorm(-2)
 
 has a probability of 95%. 
 
-Be aware that it is the edges of the interval {$$}\bar{X} \pm 2
-s_X/\sqrt{N}{/$$}, not {$$}\mu_X{/$$}, that are random. Again, the definition of
+Be aware that it is the edges of the interval 
+{$$}\bar{X} \pm 2 s_X / \sqrt{N}{/$$} , not {$$}\mu_X{/$$} , 
+that are random. Again, the definition of
 the confidence interval is that 95% of *random intervals* will contain
 the true, fixed value {$$}\mu_X{/$$}. For a specific interval that has been
 calculated, the probability is either 0 or 1 that it contains the
@@ -206,8 +207,8 @@ for (i in 1:B) {
 
 ![We show 250 random realizations of 95% confidence intervals, but now for a smaller sample size. The confidence interval is based on the CLT approximation. The color denotes if the interval fell on the parameter or not.](images/R/confidence_intervals-tmp-confidence_interval_n5-1.png) 
 
-Despite the intervals being larger (we are dividing by {$$}\sqrt{5}{/$$}
-instead of {$$}\sqrt{30}{/$$}), we see many more intervals not covering
+Despite the intervals being larger ( we are dividing by {$$}\sqrt{5}{/$$}
+instead of {$$}\sqrt{30}{/$$} ), we see many more intervals not covering
 {$$}\mu_X{/$$}. This is because the CLT is incorrectly telling us that the
 distribution of the `mean(chow)` is approximately normal when in fact
 it has a fatter tail (the parts of the distribution going to
@@ -269,8 +270,9 @@ If we are talking about a t-test p-value, we are asking if the
 difference we observe {$$}\bar{Y} - \bar{X}{/$$} is actually equal to
 zero. So we can form a confidence interval for this
 difference. Instead of writing {$$}\bar{Y} - \bar{X}{/$$} repeatedly, let's
-define this difference as a new variable {$$}\Delta \equiv \bar{Y} -
-\bar{X}{/$$}. The symbol {$$}\Delta{/$$} (Delta) is often used for the difference
+define this difference as a new variable 
+{$$}\Delta \equiv \bar{Y} - \bar{X}{/$$}. 
+The symbol {$$}\Delta{/$$} (Delta) is often used for the difference
 between two variables in math and physics.
 
 Suppose you use CLT and report {$$}\Delta \pm 2 s_\Delta/\sqrt{N}{/$$} as a
