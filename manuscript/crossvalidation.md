@@ -22,7 +22,19 @@ Let's load in the tissue gene expression dataset:
 
 ```r
 library(tissuesGeneExpression)
+```
+
+```
+## Error in library(tissuesGeneExpression): there is no package called 'tissuesGeneExpression'
+```
+
+```r
 data(tissuesGeneExpression)
+```
+
+```
+## Warning in data(tissuesGeneExpression): data set 'tissuesGeneExpression'
+## not found
 ```
 
 For illustration purposes let's drop one of the tissues which doesn't have many samples:
@@ -33,17 +45,31 @@ table(tissue)
 ```
 
 ```
-## tissue
-##  cerebellum       colon endometrium hippocampus      kidney       liver 
-##          38          34          15          31          39          26 
-##    placenta 
-##           6
+## Error in table(tissue): object 'tissue' not found
 ```
 
 ```r
 ind <- which(tissue != "placenta")
+```
+
+```
+## Error in which(tissue != "placenta"): object 'tissue' not found
+```
+
+```r
 y <- tissue[ind]
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'tissue' not found
+```
+
+```r
 X <- t( e[,ind] )
+```
+
+```
+## Error in t(e[, ind]): object 'e' not found
 ```
 
 We will use the `createFolds` function from the `caret` package to make 5 folds of the data, which are balanced over the tissues. Don't be confused that the `createFolds` function uses the same letter 'k' as the k in K-nearest neighbors. These 'k' are unrelated. The caret function `createFolds` is asking for how many folds to create, the 'N' from above. The `knn` function is asking how many closest observations to use to classify the test observations.
@@ -54,32 +80,24 @@ library(caret)
 ```
 
 ```
-## Loading required package: lattice
-## Loading required package: ggplot2
-## Loading required package: methods
+## Error in library(caret): there is no package called 'caret'
 ```
 
 ```r
 set.seed(1)
 idx <- createFolds(y, k=10)
+```
+
+```
+## Error in eval(expr, envir, enclos): could not find function "createFolds"
+```
+
+```r
 sapply(idx, function(i) table(y[i]))
 ```
 
 ```
-##             Fold01 Fold02 Fold03 Fold04 Fold05 Fold06 Fold07 Fold08 Fold09
-## cerebellum       3      4      4      4      4      4      4      4      4
-## colon            4      3      3      3      4      4      3      3      4
-## endometrium      2      2      1      1      1      2      1      2      2
-## hippocampus      3      3      3      3      3      3      4      3      3
-## kidney           4      4      3      4      4      4      4      4      4
-## liver            2      3      3      2      2      3      3      3      3
-##             Fold10
-## cerebellum       3
-## colon            3
-## endometrium      1
-## hippocampus      3
-## kidney           4
-## liver            2
+## Error in lapply(X = X, FUN = FUN, ...): object 'idx' not found
 ```
 
 
@@ -90,11 +108,27 @@ Because tissues have very different gene expression profiles, predicting tissue 
 library(rafalib)
 mypar()
 Xsmall <- cmdscale(dist(X))
+```
+
+```
+## Error in as.matrix(x): object 'X' not found
+```
+
+```r
 plot(Xsmall,col=as.fumeric(y))
+```
+
+```
+## Error in plot(Xsmall, col = as.fumeric(y)): object 'Xsmall' not found
+```
+
+```r
 legend("topleft",levels(factor(y)),fill=seq_along(levels(factor(y))))
 ```
 
-![First two PCs of the tissue gene expression data with color representing tissue. We use these two PCs as our two predictors throughout.](images/R/crossvalidation-tmp-mds-1.png) 
+```
+## Error in factor(y): object 'y' not found
+```
 
 Now we can try out the K-nearest neighbors method on a single fold:
 
@@ -103,18 +137,18 @@ Now we can try out the K-nearest neighbors method on a single fold:
 library(class)
 i=1
 pred <- knn(train =  Xsmall[ -idx[[i]] , ], test = Xsmall[ idx[[i]], ], cl=  y[ -idx[[i]] ], k=5)
+```
+
+```
+## Error in as.matrix(train): object 'Xsmall' not found
+```
+
+```r
 table(true=y[ idx[[i]] ], pred)
 ```
 
 ```
-##              pred
-## true          cerebellum colon endometrium hippocampus kidney liver
-##   cerebellum           2     0           0           1      0     0
-##   colon                0     4           0           0      0     0
-##   endometrium          0     0           1           0      1     0
-##   hippocampus          1     0           0           2      0     0
-##   kidney               0     0           0           0      4     0
-##   liver                0     0           0           0      0     2
+## Error in table(true = y[idx[[i]]], pred): object 'y' not found
 ```
 
 ```r
@@ -122,7 +156,7 @@ mean(y[ idx[[i]] ] != pred)
 ```
 
 ```
-## [1] 0.1666667
+## Error in mean(y[idx[[i]]] != pred): object 'y' not found
 ```
 
 Now we will create a loop, which tries out each value of k from 1 to 12, and runs the K-nearest neighbors algorithm on each fold. We then ask for the proportion of errors for each fold, and report the average from the 5 cross-validation folds:
@@ -151,6 +185,10 @@ res <- sapply(ks, function(k) {
 })
 ```
 
+```
+## Error in lapply(X = X, FUN = FUN, ...): object 'idx' not found
+```
+
 Now we can plot the mean misclassification rate for each value of k:
 
 
@@ -158,7 +196,9 @@ Now we can plot the mean misclassification rate for each value of k:
 plot(ks, res, type="o")
 ```
 
-![Misclassification error versus number of neighbors.](images/R/crossvalidation-tmp-misclassification_error-1.png) 
+```
+## Error in xy.coords(x, y, xlabel, ylabel, log): object 'res' not found
+```
 
 
 Finally, to show that gene expression can perfectly predict tissue, we use 5 dimensions instead of 2, which results in perfect prediction:
@@ -166,6 +206,13 @@ Finally, to show that gene expression can perfectly predict tissue, we use 5 dim
 
 ```r
 Xsmall <- cmdscale(dist(X),k=5)
+```
+
+```
+## Error in as.matrix(x): object 'X' not found
+```
+
+```r
 set.seed(1)
 ks <- 1:12
 res <- sapply(ks, function(k) {
@@ -177,9 +224,18 @@ res <- sapply(ks, function(k) {
   })
   mean(res.k)
 })
+```
+
+```
+## Error in lapply(X = X, FUN = FUN, ...): object 'idx' not found
+```
+
+```r
 plot(ks, res, type="o",ylim=c(0,0.20))
 ```
 
-![Misclassification error versus number of neighbors when we use five dimensions instead of 2.](images/R/crossvalidation-tmp-misclassification_error2-1.png) 
+```
+## Error in xy.coords(x, y, xlabel, ylabel, log): object 'res' not found
+```
 
 Important note: we applied `cmdscale` to the entire dataset to create a smaller one for illustration purposes. However, in a real machine learning application, all transformations of the data must be applied separately on the test and training dataset.
