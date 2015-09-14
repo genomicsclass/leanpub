@@ -13,7 +13,9 @@ A>    The cystic fibrosis rate in the general population is 1 in 3,900, {$$}\mbo
 A>
 A>If we select random person and they test postive what is probability that they have cysttic fibrosos {$$}\mbox{Prob}(D|+){/$$} ? Hint: use Bayes Rule: 
 A>
-A>{$$}\mbox{Pr}(A|B)  =  \frac{\mbox{Pr}(B|A)\mbox{Pr}(A)}{\mbox{Pr}(B)} {/$$}
+A>    {$$}
+A>    \mbox{Pr}(A|B)  =  \frac{\mbox{Pr}(B|A)\mbox{Pr}(A)}{\mbox{Pr}(B)}
+A>    {/$$}
 A>
 A>
 A>
