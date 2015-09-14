@@ -2,36 +2,22 @@
 title: EDA Exercises
 ---
 
+
+
+
 A>## Exercises
 A>
-A>![ ](images/R/hist_exercise-1.png) 
+A>![ ](images/R/exploratory_data_analysis_exercises-tmp-hist_exercise-1.png) 
 A>
 A>1. Given the above histogram: how many people are between the ages of 35 and 45?
 A>
 A>
-A>
 A>2. The `InsectSprays` data set is included in R. The dataset reports the counts of insects in agricultural experimental units treated with different insecticides. Make a boxplot and determine which insecticide appears to be most effective  
-A>    
-    ```r
-    boxplot(InsectSprays$count ~ InsectSprays$spray, 
-        xlab = "Insecticide Spray", 
-        ylab = "Insect Count")
-    ```
-A>    
-A>    ![plot of chunk unnamed-chunk-1](images/R/unnamed-chunk-1-1.png) 
-A>    
-    ```r
-    cat("C")
-    ```
-A>    
-A>    ```
-A>    ## C
-A>    ```
+A>
 A>
 A>
 A>3.  Download and load [this](http://courses.edx.org/c4x/HarvardX/PH525.1x/asset/skew.RData) dataset into R.
 A>Use exploratory data analysis tools to determine which two columns are different from the rest. What is the column that is positively skewed? 
-A>
 A>
 A>
 A>
