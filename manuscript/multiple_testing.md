@@ -695,18 +695,11 @@ In R this can be computed with the `qvalue` function in the `qvalue` package:
 
 ```r
 library(qvalue)
-```
-
-```
-## Error in library(qvalue): there is no package called 'qvalue'
-```
-
-```r
 res <- qvalue(pvals)
 ```
 
 ```
-## Error in eval(expr, envir, enclos): could not find function "qvalue"
+## Error in qvalue(pvals): object 'pvals' not found
 ```
 
 ```r
