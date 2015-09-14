@@ -26,7 +26,18 @@ To corroborate that the normal distribution is in fact a good approximation, we 
 
 ```r
 library(UsingR) ##available from CRAN
+```
+
+```
+## Error in library(UsingR): there is no package called 'UsingR'
+```
+
+```r
 x=father.son$fheight
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'father.son' not found
 ```
 
 and for the normal distribution:
@@ -35,22 +46,54 @@ and for the normal distribution:
 ```r
 ps <- seq(0.01,0.99,0.01)
 qs <- quantile(x,ps)
+```
+
+```
+## Error in quantile(x, ps): object 'x' not found
+```
+
+```r
 normalqs <- qnorm(ps,mean(x),popsd(x))
+```
+
+```
+## Error in mean(x): object 'x' not found
+```
+
+```r
 plot(normalqs,qs,xlab="Normal percentiles",ylab="Height percentiles")
+```
+
+```
+## Error in plot(normalqs, qs, xlab = "Normal percentiles", ylab = "Height percentiles"): object 'normalqs' not found
+```
+
+```r
 abline(0,1) ##identity line
 ```
 
-![First example of qqplot. Here we compute the theoretical quantiles ourselves.](images/R/exploratory_data_analysis_2-tmp-qqplot_example1-1.png) 
+```
+## Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): plot.new has not been called yet
+```
 
 Note how close these values are. Also, note that we can see these qqplots with less code:
 
 
 ```r
 qqnorm(x)
+```
+
+```
+## Error in qqnorm(x): object 'x' not found
+```
+
+```r
 qqline(x) 
 ```
 
-![Second example of qqplot. Here we use the function qqnorm which computes the theoretical normal quantiles automatically.](images/R/exploratory_data_analysis_2-tmp-qqplot_example2-1.png) 
+```
+## Error in quantile(y, probs, names = FALSE, type = qtype, na.rm = TRUE): object 'x' not found
+```
 
 However, the `qqnorm` function plots against a standard normal distribution. This is why the line has slope `popsd(x)` and intercept `mean(x)`.
 
@@ -93,13 +136,43 @@ The methods described above relate to _univariate_ variables. In the biomedical 
 
 ```r
 library(UsingR)
+```
+
+```
+## Error in library(UsingR): there is no package called 'UsingR'
+```
+
+```r
 data("father.son")
+```
+
+```
+## Warning in data("father.son"): data set 'father.son' not found
+```
+
+```r
 x=father.son$fheight
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'father.son' not found
+```
+
+```r
 y=father.son$sheight
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'father.son' not found
+```
+
+```r
 plot(x,y,xlab="Father's height in inches",ylab="Son's height in inches",main=paste("correlation =",signif(cor(x,y),2)))
 ```
 
-![Heights of father and son pairs plotted against each other.](images/R/exploratory_data_analysis_2-tmp-scatterplot-1.png) 
+```
+## Error in xy.coords(x, y, xlabel, ylabel, log): object 'y' not found
+```
 
 The scatter plot shows a general trend: the taller the father, the taller to son. A summary of this trend is the correlation coefficient which in this cases is 0.5. We motivate this statistic by trying to predict the son's height using the father's height. 
 
@@ -114,17 +187,26 @@ Note that the father is taller than average. Specifically, he is 1.7 standard de
 
 ```r
 groups <- split(y,round(x)) 
+```
+
+```
+## Error in split(y, round(x)): object 'y' not found
+```
+
+```r
 boxplot(groups)
 ```
 
-![plot of chunk boxplot](images/R/exploratory_data_analysis_2-tmp-boxplot-1.png) 
+```
+## Error in boxplot(groups): object 'groups' not found
+```
 
 ```r
 print(mean(y[ round(x) == 72]))
 ```
 
 ```
-## [1] 70.67719
+## Error in mean(y[round(x) == 72]): object 'y' not found
 ```
 Stratification followed by boxplots lets us see the distribution of each group. The average height of sons with fathers that are 72 inches tall is 70.7 inches. We also see that the means of the strata appear to follow a straight line. This line is referred to as the regression line and its slope is related to the correlation. 
 
@@ -155,6 +237,13 @@ A definition that is more intuitive is the following: fix a value {$$}x{/$$} and
 
 ```r
 groups <- split(y,round(x)) 
+```
+
+```
+## Error in split(y, round(x)): object 'y' not found
+```
+
+```r
 mypar(2,2)
 for(i in c(5,8,11,14)){
   qqnorm(groups[[i]],main=paste0("X=",names(groups)[i]," strata"),
@@ -163,7 +252,9 @@ for(i in c(5,8,11,14)){
 }
 ```
 
-![qqplots of son heights for four strata defined by father heights.](images/R/exploratory_data_analysis_2-tmp-qqnorm_of_strata-1.png) 
+```
+## Error in qqnorm(groups[[i]], main = paste0("X=", names(groups)[i], " strata"), : object 'groups' not found
+```
 
 
 Now we come back to defining correlation. Mathematical statistics tells us that when two variables follow a bivariate normal distribution, then for any given value of {$$}x{/$$}, the average of the {$$}Y{/$$} in pairs for which {$$}X=x{/$$} is:
@@ -189,11 +280,41 @@ To confirm that the above approximations hold in this case, let's compare the me
 ```r
 x=(x-mean(x))/sd(x)
 y=(y-mean(y))/sd(y)
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'y' not found
+```
+
+```r
 means=tapply(y,round(x*4)/4,mean)
+```
+
+```
+## Error in tapply(y, round(x * 4)/4, mean): object 'y' not found
+```
+
+```r
 fatherheights=as.numeric(names(means))
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'means' not found
+```
+
+```r
 mypar(1,1)
 plot(fatherheights,means,ylab="average of strata of son heights",ylim=range(fatherheights))
+```
+
+```
+## Error in plot(fatherheights, means, ylab = "average of strata of son heights", : object 'fatherheights' not found
+```
+
+```r
 abline(0,cor(x,y))
 ```
 
-![Average son height of each strata plotted against father heights defining the strata](images/R/exploratory_data_analysis_2-tmp-scatterplot2-1.png) 
+```
+## Error in is.data.frame(y): object 'y' not found
+```
