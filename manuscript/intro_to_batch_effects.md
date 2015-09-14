@@ -62,7 +62,7 @@ We can also view {$$}\gamma{/$$} as a random variable. In this case, each labora
 
 is an underestimate of the standard error since it does not account for the variance introduced by {$$}\gamma{/$$}.
 
-With data from several laboratories we can in fact estimate the {$$}\gamma$s ,if we assume they average out to 0. Or we can consider them to be random effects and simply estimate a new estimate and standard error with all measurements:
+With data from several laboratories we can in fact estimate the {$$}\gamma{/$$},if we assume they average out to 0. Or we can consider them to be random effects and simply estimate a new estimate and standard error with all measurements:
 
 
 ```r
