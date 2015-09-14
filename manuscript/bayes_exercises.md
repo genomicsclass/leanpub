@@ -40,7 +40,7 @@ A>    Which of the following `dplyr` commands gives us the batting averages (AVG
 A>    - A. `players$AVG`
 A>    - B. `filter(players,yearID==2012) %>% mutate(AVG=H/AB) %>% filter(AB>=500) %>% select(AVG)`
 A>    - C. `filter(players,yearID==2012) %>% mutate(AVG=H/AB) %>% select(AVG)`
-A>    - D. 1filter(players,yearID==2012) %>% mutate(AVG=H/AB) %>% filter(AB>=500) %>% select(AVG) %>% mutate(AVG=mean(AVG))`
+A>    - D. `filter(players,yearID==2012) %>% mutate(AVG=H/AB) %>% filter(AB>=500) %>% select(AVG) %>% mutate(AVG=mean(AVG))`
 A>
 A>
 A>
