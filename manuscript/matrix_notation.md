@@ -82,12 +82,26 @@ In the examples above the random variables associated with the data were represe
 
 ```r
 library(UsingR)
+```
+
+```
+## Error in library(UsingR): there is no package called 'UsingR'
+```
+
+```r
 y=father.son$fheight
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'father.son' not found
+```
+
+```r
 head(y)
 ```
 
 ```
-## [1] 65.04851 63.25094 64.95532 65.75250 61.13723 63.02254
+## Error in head(y): object 'y' not found
 ```
 In math we can also use just one symbol and we usually use bold to distinguish it from the individual entries:
 
