@@ -97,13 +97,15 @@ random interval with a 95% probability of falling on the parameter we
 are estimating. Note that, saying 95% of random intervals will fall on the
 true value (our definition above) is *not the same* as saying there is
 a 95% chance that the specific interval we calculate contains the true value.
-To construct it, we note that the CLT tells us that {$$}\sqrt{N}
-(\bar{X}-\mu_X)/s_X{/$$} follows a normal distribution with mean 0 and
+To construct it, we note that the CLT tells us that 
+{$$}\sqrt{N} (\bar{X}-\mu_X) / s_X{/$$} follows a normal distribution with mean 0 and
 SD 1. This implies that the probability of this event:
 
-{$$}-2 \leq \sqrt{N} (\bar{X}-\mu_X)/s_X \leq 2{/$$}  
+{$$}
+-2 \leq \sqrt{N} (\bar{X}-\mu_X)/s_X \leq 2
+{/$$}  
 
-...written in R code:
+which written in R code is:
 
 
 ```r
@@ -118,7 +120,9 @@ pnorm(2) - pnorm(-2)
 2). Now do some basic algebra to clear out everything and leave
 {$$}\mu_X{/$$} alone in the middle and you get that the following event: 
 
-{$$}\bar{X}-2 s_X/\sqrt{N} \leq \mu_X \leq \bar{X}+2s_X/\sqrt{N}{/$$}  
+{$$}
+\bar{X}-2 s_X/\sqrt{N} \leq \mu_X \leq \bar{X}+2s_X/\sqrt{N}
+{/$$}  
 
 has a probability of 95%. 
 
