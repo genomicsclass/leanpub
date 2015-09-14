@@ -15,7 +15,7 @@
 #course1 clt_in_practice
 #course1_exercises clt_in_practice_exercises
 #course1 t-tests_in_practice
-course1 confidence_intervals
+#course1 confidence_intervals
 #course1 power_calculations
 #course1_exercises power_calculations_exercises
 #course1 monte_carlo
@@ -77,7 +77,7 @@ course1 confidence_intervals
 #course3 modeling
 #course3_exercises modeling_exercises
 #course3 bayes
-#course3_exercises bayes_exercises
+course3_exercises bayes_exercises
 #course3 hierarchical_models
 #course3_exercises hierarchical_models_exercises
 
