@@ -64,6 +64,7 @@ It turns out that because this data is approximated by a bivariate normal distri
 {$$}
 f(x) = \mu_Y + \rho \frac{\sigma_Y}{\sigma_X} (X-\mu_X)
 {/$$}
+
 and if we estimate these five parameters from the sample we get the regression line:
 
 
