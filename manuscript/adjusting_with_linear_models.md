@@ -65,6 +65,13 @@ In the next sections we will use the histogram p-values to evaluate the specific
 
 ```r
 library(qvalue)
+```
+
+```
+## Error in library(qvalue): there is no package called 'qvalue'
+```
+
+```r
 res <- rowttests(geneExpression,as.factor( sampleInfo$group ))
 mypar(1,2)
 hist(res$p.value[which(!chr%in%c("chrX","chrY") )],main="",ylim=c(0,1300))
@@ -73,19 +80,40 @@ plot(res$dm,-log10(res$p.value))
 points(res$dm[which(chr=="chrX")],-log10(res$p.value[which(chr=="chrX")]),col=1,pch=16)
 points(res$dm[which(chr=="chrY")],-log10(res$p.value[which(chr=="chrY")]),col=2,pch=16,xlab="Effect size",ylab="-log10(p-value)")
 legend("bottomright",c("chrX","chrY"),col=1:2,pch=16)
-qvals <- qvalue(res$p.value)$qvalue
-index <- which(qvals<0.1)
-abline(h=-log10(max(res$p.value[index])))
 ```
 
 ![p-value histogram and volcano plot for comparison between sexes. The Y chromosome genes (considered to be positives) are highlighted in red. The X chromosome genes (a subset is considered to be positive) are shown in green.](images/R/adjusting_with_linear_models-tmp-pvalue_hist_and_volcano_plots-1.png) 
+
+```r
+qvals <- qvalue(res$p.value)$qvalue
+```
+
+```
+## Error in eval(expr, envir, enclos): could not find function "qvalue"
+```
+
+```r
+index <- which(qvals<0.1)
+```
+
+```
+## Error in which(qvals < 0.1): object 'qvals' not found
+```
+
+```r
+abline(h=-log10(max(res$p.value[index])))
+```
+
+```
+## Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): object 'index' not found
+```
 
 ```r
 cat("Total genes with q-value < 0.1:",length(index))
 ```
 
 ```
-## Total genes with q-value < 0.1: 59
+## Error in cat("Total genes with q-value < 0.1:", length(index)): object 'index' not found
 ```
 
 ```r
@@ -93,7 +121,7 @@ cat("Number of selected genes on chrY:", sum(chr[index]=="chrY",na.rm=TRUE))
 ```
 
 ```
-## Number of selected genes on chrY: 8
+## Error in cat("Number of selected genes on chrY:", sum(chr[index] == "chrY", : object 'index' not found
 ```
 
 ```r
@@ -101,7 +129,7 @@ cat("Number of selected genes on chrX:", sum(chr[index]=="chrX",na.rm=TRUE))
 ```
 
 ```
-## Number of selected genes on chrX: 12
+## Error in cat("Number of selected genes on chrX:", sum(chr[index] == "chrX", : object 'index' not found
 ```
 
 The histogram is not flat. Instead, low p-values are over-represented. More than half of the genes on the final list are autosomal.
@@ -182,19 +210,40 @@ plot(res$dm,-log10(res$p.value))
 points(res$dm[which(chr=="chrX")],-log10(res$p.value[which(chr=="chrX")]),col=1,pch=16)
 points(res$dm[which(chr=="chrY")],-log10(res$p.value[which(chr=="chrY")]),col=2,pch=16,xlab="Effect size",ylab="-log10(p-value)")
 legend("bottomright",c("chrX","chrY"),col=1:2,pch=16)
-qvals <- qvalue(res$p.value)$qvalue
-index <- which(qvals<0.1)
-abline(h=-log10(max(res$p.value[index])))
 ```
 
 ![p-value histogram and volcano plot for comparison between sexes after adjustement for month. The Y chromosome genes (considered to be positives) are highlighted in red. The X chromosome genes (a subset is considered to be positive) are shown in green.](images/R/adjusting_with_linear_models-tmp-pvalue_hist_and_volcano_plots2-1.png) 
+
+```r
+qvals <- qvalue(res$p.value)$qvalue
+```
+
+```
+## Error in eval(expr, envir, enclos): could not find function "qvalue"
+```
+
+```r
+index <- which(qvals<0.1)
+```
+
+```
+## Error in which(qvals < 0.1): object 'qvals' not found
+```
+
+```r
+abline(h=-log10(max(res$p.value[index])))
+```
+
+```
+## Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): object 'index' not found
+```
 
 ```r
 cat("Total genes with q-value < 0.1:",length(index))
 ```
 
 ```
-## Total genes with q-value < 0.1: 17
+## Error in cat("Total genes with q-value < 0.1:", length(index)): object 'index' not found
 ```
 
 ```r
@@ -202,7 +251,7 @@ cat("Number of selected genes on chrY:", sum(chr[index]=="chrY",na.rm=TRUE))
 ```
 
 ```
-## Number of selected genes on chrY: 6
+## Error in cat("Number of selected genes on chrY:", sum(chr[index] == "chrY", : object 'index' not found
 ```
 
 ```r
@@ -210,7 +259,7 @@ cat("Number of selected genes on chrX:", sum(chr[index]=="chrX",na.rm=TRUE))
 ```
 
 ```
-## Number of selected genes on chrX: 9
+## Error in cat("Number of selected genes on chrX:", sum(chr[index] == "chrX", : object 'index' not found
 ```
 
 There is a great improvement in specificity (less false positives) without much loss in sensitivity (we still find many chrY genes). However, we still see some bias in the histogram. In the following sections we will see that month does not perfectly account for the batch effect and that better estimates are possible.
@@ -263,7 +312,7 @@ library(sva) #available from Bioconductor
 ```
 ## Loading required package: mgcv
 ## Loading required package: nlme
-## This is mgcv 1.8-6. For overview type 'help("mgcv-package")'.
+## This is mgcv 1.8-7. For overview type 'help("mgcv-package")'.
 ```
 
 ```r
@@ -299,19 +348,40 @@ plot(res$dm,-log10(res$p.value))
 points(res$dm[which(chr=="chrX")],-log10(res$p.value[which(chr=="chrX")]),col=1,pch=16)
 points(res$dm[which(chr=="chrY")],-log10(res$p.value[which(chr=="chrY")]),col=2,pch=16,xlab="Effect size",ylab="-log10(p-value)")
 legend("bottomright",c("chrX","chrY"),col=1:2,pch=16)
-qvals <- qvalue(res$p.value)$qvalue
-index <- which(qvals<0.1)
-abline(h=-log10(max(res$p.value[index])))
 ```
 
 ![p-value histogram and volcano plot for comparison between sexes for Combat. The Y chromosome genes (considered to be positives) are highlighted in red. The X chromosome genes (a subset is considered to be positive) are shown in green.](images/R/adjusting_with_linear_models-tmp-pvalue_hist_and_volcano_plots3-1.png) 
+
+```r
+qvals <- qvalue(res$p.value)$qvalue
+```
+
+```
+## Error in eval(expr, envir, enclos): could not find function "qvalue"
+```
+
+```r
+index <- which(qvals<0.1)
+```
+
+```
+## Error in which(qvals < 0.1): object 'qvals' not found
+```
+
+```r
+abline(h=-log10(max(res$p.value[index])))
+```
+
+```
+## Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): object 'index' not found
+```
 
 ```r
 cat("Total genes with q-value < 0.1:",length(index))
 ```
 
 ```
-## Total genes with q-value < 0.1: 68
+## Error in cat("Total genes with q-value < 0.1:", length(index)): object 'index' not found
 ```
 
 ```r
@@ -319,7 +389,7 @@ cat("Number of selected genes on chrY:", sum(chr[index]=="chrY",na.rm=TRUE))
 ```
 
 ```
-## Number of selected genes on chrY: 8
+## Error in cat("Number of selected genes on chrY:", sum(chr[index] == "chrY", : object 'index' not found
 ```
 
 ```r
@@ -327,6 +397,6 @@ cat("Number of selected genes on chrX:", sum(chr[index]=="chrX",na.rm=TRUE))
 ```
 
 ```
-## Number of selected genes on chrX: 16
+## Error in cat("Number of selected genes on chrX:", sum(chr[index] == "chrX", : object 'index' not found
 ```
 
