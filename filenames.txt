@@ -77,7 +77,7 @@
 #course3 modeling
 #course3_exercises modeling_exercises
 #course3 bayes
-course3_exercises bayes_exercises
+#course3_exercises bayes_exercises
 #course3 hierarchical_models
 #course3_exercises hierarchical_models_exercises
 
@@ -96,7 +96,7 @@ course3_exercises bayes_exercises
 ## Chapter 9: Practical Machine Learning
 #course3 clustering_and_heatmaps
 #course3_exercises clustering_and_heatmaps_exercises
-#course3 conditional_expectation
+course3 conditional_expectation
 #course3_exercises conditional_expectation_exercises
 #course3 smoothing
 #course3_exercises smoothing_exercises
