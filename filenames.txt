@@ -1,118 +1,118 @@
-#course1 introduction
-#course1 getting_started
-#course1_exercises getting_started_exercises
-#course1 dplyr_intro
-#course1_exercises dplyr_intro_exercises
+course1 introduction
+course1 getting_started
+course1_exercises getting_started_exercises
+course1 dplyr_intro
+course1_exercises dplyr_intro_exercises
 
 #chapter 1 - Inference
 
-#course1 random_variables
-#course1_exercises random_variables_exercises
-#course1 populations_and_samples 
-#course1_exercises populations_and_samples
-#course1 clt_and_t-distribution	 
-#course1_exercises clt_and_t-distribution_exercises
-#course1 clt_in_practice
-#course1_exercises clt_in_practice_exercises
-#course1 t-tests_in_practice
-#course1 confidence_intervals
-#course1 power_calculations
-#course1_exercises power_calculations_exercises
-#course1 monte_carlo
-#course1_exercises monte_carlo_exercises
-#course1 permutation_tests
-#course1_exercises permutation_tests_exercises
-#course1 association_tests
-#course1_exercises association_tests_exercises
+course1 random_variables
+course1_exercises random_variables_exercises
+course1 populations_and_samples 
+course1_exercises populations_and_samples
+course1 clt_and_t-distribution	 
+course1_exercises clt_and_t-distribution_exercises
+course1 clt_in_practice
+course1_exercises clt_in_practice_exercises
+course1 t-tests_in_practice
+course1 confidence_intervals
+course1 power_calculations
+course1_exercises power_calculations_exercises
+course1 monte_carlo
+course1_exercises monte_carlo_exercises
+course1 permutation_tests
+course1_exercises permutation_tests_exercises
+course1 association_tests
+course1_exercises association_tests_exercises
 
 #chapter 2 - EDA
-#course1 exploratory_data_analysis_2
-#course1 plots_to_avoid
-#course1_exercises exploratory_data_analysis_exercises
+course1 exploratory_data_analysis_2
+course1 plots_to_avoid
+course1_exercises exploratory_data_analysis_exercises
 
 
 #chapter 3 - Robust Statistics
-#course1 robust_summaries
-#course1 ranktest
-#course1_exercises robust_summaries_exercises
+course1 robust_summaries
+course1 ranktest
+course1_exercises robust_summaries_exercises
 
 ## Chapter 4 - Matrix Algebra
-#course2 intro_using_regression
-#course2_exercises intro_using_regression_exercises
-#course2 matrix_notation
-#course2_exercises matrix_notation_exercises
-#course2 matrix_operations
-#course2_exercises matrix_operations_exercises
-#course2 matrix_algebra_examples
-#course2_exercises matrix_algebra_examples_exercises
+course2 intro_using_regression
+course2_exercises intro_using_regression_exercises
+course2 matrix_notation
+course2_exercises matrix_notation_exercises
+course2 matrix_operations
+course2_exercises matrix_operations_exercises
+course2 matrix_algebra_examples
+course2_exercises matrix_algebra_examples_exercises
 
 ### Chapter 5: Linear Models
-#course2 linear_models_intro
-#course2_exercises linear_models_intro_exercises
-#course2 expressing_design_formula
-#course2_exercises expressing_design_formula_exercises
-#course2 linear_models_in_practice
-#course2_exercises linear_models_in_practice_exercises
-#course2 standard_errors
-#course2_exercises standard_errors_exercises
-#course2 interactions_and_contrasts
-#course2_exercises interactions_and_contrasts_exercises
-#course2 collinearity
-#course2_exercises collinearity_exercises
-#course2 qr_and_regression
-#course2 linear_models_going_further
+course2 linear_models_intro
+course2_exercises linear_models_intro_exercises
+course2 expressing_design_formula
+course2_exercises expressing_design_formula_exercises
+course2 linear_models_in_practice
+course2_exercises linear_models_in_practice_exercises
+course2 standard_errors
+course2_exercises standard_errors_exercises
+course2 interactions_and_contrasts
+course2_exercises interactions_and_contrasts_exercises
+course2 collinearity
+course2_exercises collinearity_exercises
+course2 qr_and_regression
+course2 linear_models_going_further
 
 
 ### Chapter 6: inference for high-dimensional data
-#course3 intro_to_highthroughput_data
-#course3_exercises intro_to_highthroughput_data_exercises
-#course3 inference_for_highthroughput
-#course3_exercises inference_for_highthroughput_exercises
-#course3 multiple_testing
-#course3_exercises multiple_testing_exercises
-#course3 eda_for_highthroughput
-#course3_exercises eda_for_highthroughput_exercises
+course3 intro_to_highthroughput_data
+course3_exercises intro_to_highthroughput_data_exercises
+course3 inference_for_highthroughput
+course3_exercises inference_for_highthroughput_exercises
+course3 multiple_testing
+course3_exercises multiple_testing_exercises
+course3 eda_for_highthroughput
+course3_exercises eda_for_highthroughput_exercises
 
 ### Chapter 7: Statistical Modeling
-#course3 modeling
-#course3_exercises modeling_exercises
-#course3 bayes
-#course3_exercises bayes_exercises
-#course3 hierarchical_models
-#course3_exercises hierarchical_models_exercises
+course3 modeling
+course3_exercises modeling_exercises
+course3 bayes
+course3_exercises bayes_exercises
+course3 hierarchical_models
+course3_exercises hierarchical_models_exercises
 
 ### Chapter 8:  Distance and dimension reduction
-#course3 distance
-#course3_exercises distance_exercises
-#course3 pca_motivation
-#course3 svd
-#course3_exercises svd_exercises
-#course3 projections
-#course3 rotations
-#course3 mds
-#course3_exercises mds_exercises
-#course3 PCA
+course3 distance
+course3_exercises distance_exercises
+course3 pca_motivation
+course3 svd
+course3_exercises svd_exercises
+course3 projections
+course3 rotations
+course3 mds
+course3_exercises mds_exercises
+course3 PCA
 
 ## Chapter 9: Practical Machine Learning
-#course3 clustering_and_heatmaps
-#course3_exercises clustering_and_heatmaps_exercises
-#course3 conditional_expectation
-#course3_exercises conditional_expectation_exercises
-#course3 smoothing
-#course3_exercises smoothing_exercises
-#course3 machine_learning
-#course3 crossvalidation
-#course3_exercises cross_validation_exercises
+course3 clustering_and_heatmaps
+course3_exercises clustering_and_heatmaps_exercises
+course3 conditional_expectation
+course3_exercises conditional_expectation_exercises
+course3 smoothing
+course3_exercises smoothing_exercises
+course3 machine_learning
+course3 crossvalidation
+course3_exercises cross_validation_exercises
 
 ## Chapter 10 - Batch effects
-#course3 intro_to_batch_effects
-#course3 confounding
-#course3_exercises confounding_exercises
-#course3 eda_with_pca
-#course3_exercises eda_with_pca_exercises
-#course3 adjusting_with_linear_models
-#course3_exercises adjusting_with_factor_analysis_exercises
-#course3 factor_analysis
+course3 intro_to_batch_effects
+course3 confounding
+course3_exercises confounding_exercises
+course3 eda_with_pca
+course3_exercises eda_with_pca_exercises
+course3 adjusting_with_linear_models
+course3_exercises adjusting_with_factor_analysis_exercises
+course3 factor_analysis
 course3_exercises factor_analysis_exercises
-#course3 adjusting_with_factor_analysis
-#course3_exercises adjusting_with_factor_analysis_exercises
+course3 adjusting_with_factor_analysis
+course3_exercises adjusting_with_factor_analysis_exercises
