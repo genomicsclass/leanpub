@@ -85,34 +85,9 @@ With high-throughput data we have thousands of measurements for each experimenta
 ```r
 library(Biobase)
 library(GSE5859) 
-```
-
-```
-## Error in library(GSE5859): there is no package called 'GSE5859'
-```
-
-```r
 data(GSE5859) 
-```
-
-```
-## Warning in data(GSE5859): data set 'GSE5859' not found
-```
-
-```r
 ge <- exprs(e) ##ge for gene expression
-```
-
-```
-## Error in exprs(e): error in evaluating the argument 'object' in selecting a method for function 'exprs': Error: object 'e' not found
-```
-
-```r
 ge[,49] <- ge[,49]/log2(exp(1)) ##immitate error
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'ge' not found
 ```
 
 A quick look at a summary of the distribution using boxplots immediately highlights the mistake:
@@ -124,28 +99,17 @@ mypar(1,1)
 boxplot(ge,range=0,names=1:ncol(e),col=ifelse(1:ncol(ge)==49,1,2))
 ```
 
-```
-## Error in boxplot(ge, range = 0, names = 1:ncol(e), col = ifelse(1:ncol(ge) == : error in evaluating the argument 'x' in selecting a method for function 'boxplot': Error: object 'ge' not found
-```
+![Boxplot for log-scale expression for all samples.](images/R/eda_for_highthroughput-tmp-boxplots-1.png) 
 
 Note that the number of samples is a bit too large here making it hard to see the boxes. One can instead simply show the boxplot summaries without (cite Karl Broman):
 
 
 ```r
 qs <- t(apply(ge,2,quantile,prob=c(0.05,0.25,0.5,0.75,0.95)))
-```
-
-```
-## Error in apply(ge, 2, quantile, prob = c(0.05, 0.25, 0.5, 0.75, 0.95)): object 'ge' not found
-```
-
-```r
 matplot(qs,type="l",lty=1)
 ```
 
-```
-## Error in matplot(qs, type = "l", lty = 1): object 'qs' not found
-```
+![The 0.05, 0.25, 0.5, 0.75, and 0.95 quantiles are plotted for each sample.](images/R/eda_for_highthroughput-tmp-kaboxplot-1.png) 
 
 We can also plot all the histograms. Because we have so much data we create histograms using small bins, then smooth the heights of the bars and then plot _smooth histograms_. We re-calibrate the height of these smooth curves so that if a bar is made with base of size "unit" and height given by the curve at {$$}x_0{/$$}, the area approximates the number of points in region of size "unit" centered at {$$}x_0{/$$}:
 
@@ -155,9 +119,7 @@ mypar(1,1)
 shist(ge,unit=0.5)
 ```
 
-```
-## Error in is.data.frame(z): object 'ge' not found
-```
+![Smooth histograms for each sample.](images/R/eda_for_highthroughput-tmp-shist-1.png) 
 
 #### MA Plot
 
@@ -166,36 +128,13 @@ Scatterplots and correlation are not the best tools to detect replication proble
 
 ```r
 x <- ge[,1]
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'ge' not found
-```
-
-```r
 y <- ge[,2]
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'ge' not found
-```
-
-```r
 mypar(1,2)
 plot(x,y)
-```
-
-```
-## Error in plot(x, y): error in evaluating the argument 'x' in selecting a method for function 'plot': Error: object 'x' not found
-```
-
-```r
 plot((x+y)/2,x-y)
 ```
 
-```
-## Error in plot((x + y)/2, x - y): error in evaluating the argument 'x' in selecting a method for function 'plot': Error: object 'x' not found
-```
+![Scatter plot (left) and M versus A plot (right) for the same data.](images/R/eda_for_highthroughput-tmp-maplot-1.png) 
 
 Note that once we rotate the plot, the fact that these data have differences of about:
 
@@ -205,7 +144,7 @@ sd(y-x)
 ```
 
 ```
-## Error in is.data.frame(x): object 'y' not found
+## [1] 0.2025465
 ```
 
 becomes immediate. The scatterplot shows very strong correlation, which is not necessarily informative here.
