@@ -34,20 +34,16 @@ A>
     file.remove(tmpfile)
     ```
 A>
-A>    Learn to use the `dplyr` package by reading, for example, [this tutorial](http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html).
+A>    We will use the `dplyr`, which you can read about  [here](http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html) to 
+A>obtain data from 2010, 2011, and 2012 and with more than 500 at bats (AB >= 500).
 A>
-A>    Here we use `dplyr` to obtain the necessary information to perform an hierarchical model 
+A>    
+    ```r
+    ##Ready to read file
+    dat <- filter(players,yearID>=2010, yearID <=2012) %>% mutate(AVG=H/AB) %>% filter(AB>500)
+    ```
 A>
-A>    Which of the following `dplyr` commands gives us the batting averages (AVG) for players with more than 500 at bats (AB) in 2012:
-A>    - A. `players$AVG`
-A>    - B. `filter(players,yearID==2012) %>% mutate(AVG=H/AB) %>% filter(AB>=500) %>% select(AVG)`
-A>    - C. `filter(players,yearID==2012) %>% mutate(AVG=H/AB) %>% select(AVG)`
-A>    - D. `filter(players,yearID==2012) %>% mutate(AVG=H/AB) %>% filter(AB>=500) %>% select(AVG) %>% mutate(AVG=mean(AVG))`
-A>
-A>
-A>
-A>3. Edit the command above to obtain all the batting averages from 2010, 2011, 2012 and filter out rows with AB < 500.
-A>
+A>    What is the a averge of these batting averges?
 A>
 A>
 A>4. What is the standard deviation of these batting averages?
