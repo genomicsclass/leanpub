@@ -20,7 +20,7 @@ A>
 A>
 A>
 A>
-A>2. First download some basaball statistics
+A>2. (Advanced) First download some basaball statistics
 A>
 A>    
     ```r
@@ -34,7 +34,7 @@ A>
     file.remove(tmpfile)
     ```
 A>
-A>    We learned to use the `dplyr` package. Please review for example with [this tutorial](http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html).
+A>    Learn to use the `dplyr` package. Please review for example with [this tutorial](http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html).
 A>
 A>    Here we use `dplyr` to obtain the necessary information to perform an hierarchical model 
 A>
