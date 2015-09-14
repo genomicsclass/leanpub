@@ -15,21 +15,21 @@ A>
 A>1. Suppose you want to make an MA plot of the first two samples `y = geneExpression[,1:2]`. Which of the following projections gives us the projection of {$$}y{/$$} so that column2 versus column 1 is an MA plot?
 A>
 A>    {$$}
-A>    A = 
+A>    A) 
 A>    y\begin{pmatrix}
 A>    1/\sqrt{2}&1/\sqrt{2} \\ 
 A>    1\sqrt{2}&-1/\sqrt{2}
-A>    \end{pmatrix} \,  \,
-A>    B=  y\begin{pmatrix} 
+A>    \end{pmatrix} \,  \, \,
+A>    B)  y\begin{pmatrix} 
 A>    1&1 \\ 
 A>    1&-1
-A>    \end{pmatrix}  \, \,
-A>    C =  
+A>    \end{pmatrix}  \, \, \,
+A>    C) 
 A>    \begin{pmatrix} 
 A>    1&1 \\ 
 A>    1&-1
-A>    \end{pmatrix} y \,\,
-A>     D =
+A>    \end{pmatrix} y \, \, \,
+A>     D)
 A>    \begin{pmatrix} 
 A>    1&1 \\ 
 A>    1&-1
