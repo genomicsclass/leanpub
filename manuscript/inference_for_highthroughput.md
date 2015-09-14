@@ -31,9 +31,21 @@ In R we write:
 2*(1-pnorm(Z))
 ```
 
-Now because {$$}Z{/$$} is a random variable ({$$}\Phi{/$$} is simply a deterministic function), {$$}p{/$$} is also a random variable. Here is a Monte Carlo simulation showing 
-how the values of {$$}p{/$$} change:
+Now because {$$}Z{/$$} is a random variable ({$$}\Phi{/$$} is simply a deterministic
+function), {$$}p{/$$} is also a random variable. We will create a Monte Carlo
+simulation showing how the values of {$$}p{/$$} change.
 
+First we download the `femaleControlsPopulation.csv` file:
+
+
+```r
+library(downloader)
+url <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extd\ ata/femaleControlsPopulation.csv"
+filename <- "femaleControlsPopulation.csv"
+if (!file.exists(filename)) download(url,destfile=filename)
+```
+
+Now, we read in the data, and use `replicate` to repeatedly create p-values.
 
 
 ```r
@@ -42,12 +54,9 @@ population = unlist( read.csv("femaleControlsPopulation.csv") )
 ```
 
 ```
-## Warning in file(file, "rt"): cannot open file
-## 'femaleControlsPopulation.csv': No such file or directory
-```
-
-```
-## Error in file(file, "rt"): cannot open the connection
+## Warning in read.table(file = file, header = header, sep = sep,
+## quote = quote, : incomplete final line found by readTableHeader on
+## 'femaleControlsPopulation.csv'
 ```
 
 ```r
@@ -61,7 +70,7 @@ pvals <- replicate(B,{
 ```
 
 ```
-## Error in sample(population, N): object 'population' not found
+## Error in sample.int(length(x), size, replace, prob): invalid first argument
 ```
 
 ```r
