@@ -39,6 +39,18 @@ how the values of {$$}p{/$$} change:
 ```r
 set.seed(1)
 population = unlist( read.csv("femaleControlsPopulation.csv") )
+```
+
+```
+## Warning in file(file, "rt"): cannot open file
+## 'femaleControlsPopulation.csv': No such file or directory
+```
+
+```
+## Error in file(file, "rt"): cannot open the connection
+```
+
+```r
 N <- 12
 B <- 10000
 pvals <- replicate(B,{
@@ -46,10 +58,19 @@ pvals <- replicate(B,{
   treatment = sample(population,N)
   t.test(treatment,control)$p.val 
   })
+```
+
+```
+## Error in sample(population, N): object 'population' not found
+```
+
+```r
 hist(pvals)
 ```
 
-![P-value histogram for 10,000 tests in which null hypothesis is true.](images/R/inference_for_highthroughput-tmp-pvalue_hist-1.png) 
+```
+## Error in hist(pvals): object 'pvals' not found
+```
 
 As implied by the histogram, in this case the distribution of the p-value is uniformly distributed. In fact, we can show theoretically that when the null hypothesis is true, this is always the case. For the case in which we use the CLT, we have that the null hypothesis {$$}H_0{/$$} implies that our test statistic {$$}Z{/$$}  follows a normal distribution with mean 0 and SD 1 thus:
 
