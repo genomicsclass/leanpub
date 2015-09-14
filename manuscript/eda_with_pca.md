@@ -21,52 +21,16 @@ Start by loading the data:
 library(rafalib)
 library(Biobase)
 library(GSE5859)
-```
-
-```
-## Error in library(GSE5859): there is no package called 'GSE5859'
-```
-
-```r
 data(GSE5859)
-```
-
-```
-## Warning in data(GSE5859): data set 'GSE5859' not found
 ```
 
 We start by exploring the sample correlation matrix and noting that one pair has a correlation of 1. This must mean that the same sample was uploaded twice to the public repository, but given different names. The following code identifies this sample and removes it.
 
 ```r
 cors <- cor(exprs(e))
-```
-
-```
-## Error in exprs(e): error in evaluating the argument 'object' in selecting a method for function 'exprs': Error: object 'e' not found
-```
-
-```r
 Pairs=which(abs(cors)>0.9999,arr.ind=TRUE)
-```
-
-```
-## Error in which(abs(cors) > 0.9999, arr.ind = TRUE): object 'cors' not found
-```
-
-```r
 out = Pairs[which(Pairs[,1]<Pairs[,2]),,drop=FALSE]
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'Pairs' not found
-```
-
-```r
 if(length(out[,2])>0) e=e[,-out[2]]
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'out' not found
 ```
 
 We also remove control probes from the analysis:
@@ -74,18 +38,7 @@ We also remove control probes from the analysis:
 
 ```r
 out <- grep("AFFX",featureNames(e))
-```
-
-```
-## Error in featureNames(e): error in evaluating the argument 'object' in selecting a method for function 'featureNames': Error: object 'e' not found
-```
-
-```r
 e <- e[-out,]
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'e' not found
 ```
 
 
@@ -93,26 +46,8 @@ Now we are ready to proceed. We will create a detrended gene expression data mat
 
 ```r
 y <- exprs(e)-rowMeans(exprs(e))
-```
-
-```
-## Error in exprs(e): error in evaluating the argument 'object' in selecting a method for function 'exprs': Error: object 'e' not found
-```
-
-```r
 dates <- pData(e)$date
-```
-
-```
-## Error in pData(e): error in evaluating the argument 'object' in selecting a method for function 'pData': Error: object 'e' not found
-```
-
-```r
 eth <- pData(e)$ethnicity
-```
-
-```
-## Error in pData(e): error in evaluating the argument 'object' in selecting a method for function 'pData': Error: object 'e' not found
 ```
 
 The original dataset did not include sex in the sample information. We did this for you in the subset dataset we provided for illustrative purposes. In the code below we show how we predict the sex of each sample. The basic idea is to look at the median gene expression levels on Y chromosome genes. Males should have much higher values. We need to upload an annotation package that provides information for the features of the platform used in this experiment:
@@ -123,7 +58,7 @@ annotation(e)
 ```
 
 ```
-## Error in annotation(e): error in evaluating the argument 'object' in selecting a method for function 'annotation': Error: object 'e' not found
+## [1] "hgfocus"
 ```
 
 We need to download and install the `hgfocus.db` package and then extract the chromosome location information.
@@ -139,35 +74,10 @@ library(hgfocus.db)
 
 ```r
 annot <- select(hgfocus.db, keys=featureNames(e), keytype="PROBEID",columns=c("CHR"))
-```
-
-```
-## Error in featureNames(e): error in evaluating the argument 'object' in selecting a method for function 'featureNames': Error: object 'e' not found
-```
-
-```r
 ##for genes with multiples, pick on
 annot <-annot[match(featureNames(e),annot$PROBEID),]
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'annot' not found
-```
-
-```r
 annot$CHR <- ifelse(is.na(annot$CHR),NA,paste0("chr",annot$CHR))
-```
-
-```
-## Error in ifelse(is.na(annot$CHR), NA, paste0("chr", annot$CHR)): error in evaluating the argument 'test' in selecting a method for function 'ifelse': Error: object 'annot' not found
-```
-
-```r
 chryexp<- colMeans(y[which(annot$CHR=="chrY"),])
-```
-
-```
-## Error in is.data.frame(x): object 'y' not found
 ```
 
 You can clearly see two modes which must be females and males:
@@ -177,18 +87,12 @@ mypar()
 hist(chryexp)
 ```
 
-```
-## Error in hist(chryexp): object 'chryexp' not found
-```
+![Histogram of median expresion y-axis. We can see females and males.](images/R/eda_with_pca-tmp-predict_sex-1.png) 
 
 So we can predict sex this way:
 
 ```r
 sex <- factor(ifelse(chryexp<0,"F","M"))
-```
-
-```
-## Error in ifelse(chryexp < 0, "F", "M"): error in evaluating the argument 'test' in selecting a method for function 'ifelse': Error: object 'chryexp' not found
 ```
 
 #### Calculating the PCs
@@ -198,18 +102,11 @@ We have shown how we can compute principal components using:
 
 ```r
 s <- svd(y)
-```
-
-```
-## Error in as.matrix(x): object 'y' not found
-```
-
-```r
 dim(s$v)
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 's' not found
+## [1] 207 207
 ```
 
 But we can also use `prcomp` which creates an object with just the PCs and also demeans by default. Note `svd` keeps {$$}U{/$$} which is as large as `y` while `prcomp` does not. However, they provide practically the same principal components:
@@ -218,18 +115,15 @@ But we can also use `prcomp` which creates an object with just the PCs and also 
 
 ```r
 pc <- prcomp(y)
-```
-
-```
-## Error in prcomp(y): object 'y' not found
-```
-
-```r
 for(i in 1:5) print( round( cor( pc$rotation[,i],s$v[,i]),3))
 ```
 
 ```
-## Error in cor(pc$rotation[, i], s$v[, i]): error in evaluating the argument 'x' in selecting a method for function 'cor': Error in pc$rotation : object of type 'closure' is not subsettable
+## [1] 1
+## [1] 1
+## [1] -1
+## [1] 1
+## [1] 1
 ```
 
 For the rest of the code shown here we use `s`.
@@ -245,10 +139,7 @@ cols=colorRampPalette(rev(brewer.pal(11,"RdBu")))(100)
 image ( cor(y) ,col=cols,zlim=c(-1,1))
 ```
 
-```
-## Error in image(cor(y), col = cols, zlim = c(-1, 1)): error in evaluating the argument 'x' in selecting a method for function 'image': Error in cor(y) : 
-##   error in evaluating the argument 'x' in selecting a method for function 'cor': Error: object 'y' not found
-```
+![Image of correlations. Cell i,j  represents correlation between samples i and j. Red is high, white is 0 and red is negative.](images/R/eda_with_pca-tmp-correlations-1.png) 
 
 Here we are using the term _structure_ to refer to the deviation from what one would see if the samples were in fact independent from each other. 
 
@@ -257,27 +148,11 @@ One simple exploratory plot we make to determine how many principal components w
 
 ```r
 y0 <- matrix( rnorm( nrow(y)*ncol(y) ) , nrow(y), ncol(y) )
-```
-
-```
-## Error in nrow(y): error in evaluating the argument 'x' in selecting a method for function 'nrow': Error: object 'y' not found
-```
-
-```r
 d0 <- svd(y0)$d
-```
-
-```
-## Error in as.matrix(x): object 'y0' not found
-```
-
-```r
 plot(d0^2/sum(d0^2),ylim=c(0,.25))
 ```
 
-```
-## Error in plot(d0^2/sum(d0^2), ylim = c(0, 0.25)): error in evaluating the argument 'x' in selecting a method for function 'plot': Error: object 'd0' not found
-```
+![Variance explained plot for simulated independent data.](images/R/eda_with_pca-tmp-null_variance_explained-1.png) 
 
 Instead we see this:
 
@@ -286,9 +161,7 @@ Instead we see this:
 plot(s$d^2/sum(s$d^2))
 ```
 
-```
-## Error in plot(s$d^2/sum(s$d^2)): error in evaluating the argument 'x' in selecting a method for function 'plot': Error: object 's' not found
-```
+![Variance explained plot for gene expression data.](images/R/eda_with_pca-tmp-variance_explained-1.png) 
 
 At least 20 or so PCs appear to be higher than what we would expect with independent data. A next step is to try to explain these PCs with measured variables. Is this driven by ethnicity? Sex? Date? Or something else?
 
@@ -301,29 +174,13 @@ between variables of interest and PCs is to use color to denote these variables.
 
 ```r
 cols = as.numeric(eth)
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'eth' not found
-```
-
-```r
 mypar()
 plot(s$v[,1],s$v[,2],col=cols,pch=16,
      xlab="PC1",ylab="PC2")
-```
-
-```
-## Error in plot(s$v[, 1], s$v[, 2], col = cols, pch = 16, xlab = "PC1", : error in evaluating the argument 'x' in selecting a method for function 'plot': Error: object 's' not found
-```
-
-```r
 legend("bottomleft",levels(eth),col=seq(along=levels(eth)),pch=16)
 ```
 
-```
-## Error in levels(eth): error in evaluating the argument 'x' in selecting a method for function 'levels': Error: object 'eth' not found
-```
+![First two PCs for gene expression data with color representing ethnicity.](images/R/eda_with_pca-tmp-mds_plot-1.png) 
 
 There is a very clear association between the first PC and ethnicity. However, we also see that for the orange points there are sub-clusters. We know from previous analyses that ethnicity and preprocessing date are correlated:
 
@@ -331,18 +188,17 @@ There is a very clear association between the first PC and ethnicity. However, w
 
 ```r
 year = factor(format(dates,"%y"))
-```
-
-```
-## Error in format(dates, "%y"): object 'dates' not found
-```
-
-```r
 table(year,eth)
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'year' not found
+##     eth
+## year ASN CEU HAN
+##   02   0  32   0
+##   03   0  54   0
+##   04   0  13   0
+##   05  80   3   0
+##   06   2   0  23
 ```
 
 Here is the same plot, but now with color representing year:
@@ -350,29 +206,13 @@ Here is the same plot, but now with color representing year:
 
 ```r
 cols = as.numeric(year)
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'year' not found
-```
-
-```r
 mypar()
 plot(s$v[,1],s$v[,2],col=cols,pch=16,
      xlab="PC1",ylab="PC2")
-```
-
-```
-## Error in plot(s$v[, 1], s$v[, 2], col = cols, pch = 16, xlab = "PC1", : error in evaluating the argument 'x' in selecting a method for function 'plot': Error: object 's' not found
-```
-
-```r
 legend("bottomleft",levels(year),col=seq(along=levels(year)),pch=16)
 ```
 
-```
-## Error in levels(year): error in evaluating the argument 'x' in selecting a method for function 'levels': Error: object 'year' not found
-```
+![First two PCs for gene expression data with color representing processing year.](images/R/eda_with_pca-tmp-mds_plot2-1.png) 
 
 Year is also very correlated with the first PC. So which variable is driving this? Given the high level of confounding, it is not easy to parse out. Nonetheless, in the assessment questions and below we provide some further exploratory approaches.
 
@@ -383,18 +223,11 @@ The structure seen in the plot of the between sample correlations shows a comple
 
 ```r
 month <- format(dates,"%y%m")
-```
-
-```
-## Error in format(dates, "%y%m"): object 'dates' not found
-```
-
-```r
 length( unique(month))
 ```
 
 ```
-## Error in unique(month): error in evaluating the argument 'x' in selecting a method for function 'unique': Error: object 'month' not found
+## [1] 21
 ```
 
 Because there are so many months (21), it becomes complicated to use color. Instead we can stratify by month and look at boxplots of our PCs:
@@ -403,13 +236,6 @@ Because there are so many months (21), it becomes complicated to use color. Inst
 
 ```r
 variable <- as.numeric(month)
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'month' not found
-```
-
-```r
 mypar(2,2)
 for(i in 1:4){
   boxplot(split(s$v[,i],variable),las=2,range=0)
@@ -417,10 +243,7 @@ for(i in 1:4){
   }
 ```
 
-```
-## Error in boxplot(split(s$v[, i], variable), las = 2, range = 0): error in evaluating the argument 'x' in selecting a method for function 'boxplot': Error in split(s$v[, i], variable) : 
-##   error in evaluating the argument 'x' in selecting a method for function 'split': Error: object 's' not found
-```
+![Boxplot of first four PCs stratified by month.](images/R/eda_with_pca-tmp-pc_boxplots-1.png) 
 
 Here we see that month has a very strong correlation with the first PC, as well as some of the others. In cases such as these, in which we have many samples, we can use an analysis of variance to see which PCs correlate with month:
 
@@ -430,21 +253,11 @@ corr <- sapply(1:ncol(s$v),function(i){
   fit <- lm(s$v[,i]~as.factor(month))
   return( summary(fit)$adj.r.squared  )
   })
-```
-
-```
-## Error in sapply(1:ncol(s$v), function(i) {: error in evaluating the argument 'X' in selecting a method for function 'sapply': Error in ncol(s$v) : 
-##   error in evaluating the argument 'x' in selecting a method for function 'ncol': Error: object 's' not found
-```
-
-```r
 mypar()
 plot(seq(along=corr), corr, xlab="PC")
 ```
 
-```
-## Error in plot(seq(along = corr), corr, xlab = "PC"): error in evaluating the argument 'x' in selecting a method for function 'plot': Error in seq(along = corr) : object 'corr' not found
-```
+![Adjusted R-squared after fitting a model with each month as a factor to each PC.](images/R/eda_with_pca-tmp-month_PC_corr-1.png) 
 
 We see a very strong correlation with the first PC and relatively strong correlations for the first 20 or so PCs.
 We can also compute F-statistics comparing within month to across month variability:
@@ -456,37 +269,13 @@ Fstats<- sapply(1:ncol(s$v),function(i){
    Fstat <- summary(aov(fit))[[1]][1,4]
    return(Fstat)
   })
-```
-
-```
-## Error in sapply(1:ncol(s$v), function(i) {: error in evaluating the argument 'X' in selecting a method for function 'sapply': Error in ncol(s$v) : 
-##   error in evaluating the argument 'x' in selecting a method for function 'ncol': Error: object 's' not found
-```
-
-```r
 mypar()
 plot(seq(along=Fstats),sqrt(Fstats))
-```
-
-```
-## Error in plot(seq(along = Fstats), sqrt(Fstats)): error in evaluating the argument 'x' in selecting a method for function 'plot': Error in seq(along = Fstats) : object 'Fstats' not found
-```
-
-```r
 p <- length(unique(month))
-```
-
-```
-## Error in unique(month): error in evaluating the argument 'x' in selecting a method for function 'unique': Error: object 'month' not found
-```
-
-```r
 abline(h=sqrt(qf(0.995,p-1,ncol(s$v)-1)))
 ```
 
-```
-## Error in qf(0.995, p - 1, ncol(s$v) - 1): object 'p' not found
-```
+![Square root of F-statistics from an analysis of variance to explain PCs with month.](images/R/eda_with_pca-tmp-fstat_month_PC-1.png) 
 
 In the assessments we will see how we can use the PCs as estimates in factor analysis to improve model estimates.
 
