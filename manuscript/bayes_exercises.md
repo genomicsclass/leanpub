@@ -11,7 +11,7 @@ A>    {$$}\mbox{Prob}(+|D)=0.99, \mbox{Prob}(-|\mbox{no } D)=0.99{/$$}
 A>
 A>    The cystic fibrosis rate in the general population is 1 in 3,900, {$$}\mbox{Prob}(D)=0.00025{/$$}
 A>
-A>If we select random person and they test postive what is probability that they have cysttic fibrosos {$$}\mbox{Prob}(D|+){/$$} ? Hint: use Bayes Rule: 
+A>    If we select random person and they test postive what is probability that they have cysttic fibrosos {$$}\mbox{Prob}(D|+){/$$} ? Hint: use Bayes Rule: 
 A>
 A>    {$$}
 A>    \mbox{Pr}(A|B)  =  \frac{\mbox{Pr}(B|A)\mbox{Pr}(A)}{\mbox{Pr}(B)}
@@ -34,7 +34,7 @@ A>
     file.remove(tmpfile)
     ```
 A>
-A>    Learn to use the `dplyr` package. Please review for example with [this tutorial](http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html).
+A>    Learn to use the `dplyr` package by reading, for example, [this tutorial](http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html).
 A>
 A>    Here we use `dplyr` to obtain the necessary information to perform an hierarchical model 
 A>
