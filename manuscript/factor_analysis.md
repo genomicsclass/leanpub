@@ -104,16 +104,56 @@ In high-throughput data it is quite common to see correlation structure. For exa
 ```r
 library(Biobase)
 library(GSE5859)
+```
+
+```
+## Error in library(GSE5859): there is no package called 'GSE5859'
+```
+
+```r
 data(GSE5859)
+```
+
+```
+## Warning in data(GSE5859): data set 'GSE5859' not found
+```
+
+```r
 n <- nrow(pData(e))
+```
+
+```
+## Error in nrow(pData(e)): error in evaluating the argument 'x' in selecting a method for function 'nrow': Error in pData(e) : 
+##   error in evaluating the argument 'object' in selecting a method for function 'pData': Error: object 'e' not found
+```
+
+```r
 o <- order(pData(e)$date)
+```
+
+```
+## Error in pData(e): error in evaluating the argument 'object' in selecting a method for function 'pData': Error: object 'e' not found
+```
+
+```r
 Y=exprs(e)[,o]
+```
+
+```
+## Error in exprs(e): error in evaluating the argument 'object' in selecting a method for function 'exprs': Error: object 'e' not found
+```
+
+```r
 cors=cor(Y-rowMeans(Y))
 
 mypar()
 
 cols=colorRampPalette(rev(brewer.pal(11,"RdBu")))(100)
 image(1:n,1:n,cors,xaxt="n",yaxt="n",col=cols,xlab="",ylab="",zlim=c(-1,1))
+```
+
+```
+## Error in image.default(1:n, 1:n, cors, xaxt = "n", yaxt = "n", col = cols, : dimensions of z are not length(x)(-1) times length(y)(-1)
 ```
 
 ![Image of correlations. Cell i,j  represents correlation between samples i and j. Red is high, white is 0 and red is negative.](images/R/factor_analysis-tmp-gene_expression_correlations-1.png) 
