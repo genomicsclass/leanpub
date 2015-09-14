@@ -165,16 +165,18 @@ for(i in 1:2){
 ### Why the arbitrary sign?
 Note that the SVD is not unique because we can multiply any column of {$$}\mathbf{V}{/$$} by -1 as long as we multiply the sample column of {$$}\mathbf{U}{/$$} by -1. We can see this immediately by noting that
 
-{$$}\mathbf{-1UD(-1)V}^\top{/$$} = \mathbf{UDV}^\top{$$}
+{$$}
+\mathbf{-1UD(-1)V}^\top = \mathbf{UDV}^\top
+{/$$}
 
 
 ### Why we substract the mean
 
-Note that in all calculations above we subtract the row means before we compute the singular value decomposition. Note that if what we are trying to do is approximate the distance between columns {/$$}\mathbf{Y}_i{$$} and {/$$}\mathbf{Y}_j{$$} is the same as the distance between {/$$}\mathbf{Y}_i- \mathbf{\mu}{$$} and {/$$}\mathbf{Y}_j - \mathbf{\mu}{$$} since the {/$$}\mu{$$} cancels out when computing said distance:
+Note that in all calculations above we subtract the row means before we compute the singular value decomposition. Note that if what we are trying to do is approximate the distance between columns {$$}\mathbf{Y}_i{/$$} and {$$}\mathbf{Y}_j{/$$} is the same as the distance between {$$}\mathbf{Y}_i- \mathbf{\mu}{/$$} and {$$}\mathbf{Y}_j - \mathbf{\mu}{/$$} since the {$$}\mu{/$$} cancels out when computing said distance:
 
-{/$$}
-\left\{ ( \mathbf{Y}_i- \mathbf{\mu} ) - ( \mathbf{Y}_j - \mathbf{\mu} ) \right\}^\top \left\{ (\mathbf{Y}_i- \mathbf{\mu}) - (\mathbf{Y}_j - \mathbf{\mu} ) \right\} = \left\{  \mathbf{Y}_i-  \mathbf{Y}_j  \right\}^\top \left\{ \mathbf{Y}_i - \mathbf{Y}_j  \right\}
 {$$}
+\left\{ ( \mathbf{Y}_i- \mathbf{\mu} ) - ( \mathbf{Y}_j - \mathbf{\mu} ) \right\}^\top \left\{ (\mathbf{Y}_i- \mathbf{\mu}) - (\mathbf{Y}_j - \mathbf{\mu} ) \right\} = \left\{  \mathbf{Y}_i-  \mathbf{Y}_j  \right\}^\top \left\{ \mathbf{Y}_i - \mathbf{Y}_j  \right\}
+{/$$}
 
 And because removing the row means reduces the total variation it can only make the SVD approximation better.
 
