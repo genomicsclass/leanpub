@@ -165,6 +165,7 @@ Now we will use a big chunk of code just to show how the coefficients from the l
 
 
 ```r
+set.seed(1) # same jitter in stripchart
 stripchart(split(spider.sub$friction, spider.sub$type), 
            vertical=TRUE, pch=1, method="jitter", las=2, xlim=c(0,3), ylim=c(0,2))
 a <- -0.25
