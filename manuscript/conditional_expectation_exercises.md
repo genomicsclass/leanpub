@@ -12,20 +12,9 @@ n = 1000
 y = rbinom(n,1,0.25)
 ##proportion of ones Pr(Y)
 sum(y==1)/length(y)
-```
-A>
-A>```
-A>## [1] 0.278
-A>```
-A>
-```r
 ##expectaion of Y
 mean(y)
 ```
-A>
-A>```
-A>## [1] 0.278
-A>```
 A>
 A>
 A>1. Generate some random data to imitate heights for men (0) and women (1):
