@@ -63,11 +63,11 @@ A>6. The Binomial is approximated by normal so our sampling distribution is appr
 A>
 A>    What is your Bayes prediction for the batting average going forward.
 A>    {$$}
-A>\begin{eqnarray*}
-A>\mbox{E}(\theta|y) &=& B \mu + (1-B) Y\\
-A>&=& \mu + (1-B)(Y-\mu)\\
-A>B &=& \frac{\sigma^2}{\sigma^2+\tau^2}
-A>\end{eqnarray*}
+A>\begin{align*}
+A>\mbox{E}(\theta|y) &= B \mu + (1-B) Y\\
+A>&= \mu + (1-B)(Y-\mu)\\
+A>B &= \frac{\sigma^2}{\sigma^2+\tau^2}
+A>\end{align*}
 A>    {/$$}
 A>
 A>
