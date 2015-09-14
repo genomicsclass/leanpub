@@ -13,13 +13,7 @@ A>1. Given the above histogram: how many people are between the ages of 35 and 4
 A>
 A>
 A>2. The `InsectSprays` data set is included in R. The dataset reports the counts of insects in agricultural experimental units treated with different insecticides. Make a boxplot and determine which insecticide appears to be most effective  
-A>    
-    ```r
-    boxplot(InsectSprays$count ~ InsectSprays$spray, 
-        xlab = "Insecticide Spray", 
-        ylab = "Insect Count")
-    cat("C")
-    ```
+A>
 A>
 A>
 A>3.  Download and load [this](http://courses.edx.org/c4x/HarvardX/PH525.1x/asset/skew.RData) dataset into R.
