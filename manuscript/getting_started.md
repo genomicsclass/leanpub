@@ -1,0 +1,253 @@
+---
+layout: page
+title: Getting Started
+---
+
+# Getting Started
+
+In this book we will be using the
+[R programming language](https://cran.r-project.org/) for all our
+analysis. You will learn R and statistics simultaneously. However, we
+assume you have some basic programming skills and knowledge of R
+syntax. If you don't, your first homework, listed below, is to
+complete a tutorial. Here we give step-by-step instructions on how to
+get set up to follow along. 
+
+
+## Installing R
+
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/getting_started.Rmd).
+
+The first step is to install R. You can download and install R from
+the [Comprehensive R Archive Network](https://cran.r-project.org/)
+(CRAN). It is relatively straightforward, but if you need further help
+you can try the following resources: 
+
+* [Installing R on Windows](https://github.com/genomicsclass/windows#installing-r). 
+* [Installing R on Mac](http://youtu.be/Icawuhf0Yqo)
+* [Installing R on Ubuntu](http://cran.r-project.org/bin/linux/ubuntu/README)
+
+## Installing RStudio
+
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/getting_started.Rmd).
+
+The next step is to install RStudio, a program for viewing and running
+R scripts. Technically you can run all the code shown here without
+installing RStudio, but we highly recommend this integrated
+development environment (IDE). Instructions are
+[here](http://www.rstudio.com/products/rstudio/download/) and for
+Windows we have special
+[instructions](https://github.com/genomicsclass/windows). 
+
+## Learn R Basics
+
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/getting_started.Rmd).
+
+The first homework assignment is to complete an R tutorial to
+familiarize yourself with the basics of programming and R syntax. If
+you are already familiar with R you can skip to the next section.
+
+*Homework 0*:  Go through the [swirl](http://swirlstats.com/)
+ tutorial, which teaches you R programming and data science
+ interactively, at your own pace, and in the R console. Once you have
+ R installed you can install `swirl` and run it the following way: 
+
+
+```r
+install.packages("swirl")
+library(swirl)
+swirl()
+```
+
+To follow this book you should be familiar with the difference between lists (including data frames) and numeric vectors, for-loops, how to create functions, and how to use the `sapply` and `replicate` functions.
+
+Alternatively you can take the [try R](http://tryr.codeschool.com/) interactive class from Code School. 
+
+Note that there are also many open and free resources and reference
+guides for R. Two examples are:
+
+* [Quick-R](http://www.statmethods.net/): a quick online reference for data input, basic statistics and plots
+* R reference card (PDF)[https://cran.r-project.org/doc/contrib/Short-refcard.pdf] by Tom Short 
+
+Two key things you need to know about R is that you can get help for a function using `help` or `?`, like this:
+
+```r
+?install.packages
+help("install.packages")
+```
+
+and that the hash character represents comments and so text after this
+character is interpreted:
+
+
+```r
+##This is just a comment
+```
+
+## Installing Packages
+
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/getting_started.Rmd).
+
+The first R command we will run is `install.packages`. If you took the
+`swirl` tutorial you already did this. R only includes a basic set of
+functions. It can do much more than this, but not everybody needs
+everything so we instead make some functions available via
+packages. Many of these functions are stored in CRAN. Note that these
+packages are vetted: they are checked for common errors and they must have
+a dedicated maintainer. You can easily install packages from within R if you know
+the name of the packages. As an example, we are going to install the
+packages `rafalib` and `downloader` which we use in our first data
+analysis examples: 
+
+
+```r
+install.packages("rafalib")
+install.packages("downloader")
+```
+
+We can then load the package into our R sessions using the `library` function:
+
+
+```r
+library(downloader)
+```
+
+From now on you will see that we sometimes load packages without
+installing them. This is because once you install the package, it
+remains in place and only needs to be loaded with `library`. If you
+try to load a package and get an error, it probably means you need to
+install it first.
+
+## Importing Data into R
+
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/getting_started.Rmd).
+
+The first step when getting ready to analyze data is to read in the data into R. There are several ways to do this and we will discuss three of them. But you only need to learn one to follow along. 
+
+In the life sciences, small datasets such as the one used as an
+example in the next sections are stored as Excel files. Although there
+are R packages designed to read Excel (xls) format, you generally want
+to avoid this and save files as comma delimited (Comma-Separated
+Value/CSV) or tab delimited (Tab-Separated Value/TSV/TXT) files.
+These plain-text formats are often easier for sharing data with
+collaborators, as commercial software is not required for viewing or
+working with the data.
+We will start with a simple example dataset containing
+[female mouse weights](https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/femaleMiceWeights.csv).
+
+The first step is to find the file containing your data and know its *path*. 
+
+
+#### Paths and the Working Directory
+
+When you are working in R it is useful to know your _working directory_. This is the directory or folder in which R will save or look for files by default. You can see your working directory by typing:
+
+
+```r
+getwd()
+```
+
+```
+## [1] "/Users/ririzarr/myDocuments/teaching/HarvardX/labs/course1"
+```
+
+You can also change your working directory using the function `setwd`. Or you can change it through RStudio by clicking on "Session". 
+
+The functions that read and write files (there are several in R) assume you mean to look for files or write files in the working directory. Our recommended approach for beginners will have you reading and writing to the working directory. However, you can also type the [full path](http://www.computerhope.com/jargon/a/absopath.htm), which will work independently of the working directory.
+
+#### Projects in RStudio
+
+We find that the simplest way to organize yourself is to start a Project in RStudio (Click on "File" and "New Project"). When creating the project, you will select a folder to be associated with it. You can then download all your data into this folder. Your working directory will be this folder.
+
+
+#### Option 1: Download file with your browser to your working directory
+
+
+You can navigate to the `femaleMiceWeights.csv` file by visiting the
+data directory of dagdata on
+[GitHub](https://github.com/genomicsclass/dagdata/tree/master/inst/extdata). Note
+that if you navigate to the file, you need to click on *Raw* on the
+upper right hand corner of the data and then use your browser's "Save
+As" function to assure that the downloaded file is in a CSV
+format. Note that some browsers add an extra suffix to your filename by
+default. You do not want this. You want your file to be named
+`femaleMiceWeights.csv`. 
+
+Once you have this file in your working directory then you can simply read it in like this:
+
+
+```r
+dat <- read.csv("femaleMiceWeights.csv")
+```
+
+Note that if you did not receive any message then you probably read in the file successfully.
+
+#### Option 2: Download from within R
+
+We store many of the datasets used in this course on [GitHub](https://github.com/genomicsclass/). You can save these files directly from the internet to your computer using R. In this example we are using the `download.file` function in the `downloader` package to download the file to a specific location and then read it in. We assign it a random name and a random directory using the function `tempfile`, but you can change this so the file is saved as a directory of your choosing.
+
+
+```r
+library(downloader) ##use install.packages to install
+url <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/femaleMiceWeights.csv"
+filename <- "femaleMiceWeights.csv" ## creates a random name for a temporary file
+download(url, destfile=filename)
+```
+
+We can then read it in like this:
+
+```r
+dat <- read.csv(filename)
+```
+
+Many of the datasets we include in this book are available in custom-built packages available from GitHub. The reason we use GitHub rather than CRAN is that on GitHub we do not have to vet packages, which gives us much more flexibility. 
+
+To install packages from GitHub you will need to install the `devtools` package:
+
+
+```r
+install.packages("devtools")
+```
+
+Note to Windows users: to use devtools you will have to also install `Rtools`. In general you will need to install packages as administrator. One way to do this is to start R as administrator. If you do not have permission to do this, then it is a bit [more complicated](http://www.magesblog.com/2012/04/installing-r-packages-without-admin.html). 
+
+Now we are ready to install a package from GitHub. Note that we now use a different function:
+
+
+```r
+library(devtools)
+install_github("genomicsclass/dagdata")
+```
+
+The file we are working with is actually included in this package. So once you install the package, the file is on your computer. However, finding it is requires advanced knowledge. Here are the lines of code:
+
+
+```r
+dir <- system.file(package="dagdata") # extracts the location of package
+list.files(dir)
+```
+
+```
+## [1] "data"        "DESCRIPTION" "extdata"     "help"        "html"       
+## [6] "Meta"        "NAMESPACE"   "script"
+```
+
+```r
+list.files(file.path(dir,"extdata")) # external data is in this directory
+```
+
+```
+## [1] "admissions.csv"               "babies.txt"                  
+## [3] "femaleControlsPopulation.csv" "femaleMiceWeights.csv"       
+## [5] "mice_pheno.csv"               "msleep_ggplot2.csv"          
+## [7] "README"                       "spider_wolff_gorb_2013.csv"
+```
+
+And now we are ready to read in the file:
+
+
+```r
+filename <- file.path(dir,"extdata/femaleMiceWeights.csv")
+dat <- read.csv(filename)
+```
+
