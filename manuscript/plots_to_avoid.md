@@ -69,13 +69,13 @@ barplot(browsers,main="Browser Usage (August 2013)")
 
 Note that we can now pretty easily determine the percentages by following a horizontal line to the x-axis. Do avoid 3-D version since it obfuscates the plot and removes this particular advantage.
 
-![3-D version](images/downloads/fig2b.png)
+![3-D version](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig2b.png)
 
 
 
 Even worse than pie charts are donut plots.
 
-![Donut plot](images/downloads/360px-Donut-Chart.svg.png)
+![Donut plot](http://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Donut-Chart.svg/360px-Donut-Chart.svg.png)
 
 The reason is that by removing the center, we remove one of the visual cues for determining the different areas: the angles. There is no reason to ever use a donut to display data.
 
@@ -83,7 +83,7 @@ The reason is that by removing the center, we remove one of the visual cues for 
 
 While barplots are useful for showing percentages, they are incorrectly used to display data from two groups being compared. Specifically, barplots are created with height equal to the group means; an antenna is added at the top to represent standard errors. This plot is simply showing two numbers per groups and the plot adds nothing:
 
-![Bad bar plots](images/downloads/fig1c.png)
+![Bad bar plots](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig1c.png)
 
 Much more informative is to summarize with a boxplot. If the number of points is small enough, we might as well add them to the plot. When the number of points is too large for us to see them, just showing a boxplot is preferable.
 
@@ -114,7 +114,7 @@ Notice how much more we see here: the center, spread, range and the points thems
 
 This problem is magnified when our data has outliers or very large tails. In the plot below there appears to be very large and consistent differences between the two groups:
 
-![Bar plots with outliers](images/downloads/fig3c.png)
+![Bar plots with outliers](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig3c.png)
 
 However, a quick look at the data demonstrates that this difference is mostly driven by just two points. A version showing the data in the log-scale is much more informative. 
 
@@ -189,114 +189,31 @@ library(Biobase)
 library(SpikeInSubset) 
 ```
 
-```
-## Error in library(SpikeInSubset): there is no package called 'SpikeInSubset'
-```
-
 
 ```r
 data(mas95)
-```
-
-```
-## Warning in data(mas95): data set 'mas95' not found
-```
-
-```r
 mypar(1,2)
 r <- exprs(mas95)[,1] ##original measures were not logged
-```
-
-```
-## Error in exprs(mas95): error in evaluating the argument 'object' in selecting a method for function 'exprs': Error: object 'mas95' not found
-```
-
-```r
 g <- exprs(mas95)[,2]
-```
-
-```
-## Error in exprs(mas95): error in evaluating the argument 'object' in selecting a method for function 'exprs': Error: object 'mas95' not found
-```
-
-```r
 plot(r,g,lwd=2,cex=0.2,pch=16,
      xlab=expression(paste(E[1])),
      ylab=expression(paste(E[2])), 
      main=paste0("corr=",signif(cor(r,g),3)))
-```
-
-```
-## Error in plot(r, g, lwd = 2, cex = 0.2, pch = 16, xlab = expression(paste(E[1])), : object 'r' not found
-```
-
-```r
 abline(0,1,col=2,lwd=2)
-```
-
-```
-## Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): plot.new has not been called yet
-```
-
-```r
 f <- function(a,x,y,p=0.95) mean(x<=a & y<=a)-p
 a95 <- uniroot(f,lower=2000,upper=20000,x=r,y=g)$root
-```
-
-```
-## Error in mean(x <= a & y <= a): object 'r' not found
-```
-
-```r
 abline(a95,-1,lwd=2,col=1)
-```
-
-```
-## Error in abline(a95, -1, lwd = 2, col = 1): object 'a95' not found
-```
-
-```r
 text(8500,0,"95% of data below this line",col=1,cex=1.2,adj=c(0,0))
-```
-
-```
-## Error in text.default(8500, 0, "95% of data below this line", col = 1, : plot.new has not been called yet
-```
-
-```r
 r <- log2(r)
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'r' not found
-```
-
-```r
 g <- log2(g)
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'g' not found
-```
-
-```r
 plot(r,g,lwd=2,cex=0.2,pch=16,
      xlab=expression(paste(log[2], " ", E[1])),
      ylab=expression(paste(log[2], " ", E[2])),
      main=paste0("corr=",signif(cor(r,g),3)))
-```
-
-```
-## Error in plot(r, g, lwd = 2, cex = 0.2, pch = 16, xlab = expression(paste(log[2], : object 'r' not found
-```
-
-```r
 abline(0,1,col=2,lwd=2)
 ```
 
-```
-## Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): plot.new has not been called yet
-```
+![Gene expression data from two replicated samples. Left is in original scale and right is in log scale.](images/R/plots_to_avoid-tmp-correlation-not-replication-1.png) 
 
 Although the correlation is reduced in the log-scale, it is very close to 1 in both cases. Does this mean these data are reproduced? To examine how well the second vector reproduces the first, we need to study the differences. So we should instead plot that. In this plot, we plot the difference (in the log scale) versus the average:
 
@@ -307,19 +224,10 @@ plot((r+g)/2,(r-g),lwd=2,cex=0.2,pch=16,
      xlab=expression(paste("Ave{ ",log[2], " ", E[1],", ",log[2], " ", E[2]," }")),
      ylab=expression(paste(log[2]," { ",E[1]," / ",E[2]," }")),
      main=paste0("SD=",signif(sqrt(mean((r-g)^2)),3)))
-```
-
-```
-## Error in plot((r + g)/2, (r - g), lwd = 2, cex = 0.2, pch = 16, xlab = expression(paste("Ave{ ", : object 'r' not found
-```
-
-```r
 abline(h=0,col=2,lwd=2)
 ```
 
-```
-## Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): plot.new has not been called yet
-```
+![MA plot of the same data shown above shows that data is not replicated very well despite a high correlation.](images/R/plots_to_avoid-tmp-MAplot-1.png) 
 
 These are referred to as Bland-Altman plots or MA plots in the genomics literature, and we will talk more about them later. In this plot we see that the typical difference in the log (base 2) scale between two replicated measures is about 1. This means that when measurements should be the same we will, on average, observe 2 fold difference. We can now compare this variability to the differences we want to detect and decide if this technology is precise enough for our purposes.
 
@@ -327,7 +235,7 @@ These are referred to as Bland-Altman plots or MA plots in the genomics literatu
 
 A common task in data analysis is the comparison of two groups. When the dataset is small and data are paired, for example the outcomes before and after a treatment, two color barplots are unfortunately often used to display the results:
 
-![Barplot for two variables](images/downloads/fig6r_e.png)
+![Barplot for two variables](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig6r_e.png)
 
 There are better ways of showing these data to illustrate that there is an increase after treatment. One is to simply make a scatterplot, which shows that most points are above the identity line. Another alternative is to plot the differences against the before values.
 
@@ -374,7 +282,7 @@ boxplot(before,after,names=c("Before","After"),ylab="Response")
 
 The figure below shows three curves. Pseudo 3D is used, but it is not clear why. Maybe to separate the three curves? Notice how difficult it is to determine the values of the curves at any given point:
 
-![Gratuitous 3-D](images/downloads/fig8b.png)
+![Gratuitous 3-D](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig8b.png)
 
 This plot can be made better by simply using color to distinguish the three lines:
 
@@ -403,7 +311,7 @@ legend(1,0.4,c("Drug A","Drug B","Drug C"),lwd=2, col=1:3)
 
 In this example we generate data with a simulation. We are studying a dose response relationship between two groups: treatment and control. We have three groups of measurements for both control and treatment. Comparing treatment and control using the common barplot:
 
-![Ingoring important factors](images/downloads/fig9d.png)
+![Ingoring important factors](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig9d.png)
 
 Instead we should show each curve. We can use color to distinguish treatment and control and dashed and solid lines to distinguish the original data from the mean of the three groups.
 
