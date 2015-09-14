@@ -2,9 +2,12 @@
 title: EDA Exercises
 ---
 
+
+
+
 A>## Exercises
 A>
-A>![ ](images/R/hist_exercise-1.png) 
+A>![ ](images/R/exploratory_data_analysis_exercises-tmp-hist_exercise-1.png) 
 A>
 A>1. Given the above histogram: how many people are between the ages of 35 and 45?
 A>
@@ -18,7 +21,7 @@ A>
         ylab = "Insect Count")
     ```
 A>    
-A>    ![plot of chunk unnamed-chunk-1](images/R/unnamed-chunk-1-1.png) 
+A>    ![plot of chunk unnamed-chunk-1](images/R/exploratory_data_analysis_exercises-tmp-unnamed-chunk-1-1.png) 
 A>    
     ```r
     cat("C")
