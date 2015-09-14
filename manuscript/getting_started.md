@@ -148,7 +148,7 @@ getwd()
 ```
 
 ```
-## [1] "/Users/ririzarr/myDocuments/teaching/HarvardX/labs/course1"
+## [1] "/Users/michael/proj/genomicsclass/labs/course1"
 ```
 
 You can also change your working directory using the function `setwd`. Or you can change it through RStudio by clicking on "Session". 
@@ -237,10 +237,10 @@ list.files(file.path(dir,"extdata")) # external data is in this directory
 ```
 
 ```
-## [1] "admissions.csv"               "babies.txt"                  
-## [3] "femaleControlsPopulation.csv" "femaleMiceWeights.csv"       
-## [5] "mice_pheno.csv"               "msleep_ggplot2.csv"          
-## [7] "README"                       "spider_wolff_gorb_2013.csv"
+## [1] "babies.txt"                   "femaleControlsPopulation.csv"
+## [3] "femaleMiceWeights.csv"        "mice_pheno.csv"              
+## [5] "msleep_ggplot2.csv"           "README"                      
+## [7] "spider_wolff_gorb_2013.csv"
 ```
 
 And now we are ready to read in the file:
