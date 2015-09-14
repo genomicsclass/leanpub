@@ -30,7 +30,6 @@ exploratory_data_analysis_2.md
 plots_to_avoid.md
 exploratory_data_analysis_exercises.md
 
-
 #chapter 3 - Robust Statistics
 robust_summaries.md
 ranktest.md
