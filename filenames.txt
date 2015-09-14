@@ -96,7 +96,7 @@
 ## Chapter 9: Practical Machine Learning
 #course3 clustering_and_heatmaps
 #course3_exercises clustering_and_heatmaps_exercises
-course3 conditional_expectation
+#course3 conditional_expectation
 #course3_exercises conditional_expectation_exercises
 #course3 smoothing
 #course3_exercises smoothing_exercises
@@ -113,6 +113,6 @@ course3 conditional_expectation
 #course3 adjusting_with_linear_models
 #course3_exercises adjusting_with_factor_analysis_exercises
 #course3 factor_analysis
-#course3_exercises factor_analysis_exercises
+course3_exercises factor_analysis_exercises
 #course3 adjusting_with_factor_analysis
 #course3_exercises adjusting_with_factor_analysis_exercises
