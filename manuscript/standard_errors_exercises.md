@@ -14,11 +14,9 @@ library(UsingR)
 N <- 50
 set.seed(1)
 index <- sample(n,N)
-
 sampledat <- father.son[index,]
 x <- sampledat$fheight
 y <- sampledat$sheight
-
 betahat <- lm(y~x)$coef
 ```
 A>
