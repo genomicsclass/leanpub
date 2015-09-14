@@ -60,6 +60,18 @@ Let's compute these quantities with a data example. We will use a Monte Carlo si
 ```r
 set.seed(1)
 population = unlist( read.csv("femaleControlsPopulation.csv") )
+```
+
+```
+## Warning in file(file, "rt"): cannot open file
+## 'femaleControlsPopulation.csv': No such file or directory
+```
+
+```
+## Error in file(file, "rt"): cannot open the connection
+```
+
+```r
 alpha <- 0.05
 N <- 12
 m <- 10000
@@ -70,6 +82,10 @@ pvals <- replicate(m,{
 })
 ```
 
+```
+## Error in sample(population, N): object 'population' not found
+```
+
 Although in practice we do not know the fact that no diet works, in this simulation we do, and therefore we can actually compute {$$}V{/$$} and {$$}S{/$$}. Because all null hypotheses are true, we know {$$}V=R{/$$}. Of course, in practice we can't compute this quantity.
 
 
@@ -78,7 +94,7 @@ sum(pvals < 0.05) ##This is R
 ```
 
 ```
-## [1] 462
+## Error in eval(expr, envir, enclos): object 'pvals' not found
 ```
 These many false positives are not acceptable in most contexts.
 
@@ -110,6 +126,10 @@ calls <- sapply(1:m, function(i){
           "Not Called Significant")
 })
 ```
+
+```
+## Error in sample(population, N): object 'population' not found
+```
 Because in this simulation we know the truth (saved in `nullHypothesis`) we can compute the entries of the table:
 
 
@@ -119,10 +139,7 @@ table(null_hypothesis,calls)
 ```
 
 ```
-##                calls
-## null_hypothesis Called Significant Not Called Significant
-##           TRUE                 421                   8579
-##           FALSE                520                    480
+## Error in table(null_hypothesis, calls): object 'calls' not found
 ```
 
 The first column of the table above shows us {$$}V{/$$} and {$$}S{/$$}. Note that {$$}V{/$$} and {$$}S{/$$} are random variables. If we run the simulation repeatedly, these values change. Here is a quick example:
@@ -143,16 +160,7 @@ VandS <- replicate(B,{
 ```
 
 ```
-## V = 410 S = 564 
-## V = 400 S = 552 
-## V = 366 S = 546 
-## V = 382 S = 553 
-## V = 372 S = 505 
-## V = 382 S = 530 
-## V = 381 S = 539 
-## V = 396 S = 554 
-## V = 380 S = 550 
-## V = 405 S = 569
+## Error in sample(population, N): object 'population' not found
 ```
 
 This motivates the definition of error rates. We can, for example, estimate probability that {$$}V{/$$} is larger than 0. This is interpreted as the probability of making at least one type I error among the 10,000 tests. In the example we made many more than 1 in every single simulation, so we suspect this probability is very practically 1. When {$$}m=1{/$$}, this probability is equivalent to the p-value. When we have a multiple tests situation, we call it the Family Wide Error Rate (FWER) and it relates to a technique that is widely used: The Bonferroni Correction.
@@ -227,6 +235,10 @@ pvals <- sapply(1:m, function(i){
   t.test(treatment,control)$p.value
 })
 ```
+
+```
+## Error in sample(population, N): object 'population' not found
+```
 We note that only:
 
 ```r
@@ -234,7 +246,7 @@ sum(pvals < 0.05/10000)
 ```
 
 ```
-## [1] 2
+## Error in eval(expr, envir, enclos): object 'pvals' not found
 ```
 are called significant after applying the Bonferroni procedure, despite having 1000 diets that work. 
 
@@ -249,6 +261,10 @@ pvals <- sapply(1:m, function(i){
   t.test(treatment,control)$p.value
 })
 ```
+
+```
+## Error in sample(population, N): object 'population' not found
+```
 We note that only:
 
 ```r
@@ -256,7 +272,7 @@ sum(pvals < 0.05/10000)
 ```
 
 ```
-## [1] 2
+## Error in eval(expr, envir, enclos): object 'pvals' not found
 ```
 
 
@@ -275,11 +291,18 @@ pvals <- sapply(1:m, function(i){
   if(!nullHypothesis[i]) treatment <- treatment + delta
   t.test(treatment,control)$p.value
   })
+```
+
+```
+## Error in sample(population, 6): object 'population' not found
+```
+
+```r
 sum(pvals < 0.05/10000)
 ```
 
 ```
-## [1] 0
+## Error in eval(expr, envir, enclos): object 'pvals' not found
 ```
 
 [CHECK] By requiring a FWER {$$}\leq{/$$} 0.05 we are practically assuring 0 power (sensitivity) and that the specificity requirement is over-kill. A widely used alternative to the FWER is the false discover rate (FDR). The idea behind FDR is to consider the random variable {$$}Q \equiv V/R{/$$} with {$$}Q=0{/$$} when {$$}R=0{/$$} and {$$}V=0{/$$}. Note that {$$}R=0{/$$} (nothing called significant) implies {$$}V=0{/$$} (no false positives). So {$$}Q{/$$} is a random variable that can take values between 0 and 1 and we can define a rate by considering the average of {$$}Q{/$$}. To better understand this concept here, we compute {$$}Q{/$$} for the procedure: call everything p-value < 0.05 significant.
@@ -311,19 +334,35 @@ Qs <- replicate(B,{
  Q=ifelse(R>0,sum(nullHypothesis & calls)/R,0)
  return(Q)
 })
+```
+
+```
+## Error in sample(population, N * m, replace = TRUE): object 'population' not found
+```
+
+```r
 mypar(1,1)
 hist(Qs) ##Q is a random variable, this is its distribution
 ```
 
-![Q (false positives divided by number of features called significant) is a random variable. Here we generated a distribution with a Monte Carlo simulation.](images/R/multiple_testing-tmp-Q_distribution-1.png) 
+```
+## Error in hist(Qs): object 'Qs' not found
+```
 
 ```r
 FDR=mean(Qs)
+```
+
+```
+## Error in mean(Qs): object 'Qs' not found
+```
+
+```r
 print(FDR)
 ```
 
 ```
-## [1] 0.4443414
+## Error in print(FDR): object 'FDR' not found
 ```
 
 The FDR is relatively high here. This is because for 90% of the tests, the null hypotheses is true. This implies that with a 0.05 p-value cut-off, out of the 100 tests we incorrectly call between 4 and 5 significant on average. This combined with the fact that we don't "catch" all the cases where the alternative is true, gives us a relatively high FDR. So how can we control this? What if we want lower FDR, say 5%?
@@ -335,25 +374,77 @@ To visually see why the FDR is high, we can make a histogram of the p-values. We
 ```r
 set.seed(1)
 controls <- matrix(sample(population, N*m, replace=TRUE),nrow=m)
-treatments <-  matrix(sample(population, N*m, replace=TRUE),nrow=m)
-treatments[which(!nullHypothesis),]<-treatments[which(!nullHypothesis),]+delta
-dat <- cbind(controls,treatments)
-pvals <- rowttests(dat,g)$p.value 
+```
 
+```
+## Error in sample(population, N * m, replace = TRUE): object 'population' not found
+```
+
+```r
+treatments <-  matrix(sample(population, N*m, replace=TRUE),nrow=m)
+```
+
+```
+## Error in sample(population, N * m, replace = TRUE): object 'population' not found
+```
+
+```r
+treatments[which(!nullHypothesis),]<-treatments[which(!nullHypothesis),]+delta
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'treatments' not found
+```
+
+```r
+dat <- cbind(controls,treatments)
+```
+
+```
+## Error in cbind(controls, treatments): object 'controls' not found
+```
+
+```r
+pvals <- rowttests(dat,g)$p.value 
+```
+
+```
+## Error in rowttests(dat, g): error in evaluating the argument 'x' in selecting a method for function 'rowttests': Error: object 'dat' not found
+```
+
+```r
 hist(pvals,breaks=seq(0,1,0.05))
+```
+
+```
+## Error in hist(pvals, breaks = seq(0, 1, 0.05)): object 'pvals' not found
+```
+
+```r
 abline(h=m0/20)
 ```
 
-![Histogram of p-values. Monte Carlo simulation was used to generate data with m_1 genes having differences between groups.](images/R/multiple_testing-tmp-pval_hist-1.png) 
+```
+## Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): plot.new has not been called yet
+```
 The first bar on the left represents cases with p-values smaller than 0.05. From the horizontal line we can infer that about 1/2 are false positives. This is in agreement with an FDR of 0.50. [CHECK] If we look at the bar for 0.01, we see can infer a lower FDR, as expected, but would call less features significant.
 
 
 ```r
 hist(pvals,breaks=seq(0,1,0.01))
+```
+
+```
+## Error in hist(pvals, breaks = seq(0, 1, 0.01)): object 'pvals' not found
+```
+
+```r
 abline(h=m0/100)
 ```
 
-![Histogram of p-values with breaks at every 0.01. Monte Carlo simulation was used to generate data with m_1 genes having differences between groups.](images/R/multiple_testing-tmp-pval_hist2-1.png) 
+```
+## Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): plot.new has not been called yet
+```
 
 As we consider a lower a lower p-value cut-off, the number of features detected decreases (loss of sensitivity), but our FDR also decreases (gain of specificity). So how do we decide? One approach is to set a desired FDR level {$$}\alpha{/$$}, and then develop procedures that control the error rate: FDR  {$$}\leq \alpha{/$$}.
 
@@ -371,25 +462,68 @@ The procedure is to reject tests with p-values larger than {$$}p_{(k)}{/$$}. Her
 ```r
 alpha <- 0.05
 i = seq(along=pvals)
+```
 
+```
+## Error in seq(along = pvals): object 'pvals' not found
+```
+
+```r
 mypar(1,2)
 plot(i,sort(pvals))
-abline(0,i/m*alpha)
-##close-up
-plot(i[1:15],sort(pvals)[1:15],main="Close-up")
+```
+
+```
+## Error in plot(i, sort(pvals)): error in evaluating the argument 'x' in selecting a method for function 'plot': Error: object 'i' not found
+```
+
+```r
 abline(0,i/m*alpha)
 ```
 
-![Plotting p-values plotted against their rank illustrates the Benjamini-Hochberg procedure. The plot on the right is a close-up of the plot on the left.](images/R/multiple_testing-tmp-pvalue_vs_rank_plot-1.png) 
+```
+## Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): object 'i' not found
+```
+
+```r
+##close-up
+plot(i[1:15],sort(pvals)[1:15],main="Close-up")
+```
+
+```
+## Error in plot(i[1:15], sort(pvals)[1:15], main = "Close-up"): error in evaluating the argument 'x' in selecting a method for function 'plot': Error: object 'i' not found
+```
+
+```r
+abline(0,i/m*alpha)
+```
+
+```
+## Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): object 'i' not found
+```
 
 ```r
 k <- max( which( sort(pvals) < i/m*alpha) )
+```
+
+```
+## Error in sort(pvals): object 'pvals' not found
+```
+
+```r
 cutoff <- sort(pvals)[k]
+```
+
+```
+## Error in sort(pvals): object 'pvals' not found
+```
+
+```r
 cat("k =",k,"p-value cutoff=",cutoff)
 ```
 
 ```
-## k = 11 p-value cutoff= 3.763357e-05
+## Error in cat("k =", k, "p-value cutoff=", cutoff): object 'k' not found
 ```
 
 We can show mathematically that this procedure has FDR lower than 5%. Please see Benjamini-Hochberg (1995) for details. An important outcome is that we now have selected 11 tests instead of just 2. If we are willing to set an FDR of 50% (for example, 1/2 our genes are expected to be hits!), then this list grows to 1063! The FWER does not provide this flexibility since any list of substantial size will result in an FWER of 1.
@@ -399,12 +533,28 @@ we simply type the following:
 
 ```r
 fdr <- p.adjust(pvals, method="fdr")
+```
+
+```
+## Error in p.adjust(pvals, method = "fdr"): object 'pvals' not found
+```
+
+```r
 mypar(1,1)
 plot(pvals,fdr,log="xy")
+```
+
+```
+## Error in plot(pvals, fdr, log = "xy"): error in evaluating the argument 'x' in selecting a method for function 'plot': Error: object 'pvals' not found
+```
+
+```r
 abline(h=alpha,v=cutoff) ##cutoff was computed above
 ```
 
-![FDR estimates plotted against p-value.](images/R/multiple_testing-tmp-fdr-versus-pval-1.png) 
+```
+## Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): object 'cutoff' not found
+```
 
 We can run a Monte-Carlo simulation to confirm that the FDR is in fact lower than .05. We compute all p-values first, and then use these to decide which get called.
 
@@ -424,19 +574,35 @@ Qs <- replicate(B,{
   Q=ifelse(R>0,sum(nullHypothesis & calls)/R,0)
   return(Q)
 })
+```
+
+```
+## Error in sample(population, N * m, replace = TRUE): object 'population' not found
+```
+
+```r
 mypar(1,1)
 hist(Qs) ##Q is a random variable, this is its distribution
 ```
 
-![Histogram of Q (false positives divided by number of features called significant) when the alternative hypothesis is true for some features.](images/R/multiple_testing-tmp-Q_distribution2-1.png) 
+```
+## Error in hist(Qs): object 'Qs' not found
+```
 
 ```r
 FDR=mean(Qs)
+```
+
+```
+## Error in mean(Qs): object 'Qs' not found
+```
+
+```r
 print(FDR)
 ```
 
 ```
-## [1] 0.03556253
+## Error in print(FDR): object 'FDR' not found
 ```
 
 The FDR is lower than 0.05. This is to be expected because we need to be conservative to assure the FDR {$$}\leq{/$$} 0.05 for any value of {$$}m_0{/$$}, such as for the extreme case where every hypothesis tested is null: {$$}m=m_0{/$$}. If you re-do the simulation above for this case, you will find that the FDR increases. 
@@ -487,19 +653,35 @@ There are more sophisticated procedures than this, but they follow the same gene
 
 ```r
 hist(pvals,breaks=seq(0,1,0.05),freq=FALSE)
+```
+
+```
+## Error in hist(pvals, breaks = seq(0, 1, 0.05), freq = FALSE): object 'pvals' not found
+```
+
+```r
 lambda = 0.1
 pi0=sum(pvals> lambda) /((1-lambda)*m)
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'pvals' not found
+```
+
+```r
 abline(h= pi0)
 ```
 
-![p-value histogram with pi0 estimate.](images/R/multiple_testing-tmp-pi0_estimate-1.png) 
+```
+## Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): object 'pi0' not found
+```
 
 ```r
 print(pi0) ##this is close to the trye pi0=0.9
 ```
 
 ```
-## [1] 0.9311111
+## Error in print(pi0): object 'pi0' not found
 ```
 
 With this estimate in place we can, for example, alter the Benjamini and Hochberg procedures to select the {$$}k{/$$} to be the largest value so that: 
@@ -513,12 +695,35 @@ In R this can be computed with the `qvalue` function in the `qvalue` package:
 
 ```r
 library(qvalue)
+```
+
+```
+## Error in library(qvalue): there is no package called 'qvalue'
+```
+
+```r
 res <- qvalue(pvals)
+```
+
+```
+## Error in eval(expr, envir, enclos): could not find function "qvalue"
+```
+
+```r
 qvals <- res$qvalues
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'res' not found
+```
+
+```r
 plot(pvals,qvals)
 ```
 
-![Q-values versus p-values.](images/R/multiple_testing-tmp-qval_vs_pval-1.png) 
+```
+## Error in plot(pvals, qvals): error in evaluating the argument 'x' in selecting a method for function 'plot': Error: object 'pvals' not found
+```
 we also obtain the estimate of {$$}\hat{\pi}_0{/$$}:
 
 
@@ -527,6 +732,6 @@ res$pi0
 ```
 
 ```
-## [1] 0.8813727
+## Error in eval(expr, envir, enclos): object 'res' not found
 ```
 This function uses a more sophisticated approach at estimating {$$}\pi_0{/$$} than what is described above.
