@@ -57,12 +57,27 @@ The data represent RNA expression levels for eight tissues, each with several in
 
 ```r
 library(tissuesGeneExpression)
+```
+
+```
+## Error in library(tissuesGeneExpression): there is no package called 'tissuesGeneExpression'
+```
+
+```r
 data(tissuesGeneExpression)
+```
+
+```
+## Warning in data(tissuesGeneExpression): data set 'tissuesGeneExpression'
+## not found
+```
+
+```r
 dim(e) ##e contains the expression data
 ```
 
 ```
-## [1] 22215   189
+## Error in eval(expr, envir, enclos): object 'e' not found
 ```
 
 ```r
@@ -70,11 +85,7 @@ table(tissue) ##tissue[i] tells us what tissue is represented by e[,i]
 ```
 
 ```
-## tissue
-##  cerebellum       colon endometrium hippocampus      kidney       liver 
-##          38          34          15          31          39          26 
-##    placenta 
-##           6
+## Error in table(tissue): object 'tissue' not found
 ```
 
 We are interested in describing distance between samples in the context of this dataset. We might also be interested in finding genes that _behave similarly_ across samples.
@@ -109,13 +120,34 @@ We can now use the formulas above to compute distance. Let's compute distance be
 
 ```r
 x <- e[,1]
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'e' not found
+```
+
+```r
 y <- e[,2]
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'e' not found
+```
+
+```r
 z <- e[,87]
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'e' not found
+```
+
+```r
 sqrt(sum((x-y)^2))
 ```
 
 ```
-## [1] 85.8546
+## Error in eval(expr, envir, enclos): object 'x' not found
 ```
 
 ```r
@@ -123,7 +155,7 @@ sqrt(sum((x-z)^2))
 ```
 
 ```
-## [1] 122.8919
+## Error in eval(expr, envir, enclos): object 'x' not found
 ```
 
 As expected the kidneys are closer to each other. A faster way to compute this is using matrix algebra:
@@ -134,8 +166,7 @@ sqrt( crossprod(x-y) )
 ```
 
 ```
-##         [,1]
-## [1,] 85.8546
+## Error in crossprod(x - y): object 'x' not found
 ```
 
 ```r
@@ -143,8 +174,7 @@ sqrt( crossprod(x-z) )
 ```
 
 ```
-##          [,1]
-## [1,] 122.8919
+## Error in crossprod(x - z): object 'x' not found
 ```
 
 Now to compute all the distances at once, we have the function `dist`. Because it computes the distance between each row, and here we are interested in the distance between samples, we transpose the matrix
@@ -152,11 +182,18 @@ Now to compute all the distances at once, we have the function `dist`. Because i
 
 ```r
 d <- dist(t(e))
+```
+
+```
+## Error in t(e): object 'e' not found
+```
+
+```r
 class(d)
 ```
 
 ```
-## [1] "dist"
+## Error in eval(expr, envir, enclos): object 'd' not found
 ```
 
 Note that this produces an object of class `dist` and to access the entries we need to coerce it into a matrix:
@@ -167,7 +204,7 @@ as.matrix(d)[1,2]
 ```
 
 ```
-## [1] 85.8546
+## Error in as.matrix(d): object 'd' not found
 ```
 
 ```r
@@ -175,7 +212,7 @@ as.matrix(d)[1,87]
 ```
 
 ```
-## [1] 122.8919
+## Error in as.matrix(d): object 'd' not found
 ```
 
 It is important to remember that if we run `dist` on `e`, it will compute all pairwise distances between genes. This will try to create a {$$}22215 \times 22215{/$$} matrix that may crash your R sessions.
