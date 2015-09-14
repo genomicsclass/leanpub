@@ -39,28 +39,27 @@ A>obtain data from 2010, 2011, and 2012 and with more than 500 at bats (AB >= 50
 A>
 A>    
     ```r
-    ##Ready to read file
     dat <- filter(players,yearID>=2010, yearID <=2012) %>% mutate(AVG=H/AB) %>% filter(AB>500)
     ```
 A>
 A>    What is the a averge of these batting averges?
 A>
 A>
-A>4. What is the standard deviation of these batting averages?
+A>3. What is the standard deviation of these batting averages?
 A>
 A>
-A>5. Use exploratory data analysis to decide which of the following distributions approximates our AVG
+A>4. Use exploratory data analysis to decide which of the following distributions approximates our AVG
 A>    - A. Normal
 A>    - B. Poisson
 A>    - C. F-distribution
 A>    - D. Uniform
 A>
 A>
-A>6. It is April and after 20 at bats, Jose Iglesias is batting .450 (this is very good). We can think of this as a binomial distribution with 20 trial with probability of success {$$}p{/$$}. Our sample estimate of {$$}p{/$$} is .450. What is our estimate of standard devitaion? Hint: This is sum that is binomial divided by 20
+A>5. It is April and after 20 at bats, Jose Iglesias is batting .450 (this is very good). We can think of this as a binomial distribution with 20 trial with probability of success {$$}p{/$$}. Our sample estimate of {$$}p{/$$} is .450. What is our estimate of standard devitaion? Hint: This is sum that is binomial divided by 20
 A>
 A>
 A>
-A>7. The Binomial is approximated by normal so our sampling distribution is approximately normal wih mean {$$}Y=0.45{/$$} and SD {$$}\sigma=0.11{/$$}. Earlier we used a baseball database to determine that our prior distribution is Normal with mean {$$}\mu=0.275{/$$} and SD {$$}\tau=0.027{/$$}. We also saw that this is the posterior mean prediction of the batting average. 
+A>6. The Binomial is approximated by normal so our sampling distribution is approximately normal wih mean {$$}Y=0.45{/$$} and SD {$$}\sigma=0.11{/$$}. Earlier we used a baseball database to determine that our prior distribution is Normal with mean {$$}\mu=0.275{/$$} and SD {$$}\tau=0.027{/$$}. We also saw that this is the posterior mean prediction of the batting average. 
 A>
 A>    What is your Bayes prediction for the batting average going forward.
 A>    {$$}
