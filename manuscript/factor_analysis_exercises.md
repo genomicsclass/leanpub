@@ -33,7 +33,7 @@ A>     D =
 A>    \begin{pmatrix} 
 A>    1&1 \\ 
 A>    1&-1
-A>    \end{pmatrix} y' 
+A>    \end{pmatrix} y^\top
 A>    {/$$}
 A>
 A>
