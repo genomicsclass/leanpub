@@ -51,7 +51,7 @@ prop.table(tab)
 ```
 ## winners
 ##     0     1     2     3     4 
-## 0.611 0.307 0.068 0.013 0.001
+## 0.596 0.313 0.072 0.016 0.003
 ```
 
 For cases like this, where {$$}N{/$$} is very large, but {$$}p{/$$} is small enough to make {$$}N \times p{/$$} (call it {$$}\lambda{/$$}) a number between 0 and 10, then {$$}S{/$$} can be shown to follow a Poisson distribution which has a simple parametric form:
@@ -230,142 +230,43 @@ So can we model the distribution of these standard errors? Are they normal? Note
 ```r
 library(Biobase)
 library(maPooling) ##available from course github repo
-```
 
-```
-## Error in library(maPooling): there is no package called 'maPooling'
-```
-
-```r
 data(maPooling)
-```
-
-```
-## Warning in data(maPooling): data set 'maPooling' not found
-```
-
-```r
 pd=pData(maPooling)
-```
 
-```
-## Error in pData(maPooling): error in evaluating the argument 'object' in selecting a method for function 'pData': Error: object 'maPooling' not found
-```
-
-```r
 strain=factor(as.numeric(grepl("b",rownames(pd))))
-```
-
-```
-## Error in rownames(pd): error in evaluating the argument 'x' in selecting a method for function 'rownames': Error: object 'pd' not found
-```
-
-```r
 pooled=which(rowSums(pd)==12 & strain==1)
-```
-
-```
-## Error in which(rowSums(pd) == 12 & strain == 1): error in evaluating the argument 'x' in selecting a method for function 'which': Error in is.data.frame(x) : object 'pd' not found
-## Calls: rowSums -> is.data.frame
-```
-
-```r
 techreps=exprs(maPooling[,pooled])
-```
-
-```
-## Error in exprs(maPooling[, pooled]): error in evaluating the argument 'object' in selecting a method for function 'exprs': Error: object 'maPooling' not found
-```
-
-```r
 individuals=which(rowSums(pd)==1 & strain==1)
-```
 
-```
-## Error in which(rowSums(pd) == 1 & strain == 1): error in evaluating the argument 'x' in selecting a method for function 'which': Error in is.data.frame(x) : object 'pd' not found
-## Calls: rowSums -> is.data.frame
-```
-
-```r
 ##remove replicates
 individuals=individuals[-grep("tr",names(individuals))]
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'individuals' not found
-```
-
-```r
 bioreps=exprs(maPooling)[,individuals]
-```
 
-```
-## Error in exprs(maPooling): error in evaluating the argument 'object' in selecting a method for function 'exprs': Error: object 'maPooling' not found
-```
-
-```r
 ###now compute the gene specific standard deviations
 library(matrixStats)
 techsds=rowSds(techreps)
-```
-
-```
-## Error in rowVars(x, ...): object 'techreps' not found
-```
-
-```r
 biosds=rowSds(bioreps)
-```
 
-```
-## Error in rowVars(x, ...): object 'bioreps' not found
-```
-
-```r
 ###now plot
 library(rafalib)
 mypar()
 shist(biosds,unit=0.1,col=1,xlim=c(0,1.5))
-```
-
-```
-## Error in is.data.frame(z): object 'biosds' not found
-```
-
-```r
 shist(techsds,unit=0.1,col=2,add=TRUE)
-```
-
-```
-## Error in is.data.frame(z): object 'techsds' not found
-```
-
-```r
 legend("topright",c("Biological","Technical"), col=c(1,2))
 ```
 
-```
-## Error in strwidth(legend, units = "user", cex = cex, font = text.font): plot.new has not been called yet
-```
+![Histograms of biological variance and technical variance.](images/R/modeling-tmp-bio_sd_versus_tech_sd-1.png) 
 
 First notice that the normal distribution is not appropriate here since the right tail is rather large. Also, because SDs are strictly positive, there is a limitation to how symmetric this distribution can be.
 A qqplot shows this very clearly:
 
 ```r
 qqnorm(biosds)
-```
-
-```
-## Error in qqnorm(biosds): object 'biosds' not found
-```
-
-```r
 qqline(biosds)
 ```
 
-```
-## Error in quantile(y, probs, names = FALSE, type = qtype, na.rm = TRUE): object 'biosds' not found
-```
+![Normal qq-plot for sample standard deviations.](images/R/modeling-tmp-sd_qqplot-1.png) 
 
 There are parametric distributions that posses these properties (strictly positive and _heavy_ right tails). Two examples are the _gamma_ and _F_ distributions. The density of the gamma distribution is defined by: 
 
@@ -413,9 +314,7 @@ for(d in c(1,5,10)){
 }
 ```
 
-```
-## Error in hist(biosds, main = paste("s_0 =", s0, "d =", d), xlab = "sd", : object 'biosds' not found
-```
+![Histograms of sample standard deviations and densities of estimated distributions.](images/R/modeling-tmp-modeling_variance-1.png) 
 
 Now which {$$}s_0{/$$} and {$$}d{/$$} fit our data best? This is a rather advanced topic as the MLE does not perform well for this particular distribution (we refer to Smyth (2004)). The Bioconductor limma package provides a function to estimate these parameters:
 
@@ -423,74 +322,18 @@ Now which {$$}s_0{/$$} and {$$}d{/$$} fit our data best? This is a rather advanc
 ```r
 library(limma)
 estimates=fitFDist(biosds^2,11)
-```
 
-```
-## Error in fitFDist(biosds^2, 11): object 'biosds' not found
-```
-
-```r
 theoretical<- sqrt(qf((seq(0,999)+0.5)/1000, 11, estimates$df2)*estimates$scale)
-```
-
-```
-## Error in qf((seq(0, 999) + 0.5)/1000, 11, estimates$df2): object 'estimates' not found
-```
-
-```r
 observed <- biosds
-```
 
-```
-## Error in eval(expr, envir, enclos): object 'biosds' not found
-```
-
-```r
 mypar(1,2)
 qqplot(theoretical,observed)
-```
-
-```
-## Error in sort(y): object 'observed' not found
-```
-
-```r
 abline(0,1)
-```
-
-```
-## Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): plot.new has not been called yet
-```
-
-```r
 tmp=hist(biosds,main=paste("s_0 =", signif(estimates[[1]],2), "d =", signif(estimates[[2]],2)), xlab="sd", ylab="density", freq=FALSE, nc=100, xlim=c(0,1), ylim=c(0,9))
-```
-
-```
-## Error in hist(biosds, main = paste("s_0 =", signif(estimates[[1]], 2), : object 'biosds' not found
-```
-
-```r
 dd=df(sds^2/estimates$scale,11,estimates$df2)
-```
-
-```
-## Error in df(sds^2/estimates$scale, 11, estimates$df2): object 'estimates' not found
-```
-
-```r
 k=sum(tmp$density)/sum(dd) ##a normalizing constant to assure same area in plot
-```
-
-```
-## Error in tmp$density: {$$} operator is invalid for atomic vectors
-```
-
-```r
 lines(sds, dd*k, type="l", col=2, lwd=2)
 ```
 
-```
-## Error in xy.coords(x, y): object 'dd' not found
-```
+![qq-plot (left) and density (right) demonstrate that model fits data well.](images/R/modeling-tmp-variance_model_fit-1.png) 
 Apart from one outlier, this is not a bad fit at all. This approximation will come in very handy when we learn about empirical Bayes.
