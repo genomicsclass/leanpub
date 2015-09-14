@@ -85,15 +85,15 @@ A>
     Y <- 1:8
     ```
 A>
-A>    Now, we will fix the value for two beta's and optimize the remaining betas. We will fix {$$}\beta_{male} and {/$$}\beta_D{$$}. And then we will find the optimal value for the remaining betas, in terms of minimizing {/$$}\sum((Y - X \beta)^2){$$}. The optimal value for the other entries in {/$$}\beta{$$}, we find those that minimizes:
+A>    Now, we will fix the value for two beta's and optimize the remaining betas. We will fix {$$}\beta_{male}{/$$} and {$$}\beta_D{/$$}. And then we will find the optimal value for the remaining betas, in terms of minimizing {$$}\sum((Y - X \beta)^2){/$$}. The optimal value for the other entries in {$$}\beta{/$$}, we find those that minimizes:
 A>
-A>    {/$$}
-A>\sum_{i=1}^8  ( (Y_i - X_{i,male} \beta_{male} - X_{i,D} \beta_{i,D}) - Z_i \gamma )^2 )
 A>    {$$}
+A>\sum_{i=1}^8  ( (Y_i - X_{i,male} \beta_{male} - X_{i,D} \beta_{i,D}) - Z_i \gamma )^2 )
+A>    {/$$}
 A>
-A>    Where {/$$}X_{male}{$$} is the male column of the design matrix, {/$$}X_D{$$} is the D column, Z has the remaining columns, and {/$$}\gamma{$$} the remaining parameters.
+A>    Where {$$}X_{male}{/$$} is the male column of the design matrix, {$$}X_D{/$$} is the D column, Z has the remaining columns, and {$$}\gamma{/$$} the remaining parameters.
 A>
-A>    So all we need to do is redefine {/$$}Y{$$} as {/$$}Y^* = Y - X_{male} \beta_{male} - X_{D} \beta_D{$$} and fit a linear model. The following line of code creates this  variable {/$$}Y^*{$$}, after fixing {/$$}\beta_male{$$} to a value `a`, and beta_D to a value, `b`:
+A>    So all we need to do is redefine {$$}Y{/$$} as {$$}Y^* = Y - X_{male} \beta_{male} - X_{D} \beta_D{/$$} and fit a linear model. The following line of code creates this  variable {$$}Y^*{/$$}, after fixing {$$}\beta_{male}{/$$} to a value `a`, and beta_D to a value, `b`:
 A>
 A>    
     ```r
@@ -118,7 +118,7 @@ A>
 A>
 A>
 A>
-A>3. We can apply our function `fitTheRest` to a grid of values for {/$$}\beta_{male}{$$} and {/$$}\beta_D{$$}, using the `outer` function in R. `outer` takes three arguments, a grid of values for the first argument, a grid of values for the second argument, and finally a function which takes two arguments.
+A>3. We can apply our function `fitTheRest` to a grid of values for {$$}\beta_{male}{/$$} and {$$}\beta_D{/$$}, using the `outer` function in R. `outer` takes three arguments, a grid of values for the first argument, a grid of values for the second argument, and finally a function which takes two arguments.
 A>
 A>    Try it out: 
 A>
