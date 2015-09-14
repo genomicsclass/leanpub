@@ -13,11 +13,11 @@ install_github("genomicsclass/GSE5859Subset")
 ```
 A>
 A>```
-A>## Downloading github repo genomicsclass/GSE5859Subset@master
+A>## Downloading GitHub repo genomicsclass/GSE5859Subset@master
 A>## Installing GSE5859Subset
 A>## '/Library/Frameworks/R.framework/Resources/bin/R' --no-site-file  \
 A>##   --no-environ --no-save --no-restore CMD INSTALL  \
-A>##   '/private/var/folders/6d/d_8pbllx7318htlp5wv_rm580000gn/T/RtmpAOgPAv/devtools126166275034/genomicsclass-GSE5859Subset-8ada5f4'  \
+A>##   '/private/var/folders/6d/d_8pbllx7318htlp5wv_rm580000gn/T/RtmpT5hheA/devtools24f46b2152b3/genomicsclass-GSE5859Subset-8ada5f4'  \
 A>##   --library='/Users/michael/Library/R/3.2/library' --install-tests
 A>```
 A>
