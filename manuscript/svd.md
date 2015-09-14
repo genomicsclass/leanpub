@@ -69,49 +69,16 @@ Let's compute the SVD on the gene expression table we have been working with. We
 
 ```r
 library(tissuesGeneExpression)
-```
-
-```
-## Error in library(tissuesGeneExpression): there is no package called 'tissuesGeneExpression'
-```
-
-```r
 data(tissuesGeneExpression)
-```
-
-```
-## Warning in data(tissuesGeneExpression): data set 'tissuesGeneExpression'
-## not found
-```
-
-```r
 set.seed(1)
 ind <- sample(nrow(e),500) 
-```
-
-```
-## Error in nrow(e): object 'e' not found
-```
-
-```r
 Y <- t(apply(e[ind,],1,scale)) #standardize data for illustration
-```
-
-```
-## Error in apply(e[ind, ], 1, scale): object 'e' not found
 ```
 
 The `svd` command returns the three matrices (only the diagonal entries are returned for {$$}D{/$$})
 
 ```r
 s <- svd(Y)
-```
-
-```
-## Error in as.matrix(x): object 'Y' not found
-```
-
-```r
 U <- s$u
 V <- s$v
 D <- diag(s$d) ##turn it into a matrix
@@ -123,18 +90,11 @@ First note that we can in fact reconstruct y
 ```r
 Yhat <- U %*% D %*% t(V)
 resid <- Y - Yhat
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'Y' not found
-```
-
-```r
 max(abs(resid))
 ```
 
 ```
-## Error in abs(resid): non-numeric argument to mathematical function
+## [1] 3.508305e-14
 ```
 
 If we look at the sum of squares of {$$}\mathbf{UD}{/$$} we see that the last few are quite close to 0.  
@@ -152,26 +112,12 @@ This implies that the last columns of `V` have a very small effect on the recons
 ```r
 k <- ncol(U)-4
 Yhat <- U[,1:k] %*% D[1:k,1:k] %*% t(V[,1:k])
-```
-
-```
-## Error in U[, 1:k]: only 0's may be mixed with negative subscripts
-```
-
-```r
 resid <- Y - Yhat 
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'Y' not found
-```
-
-```r
 max(abs(resid))
 ```
 
 ```
-## Error in abs(resid): non-numeric argument to mathematical function
+## [1] 3.508305e-14
 ```
 
 The larges residual is practically 0, meaning that we `Yhat` is practically the same as `Y`, yet we need 4 less dimensions to transmit the information.
@@ -200,27 +146,11 @@ We see that although we start with just 125 dimensions we can approximate {$$}Y{
 ```r
 k <- 95 ## out a possible 189
 Yhat <- U[,1:k] %*% D[1:k,1:k] %*% t(V[,1:k])
-```
-
-```
-## Error in U[, 1:k]: subscript out of bounds
-```
-
-```r
 resid <- Y - Yhat
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'Y' not found
-```
-
-```r
 boxplot(resid,ylim=quantile(Y,c(0.01,0.99)),range=0)
 ```
 
-```
-## Error in quantile(Y, c(0.01, 0.99)): object 'Y' not found
-```
+![Residuals from comparing a reconstructed gene expression table using 95 PCs to the original data with 189 dimensions.](images/R/svd-tmp-reconstruction_with_less_dimensions-1.png) 
 
 Therefore, by using only half as many dimensions we retain most of the variability in our data:
 
@@ -230,7 +160,7 @@ var(as.vector(resid))/var(as.vector(Y))
 ```
 
 ```
-## Error in as.vector(x, mode): cannot coerce type 'closure' to vector of type 'any'
+## [1] 0.04076899
 ```
 
 We say that we explain 96% of the variability.
@@ -242,7 +172,7 @@ Note that we can compute this proportionfrom {$$}D{/$$}:
 ```
 
 ```
-## [1] NA
+## [1] 0.04076899
 ```
 Thus the entries of {$$}D{/$$} tell us how much each
 
@@ -264,8 +194,8 @@ cor(Y)
 
 ```
 ##           x         x
-## x 1.0000000 0.9998708
-## x 0.9998708 1.0000000
+## x 1.0000000 0.9998873
+## x 0.9998873 1.0000000
 ```
 In this case, the second column adds very little "information" since all the entries of `Y[,1]-Y[,2]` are close to 0. Reporting `rowMeans(Y)` is even more efficient since `Y[,1]-rowMeans(Y)` and `Y[,2]-rowMeans(Y)` are even closer to 0. `rowMeans(Y)`  turns out to be the information represented in the first column on {$$}U{/$$}. The SVD helps us notice that we explain almost all the variability with just this first column:
 
@@ -276,7 +206,7 @@ d[1]^2/sum(d^2)
 ```
 
 ```
-## [1] 0.9999362
+## [1] 0.9999441
 ```
 
 In cases with many correlated columns we can achieve great dimension reduction:
@@ -293,7 +223,7 @@ d[1]^2/sum(d^2)
 ```
 
 ```
-## [1] 0.9998953
+## [1] 0.9999047
 ```
 
 
