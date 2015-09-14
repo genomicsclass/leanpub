@@ -19,72 +19,22 @@ Here is a volcano showing effect sizes and p-value from applying a t-test to dat
 
 ```r
 library(SpikeInSubset) ##Available from Bioconductor
-```
-
-```
-## Error in library(SpikeInSubset): there is no package called 'SpikeInSubset'
-```
-
-```r
 data(rma95)
-```
-
-```
-## Warning in data(rma95): data set 'rma95' not found
-```
-
-```r
 library(genefilter)
 fac <- factor(rep(1:2,each=3))
 tt <- rowttests(exprs(rma95),fac)
-```
-
-```
-## Error in rowttests(exprs(rma95), fac): error in evaluating the argument 'x' in selecting a method for function 'rowttests': Error: could not find function "exprs"
-```
-
-```r
 smallp <- with(tt, p.value < .01)
-```
-
-```
-## Error in with(tt, p.value < 0.01): object 'tt' not found
-```
-
-```r
 spike <- rownames(rma95) %in% colnames(pData(rma95))
-```
-
-```
-## Error in rownames(rma95): object 'rma95' not found
-```
-
-```r
 cols <- ifelse(spike,"dodgerblue",ifelse(smallp,"red","black"))
-```
 
-```
-## Error in ifelse(spike, "dodgerblue", ifelse(smallp, "red", "black")): object 'spike' not found
-```
-
-```r
 with(tt, plot(-dm, -log10(p.value), cex=.8, pch=16,
      xlim=c(-1,1), ylim=c(0,4.5),
      xlab="difference in means",
      col=cols))
-```
-
-```
-## Error in with(tt, plot(-dm, -log10(p.value), cex = 0.8, pch = 16, xlim = c(-1, : object 'tt' not found
-```
-
-```r
 abline(h=2,v=c(-.2,.2), lty=2)
 ```
 
-```
-## Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): plot.new has not been called yet
-```
+![Volcano plot for t-test comparing two groups. Spiked-in genes are denoted with blue. Among the rest of the genes, those with p-value < 0.01 are denoted with red.](images/R/hierarchical_models-tmp-volcano-plot-1.png) 
 
 We cut-off the range of the y-axis at 4.5, but there is one blue point with a p-value smaller than {$$}10^{-6}{/$$}. Two findings stand out from this plot. The first is that only one of the positives would be found to be significant with a standard 5% FDR cutoff:
 
@@ -94,7 +44,7 @@ sum( p.adjust(tt$p.value,method = "BH")[spike] < 0.05)
 ```
 
 ```
-## Error in p.adjust(tt$p.value, method = "BH"): object 'tt' not found
+## [1] 1
 ```
 
 This of course has to do with the low power associated with a sample size of three in each group. The second finding is that if we forget about inference and simply rank the genes based on p-value, we obtain many false positives. For example, six of the smallest 10 p-values are false positives. 
@@ -105,7 +55,10 @@ table( top50=rank(tt$p.value)<= 10, spike)
 ```
 
 ```
-## Error in rank(tt$p.value): object 'tt' not found
+##        spike
+## top50   FALSE  TRUE
+##   FALSE 12604    12
+##   TRUE      6     4
 ```
 
 In the plot we notice that these are mostly genes for which the effect size is relatively small, implying that the estimated standard error is small. We can confirm this with a plot:
@@ -113,21 +66,12 @@ In the plot we notice that these are mostly genes for which the effect size is r
 
 ```r
 tt$s <- apply(exprs(rma95), 1, function(row) sqrt(.5 * (var(row[1:3]) + var(row[4:6]))))
-```
-
-```
-## Error in apply(exprs(rma95), 1, function(row) sqrt(0.5 * (var(row[1:3]) + : could not find function "exprs"
-```
-
-```r
 with(tt, plot(s, -log10(p.value), cex=.8, pch=16,
               log="x",xlab="estimate of standard deviation",
               col=cols))
 ```
 
-```
-## Error in with(tt, plot(s, -log10(p.value), cex = 0.8, pch = 16, log = "x", : object 'tt' not found
-```
+![p-values versus standard deviation estimates.](images/R/hierarchical_models-tmp-pval_versus_sd-1.png) 
 
 Here is where a hierarchical model can be useful. If we can make an assumption about the distribution of these variances across genes, then we can improve estimates by "adjusting" estimates that are "too small" according to this distribution. In a previous section we described how the F-distribution provides approximates the distribution of the observed variances.
 
@@ -152,84 +96,34 @@ In the plot above we can see how the variance estimate _shrink_ for 40 genes:
 ```r
 library(limma)
 fit <- lmFit(rma95, model.matrix(~ fac))
-```
-
-```
-## Error in is(object, "list"): object 'rma95' not found
-```
-
-```r
 ebfit <- ebayes(fit)
-```
 
-```
-## Error in ebayes(fit): object 'fit' not found
-```
-
-```r
 n <- 40
 qs <- seq(from=0,to=.2,length=n)
 idx <- sapply(seq_len(n),function(i) which(as.integer(cut(tt$s^2,qs)) == i)[1])
-```
-
-```
-## Error in cut(tt$s^2, qs): object 'tt' not found
-```
-
-```r
 idx <- idx[!is.na(idx)]
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'idx' not found
-```
-
-```r
 par(mar=c(5,5,2,2))
 plot(1,1,xlim=c(0,.21),ylim=c(0,1),type="n",
      xlab="variance estimates",ylab="",yaxt="n")
 axis(2,at=c(.1,.9),c("before","after"),las=2)
-```
-
-![Illustration of how estimates shrink towards the prior expectation. Forty genes spanning the range of values were selected.](images/R/hierarchical_models-tmp-shrinkage-1.png) 
-
-```r
 segments((tt$s^2)[idx],rep(.1,n),
          ebfit$s2.post[idx],rep(.9,n))
 ```
 
-```
-## Error in segments((tt$s^2)[idx], rep(0.1, n), ebfit$s2.post[idx], rep(0.9, : object 'tt' not found
-```
+![Illustration of how estimates shrink towards the prior expectation. Forty genes spanning the range of values were selected.](images/R/hierarchical_models-tmp-shrinkage-1.png) 
 
 An important aspect of this adjustment is that genes having a very small sample deviation close to 0 are no longer close to 0. We can now create a version of the t-test that instead of the sample standard deviation uses this posterior mean or "shrunken" estimate of the variance. We refer to these as _moderated_ t-tests. Once we do this, the improvements can be seen clearly in the volcano plot:
 
 
 ```r
 limmares <- data.frame(dm=coef(fit)[,"fac2"], p.value=ebfit$p.value[,"fac2"])
-```
-
-```
-## Error in coef(fit): object 'fit' not found
-```
-
-```r
 with(limmares, plot(dm, -log10(p.value),cex=.8, pch=16,
      col=cols,xlab="difference in means",
      xlim=c(-1,1), ylim=c(0,5)))
-```
-
-```
-## Error in with(limmares, plot(dm, -log10(p.value), cex = 0.8, pch = 16, : object 'limmares' not found
-```
-
-```r
 abline(h=2,v=c(-.2,.2), lty=2)
 ```
 
-```
-## Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): plot.new has not been called yet
-```
+![Volcano plot for moderated t-test comparing two groups. Spiked-in genes are denoted with blue. Among the rest of the genes, those with p-value < 0.01 are denoted with red.](images/R/hierarchical_models-tmp-volcano-plot2-1.png) 
 
 The number of false positives in the top 10 is now reduced to 2. 
 
@@ -239,5 +133,8 @@ table( top50=rank(limmares$p.value)<= 10, spike)
 ```
 
 ```
-## Error in rank(limmares$p.value): object 'limmares' not found
+##        spike
+## top50   FALSE  TRUE
+##   FALSE 12608     8
+##   TRUE      2     8
 ```
