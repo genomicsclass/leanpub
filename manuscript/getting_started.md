@@ -237,10 +237,11 @@ list.files(file.path(dir,"extdata")) # external data is in this directory
 ```
 
 ```
-## [1] "babies.txt"                   "femaleControlsPopulation.csv"
-## [3] "femaleMiceWeights.csv"        "mice_pheno.csv"              
-## [5] "msleep_ggplot2.csv"           "README"                      
-## [7] "spider_wolff_gorb_2013.csv"
+## [1] "admissions.csv"               "astronomicalunit.csv"        
+## [3] "babies.txt"                   "femaleControlsPopulation.csv"
+## [5] "femaleMiceWeights.csv"        "mice_pheno.csv"              
+## [7] "msleep_ggplot2.csv"           "README"                      
+## [9] "spider_wolff_gorb_2013.csv"
 ```
 
 And now we are ready to read in the file:
