@@ -49,26 +49,66 @@ Note that we are multiplying by the scalar {$$}1/N{/$$}. In R, we multiply matri
 
 ```r
 library(UsingR)
+```
+
+```
+## Error in library(UsingR): there is no package called 'UsingR'
+```
+
+```r
 y <- father.son$sheight
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'father.son' not found
+```
+
+```r
 print(mean(y))
 ```
 
 ```
-## [1] 68.68407
+## Error in mean(y): object 'y' not found
 ```
 
 ```r
 N <- length(y)
-Y<- matrix(y,N,1)
-A <- matrix(1,N,1)
-barY=t(A)%*%Y / N
+```
 
+```
+## Error in eval(expr, envir, enclos): object 'y' not found
+```
+
+```r
+Y<- matrix(y,N,1)
+```
+
+```
+## Error in matrix(y, N, 1): object 'y' not found
+```
+
+```r
+A <- matrix(1,N,1)
+```
+
+```
+## Error in matrix(1, N, 1): object 'N' not found
+```
+
+```r
+barY=t(A)%*%Y / N
+```
+
+```
+## Error in t(A): object 'A' not found
+```
+
+```r
 print(barY)
 ```
 
 ```
-##          [,1]
-## [1,] 68.68407
+## Error in print(barY): object 'barY' not found
 ```
 
 #### The variance
@@ -78,12 +118,18 @@ As we will see later, multiplying the transpose of a matrix with another is very
 
 ```r
 barY=crossprod(A,Y) / N
+```
+
+```
+## Error in crossprod(A, Y): object 'A' not found
+```
+
+```r
 print(barY)
 ```
 
 ```
-##          [,1]
-## [1,] 68.68407
+## Error in print(barY): object 'barY' not found
 ```
 
 For the variance we note that if:
@@ -103,12 +149,18 @@ And in R if you only send one matrix into `crossprod`, it computes: {$$}r^\top r
 
 ```r
 r <- y - barY
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'y' not found
+```
+
+```r
 crossprod(r)/N
 ```
 
 ```
-##          [,1]
-## [1,] 7.915196
+## Error in crossprod(r): object 'r' not found
 ```
 
 Which is almost equivalent to:
@@ -118,7 +170,7 @@ var(y)
 ```
 
 ```
-## [1] 7.922545
+## Error in is.data.frame(x): object 'y' not found
 ```
 The difference is due to the fact that `var` is for the sample estimate which divides by {$$}N-1{/$$}, so this:
 
@@ -128,7 +180,7 @@ var(y) * (N-1) / N
 ```
 
 ```
-## [1] 7.915196
+## Error in is.data.frame(x): object 'y' not found
 ```
 gives us the same answer as our matrix multiplication example.
 
@@ -242,12 +294,51 @@ Let's see how it works in R:
 
 ```r
 library(UsingR)
+```
+
+```
+## Error in library(UsingR): there is no package called 'UsingR'
+```
+
+```r
 x=father.son$fheight
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'father.son' not found
+```
+
+```r
 y=father.son$sheight
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'father.son' not found
+```
+
+```r
 X <- cbind(1,x)
+```
+
+```
+## Error in cbind(1, x): object 'x' not found
+```
+
+```r
 betahat <- solve( t(X) %*% X ) %*% t(X) %*% y
+```
+
+```
+## Error in t(X): object 'X' not found
+```
+
+```r
 ###or
 betahat <- solve( crossprod(X) ) %*% crossprod( X, y )
+```
+
+```
+## Error in crossprod(X): object 'X' not found
 ```
 
 
@@ -256,13 +347,43 @@ Now we can see the results of this by computing the estimated {$$}\hat{\beta}_0+
 
 ```r
 newx <- seq(min(x),max(x),len=100)
+```
+
+```
+## Error in seq(min(x), max(x), len = 100): object 'x' not found
+```
+
+```r
 X <- cbind(1,newx)
+```
+
+```
+## Error in cbind(1, newx): object 'newx' not found
+```
+
+```r
 fitted <- X%*%betahat
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'X' not found
+```
+
+```r
 plot(x,y,xlab="Father's height",ylab="Son's height")
+```
+
+```
+## Error in plot(x, y, xlab = "Father's height", ylab = "Son's height"): object 'x' not found
+```
+
+```r
 lines(newx,fitted,col=2)
 ```
 
-![Galton's data with fitted regression line.](images/R/matrix_algebra_examples-tmp-galton_regression_line-1.png) 
+```
+## Error in lines(newx, fitted, col = 2): object 'newx' not found
+```
 
 This {$$}\hat{\boldsymbol{\beta}}=(\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{Y}{/$$} is one of the most widely used results in data analysis. One of the advantages of this approach is that we can use it in many different situations.  For example, in our falling object problem: 
  
