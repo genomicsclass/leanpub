@@ -19,17 +19,8 @@ A>
     boxplot(InsectSprays$count ~ InsectSprays$spray, 
         xlab = "Insecticide Spray", 
         ylab = "Insect Count")
-    ```
-A>    
-A>    ![plot of chunk unnamed-chunk-1](images/R/exploratory_data_analysis_exercises-tmp-unnamed-chunk-1-1.png) 
-A>    
-    ```r
     cat("C")
     ```
-A>    
-A>    ```
-A>    ## C
-A>    ```
 A>
 A>
 A>3.  Download and load [this](http://courses.edx.org/c4x/HarvardX/PH525.1x/asset/skew.RData) dataset into R.
