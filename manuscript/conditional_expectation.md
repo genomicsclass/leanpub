@@ -54,11 +54,13 @@ hist(y[x==71],xlab="Heights",nc=8,main="",xlim=range(y))
 R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/conditional_expectation.Rmd).
 
 The best guess is still the expectation, but our strata has changed from all the data, to only the {$$}Y{/$$} with {$$}X=71{/$$}. So we can stratify and take the average which is the conditional expectation. Our prediction for any {$$}x{/$$} is therefore:
+
 {$$}
 f(x) = E(Y \mid X=x)
 {/$$}
 
 It turns out that because this data is approximated by a bivariate normal distribution we can, using calculus, show that: 
+
 {$$}
 f(x) = \mu_Y + \rho \frac{\sigma_Y}{\sigma_X} (X-\mu_X)
 {/$$}
