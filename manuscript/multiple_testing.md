@@ -63,12 +63,9 @@ population = unlist( read.csv("femaleControlsPopulation.csv") )
 ```
 
 ```
-## Warning in file(file, "rt"): cannot open file
-## 'femaleControlsPopulation.csv': No such file or directory
-```
-
-```
-## Error in file(file, "rt"): cannot open the connection
+## Warning in read.table(file = file, header = header, sep = sep,
+## quote = quote, : incomplete final line found by readTableHeader on
+## 'femaleControlsPopulation.csv'
 ```
 
 ```r
@@ -83,7 +80,7 @@ pvals <- replicate(m,{
 ```
 
 ```
-## Error in sample(population, N): object 'population' not found
+## Error in sample.int(length(x), size, replace, prob): invalid first argument
 ```
 
 Although in practice we do not know the fact that no diet works, in this simulation we do, and therefore we can actually compute {$$}V{/$$} and {$$}S{/$$}. Because all null hypotheses are true, we know {$$}V=R{/$$}. Of course, in practice we can't compute this quantity.
@@ -128,7 +125,7 @@ calls <- sapply(1:m, function(i){
 ```
 
 ```
-## Error in sample(population, N): object 'population' not found
+## Error in sample.int(length(x), size, replace, prob): invalid first argument
 ```
 Because in this simulation we know the truth (saved in `nullHypothesis`) we can compute the entries of the table:
 
@@ -160,7 +157,7 @@ VandS <- replicate(B,{
 ```
 
 ```
-## Error in sample(population, N): object 'population' not found
+## Error in sample.int(length(x), size, replace, prob): invalid first argument
 ```
 
 This motivates the definition of error rates. We can, for example, estimate probability that {$$}V{/$$} is larger than 0. This is interpreted as the probability of making at least one type I error among the 10,000 tests. In the example we made many more than 1 in every single simulation, so we suspect this probability is very practically 1. When {$$}m=1{/$$}, this probability is equivalent to the p-value. When we have a multiple tests situation, we call it the Family Wide Error Rate (FWER) and it relates to a technique that is widely used: The Bonferroni Correction.
@@ -237,7 +234,7 @@ pvals <- sapply(1:m, function(i){
 ```
 
 ```
-## Error in sample(population, N): object 'population' not found
+## Error in sample.int(length(x), size, replace, prob): invalid first argument
 ```
 We note that only:
 
@@ -263,7 +260,7 @@ pvals <- sapply(1:m, function(i){
 ```
 
 ```
-## Error in sample(population, N): object 'population' not found
+## Error in sample.int(length(x), size, replace, prob): invalid first argument
 ```
 We note that only:
 
@@ -294,7 +291,7 @@ pvals <- sapply(1:m, function(i){
 ```
 
 ```
-## Error in sample(population, 6): object 'population' not found
+## Error in sample.int(length(x), size, replace, prob): invalid first argument
 ```
 
 ```r
@@ -337,7 +334,7 @@ Qs <- replicate(B,{
 ```
 
 ```
-## Error in sample(population, N * m, replace = TRUE): object 'population' not found
+## Error in sample.int(length(x), size, replace, prob): invalid first argument
 ```
 
 ```r
@@ -377,7 +374,7 @@ controls <- matrix(sample(population, N*m, replace=TRUE),nrow=m)
 ```
 
 ```
-## Error in sample(population, N * m, replace = TRUE): object 'population' not found
+## Error in sample.int(length(x), size, replace, prob): invalid first argument
 ```
 
 ```r
@@ -385,7 +382,7 @@ treatments <-  matrix(sample(population, N*m, replace=TRUE),nrow=m)
 ```
 
 ```
-## Error in sample(population, N * m, replace = TRUE): object 'population' not found
+## Error in sample.int(length(x), size, replace, prob): invalid first argument
 ```
 
 ```r
@@ -577,7 +574,7 @@ Qs <- replicate(B,{
 ```
 
 ```
-## Error in sample(population, N * m, replace = TRUE): object 'population' not found
+## Error in sample.int(length(x), size, replace, prob): invalid first argument
 ```
 
 ```r
