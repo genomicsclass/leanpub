@@ -26,10 +26,10 @@ A>
 A>    You can either figure this question out through logic, by looking at the design matrix, or using the `contrast` function from the contrast library. The contrast vector is returned as `contrast(...)$X`.
 A>
 A>    What should the contrast vector be, for the contrast of (species=B and condition=control) vs (species=A and condition=treatment)? Assume that the beta vector from the model fit by R is: Intercept, speciesB, conditiontreated.
-A>    - A. 0 0 1  
-A>    - B. 0 -1 0 
-A>    - C. 0 1 1  
-A>    - D. 0 1 -1
+A>    - A) 0 0 1  
+A>    - B) 0 -1 0 
+A>    - C) 0 1 1  
+A>    - D) 0 1 -1
 A>    - E. 0 -1 1
 A>    - F. 1 0 1
 A>    
