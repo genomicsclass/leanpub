@@ -17,19 +17,19 @@ A>
 A>    To obtain quantiles for the t-distribution we can generate percentiles from just above 0 to just below 1: `B=100; ps = seq(1/(B+1), 1-1/(B+1),len=B)` and compute the quantiles with `qt(ps,df=4)`. Now we can use `qqplot` to compare these theoretical quantiles to those obtained in the Monte Carlo simualtion. Use Monte Carlo simulation developed for exercise 2 to corroborate that the t-statistic {$$}t = \sqrt{N} \, \bar{X} / s{/$$} follows a t-distribution for several values of {$$}N{/$$}. 
 A>
 A>    For which sample sizes does the approximation best work?
-A>    - A. Larger sample sizes.
-A>    - B. Smaller sample sizes.
-A>    - C. The approximations are spot on for all sample sizes.
-A>    - D. None. We should use CLT instead.
+A>    - A) Larger sample sizes.
+A>    - B) Smaller sample sizes.
+A>    - C) The approximations are spot on for all sample sizes.
+A>    - D) None. We should use CLT instead.
 A>
 A>
 A>
 A>
 A>4. Use Monte Carlo simulation to corroborate that the t-statistic comaparing two means and obtained with normally distributed (mean 0 and sd) data follows a t-distribution. In this case we will use the `t.test` function with `var.equal=TRUE`. With this argument with degrees of freedom will be `df=2*N-2` with `N` the sample size.  For which sample sizes does the approximation best work?
-A>    - A. Larger sample sizes.
-A>    - B. Smaller sample sizes.
-A>    - C. The approximations are spot on for all sample sizes.
-A>    - D. None. We should use CLT instead.
+A>    - A) Larger sample sizes.
+A>    - B) Smaller sample sizes.
+A>    - C) The approximations are spot on for all sample sizes.
+A>    - D) None. We should use CLT instead.
 A>
 A>
 A>
@@ -43,9 +43,9 @@ A>
 A>7. We can derive approximation of the distribution of the the sample average or the t-statistic theoretically. However, suppose we are interested in the distribution of a statistic for which a theoretical approximation is not immediately obvious. 
 A>
 A>    Consider the sample median as an example. Use a Monte Carlo to determine which of the following best approximates the median of a sample taken from normally distributed population with mean 0 and standard deviation 1.
-A>    - A. Just like for the average, the sample median is approximately normal with mean 0 and SD {$$}1/sqrt{N}{/$$}
-A>    - B. The sample median is not approximately normal
-A>    - C. The sample median is t-distributed for small samples and normally distributed for large ones.
-A>    - D. The sample median is approximately normal with mean 0 and SD `1 / (sqrt(N*4*dnorm(0)^2))` which is larger than {$$}1 / \sqrt{N}{/$$}
+A>    - A) Just like for the average, the sample median is approximately normal with mean 0 and SD {$$}1/sqrt{N}{/$$}
+A>    - B) The sample median is not approximately normal
+A>    - C) The sample median is t-distributed for small samples and normally distributed for large ones.
+A>    - D) The sample median is approximately normal with mean 0 and SD `1 / (sqrt(N*4*dnorm(0)^2))` which is larger than {$$}1 / \sqrt{N}{/$$}
 A>
 A>
