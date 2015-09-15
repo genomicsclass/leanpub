@@ -6,10 +6,10 @@ Title: Matrix Operation Exercises
 A>## Exercises
 A>
 A>1. Suppose `X` is a matrix in R. Which of the following is **not** equivalent to `X`?
-A>  - A. `t( t(X) )  `
-A>  - B. `X %*% matrix(1,ncol(X) ) `
-A>  - C. `X*1`
-A>  - D. `X%*%diag(ncol(X))`
+A>  - A) `t( t(X) )  `
+A>  - B) `X %*% matrix(1,ncol(X) ) `
+A>  - C) `X*1`
+A>  - D) `X%*%diag(ncol(X))`
 A>  
 A>
 A>
