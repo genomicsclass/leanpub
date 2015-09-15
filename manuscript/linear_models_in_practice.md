@@ -17,7 +17,7 @@ We start by reading in the data and creating a quick stripchart:
 
 
 ```r
-set.seed(1) # same jitter in stripchart
+set.seed(1) #same jitter in stripchart
 dat <- read.csv("femaleMiceWeights.csv") ##previously downloaded
 stripchart(dat$Bodyweight ~ dat$Diet, vertical=TRUE, method="jitter",
            main="Bodyweight over Diet")
