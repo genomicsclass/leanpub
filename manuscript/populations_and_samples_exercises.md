@@ -48,10 +48,10 @@ A>8. Repeat the above for females. Make sure to set the seed to 1 before each `s
 A>
 A>
 A>9. For the females, our sample estimates we were closer to the population difference than with males. What is a possible explanation for this?
-A>  - A. The population variance of the females is smaller than that of the males; thus the sample variable has less variability.
-A>  - B. Statistical estimates are more precise for females.
-A>  - C. The sample size was larger for females.
-A>  - D. The sample size was smaller for females.
+A>  - A) The population variance of the females is smaller than that of the males; thus the sample variable has less variability.
+A>  - B) Statistical estimates are more precise for females.
+A>  - C) The sample size was larger for females.
+A>  - D) The sample size was smaller for females.
 A>  
 A>
 A>
