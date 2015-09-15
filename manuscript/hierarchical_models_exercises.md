@@ -45,10 +45,10 @@ A>    What proportion of genes with a p-value < 0.01 (no multiple comparison cor
 A>
 A>
 A>2. Now compute the within group sample  standard deviation for each gene (you can use group 1). Based on the p-value cut-off split the genes into true positives, false positives, true negatives and false negatives. Create a boxplot comparing the sample SDs for each group. Which of the following best described the box-plot? 
-A>    - A. The standard deviation is similar across all groups
-A>    - B. On average, the true negatives have much larger variability
-A>    - C. The false negatives have larger variability
-A>    - D. The false positives have smaller standard devition
+A>    - A) The standard deviation is similar across all groups
+A>    - B) On average, the true negatives have much larger variability
+A>    - C) The false negatives have larger variability
+A>    - D) The false positives have smaller standard devition
 A>
 A>
 A>
@@ -77,10 +77,10 @@ A>
 A>
 A>
 A>    Which best describes what the hierarchichal model does
-A>    - A. Moves all the estimatates of standard devtion closer to 0.12
-A>    - B. Increases the estimates of standard deviation to increase t
-A>    - C. Decreases the estimate of standard deviation
-A>    - D. Decreases the effect size estimates
+A>    - A) Moves all the estimatates of standard devtion closer to 0.12
+A>    - B) Increases the estimates of standard deviation to increase t
+A>    - C) Decreases the estimate of standard deviation
+A>    - D) Decreases the effect size estimates
 A>
 A>
 A>
