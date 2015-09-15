@@ -32,18 +32,18 @@ A>
 A>
 A>    
 A>3. We say a statistical model is a linear model when we can write it as a linear combination of parameters and known covariates plus random error terms. In the choices below, Y represents our observations, time t is our only covariate, unknown parameters are represented with letters a,b,c,d and measurment error is represented by the letter e. Note that if t is known, then any transformation of t is also known. So, for example, both {$$}Y=a+bt +\varepsilon{/$$} and {$$}Y=a+b f(t) + \varepsilon{/$$} are linear models. Which of the following **cannot** be written as a linear model?
-A>  - A. {$$}Y = a + bt + \varepsilon{/$$}
-A>  - B. {$$}Y = a + b \cos(t) + \varepsilon{/$$}
-A>  - C. {$$}Y = a + b^t + \varepsilon{/$$}
-A>  - D. {$$}Y = a + b t + c t^2 + d t^3 + \varepsilon{/$$}
+A>  - A) {$$}Y = a + bt + \varepsilon{/$$}
+A>  - B) {$$}Y = a + b \cos(t) + \varepsilon{/$$}
+A>  - C) {$$}Y = a + b^t + \varepsilon{/$$}
+A>  - D) {$$}Y = a + b t + c t^2 + d t^3 + \varepsilon{/$$}
 A>  
 A>
 A>
 A>3. Supposed you model the relationship between weight and height across individuals with a linear model. You assume that the height of individuals for a fixed weight x follows a liner model {$$}Y = a + b x + \varepsilon{/$$}. Which of the following do you feel best describes what e represents?
-A>  - A. Measurement error: scales are not perfect.
-A>  - B. Within individual random fluctuations: you don't weigh the same in the morning as the afternoon.
-A>  - C. Round off error introduced by the computer we use to analyze the data.
-A>  - D. Between individual variability: people of the same height vary in their weight.
+A>  - A) Measurement error: scales are not perfect.
+A>  - B) Within individual random fluctuations: you don't weigh the same in the morning as the afternoon.
+A>  - C) Round off error introduced by the computer we use to analyze the data.
+A>  - D) Between individual variability: people of the same height vary in their weight.
 A>  
 A>  
 A>
