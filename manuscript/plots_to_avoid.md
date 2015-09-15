@@ -16,14 +16,12 @@ This section is based on a talk by [Karl W. Broman](http://kbroman.org/) titled 
 
 ### General Principles
 
-General Principles
-
-The aims of good data graphics is to display data accurately and clearly. Some rules for displaying data badly:
+The aims of good data graphics is to display data accurately and clearly. Some rules for displaying data *badly*:
 
 *  Display as little information as possible.
 *  Obscure what you do show (with chart junk).
-*  Use pseudo-3d and color gratuitously.
-*  Make a pie chart (preferably in color and 3d).
+*  Use pseudo-3D and color gratuitously.
+*  Make a pie chart (preferably in color and 3D).
 *  Use a poorly chosen scale.
 *  Ignore significant figures.
 
@@ -43,10 +41,13 @@ pie(browsers,main="Browser Usage (August 2013)")
 
 Nonetheless, as stated by the help file for the `pie` function:
 
+> "Pie charts are a very bad way of displaying information. The eye is good at judging linear measures and bad at judging relative areas. A bar chart or dot chart is a preferable way of displaying this type of data."
 
-> Pie charts are a very bad way of displaying information. The eye is good at judging linear measures and bad at judging relative areas. A bar chart or dot chart is a preferable way of displaying this type of data.
-
-To see this, look at the figure above and try to determine the percentages just from looking at the plot. Simply showing the numbers is not only clear, but also saves on printing costs.
+To see this, look at the figure above and try to determine the
+percentages just from looking at the plot. Unless the percentages are
+close to 25%, 50% or 75%, this is not so easy.
+Simply showing the numbers is not only clear, but also saves on
+printing costs.
 
 
 ```r
@@ -58,36 +59,50 @@ browsers
 ##       1       9      20      26      44
 ```
 
-If you do want to plot them, then a barplot is appropriate:
+If you do want to plot them, then a barplot is appropriate. Here we
+add horizontal lines at every multiple of 10 and then redraw the bars:
 
 
 ```r
-barplot(browsers,main="Browser Usage (August 2013)")
+barplot(browsers, main="Browser Usage (August 2013)", ylim=c(0,55))
+abline(h=1:5 * 10)
+barplot(browsers, add=TRUE)
 ```
 
 ![Barplot of browser usage.](images/R/plots_to_avoid-tmp-barplot-1.png) 
 
-Note that we can now pretty easily determine the percentages by following a horizontal line to the x-axis. Do avoid 3-D version since it obfuscates the plot and removes this particular advantage.
+Note that we can now pretty easily determine the percentages by
+following a horizontal line to the x-axis. Do avoid a 3D version since
+it obfuscates the plot, making it more difficult to find the
+percentages by eye.
 
-![3-D version](images/downloads/fig2b.png)
-
-
+![3D version](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig2b.png)
 
 Even worse than pie charts are donut plots.
 
-![Donut plot](images/downloads/360px-Donut-Chart.svg.png)
+![Donut plot](http://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Donut-Chart.svg/360px-Donut-Chart.svg.png)
 
 The reason is that by removing the center, we remove one of the visual cues for determining the different areas: the angles. There is no reason to ever use a donut to display data.
 
 ###  Barplots As Data Summaries
 
-While barplots are useful for showing percentages, they are incorrectly used to display data from two groups being compared. Specifically, barplots are created with height equal to the group means; an antenna is added at the top to represent standard errors. This plot is simply showing two numbers per groups and the plot adds nothing:
+While barplots are useful for showing percentages, they are
+incorrectly used to display data from two groups being
+compared. Specifically, barplots are created with height equal to the
+group means; an antenna is added at the top to represent standard
+errors. This plot is simply showing two numbers per group and the
+plot adds nothing: 
 
-![Bad bar plots](images/downloads/fig1c.png)
+![Bad bar plots](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig1c.png)
 
-Much more informative is to summarize with a boxplot. If the number of points is small enough, we might as well add them to the plot. When the number of points is too large for us to see them, just showing a boxplot is preferable.
+Much more informative is to summarize with a boxplot. If the number of
+points is small enough, we might as well add them to the plot. When
+the number of points is too large for us to see them, just showing a
+boxplot is preferable. We can even set `range=0` in `boxplot` to avoid
+drawing many outliers when the data is in the range of millions.
 
-First let's download the data:
+Let's recreate these barplots as boxplots. xFirst let's download the data:
+
 
 ```r
 library("downloader")
@@ -114,11 +129,12 @@ Notice how much more we see here: the center, spread, range and the points thems
 
 This problem is magnified when our data has outliers or very large tails. In the plot below there appears to be very large and consistent differences between the two groups:
 
-![Bar plots with outliers](images/downloads/fig3c.png)
+![Bar plots with outliers](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig3c.png)
 
 However, a quick look at the data demonstrates that this difference is mostly driven by just two points. A version showing the data in the log-scale is much more informative. 
 
 Start by downloading data:
+
 
 ```r
 library(downloader)
@@ -129,6 +145,7 @@ load(filename)
 ```
 
 Now we can show data and boxplots in original scale and log-scale.
+
 
 ```r
 library(rafalib)
@@ -144,12 +161,12 @@ stripchart(dat,vertical=TRUE,method="jitter",pch=16,add=TRUE,col=1)
 
 ![Data and boxplots for original data (left) and in log scale (right).](images/R/plots_to_avoid-tmp-importance_of_log-1.png) 
 
-
 ### Show The Scatter Plot
 
 The purpose of many statistical analyses is to determine relationships between two variables. Sample correlations are typically reported and sometimes plots are displayed to show this. However, showing just the regression line is one way to display your data badly as it hides the scatter. Surprisingly, plots such as the following are commonly seen.
 
 Again start by loading data:
+
 
 ```r
 url <- "https://github.com/kbroman/Talk_Graphs/raw/master/R/fig4.RData"
@@ -174,11 +191,16 @@ fit <- lm(y~x)
 abline(fit$coef,lwd=2)
 ```
 
-<img src="images/R/plots_to_avoid-tmp-show-data-1.png" title="plot of chunk show-data" alt="plot of chunk show-data"  />
+![The plot on the left shows a regression line that was fitted to the data shown on the right. It is much more informative to show all the data.](images/R/plots_to_avoid-tmp-show-data-1.png) 
+
+When there are very many points, the scatter can be shown by binning
+in two dimensions and coloring the bins by the number of points in the
+bin. An example of this is the `hexbin` function in the
+[hexbin package](https://cran.r-project.org/package=hexbin).
 
 ### High Correlation Does Not Imply Replication
 
-When new technologies or laboratory techniques are introduced, we are often shown scatter plots and correlations from replicated samples. High correlations are used to demonstrate that the new technique is reproducible. Correlation, however, can be very misleading. Below is a scatter plot showing data from replicated samples run on a high throughput technology. This technology outputs 12,626 simultaneously measurements.
+When new technologies or laboratory techniques are introduced, we are often shown scatter plots and correlations from replicated samples. High correlations are used to demonstrate that the new technique is reproducible. Correlation, however, can be very misleading. Below is a scatter plot showing data from replicated samples run on a high throughput technology. This technology outputs 12,626 simultaneous measurements.
 
 In the plot on the left, we see the original data which shows very high correlation. Yet the data follows a distribution with very fat tails. Furthermore, 95% of the data is below the green line. The plot on the right is in the log scale:
 
@@ -229,13 +251,24 @@ abline(h=0,col=2,lwd=2)
 
 ![MA plot of the same data shown above shows that data is not replicated very well despite a high correlation.](images/R/plots_to_avoid-tmp-MAplot-1.png) 
 
-These are referred to as Bland-Altman plots or MA plots in the genomics literature, and we will talk more about them later. In this plot we see that the typical difference in the log (base 2) scale between two replicated measures is about 1. This means that when measurements should be the same we will, on average, observe 2 fold difference. We can now compare this variability to the differences we want to detect and decide if this technology is precise enough for our purposes.
+These are referred to as Bland-Altman plots or "MA plots" in the
+genomics literature, and we will talk more about them later. "MA"
+stands for "minus" and "average", because in this plot, the y-axis is
+the difference between two samples on the log scale (the log ratio is
+the difference of the logs), and the x-axis is
+the average of the samples on the log scale.
+In this plot we see that the typical difference in the log (base 2)
+scale between two replicated measures is about 1. This means that when
+measurements should be the same we will, on average, observe 2 fold
+difference. We can now compare this variability to the differences we
+want to detect and decide if this technology is precise enough for our
+purposes. 
 
 ### Barplots For Paired Data
 
 A common task in data analysis is the comparison of two groups. When the dataset is small and data are paired, for example the outcomes before and after a treatment, two color barplots are unfortunately often used to display the results:
 
-![Barplot for two variables](images/downloads/fig6r_e.png)
+![Barplot for two variables](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig6r_e.png)
 
 There are better ways of showing these data to illustrate that there is an increase after treatment. One is to simply make a scatterplot, which shows that most points are above the identity line. Another alternative is to plot the differences against the before values.
 
@@ -252,13 +285,12 @@ plot(before, after, xlab="Before", ylab="After",
      ylim=li, xlim=li)
 abline(0,1, lty=2, col=1)
 
-
 plot(before, after-before, xlab="Before", ylim=c(-ymx, ymx),
      ylab="Change (After - Before)", lwd=2)
 abline(h=0, lty=2, col=1)
 ```
 
-![For two variables a scatter plot or MA plot is much more informative.](images/R/plots_to_avoid-tmp-scatter-plot-for-two-vars-1.png) 
+![For two variables a scatter plot or a 'rotated' plot similar to an MA plot is much more informative.](images/R/plots_to_avoid-tmp-scatter-plot-for-two-vars-1.png) 
 
 
 Line plots are not a bad choice, although I find them harder to follow than the previous two. Boxplots show you the increase, but lose the paired information.
@@ -276,13 +308,13 @@ segments(rep(0,6), before, rep(1,6), after, col=1)
 boxplot(before,after,names=c("Before","After"),ylab="Response")
 ```
 
-![Another alternative is the lines-plot. If we don't care about pairings, then the boxplot is appropriate.](images/R/plots_to_avoid-tmp-lines-plot-box-plot-1.png) 
+![Another alternative is a line plot. If we don't care about pairings, then the boxplot is appropriate.](images/R/plots_to_avoid-tmp-lines-plot-box-plot-1.png) 
 
 ###  Gratuitous 3D
 
 The figure below shows three curves. Pseudo 3D is used, but it is not clear why. Maybe to separate the three curves? Notice how difficult it is to determine the values of the curves at any given point:
 
-![Gratuitous 3-D](images/downloads/fig8b.png)
+![Gratuitous 3-D](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig8b.png)
 
 This plot can be made better by simply using color to distinguish the three lines:
 
@@ -309,17 +341,17 @@ legend(1,0.4,c("Drug A","Drug B","Drug C"),lwd=2, col=1:3)
 
 
 
-In this example we generate data with a simulation. We are studying a dose response relationship between two groups: treatment and control. We have three groups of measurements for both control and treatment. Comparing treatment and control using the common barplot:
+In this example we generate data with a simulation. We are studying a dose-response relationship between two groups: treatment and control. We have three groups of measurements for both control and treatment. Comparing treatment and control using the common barplot:
 
-![Ingoring important factors](images/downloads/fig9d.png)
+![Ingoring important factors](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig9d.png)
 
 Instead we should show each curve. We can use color to distinguish treatment and control and dashed and solid lines to distinguish the original data from the mean of the three groups.
 
 
 ```r
 plot(x, y1, ylim=c(0,1), type="n", xlab="Dose", ylab="Response") 
-for(i in 1:3) lines(x, z[,i], col=1, lwd=1, lty=2)
-for(i in 1:3) lines(x, y[,i], col=2, lwd=1, lty=2)
+for(i in 1:3) lines(x, y[,i], col=1, lwd=1, lty=2)
+for(i in 1:3) lines(x, z[,i], col=2, lwd=1, lty=2)
 lines(x, ym, col=1, lwd=2)
 lines(x, zm, col=2, lwd=2)
 legend("bottomleft", lwd=2, col=c(1, 2), c("Control", "Treated"))
@@ -395,7 +427,6 @@ Graphics Press.
 Turning tables into graphs. The American Statistician 56:121-130
 * NB Robbins (2004) Creating more effective graphs. Wiley
 * [Nature Methods columns](http://bang.clearscience.info/?p=546) 
-
 
 
 ## Misunderstanding Correlation (Advanced)
