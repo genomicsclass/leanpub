@@ -56,10 +56,10 @@ A>
 A>
 A>
 A>8. Use a histogram to "look" at the distribution of averages we get with a sample size of 5 and a sample size of 50. How would you say they differ?
-A>  - A. They are actually the same.
-A>  - B. They both look roughly normal, but with a sample size of 50 the spread is smaller.
-A>  - C. They both look roughly normal, but with a sample size of 50 the spread is larger.
-A>  - D. The second distribution does not look normal at all.
+A>  - A) They are actually the same.
+A>  - B) They both look roughly normal, but with a sample size of 50 the spread is smaller.
+A>  - C) They both look roughly normal, but with a sample size of 50 the spread is larger.
+A>  - D) The second distribution does not look normal at all.
 A>
 A>
 A>
