@@ -62,9 +62,9 @@ A>
 A>
 A>
 A>6. Why is the answer to 1.1.4 not `ncol(e)^2`?
-A>    - A. R made a mistake there
-A>    - B. Distances of 0 are left out
-A>    - C. Because we take advantage of symmetry: only lower triangular matrix is stored thus only `ncol(e)*(ncol(e)-1)/2` values.
+A>    - A) R made a mistake there
+A>    - B) Distances of 0 are left out
+A>    - C) Because we take advantage of symmetry: only lower triangular matrix is stored thus only `ncol(e)*(ncol(e)-1)/2` values.
 A>    -D.  Because it is equal`nrow(e)^2`
 A>
 A>
