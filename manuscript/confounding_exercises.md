@@ -67,9 +67,9 @@ A>6. For women, what is the correlation between the number of applications acros
 A>
 A>
 A>7. Given the answers to the above, which best explains the differences in admission percentages when we combine majors
-A>    - A. We made a coding mistake when computing the overall admissions percentages.
-A>    - B. There were more total number of women applications which made the denominator much bigger.
-A>    - C. There is confounding between gender and preference for "hard" majors: females are more likely to apply to harder majors.
-A>    - D. The sample size for the individual majors was not large enough to draw the correct conclusion.
+A>    - A) We made a coding mistake when computing the overall admissions percentages.
+A>    - B) There were more total number of women applications which made the denominator much bigger.
+A>    - C) There is confounding between gender and preference for "hard" majors: females are more likely to apply to harder majors.
+A>    - D) The sample size for the individual majors was not large enough to draw the correct conclusion.
 A>
 A>
