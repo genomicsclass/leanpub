@@ -26,7 +26,7 @@ association_tests.md
 association_tests_exercises.md
 
 #chapter 2 - EDA
-exploratory_data_analysis_2.md
+exploratory_data_analysis.md
 plots_to_avoid.md
 exploratory_data_analysis_exercises.md
 
@@ -114,3 +114,4 @@ adjusting_with_factor_analysis_exercises.md
 factor_analysis.md
 factor_analysis_exercises.md
 adjusting_with_factor_analysis.md
+adjusting_with_factor_analysis_exercises.md
