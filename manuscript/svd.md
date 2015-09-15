@@ -144,7 +144,7 @@ We see that although we start with just 125 dimensions we can approximate {$$}Y{
 
 
 ```r
-k <- 95 ## out a possible 189
+k <- 95 ##out a possible 189
 Yhat <- U[,1:k] %*% D[1:k,1:k] %*% t(V[,1:k])
 resid <- Y - Yhat
 boxplot(resid,ylim=quantile(Y,c(0.01,0.99)),range=0)
