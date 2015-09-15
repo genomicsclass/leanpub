@@ -190,7 +190,7 @@ We store many of the datasets used in this course on [GitHub](https://github.com
 ```r
 library(downloader) ##use install.packages to install
 url <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/femaleMiceWeights.csv"
-filename <- "femaleMiceWeights.csv" ## creates a random name for a temporary file
+filename <- "femaleMiceWeights.csv" ##creates a random name for a temporary file
 download(url, destfile=filename)
 ```
 
@@ -223,7 +223,7 @@ The file we are working with is actually included in this package. So once you i
 
 
 ```r
-dir <- system.file(package="dagdata") # extracts the location of package
+dir <- system.file(package="dagdata") #extracts the location of package
 list.files(dir)
 ```
 
@@ -233,7 +233,7 @@ list.files(dir)
 ```
 
 ```r
-list.files(file.path(dir,"extdata")) # external data is in this directory
+list.files(file.path(dir,"extdata")) #external data is in this directory
 ```
 
 ```
