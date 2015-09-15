@@ -49,10 +49,10 @@ A>3. What is the standard deviation of these batting averages?
 A>
 A>
 A>4. Use exploratory data analysis to decide which of the following distributions approximates our AVG
-A>    - A. Normal
-A>    - B. Poisson
-A>    - C. F-distribution
-A>    - D. Uniform
+A>    - A) Normal
+A>    - B) Poisson
+A>    - C) F-distribution
+A>    - D) Uniform
 A>
 A>
 A>5. It is April and after 20 at bats, Jose Iglesias is batting .450 (this is very good). We can think of this as a binomial distribution with 20 trial with probability of success {$$}p{/$$}. Our sample estimate of {$$}p{/$$} is .450. What is our estimate of standard devitaion? Hint: This is sum that is binomial divided by 20
