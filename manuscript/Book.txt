@@ -9,7 +9,7 @@ dplyr_intro_exercises.md
 random_variables.md
 random_variables_exercises.md
 populations_and_samples.md
-populations_and_samples.md
+populations_and_samples_exercises.md
 clt_and_t-distribution.md
 clt_and_t-distribution_exercises.md
 clt_in_practice.md
