@@ -75,10 +75,10 @@ A>
     ```
 A>
 A>    Compare the apprximation and exact probabilty of the proportion of Cs being {$$}p{/$$}, {$$}k=1,\dots,N-1{/$$} plotting the exact versus approx for each {$$}p{/$$} and {$$}N{/$$} combination
-A>    - A. The normal approximation works well when {$$}p{/$$} is close to 0.5 even for small {$$}N=10{/$$}
-A>    - B. The normal apprximation breaks down when {$$}p{/$$} is close to 0 or 1 even for large {$$}N{/$$}
-A>    - C. When {$$}N{/$$} is 100 all approximations are spot on.
-A>    - D. When {$$}p=0.01{/$$} the approximation are terrible for {$$}N=5,10,30{/$$} and only ok for {$$}N=100{/$$}
+A>    - A) The normal approximation works well when {$$}p{/$$} is close to 0.5 even for small {$$}N=10{/$$}
+A>    - B) The normal apprximation breaks down when {$$}p{/$$} is close to 0 or 1 even for large {$$}N{/$$}
+A>    - C) When {$$}N{/$$} is 100 all approximations are spot on.
+A>    - D) When {$$}p=0.01{/$$} the approximation are terrible for {$$}N=5,10,30{/$$} and only ok for {$$}N=100{/$$}
 A>
 A>
 A>9. We saw in the previous question that when {$$}p{/$$} is very small the normal approximation breaks down. If {$$}N{/$$} is very large then we can use the Poisson approximation. 
@@ -228,10 +228,10 @@ A>14. So we obtain a p-value smaller than 0.001 for a count of 14.
 A>
 A>    Why is it problematic to report this p-value as strong evidence of a location that is different?
 A>
-A>    - A. Poisson in only an approximation
-A>    - B. We selected the highest region out of 57 and need to adjust for multiple testing.
-A>    - C. {$$}\lambda{/$$} is an estimate, a random variable, and we didn't take into account its variability
-A>    - D.  We don't know the effect size
+A>    - A) Poisson in only an approximation
+A>    - B) We selected the highest region out of 57 and need to adjust for multiple testing.
+A>    - C) {$$}\lambda{/$$} is an estimate, a random variable, and we didn't take into account its variability
+A>    - D)  We don't know the effect size
 A>
 A>
 A>
@@ -254,10 +254,10 @@ A>
     ```
 A>
 A>    How would you characterize this qq-plot
-A>    - A. Poisson is a terrible approximation
-A>    - B. Poisson is a very good approximation except for on point that we actually think is a region of interest
-A>    - C. There are too many 1s in the data
-A>    - D. A normal distribution provides a better approximation
+A>    - A) Poisson is a terrible approximation
+A>    - B) Poisson is a very good approximation except for on point that we actually think is a region of interest
+A>    - C) There are too many 1s in the data
+A>    - D) A normal distribution provides a better approximation
 A>
 A>
 A>
@@ -280,10 +280,10 @@ A>
 A>    This will give you a matrix `y` with 15 samples.
 A>
 A>    Compute the across sample variance for the first three samples. Then make a qq-plot to see if the data follow a normal distribution. Which of the following is true?
-A>    - A. With the exception of a handful of outliers, the data follow a normal distribution
-A>    - B. The variance does not follow a normal distribution but taking the square root fixes this
-A>    - C. The normal distribution is not usable here: the left tail in over estimated and the right tail is underestimated
-A>    - D. The normal distribution fits the data almost perfectly
+A>    - A) With the exception of a handful of outliers, the data follow a normal distribution
+A>    - B) The variance does not follow a normal distribution but taking the square root fixes this
+A>    - C) The normal distribution is not usable here: the left tail in over estimated and the right tail is underestimated
+A>    - D) The normal distribution fits the data almost perfectly
 A>
 A>
 A>
@@ -291,10 +291,10 @@ A>18. Now fit an F-distribtuion with 14 degrees of freedom using the `fitFDist` 
 A>
 A>
 A>19. Now creat a qq-plot of the observed sample variances versus the F-distribution quantiles. Which of the following best describes the qq-plot?
-A>    - A. The fitted F-distribution provides a perfect fit
-A>    - B. If we exlucde the lowest 0.1% of the data, the F-distribution provides a good fit.
-A>    - C. The normal distribution proived a better fit
-A>    - D. If we exclude the highest 0.1% of the data, the F-distrubtion provides a good fit.
+A>    - A) The fitted F-distribution provides a perfect fit
+A>    - B) If we exlucde the lowest 0.1% of the data, the F-distribution provides a good fit.
+A>    - C) The normal distribution proived a better fit
+A>    - D) If we exclude the highest 0.1% of the data, the F-distrubtion provides a good fit.
 A>  
 A>
 A>
