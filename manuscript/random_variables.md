@@ -185,24 +185,237 @@ between two randomly split groups of 12 and 12. Here is this process
 written in R code:
 
 
+```r
+##12 control mice
+control <- sample(population,12)
+##another 12 control mice that we act as if they were not
+treatment <- sample(population,12)
+print(mean(treatment) - mean(control))
+```
+
+```
+## [1] 0.5575
+```
+
+Now let's do it 10,000 times. We will use a "for-loop", an operation
+that lets us automate this (a simpler approach that we will learn later is to use `replicate`)
 
 
+```r
+n <- 10000
+null <- vector("numeric",n)
+for (i in 1:n) {
+  control <- sample(population,12)
+  treatment <- sample(population,12)
+  null[i] <- mean(treatment) - mean(control)
+}
+```
+
+The values in `null` form what we call the *null distribution*. We will define this more formally below.
+
+So what percent of the 10,000 are bigger than `obsdiff`?
 
 
+```r
+mean(null >= obsdiff)
+```
+
+```
+## [1] 0.0138
+```
+
+Only a small percent of the 10,000 simulations. So as skeptics what do
+we conclude? When there is no diet effect, we see a difference as big
+as the one we observed only 1.5% of the time. This is what is known as
+a p-value, which we will define more formally later in the book. 
+
+<a name="distributions"></a>
+
+## Distributions
+
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/random_variables.Rmd).
+
+We have explained what we mean by *null* in the context of null hypothesis, but what exactly is a distribution?
+The simplest way to think of a *distribution* is as a compact description of many numbers. For example, suppose you have measured the heights of all men in a population. Imagine you need to describe these numbers to someone that has no idea what these heights are, such as an alien that has never visited Earth. Suppose all these heights are contained in the following dataset:
 
 
+```r
+library(UsingR)
+x <- father.son$fheight
+```
+
+One approach to summarizing these numbers is to simply list them all out for the alien to see. Here are 10 randomly selected heights of 1,078.
 
 
+```r
+round(sample(x,10),1)
+```
+
+```
+##  [1] 67.4 64.9 62.9 69.2 72.3 69.3 65.9 65.2 69.8 69.1
+```
+
+#### Cumulative Distribution Function
+
+Scanning through these numbers, we start to get a rough idea of what the entire list looks like, but it is certainly inefficient. We can quickly improve on this approach by defining and visualizing a _distribution_. To define a distribution we compute, for all possible values of {$$}a{/$$}, the proportion of numbers in our list that are below {$$}a{/$$}. We use the following notation:
+
+{$$} F(a) \equiv \mbox{Pr}(x \leq a) {/$$}
+
+This is called the cumulative distribution function (CDF). When the CDF is derived from data, as opposed to theoretically, we also call it the empirical CDF (ECDF). We can plot {$$}F(a){/$$} versus {$$}a{/$$} like this:
 
 
+```r
+smallest <- floor( min(x) )
+largest <- ceiling( max(x) )
+values <- seq(smallest, largest,len=300)
+heightecdf <- ecdf(x)
+plot(values, heightecdf(values), type="l",
+     xlab="a (Height in inches)",ylab="Pr(x <= a)")
+```
+
+![Empirical cummulative distribution function for height.](images/R/random_variables-tmp-ecdf-1.png) 
+
+#### Histograms
+
+The `ecdf` function is a function that returns a function, which is
+not typical behavior of R functions. For that reason, we won't discuss
+it further here. Furthermore, the `ecdf` is actually not as popular as
+histograms, which give us the same information, but show us the
+proportion of values in intervals: 
+
+{$$} \mbox{Pr}(a \leq x \leq b) = F(b) - F(a) {/$$}
+
+Plotting these heights as bars is what we call a _histogram_. It is a
+more useful plot because we are usually more interested in intervals:
+such and such percent are between 70 inches and 71 inches, etc.,
+rather than the percent less than a particular height.
+It is also easier to distinguish different types (families) of distributions
+by looking at histograms. Here is a histogram of heights: 
 
 
+```r
+hist(x)
+```
+
+We can specify the bins and add better labels in the following way:
+
+```r
+bins <- seq(smallest, largest)
+hist(x,breaks=bins,xlab="Height (in inches)",main="Adult men heights")
+```
+
+![Histogram for heights.](images/R/random_variables-tmp-histogram-1.png) 
+
+Showing this plot to the alien is much more informative than showing numbers. With this simple plot we can approximate the number of individuals in any given interval. For example, there are about 70 individuals over six feet (72 inches) tall. 
 
 
+## Probability Distribution
+
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/random_variables.Rmd).
+
+Summarizing lists of numbers is one powerful use of distribution. An
+even more important use is describing the possible outcomes of a
+random variable. Unlike a fixed list of numbers, random variables are
+not observed, so instead of describing proportions, we describe
+probabilities. For instance, if we pick a random height for our list,
+then the probability of it falling between {$$}a{/$$} and {$$}b{/$$} is denoted with: 
+
+{$$} \mbox{Pr}(a \leq X \leq b) = F(b) - F(a) {/$$}
+
+Note that the {$$}X{/$$} is now capitalized to distinguish it as a random
+variable and that the equation above defines the probability
+distribution of the random variable. Knowing this distribution is
+incredibly useful in science. For example, in the case above, if we
+know the distribution of the difference in mean of mouse weights
+when the null hypothesis is true, referred to as the _null distribution_, we can
+compute the probability of observing a value as large as we did,
+referred to as a _p-value_. In a previous section we ran what is
+called a _Monte Carlo_ simulation (we will provide more details on
+Monte Carlo simulation in a later section) and we obtained 10,000
+outcomes of the random variable under the null hypothesis.  Let's
+repeat the loop above, but this time let's add a point to the figure
+every time we re-run the experiment. If you run this code you can see
+the null distribution forming as the observed values stack on top of
+each other. 
 
 
+```r
+n <- 100
+library(rafalib)
+nullplot(-5,5,1,30, xlab="Observed differences (grams)", ylab="Frequency")
+totals <- vector("numeric",11)
+for (i in 1:n) {
+  control <- sample(population,12)
+  treatment <- sample(population,12)
+  nulldiff <- mean(treatment) - mean(control)
+  j <- pmax(pmin(round(nulldiff)+6,11),1)
+  totals[j] <- totals[j]+1
+  text(j-6,totals[j],pch=15,round(nulldiff,1))
+  ##if(i < 15) Sys.sleep(1) ##You can add this line to see values appear slowly
+  }
+```
+
+![Illustration of the null distribution.](images/R/random_variables-tmp-null_distribution_illustration-1.png) 
+
+The figure above amounts to a histogram. From a histogram of the
+`null` vector we calculated earlier, we can see that values as large
+as `obsdiff` are relatively rare: 
 
 
+```r
+hist(null, freq=TRUE)
+abline(v=obsdiff, col="red", lwd=2)
+```
+
+![Null distribution with observed difference marked with vertical red line.](images/R/random_variables-tmp-null_and_obs-1.png) 
+
+An important point to keep in mind here is that while we defined {$$}Pr(a){/$$} by counting cases, we will learn that, in some circumstances, mathematics gives us formulas for {$$}Pr(a){/$$} that save us the trouble of computing them as we did here. One example of this powerful approach uses the normal distribution approximation:
+
+<a name="normal_distribution"></a>
+
+## Normal Distribution
+
+R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/random_variables.Rmd).
+
+The probability distribution we see above approximates one that is very common in nature: the bell curve, also known as the normal distribution or Gaussian distribution. When the histogram of a list of numbers approximates the normal distribution, we can use a convenient mathematical formula to approximate the proportion of value or outcomes in any given interval:
+
+{$$}
+\mbox{Pr}(a < x < b) = \int_a^b \frac{1}{\sqrt{2\pi\sigma^2}} \exp{\left( \frac{-(x-\mu)^2}{2 \sigma^2} \right)} \, dx
+{/$$}
+
+While the formula may look intimidating, don't worry, you will never
+actually have to type it out, as it is stored in a more convenient
+form (as `pnorm` in R which sets *a* to 0, and takes *b* as an argument). 
+
+Here {$$}\mu{/$$} and {$$}\sigma{/$$} are referred to as the mean and standard
+deviation of the population (we explain these in more detail in
+another section). If this *normal approximation* holds for our list, then the
+population mean and variance of our list can be used in the formula
+above. An example of this would be when we noted above that only 1.5%
+of values on the null distribution were above `obsdiff`. We can
+compute the proportion of values below a value `x` with
+`pnorm(x,mu,sigma)` without knowing all the values. The normal
+approximation works very well here: 
 
 
+```r
+1 - pnorm(obsdiff,mean(null),sd(null)) 
+```
 
+```
+## [1] 0.01391929
+```
+
+Later we will learn that there is a mathematical explanation for this. A very useful characteristic of this approximation is that one only needs to know {$$}\mu{/$$} and {$$}\sigma{/$$} to describe the entire distribution. From this, we can compute the proportion of values in any interval. 
+
+#### Summary
+
+So computing a p-value for the difference in diet for the mice was
+pretty easy, right? But why are we not done? To make the calculation
+we did the equivalent of buying all the mice available from The
+Jackson Laboratory and performing our experiment repeatedly to define
+the null distribution. Yet this is not something we can do in
+practice. Statistical Inference is the mathematical theory that
+permits you to approximate this with only the data from your sample,
+i.e. the original 24 mice. We will focus on this in the following
+sections.
