@@ -118,13 +118,63 @@ for(df in dfs){
 
 ![We generate t-distributed data for four degrees of freedom and make qqplots against normal theoretical quantiles.](images/R/exploratory_data_analysis-tmp-qqnorm_of_t-1.png) 
 
+<a name="boxplots"></a>
+
+# Boxplots
+
+Data is not always normally distributed. Income is widely cited
+example. In these cases the average and standard deviation are not
+necessarily informative since one can't infer the distribution from
+just these two numbers. The properties described above are specific to
+the normal. For example, the normal distribution does not seem to be a
+good approximation for the direct compensation for 199 United States
+CEOs in the year 2000.
+
+
+```r
+hist(exec.pay) ##in UsingR package
+```
+
+![plot of chunk unnamed-chunk-2](images/R/exploratory_data_analysis-tmp-unnamed-chunk-2-1.png) 
+
+```r
+qqnorm(exec.pay)
+qqline(exec.pay)
+```
+
+![plot of chunk unnamed-chunk-2](images/R/exploratory_data_analysis-tmp-unnamed-chunk-2-2.png) 
+
+In addition to QQ-plots, a practical summary of data is to compute 3
+percentiles: 25-th, 50-th (the median) and the 75-th. A boxplot shows
+these 3 values along with a 
+range of the points within median {$$}\pm{/$$} 1.5 (75-th percentile -
+25th-percentile). Values outside this range are shown as points and
+sometimes refereed to as _outliers_. Here we show just one boxplot,
+however one of the great benefits of boxplots is that we could easily
+show many distributions in one plot, by lining them up, side by side.
+
+
+```r
+boxplot(exec.pay, ylab="10,000s of dollars", ylim=c(0,400))
+```
+
+![Simple boxplot of executive pay.](images/R/exploratory_data_analysis-tmp-unnamed-chunk-3-1.png) 
+
 <a name="scatterplots"></a>
 
 ## Scatterplots And Correlation
 
 R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/exploratory_data_analysis.Rmd).
 
-The methods described above relate to _univariate_ variables. In the biomedical sciences, it is common to be interested in the relationship between two or more variables. A classic examples is the father/son height data used by Galton to understand heredity. If we were to summarize these data, we could use the two averages and two standard deviations as both distributions are well approximated by the normal distribution. This summary, however, fails to describe an important characteristic of the data.
+The methods described above relate to _univariate_ variables. In the
+biomedical sciences, it is common to be interested in the relationship
+between two or more variables. A classic examples is the father/son
+height data used by
+[Francis Galton](https://en.wikipedia.org/wiki/Francis_Galton) to
+understand heredity. If we were to summarize these data, we could use
+the two averages and two standard deviations as both distributions are
+well approximated by the normal distribution. This summary, however,
+fails to describe an important characteristic of the data. 
 
 
 ```r
@@ -137,15 +187,26 @@ plot(x,y,xlab="Father's height in inches",ylab="Son's height in inches",main=pas
 
 ![Heights of father and son pairs plotted against each other.](images/R/exploratory_data_analysis-tmp-scatterplot-1.png) 
 
-The scatter plot shows a general trend: the taller the father, the taller to son. A summary of this trend is the correlation coefficient which in this cases is 0.5. We motivate this statistic by trying to predict the son's height using the father's height. 
+The scatter plot shows a general trend: the taller the father, the
+taller the son. A summary of this trend is the correlation coefficient
+which in this cases is 0.5. We will motivate this statistic by trying to
+predict the son's height using the father's height.
 
 ## Stratification
 
 R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/exploratory_data_analysis.Rmd).
 
-Suppose we are asked to guess the height of randomly select sons. The average height, 68.7 inches, is the value with the highest proportion (see histogram) and would be our prediction. But what if we are told that the father is 72 inches tall, do we sill guess 68.7?
+Suppose we are asked to guess the height of randomly select sons. The
+average height, 68.7 inches, is the value with the highest proportion
+(see histogram) and would be our prediction. But what if we are told
+that the father is 72 inches tall, do we sill guess 68.7? 
 
-Note that the father is taller than average. Specifically, he is 1.7 standard deviations taller than the average father. So should we predict that the son is also 1.75 standard deviations taller? It turns out this would be an overestimate. To see this we look at all the sons with fathers who are about 72 inches. We do this by _stratifying_ the son heights.
+Note that the father is taller than average. Specifically, he is 1.7
+standard deviations taller than the average father. So should we
+predict that the son is also 1.75 standard deviations taller? It turns
+out this would be an overestimate. To see this we look at all the sons
+with fathers who are about 72 inches. We do this by _stratifying_ the
+father heights. 
 
 
 ```r
@@ -153,7 +214,7 @@ groups <- split(y,round(x))
 boxplot(groups)
 ```
 
-![plot of chunk boxplot](images/R/exploratory_data_analysis-tmp-boxplot-1.png) 
+![Boxplot of son heights stratified by father heights.](images/R/exploratory_data_analysis-tmp-boxplot-1.png) 
 
 ```r
 print(mean(y[ round(x) == 72]))
@@ -162,13 +223,21 @@ print(mean(y[ round(x) == 72]))
 ```
 ## [1] 70.67719
 ```
-Stratification followed by boxplots lets us see the distribution of each group. The average height of sons with fathers that are 72 inches tall is 70.7 inches. We also see that the means of the strata appear to follow a straight line. This line is referred to as the regression line and its slope is related to the correlation. 
+Stratification followed by boxplots lets us see the distribution of
+each group. The average height of sons with fathers that are 72 inches
+tall is 70.7 inches. We also see that the *medians* of the strata appear
+to follow a straight line (remember the middle line in the boxplot
+shows the median not the mean). This line is similar to the *regression
+line* with a slope that is related to the correlation, as we will learn
+below. 
 
 ## Bi-variate Normal Distribution
 
 R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/exploratory_data_analysis.Rmd).
 
-A pair of random variables {$$}(X,y){/$$} is considered to be approximated by bivariate normal when the proportion of values below, for example, {$$}x{/$$} and {$$}y{/$$} is approximated by this expression:
+A pair of random variables {$$}(X,y){/$$} is considered to be approximated by
+bivariate normal when the proportion of values below, for example, {$$}x{/$$}
+and {$$}y{/$$} is approximated by this expression: 
 
 {$$} 
 Pr(X<a,Y<b) = 
@@ -186,7 +255,14 @@ Pr(X<a,Y<b) =
 }
 {/$$}
 
-A definition that is more intuitive is the following: fix a value {$$}x{/$$} and look at all the pairs {$$}(X,Y){/$$} for which {$$}X=x{/$$}. Generally, in Statistics we call this exercise _conditioning_. We are conditioning {$$}Y{/$$} on {$$}X{/$$}. If a pair of random variables is approximated by a bivariate normal distribution, then the distribution of {$$}Y{/$$} condition on {$$}X=x{/$$} is approximated with a normal distribution for all {$$}x{/$$}. Let's see if this happens here. We take 4 different strata to demonstrate this:
+A definition that is more intuitive is the following: fix a value {$$}x{/$$}
+and look at all the pairs {$$}(X,Y){/$$} for which {$$}X=x{/$$}. Generally, in
+statistics we call this exercise _conditioning_. We are conditioning
+{$$}Y{/$$} on {$$}X{/$$}. If a pair of random variables is approximated by a
+bivariate normal distribution, then the distribution of {$$}Y{/$$} condition
+on {$$}X=x{/$$} is approximated with a normal distribution for all {$$}x{/$$}. Let's
+see if this happens here. We take 4 different strata to demonstrate
+this: 
 
 
 ```r
@@ -210,7 +286,7 @@ Now we come back to defining correlation. Mathematical statistics tells us that 
 
 Note that this is a line with slope {$$}r \frac{\sigma_Y}{\sigma_X}{/$$}. This is referred to as the _regression line_. If the SDs are the same, then the slope of the regression line is the correlation {$$}r{/$$}. Therefore, if we standardize {$$}X{/$$} and {$$}Y{/$$}, the correlation is the slope of the regression line.
 
-Another way to see this is that to form a prediction {$$}\hat{Y}{/$$}, for every SD away from the mean in {$$}x{/$$}, we predict {$$}r{/$$} SDs away for {$$}Y{/$$}: 
+Another way to see this is, to form a prediction {$$}\hat{Y}{/$$}, for every SD away from the mean in {$$}x{/$$}, we predict {$$}r{/$$} SDs away for {$$}Y{/$$}: 
 
 {$$}
 \frac{\hat{Y} - \mu_Y}{\sigma_Y} = r \frac{x-\mu_X}{\sigma_X}
@@ -233,32 +309,3 @@ abline(0,cor(x,y))
 ```
 
 ![Average son height of each strata plotted against father heights defining the strata](images/R/exploratory_data_analysis-tmp-scatterplot2-1.png) 
-
-<a name="boxplots"></a>
-
-# Boxplots
-
-Data is not always normally distributed. Income is widely cited example. In these cases the average and standard deviation are not necessarily informative since one can't infer the distribution from just these two numbers. The properties described above are specific to the normal. For example, the normal distribution does not seem to be a good approximation for the direct compensation for 199 United States CEOs in the year 2000
-
-
-```r
-hist(exec.pay)
-```
-
-![plot of chunk unnamed-chunk-2](images/R/exploratory_data_analysis-tmp-unnamed-chunk-2-1.png) 
-
-```r
-qqnorm(exec.pay)
-qqline(exec.pay)
-```
-
-![plot of chunk unnamed-chunk-2](images/R/exploratory_data_analysis-tmp-unnamed-chunk-2-2.png) 
-
-A practical summary is to compute 3 percentiles: 25-th, 50-th (the median) and the 75-th. A boxplots shows these 3 values along with a range calculated as median {$$}\pm{/$$} 1.5 75-th percentiles - 25th-percentile. Values outside this range are shown as points and sometimes refereed to as _outliers_.
-
-
-```r
-boxplot(exec.pay,ylab="10,000s of dollars",ylim=c(0,400))
-```
-
-![plot of chunk unnamed-chunk-3](images/R/exploratory_data_analysis-tmp-unnamed-chunk-3-1.png) 
