@@ -34,10 +34,10 @@ A>
     ```
 A>
 A>    Given how we have defined `A`, which of the following is the LSE of g, the acceleration due to gravity (suggestion: try the code in R)?
-A>    - A. `9.8`  
-A>    - B. `A %*% y`
-A>    - C. `-2 * (A %*% y) [3]`
-A>    - D. `A[3,3]`
+A>    - A) `9.8`  
+A>    - B) `A %*% y`
+A>    - C) `-2 * (A %*% y) [3]`
+A>    - D) `A[3,3]`
 A>    
 A>
 A>
@@ -82,9 +82,9 @@ A>
 A>4. Later in this chapter we will introduce a  a new concept: covariance. The covariance of two lists of numbers {$$}X=x_1,...,x_n{/$$} and {$$}Y=y_1,...,y_n{/$$} is `mean( (Y - mean(Y))*(X-mean(X) ) )`.
 A>
 A>    Which of the following is closest to the covariance between father heights and son heights
-A>    - A. 0 
-A>    - B. -4 
-A>    - C. 4  
-A>    - D. 0.5
+A>    - A) 0 
+A>    - B) -4 
+A>    - C) 4  
+A>    - D) 0.5
 A>
 A>
