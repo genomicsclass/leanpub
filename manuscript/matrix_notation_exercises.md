@@ -45,10 +45,10 @@ A>
 A>
 A>
 A>3. Which of the following creates a matrix with multiples of 3 in the third column?
-A>  - A. `matrix(1:60,20,3)`
-A>  - B. `matrix(1:60,20,3,byrow=TRUE)`
-A>  - C. `x=11:20; rbind(x,2*x,3*x)`
-A>  - D. `x=1:40; matrix(3*x,20,2)`
+A>  - A) `matrix(1:60,20,3)`
+A>  - B) `matrix(1:60,20,3,byrow=TRUE)`
+A>  - C) `x=11:20; rbind(x,2*x,3*x)`
+A>  - D) `x=1:40; matrix(3*x,20,2)`
 A>
 A>
 A>
