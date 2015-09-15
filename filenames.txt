@@ -26,7 +26,7 @@ course1 association_tests
 course1_exercises association_tests_exercises
 
 #chapter 2 - EDA
-course1 exploratory_data_analysis_2
+course1 exploratory_data_analysis
 course1 plots_to_avoid
 course1_exercises exploratory_data_analysis_exercises
 
