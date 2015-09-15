@@ -56,10 +56,10 @@ A>
     ```
 A>
 A>    What is an advantage of taking the log?
-A>      - A. The tails do not dominate the plot: 95% of data is not in a tiny section of plot.
-A>      - B. There are less points.
-A>      - C. There is exponential growth.
-A>      - D. We always take logs
+A>      - A) The tails do not dominate the plot: 95% of data is not in a tiny section of plot.
+A>      - B) There are less points.
+A>      - C) There is exponential growth.
+A>      - D) We always take logs
 A>
 A>
 A>
