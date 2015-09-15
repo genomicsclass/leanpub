@@ -37,10 +37,10 @@ A>
     ```
 A>
 A>    Use boxplots and histograms to compare the finishing times of males and females. Which of the following best describes the difference.
-A>    - A. Males and females have the same distribution.
-A>    - B. Most males are faster than most women.
-A>    - C. Male and females have similar right skewed distributions with the former, 20 minues shifted to the left.
-A>    - D. Both distribution are normally distributed with a difference in mean of about 30 minutes.
+A>    - A) Males and females have the same distribution.
+A>    - B) Most males are faster than most women.
+A>    - C) Male and females have similar right skewed distributions with the former, 20 minues shifted to the left.
+A>    - D) Both distribution are normally distributed with a difference in mean of about 30 minutes.
 A>  
 A>
 A>
@@ -52,25 +52,25 @@ A>7. For females what is the Pearson correlation between age and time to finish?
 A>
 A>
 A>8. If we interprete these correlations without visualizing the data we would conclude that the older we get the slower we run marathons, regardless of gender. Look at scatter plots and boxplots of times stratified by age groups (20-25, 25-30, etc..). After examing the data what is a more reasonable conclusion?
-A>    - A. Finish times are constant up until about our 40s then we get slower
-A>    - B. On average, finsih times go up by about 7 minutes every five years
-A>    - C. The optimal age to run a marathon is 20-25
-A>    - D. Coding errors never happen: a five year old boy completed the 2012 NY city marathon
+A>    - A) Finish times are constant up until about our 40s then we get slower
+A>    - B) On average, finsih times go up by about 7 minutes every five years
+A>    - C) The optimal age to run a marathon is 20-25
+A>    - D) Coding errors never happen: a five year old boy completed the 2012 NY city marathon
 A>
 A>
 A>
 A>
 A>9. When is it appropriate to use pie charts or donut charts?
-A>  - A.  When you are hungry 
-A>  - B. To compare percentages  
-A>  - C. To compare values that add up to 100% 
-A>  - D. Never
+A>  - A)  When you are hungry 
+A>  - B) To compare percentages  
+A>  - C) To compare values that add up to 100% 
+A>  - D) Never
 A>
 A>
 A>10. The use of pseudo-3D plots in the literature mostly adds:
-A>  - A. Pizzazz 
-A>  - B. The ability to see three dimensional data
-A>  - C. Abilitiy to discover
-A>  - D. Confusion
+A>  - A) Pizzazz 
+A>  - B) The ability to see three dimensional data
+A>  - C) Abilitiy to discover
+A>  - D) Confusion
 A>
 A>
