@@ -52,7 +52,12 @@ hist(ttests)
 
 ![Histogram of 1000 Monte Carlo simulated t-statistics.](images/R/monte_carlo-tmp-ttest_hist-1.png) 
 
-So is the distribution of this t-statistic well approximated by the normal distribution? In the next chapter we will introduce quantile-quantile plots, which provide a useful visual inspection of how well one distribution approximates another. As we will explain later, if points fall on the identity line, it means the approximation is a good one.
+So is the distribution of this t-statistic well approximated by the
+normal distribution? In the next chapter we will formally introduce
+quantile-quantile plots, which provide a useful visual inspection of
+how well one distribution approximates another. As we will explain
+later, if points fall on the identity line, it means the approximation
+is a good one. 
 
 
 ```r
@@ -73,7 +78,13 @@ abline(0,1)
 
 ![Quantile-quantile plot comparing 1000 Monte Carlo simulated t-statistics with three degrees of freedom to theoretical normal distribution.](images/R/monte_carlo-tmp-ttest_df3_qqplot-1.png) 
 
-Now we see that the large quantiles (referred to by statisticians as the _tails_) are larger than expected. In the previous module we explained that when the sample size is not large enough and the *population values* follow a normal distribution, then the t-distribution is a better approximation. Our simulation results seem to confirm this:
+Now we see that the large quantiles, referred to by statisticians as
+the _tails_, are larger than expected (below the line on the left side
+of the plot and above the line on the right side of the plot).  In the
+previous module we explained that when the sample size is not large
+enough and the *population values* follow a normal distribution, then
+the t-distribution is a better approximation. Our simulation results
+seem to confirm this:
 
 
 ```r
@@ -92,11 +103,22 @@ qqnorm(controlPopulation)
 qqline(controlPopulation)
 ```
 
-![plot of chunk dat_qqplot](images/R/monte_carlo-tmp-dat_qqplot-1.png) 
+![Quantile-quantile of original data compared to theoretical quantile distribution.](images/R/monte_carlo-tmp-dat_qqplot-1.png) 
 
 ### Parametric Simulations for the Observations
 
-The technique we used to motivate random variables and null distribution was a type of Monte Carlo simulation. We had access to population data and generated samples at random. In practice, we do not have access to the entire population. The reason for using the approach here was for educational purposes. However, when we want to use Monte Carlo simulations in practice, it is much more typical to assume a parametric distribution and generate a population from this. Instead, we can simulate the population data as well using what is called a "parametric simulation". This means that we take parameters from the real data (here the mean and the standard deviation), and plug these into a model (here the normal distribution).  This is actually the most common form of Monte Carlo simulation.
+The technique we used to motivate random variables and the null
+distribution was a type of Monte Carlo simulation. We had access to
+population data and generated samples at random. In practice, we do
+not have access to the entire population. The reason for using the
+approach here was for educational purposes. However, when we want to
+use Monte Carlo simulations in practice, it is much more typical to
+assume a parametric distribution and generate a population from
+this, which is called a "parametric simulation". This means that we take
+parameters estimated from the real data (here the mean and the standard
+deviation), and plug these into a model (here the normal
+distribution).  This is actually the most common form of Monte Carlo
+simulation. 
 
 For the case of weights, we could use our knowledge that mice typically weigh 24 ounces with a SD of about 3.5 ounces, and that the distribution is approximately normal, to generate population data:
 
