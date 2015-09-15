@@ -70,6 +70,7 @@ round(mean(betahat),1)
 
 But we won't see this value when we estimate because the standard error of our estimate is approximately:
 
+
 ```r
 sd(betahat) 
 ```
@@ -170,6 +171,7 @@ Later, we will see a case, specifically the estimate coefficients of a linear mo
 
 The standard approach to writing linear models either assumes the {$$}X{/$$} are fixed or that we are conditioning on them. Thus {$$}X\beta{/$$} has no variance as the {$$}X{/$$} is considered fixed. This is why we write {$$}\mbox{var}(Y_i) = \mbox{var}(\varepsilon_i)=\sigma^2{/$$}. This can cause confusion in practice because if you, for example, compute the following: 
 
+
 ```r
 x <- father.son$fheight
 beta <- c(34,0.5)
@@ -179,28 +181,21 @@ var(beta[1]+beta[2]*x)
 ```
 ## [1] 1.883576
 ```
+
 it is nowhere near 0. This is an example in which we have to be careful to distinguish code from math. The function `var` is simply computing the variance of the list, while the mathematical use of var is considering only quantities that are random variables. In the R code above, {$$}x{/$$} is not fixed at all: we are letting it vary, but when we write {$$}\mbox{var}(Y_i) =\sigma^2{/$$} we are imposing, mathematically, {$$}x{/$$} to be fixed. Similarly, if we use R to compute the variance of {$$}Y{/$$} in our object dropping example, we obtain something very different than {$$}\sigma^2=1{/$$} (the known variance):
 
+
 ```r
+n <- length(tt)
 y <- h0 + v0*tt  - 0.5*g*tt^2 + rnorm(n,sd=1)
-```
-
-```
-## Warning in h0 + v0 * tt - 0.5 * g * tt^2 + rnorm(n, sd = 1): longer object
-## length is not a multiple of shorter object length
-```
-
-```r
 var(y)
 ```
 
 ```
-## [1] 313.4017
+## [1] 322.9638
 ```
+
 Again, this is because we are not fixing `tt`. 
-
-
-
 
 #### Variance of a linear combination 
 
@@ -284,7 +279,7 @@ summary(lm(y~x))$coef[,2]
 
 ```
 ## (Intercept)           x 
-##   7.7164683   0.1129019
+##   7.4893501   0.1112043
 ```
 
 ```r
@@ -293,7 +288,7 @@ ses
 
 ```
 ## (Intercept)           x 
-##   7.7164683   0.1129019
+##   7.4893501   0.1112043
 ```
 
 They are identical because they are doing the same thing. Also, note that we approximate the Monte Carlo results:
@@ -361,7 +356,7 @@ var(y)
 ```
 
 ```
-## [1] 315.3156
+## [1] 317.9628
 ```
 
 Again, this is because we are not fixing `tt`. 
