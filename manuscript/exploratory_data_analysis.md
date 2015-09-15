@@ -120,7 +120,7 @@ for(df in dfs){
 
 <a name="boxplots"></a>
 
-# Boxplots
+### Boxplots
 
 Data is not always normally distributed. Income is widely cited
 example. In these cases the average and standard deviation are not
@@ -132,17 +132,13 @@ CEOs in the year 2000.
 
 
 ```r
+mypar(1,2)
 hist(exec.pay) ##in UsingR package
-```
-
-![plot of chunk unnamed-chunk-2](images/R/exploratory_data_analysis-tmp-unnamed-chunk-2-1.png) 
-
-```r
 qqnorm(exec.pay)
 qqline(exec.pay)
 ```
 
-![plot of chunk unnamed-chunk-2](images/R/exploratory_data_analysis-tmp-unnamed-chunk-2-2.png) 
+![Histogram of executive pay.](images/R/exploratory_data_analysis-tmp-unnamed-chunk-2-1.png) 
 
 In addition to QQ-plots, a practical summary of data is to compute 3
 percentiles: 25-th, 50-th (the median) and the 75-th. A boxplot shows
