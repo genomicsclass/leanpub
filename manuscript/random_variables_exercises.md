@@ -33,10 +33,10 @@ A>
 A>
 A>
 A>4. Why are the answers from 2 and 3 different?
-A>  - A. Because we made a coding mistake.
-A>  - B. Because the average of the `x` is random.
-A>  - C. Because the average of the samples is a random variable.
-A>  - D. All of the above.
+A>  - A) Because we made a coding mistake.
+A>  - B) Because the average of the `x` is random.
+A>  - C) Because the average of the samples is a random variable.
+A>  - D) All of the above.
 A>
 A>
 A>
