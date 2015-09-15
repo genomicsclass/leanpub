@@ -9,10 +9,10 @@ A>
 A>We are going to ask you to perform some calculations related to introductory probability theory. One particular concept you need to grasp is statistical independence. You also will need to know that the probability of two random events that are statistically independent occurring is {$$}P( A \mbox{ and } B) = P(A)P(B){/$$}. Note that this is a consequence of the more general formula {$$}P(A \mbox{ and } B) = P(A) P(B | A ){/$$}.
 A>
 A>1. Assume the null is true and denote the p-value you would get if you ran a test as {$$}P{/$$}. Define the function {$$}f(x) = \mbox{Pr}(P>x){/$$} What does {$$}f(x){/$$} look like?
-A>    - A. A uniform distribution.
-A>    - B. The identity line.
-A>    - C. A constant at 0.05.
-A>    - D. P is not a random value
+A>    - A) A uniform distribution.
+A>    - B) The identity line.
+A>    - C) A constant at 0.05.
+A>    - D) P is not a random value
 A>
 A>
 A>
@@ -71,10 +71,10 @@ A>
 A>    Make a plot of {$$}\alpha/m{/$$} and {$$}1-(1-\alpha)^{1/m}{/$$} for various values of m>1. 
 A>
 A>    Which procedure is more conservative Bonferroni's or Sidek's?
-A>    - A. The are the same
-A>    - B. Bonferroni's
-A>    - C. Depends on m
-A>    - D. Sidek's
+A>    - A) The are the same
+A>    - B) Bonferroni's
+A>    - C) Depends on m
+A>    - D) Sidek's
 A>
 A>
 A>
@@ -143,10 +143,10 @@ A>
 A>
 A>
 A>12. Note that we have the number of genes passing the q-value <0.05 threshold is larger with the qvalue function than the p.adjust difference. Why is this the case? Make a plot of the ratio of these two estimates to help answer the question.
-A>    - A. One of the two procedures is flawed
-A>    - B. The two functions are estimating different things
-A>    - C. The qvalue function estimates the proportion of genes for which the null hypothesis is true and provides a less conservative estimate
-A>    - D. The qvalue function estimates the proportion of genes for which the null hypothesis is true and provides a more conservative estimate
+A>    - A) One of the two procedures is flawed
+A>    - B) The two functions are estimating different things
+A>    - C) The qvalue function estimates the proportion of genes for which the null hypothesis is true and provides a less conservative estimate
+A>    - D) The qvalue function estimates the proportion of genes for which the null hypothesis is true and provides a more conservative estimate
 A>
 A>
 A>
