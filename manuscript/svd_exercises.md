@@ -94,19 +94,19 @@ A>
 A>    This means that we don't have to convert `s$d` into a matrix. 
 A>
 A>    Which of the following gives us the same as `diag(s$d)%*%t(s$v)`
-A>    - A. `s$d %*% t(s$v)`
-A>    - B. `s$d * t(s$v)`
-A>    - C. `t(s$d * s$v)`
-A>    - D. `s$v * s$d`
+A>    - A) `s$d %*% t(s$v)`
+A>    - B) `s$d * t(s$v)`
+A>    - C) `t(s$d * s$v)`
+A>    - D) `s$v * s$d`
 A>
 A>
 A>
 A>
 A>3. If we define `vd = t(s$d * t(s$v))` then which of the following is not the same  {$$}UDV^\top{/$$}:
-A>    - A. `tcrossprod(s$u,vd)`
-A>    - B. `s$u %*% s$d * t(s$v)`
-A>    - C. `s$u %*% (s$d * t(s$v) )`
-A>    - D. `tcrossprod( t( s$d*t(s$u)) , s$v)`
+A>    - A) `tcrossprod(s$u,vd)`
+A>    - B) `s$u %*% s$d * t(s$v)`
+A>    - C) `s$u %*% (s$d * t(s$v) )`
+A>    - D) `tcrossprod( t( s$d*t(s$u)) , s$v)`
 A>
 A>
 A>
