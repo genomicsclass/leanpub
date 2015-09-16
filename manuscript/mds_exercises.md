@@ -2,7 +2,8 @@
 Title: MDS exercises
 ---
 
-
+{pagebreak} 
+ 
 A>## Exercises
 A>
 A>1. Using the `z` we computed in exercise 4 of the previous exercises:
