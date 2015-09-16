@@ -258,7 +258,7 @@ model.matrix(~ group*condition)
 
 R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course2/expressing_design_formula.Rmd).
 
-[CHECK] The level which is chosen for the *reference level* or *base level*. This is the level which is contrasted against and, by default, this is simply the first level alphabetically. We can specify that we want group 2 to be the base level by either using the `relevel` function or by providing the levels explicitly in the `factor` call:
+The level which is chosen for the *reference level* or *base level* is the level which is contrasted against and, by default, this is simply the first level alphabetically. We can specify that we want group 2 to be the base level by either using the `relevel` function or by providing the levels explicitly in the `factor` call:
 
 
 ```r
