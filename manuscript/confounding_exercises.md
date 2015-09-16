@@ -19,7 +19,6 @@ A>
 admissions
 ```
 A>
-A>
 A>1. Let's compute the proportion of men who were accepted:
 A>
 A>    
@@ -38,17 +37,17 @@ A>
 A>    If you perform an independence test, what is the p-value?
 A>
 A>
-A>This difference actually led to a [lawsuit](http://en.wikipedia.org/wiki/Simpson%27s_paradox#Berkeley_gender_bias_case). 
 A>
-A>Now notice that looking at the data by major, the differences disappear. 
+A>    This difference actually led to a [lawsuit](http://en.wikipedia.org/wiki/Simpson%27s_paradox#Berkeley_gender_bias_case).
 A>
+A>    Now notice that looking at the data by major, the differences disappear. 
 A>
-```r
-admissions
-```
+A>    
+    ```r
+    admissions
+    ```
 A>
-A>How can this be? This is referred to as Simpson's Paradox
-A>In the following questions we will try to decipher why this is happening.
+A>    How can this be? This is referred to as Simpson's Paradox. In the following questions we will try to decipher why this is happening.
 A>
 A>3. We can quantify how "hard" a major is using the percent of students that were accepted. Compute the percent that were accepted (regardless of gender) to each major and call this vector `H`
 A>
