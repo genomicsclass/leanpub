@@ -112,8 +112,9 @@ A>
     ```
 A>
 A>    And apply this model to each gene, exact p-values for the sex difference.  How many q-values <0.1 for the sex comparison?
-A>
+A>	
 A>
 A>
 A>12. What proportion of the genes are on chrX and chrY?
+A>
 A>
