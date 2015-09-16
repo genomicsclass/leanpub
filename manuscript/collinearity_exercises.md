@@ -58,7 +58,7 @@ A>1. Which of the above design matrices does NOT have the problem of collinearit
 A>
 A>
 A>2. Let's use the example from the lecture to visualize how there is not a single best beta-hat, when the design matrix has collinearity of columns. An example can be made with:
-A>    
+A>
 A>    
     ```r
     sex <- factor(rep(c("female","male"),each=4))
