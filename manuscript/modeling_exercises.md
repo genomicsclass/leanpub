@@ -115,14 +115,13 @@ A>
 A>10. Are Palindromes over-reprented in a region of the genome?
 A>
 A>    Make sure you have the latest version of the `dagdata` library and then load the palindrom data from the Human cytomegalovirus genome:
-A>
 A>    
     ```r
     library(dagdata)
     data(hcmv)
     ```
 A>
-A>    These are the locations of palindromes on the genome of this viurs:
+A>    These are the locations of palindromes on the genome of this virus:
 A>    
     ```r
     library(rafalib)
@@ -146,9 +145,7 @@ A>
     hist(counts)
     ```
 A>
-A>
-A>    Let {$$}X_1,\dots,X_n{/$$} be the random variables represneting counts then 
-A>  
+A>    Let {$$}X_1,\dots,X_n{/$$} be the random variables represneting counts then   
 A>  
 A>    {$$}
 A>\Pr(X_i=k) = \lambda^k / k! \exp ( -\lambda)
@@ -171,7 +168,7 @@ A>
     likelihood
     ```
 A>
-A>    Note it's tiny number. It is usually more convinient to compute log-likelihoods
+A>    Note it's a tiny number. It is usually more convinient to compute log-likelihoods
 A>
 A>    
     ```r
@@ -185,7 +182,7 @@ A>
 A>    What value of `lambdas` maximizes the log-likelihood? 
 A>
 A>
-A>    It turns out that we can work mathematically what {$$}\lambda{/$$} maximizes the likelihood using calculus. I turns out that the avearage of the counts is the MLE. Note that we obtain a similar number to the answer to Question 4.2.1:
+A>    It turns out that we can work mathematically what {$$}\lambda{/$$} maximizes the likelihood using calculus. I turns out that the avearage of the counts is the MLE.
 A>
 A>    
     ```r
