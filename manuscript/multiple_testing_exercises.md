@@ -28,14 +28,13 @@ A>3. Suppose we need to run 8,793 statistical tests and we want to make the prob
 A>
 A>
 A>
+A>    The following exercises should help you understand the concept of an error controlling procedure. You can think of it as defnining a set of instructions, such as "reject all the null hypothesis for  for which p-values < 0.0001" or "reject the null hypothesis for the 10 features with smallest p-values". Then, knowing the p-values are random variables, we use statistical theory to compute how many mistakes, on average, will we make if we follow this procedure. More precisely we commonly bounds on these rates, meaning that we show that they are smaller than some predermined value.
 A>
-A>The followin exercises should help you understand the concept of an error controlling procedure. You can think of it as defnining a set of instructions, such as "reject all the null hypothesis for  for which p-values < 0.0001" or "reject the null hypothesis for the 10 features with smallest p-values". Then, knowing the p-values are random variables, we use statistical theory to compute how many mistakes, on average, will we make if we follow this procedure. More precisely we commonly bounds on these rates, meaning that we show that they are smaller than some predermined value.
+A>    As described in the video, we can compute different error rates. The FWER tells us the probability of having at least one false positive. The FDR is the expected rate of rejected null hypothesis.
 A>
-A>As described in the video, we can compute different error rates. The FWER tells us the probability of having at least one false positive. The FDR is the expected rate of rejected null hypothesis.
+A>    Note 1: the FWER and FDR are not procedures but error rates. We will review procedures here and use Monte Carlo simulations to estimate their error rates.
 A>
-A>Note 1: the FWER and FDR are not procedures but error rates. We will review procedures here and use Monte Carlo simulations to estimate their error rates.
-A>
-A>Note 2: We sometimes use the colloquial term "pick genes that" meaning "reject the null hypothesis for genes that".
+A>    Note 2: We sometimes use the colloquial term "pick genes that" meaning "reject the null hypothesis for genes that".
 A>
 A>4. So we have learned about the family wide error rate FWER. This is the probability of incorrectly rejecting the null at least once. Using the notation in the video this probability is written like this: {$$}\mbox{Pr}(V>0){/$$}. 
 A>
@@ -89,14 +88,11 @@ A>    Using what we have learned set the cutoff using the Bonferroni correction 
 A>
 A>
 A>
-A>
 A>6. Using the same seed repeat the above for Sidek's cutoff
 A>
 A>
 A> 
-A>
-A>In the following questions assessment we will define error controlling procedures for experimental data. We will make list of genes based on q-values. We will also assess your understanding of false positives rates and false negative rates by asking you to create a Monte Carlo simulation.
-A>
+A>    In the following questions assessment we will define error controlling procedures for experimental data. We will make list of genes based on q-values. We will also assess your understanding of false positives rates and false negative rates by asking you to create a Monte Carlo simulation.
 A>
 A>7. Load the gene expression data
 A>
@@ -132,9 +128,7 @@ A>
 A>
 A>
 A>
-A>10. Now use the qvalue function, in the Bioconductor qvalue package, to estimate q-values using the procedure described by Storey. 
-A>
-A>    Using this estimate of the, how many genes have q-values below 0.05?
+A>10. Now use the qvalue function, in the Bioconductor qvalue package, to estimate q-values using the procedure described by Storey. How many genes have q-values below 0.05?
 A>
 A>
 A>
@@ -160,9 +154,9 @@ abline(h=expectedfreq*qvalue(pvals)$pi0,col=2,lty=2)
 ```
 A>
 A>
-A>13. Note that the following are more advanced question.
+A>    Note that the following are more advanced questions.
 A>
-A>    Create a Monte Carlo Simulation in which you simulate measurements from 8,793 genes for 24 samples, 12 cases and 12 controls. 
+A>13. Create a Monte Carlo Simulation in which you simulate measurements from 8,793 genes for 24 samples, 12 cases and 12 controls. 
 A>
 A>    
     ```r
@@ -200,4 +194,4 @@ A>
 A>
 A>18. What are the false negative rate for `qvalues`?
 A>
-A>`
+A>
