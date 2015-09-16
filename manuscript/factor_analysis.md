@@ -10,7 +10,7 @@ title: Factor Analysis
 R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/factor_analysis.Rmd).
 
 
-Many of the statistical ideas applied to correcting for batch effects come from Factor Analysis. Factor Analysis was first developed over a century ago. [CHECK] Pearson noted that the between subject grades were correlated between subjects when the correlation was computed across students. To explain this, he posed a model having one factor that was common across subjects for each student that explained this correlation:
+Many of the statistical ideas applied to correcting for batch effects come from Factor Analysis. Factor Analysis was first developed over a century ago. Karl Pearson noted that correlation between different subject when the correlation was computed across students. To explain this, he posed a model having one factor that was common across subjects for each student that explained this correlation:
 
 {$$}
 Y_ij = \alpha_i W_1 + \varepsilon_{ij}
@@ -76,8 +76,7 @@ round(W,1)
 ## [2,] -0.4    -0.5 -0.4 0.3  0.3      0.4
 ```
 
-As expected, the first factor is close to a constant and will help explain the observed correlation across all subjects, while the second is a factor that differs between STEM and humanities and [CHECK]
-We can use these estimateS in the model:
+As expected, the first factor is close to a constant and will help explain the observed correlation across all subjects, while the second is a factor that differs between STEM and humanities. We can use these estimateS in the model:
 
 {$$}
 Y_{ij} = \alpha_{i,1} \hat{W}_{1,j} + \alpha_{i,2} \hat{W}_{2,j} + \varepsilon_{ij}
