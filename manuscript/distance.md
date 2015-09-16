@@ -13,19 +13,22 @@ R markdown document for this section available [here](https://github.com/genomic
 
 Many of the analyses we perform with high-dimensional data relate directly or indirectly to distance. For instance, many clustering and machine learning techniques rely on being able to define distance using features or predictors. The concept of distance can be generalized from physical distance; for example, we cluster animals into groups. When we do this, we put animals that are "close" in the same group:
 
-![Clustering of animals based](images/handmade/animals.png)
+![Clustering of animals](images/handmade/animals.png)
 
-Any time we cluster individuals into separate groups we are, explicitly or implicitly, computing a distance. 
-
-to create _heatmaps_ a distance is computed explicitly. Heatmaps are widely used in genomics and other highthroughput fields:
+Any time we cluster individuals into separate groups we are, explicitly or implicitly, computing a distance. To create _heatmaps_ a distance is computed explicitly. Heatmaps are widely used in genomics and other highthroughput fields:
 
 ![Example of heatmap](images/handmade/Heatmap.png)
 
 [Image Source: Heatmap, Gaeddal, 01.28.2007](http://commons.wikimedia.org/wiki/File:Heatmap.png) 
 
-In these plots the measurements, which are stored in a matrix, are represented with colors after the columns and rows have been clustered. 
-Here we will learn the necessary mathematics and computing skills to understand and create heatmaps. We start by reviewing the mathematical definition of distance. 
-
+In these plots the measurements, which are stored in a matrix, are
+represented with colors after the columns and rows have been
+clustered. (A side note: red and green, a common color theme for heatmaps,
+are two of the most difficult colors for many people who are
+color-blind to discern, better to use yellow and blue/purple.)
+Here we will learn the necessary mathematics and computing
+skills to understand and create heatmaps. We start by reviewing the
+mathematical definition of distance.
 
 ## Euclidean Distance
 
