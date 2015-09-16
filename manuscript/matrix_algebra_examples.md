@@ -209,8 +209,6 @@ or simply:
 which is a much simpler way to write it. 
 
 
-[CHECK] **Optional Homework**: write out the matrices multiplication and convince yourself that this is the case.
-
 The least squares equation becomes simpler as well since it is the following cross-product:
 
 {$$}
