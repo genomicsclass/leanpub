@@ -1,4 +1,4 @@
----
+.---
 Title: Introduction to high throughput data exercises
 ---
 
@@ -17,7 +17,7 @@ A>## Downloading GitHub repo genomicsclass/GSE5859Subset@master
 A>## Installing GSE5859Subset
 A>## '/Library/Frameworks/R.framework/Resources/bin/R' --no-site-file  \
 A>##   --no-environ --no-save --no-restore CMD INSTALL  \
-A>##   '/private/var/folders/6d/d_8pbllx7318htlp5wv_rm580000gn/T/RtmpdpOjLh/devtools107522721390c/genomicsclass-GSE5859Subset-8ada5f4'  \
+A>##   '/private/var/folders/6d/d_8pbllx7318htlp5wv_rm580000gn/T/RtmpyuZdVB/devtools124c175747679/genomicsclass-GSE5859Subset-8ada5f4'  \
 A>##   --library='/Users/michael/Library/R/3.2/library' --install-tests
 A>```
 A>
@@ -40,5 +40,4 @@ A>
 A>3.  What is the log expression value of the for gene ARPC1A
 A>on the one subject that we measured on 2005-06-10 ?
 A>
-A>Answer:
 A>
