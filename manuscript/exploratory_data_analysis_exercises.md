@@ -26,9 +26,7 @@ A>
 A>4. Which is the column that is negatively skewed?
 A>
 A>
-A>5. Let's consider a random sample of finishers from the New York City Marthon in 
-A>2002.  This data set can be found in the UsingR package. Load the library and 
-A>then load the nym.2002 data set. 
+A>5. Let's consider a random sample of finishers from the New York City Marthon in 2002.  This data set can be found in the UsingR package. Load the library and then load the nym.2002 data set. 
 A>
 A>    
     ```r
