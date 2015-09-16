@@ -182,4 +182,11 @@ plot(ks, res, type="o",ylim=c(0,0.20))
 
 ![Misclassification error versus number of neighbors when we use five dimensions instead of 2.](images/R/crossvalidation-tmp-misclassification_error2-1.png) 
 
-Important note: we applied `cmdscale` to the entire dataset to create a smaller one for illustration purposes. However, in a real machine learning application, all transformations of the data must be applied separately on the test and training dataset.
+Important note: we applied `cmdscale` to the entire dataset to create
+a smaller one for illustration purposes. However, in a real machine
+learning application, this may result in an underestimation of test
+set error for small sample sizes, where dimension reduction using the
+unlabeled full dataset gives a boost in performance. A safer choice
+would have been to transform the data separately for each fold, by
+calculating a rotation and dimension reduction using the training set only
+and applying this to the test set.
