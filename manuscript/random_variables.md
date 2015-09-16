@@ -34,8 +34,7 @@ Svenson via Gary Churchill and Dan Gatti and partially funded by P50
 GM070683.) We will import the data into R and explain random variables
 and null distributions using R programming. 
 
-[CHECK] If you have the file in your working directory, you can read
-it with just one line:
+If you already downloaded the `femaleMiceWeights` file and it your working directory, you can read it into R with just one line:
 
 
 ```r
@@ -161,7 +160,7 @@ mean(control)
 ## [1] 23.84
 ```
 
-Note how the average varies. [CHECK] We can continue to do this repeatedly and start learning something about the...
+Note how the average varies. We can continue to do this repeatedly and start learning something about the distribution of this random variable.
 
 <a name="null_distribution"></a>
 
