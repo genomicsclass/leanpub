@@ -2,6 +2,8 @@
 Title: Collinearity  exercises
 ---
 
+{pagebreak} 
+
 A>## Exercises
 A>
 A>
