@@ -8,7 +8,13 @@ title: Class Prediction
 
 R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/machine_learning.Rmd).
 
-Here we give a brief introduction to the main machine learning topic: class prediction. In fact, many refer to class prediction as machine learning and we actually use the two terms interchangeably. Some of the examples we give follow examples from the book The Elements of Statistical Learning: Data Mining, Inference, and Prediction, by Trevor Hastie, Robert Tibshirani and Jerome Friedman. A free PDF of this book can be found at the following URL:
+Here we give a brief introduction to the main machine learning topic:
+class prediction. In fact, many refer to class prediction as machine
+learning and we actually use the two terms interchangeably. Some of
+the examples we give here follow examples from the excellent
+textbook *The Elements of Statistical Learning: Data Mining, Inference, and
+Prediction*, by Trevor Hastie, Robert Tibshirani and Jerome Friedman. A
+free PDF of this book can be found at the following URL: 
 
 <http://statweb.stanford.edu/~tibs/ElemStatLearn/>
 
@@ -105,7 +111,7 @@ We will review two specif ML techniques. First, we need to review the main conce
 
 ### Training and Test sets
 
-In the code above you will notice that we created two sets data""
+In the code above you will notice that we created two sets data:
 
 
 ```r
