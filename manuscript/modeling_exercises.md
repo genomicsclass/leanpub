@@ -112,9 +112,7 @@ A>
 A>    What is the Poisson approximation for more than one person winning?
 A>
 A>
-A>10. Are Palindromes over-reprented in a region of the genome?
-A>
-A>    Make sure you have the latest version of the `dagdata` library and then load the palindrom data from the Human cytomegalovirus genome:
+A>10. Now we are going to explore if palindromes are over-represented in some part of the HCMV genome. Make sure you have the latest version of the `dagdata` library and then load the palindrom data from the Human cytomegalovirus genome:
 A>    
     ```r
     library(dagdata)
