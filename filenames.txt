@@ -99,7 +99,7 @@ ml smoothing
 ml_exercises smoothing_exercises
 ml machine_learning
 ml crossvalidation
-ml_exercises cross_validation_exercises
+ml_exercises crossvalidation_exercises
 
 ## Chapter 10 - Batch effects
 batch intro_to_batch_effects
