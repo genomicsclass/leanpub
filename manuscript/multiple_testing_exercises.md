@@ -77,12 +77,7 @@ A>    - D) Sidek's
 A>
 A>
 A>
-A>5.  To simulate the p-value results of, say a 8,792 t-tests for which the null is true we don't actual have to generate the original data. As we learned in class we can generate p-values for a uniform distribution like this:
-A>
-A>    
-    ```r
-    pvals <- runif(8793,0,1)
-    ```
+A>5.  To simulate the p-value results of, say a 8,792 t-tests for which the null is true we don't actual have to generate the original data. As we learned in class we can generate p-values for a uniform distribution like this: 'pvals <- runif(8793,0,1)`. 
 A>
 A>    Using what we have learned set the cutoff using the Bonferroni correction and report back the FWER. Set the seed at 1 and run 10,000 simulation.
 A>
@@ -144,7 +139,7 @@ A>    - D) The qvalue function estimates the proportion of genes for which the n
 A>
 A>
 A>
-A>To get an idea of how {$$}\pi_0{/$$} is estimated, note that if we look at the histogram, {$$}\pi_0{/$$} roughly tells us the proportion that looks about uniform:
+A>    To get an idea of how {$$}\pi_0{/$$} is estimated, note that if we look at the histogram, {$$}\pi_0{/$$} roughly tells us the proportion that looks about uniform:
 A>
 A>
 ```r
@@ -154,9 +149,9 @@ abline(h=expectedfreq*qvalue(pvals)$pi0,col=2,lty=2)
 ```
 A>
 A>
-A>    Note that the following are more advanced questions.
-A>
-A>13. Create a Monte Carlo Simulation in which you simulate measurements from 8,793 genes for 24 samples, 12 cases and 12 controls. 
+A>    
+A>13. Note that this and the remaining questions are more advanced questions.
+A>. Create a Monte Carlo Simulation in which you simulate measurements from 8,793 genes for 24 samples, 12 cases and 12 controls. 
 A>
 A>    
     ```r
