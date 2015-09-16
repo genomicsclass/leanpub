@@ -138,7 +138,7 @@ qqnorm(exec.pay)
 qqline(exec.pay)
 ```
 
-![Histogram of executive pay.](images/R/exploratory_data_analysis-tmp-unnamed-chunk-2-1.png) 
+![Histogram and QQ-plot of executive pay.](images/R/exploratory_data_analysis-tmp-unnamed-chunk-2-1.png) 
 
 In addition to QQ-plots, a practical summary of data is to compute 3
 percentiles: 25-th, 50-th (the median) and the 75-th. A boxplot shows
