@@ -16,7 +16,6 @@ if(!file.exists("femaleMiceWeights.csv")) download(url,destfile=filename)
 dat <- read.csv(filenames) 
 ```
 A>
-A>
 A>1. The CLT is a result from probability theory. Much of probability theory was originally inspired by gambling and this theory is still used in practice by casinos. For example, they can estimate how many people need to play slots for there to be a 99.9999% probability of earning enough money to cover expenses. Let's try a simple example related to gambling.
 A>
 A>    Suppose we are interested in the proportion of times we see a 6 when rolling `n=100` die. This is a random variable which we can simulate with `x=sample(1:6, n, replace=TRUE)` and the proportion we are interested in can be expressed as an average: `mean(x==6)`. Because the die rolls are independent, the CLT applies. 
@@ -84,8 +83,7 @@ A>
 A>11. Now we are ready to compute a p-value using the CLT. What is the probability of observing a quantity as large as what we computed in 10 when the null distribution is true?
 A>
 A>
-A>
-A>12. CLT provides an approximation for cases in which the sample size is large. In practice we can't check the assumption because we only get to see 1 outcome (which you computed above). So if this approximation is off, so is our p-value. As described there is another approach that does not require a large sample size, but rather that the distribution of the population is approximately normal. We don't get to see this distribution so it is again an assumption. Although we can look at the distribution of the sample:
+A>12. CLT provides an approximation for cases in which the sample size is large. In practice we can't check the assumption because we only get to see 1 outcome (which you computed above). So if this approximation is off, so is our p-value. As described there is another approach that does not require a large sample size, but rather that the distribution of the population is approximately normal. We don't get to see this distribution so it is again an assumption. Although we can look at the distribution of the sample:  
 A>
 A>    
     ```r
@@ -96,6 +94,7 @@ A>
     ```
 A>
 A>    The alternative approach is to assume the t-statistic follows distribution. What is the p-value under the t-distribution approximation (hint: use the `t.test` function)?
+A>	
 A>
 A>
 A>13. With the CLT distribution we obtained a p-value smaller than 0.05 and with the t-distribution one that is larger. They can't both be right. What best describes the difference?
