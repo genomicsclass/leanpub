@@ -200,7 +200,7 @@ Trial and error here is not going to work. Instead we can use calculus: take the
 #### More on Galton (Advanced)
 When studying the father-son data, Galton made a fascinating discovery using exploratory analysis.
 
-![Galton's plot](images/downloads/Galton's_correlation_diagram_1875.jpg) 
+![Galton's plot](http://upload.wikimedia.org/wikipedia/commons/b/b2/Galton's_correlation_diagram_1875.jpg) 
 
 He noted that if he tabulated the number of father-son height pairs and followed all the x,y values having the same totals in the table, they formed an ellipsis. In the plot above, made by Galton, you see the ellipsis formed by the pairs having 3 cases. This then led to modeling this data as correlated bivariate normal. 
 
@@ -221,6 +221,8 @@ Pr(X<a,Y<b) =
 }
 {/$$}
 
-Now we can use math to show that if you keep {$$}X{/$$} fixed (condition to be {$$}x{/$$}) the distribution of {$$}Y{/$$} is normally distributed with mean: {$$}\mu_x +\sigma_y \rho \left(\frac{x-\mu_x}{\sigma_x}\right){/$$} and standard deviation {$$}\sigma_y \sqrt{1-\rho^2}{/$$}. Note that {$$}\rho{/$$} is the correlation between {$$}Y{/$$} and {$$}X{/$$} and this implies that if we fix {$$}X=x{/$$}, {$$}Y{/$$} does in fact follow a linear model. [CHECK] Homework: what are {$$}\beta_0{/$$} and {$$}\beta_1{/$$} in terms of {$$}\mu_x,\mu_y,\sigma_x,\sigma_y{/$$}, and {$$}\rho{/$$} ? It turns out that the least squares estimate of {$$}\beta_1{/$$} can be written in terms of the sample correlation and standard deviations.
+Now we can use math to show that if you keep {$$}X{/$$} fixed (condition to be {$$}x{/$$}) the distribution of {$$}Y{/$$} is normally distributed with mean: {$$}\mu_x +\sigma_y \rho \left(\frac{x-\mu_x}{\sigma_x}\right){/$$} and standard deviation {$$}\sigma_y \sqrt{1-\rho^2}{/$$}. Note that {$$}\rho{/$$} is the correlation between {$$}Y{/$$} and {$$}X{/$$} and this implies that if we fix {$$}X=x{/$$}, {$$}Y{/$$} does in fact follow a linear model. 
+
+Note that the {$$}\beta_0{/$$} and {$$}\beta_1{/$$} parameters in a simple linear model can be expressed in terms of {$$}\mu_x,\mu_y,\sigma_x,\sigma_y{/$$}, and {$$}\rho{/$$}.
 
 
