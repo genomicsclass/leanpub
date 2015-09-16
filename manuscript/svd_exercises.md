@@ -6,13 +6,13 @@ A>## Exercises
 A>
 A>For these exercises we are again going to use:
 A>
+A>
 ```r
 library(tissuesGeneExpression)
 data(tissuesGeneExpression)
 ```
 A>
-A>Before we start these exercises it is important to reemphasize that when using the SVD in practice the solution to SVD is not unique. This because {$$}\mathbf{UDV^\top} = \mathbf{ (-U) D (-V)^\top}{/$$}. 
-A>In fact we can flip the sign of each column of {$$}\mathbf{U}{/$$} and as long as we also flip the respective column in {$$}\mathbf{V}{/$$} we will get solution. Here is an example
+A>Before we start these exercises it is important to reemphasize that when using the SVD in practice the solution to SVD is not unique. This because {$$}\mathbf{UDV^\top} = \mathbf{ (-U) D (-V)^\top}{/$$}. In fact we can flip the sign of each column of {$$}\mathbf{U}{/$$} and as long as we also flip the respective column in {$$}\mathbf{V}{/$$} we will get solution. Here is an example:
 A>
 A>
 ```r
