@@ -123,9 +123,7 @@ A>7. What is the L2 vs L1 estimate in log2friction for the push samples? Remembe
 A>
 A>
 A>   
-A>   
-A>   Note that taking the log2 of a Y value and then performing a linear model has a meaningful effect on the coefficients. If we have, {$$}\log_2(X) = \beta_0{/$$} and {$$}log2(Y) = \beta_0 + \beta_1{/$$}, then {$$}Y/X = 2^(\beta_0 + \beta_1) / 2^(\beta_0)= 2^\beta_1{/$$}, so {$$}\beta_1{/$$} represents a log2 fold change of {$$}Y{/$$} over {$$}X{/$$}. If {$$}\beta_1 = 1{/$$}, then {$$}Y{/$$} is 2 times {$$}X{/$$}. If {$$}\beta_1 = -1{/$$}, then {$$}Y{/$$} is half of {$$}X{/$$}, etc. 
-A>
+A>    Note that taking the log2 of a Y value and then performing a linear model has a meaningful effect on the coefficients. If we have, {$$}\log_2(X) = \beta_0{/$$} and {$$}log2(Y) = \beta_0 + \beta_1{/$$}, then {$$}Y/X = 2^(\beta_0 + \beta_1) / 2^(\beta_0)= 2^\beta_1{/$$}, so {$$}\beta_1{/$$} represents a log2 fold change of {$$}Y{/$$} over {$$}X{/$$}. If {$$}\beta_1 = 1{/$$}, then {$$}Y{/$$} is 2 times {$$}X{/$$}. If {$$}\beta_1 = -1{/$$}, then {$$}Y{/$$} is half of {$$}X{/$$}, etc. 
 A>
 A>8. Snalysis of variance (ANOVA), performed in R using the `anova`, allows us to test whether a number of coefficients are equal to zero, by comparing a linear model including these terms to a linear model where these terms are set to 0. In this last question, we will use Monte Carlo techniques to observe the distribution of the ANOVA's _F-value_ under the null hypothesis, that there are no differences between groups.
 A>
@@ -194,15 +192,13 @@ A>    Set the seed at 1 and calculate the F-value for 1000 random versions of Y.
 A>
 A>
 A>
-A>If you save the values from the simulation into `Fs` we can plot the distribution of the 1000 F-values and overlay the theoretical F-distribution, with parameters `df1=p - 1`, `df2=N - p`. Note the similarity
+A>    If you save the values from the simulation into `Fs` we can plot the distribution of the 1000 F-values and overlay the theoretical F-distribution, with parameters `df1=p - 1`, `df2=N - p`. Note the similarity:
 A>
+A>    
+    ```r
+    hist(Fs, col="grey", border="white", breaks=50, freq=FALSE)
+    xs <- seq(from=0,to=6,length=100)
+    lines(xs, df(xs, df1 = p - 1, df2 = N - p), col="red")
+    ```
 A>
-A>
-```r
-hist(Fs, col="grey", border="white", breaks=50, freq=FALSE)
-
-xs <- seq(from=0,to=6,length=100)
-lines(xs, df(xs, df1 = p - 1, df2 = N - p), col="red")
-```
-A>  
-A>This is the distribution which is used to calculate the p-values for the ANOVA table produced by `anova`. 
+A>    This is the distribution which is used to calculate the p-values for the ANOVA table produced by `anova`. 
