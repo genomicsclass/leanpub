@@ -214,7 +214,6 @@ library(genefilter)
 ```
 
 ```
-## Creating a generic function for 'nchar' from package 'base' in package 'S4Vectors'
 ## 
 ## Attaching package: 'genefilter'
 ## 

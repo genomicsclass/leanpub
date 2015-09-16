@@ -260,7 +260,7 @@ library(sva) #available from Bioconductor
 ```
 ## Loading required package: mgcv
 ## Loading required package: nlme
-## This is mgcv 1.8-7. For overview type 'help("mgcv-package")'.
+## This is mgcv 1.8-6. For overview type 'help("mgcv-package")'.
 ```
 
 ```r

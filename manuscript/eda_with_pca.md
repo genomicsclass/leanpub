@@ -66,13 +66,6 @@ We need to download and install the `hgfocus.db` package and then extract the ch
 
 ```r
 library(hgfocus.db)
-```
-
-```
-## Warning: package 'S4Vectors' was built under R version 3.2.2
-```
-
-```r
 annot <- select(hgfocus.db, keys=featureNames(e), keytype="PROBEID",columns=c("CHR"))
 ##for genes with multiples, pick on
 annot <-annot[match(featureNames(e),annot$PROBEID),]

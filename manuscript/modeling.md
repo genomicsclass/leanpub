@@ -51,7 +51,7 @@ prop.table(tab)
 ```
 ## winners
 ##     0     1     2     3     4 
-## 0.612 0.292 0.073 0.020 0.003
+## 0.631 0.283 0.077 0.008 0.001
 ```
 
 For cases like this, where {$$}N{/$$} is very large, but {$$}p{/$$} is small enough to make {$$}N \times p{/$$} (call it {$$}\lambda{/$$}) a number between 0 and 10, then {$$}S{/$$} can be shown to follow a Poisson distribution which has a simple parametric form:
@@ -92,17 +92,6 @@ R markdown document for this section available [here](https://github.com/genomic
 
 ```r
 library(parathyroidSE)
-```
-
-```
-## Warning: package 'GenomicRanges' was built under R version 3.2.2
-```
-
-```
-## Warning: package 'S4Vectors' was built under R version 3.2.2
-```
-
-```r
 data(parathyroidGenesSE)
 ```
 
