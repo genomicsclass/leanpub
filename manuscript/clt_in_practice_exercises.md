@@ -3,6 +3,8 @@ title: "Central Limit Theorem in Practice Exercises"
 layout: page
 ---
 
+{pagebreak} 
+
 A>## Exercises
 A>
 A>Exercises 3-13 use the mouse data set we have previously downloaded:
@@ -83,18 +85,7 @@ A>
 A>11. Now we are ready to compute a p-value using the CLT. What is the probability of observing a quantity as large as what we computed in 10 when the null distribution is true?
 A>
 A>
-A>12. CLT provides an approximation for cases in which the sample size is large. In practice we can't check the assumption because we only get to see 1 outcome (which you computed above). So if this approximation is off, so is our p-value. As described there is another approach that does not require a large sample size, but rather that the distribution of the population is approximately normal. We don't get to see this distribution so it is again an assumption. Although we can look at the distribution of the sample:  
-A>
-A>    
-    ```r
-    library(rafalib)
-    mypar(1,2)
-    qqnorm(X); qqline(X)
-    qqnorm(Y); qqline(Y)
-    ```
-A>
-A>    The alternative approach is to assume the t-statistic follows distribution. What is the p-value under the t-distribution approximation (hint: use the `t.test` function)?
-A>	
+A>12. CLT provides an approximation for cases in which the sample size is large. In practice we can't check the assumption because we only get to see 1 outcome (which you computed above). So if this approximation is off, so is our p-value. As described there is another approach that does not require a large sample size, but rather that the distribution of the population is approximately normal. We don't get to see this distribution so it is again an assumption. Although we can look at the distribution of the sample with `qqnorm(X)` and `qqnorm(Y)`. If we are willing to assume this, then it follows that the t-statistic follows t-distribution. What is the p-value under the t-distribution approximation (hint: use the `t.test` function)?
 A>
 A>
 A>13. With the CLT distribution we obtained a p-value smaller than 0.05 and with the t-distribution one that is larger. They can't both be right. What best describes the difference?
