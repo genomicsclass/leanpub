@@ -10,7 +10,7 @@ A>Here we will review the mathematics on why these produce the same test statist
 A>
 A>We already know that the numerator of the t-statistic in both cases is the difference between the average of the groups, so we only have to see that the denominator is the same. Of course, it makes sense that the denominator should be the same, since we are calculating the standard error of the same quanity (the difference) under the same assumptions (equal variance), but here we will show equivalence of the formula.
 A>
-A>In the linear model, we saw how to calculate this standard error using the design matrix {$$}X{/$$} and the estimate of {$$}\sigma^2{/$$} from the residuals. The estimate of {$$}sigma^2{/$$} was the sum of squared residuals divided by {$$}N - p{/$$}, where {$$}N{/$$} is the total number of samples and {$$}p{/$$} is the number of terms (an intercept and a group indicator, so here {$$}p=2{/$$}).
+A>In the linear model, we saw how to calculate this standard error using the design matrix {$$}X{/$$} and the estimate of {$$}\sigma^2{/$$} from the residuals. The estimate of {$$}\sigma^2{/$$} was the sum of squared residuals divided by {$$}N - p{/$$}, where {$$}N{/$$} is the total number of samples and {$$}p{/$$} is the number of terms (an intercept and a group indicator, so here {$$}p=2{/$$}).
 A>
 A>In the t-test, the denominator of the t-value is the standard error of the difference. The t-test formula for the standard error of the difference, if we assume equal variance in the two groups is the square root of the variace:
 A>
