@@ -290,8 +290,6 @@ If you follow the matrix multiplication rule above, you notice this works out:
 {/$$}
 
 
-[CHECK] **Optional Homework**: use what you know about matrix multiplication to convince yourself that the above is correct.
-
 In R you can form an identity matrix this way:
 
 ```r

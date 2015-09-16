@@ -169,7 +169,7 @@ Simpson's Paradox is commonly seen in baseball statistics. Here is a well known 
 
 R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/confounding.Rmd).
 
-To describe the problem of confounding with a real example, we will use a dataset from a paper [CITE] that claimed that roughly 50% of genes where differentially expressed when comparing blood from two ethnic groups. We include the data in one of our data packages:
+To describe the problem of confounding with a real example, we will use a dataset from [this paper](http://www.ncbi.nlm.nih.gov/pubmed/17206142) that claimed that roughly 50% of genes where differentially expressed when comparing blood from two ethnic groups. We include the data in one of our data packages:
 
 
 ```r

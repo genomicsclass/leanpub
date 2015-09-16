@@ -13,7 +13,7 @@ Batch effects are the biggest challenge faced by genomics research, especially i
 
 ![Estimates of the astronomical, unit with estimates of spread, verus year it was reported. The two laboratories that reported more than one estimate are shown in color.](images/R/intro_to_batch_effects-tmp-astronomical_units-1.png) 
 
-[CHECK] Judging by the variability across labs and the fact that the reported bounds do not cover this variability shows very clearly that each group of measurement includes a bias that is consistent within group, but not across. This type of variability is what we call a batch effect. Note that there are laboratories that reported two estimates (purple and orange) and batch effects are seen across the two different measurements from the same laboratories as well. 
+Judging by the variability across labs and the fact that the reported bounds do not explain this variability clearly shows the presence of an effect that differes across labs but not within. This type of variability is what we call a batch effect. Note that there are laboratories that reported two estimates (purple and orange) and batch effects are seen across the two different measurements from the same laboratories as well. 
 
 
 We can use statistical notation to precisely describe the problem. The scientists making these measurements assumed they observed:
