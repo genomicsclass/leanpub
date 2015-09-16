@@ -27,7 +27,7 @@ data("father.son")
 x=round(father.son$fheight) ##round to nearest inch
 y=round(father.son$sheight)
 hist(y,breaks=seq(min(y),max(y)))
-abline(v=mean(y),col=2)
+abline(v=mean(y),col="red",lwd=2)
 ```
 
 ![Histogram of son heights.](images/R/conditional_expectation-tmp-height_hist-1.png) 
