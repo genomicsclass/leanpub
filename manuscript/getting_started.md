@@ -44,13 +44,10 @@ Windows we have special
 The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/intro/getting_started.Rmd).
 
 The first homework assignment is to complete an R tutorial to
-familiarize yourself with the basics of programming and R syntax. If
-you are already familiar with R you can skip to the next section.
+familiarize yourself with the basics of programming and R syntax. 
+To follow this book you should be familiar with the difference between lists (including data frames) and numeric vectors, for-loops, how to create functions, and how to use the `sapply` and `replicate` functions. 
 
-*Homework 0*:  Go through the [swirl](http://swirlstats.com/)
- tutorial, which teaches you R programming and data science
- interactively, at your own pace, and in the R console. Once you have
- R installed you can install `swirl` and run it the following way: 
+If you are already familiar with R you can skip to the next section. Otherwise, you should go through the [swirl](http://swirlstats.com/) tutorial, which teaches you R programming and data science interactively, at your own pace, and in the R console. Once you have R installed you can install `swirl` and run it the following way: 
 
 
 ```r
@@ -58,8 +55,6 @@ install.packages("swirl")
 library(swirl)
 swirl()
 ```
-
-To follow this book you should be familiar with the difference between lists (including data frames) and numeric vectors, for-loops, how to create functions, and how to use the `sapply` and `replicate` functions.
 
 Alternatively you can take the [try R](http://tryr.codeschool.com/) interactive class from Code School. 
 
@@ -109,6 +104,7 @@ We can then load the package into our R sessions using the `library` function:
 
 
 ```r
+library(rafalib)
 library(downloader)
 ```
 
@@ -125,7 +121,7 @@ The R markdown document for this section is available [here](https://github.com/
 The first step when getting ready to analyze data is to read in the data into R. There are several ways to do this and we will discuss three of them. But you only need to learn one to follow along. 
 
 In the life sciences, small datasets such as the one used as an
-example in the next sections are stored as Excel files. Although there
+example in the next sections are typically stored as Excel files. Although there
 are R packages designed to read Excel (xls) format, you generally want
 to avoid this and save files as comma delimited (Comma-Separated
 Value/CSV) or tab delimited (Tab-Separated Value/TSV/TXT) files.
@@ -145,10 +141,6 @@ When you are working in R it is useful to know your _working directory_. This is
 
 ```r
 getwd()
-```
-
-```
-## [1] "/Users/ririzarr/myDocuments/teaching/HarvardX/labs/intro"
 ```
 
 You can also change your working directory using the function `setwd`. Or you can change it through RStudio by clicking on "Session". 
@@ -173,6 +165,8 @@ format. Note that some browsers add an extra suffix to your filename by
 default. You do not want this. You want your file to be named
 `femaleMiceWeights.csv`. 
 
+![Github page screenshot](images/handmade/screenshot1.png)
+
 Once you have this file in your working directory then you can simply read it in like this:
 
 
@@ -184,13 +178,13 @@ Note that if you did not receive any message then you probably read in the file 
 
 #### Option 2: Download from within R
 
-We store many of the datasets used in this course on [GitHub](https://github.com/genomicsclass/). You can save these files directly from the internet to your computer using R. In this example we are using the `download.file` function in the `downloader` package to download the file to a specific location and then read it in. We assign it a random name and a random directory using the function `tempfile`, but you can change this so the file is saved as a directory of your choosing.
+We store many of the datasets used in this course on [GitHub](https://github.com/genomicsclass/). You can save these files directly from the internet to your computer using R. In this example we are using the `download.file` function in the `downloader` package to download the file to a specific location and then read it in. We can assign it a random name and a random directory using the function `tempfile`, but you can also save it in directory, and with the name, of your choosing.
 
 
 ```r
 library(downloader) ##use install.packages to install
 url <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/femaleMiceWeights.csv"
-filename <- "femaleMiceWeights.csv" ##creates a random name for a temporary file
+filename <- "femaleMiceWeights.csv" 
 download(url, destfile=filename)
 ```
 
