@@ -37,8 +37,27 @@ different weights. We will select three mice from each population.
 
 
 ```r
-hfPopulation <- dat[dat$Sex=="F" & dat$Diet=="hf",3]
-controlPopulation <- dat[dat$Sex=="F" & dat$Diet=="chow",3]
+library(dplyr)
+```
+
+```
+## 
+## Attaching package: 'dplyr'
+## 
+## The following object is masked from 'package:stats':
+## 
+##     filter
+## 
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+```r
+controlPopulation <- filter(dat,Sex == "F" & Diet == "chow") %>%  
+  select(Bodyweight) %>% unlist
+hfPopulation <- filter(dat,Sex == "F" & Diet == "hf") %>%  
+  select(Bodyweight) %>% unlist
 ```
 
 We can compute the population parameters of interest using the mean function.
@@ -64,8 +83,8 @@ We can see that with R code:
 ```r
 x <- controlPopulation
 N <- length(x)
-popvar <- mean((x-mean(x))^2)
-identical(var(x), popvar)
+populationvar <- mean((x-mean(x))^2)
+identical(var(x), populationvar)
 ```
 
 ```
@@ -73,26 +92,18 @@ identical(var(x), popvar)
 ```
 
 ```r
-identical(var(x)*(N-1)/N, popvar)
+identical(var(x)*(N-1)/N, populationvar)
 ```
 
 ```
 ## [1] TRUE
 ```
 
-So to be mathematically correct we do not use `sd` or  `var`. I am
-going to define functions for this:
+So to be mathematically correct we do not use `sd` or  `var`. Instead we use the `popvar` and `popsd` function in `rafalib`:
 
 
 ```r
-popvar <- function(x) mean( (x-mean(x))^2)
-popsd <- function(x) sqrt(popvar(x)) 
-```
-
-Now we can compute the population SD:
-
-
-```r
+library(rafalib)
 sd_hf <- popsd(hfPopulation)
 sd_control <- popsd(controlPopulation)
 ```
@@ -107,7 +118,7 @@ hf <- sample(hfPopulation, 12)
 control <- sample(controlPopulation, 12)
 ```
 
-The CLT tells us that, for large {$$}N{/$$}, each of these is approximately normal with average population mean and standard error population variance divided by {$$}N{/$$}. We mentioned that a rule of thumb is that {$$}N{/$$} should be 30 or more. But that is just a rule of thumb, as the preciseness of the approximation depends on the population distribution. Here we can actually check the approximation and we do that for various values of {$$}N{/$$}.
+As we described, the CLT tells us that, for large {$$}N{/$$}, each of these is approximately normal with average population mean and standard error population variance divided by {$$}N{/$$}. We mentioned that a rule of thumb is that {$$}N{/$$} should be 30 or more. But that is just a rule of thumb, as the preciseness of the approximation depends on the population distribution. Here we can actually check the approximation and we do that for various values of {$$}N{/$$}.
 
 Now we use `sapply` and `replicate` instead of `for` loops, which
 makes for cleaner code (we do not have to pre-allocate a vector, R
@@ -123,11 +134,6 @@ res <-  sapply(Ns,function(n) {
 ```
 
 Now we can use qq-plots to see how well CLT approximations works for these. If in fact the normal distribution is a good approximation, the points should fall on a straight line when compared to normal quantiles. The more it deviates, the worse the approximation. We also show, in the title, the average and SD of the observed distribution which demonstrates how the SD decreases with {$$}\sqrt{N}{/$$} as predicted. 
-
-
-```r
-library(rafalib)
-```
 
 
 ```r
