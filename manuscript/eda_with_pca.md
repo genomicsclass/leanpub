@@ -8,12 +8,12 @@ title: Discovering Batch Effects with EDA
 
 ##  Discovering Batch Effects with EDA 
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/eda_with_pca.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/batch/eda_with_pca.Rmd).
 Now that we understand PCA, we are going to demonstrate how we use it in practice with an emphasis on exploratory data analysis. To illustrate we will go through an actual dataset that has not be sanitized for teaching purposes. We start with the raw data as it was provided in the public repository. The only step we did for you is to preprocess these data and create an R package with a preformed Bioconductor object.
 
 ## Gene Expression Data
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/eda_with_pca.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/batch/eda_with_pca.Rmd).
 
 Start by loading the data:
 
