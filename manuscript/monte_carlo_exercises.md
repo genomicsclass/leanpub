@@ -52,9 +52,9 @@ A>7. We can derive approximation of the distribution of the the sample average o
 A>
 A>    Consider the sample median as an example. Use a Monte Carlo to determine which of the following best approximates the median of a sample taken from normally distributed population with mean 0 and standard deviation 1.
 A>    
-A>    - A) Just like for the average, the sample median is approximately normal with mean 0 and SD {$$}1/sqrt{N}{/$$}
-A>    - B) The sample median is not approximately normal
+A>    - A) Just like for the average, the sample median is approximately normal with mean 0 and SD {$$}1/sqrt{N}{/$$}.
+A>    - B) The sample median is not approximately normal.
 A>    - C) The sample median is t-distributed for small samples and normally distributed for large ones.
-A>    - D) The sample median is approximately normal with mean 0 and SD `1 / (sqrt(N*4*dnorm(0)^2))` which is larger than {$$}1 / \sqrt{N}{/$$}
+A>    - D) The sample median is approximately normal with mean 0 and SD larger than {$$}1 / \sqrt{N}{/$$}.
 A>
 A>
