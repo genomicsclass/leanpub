@@ -10,7 +10,7 @@ layout: page
 
 ## Association Tests
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/association_tests.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/inference/association_tests.Rmd).
 
 The statistical tests we have covered up to now leave out a
 substantial portion of life science projects. Specifically, we are
