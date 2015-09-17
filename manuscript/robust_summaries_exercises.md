@@ -26,7 +26,8 @@ A>First, note that the rows here represent time points rather than individuals. 
 A>
 A>
 ```r
-chick = reshape(ChickWeight,idvar=c("Chick","Diet"),timevar="Time",direction="wide")
+chick = reshape(ChickWeight, idvar=c("Chick","Diet"), timevar="Time",
+                direction="wide")
 ```
 A>
 A>The meaning of this line is: reshape the data from _long_ to _wide_, where the columns Chick and Diet are the ID's and the column Time indicates different observations for each ID. Now examine the head of this dataset:
@@ -41,7 +42,7 @@ A>
 ```r
 chick = na.omit(chick)
 ```
-A>1. Focus on the chick weights on day 4 (check the column names of 'chick' and note the numbers). How much does the average of chick weights at day 4 increase if we add an outlier measurement of 3000 grams? Specifically what is the average weight of the day 4 chicks including the outlier chick divided by the average of the weight of the day 4 chicks without the outlier. Hint: use c() to add a number to a vector.
+A>1. Focus on the chick weights on day 4 (check the column names of 'chick' and note the numbers). How much does the average of chick weights at day 4 increase if we add an outlier measurement of 3000 grams? Specifically what is the average weight of the day 4 chicks including the outlier chick divided by the average of the weight of the day 4 chicks without the outlier. Hint: use `c`to add a number to a vector.
 A>
 A>
 A>
@@ -51,7 +52,7 @@ A>2. In exercise 1  we saw how sensitive the mean is to outliers. Now let's see 
 A>
 A>
 A>
-A>3. Now try the same thing with the sample standard deviation, (the sd() function in R). Add a chick with weight 3000 grams to the chick weights from day 4. How much does the standard deviation change? What's the standard devition with the outlier chick divided by the standard deviation without the outlier chick?
+A>3. Now try the same thing with the sample standard deviation, (the `sd` function in R). Add a chick with weight 3000 grams to the chick weights from day 4. How much does the standard deviation change? What's the standard devition with the outlier chick divided by the standard deviation without the outlier chick?
 A>
 A>
 A>

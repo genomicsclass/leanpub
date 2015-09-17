@@ -5,6 +5,8 @@ title: EDA Exercises
 
 
 
+{pagebreak}
+
 A>## Exercises
 A>
 A>![ ](images/R/exploratory_data_analysis_exercises-tmp-hist_exercise-1.png) 
@@ -12,7 +14,7 @@ A>
 A>1. Given the above histogram: how many people are between the ages of 35 and 45?
 A>
 A>
-A>2. The `InsectSprays` data set is included in R. The dataset reports the counts of insects in agricultural experimental units treated with different insecticides. Make a boxplot and determine which insecticide appears to be most effective  
+A>2. The `InsectSprays` data set is included in R. The dataset reports the counts of insects in agricultural experimental units treated with different insecticides. Make a boxplot and determine which insecticide appears to be most effective. 
 A>
 A>
 A>
@@ -46,7 +48,7 @@ A>
 A>6. Use `dplyr` to create two new data frames `males` and `females` with the data for each gender. For  males what is the Pearson correlation between age and time to finish? 
 A>
 A>
-A>7. For females what is the Pearson correlation between age and time to finish? 
+A>7. For females, what is the Pearson correlation between age and time to finish? 
 A>
 A>
 A>8. If we interprete these correlations without visualizing the data we would conclude that the older we get the slower we run marathons, regardless of gender. Look at scatter plots and boxplots of times stratified by age groups (20-25, 25-30, etc..). After examing the data what is a more reasonable conclusion?
