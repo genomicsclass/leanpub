@@ -9,7 +9,7 @@ layout: page
 
 ## Confidence Intervals
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/confidence_intervals.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/inference/confidence_intervals.Rmd).
 
 We have described how to compute p-values which are ubiquitous in the
 life sciences. However, we do not recommend reporting p-values as the
