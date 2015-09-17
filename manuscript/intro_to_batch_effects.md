@@ -11,7 +11,55 @@ One often overlooked complication with high-throughput studies is batch effects,
 
 Batch effects are the biggest challenge faced by genomics research, especially in the context of precision medicine. The presence of batch effects in one form or another have been reported among most, if not all, high-throughput technologies [Leek et al. (2010) Nature Reviews Genetics 11, 733-739]. But batch effects are not specific to genomics technology. In fact, in a 1972 paper, WJ Youden describes batch effects in the context of empirical estimates of physical constants. He pointed out the "subjective character of present estimates" of physical constants and how estimates changed from laboratory to laboratory. For example, in Table 1 Youden shows the following estimates of the astronomical unit from different laboratories. The reports included an estimate of spread (what we now would call confidence interval).
 
-![Estimates of the astronomical, unit with estimates of spread, verus year it was reported. The two laboratories that reported more than one estimate are shown in color.](images/R/intro_to_batch_effects-tmp-astronomical_units-1.png) 
+
+```
+## Warning in download.file(url, method = method, ...): download had nonzero
+## exit status
+```
+
+```
+## Error in read.table(file = file, header = header, sep = sep, quote = quote, : no lines available in input
+```
+
+```
+## Error in jitter(dat[, 2]): object 'dat' not found
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'dat' not found
+```
+
+```
+## Error in labs[!labs %in% c("Jodrell Bank", "Spencer Jones")] <- "Others": object 'labs' not found
+```
+
+```
+## Error in factor(labs, levels = c("Others", "Spencer Jones", "Jodrell Bank")): object 'labs' not found
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'labs' not found
+```
+
+```
+## Error in plot(year, dat[, 3], ylim = c(min(dat[, 4]), max(dat[, 5])), : object 'year' not found
+```
+
+```
+## Error in nrow(dat): object 'dat' not found
+```
+
+```
+## Error in levels(labs): object 'labs' not found
+```
+
+```
+## Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): plot.new has not been called yet
+```
+
+```
+## Error in text.default(1905, current, "Current estimate", pos = 3): plot.new has not been called yet
+```
 
 Judging by the variability across labs and the fact that the reported bounds do not explain this variability clearly shows the presence of an effect that differes across labs but not within. This type of variability is what we call a batch effect. Note that there are laboratories that reported two estimates (purple and orange) and batch effects are seen across the two different measurements from the same laboratories as well. 
 
@@ -67,12 +115,26 @@ With data from several laboratories we can in fact estimate the {$$}\gamma{/$$},
 
 ```r
 avg <- mean(dat[,3])
+```
+
+```
+## Error in mean(dat[, 3]): object 'dat' not found
+```
+
+```r
 se <- sd(dat[,3]) / sqrt(nrow(dat))
+```
+
+```
+## Error in is.data.frame(x): object 'dat' not found
+```
+
+```r
 cat("95% confidence interaval is: [",avg-1.96*se,",", avg+1.96*se,"]")
 ```
 
 ```
-## 95% confidence interaval is: [ 92.8727 , 92.98542 ]
+## Error in cat("95% confidence interaval is: [", avg - 1.96 * se, ",", avg + : object 'avg' not found
 ```
 
 ```r
