@@ -7,7 +7,7 @@ title: Multidimensional scaling
 
 ## Multi-Dimensional Scaling Plots
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/mds.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/highdim/mds.Rmd).
 
 We will motivate multi-dimensional scaling (MDS) plots with a gene expression example. To simplify the illustration we will only consider three tissues:
 
