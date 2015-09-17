@@ -1,8 +1,10 @@
+## Chapter 0 - Introduction
 introduction.md
 getting_started.md
 getting_started_exercises.md
 dplyr_intro.md
 dplyr_intro_exercises.md
+math_notation.md
 
 ## Chapter 1 - Inference
 random_variables.md
@@ -24,7 +26,7 @@ permutation_tests_exercises.md
 association_tests.md
 association_tests_exercises.md
 
-## Chapter 2 - EDA
+## Chapter 2 - Exploratory Data Analysis
 exploratory_data_analysis.md
 plots_to_avoid.md
 exploratory_data_analysis_exercises.md
@@ -44,7 +46,7 @@ matrix_operations_exercises.md
 matrix_algebra_examples.md
 matrix_algebra_examples_exercises.md
 
-## Chapter 5: Linear Models
+## Chapter 5 - Linear Models
 linear_models_intro.md
 linear_models_intro_exercises.md
 expressing_design_formula.md
@@ -60,7 +62,7 @@ collinearity_exercises.md
 qr_and_regression.md
 linear_models_going_further.md
 
-## Chapter 6: inference for high-dimensional data
+## Chapter 6 - Inference for High-Dimensional Data
 intro_to_highthroughput_data.md
 intro_to_highthroughput_data_exercises.md
 inference_for_highthroughput.md
@@ -70,7 +72,7 @@ multiple_testing_exercises.md
 eda_for_highthroughput.md
 eda_for_highthroughput_exercises.md
 
-## Chapter 7: Statistical Modeling
+## Chapter 7 - Statistical Modeling
 modeling.md
 modeling_exercises.md
 bayes.md
@@ -78,7 +80,7 @@ bayes_exercises.md
 hierarchical_models.md
 hierarchical_models_exercises.md
 
-## Chapter 8: Distance and dimension reduction
+## Chapter 8 - Distance and Dimension Reduction
 distance.md
 distance_exercises.md
 pca_motivation.md
@@ -90,7 +92,7 @@ mds.md
 mds_exercises.md
 PCA.md
 
-## Chapter 9: Practical Machine Learning
+## Chapter 9 - Practical Machine Learning
 clustering_and_heatmaps.md
 clustering_and_heatmaps_exercises.md
 conditional_expectation.md
@@ -101,7 +103,7 @@ machine_learning.md
 crossvalidation.md
 crossvalidation_exercises.md
 
-## Chapter 10 - Batch effects
+## Chapter 10 - Batch Effects
 intro_to_batch_effects.md
 confounding.md
 confounding_exercises.md
