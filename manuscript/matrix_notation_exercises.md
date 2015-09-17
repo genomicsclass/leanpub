@@ -32,15 +32,7 @@ A>    What is the entry in row 25, column 3 ?
 A>
 A>
 A>
-A>2. Using the function cbind, create a 10 x 5 matrix with first column
-A>
-A>    
-    ```r
-    x=1:10
-    ```
-A>    Then columns `2*x`, `3*x`, `4*x` and `5*x` in columns 2 through 5.
-A>
-A>    What is the sum of the elements of the 7th row?
+A>2. Using the function cbind, create a 10 x 5 matrix with first column `x=1:10`. Then  add `2*x`, `3*x`, `4*x` and `5*x` tp columns 2 through 5. What is the sum of the elements of the 7th row?
 A>
 A>
 A>
