@@ -10,6 +10,7 @@ title: Permutation tests
 ## Permutation Tests
 
 The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/inference/permutation_tests.Rmd).
+
 Suppose we have a situation in which none of the standard mathematical statistical approximations apply. We have computed a summary statistic, such as the difference in mean, but do not have a useful approximation, such as that provided by the CLT. In practice, we do not have access to all values in the population so we can't perform a simulation as done above. Permutation tests can be useful in these scenarios. 
 
 We are back to the scenario were we only have 10 measurements for each group.
