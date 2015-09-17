@@ -28,9 +28,10 @@ A>
 A>
 A>2. For the last simulation you can make a qqplot to confirm the normal approximation. Now, the CLT is an _asympototic_ result meaning it is closer and closer to being a perfect approximation as the sample size increases. In practice, however, we need to decide if it is appropriate for actual sample sizes. Is 10 enough? 15? 30?
 A>   
-A>    In the example used in problem 1, the original data is binary (either 6 or not). In this case the success probability also affects the appropriateness of the CLT. With very low probabilities, we need larger sample sizes for the CLT to "kick in". 
+A>    In the example used in exercise 1, the original data is binary (either 6 or not). In this case the success probability also affects the appropriateness of the CLT. With very low probabilities, we need larger sample sizes for the CLT to "kick in". 
 A>   
 A>    Run the simulation from exercise 1, but for different values of `p` and `n`. For which of the following is the normal approximation best?
+A>    
 A>    - A) `p=0.5` and `n=5`
 A>    - B) `p=0.5` and `n=30`
 A>    - C) `p=0.01` and `n=30`
