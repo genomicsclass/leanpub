@@ -8,7 +8,7 @@ title: Adjusting for Batch Effects with Linear Models
 
 ## Data Example
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/adjusting_with_linear_models.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/batch/adjusting_with_linear_models.Rmd).
 
 To illustrate how we can adjust for batch effects using statistical methods, we will create a data example in which the outcome of interest is confounded with batch, but not completely. We will also select an outcome for which we have an expectation of what genes should be diferentially expressed. Namely, we make sex the outcome of interest and expect genes on the Y chromosome to be diferentially expressed. We may also see genes from the X chromosome as differentially expressed since some escape X inactivation. The example dataset is below.
 
@@ -108,7 +108,7 @@ The histogram is not flat. Instead, low p-values are over-represented. More than
 
 ## Adjusting for Batch Effects with Linear Models
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/adjusting_with_linear_models.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/batch/adjusting_with_linear_models.Rmd).
 
 We have already observed that processing date has an effect on gene expression.  We will therefore try to _adjust_ for this by including it in a model.  When we perform a t-test comparing the two groups, it is equivalent to fitting the following linear model:
 
@@ -218,7 +218,7 @@ There is a great improvement in specificity (less false positives) without much 
 
 ## A Note on Computing Efficiency
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/adjusting_with_linear_models.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/batch/adjusting_with_linear_models.Rmd).
 
 In the code above, the design matrix does not change within the iterations we are computing {$$}(X^\top X)^{-1}{/$$} repeatedly and applying to each gene. Instead we can perform this calculation in one matrix algebra calculation by computing it once and then obtaining all the betas by multiplying {$$}(X^\top X)^{-1}X^\top Y{/$$} with the columns of {$$}Y{/$$} representing genes in this case. The `limma` package has an implementation of this idea (using the QR decomposition). Notice how much faster this is:
 
