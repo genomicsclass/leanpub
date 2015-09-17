@@ -7,7 +7,7 @@ title: Factor Analysis
 
 ## Factor Analysis
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/factor_analysis.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/batch/factor_analysis.Rmd).
 
 
 Many of the statistical ideas applied to correcting for batch effects come from Factor Analysis. Factor Analysis was first developed over a century ago. Karl Pearson noted that correlation between different subject when the correlation was computed across students. To explain this, he posed a model having one factor that was common across subjects for each student that explained this correlation:
