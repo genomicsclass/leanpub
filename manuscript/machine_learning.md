@@ -6,7 +6,7 @@ title: Class Prediction
 
 ## Class Prediction
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/machine_learning.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/ml/machine_learning.Rmd).
 
 Here we give a brief introduction to the main machine learning topic:
 class prediction. In fact, many refer to class prediction as machine
