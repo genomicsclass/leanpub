@@ -10,7 +10,7 @@ layout: page
 
 ## The QR Factorization (Advanced)
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course2/qr_and_regression.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/linear/qr_and_regression.Rmd).
 
 We have seen that in order to calculate the LSE, we need to invert a matrix. We have shown how to use solve. However, solve is not a stable solution. When coding LSE computation, we use the QR decomposition.
 
