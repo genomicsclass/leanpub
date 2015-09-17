@@ -16,7 +16,7 @@ get set up to follow along.
 
 ## Installing R
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/getting_started.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/intro/getting_started.Rmd).
 
 The first step is to install R. You can download and install R from
 the [Comprehensive R Archive Network](https://cran.r-project.org/)
@@ -29,7 +29,7 @@ you can try the following resources:
 
 ## Installing RStudio
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/getting_started.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/intro/getting_started.Rmd).
 
 The next step is to install RStudio, a program for viewing and running
 R scripts. Technically you can run all the code shown here without
@@ -41,7 +41,7 @@ Windows we have special
 
 ## Learn R Basics
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/getting_started.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/intro/getting_started.Rmd).
 
 The first homework assignment is to complete an R tutorial to
 familiarize yourself with the basics of programming and R syntax. If
@@ -86,7 +86,7 @@ character is interpreted:
 
 ## Installing Packages
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/getting_started.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/intro/getting_started.Rmd).
 
 The first R command we will run is `install.packages`. If you took the
 `swirl` tutorial you already did this. R only includes a basic set of
@@ -120,7 +120,7 @@ install it first.
 
 ## Importing Data into R
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/getting_started.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/intro/getting_started.Rmd).
 
 The first step when getting ready to analyze data is to read in the data into R. There are several ways to do this and we will discuss three of them. But you only need to learn one to follow along. 
 
@@ -148,7 +148,7 @@ getwd()
 ```
 
 ```
-## [1] "/Users/ririzarr/myDocuments/teaching/HarvardX/labs/course1"
+## [1] "/Users/ririzarr/myDocuments/teaching/HarvardX/labs/intro"
 ```
 
 You can also change your working directory using the function `setwd`. Or you can change it through RStudio by clicking on "Session". 
