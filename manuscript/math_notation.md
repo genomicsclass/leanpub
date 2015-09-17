@@ -3,6 +3,9 @@ layout: page
 title: Mathematical Notation
 ---
 
+
+
+
 ## Mathematical Notation
 
 The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/intro/math_notation.Rmd).
@@ -19,7 +22,7 @@ We dealing with data we almost always have a series of numbers. To describe the 
 x <- 1:5
 ```
 
-can be generally represented like this {$$}x_1, x_2, x_3, x_4, x_5{/$$}. We use dots to simplify this {$$}x_1,\dots,x_5{/$$} and indexing to simplify even more {$$}x_i, i=1,\dots,5{/$$}. If we want to describe a procedure for a list of any size {$$}n{/$$} we write {$$}x_i, i=1,dots,n{/$$}. 
+can be generally represented like this {$$}x_1, x_2, x_3, x_4, x_5{/$$}. We use dots to simplify this {$$}x_1,\dots,x_5{/$$} and indexing to simplify even more {$$}x_i, i=1,\dots,5{/$$}. If we want to describe a procedure for a list of any size {$$}n{/$$} we write {$$}x_i, i=1,\dots,n{/$$}. 
 
 We sometimes have two indexes. For example we may several measurements (blood pressure, weight, height, age, cholesterol level) for 100 individuals. We can then use double indexes: {$$}x_{i,j}, i=1,\dots,100, j=1,\dots,5{/$$}. 
 
@@ -35,7 +38,7 @@ x <- 1:n
 S <- sum(x)
 ```
 
-and it is the {$$}\sum{/$$} sign:
+and it is the {$$}\sum{/$$} notation (captial S in Greek):
 
 {$$}
 S = \sum_{i=1}^n x_i
@@ -92,7 +95,7 @@ We only use these a couple of times so you may simply skip this section if you p
 
 For certain statistical operations we need to figure out areas under the curve. For example, for a function {$$}f(x){/$$} ... 
 
-![ ](images/R/intergrals-1.png) 
+![ ](images/R/math_notation-tmp-intergrals-1.png) 
 
 ... we need to know what proportion of the total area under the curve is grey. 
 
