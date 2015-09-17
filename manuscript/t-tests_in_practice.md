@@ -7,7 +7,7 @@ layout: page
 
 ## t-tests in Practice
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/t-tests_in_practice.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/inference/t-tests_in_practice.Rmd).
 
 #### Introduction
 
@@ -41,16 +41,50 @@ the difference in mean.
 ```r
 library(dplyr)
 dat <- read.csv("femaleMiceWeights.csv") #previously downloaded
+```
 
+```
+## Warning in file(file, "rt"): cannot open file 'femaleMiceWeights.csv': No
+## such file or directory
+```
+
+```
+## Error in file(file, "rt"): cannot open the connection
+```
+
+```r
 control <- filter(dat,Diet=="chow") %>% select(Bodyweight) %>% unlist
-treatment <- filter(dat,Diet=="hf") %>% select(Bodyweight) %>% unlist
+```
 
+```
+## Error in filter_(.data, .dots = lazyeval::lazy_dots(...)): object 'dat' not found
+```
+
+```r
+treatment <- filter(dat,Diet=="hf") %>% select(Bodyweight) %>% unlist
+```
+
+```
+## Error in filter_(.data, .dots = lazyeval::lazy_dots(...)): object 'dat' not found
+```
+
+```r
 diff <- mean(treatment) - mean(control)
+```
+
+```
+## Error in mean(treatment): object 'treatment' not found
+```
+
+```r
 print(diff)
 ```
 
 ```
-## [1] 3.020833
+## function (x, ...) 
+## UseMethod("diff")
+## <bytecode: 0x7ff76ad51fc8>
+## <environment: namespace:base>
 ```
 
 We are asked to report a p-value. What do we do? We learned that
@@ -74,7 +108,7 @@ sd(control)/sqrt(length(control))
 ```
 
 ```
-## [1] 0.8725323
+## Error in is.data.frame(x): object 'control' not found
 ```
 
 This is the SE of the sample average, but we actually want the SE of `diff`. We saw how statistical theory tells us that the variance of the difference of two random variables is the sum of its variances, so we compute the variance and take the square root:
@@ -87,12 +121,20 @@ se <- sqrt(
   )
 ```
 
+```
+## Error in is.data.frame(x): object 'treatment' not found
+```
+
 Statistical theory tells us that if we divide a random variable by its
 SE, we get a new random variable with an SE of 1.
 
 
 ```r
 tstat <- diff/se 
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'se' not found
 ```
 
 This ratio is what we call the t-statistic. It's the ratio of two random variables and thus a random variable. Once we know the distribution of this random variable, we can then easily compute a p-value.
@@ -112,13 +154,34 @@ these two regions "tails" and calculate their size:
 
 ```r
 righttail <- 1 - pnorm(abs(tstat)) 
+```
+
+```
+## Error in pnorm(abs(tstat)): object 'tstat' not found
+```
+
+```r
 lefttail <- pnorm(-abs(tstat))
+```
+
+```
+## Error in pnorm(-abs(tstat)): object 'tstat' not found
+```
+
+```r
 pval <- lefttail + righttail
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'lefttail' not found
+```
+
+```r
 print(pval)
 ```
 
 ```
-## [1] 0.0398622
+## Error in print(pval): object 'pval' not found
 ```
 
 In this case the p-value is smaller than 0.05 and using the conventional cutoff of 0.05, we would call the difference _statistically significant_.
@@ -129,7 +192,7 @@ Now there is a problem. CLT works for large samples, but is 12 large enough? A r
 
 ## The t-distribution in Practice
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/t-tests_in_practice.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/inference/t-tests_in_practice.Rmd).
 
 As described earlier, the statistical theory offers another useful
 result. If the distribution of the population is normal, then we can
@@ -147,13 +210,35 @@ library(rafalib)
 mypar(1,2)
 
 qqnorm(treatment)
-qqline(treatment,col=2)
+```
 
+```
+## Error in qqnorm(treatment): object 'treatment' not found
+```
+
+```r
+qqline(treatment,col=2)
+```
+
+```
+## Error in quantile(y, probs, names = FALSE, type = qtype, na.rm = TRUE): object 'treatment' not found
+```
+
+```r
 qqnorm(control)
+```
+
+```
+## Error in qqnorm(control): object 'control' not found
+```
+
+```r
 qqline(control,col=2)
 ```
 
-![Quantile-quantile plots for sample against theoretical normal distribution.](images/R/t-tests_in_practice-tmp-data_qqplot-1.png) 
+```
+## Error in quantile(y, probs, names = FALSE, type = qtype, na.rm = TRUE): object 'control' not found
+```
 
 If we use this approximation, then statistical theory tells us that
 the distribution of the random variable `tstat` follows a
@@ -168,17 +253,7 @@ t.test(treatment, control)
 ```
 
 ```
-## 
-## 	Welch Two Sample t-test
-## 
-## data:  treatment and control
-## t = 2.0552, df = 20.236, p-value = 0.053
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##  -0.04296563  6.08463229
-## sample estimates:
-## mean of x mean of y 
-##  26.83417  23.81333
+## Error in t.test(treatment, control): object 'treatment' not found
 ```
 
 To see just the p-value we can use the `$` extractor:
@@ -186,11 +261,18 @@ To see just the p-value we can use the `$` extractor:
 
 ```r
 result <- t.test(treatment,control)
+```
+
+```
+## Error in t.test(treatment, control): object 'treatment' not found
+```
+
+```r
 result$p.value
 ```
 
 ```
-## [1] 0.05299888
+## Error in eval(expr, envir, enclos): object 'result' not found
 ```
 
 
