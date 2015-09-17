@@ -188,10 +188,19 @@ filename <- "femaleMiceWeights.csv"
 download(url, destfile=filename)
 ```
 
+```
+## Warning in download.file(url, method = method, ...): download had nonzero
+## exit status
+```
+
 We can then read it in like this:
 
 ```r
 dat <- read.csv(filename)
+```
+
+```
+## Error in read.table(file = file, header = header, sep = sep, quote = quote, : no lines available in input
 ```
 
 Many of the datasets we include in this book are available in custom-built packages available from GitHub. The reason we use GitHub rather than CRAN is that on GitHub we do not have to vet packages, which gives us much more flexibility. 
