@@ -96,7 +96,7 @@ A 95% confidence interval (we can use percentages other than 95%) is a
 random interval with a 95% probability of falling on the parameter we
 are estimating. Note that, saying 95% of random intervals will fall on the
 true value (our definition above) is *not the same* as saying there is
-a 95% chance that the specific interval we calculate contains the true value.
+a 95% chance that the true value falls in our interval. 
 To construct it, we note that the CLT tells us that 
 {$$}\sqrt{N} (\bar{X}-\mu_X) / s_X{/$$} follows a normal distribution with mean 0 and
 SD 1. This implies that the probability of this event:
@@ -170,7 +170,8 @@ for (i in 1:B) {
   chow <- sample(chowPopulation,N)
   se <- sd(chow)/sqrt(N)
   interval <- c(mean(chow)-Q*se, mean(chow)+Q*se)
-  covered <- mean(chowPopulation) <= interval[2] & mean(chowPopulation) >= interval[1]
+  covered <- 
+    mean(chowPopulation) <= interval[2] & mean(chowPopulation) >= interval[1]
   color <- ifelse(covered,1,2)
   lines(interval, c(i,i),col=color)
 }
@@ -266,22 +267,20 @@ qnorm(1- 0.05/2)
 
 We recommend that in practice confidence intervals be reported instead of p-values. If for some reason you are required to provide p-values, or required that your results are significant at the 0.05 of 0.01 levels, confidence intervals do provide this information. 
 
-If we are talking about a t-test p-value, we are asking if the
-difference we observe {$$}\bar{Y} - \bar{X}{/$$} is actually equal to
-zero. So we can form a confidence interval for this
+If we are talking about a t-test p-value, we are asking if 
+differences as extreme as the one we observe, {$$}\bar{Y} - \bar{X}{/$$}, are likely when the difference between the population averages is actually equal to
+zero. So we can form a confidence interval with the observed 
 difference. Instead of writing {$$}\bar{Y} - \bar{X}{/$$} repeatedly, let's
 define this difference as a new variable 
-{$$}\Delta \equiv \bar{Y} - \bar{X}{/$$} . 
-The symbol {$$}\Delta{/$$} (Delta) is often used for the difference
-between two variables in math and physics.
+{$$}d \equiv \bar{Y} - \bar{X}{/$$} . 
 
-Suppose you use CLT and report {$$}\Delta \pm 2 s_\Delta/\sqrt{N}{/$$} as a
+Suppose you use CLT and report {$$}d \pm 2 s_d/\sqrt{N}{/$$} as a
 95% confidence interval for the difference and this interval does not
 include 0 (a false positive).
 Because the interval does not include 0, this implies that either
-{$$}\Delta - 2 s_\Delta/\sqrt{N}  > 0{/$$} or {$$}\Delta + 2 s_\Delta/\sqrt{N} < 0{/$$}.
+{$$}D - 2 s_d/\sqrt{N}  > 0{/$$} or {$$}d + 2 s_d/\sqrt{N} < 0{/$$}.
 This suggests that either
-{$$}\sqrt{N}\Delta/s_\Delta > 2{/$$} or {$$}\sqrt{N}\Delta/s_\Delta < 2{/$$}.  This
+{$$}\sqrt{N}d/s_d > 2{/$$} or {$$}\sqrt{N}d/s_d < 2{/$$}.  This
 then implies that the t-statistic is more extreme than 2, which in
 turn suggests that the p-value must be smaller than 0.05
 (approximately, for a more exact calculation use `qnorm(.05/2)` instead of 2).
@@ -290,44 +289,28 @@ CLT (with `qt(.05/2, df=N-2)`).
 In summary, if a 95% or 99% confidence interval does not include
 0, then the p-value must be smaller than 0.05 or 0.01 respectively. 
 
-Note that the confidence interval for the difference {$$}\Delta{/$$} is provided by the `t.test` function:
+Note that the confidence interval for the difference {$$}d{/$$} is provided by the `t.test` function:
 
 
 
 
 ```
-## 
-## 	Welch Two Sample t-test
-## 
-## data:  treatment and control
-## t = 2.0552, df = 20.236, p-value = 0.053
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##  -0.04296563  6.08463229
-## sample estimates:
-## mean of x mean of y 
-##  26.83417  23.81333
+## [1] -0.04296563  6.08463229
+## attr(,"conf.level")
+## [1] 0.95
 ```
 
 In this case the 95% confidence interval does include 0 and we observe that the p-value is larger than 0.05 as predicted. If we change this to a 90% confidence interval, then:
 
 
 ```r
-t.test(treatment,control,conf.level=0.9)
+t.test(treatment,control,conf.level=0.9)$conf.int
 ```
 
 ```
-## 
-## 	Welch Two Sample t-test
-## 
-## data:  treatment and control
-## t = 2.0552, df = 20.236, p-value = 0.053
-## alternative hypothesis: true difference in means is not equal to 0
-## 90 percent confidence interval:
-##  0.4871597 5.5545070
-## sample estimates:
-## mean of x mean of y 
-##  26.83417  23.81333
+## [1] 0.4871597 5.5545070
+## attr(,"conf.level")
+## [1] 0.9
 ```
 
 0 is no longer in the confidence interval (which is expected because
