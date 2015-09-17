@@ -12,7 +12,7 @@ library(rafalib)
 
 ## Basic Exploratory Data Analysis 
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/eda_for_highthroughput.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/advinference/eda_for_highthroughput.Rmd).
 
 An under-appreciated advantage of working with high-throughput data is that problems with the data are sometimes more easily exposed than with low-throughput data. The fact that we have thousands of measurements permits us to see problems that are not apparent when only a few measurements are available. A powerful way to detect these problems is with exploratory data analysis (EDA). Here we review some of the plots that allow us to detect quality problems.
 We will use the results obtained from applying t-test to data from a gene expression dataset:
