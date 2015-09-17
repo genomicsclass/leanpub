@@ -8,7 +8,7 @@ title: Bayesian Statistics
 
 ## Bayesian Statistics
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/bayes.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/modeling/bayes.Rmd).
 
 One distinguishing characteristic of high-throughput data is that we make many measures of related outcomes. For example, we measure the expression of thousands of genes, or the height of thousands of peaks representing protein binding, or the methylation levels across several CpGs. However, most of the statistical inference approaches we have shown here treat each feature independently and pretty much ignores data from other features. We will learn how using statistical models we can gain power by modeling features jointly. The most successful of these models are what we refer to as hierarchical models, which are best explained in the context of Bayesian statistics.
 
@@ -103,7 +103,7 @@ The proportions of red in the top plot shows {$$}\mbox{Pr}(D=1){/$$}. The bottom
 #### Bayes in practice
 
 
-<!-- ![iglesias](images/downloads/902px-Jos%C3%A9_Iglesias_on_September_28%2C_2012.jpg) -->
+<!-- ![iglesias](http://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Jos%C3%A9_Iglesias_on_September_28%2C_2012.jpg/902px-Jos%C3%A9_Iglesias_on_September_28%2C_2012.jpg) -->
 
 
 José Iglesias 2013
