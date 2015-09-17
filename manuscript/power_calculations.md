@@ -20,20 +20,52 @@ We have used the example of the effects of two different diets on the weight of 
 ```r
 library(dplyr)
 dat <- read.csv("mice_pheno.csv") #Previously downloaded 
+```
 
+```
+## Error in read.table(file = file, header = header, sep = sep, quote = quote, : no lines available in input
+```
+
+```r
 controlPopulation <- filter(dat,Sex == "F" & Diet == "chow") %>%  
   select(Bodyweight) %>% unlist
+```
 
+```
+## Error in filter_(.data, .dots = lazyeval::lazy_dots(...)): object 'dat' not found
+```
+
+```r
 hfPopulation <- filter(dat,Sex == "F" & Diet == "hf") %>%  
   select(Bodyweight) %>% unlist
+```
 
+```
+## Error in filter_(.data, .dots = lazyeval::lazy_dots(...)): object 'dat' not found
+```
+
+```r
 mu_hf <- mean(hfPopulation)
+```
+
+```
+## Error in mean(hfPopulation): object 'hfPopulation' not found
+```
+
+```r
 mu_control <- mean(controlPopulation)
+```
+
+```
+## Error in mean(controlPopulation): object 'controlPopulation' not found
+```
+
+```r
 print(mu_hf - mu_control)
 ```
 
 ```
-## [1] 2.375517
+## Error in print(mu_hf - mu_control): object 'mu_hf' not found
 ```
 
 ```r
@@ -41,7 +73,7 @@ print((mu_hf - mu_control)/mu_control * 100) # percent increase
 ```
 
 ```
-## [1] 9.942157
+## Error in print((mu_hf - mu_control)/mu_control * 100): object 'mu_hf' not found
 ```
 
 We have also seen that in some cases when we take a sample and perform a t-test, we don't always get a p-value smaller than 0.05. For example, here is a case were we take sample of 5 mice and don't achieve statistical significance at the 0.05 level:
@@ -51,12 +83,26 @@ We have also seen that in some cases when we take a sample and perform a t-test,
 set.seed(1)
 N <- 5
 hf <- sample(hfPopulation,N)
+```
+
+```
+## Error in sample(hfPopulation, N): object 'hfPopulation' not found
+```
+
+```r
 control <- sample(controlPopulation,N)
+```
+
+```
+## Error in sample(controlPopulation, N): object 'controlPopulation' not found
+```
+
+```r
 t.test(hf,control)$p.value
 ```
 
 ```
-## [1] 0.1410204
+## Error in t.test(hf, control): object 'hf' not found
 ```
 
 Did we make a mistake? By not rejecting the null hypothesis, are we
@@ -154,7 +200,7 @@ reject(12)
 ```
 
 ```
-## [1] FALSE
+## Error in sample(hfPopulation, N): object 'hfPopulation' not found
 ```
 
 Now we can use the `replicate` function to do this `B` times. 
@@ -162,6 +208,10 @@ Now we can use the `replicate` function to do this `B` times.
 
 ```r
 rejections <- replicate(B,reject(N))
+```
+
+```
+## Error in sample(hfPopulation, N): object 'hfPopulation' not found
 ```
 
 Our power is just the proportion of times we correctly reject. So with  {$$}N=12{/$$} our power is only: 
@@ -172,7 +222,7 @@ mean(rejections)
 ```
 
 ```
-## [1] 0.2145
+## Error in mean(rejections): object 'rejections' not found
 ```
 
 This explains why the t-test was not rejecting when we knew the null
@@ -197,6 +247,10 @@ power <- sapply(Ns,function(N){
   })
 ```
 
+```
+## Error in sample(hfPopulation, N): object 'hfPopulation' not found
+```
+
 For each of the three simulations the above code returns the proportion of times we reject. Not surprisingly power increases with N:
 
 
@@ -204,7 +258,9 @@ For each of the three simulations the above code returns the proportion of times
 plot(Ns, power, type="b")
 ```
 
-![Power plotted against sample size.](images/R/power_calculations-tmp-power_versus_sample_size-1.png) 
+```
+## Error in xy.coords(x, y, xlabel, ylabel, log): 'x' and 'y' lengths differ
+```
 
 Similarly, if we change the level `alpha` at which we reject, power
 changes. The smaller I want the chance of type I error to be, the less
@@ -220,10 +276,19 @@ power <- sapply(alphas,function(alpha){
   rejections <- replicate(B,reject(N,alpha=alpha))
   mean(rejections)
 })
+```
+
+```
+## Error in sample(hfPopulation, N): object 'hfPopulation' not found
+```
+
+```r
 plot(alphas, power, xlab="alpha", type="b", log="x")
 ```
 
-![Power plotted against cut-off.](images/R/power_calculations-tmp-power_versus_alpha-1.png) 
+```
+## Error in xy.coords(x, y, xlabel, ylabel, log): 'x' and 'y' lengths differ
+```
 
 Note that the x-axis in this last plot is in the log scale.
 
@@ -276,16 +341,29 @@ Again we use `sapply` to run our simulations:
 pvalues <- sapply(Ns_rep, calculatePvalue)
 ```
 
+```
+## Error in sample(hfPopulation, N): object 'hfPopulation' not found
+```
+
 Now we can plot the 10 p-values we generated for each sample size:
 
 
 ```r
 plot(Ns_rep, pvalues, log="y", xlab="sample size",
      ylab="p-values")
+```
+
+```
+## Error in xy.coords(x, y, xlabel, ylabel, log): object 'pvalues' not found
+```
+
+```r
 abline(h=c(.01, .05), col="red", lwd=2)
 ```
 
-![p-values from random samples at varying sample size. The actual value of the p-values decreases as we increase sample size whenever the alternative hypothesis is true.](images/R/power_calculations-tmp-pvals_decrease-1.png) 
+```
+## Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): plot.new has not been called yet
+```
 
 Note that the y-axis is log scale, and that the p-values show a
 decreasing trend all the way to {$$}10^{-8}{/$$}
@@ -315,13 +393,34 @@ and the confidence interval by the control population mean:
 ```r
 N <- 12
 hf <- sample(hfPopulation, N)
+```
+
+```
+## Error in sample(hfPopulation, N): object 'hfPopulation' not found
+```
+
+```r
 control <- sample(controlPopulation, N)
+```
+
+```
+## Error in sample(controlPopulation, N): object 'controlPopulation' not found
+```
+
+```r
 diff <- mean(hf) - mean(control)
+```
+
+```
+## Error in mean(hf): object 'hf' not found
+```
+
+```r
 diff / mean(control) * 100
 ```
 
 ```
-## [1] 1.868663
+## Error in mean(control): object 'control' not found
 ```
 
 ```r
@@ -329,9 +428,7 @@ t.test(hf, control)$conf.int / mean(control) * 100
 ```
 
 ```
-## [1] -20.94576  24.68309
-## attr(,"conf.level")
-## [1] 0.95
+## Error in t.test(hf, control): object 'hf' not found
 ```
 
 In addition, we can report a statistic called
@@ -342,11 +439,18 @@ deviation of the two groups.
 
 ```r
 sd_pool <- sqrt(((N-1)*var(hf) + (N-1)*var(control))/(2*N - 2))
+```
+
+```
+## Error in is.data.frame(x): object 'hf' not found
+```
+
+```r
 diff / sd_pool
 ```
 
 ```
-## [1] 0.07140083
+## Error in eval(expr, envir, enclos): object 'sd_pool' not found
 ```
 
 This tells us how many standard deviations of the data the mean of the
