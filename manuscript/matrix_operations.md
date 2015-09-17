@@ -12,7 +12,7 @@ layout: page
 
 The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/matrixalg/matrix_operations.Rmd).
 
-In the previous section we motivated the use of matrix algebra with this system of equations:
+In a previous section we motivated the use of matrix algebra with this system of equations:
 
 
 {$$}
@@ -67,10 +67,18 @@ Having described matrix notation, we will explain the operation we perform with 
 
 We start with one of the simplest operations: scalar multiplication. If {$$}a{/$$} is scalar and {$$}\mathbf{X}{/$$} is a matrix, then:
 
+
 {$$}
+\mathbf{X} = \begin{pmatrix}
+  x_{1,1}&\dots & x_{1,p} \\
+  x_{2,1}&\dots & x_{2,p} \\
+   & \vdots & \\
+  x_{N,1}&\dots & x_{N,p} 
+  \end{pmatrix} \implies
 a \mathbf{X} = 
 \begin{pmatrix}
   a x_{1,1} & \dots & a x_{1,p}\\
+  a x_{2,1}&\dots & a x_{2,p} \\
   & \vdots & \\
   a x_{N,1} & \dots & a  x_{N,p}
 \end{pmatrix}
