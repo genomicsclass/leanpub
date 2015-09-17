@@ -77,7 +77,7 @@ This section explains the notation used above. It turns that we can borrow this 
 
 The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/matrixalg/matrix_notation.Rmd).
 
-In the examples above the random variables associated with the data were represented by {$$}Y_1,\dots,Y_n{/$$}. We can think of this as a vector. In fact, in R we are already doing this:
+In the falling object, father-son heights, and mouse weight examples the random variables associated with the data were represented by {$$}Y_1,\dots,Y_n{/$$}. We can think of this as a vector. In fact, in R we are already doing this:
 
 
 ```r
@@ -104,7 +104,7 @@ For reasons that will soon become clear, default representation of data vectors 
 
 Here we don't always use bold because normally one can tell what is a matrix from the context.
 
-Similarly, we can use math notation to represent the covariates or predictors. In the case of the two, the second one is just the square of the first.
+Similarly, we can use math notation to represent the covariates or predictors. In a case with two predictors we can represent them like this:
 
 {$$} 
 \mathbf{X}_1 = \begin{pmatrix}
@@ -119,7 +119,7 @@ x_{N,2}
 \end{pmatrix}
 {/$$}
 
-Note that for the object falling example {$$}x_{1,1}= t_i{/$$} and {$$}x_{i,1}=t_i^2{/$$} with {$$}t_i{/$$} the time of the i-th observation. Also, keep in mind that vectors can be thought of as {$$}N\times 1{/$$} matrices.
+Note that for the falling objectexample {$$}x_{1,1}= t_i{/$$} and {$$}x_{i,1}=t_i^2{/$$} with {$$}t_i{/$$} the time of the i-th observation. Also, keep in mind that vectors can be thought of as {$$}N\times 1{/$$} matrices.
 
 For reasons that will soon become apparent, it is convenient to represent these in matrices:
 
@@ -137,12 +137,12 @@ This matrix has dimension {$$}N \times 2{/$$}. We can create this matrix in R th
 ```r
 n <- 25
 tt <- seq(0,3.4,len=n) ##time in secs, t is a base function
-X <- cbind(x1=tt,x2=tt^2)
+X <- cbind(X1=tt,X2=tt^2)
 head(X)
 ```
 
 ```
-##             x1         x2
+##             X1         X2
 ## [1,] 0.0000000 0.00000000
 ## [2,] 0.1416667 0.02006944
 ## [3,] 0.2833333 0.08027778
