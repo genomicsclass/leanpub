@@ -13,7 +13,7 @@ library(rafalib)
 
 ## Inference in Practice
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/inference_for_highthroughput.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/advinference/inference_for_highthroughput.Rmd).
 
 Suppose we were given high-throughput gene expression data that was measured for several individuals in two populations. We are asked to report which genes have different average expression levels in the two populations. If instead thousands of genes we were handed data from just one gene, we could simply apply the inference techniques that we have learned before. We could, for example, use a t-test or some other test. Here we review what changes when we consider high-throughput data.
 
