@@ -2,19 +2,19 @@
 intro introduction 
 intro getting_started 
 intro_exercises getting_started_exercises
-intro dplyr_intro 
-intro_exercises dplyr_intro_exercises 
+intro dplyr_intro dplyr_introduction
+intro_exercises dplyr_intro_exercises dplyr_introduction_exercises
 
 ## Chapter 1 - Inference
-inference random_variables Random_
+inference random_variables
 inference_exercises random_variables_exercises
 inference populations_and_samples 
 inference_exercises populations_and_samples_exercises
-inference clt_and_t-distribution	 
-inference_exercises clt_and_t-distribution_exercises
-inference clt_in_practice
-inference_exercises clt_in_practice_exercises
-inference t-tests_in_practice
+inference clt_and_t-distribution CLT_and_t-distribution
+inference_exercises clt_and_t-distribution_exercises CLT_and_t-distribution_exercises
+inference clt_in_practice CLT_in_practice
+inference_exercises clt_in_practice_exercises CLT_in_practice_exercises
+inference t-tests_in_practice t-test_in_practice
 inference confidence_intervals
 inference power_calculations
 inference_exercises power_calculations_exercises
@@ -32,12 +32,12 @@ eda_exercises exploratory_data_analysis_exercises
 
 ## Chapter 3 - Robust Statistics
 robust robust_summaries
-robust ranktest
+robust ranktest Rank_tests
 robust_exercises robust_summaries_exercises
 
 ## Chapter 4 - Matrix Algebra
-matrixalg intro_using_regression
-matrixalg_exercises intro_using_regression_exercises
+matrixalg intro_using_regression Introduction_to_using_regression
+matrixalg_exercises intro_using_regression_exercises Introduction_to_using_regression_exercises
 matrixalg matrix_notation
 matrixalg_exercises matrix_notation_exercises
 matrixalg matrix_operations
@@ -46,8 +46,8 @@ matrixalg matrix_algebra_examples
 matrixalg_exercises matrix_algebra_examples_exercises
 
 ## Chapter 5 - Linear Models
-linear linear_models_intro
-linear_exercises linear_models_intro_exercises
+linear linear_models_intro Linear_models_introduction
+linear_exercises linear_models_intro_exercises Linear_models_introduction_exercises
 linear expressing_design_formula
 linear_exercises expressing_design_formula_exercises
 linear linear_models_in_practice
@@ -58,37 +58,37 @@ linear interactions_and_contrasts
 linear_exercises interactions_and_contrasts_exercises
 linear collinearity
 linear_exercises collinearity_exercises
-linear qr_and_regression
+linear qr_and_regression QR_and_regression
 linear linear_models_going_further
 
 ## Chapter 6 - Inference for High-Dimensional Data
-advinference intro_to_highthroughput_data
-advinference_exercises intro_to_highthroughput_data_exercises
-advinference inference_for_highthroughput
-advinference_exercises inference_for_highthroughput_exercises
+advinference intro_to_highthroughput_data Introduction_to_high-throughput_data
+advinference_exercises intro_to_highthroughput_data_exercises Introduction_to_high-throughput_data_exercises
+advinference inference_for_highthroughput Inference_for_high-throughput_data
+advinference_exercises inference_for_highthroughput_exercises Inference_for_high-throughput_data_exercises
 advinference multiple_testing
 advinference_exercises multiple_testing_exercises
-advinference eda_for_highthroughput
-advinference_exercises eda_for_highthroughput_exercises
+advinference eda_for_highthroughput EDA_for_high-throughput_data
+advinference_exercises eda_for_highthroughput_exercises EDA_for_high-throughput_data_exercises
 
 ## Chapter 7 - Statistical Modeling
 modeling modeling
 modeling_exercises modeling_exercises
-modeling bayes
-modeling_exercises bayes_exercises
+modeling bayes Bayes_theorem
+modeling_exercises bayes_exercises Bayes_theorem_exercises
 modeling hierarchical_models
 modeling_exercises hierarchical_models_exercises
 
 ## Chapter 8 - Distance and Dimension Reduction
 highdim distance
 highdim_exercises distance_exercises
-highdim pca_motivation
-highdim svd
-highdim_exercises svd_exercises
+highdim pca_motivation PCA_motivation
+highdim svd SVD
+highdim_exercises svd_exercises SVD_exercises
 highdim projections
 highdim rotations
-highdim mds
-highdim_exercises mds_exercises
+highdim mds MDS
+highdim_exercises mds_exercises MDS_exercises
 highdim PCA
 
 ## Chapter 9 - Practical Machine Learning
@@ -103,11 +103,11 @@ ml crossvalidation
 ml_exercises crossvalidation_exercises
 
 ## Chapter 10 - Batch Effects
-batch intro_to_batch_effects
+batch intro_to_batch_effects Introduction_to_batch_effects
 batch confounding
 batch_exercises confounding_exercises
-batch eda_with_pca
-batch_exercises eda_with_pca_exercises
+batch eda_with_pca EDA_with_PCA
+batch_exercises eda_with_pca_exercises EDA_with_PCA_exercises
 batch adjusting_with_linear_models
 batch_exercises adjusting_with_linear_models_exercises
 batch factor_analysis
