@@ -19,13 +19,28 @@ Simulations can also be used to check theoretical or analytical results. Also, m
 As an example, let's use a Monte Carlo simulation to compare the CLT to the t-distribution approximation for different sample sizes.
 
 
+```
+## Warning in download.file(url, method = method, ...): download had nonzero
+## exit status
+```
 
 
 ```r
 library(dplyr)
 dat <- read.csv("mice_pheno.csv")
+```
+
+```
+## Error in read.table(file = file, header = header, sep = sep, quote = quote, : no lines available in input
+```
+
+```r
 controlPopulation <- filter(dat,Sex == "F" & Diet == "chow") %>%  
   select(Bodyweight) %>% unlist
+```
+
+```
+## Error in filter_(.data, .dots = lazyeval::lazy_dots(...)): object 'dat' not found
 ```
 
 We will build a function that automatically generates a t-statistic under the null hypothesis for a any sample size of `n`.
@@ -44,6 +59,10 @@ ttestgenerator <- function(n) {
 ttests <- replicate(1000, ttestgenerator(10))
 ```
 
+```
+## Error in sample(controlPopulation, n): object 'controlPopulation' not found
+```
+
 With 1,000 Monte Carlo simulated occurrences of this random variable, we can now get a glimpse of its distribution:
 
 
@@ -51,7 +70,9 @@ With 1,000 Monte Carlo simulated occurrences of this random variable, we can now
 hist(ttests)
 ```
 
-![Histogram of 1000 Monte Carlo simulated t-statistics.](images/R/monte_carlo-tmp-ttest_hist-1.png) 
+```
+## Error in hist(ttests): object 'ttests' not found
+```
 
 So is the distribution of this t-statistic well approximated by the
 normal distribution? In the next chapter we will formally introduce
@@ -63,21 +84,46 @@ is a good one.
 
 ```r
 qqnorm(ttests)
+```
+
+```
+## Error in qqnorm(ttests): object 'ttests' not found
+```
+
+```r
 abline(0,1)
 ```
 
-![Quantile-quantile plot comparing 1000 Monte Carlo simulated t-statistics to theoretical normal distribution.](images/R/monte_carlo-tmp-ttest_qqplot-1.png) 
+```
+## Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): plot.new has not been called yet
+```
 
 This looks like a very good approximation. So, for this particular population, a sample size of 10 was large enough to use the CLT approximation. How about 3? 
 
 
 ```r
 ttests <- replicate(1000, ttestgenerator(3))
+```
+
+```
+## Error in sample(controlPopulation, n): object 'controlPopulation' not found
+```
+
+```r
 qqnorm(ttests)
+```
+
+```
+## Error in qqnorm(ttests): object 'ttests' not found
+```
+
+```r
 abline(0,1)
 ```
 
-![Quantile-quantile plot comparing 1000 Monte Carlo simulated t-statistics with three degrees of freedom to theoretical normal distribution.](images/R/monte_carlo-tmp-ttest_df3_qqplot-1.png) 
+```
+## Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): plot.new has not been called yet
+```
 
 Now we see that the large quantiles, referred to by statisticians as
 the _tails_, are larger than expected (below the line on the left side
@@ -91,20 +137,38 @@ seem to confirm this:
 ```r
 qs <- (seq(0,999)+0.5)/1000
 qqplot(qt(qs,df=2*3-2),ttests,xlim=c(-6,6),ylim=c(-6,6))
+```
+
+```
+## Error in sort(y): object 'ttests' not found
+```
+
+```r
 abline(0,1)
 ```
 
-![Quantile-quantile plot comparing 1000 Monte Carlo simulated t-statistics with three degrees of freedom to theoretical t-distribution.](images/R/monte_carlo-tmp-ttest_v_tdist_qqplot-1.png) 
+```
+## Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): plot.new has not been called yet
+```
 
 The t-distribution is a much better approximation in this case, but it is still not perfect. This is due to the fact that the original data is not that well approximated by the normal distribution.
 
 
 ```r
 qqnorm(controlPopulation)
+```
+
+```
+## Error in qqnorm(controlPopulation): object 'controlPopulation' not found
+```
+
+```r
 qqline(controlPopulation)
 ```
 
-![Quantile-quantile of original data compared to theoretical quantile distribution.](images/R/monte_carlo-tmp-dat_qqplot-1.png) 
+```
+## Error in quantile(y, probs, names = FALSE, type = qtype, na.rm = TRUE): object 'controlPopulation' not found
+```
 
 ### Parametric Simulations for the Observations
 
