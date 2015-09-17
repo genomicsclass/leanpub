@@ -7,7 +7,7 @@ title: Rank tests
 
 ## Wilcoxon Rank Sum Test
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/ranktest.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/robust/ranktest.Rmd).
 
 We learned how the sample mean and SD are susceptible to outliers. The
 t-test is based on these measures and is susceptible as well. The
