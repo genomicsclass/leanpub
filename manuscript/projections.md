@@ -7,13 +7,13 @@ title: Projections
 
 ## Projections
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/projections.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/highdim/projections.Rmd).
 
 Now that we have described the concept of dimension reduction and some of the applications of SVD and principal component analysis, we focus on more details related to the mathematics behind these. We start with _projections_. A projection is a linear models concept that helps us understand many of the mathematical operations we perform on high-dimensional data. For more details, you can review projects in a linear algebra book. Here we provide a quick review and then provide some data analysis related examples. 
 
 As a review, remember that projections minimize the distance between points and subspace.
 
-![Illustration of projection](images/downloads/Linalg_projection_3.png)
+![Illustration of projection](http://upload.wikimedia.org/wikipedia/commons/8/84/Linalg_projection_3.png)
 
 In the figure above, the point on top is pointing to a point in space. In this particular cartoon the space is two dimensional, but we should be thinking abstractly. The space is represented by the Cartesian plan and the line on which the little person stands is a subspace of points. The projection to this subspace is the place that is closest to the original point. Geometry tells us that we can find this closest point by dropping a perpendicular line (dotted line) from the point to the space. The little person is standing on the projection.  The amount this person had to walk from the origin to the new projected point is referred to as _the coordinate_. 
 
