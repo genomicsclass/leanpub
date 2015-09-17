@@ -24,8 +24,8 @@ Imagine you are Galileo in the 16th century trying to describe the velocity of a
 set.seed(1)
 g <- 9.8 ##meters per second
 n <- 25
-tt <- seq(0,3.4,len=n) ##time in secs, note: t is a base function
-d <- 56.67  - 0.5*g*tt^2 + rnorm(n,sd=1)
+tt <- seq(0,3.4,len=n) ##time in secs, note: we use tt because t is a base function
+d <- 56.67  - 0.5*g*tt^2 + rnorm(n,sd=1) ##meters
 ```
 
 The assistants hand the data to Galileo and this is what he sees:
@@ -67,7 +67,7 @@ The sons' height does seem to increase linearly with the fathers' height. In thi
 
 {$$} Y_i = \beta_0 + \beta_1 x_i + \varepsilon, i=1,\dots,N {/$$}
 
-This is also a linear model. Here {$$}x_i{/$$} and {$$}Y_i{/$$} the father and son heights respectively for the {$$}i{/$$}-th pair and {$$}\varepsilon{/$$} a term to account for the extra variability. Here we think of the fathers' height as the predictor and being fixed (not random) so we use lower case. Measurement error alone can't explain all the variability seen in {$$}\varepsilon{/$$}. This makes sense as there are other variables not in the model, for example, mothers' height, genetic randomness, and environmental factors.
+This is also a linear model with {$$}x_i{/$$} and {$$}Y_i{/$$} the father and son heights respectively for the {$$}i{/$$}-th pair and {$$}\varepsilon{/$$} a term to account for the extra variability. Here we think of the fathers' height as the predictor and being fixed (not random) so we use lower case. Measurement error alone can't explain all the variability seen in {$$}\varepsilon{/$$}. This makes sense as there are other variables not in the model, for example, mothers' height, genetic randomness, and environmental factors.
 
 #### Random samples from multiple populations
 
@@ -75,27 +75,15 @@ Here we read-in mouse body weight data from mice that were fed two different die
 
 
 
+
+
 ```r
 dat <- read.csv("femaleMiceWeights.csv")
-```
-
-```
-## Warning in file(file, "rt"): cannot open file 'femaleMiceWeights.csv': No
-## such file or directory
-```
-
-```
-## Error in file(file, "rt"): cannot open the connection
-```
-
-```r
 mypar(1,1)
 stripchart(Bodyweight~Diet,data=dat,vertical=TRUE,method="jitter",pch=1,main="Mice weights")
 ```
 
-```
-## Error in eval(expr, envir, enclos): object 'dat' not found
-```
+![Mouse weights under two diets.](images/R/intro_using_regression-tmp-mice_weights-1.png) 
 
 We want to estimate the difference in average weight between populations. We demonstrated how to do this using t-tests and confidence intervals based on the difference in sample averages. We can obtain the same exact results using a linear model:
 
@@ -104,7 +92,7 @@ We want to estimate the difference in average weight between populations. We dem
 with {$$}\beta_0{/$$} the chow diet average weight, {$$}\beta_1{/$$} the difference between averages, {$$}x_i = 1{/$$} when mouse {$$}i{/$$} gets the high fat (hf) diet, {$$}x_i = 0{/$$} when it gets the chow diet, and {$$}\varepsilon_i{/$$} explains the differences between mice of the same population. 
  
 
-#### Linear model in general
+#### Linear models in general
 
 We have seen three very different examples in which linear models can be used. A general model that encompasses all of the above examples is the following:
 
@@ -113,7 +101,7 @@ We have seen three very different examples in which linear models can be used. A
  
 {$$} Y_i = \beta_0 + \sum_{j=1}^p \beta_j x_{i,j} + \varepsilon_i, i=1,\dots,n {/$$}
 
-Note that we have a general number of predictors {$$}p{/$$}. Matrix algebra provides a compact language and mathematical framework to compute and make derivations with any linear models that fit into the above framework.
+Note that we have a general number of predictors {$$}p{/$$}. Matrix algebra provides a compact language and mathematical framework to compute and make derivations with any linear model that fit into the above framework.
 
 <a name="estimates"></a>
 
@@ -123,7 +111,7 @@ For the models above to be useful we have to estimate the unknown {$$}\beta{/$$}
 
 The standard approach in science is to find the values that minimize the distance of the fitted model to the data. The following is called the least squares (LS) equation and we will see it often in this chapter:
 
-{$$} \sum_{i=1}^n \{  Y_i - (\beta_0 + \sum_{j=1}^p \beta_j x_{i,j}\}^2 {/$$}
+{$$} \sum_{i=1}^n \left\{  Y_i - \left(\beta_0 + \sum_{j=1}^p \beta_j x_{i,j}\right)\right\}^2 {/$$}
 
 Once we find the minimum, we will call the values the least squares estimates (LSE) and denote them with {$$}\hat{\beta}{/$$}. The quantity obtained when evaluating the least square equation at the estimates is called the residual sum of squares (RSS). Note that because all these quantities depend on {$$}Y{/$$}, *they are random variables*. The {$$}\hat{\beta}{/$$} s are random variables and we will eventually perform inference on them.
 
@@ -153,7 +141,7 @@ lines(tt,f,col=2)
 
 ![Fitted model for simulated data for distance travelled versus time of falling object measured with error.](images/R/intro_using_regression-tmp-simulate_drop_data_with_fit-1.png) 
 
-But we were pretending to be Galileo and so we don't know the parameters in the model. The data does suggest it is a parabola, so we model as such:
+But we were pretending to be Galileo and so we don't know the parameters in the model. The data does suggest it is a parabola, so we model it as such:
 
 {$$} Y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + \varepsilon, i=1,\dots,n {/$$}
 
@@ -172,9 +160,9 @@ summary(fit)$coef
 
 ```
 ##               Estimate Std. Error    t value     Pr(>|t|)
-## (Intercept) 56.4305502  0.3969358 142.165421 4.226652e-34
-## tt           0.1467666  0.5407103   0.271433 7.885888e-01
-## tt2         -4.8943619  0.1536079 -31.862690 6.638629e-20
+## (Intercept) 57.1047803  0.4996845 114.281666 5.119823e-32
+## tt          -0.4460393  0.6806757  -0.655289 5.190757e-01
+## tt2         -4.7471698  0.1933701 -24.549662 1.767229e-17
 ```
 
 It gives us the LSE, as well as standard errors and p-values. 
@@ -210,11 +198,12 @@ Trial and error here is not going to work. Instead we can use calculus: take the
 
 
 #### More on Galton (Advanced)
+
 When studying the father-son data, Galton made a fascinating discovery using exploratory analysis.
 
-![Galton's plot](images/downloads/Galton's_correlation_diagram_1875.jpg) 
+![Galton's plot](http://upload.wikimedia.org/wikipedia/commons/b/b2/Galton's_correlation_diagram_1875.jpg) 
 
-He noted that if he tabulated the number of father-son height pairs and followed all the x,y values having the same totals in the table, they formed an ellipsis. In the plot above, made by Galton, you see the ellipsis formed by the pairs having 3 cases. This then led to modeling this data as correlated bivariate normal. 
+He noted that if he tabulated the number of father-son height pairs and followed all the x,y values having the same totals in the table, they formed an ellipsis. In the plot above, made by Galton, you see the ellipsis formed by the pairs having 3 cases. This then led to modeling this data as correlated bivariate normal which we described earlier: 
 
 {$$} 
 Pr(X<a,Y<b) =
@@ -233,8 +222,6 @@ Pr(X<a,Y<b) =
 }
 {/$$}
 
-Now we can use math to show that if you keep {$$}X{/$$} fixed (condition to be {$$}x{/$$}) the distribution of {$$}Y{/$$} is normally distributed with mean: {$$}\mu_x +\sigma_y \rho \left(\frac{x-\mu_x}{\sigma_x}\right){/$$} and standard deviation {$$}\sigma_y \sqrt{1-\rho^2}{/$$}. Note that {$$}\rho{/$$} is the correlation between {$$}Y{/$$} and {$$}X{/$$} and this implies that if we fix {$$}X=x{/$$}, {$$}Y{/$$} does in fact follow a linear model. 
-
-Note that the {$$}\beta_0{/$$} and {$$}\beta_1{/$$} parameters in a simple linear model can be expressed in terms of {$$}\mu_x,\mu_y,\sigma_x,\sigma_y{/$$}, and {$$}\rho{/$$}.
+We described how we can use math to show that if you keep {$$}X{/$$} fixed (condition to be {$$}x{/$$}) the distribution of {$$}Y{/$$} is normally distributed with mean: {$$}\mu_x +\sigma_y \rho \left(\frac{x-\mu_x}{\sigma_x}\right){/$$} and standard deviation {$$}\sigma_y \sqrt{1-\rho^2}{/$$}. Note that {$$}\rho{/$$} is the correlation between {$$}Y{/$$} and {$$}X{/$$} and this implies that if we fix {$$}X=x{/$$}, {$$}Y{/$$} does in fact follow a linear model. The {$$}\beta_0{/$$} and {$$}\beta_1{/$$} parameters in our simple linear model can be expressed in terms of {$$}\mu_x,\mu_y,\sigma_x,\sigma_y{/$$}, and {$$}\rho{/$$}.   
 
 
