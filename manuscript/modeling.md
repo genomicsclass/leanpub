@@ -17,7 +17,7 @@ But this does not imply that every dataset we collect will follow a normal distr
 
 ## The Binomial Distribution
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/modeling.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/modeling/modeling.Rmd).
 
 A distribution that one should be familiar is the binomial distribution. It describes the probability of the total number of observed heads {$$}S=k{/$$} heads when tossing {$$}N{/$$} heads as
 
@@ -29,7 +29,7 @@ with {$$}p{/$$} the probability of observing a head in one coin toss.  {$$}S/N{/
 
 ## The Poisson Distribution
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/modeling.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/modeling/modeling.Rmd).
 
 The number of people that win the lottery follows a binomial distribution (we assume each person buys one ticket). The number of "tosses" {$$}N{/$$} is the number of people that buy tickets and very large. However, the number of people that win the lottery oscillates between 0 and 3. So why does CLT not hold? One can explain this mathematically, but the intuition is that with most of the average so close to and also constrained to be larger than 0, it is impossible for the distribution to be normal. Here is a quick simulation:
 
@@ -51,7 +51,7 @@ prop.table(tab)
 ```
 ## winners
 ##     0     1     2     3     4 
-## 0.606 0.306 0.076 0.010 0.002
+## 0.623 0.289 0.077 0.009 0.002
 ```
 
 For cases like this, where {$$}N{/$$} is very large, but {$$}p{/$$} is small enough to make {$$}N \times p{/$$} (call it {$$}\lambda{/$$}) a number between 0 and 10, then {$$}S{/$$} can be shown to follow a Poisson distribution which has a simple parametric form:
@@ -87,7 +87,7 @@ Note that for lower values of lambda there is much more variability and if we we
 
 ## NGS Experiments and the Poisson Distribution
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/modeling.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/modeling/modeling.Rmd).
 
 
 ```r
@@ -137,7 +137,7 @@ The variability plotted here includes biological variability, which the motivati
 
 ## Maximum Likelihood Estimation
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/modeling.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/modeling/modeling.Rmd).
 
 We use palindrome locations in the HMCV genome as example. We read in the locations of the palindrome and then count the number of palindromes in each 4,000 basepair segments.
 
@@ -209,7 +209,7 @@ abline(0,1)
 
 ## Distributions for Positive Continuous Values
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/modeling.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/modeling/modeling.Rmd).
 
 In a previous module we learned that different genes vary differently across biological replicates. In a latter module [advanced inference/differential expression] we will demonstrate that knowing this distribution can help improve downstream analysis. 
 
