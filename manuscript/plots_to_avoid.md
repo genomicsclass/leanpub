@@ -16,7 +16,7 @@ This section is based on a talk by [Karl W. Broman](http://kbroman.org/) titled 
 
 ### General Principles
 
-The aims of good data graphics is to display data accurately and clearly. Some rules for displaying data *badly*:
+The aims of good data graphics is to display data accurately and clearly. According to Karl, some rules for displaying data *badly* are:
 
 *  Display as little information as possible.
 *  Obscure what you do show (with chart junk).
@@ -76,11 +76,11 @@ following a horizontal line to the x-axis. Do avoid a 3D version since
 it obfuscates the plot, making it more difficult to find the
 percentages by eye.
 
-![3D version](images/downloads/fig2b.png)
+![3D version](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig2b.png)
 
 Even worse than pie charts are donut plots.
 
-![Donut plot](images/downloads/360px-Donut-Chart.svg.png)
+![Donut plot](http://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Donut-Chart.svg/360px-Donut-Chart.svg.png)
 
 The reason is that by removing the center, we remove one of the visual cues for determining the different areas: the angles. There is no reason to ever use a donut to display data.
 
@@ -93,7 +93,7 @@ group means; an antenna is added at the top to represent standard
 errors. This plot is simply showing two numbers per group and the
 plot adds nothing: 
 
-![Bad bar plots](images/downloads/fig1c.png)
+![Bad bar plots](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig1c.png)
 
 Much more informative is to summarize with a boxplot. If the number of
 points is small enough, we might as well add them to the plot. When
@@ -101,7 +101,7 @@ the number of points is too large for us to see them, just showing a
 boxplot is preferable. We can even set `range=0` in `boxplot` to avoid
 drawing many outliers when the data is in the range of millions.
 
-Let's recreate these barplots as boxplots. xFirst let's download the data:
+Let's recreate these barplots as boxplots. First let's download the data:
 
 
 ```r
@@ -119,7 +119,7 @@ Now we can simply show the points and make simple boxplots:
 library(rafalib)
 mypar()
 dat <- list(Treatment=x,Control=y)
-boxplot(dat,xlab="Group",ylab="Response",xlab="Group",ylab="Response",cex=0)
+boxplot(dat,xlab="Group",ylab="Response",cex=0)
 stripchart(dat,vertical=TRUE,method="jitter",pch=16,add=TRUE,col=1)
 ```
 
@@ -129,7 +129,7 @@ Notice how much more we see here: the center, spread, range and the points thems
 
 This problem is magnified when our data has outliers or very large tails. In the plot below there appears to be very large and consistent differences between the two groups:
 
-![Bar plots with outliers](images/downloads/fig3c.png)
+![Bar plots with outliers](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig3c.png)
 
 However, a quick look at the data demonstrates that this difference is mostly driven by just two points. A version showing the data in the log-scale is much more informative. 
 
@@ -152,10 +152,10 @@ library(rafalib)
 mypar(1,2)
 dat <- list(Treatment=x,Control=y)
 
-boxplot(dat,xlab="Group",ylab="Response",xlab="Group",ylab="Response",cex=0)
+boxplot(dat,xlab="Group",ylab="Response",cex=0)
 stripchart(dat,vertical=TRUE,method="jitter",pch=16,add=TRUE,col=1)
 
-boxplot(dat,xlab="Group",ylab="Response",xlab="Group",ylab="Response",log="y",cex=0)
+boxplot(dat,xlab="Group",ylab="Response",log="y",cex=0)
 stripchart(dat,vertical=TRUE,method="jitter",pch=16,add=TRUE,col=1)
 ```
 
@@ -204,54 +204,14 @@ When new technologies or laboratory techniques are introduced, we are often show
 
 In the plot on the left, we see the original data which shows very high correlation. Yet the data follows a distribution with very fat tails. Furthermore, 95% of the data is below the green line. The plot on the right is in the log scale:
 
-
-```r
-##Both these libraries are available from Bioconductor
-library(Biobase) 
-library(SpikeInSubset) 
-```
-
-
-```r
-data(mas95)
-mypar(1,2)
-r <- exprs(mas95)[,1] ##original measures were not logged
-g <- exprs(mas95)[,2]
-plot(r,g,lwd=2,cex=0.2,pch=16,
-     xlab=expression(paste(E[1])),
-     ylab=expression(paste(E[2])), 
-     main=paste0("corr=",signif(cor(r,g),3)))
-abline(0,1,col=2,lwd=2)
-f <- function(a,x,y,p=0.95) mean(x<=a & y<=a)-p
-a95 <- uniroot(f,lower=2000,upper=20000,x=r,y=g)$root
-abline(a95,-1,lwd=2,col=1)
-text(8500,0,"95% of data below this line",col=1,cex=1.2,adj=c(0,0))
-r <- log2(r)
-g <- log2(g)
-plot(r,g,lwd=2,cex=0.2,pch=16,
-     xlab=expression(paste(log[2], " ", E[1])),
-     ylab=expression(paste(log[2], " ", E[2])),
-     main=paste0("corr=",signif(cor(r,g),3)))
-abline(0,1,col=2,lwd=2)
-```
-
 ![Gene expression data from two replicated samples. Left is in original scale and right is in log scale.](images/R/plots_to_avoid-tmp-correlation-not-replication-1.png) 
+Note that do not show the code here as it is rather complex but we explain how to make MA plots in a latter chapter. 
 
 Although the correlation is reduced in the log-scale, it is very close to 1 in both cases. Does this mean these data are reproduced? To examine how well the second vector reproduces the first, we need to study the differences. So we should instead plot that. In this plot, we plot the difference (in the log scale) versus the average:
 
-
-```r
-mypar(1,1)
-plot((r+g)/2,(r-g),lwd=2,cex=0.2,pch=16,
-     xlab=expression(paste("Ave{ ",log[2], " ", E[1],", ",log[2], " ", E[2]," }")),
-     ylab=expression(paste(log[2]," { ",E[1]," / ",E[2]," }")),
-     main=paste0("SD=",signif(sqrt(mean((r-g)^2)),3)))
-abline(h=0,col=2,lwd=2)
-```
-
 ![MA plot of the same data shown above shows that data is not replicated very well despite a high correlation.](images/R/plots_to_avoid-tmp-MAplot-1.png) 
 
-These are referred to as Bland-Altman plots or "MA plots" in the
+These are referred to as Bland-Altman plots, or _MA plots_ in the
 genomics literature, and we will talk more about them later. "MA"
 stands for "minus" and "average", because in this plot, the y-axis is
 the difference between two samples on the log scale (the log ratio is
@@ -268,7 +228,7 @@ purposes.
 
 A common task in data analysis is the comparison of two groups. When the dataset is small and data are paired, for example the outcomes before and after a treatment, two color barplots are unfortunately often used to display the results:
 
-![Barplot for two variables](images/downloads/fig6r_e.png)
+![Barplot for two variables](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig6r_e.png)
 
 There are better ways of showing these data to illustrate that there is an increase after treatment. One is to simply make a scatterplot, which shows that most points are above the identity line. Another alternative is to plot the differences against the before values.
 
@@ -314,7 +274,7 @@ boxplot(before,after,names=c("Before","After"),ylab="Response")
 
 The figure below shows three curves. Pseudo 3D is used, but it is not clear why. Maybe to separate the three curves? Notice how difficult it is to determine the values of the curves at any given point:
 
-![Gratuitous 3-D](images/downloads/fig8b.png)
+![Gratuitous 3-D](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig8b.png)
 
 This plot can be made better by simply using color to distinguish the three lines:
 
@@ -343,7 +303,7 @@ legend(1,0.4,c("Drug A","Drug B","Drug C"),lwd=2, col=1:3)
 
 In this example we generate data with a simulation. We are studying a dose-response relationship between two groups: treatment and control. We have three groups of measurements for both control and treatment. Comparing treatment and control using the common barplot:
 
-![Ingoring important factors](images/downloads/fig9d.png)
+![Ingoring important factors](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig9d.png)
 
 Instead we should show each curve. We can use color to distinguish treatment and control and dashed and solid lines to distinguish the original data from the mean of the three groups.
 
@@ -435,7 +395,7 @@ The R markdown document for this section is available [here](https://github.com/
 
 The use of correlation to summarize reproducibility has become widespread in, for example, genomics. Despite its English language definition, mathematically, correlation is not necessarily informative with regards to reproducibility.  Here we briefly describe three major problems.
 
-The most egregious related mistake is to compute correlations of data that is not approximated by bi-variate normal data. As described above, averages, standard deviations and correlations are popular summary statistics for two-dimensional data because, for the bivariate normal distribution, these five parameters fully describe the distribution. However, there are many examples of data that are not well approximated by bivariate normal data. 
+The most egregious related mistake is to compute correlations of data that is not approximated by bi-variate normal data. As described above, averages, standard deviations and correlations are popular summary statistics for two-dimensional data because, for the bivariate normal distribution, these five parameters fully describe the distribution. However, there are many examples of data that are not well approximated by bivariate normal data. Gene expression data, for example, tends to have a distribution with a very fat right tail.
 
 The standard way to quantify reproducibility between two sets of replicated measurements, say {$$}x_1,\dots,x_n{/$$} and {$$}y_1,\dots,y_n{/$$}, is simply to compute the distance between them:
 
@@ -444,7 +404,9 @@ The standard way to quantify reproducibility between two sets of replicated meas
 \sum_{i=1}^n d_i^2} \mbox{ with } d_i=x_i - y_i
 {/$$}
 
-This metric decreases as reproducibility improves and it is 0 when the reproducibility is perfect. Another advantage of this metric is that if we divide the sum by N, we can interpret the resulting quantity as the standard deviation of the {$$}d_1,\dots,d_N{/$$} if we assume the {$$}d{/$$} average out to 0. Furthermore, this quantity will have the same units as our measurements resulting in a more interpretable metric. Another limitation of the correlation is that it does not detect cases that are not reproducible due to average changes. The distance metric does detect these differences. We can rewrite:
+This metric decreases as reproducibility improves and it is 0 when the reproducibility is perfect. Another advantage of this metric is that if we divide the sum by N, we can interpret the resulting quantity as the standard deviation of the {$$}d_1,\dots,d_N{/$$} if we assume the {$$}d{/$$} average out to 0. If the {$$}d{/$$} can be considered residuals, then this quantity is equivalent to the root mean squared error (RMSE), a summary statistic that has been around for over a century. Furthermore, this quantity will have the same units as our measurements resulting in a more interpretable metric. 
+
+Another limitation of the correlation is that it does not detect cases that are not reproducible due to average changes. The distance metric does detect these differences. We can rewrite:
 
 {$$}\frac{1}{n} \sum_{i=1}^n (x_i - y_i)^2 = \frac{1}{n} \sum_{i=1}^n [(x_i-\mu_x) - (y_i - \mu_y)^2 + (\mu_x-\mu_y)]^2{/$$}
 
@@ -459,10 +421,10 @@ For simplicity, if we assume that the variance of both lists is 1, then this red
 
 with {$$}\rho{/$$} the correlation. So we see the direct relationship between distance and correlation. However, an important difference is that the distance contains the term {$$}(\mu_x-\mu_y)^2{/$$} and thus it can detect cases that are not reproducible due to large average changes. 
 
-Yet another reason correlation is not an optimal metric for reproducibility is the lack of units. To see this we use a formula that relates the correlation of a variable with the correlation of that variable, plus what is interpreted here as deviation: {$$}x{/$$} and {$$}y=x+d{/$$}. The larger the variance of {$$}d{/$$}, the less {$$}x+d{/$$} reproduces {$$}x{/$$}. Here the distance metric would depend only on the variance of {$$}d{/$$} and would summarize reproducibility. However, correlation depends on the variance of {$$}x{/$$} as well:
+Yet another reason correlation is not an optimal metric for reproducibility is the lack of units. To see this we use a formula that relates the correlation of a variable with that variable plus what is interpreted here as deviation: {$$}x{/$$} and {$$}y=x+d{/$$}. The larger the variance of {$$}d{/$$}, the less {$$}x+d{/$$} reproduces {$$}x{/$$}. Here the distance metric would depend only on the variance of {$$}d{/$$} and would summarize reproducibility. However, correlation depends on the variance of {$$}x{/$$} as well. If {$$}d{/$$} is independent of {$$}x{/$$} then
 
 {$$}
-cor(x,x+d) = \frac{1}{\sqrt{1+\mbox{var}(d)/\mbox{var}(x)}}
+cor(x,y) = \frac{1}{\sqrt{1+\mbox{var}(d)/\mbox{var}(x)}}
 {/$$}
 
 This suggests that correlations near 1 do not necessarily imply reproducibility. Specifically, irrespective of the variance of {$$}d{/$$}, we can make the correlation arbitrarily close to 1 by increasing the variance of {$$}x{/$$}.
