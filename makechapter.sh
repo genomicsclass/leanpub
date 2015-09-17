@@ -8,9 +8,9 @@ cd ../labs/$1
 ## and add a link to the Rmd markdown after every subsection
 ## but only if not an exercise file
 
-if [[ ! "$2" =~ "_exercises" ]]
+if [[ ! "$2" =~ "_exercises" ]] && [[ $2 != "introduction" ]] 
 then
-	linetoadd="R markdown document for this section available \[here]\(https\:\/\/github.com\/genomicsclass\/labs\/tree\/master\/$1\/$2.Rmd\)."
+	linetoadd="The R markdown document for this section is available \[here]\(https\:\/\/github.com\/genomicsclass\/labs\/tree\/master\/$1\/$2.Rmd\)."
 
 	sed '/^## /a \
 \'$'\n@@@@@@

@@ -25,8 +25,6 @@ this field.
 
 ## What Does This Book Cover?
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/introduction.Rmd).
-
 This book will cover several of the statistical concepts and data
 analytic skills needed to succeed in data-driven life science
 research. We go from relatively basic concepts related to computing
@@ -86,8 +84,6 @@ connection to factor analysis, and describe surrogate variable
 analysis.
 
 ## How Is This Book Different?
-
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/introduction.Rmd).
 
 While statistics textbooks focus on mathematics, this book focuses on
 using a computer to perform data analysis. Instead of explaining the
