@@ -12,7 +12,7 @@ title: Introduction to Random Variables
 
 ## Introduction 
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/random_variables.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/inference/random_variables.Rmd).
 
 
 
@@ -41,6 +41,15 @@ If you already downloaded the `femaleMiceWeights` file and it your working direc
 dat <- read.csv("femaleMiceWeights.csv")
 ```
 
+```
+## Warning in file(file, "rt"): cannot open file 'femaleMiceWeights.csv': No
+## such file or directory
+```
+
+```
+## Error in file(file, "rt"): cannot open the connection
+```
+
 #### Our first look at data
 
 We are interested in determining if following a given diet makes mice
@@ -55,13 +64,7 @@ head(dat)
 ```
 
 ```
-##   Diet Bodyweight
-## 1 chow      21.51
-## 2 chow      28.14
-## 3 chow      24.04
-## 4 chow      23.45
-## 5 chow      23.68
-## 6 chow      19.79
+## Error in head(dat): object 'dat' not found
 ```
 
 In RStudio, you can view the entire dataset with
@@ -81,12 +84,26 @@ averages. So let's look at the average of each group:
 ```r
 library(dplyr)
 control <- filter(dat,Diet=="chow") %>% select(Bodyweight) %>% unlist
+```
+
+```
+## Error in filter_(.data, .dots = lazyeval::lazy_dots(...)): object 'dat' not found
+```
+
+```r
 treatment <- filter(dat,Diet=="hf") %>% select(Bodyweight) %>% unlist
+```
+
+```
+## Error in filter_(.data, .dots = lazyeval::lazy_dots(...)): object 'dat' not found
+```
+
+```r
 print( mean(treatment) )
 ```
 
 ```
-## [1] 26.83417
+## Error in mean(treatment): object 'treatment' not found
 ```
 
 ```r
@@ -94,16 +111,23 @@ print( mean(control) )
 ```
 
 ```
-## [1] 23.81333
+## Error in mean(control): object 'control' not found
 ```
 
 ```r
 obsdiff <- mean(treatment) - mean(control)
+```
+
+```
+## Error in mean(treatment): object 'treatment' not found
+```
+
+```r
 print(obsdiff)
 ```
 
 ```
-## [1] 3.020833
+## Error in print(obsdiff): object 'obsdiff' not found
 ```
 
 So the hf diet mice are about 10% heavier. Are we done? Why do we need p-values and confidence intervals? The reason is that these averages are random variables. They can take many values. 
@@ -114,7 +138,7 @@ If we repeat the experiment, we obtain 24 new mice from The Jackson Laboratory a
 
 ## Random Variables
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/random_variables.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/inference/random_variables.Rmd).
 
 Let's see what a random variable is. Imagine we actually have the weight of all control female mice and can upload them to R. In Statistics, we refer to this as *the population*. These are all the control mice available from which we sampled 24. Note that in practice we do not have access to the population. We have a special data set that we're using here to illustrate concepts. 
 
@@ -166,7 +190,7 @@ Note how the average varies. We can continue to do this repeatedly and start lea
 
 ## The Null Hypothesis
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/random_variables.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/inference/random_variables.Rmd).
 
 Now let's go back to our average difference of `obsdiff`. As
 scientists we need to be skeptics. How do we know that this `obsdiff`
@@ -220,7 +244,7 @@ mean(null >= obsdiff)
 ```
 
 ```
-## [1] 0.0138
+## Error in mean(null >= obsdiff): object 'obsdiff' not found
 ```
 
 Only a small percent of the 10,000 simulations. So as skeptics what do
@@ -232,7 +256,7 @@ a p-value, which we will define more formally later in the book.
 
 ## Distributions
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/random_variables.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/inference/random_variables.Rmd).
 
 We have explained what we mean by *null* in the context of null hypothesis, but what exactly is a distribution?
 The simplest way to think of a *distribution* is as a compact description of many numbers. For example, suppose you have measured the heights of all men in a population. Imagine you need to describe these numbers to someone that has no idea what these heights are, such as an alien that has never visited Earth. Suppose all these heights are contained in the following dataset:
@@ -310,7 +334,7 @@ Showing this plot to the alien is much more informative than showing numbers. Wi
 
 ## Probability Distribution
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/random_variables.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/inference/random_variables.Rmd).
 
 Summarizing lists of numbers is one powerful use of distribution. An
 even more important use is describing the possible outcomes of a
@@ -363,10 +387,17 @@ as `obsdiff` are relatively rare:
 
 ```r
 hist(null, freq=TRUE)
-abline(v=obsdiff, col="red", lwd=2)
 ```
 
 ![Null distribution with observed difference marked with vertical red line.](images/R/random_variables-tmp-null_and_obs-1.png) 
+
+```r
+abline(v=obsdiff, col="red", lwd=2)
+```
+
+```
+## Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): object 'obsdiff' not found
+```
 
 An important point to keep in mind here is that while we defined {$$}Pr(a){/$$} by counting cases, we will learn that, in some circumstances, mathematics gives us formulas for {$$}Pr(a){/$$} that save us the trouble of computing them as we did here. One example of this powerful approach uses the normal distribution approximation:
 
@@ -374,7 +405,7 @@ An important point to keep in mind here is that while we defined {$$}Pr(a){/$$} 
 
 ## Normal Distribution
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/random_variables.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/inference/random_variables.Rmd).
 
 The probability distribution we see above approximates one that is very common in nature: the bell curve, also known as the normal distribution or Gaussian distribution. When the histogram of a list of numbers approximates the normal distribution, we can use a convenient mathematical formula to approximate the proportion of value or outcomes in any given interval:
 
@@ -402,7 +433,7 @@ approximation works very well here:
 ```
 
 ```
-## [1] 0.01391929
+## Error in pnorm(obsdiff, mean(null), sd(null)): object 'obsdiff' not found
 ```
 
 Later we will learn that there is a mathematical explanation for this. A very useful characteristic of this approximation is that one only needs to know {$$}\mu{/$$} and {$$}\sigma{/$$} to describe the entire distribution. From this, we can compute the proportion of values in any interval. 
