@@ -36,7 +36,7 @@ demonstration of commonly used figures that we recommend against.
 
 ## Quantile Quantile Plots
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/exploratory_data_analysis.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/eda/exploratory_data_analysis.Rmd).
 
 To corroborate that the normal distribution is in fact a good
 approximation, we can use quantile-quantile plots
@@ -160,7 +160,7 @@ boxplot(exec.pay, ylab="10,000s of dollars", ylim=c(0,400))
 
 ## Scatterplots And Correlation
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/exploratory_data_analysis.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/eda/exploratory_data_analysis.Rmd).
 
 The methods described above relate to _univariate_ variables. In the
 biomedical sciences, it is common to be interested in the relationship
@@ -190,7 +190,7 @@ predict the son's height using the father's height.
 
 ## Stratification
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/exploratory_data_analysis.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/eda/exploratory_data_analysis.Rmd).
 
 Suppose we are asked to guess the height of randomly select sons. The
 average height, 68.7 inches, is the value with the highest proportion
@@ -229,7 +229,7 @@ below.
 
 ## Bi-variate Normal Distribution
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/exploratory_data_analysis.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/eda/exploratory_data_analysis.Rmd).
 
 A pair of random variables {$$}(X,y){/$$} is considered to be approximated by
 bivariate normal when the proportion of values below, for example, {$$}x{/$$}
