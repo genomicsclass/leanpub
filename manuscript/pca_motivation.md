@@ -7,7 +7,7 @@ title: Dimension Reduction Motivation
 
 ## Dimension Reduction Motivation
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/pca_motivation.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/highdim/pca_motivation.Rmd).
 
 Visualizing data is one of the most, if not the most, important step in the analysis of high throughput data. The right visualization method may reveal problems with the experimental data that can render the results from a standard analysis, although typically appropriate, completely useless. 
 
