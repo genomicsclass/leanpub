@@ -51,7 +51,7 @@ prop.table(tab)
 ```
 ## winners
 ##     0     1     2     3 
-## 0.601 0.315 0.072 0.012
+## 0.604 0.300 0.083 0.013
 ```
 
 For cases like this, where {$$}N{/$$} is very large, but {$$}p{/$$} is small enough to make {$$}N \times p{/$$} (call it {$$}\lambda{/$$}) a number between 0 and 10, then {$$}S{/$$} can be shown to follow a Poisson distribution which has a simple parametric form:
@@ -145,7 +145,13 @@ We use palindrome locations in the HMCV genome as example. We read in the locati
 ```r
 datadir="http://www.biostat.jhsph.edu/bstcourse/bio751/data"
 x=read.csv(file.path(datadir,"hcmv.csv"))[,2]
+```
 
+```
+## Error in `[.data.frame`(read.csv(file.path(datadir, "hcmv.csv")), , 2): undefined columns selected
+```
+
+```r
 breaks=seq(0,4000*round(max(x)/4000),4000)
 tmp=cut(x,breaks)
 counts=table(tmp)
@@ -193,7 +199,7 @@ print(c(mle$maximum,mean(counts)))
 ```
 
 ```
-## [1] 5.157894 5.157895
+## [1]    9.999944 1279.750000
 ```
 The fit is quite good in this case:
 
