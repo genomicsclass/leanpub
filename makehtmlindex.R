@@ -24,7 +24,7 @@ for (i in seq_along(x)) {
       title <- gsub("_"," ",s[3])
     }
     # print a link to the book page
-    out <- paste0("- [",title,"](pages/",s[1],".html)")
+    out <- paste0("- [",title,"](pages/",s[2],".html)")
     # if not an exercise, link to Rmd in labs
     if (!grepl("exercises",s[1])) {
       # add 
