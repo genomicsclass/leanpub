@@ -15,7 +15,7 @@ library(rafalib)
 ```
 ## Motivating Examples
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course2/intro_using_regression.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/matrixalg/intro_using_regression.Rmd).
 
 #### Objects falling
 
@@ -79,11 +79,25 @@ Here we read-in mouse body weight data from mice that were fed two different die
 
 ```r
 dat <- read.csv("femaleMiceWeights.csv")
+```
+
+```
+## Warning in file(file, "rt"): cannot open file 'femaleMiceWeights.csv': No
+## such file or directory
+```
+
+```
+## Error in file(file, "rt"): cannot open the connection
+```
+
+```r
 mypar(1,1)
 stripchart(Bodyweight~Diet,data=dat,vertical=TRUE,method="jitter",pch=1,main="Mice weights")
 ```
 
-![Mouse weights under two diets.](images/R/intro_using_regression-tmp-mice_weights-1.png) 
+```
+## Error in eval(expr, envir, enclos): object 'dat' not found
+```
 
 We want to estimate the difference in average weight between populations. We demonstrated how to do this using t-tests and confidence intervals based on the difference in sample averages. We can obtain the same exact results using a linear model:
 
@@ -160,9 +174,9 @@ summary(fit)$coef
 
 ```
 ##               Estimate Std. Error    t value     Pr(>|t|)
-## (Intercept) 57.1047803  0.4996845 114.281666 5.119823e-32
-## tt          -0.4460393  0.6806757  -0.655289 5.190757e-01
-## tt2         -4.7471698  0.1933701 -24.549662 1.767229e-17
+## (Intercept) 56.4305502  0.3969358 142.165421 4.226652e-34
+## tt           0.1467666  0.5407103   0.271433 7.885888e-01
+## tt2         -4.8943619  0.1536079 -31.862690 6.638629e-20
 ```
 
 It gives us the LSE, as well as standard errors and p-values. 
@@ -200,7 +214,7 @@ Trial and error here is not going to work. Instead we can use calculus: take the
 #### More on Galton (Advanced)
 When studying the father-son data, Galton made a fascinating discovery using exploratory analysis.
 
-![Galton's plot](images/downloads/Galton's_correlation_diagram_1875.jpg) 
+![Galton's plot](http://upload.wikimedia.org/wikipedia/commons/b/b2/Galton's_correlation_diagram_1875.jpg) 
 
 He noted that if he tabulated the number of father-son height pairs and followed all the x,y values having the same totals in the table, they formed an ellipsis. In the plot above, made by Galton, you see the ellipsis formed by the pairs having 3 cases. This then led to modeling this data as correlated bivariate normal. 
 
