@@ -7,7 +7,7 @@ title: Singular Value Decomposition
 
 ## Singular Value Decomposition
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/svd.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/highdim/svd.Rmd).
 
 In the previous section we motivated dimension reduction and showed a transformation that permitted us to approximate the distance between two dimensional points with the distance betwee points with just one dimension. The singular value decomposition (SVD) is a generalization of the algorithm we used in the motivational section. As in the example, the SVD provides a transformation of the original data. As we will see, this transformation has some very useful properties. 
 
