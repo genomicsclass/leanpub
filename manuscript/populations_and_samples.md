@@ -49,7 +49,8 @@ We usually denote these values as {$$}x_1,\dots,x_m{/$$}. In this case {$$}m{/$$
 
 
 ```r
-hfPopulation <- filter(dat,Sex == "F" & Diet == "hf") %>%  select(Bodyweight) %>% unlist
+hfPopulation <- filter(dat,Sex == "F" & Diet == "hf") %>%  
+  select(Bodyweight) %>% unlist
 length(hfPopulation)
 ```
 
