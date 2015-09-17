@@ -8,7 +8,7 @@ layout: page
 
 ## Going Further
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course2/linear_models_going_further.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/linear/linear_models_going_further.Rmd).
 Linear models can be extended in many directions. Here are some examples of extensions, which you might come across in analyzing data in the life sciences:
 
 ### Robust linear models
