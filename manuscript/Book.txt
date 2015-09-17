@@ -99,7 +99,7 @@ smoothing.md
 smoothing_exercises.md
 machine_learning.md
 crossvalidation.md
-cross_validation_exercises.md
+crossvalidation_exercises.md
 
 ## Chapter 10 - Batch effects
 intro_to_batch_effects.md
@@ -108,7 +108,7 @@ confounding_exercises.md
 eda_with_pca.md
 eda_with_pca_exercises.md
 adjusting_with_linear_models.md
-adjusting_with_factor_analysis_exercises.md
+adjusting_with_linear_models_exercises.md
 factor_analysis.md
 factor_analysis_exercises.md
 adjusting_with_factor_analysis.md
