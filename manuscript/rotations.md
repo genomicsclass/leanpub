@@ -8,7 +8,7 @@ title: Rotations
 
 ## Rotations
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/rotations.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/highdim/rotations.Rmd).
 
 One of the most useful applications of projections relates to coordinate rotations. In data analysis, simple rotations can result in easier to visualize and interpret data. We will describe the mathematics behind rotations and give some data analysis examples.
  
