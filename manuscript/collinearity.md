@@ -11,7 +11,7 @@ layout: page
 
 ## Co-linearity
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course2/collinearity.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/linear/collinearity.Rmd).
 
 If an experiment is designed incorrectly we may not be able to estimate the parameters of interest. Similarly, when analyzing data we may incorrectly decide to use a model that can't be fit. If we are using linear models then we can detect these problems mathematically by looking for collinearity in the design matrix.
 
@@ -227,7 +227,7 @@ D \\
 
 ## Rank
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course2/collinearity.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/linear/collinearity.Rmd).
 
 The _rank_ of a matrix columns is the number of columns that are independent of all the others. If the rank is smaller than the number of columns, then the LSE are not unique. In R we can obtain the rank of matrix with the function `qr`, which we will describe in more detail in a following section.
 
@@ -248,7 +248,7 @@ cat("ncol=",ncol(X),"rank=", qr(X)$rank,"\n")
 
 ## Removing Confounding
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course2/collinearity.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/linear/collinearity.Rmd).
 
 This particular experiment could have been designed better. Using the same number of male and female mice, we can easily design an experiment that allows us to compute the sex effect as well as all the treatment effects. Specifically, when we balance sex and treatments the confounding is removed as demonstrated by the fact that the rank is now the same as the number of columns:
 
