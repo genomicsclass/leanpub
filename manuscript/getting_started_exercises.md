@@ -31,7 +31,7 @@ A>4. The `length` function returns the number of elements in a vector. How many 
 A>
 A>
 A>
-A>5. To create a vector with the numbers 3 to 7, we can use `seq(3,7)` or, because they are consecutive, `3:7`. View the data and determine what rows are associated with the high fat or `hf` diet. Then use the mean function to compute the average weight of these mice.
+A>5. To create a vector with the numbers 3 to 7, we can use `seq(3,7)` or, because they are consecutive, `3:7`. View the data and determine what rows are associated with the high fat or `hf` diet. Then use the `mean` function to compute the average weight of these mice.
 A>
 A>
 A>
