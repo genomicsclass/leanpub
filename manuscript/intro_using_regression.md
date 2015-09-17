@@ -10,9 +10,7 @@ title: "Introduction to Linear Models"
 We are going to describe three examples from the life sciences: one from physics, one related to genetics, and one from a mouse experiment. They are very different, yet we end up using the same statistical technique: fitting linear models. Linear models are typically taught and described in the language of matrix algebra. 
 
 
-```r
-library(rafalib)
-```
+
 ## Motivating Examples
 
 The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/matrixalg/intro_using_regression.Rmd).
@@ -214,7 +212,7 @@ Trial and error here is not going to work. Instead we can use calculus: take the
 #### More on Galton (Advanced)
 When studying the father-son data, Galton made a fascinating discovery using exploratory analysis.
 
-![Galton's plot](images/downloads/Galton's_correlation_diagram_1875.jpg) 
+![Galton's plot](http://upload.wikimedia.org/wikipedia/commons/b/b2/Galton's_correlation_diagram_1875.jpg) 
 
 He noted that if he tabulated the number of father-son height pairs and followed all the x,y values having the same totals in the table, they formed an ellipsis. In the plot above, made by Galton, you see the ellipsis formed by the pairs having 3 cases. This then led to modeling this data as correlated bivariate normal. 
 
