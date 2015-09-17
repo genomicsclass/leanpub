@@ -46,22 +46,9 @@ A>
     ```r
     X <- matrix(c(1,1,1,1,1,1,0,0,1,1,0,0,0,0,0,0,1,1),nrow=6)
     rownames(X) <- c("a","a","b","b","c","c")
+    X
     ```
-A>  
-A>    which results in a matrix that looks like:
 A>
-A>    {$$} 
-A>    \,
-A>\begin{pmatrix}
-A>a&1&0&0\\   
-A>a&1&0&0\\
-A>b&1&1&0\\
-A>b&1&1&0\\
-A>c&1&0&1\\
-A>c&1&0&1
-A>\end{pmatrix}
-A>    {/$$}
-A>   
 A>    Suppose that the fitted values for the linear model are given by:
 A>
 A>    
