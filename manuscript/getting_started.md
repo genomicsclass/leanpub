@@ -165,7 +165,7 @@ format. Note that some browsers add an extra suffix to your filename by
 default. You do not want this. You want your file to be named
 `femaleMiceWeights.csv`. 
 
-![Github page screenshot](images/handmade/screenshot1.png)
+![GitHub page screenshot](images/handmade/screenshot1.png)
 
 Once you have this file in your working directory then you can simply read it in like this:
 
