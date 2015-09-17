@@ -8,7 +8,7 @@ layout: page
 
 ## Power Calculations 
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course1/power_calculations.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/inference/power_calculations.Rmd).
 
 ### Introduction
 
