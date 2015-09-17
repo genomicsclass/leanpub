@@ -10,7 +10,7 @@ layout: page
 
 ## Standard Errors
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course2/standard_errors.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/linear/standard_errors.Rmd).
 
 We have shown how to find the least squares estimates with matrix algebra. These estimates are random variables as they are linear combinations of the data. For these estimates to be useful, we also need to compute their standard errors. Linear algebra also provides a powerful approach for this task. We provide several examples.
 
@@ -307,7 +307,7 @@ apply(betahat,2,sd)
 
 ## Linear Combination of Estimates
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course2/standard_errors.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/linear/standard_errors.Rmd).
 
 Frequently, we want to compute the standard deviation of a linear combination of estimates such as {$$}\hat{\beta}_2 - \hat{\beta}_1{/$$}. This is a linear combination of {$$}\hat{\boldsymbol{\beta}}{/$$}:
 
@@ -325,13 +325,13 @@ Using the above, we know how to compute the variance covariance matrix of {$$}\h
 
 ## CLT and t-distribution
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course2/standard_errors.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/linear/standard_errors.Rmd).
 
 We have shown how we can obtain standard errors for our estimates. However, as we learned in the first chapter, to perform inference we need to know the distribution of these random variables. The reason we went through the effort to compute the standard errors is because the CLT applies in linear models. If {$$}N{/$$} is large enough, then the LSE will be normally distributed with mean {$$}\boldsymbol{\beta}{/$$} and standard errors as described. For small samples, if the {$$}\varepsilon{/$$} are normally distributed, then the {$$}\hat{\beta}-\beta{/$$} follow a t-distribution. Proving this mathematically is rather advanced, but the results are extremely useful since it is how we construct p-values and confidence intervals in the context of linear models.
 
 ## Code Versus Math
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course2/standard_errors.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/linear/standard_errors.Rmd).
 
 The standard approach to writing linear models either assume the X are fixed or that we are conditioning on them. Thus  X*beta has no variance as the {$$}X{/$$} is considered fixed. This is why we write {$$}\mbox{var}(Y_i) = \mbox{var}(\varepsilon_i)=\sigma^2{/$$}. This can cause confusion in practice because if you, for example, compute the following: 
 
