@@ -94,7 +94,7 @@ A>    What is the difference in t-test statistic (the statistic is obtained by `
 A>
 A>
 A>
-A>9. Now examine the Wilcoxon test statistic for x and y+10 and for x and y+100. Because the Wilcoxon works on ranks, after the groups have complete separation (all points from group 'y' are above all points from group 'x'), the statistic will not change, regardless of how large the difference grows. Likewise, the p-value has a minimum value, regardless of how far apart the groups are. This means that the Wilcoxon test can be considered less powerful than the t-test in certain contexts, and with small significance levels (alpha). In fact for small sample sizes, the p-value can't be very small, even when the difference is very large. What is the p-value if we compare `c(1,2,3)` to `c(4,5,6)` using a wilcoxon test?
+A>9. Now examine the Wilcoxon test statistic for x and y+10 and for x and y+100. Because the Wilcoxon works on ranks, after the groups have complete separation (all points from group 'y' are above all points from group 'x'), the statistic will not change, regardless of how large the difference grows. Likewise, the p-value has a minimum value, regardless of how far apart the groups are. This means that the Wilcoxon test can be considered less powerful than the t-test in certain contexts. In fact for small sample sizes, the p-value can't be very small, even when the difference is very large. What is the p-value if we compare `c(1,2,3)` to `c(4,5,6)` using a wilcoxon test?
 A>
 A>
 A>10. What is the p-value if we compare `c(1,2,3)` to `c(400,500,600)` using a wilcoxon test?
