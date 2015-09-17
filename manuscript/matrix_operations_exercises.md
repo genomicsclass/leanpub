@@ -34,11 +34,11 @@ A>
     b <- matrix(1:15, nrow=3)
     ```
 A>
-A>    Note the dimension of 'a' and the dimension of 'b'.
+A>    Note the dimension of `a` and the dimension of `b`.
 A>
 A>    In the question below, we will use the matrix multiplication operator in R, `%*%`, to multiply these two matrices.
 A>    
-A>    What is the value in the 3rd row and the 2nd column of the matrix product of 'a' and 'b'?
+A>    What is the value in the 3rd row and the 2nd column of the matrix product of `a` and `b`?
 A>
 A>
 A>
