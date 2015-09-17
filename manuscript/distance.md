@@ -9,7 +9,7 @@ title: Distance lecture
 
 ## Introduction
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/distance.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/highdim/distance.Rmd).
 
 Many of the analyses we perform with high-dimensional data relate directly or indirectly to distance. For instance, many clustering and machine learning techniques rely on being able to define distance using features or predictors. The concept of distance can be generalized from physical distance; for example, we cluster animals into groups. When we do this, we put animals that are "close" in the same group:
 
@@ -32,7 +32,7 @@ mathematical definition of distance.
 
 ## Euclidean Distance
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/distance.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/highdim/distance.Rmd).
 
 As a review, let's define the distance between two points, {$$}A{/$$} and {$$}B{/$$}, on a Cartesian plane.
 
@@ -45,7 +45,7 @@ The euclidean distance between {$$}A{/$$} and {$$}B{/$$} is simply:
 
 ## Distance in High Dimensions
 
-R markdown document for this section available [here](https://github.com/genomicsclass/labs/tree/master/course3/distance.Rmd).
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/highdim/distance.Rmd).
 
 We introduce a dataset with gene expression measurements for 22,215 genes from 189 samples. The R objects can be downloaded like this:
 
