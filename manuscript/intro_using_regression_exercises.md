@@ -19,7 +19,7 @@ A>
 ```r
 data("father.son",package="UsingR")
 ```
-A>1. What is the average height of the sons (don't round off)?<<
+A>1. What is the average height of the sons (don't round off)?
 A>
 A>
 A>
@@ -31,7 +31,7 @@ A>    What is the mean of the son heights for fathers that have a height of 71 i
 A>
 A>
 A>    
-A>3. We say a statistical model is a linear model when we can write it as a linear combination of parameters and known covariates plus random error terms. In the choices below, Y represents our observations, time t is our only covariate, unknown parameters are represented with letters a,b,c,d and measurment error is represented by the letter e. Note that if t is known, then any transformation of t is also known. So, for example, both {$$}Y=a+bt +\varepsilon{/$$} and {$$}Y=a+b f(t) + \varepsilon{/$$} are linear models. Which of the following **cannot** be written as a linear model?
+A>3. We say a statistical model is a linear model when we can write it as a linear combination of parameters and known covariates plus random error terms. In the choices below, Y represents our observations, time t is our only covariate, unknown parameters are represented with letters a,b,c,d and measurment error is represented by {$$}\varepsilon{/$$}. Note that if {$$}t{/$$} is known, then any transformation of {$$}t{/$$} is also known. So, for example, both {$$}Y=a+bt +\varepsilon{/$$} and {$$}Y=a+b f(t) + \varepsilon{/$$} are linear models. Which of the following **cannot** be written as a linear model?
 A>  - A) {$$}Y = a + bt + \varepsilon{/$$}
 A>  - B) {$$}Y = a + b \cos(t) + \varepsilon{/$$}
 A>  - C) {$$}Y = a + b^t + \varepsilon{/$$}
