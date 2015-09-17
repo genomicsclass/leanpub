@@ -52,7 +52,7 @@ A>    - D) Measurement error is normally distributed.
 A>  
 A>
 A>
-A>9. Here we are going to use the function `replicate` to learn about the distribution of random variables. All the above exercises relate to the normal distribution as an approximation of the distribution of a fixed list of numbers or a population. We have not yet not discussed probability in these exercises. If the distribution of a list of numbers is approximately normal, then if we pick a number at random from this distribution, it will follow a normal distribution. But it is important to remember that stating that some quantity has a distribution does not necessarily imply this quantity is random. Also, note that this is not related to the central limit theorem. The central limit applies to averages of random variables. Let's explore this concept. 
+A>9. Here we are going to use the function `replicate` to learn about the distribution of random variables. All the above exercises relate to the normal distribution as an approximation of the distribution of a fixed list of numbers or a population. We have not yet discussed probability in these exercises. If the distribution of a list of numbers is approximately normal, then if we pick a number at random from this distribution, it will follow a normal distribution. But it is important to remember that stating that some quantity has a distribution does not necessarily imply this quantity is random. Also, note that this is not related to the central limit theorem. The central limit applies to averages of random variables. Let's explore this concept. 
 A>
 A>    We will now take a sample of size 25 from the population of males on the chow diet. The average of this sample is our random variable. We will use the `replicate` to observe 10,000 realizations of this random variable. Set the seed at 1, generate these 10,000 averages. Make a histogram and qq-plot of these 10,000 numbers against the normal distribution. 
 A>    
@@ -74,7 +74,7 @@ A>
 A>10. What is the standard deviation of the distribution of sample averages?
 A>
 A>
-A>11. According to the CLT, the answer to 9 should be the same as `mean(y)`. You should be able to confirm that these two numbers are very close. Which of the following does the CLT tell us should be close to 10?
+A>11. According to the CLT, the answer to exercise 9 should be the same as `mean(y)`. You should be able to confirm that these two numbers are very close. Which of the following does the CLT tell us should be close to your answer to exercise 10?
 A>    - A) `popsd(y)`
 A>    - B) `popsd(avgs)/sqrt(25)`
 A>    - C) `sqrt(25) / popsd(y)`
@@ -82,7 +82,7 @@ A>    - D) `popsd(y)/sqrt(25)`
 A>  
 A>
 A>
-A>12. In practice we do not know {$$}\sigma{/$$} (`popsd(y)`) which is why we can't use the CLT directly. This is because we see a sample and not the entire distribution. We also can't use `popsd(avgs)` because to construct avgs, we have to take 10,000 samples and this never practical. We usually just get 1. So instead we have to estimate `popsd(y)`. As described, what we use is the sample standard deviation. Set the seed at 1, using the `replicate` function, create 10,000 samples of 25 and now, instead of the sample average, keep the standard deviation. Look at the distribution of the sample standard deviations. It is a random variable. The real population SD is about 4.5. What proportion of the sample SDs are below 3.5 ?
+A>12. In practice we do not know {$$}\sigma{/$$} (`popsd(y)`) which is why we can't use the CLT directly. This is because we see a sample and not the entire distribution. We also can't use `popsd(avgs)` because to construct avgs, we have to take 10,000 samples and this is never practical. We usually just get one sample. So instead we have to estimate `popsd(y)`. As described, what we use is the sample standard deviation. Set the seed at 1, using the `replicate` function, create 10,000 samples of 25 and now, instead of the sample average, keep the standard deviation. Look at the distribution of the sample standard deviations. It is a random variable. The real population SD is about 4.5. What proportion of the sample SDs are below 3.5 ?
 A>
 A>
 A>13. What the answer to question 12 reveals is that the denominator of the t-test is a random variable. By decreasing the sample size, you can see how this variability can increase. It therefore adds variability. The smaller the sample size, the more variability is added. The normal distribution stops providing a useful approximation. When the distribution of the population values is approximately normal, as it is for the weights, the t-distribution provides a better approximation. We will see this later on. Here we will look at the difference between the t-distribution and normal. Use the function `qt` and `qnorm` to get the quantiles of `x=seq(0.0001,0.9999,len=300)`. Do this for degrees of freedom 3, 10, 30, and 100. Which of the following is true?
