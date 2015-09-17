@@ -7,29 +7,29 @@
 #intro math_notation mathematical_notation
 
 ## Chapter 1 - Inference
-random_variables.md
-random_variables_exercises.md
-populations_and_samples.md
-populations_and_samples_exercises.md
-clt_and_t-distribution.md
-clt_and_t-distribution_exercises.md
-clt_in_practice.md
-clt_in_practice_exercises.md
-t-tests_in_practice.md
-confidence_intervals.md
-power_calculations.md
-power_calculations_exercises.md
-monte_carlo.md
-monte_carlo_exercises.md
-permutation_tests.md
-permutation_tests_exercises.md
-association_tests.md
-association_tests_exercises.md
+#inference random_variables
+#inference_exercises random_variables_exercises
+#inference populations_and_samples
+#inference_exercises populations_and_samples_exercises
+#inference clt_and_t-distribution CLT_and_t-distribution
+#inference_exercises clt_and_t-distribution_exercises CLT_and_t-distribution_exercises
+#inference clt_in_practice CLT_in_practice
+#inference_exercises clt_in_practice_exercises CLT_in_practice_exercises
+#inference t-tests_in_practice t-test_in_practice
+#inference confidence_intervals
+#inference power_calculations
+#inference_exercises power_calculations_exercises
+#inference monte_carlo
+#inference_exercises monte_carlo_exercises
+#inference permutation_tests
+#inference_exercises permutation_tests_exercises
+#inference association_tests
+#inference_exercises association_tests_exercises
 
 ## Chapter 2 - Exploratory Data Analysis
-#eda exploratory_data_analysis
-#eda plots_to_avoid
-#eda_exercises exploratory_data_analysis_exercises
+exploratory_data_analysis.md
+plots_to_avoid.md
+exploratory_data_analysis_exercises.md
 
 ## Chapter 3 - Robust Statistics
 #robust robust_summaries
