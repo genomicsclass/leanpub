@@ -18,6 +18,9 @@ while read line; do
     fi
 done < filenames.txt 
 
+## run all the exercises
+./makehtmlassess.sh
+
 echo "\n\n --- updating index and final git push --- "
 
 R CMD BATCH --no-save makehtmlindex.R
