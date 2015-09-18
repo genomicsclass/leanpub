@@ -109,28 +109,10 @@ high-fat diet population:
 ```r
 library(dplyr)
 dat <- read.csv("mice_pheno.csv") #We downloaded this file in a previous section
-```
-
-```
-## Error in read.table(file = file, header = header, sep = sep, quote = quote, : no lines available in input
-```
-
-```r
 controlPopulation <- filter(dat,Sex == "F" & Diet == "chow") %>%  
   select(Bodyweight) %>% unlist
-```
-
-```
-## Error in filter_(.data, .dots = lazyeval::lazy_dots(...)): object 'dat' not found
-```
-
-```r
 hfPopulation <- filter(dat,Sex == "F" & Diet == "hf") %>%  
   select(Bodyweight) %>% unlist
-```
-
-```
-## Error in filter_(.data, .dots = lazyeval::lazy_dots(...)): object 'dat' not found
 ```
 
 It is important to keep in mind that what we are assuming to be normal here is the distribution of {$$}y_1,y_2,\dots,y_n{/$$}, not the random variable {$$}\bar{Y}{/$$}. Although we can't do this in practice, in this illustrative example, we get to see this distribution for both controls and high fat diet mice:
@@ -140,19 +122,10 @@ It is important to keep in mind that what we are assuming to be normal here is t
 library(rafalib)
 mypar(1,2)
 hist(hfPopulation)
-```
-
-```
-## Error in hist(hfPopulation): object 'hfPopulation' not found
-```
-
-```r
 hist(controlPopulation)
 ```
 
-```
-## Error in hist(controlPopulation): object 'controlPopulation' not found
-```
+![Histograms of all weights for both populations.](images/R/clt_and_t-distribution-tmp-population_histograms-1.png) 
 
 We can use *qq-plots* to confirm that the distributions are relatively
 close to being normally distributed. We will explore these plots in
@@ -165,35 +138,12 @@ data is close to the theoretical distribution.
 ```r
 mypar(1,2)
 qqnorm(hfPopulation)
-```
-
-```
-## Error in qqnorm(hfPopulation): object 'hfPopulation' not found
-```
-
-```r
 qqline(hfPopulation)
-```
-
-```
-## Error in quantile(y, probs, names = FALSE, type = qtype, na.rm = TRUE): object 'hfPopulation' not found
-```
-
-```r
 qqnorm(controlPopulation)
-```
-
-```
-## Error in qqnorm(controlPopulation): object 'controlPopulation' not found
-```
-
-```r
 qqline(controlPopulation)
 ```
 
-```
-## Error in quantile(y, probs, names = FALSE, type = qtype, na.rm = TRUE): object 'controlPopulation' not found
-```
+![Quantile-quantile plots of all weights for both populations.](images/R/clt_and_t-distribution-tmp-population_qqplots-1.png) 
 
 The larger the sample, the more forgiving the result is to the
 weakness of this approximation. In the next section we will see that
