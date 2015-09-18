@@ -20,7 +20,7 @@ done < filenames.txt
 
 echo "\n\n --- updating index and final git push --- "
 
-R CMD BATCH makehtmlindex.R
+R CMD BATCH --no-save makehtmlindex.R
 cd ../book
 git commit -am "updating index"
 
