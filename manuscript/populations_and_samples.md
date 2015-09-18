@@ -28,19 +28,7 @@ library(downloader)
 url <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/mice_pheno.csv"
 filename <- "mice_pheno.csv"
 download(url,destfile=filename)
-```
-
-```
-## Warning in download.file(url, method = method, ...): download had nonzero
-## exit status
-```
-
-```r
 dat <- read.csv(filename)
-```
-
-```
-## Error in read.table(file = file, header = header, sep = sep, quote = quote, : no lines available in input
 ```
 
 We can then access the population values and determine, for example, how many we have. Here we compute the size of the control population:
@@ -50,18 +38,11 @@ We can then access the population values and determine, for example, how many we
 library(dplyr)
 controlPopulation <- filter(dat,Sex == "F" & Diet == "chow") %>% 
   select(Bodyweight) %>% unlist
-```
-
-```
-## Error in filter_(.data, .dots = lazyeval::lazy_dots(...)): object 'dat' not found
-```
-
-```r
 length(controlPopulation)
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'controlPopulation' not found
+## [1] 225
 ```
 
 We usually denote these values as {$$}x_1,\dots,x_m{/$$}. In this case {$$}m{/$$} is the number computed above. We can do the same for the high fat diet population:
@@ -70,18 +51,11 @@ We usually denote these values as {$$}x_1,\dots,x_m{/$$}. In this case {$$}m{/$$
 ```r
 hfPopulation <- filter(dat,Sex == "F" & Diet == "hf") %>%  
   select(Bodyweight) %>% unlist
-```
-
-```
-## Error in filter_(.data, .dots = lazyeval::lazy_dots(...)): object 'dat' not found
-```
-
-```r
 length(hfPopulation)
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'hfPopulation' not found
+## [1] 200
 ```
 
 and denote with {$$}y_1,\dots,y_n{/$$}.
