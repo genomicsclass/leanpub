@@ -15,11 +15,6 @@ filename <- "femaleMiceWeights.csv"
 download(url, destfile=filename)
 ```
 A>
-A>```
-A>## Warning in download.file(url, method = method, ...): download had nonzero
-A>## exit status
-A>```
-A>
 A>1. Read in the file `femaleMiceWeights.csv` and report the body weight of the mouse in the exact name of the column containing the weights
 A>
 A>
