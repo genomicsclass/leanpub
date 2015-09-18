@@ -5,7 +5,7 @@ while read line; do
     if [ "$line" != "" ]; then
 	if [[ $line != *"#"* ]]; then
 	    if [[ $line != *"exercises"* ]]; then
-		echo " --- now processing ---"
+		echo "\n\n --- now processing ---"
 		echo $line
 		echo ""
 		cd ../book
@@ -17,3 +17,13 @@ while read line; do
 	fi
     fi
 done < filenames.txt 
+
+echo "\n\n --- updating index and final git push --- "
+
+R CMD BATCH makehtmlindex.R
+cd ../book
+git commit -am "updating index"
+
+git push
+
+echo "\n\n *** done! ***"
