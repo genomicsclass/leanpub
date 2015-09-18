@@ -9,10 +9,6 @@ A>For these exercises we will use a new dataset related to mammalian sleep. This
 A>[here](http://docs.ggplot2.org/0.9.3.1/msleep.html). Download the CSV file from this location:
 A>
 A>
-A>```
-A>## Warning in download.file(url, method = method, ...): download had nonzero
-A>## exit status
-A>```
 A>
 A>We are going to read in this data, then test your knowledge of key `dplyr` functions `select` and `filter`. We are also going to review two different _classes_: data frames and vectors.
 A>
