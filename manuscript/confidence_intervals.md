@@ -46,18 +46,7 @@ We start by reading in the data and selecting the appropriate rows:
 
 ```r
 dat <- read.csv("mice_pheno.csv")
-```
-
-```
-## Error in read.table(file = file, header = header, sep = sep, quote = quote, : no lines available in input
-```
-
-```r
 chowPopulation <- dat[dat$Sex=="F" & dat$Diet=="chow",3]
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'dat' not found
 ```
 
 The population average {$$}\mu_X{/$$} is our parameter of interest here:
@@ -65,18 +54,11 @@ The population average {$$}\mu_X{/$$} is our parameter of interest here:
 
 ```r
 mu_chow <- mean(chowPopulation)
-```
-
-```
-## Error in mean(chowPopulation): object 'chowPopulation' not found
-```
-
-```r
 print(mu_chow)
 ```
 
 ```
-## Error in print(mu_chow): object 'mu_chow' not found
+## [1] 23.89338
 ```
 
 We are interested in estimating this parameter. In practice we do not get to see the entire population so, as we did for p-values, we demonstrate how we can use samples to do this. Let's start with a sample of size 30:
@@ -85,18 +67,11 @@ We are interested in estimating this parameter. In practice we do not get to see
 ```r
 N <- 30
 chow <- sample(chowPopulation,N)
-```
-
-```
-## Error in sample(chowPopulation, N): object 'chowPopulation' not found
-```
-
-```r
 print(mean(chow))
 ```
 
 ```
-## Error in mean(chow): object 'chow' not found
+## [1] 23.351
 ```
 
 We know this is a random variable, so the sample average will not be a perfect estimate. In fact, because in this illustrative example we know the value of the parameter, we can see that they are not exactly the same. A confidence interval is a statistical way of reporting our finding, the sample average, in a way that explicitly summarizes the variability of our random variable.
@@ -106,18 +81,11 @@ With a sample size of 30, we will use the CLT. The CLT tells us that {$$}\bar{X}
 
 ```r
 se <- sd(chow)/sqrt(N)
-```
-
-```
-## Error in is.data.frame(x): object 'chow' not found
-```
-
-```r
 print(se)
 ```
 
 ```
-## Error in print(se): object 'se' not found
+## [1] 0.4781652
 ```
 
 <a name="interval"></a>
@@ -173,18 +141,11 @@ interval with R relatively easily:
 ```r
 Q <- qnorm(1- 0.05/2)
 interval <- c(mean(chow)-Q*se, mean(chow)+Q*se )
-```
-
-```
-## Error in mean(chow): object 'chow' not found
-```
-
-```r
 interval
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'interval' not found
+## [1] 22.41381 24.28819
 ```
 
 ```r
@@ -192,7 +153,7 @@ interval[1] < mu_chow & interval[2] > mu_chow
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'interval' not found
+## [1] TRUE
 ```
 
 which happens to cover {$$}\mu_X{/$$} or `mean(chowPopulation)`. However, we can take another sample and we might not be as lucky. In fact, the theory tells us that we will cover {$$}\mu_X{/$$} 95% of the time. Because we have access to the population data, we can confirm this by taking several new samples:
@@ -204,21 +165,7 @@ B <- 250
 mypar()
 plot(mean(chowPopulation)+c(-7,7),c(1,1),type="n",
      xlab="weight",ylab="interval",ylim=c(1,B))
-```
-
-```
-## Error in mean(chowPopulation): object 'chowPopulation' not found
-```
-
-```r
 abline(v=mean(chowPopulation))
-```
-
-```
-## Error in mean(chowPopulation): object 'chowPopulation' not found
-```
-
-```r
 for (i in 1:B) {
   chow <- sample(chowPopulation,N)
   se <- sd(chow)/sqrt(N)
@@ -230,9 +177,7 @@ for (i in 1:B) {
 }
 ```
 
-```
-## Error in sample(chowPopulation, N): object 'chowPopulation' not found
-```
+![We show 250 random realizations of 95% confidence intervals. The color denotes if the interval fell on the parameter or not.](images/R/confidence_intervals-tmp-confidence_interval_n30-1.png) 
 
 You can run this repeatedly to see what happens. You will see that about in about 5% of the cases, we fail to cover {$$}\mu_X{/$$}.
 
@@ -248,21 +193,7 @@ For {$$}N=30{/$$} the CLT works very well. However, if {$$}N=5{/$$}, do these co
 mypar()
 plot(mean(chowPopulation)+c(-7,7),c(1,1),type="n",
      xlab="weight",ylab="interval",ylim=c(1,B))
-```
-
-```
-## Error in mean(chowPopulation): object 'chowPopulation' not found
-```
-
-```r
 abline(v=mean(chowPopulation))
-```
-
-```
-## Error in mean(chowPopulation): object 'chowPopulation' not found
-```
-
-```r
 Q <- qnorm(1- 0.05/2)
 N <- 5
 for (i in 1:B) {
@@ -275,9 +206,7 @@ for (i in 1:B) {
 }
 ```
 
-```
-## Error in sample(chowPopulation, N): object 'chowPopulation' not found
-```
+![We show 250 random realizations of 95% confidence intervals, but now for a smaller sample size. The confidence interval is based on the CLT approximation. The color denotes if the interval fell on the parameter or not.](images/R/confidence_intervals-tmp-confidence_interval_n5-1.png) 
 
 Despite the intervals being larger ( we are dividing by {$$}\sqrt{5}{/$$}
 instead of {$$}\sqrt{30}{/$$} ), we see many more intervals not covering
@@ -294,21 +223,7 @@ change how we calculate `Q` to use `qt` instead of `qnorm`.
 mypar()
 plot(mean(chowPopulation) + c(-7,7), c(1,1), type="n",
      xlab="weight", ylab="interval", ylim=c(1,B))
-```
-
-```
-## Error in mean(chowPopulation): object 'chowPopulation' not found
-```
-
-```r
 abline(v=mean(chowPopulation))
-```
-
-```
-## Error in mean(chowPopulation): object 'chowPopulation' not found
-```
-
-```r
 ##Q <- qnorm(1- 0.05/2) ##no longer normal so use:
 Q <- qt(1- 0.05/2, df=4)
 N <- 5
@@ -322,9 +237,7 @@ for (i in 1:B) {
 }
 ```
 
-```
-## Error in sample(chowPopulation, N): object 'chowPopulation' not found
-```
+![We show 250 random realizations of 95% confidence intervals, but now for a smaller sample size. The confidence is now based on the t-distribution approximation. The color denotes if the interval fell on the parameter or not.](images/R/confidence_intervals-tmp-confidence_interval_tdist_n5-1.png) 
 
 Now the intervals are made bigger. This is because the t-distribution has fatter tails and therefore:
 
