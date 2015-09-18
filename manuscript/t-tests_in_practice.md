@@ -198,13 +198,6 @@ simple code that one would use to actually compute a t-test:
 ```r
 library(dplyr)
 dat <- read.csv("mice_pheno.csv")
-```
-
-```
-## Error in read.table(file = file, header = header, sep = sep, quote = quote, : no lines available in input
-```
-
-```r
 control <- filter(dat,Diet=="chow") %>% select(Bodyweight) 
 treatment <- filter(dat,Diet=="hf") %>% select(Bodyweight) 
 t.test(treatment,control)
@@ -215,13 +208,13 @@ t.test(treatment,control)
 ## 	Welch Two Sample t-test
 ## 
 ## data:  treatment and control
-## t = 2.0552, df = 20.236, p-value = 0.053
+## t = 7.1932, df = 735.02, p-value = 1.563e-12
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.04296563  6.08463229
+##  2.231533 3.906857
 ## sample estimates:
 ## mean of x mean of y 
-##  26.83417  23.81333
+##  30.48201  27.41281
 ```
 
 The arguments to `t.test` can be of type *data.frame* and thus we do not need to unlist them into numeric objects.
