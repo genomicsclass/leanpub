@@ -15,26 +15,21 @@ The R markdown document for this section is available [here](https://github.com/
 Let's use our data to see how well the central limit theorem approximates sample averages from our data. We will leverage our entire population dataset to compare the results we obtain by actually sampling from the distribution to what the CLT predicts.
 
 
-```
-## Warning in download.file(url, method = method, ...): download had nonzero
-## exit status
-```
 
 
 ```r
 dat <- read.csv("mice_pheno.csv") #file was previously downloaded
-```
-
-```
-## Error in read.table(file = file, header = header, sep = sep, quote = quote, : no lines available in input
-```
-
-```r
 head(dat)
 ```
 
 ```
-## Error in head(dat): object 'dat' not found
+##   Sex Diet Bodyweight
+## 1   F   hf      31.94
+## 2   F   hf      32.48
+## 3   F   hf      22.82
+## 4   F   hf      19.92
+## 5   F   hf      32.22
+## 6   F   hf      27.50
 ```
 
 Start by selecting only female mice since males and females have
@@ -61,19 +56,8 @@ library(dplyr)
 ```r
 controlPopulation <- filter(dat,Sex == "F" & Diet == "chow") %>%  
   select(Bodyweight) %>% unlist
-```
-
-```
-## Error in filter_(.data, .dots = lazyeval::lazy_dots(...)): object 'dat' not found
-```
-
-```r
 hfPopulation <- filter(dat,Sex == "F" & Diet == "hf") %>%  
   select(Bodyweight) %>% unlist
-```
-
-```
-## Error in filter_(.data, .dots = lazyeval::lazy_dots(...)): object 'dat' not found
 ```
 
 We can compute the population parameters of interest using the mean function.
@@ -81,26 +65,12 @@ We can compute the population parameters of interest using the mean function.
 
 ```r
 mu_hf <- mean(hfPopulation)
-```
-
-```
-## Error in mean(hfPopulation): object 'hfPopulation' not found
-```
-
-```r
 mu_control <- mean(controlPopulation)
-```
-
-```
-## Error in mean(controlPopulation): object 'controlPopulation' not found
-```
-
-```r
 print(mu_hf - mu_control)
 ```
 
 ```
-## Error in print(mu_hf - mu_control): object 'mu_hf' not found
+## [1] 2.375517
 ```
 
 Compute the population standard deviations as well. We do not use the
@@ -112,34 +82,13 @@ We can see that with R code:
 
 ```r
 x <- controlPopulation
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'controlPopulation' not found
-```
-
-```r
 N <- length(x)
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'x' not found
-```
-
-```r
 populationvar <- mean((x-mean(x))^2)
-```
-
-```
-## Error in mean((x - mean(x))^2): object 'x' not found
-```
-
-```r
 identical(var(x), populationvar)
 ```
 
 ```
-## Error in is.data.frame(x): object 'x' not found
+## [1] FALSE
 ```
 
 ```r
@@ -147,7 +96,7 @@ identical(var(x)*(N-1)/N, populationvar)
 ```
 
 ```
-## Error in is.data.frame(x): object 'x' not found
+## [1] TRUE
 ```
 
 So to be mathematically correct we do not use `sd` or  `var`. Instead we use the `popvar` and `popsd` function in `rafalib`:
@@ -156,18 +105,7 @@ So to be mathematically correct we do not use `sd` or  `var`. Instead we use the
 ```r
 library(rafalib)
 sd_hf <- popsd(hfPopulation)
-```
-
-```
-## Error in is.vector(x): object 'hfPopulation' not found
-```
-
-```r
 sd_control <- popsd(controlPopulation)
-```
-
-```
-## Error in is.vector(x): object 'controlPopulation' not found
 ```
 
 Remember that in practice we do not get to compute these population parameters.
@@ -177,18 +115,7 @@ These are values we never see. In general, we want to estimate them from samples
 ```r
 N <- 12
 hf <- sample(hfPopulation, 12)
-```
-
-```
-## Error in sample(hfPopulation, 12): object 'hfPopulation' not found
-```
-
-```r
 control <- sample(controlPopulation, 12)
-```
-
-```
-## Error in sample(controlPopulation, 12): object 'controlPopulation' not found
 ```
 
 As we described, the CLT tells us that, for large {$$}N{/$$}, each of these is approximately normal with average population mean and standard error population variance divided by {$$}N{/$$}. We mentioned that a rule of thumb is that {$$}N{/$$} should be 30 or more. But that is just a rule of thumb, as the preciseness of the approximation depends on the population distribution. Here we can actually check the approximation and we do that for various values of {$$}N{/$$}.
@@ -206,10 +133,6 @@ res <-  sapply(Ns,function(n) {
 })
 ```
 
-```
-## Error in sample(hfPopulation, n): object 'hfPopulation' not found
-```
-
 Now we can use qq-plots to see how well CLT approximations works for these. If in fact the normal distribution is a good approximation, the points should fall on a straight line when compared to normal quantiles. The more it deviates, the worse the approximation. We also show, in the title, the average and SD of the observed distribution which demonstrates how the SD decreases with {$$}\sqrt{N}{/$$} as predicted. 
 
 
@@ -224,9 +147,7 @@ for (i in seq(along=Ns)) {
 }
 ```
 
-```
-## Error in mean(res[, i]): object 'res' not found
-```
+![Quantile versus quantile plot of simulated differences versus theoretical normal distribution for four different sample sizes.](images/R/clt_in_practice-tmp-effect_size_qqplot-1.png) 
 
 Here we see a pretty good fit even for 3. Why is this? Because the
 population itself is relatively close to normally distributed, the
@@ -248,13 +169,6 @@ computetstat <- function(n) {
 res <-  sapply(Ns,function(n) {
   replicate(B,computetstat(n))
 })
-```
-
-```
-## Error in sample(hfPopulation, n): object 'hfPopulation' not found
-```
-
-```r
 mypar(2,2)
 for (i in seq(along=Ns)) {
   qqnorm(res[,i],main=Ns[i])
@@ -262,9 +176,7 @@ for (i in seq(along=Ns)) {
 }
 ```
 
-```
-## Error in qqnorm(res[, i], main = Ns[i]): object 'res' not found
-```
+![Quantile versus quantile plot of simulated ratios versus theoretical normal distribution for four different sample sizes.](images/R/clt_in_practice-tmp-t_test_qqplot-1.png) 
 
 So we see that for {$$}N=3{/$$} the CLT does not provide a usable
 approximation. For {$$}N=12{/$$} there is a slight deviation at the higher
