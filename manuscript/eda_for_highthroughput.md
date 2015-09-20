@@ -5,17 +5,16 @@ title: Basic EDA for high-throughput data
 
 
 
-
-```r
-library(rafalib)
-```
-
 ## Basic Exploratory Data Analysis 
 
 The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/advinference/eda_for_highthroughput.Rmd).
 
 An under-appreciated advantage of working with high-throughput data is that problems with the data are sometimes more easily exposed than with low-throughput data. The fact that we have thousands of measurements permits us to see problems that are not apparent when only a few measurements are available. A powerful way to detect these problems is with exploratory data analysis (EDA). Here we review some of the plots that allow us to detect quality problems.
-We will use the results obtained from applying t-test to data from a gene expression dataset:
+
+
+#### Volcano Plots
+
+Here we will use the results obtained from applying t-test to data from a gene expression dataset:
 
 
 ```r
@@ -37,9 +36,7 @@ randomData <- matrix(rnorm(n*m),m,n)
 nullpvals <- rowttests(randomData,g)$p.value
 ```
 
-#### Volcano Plots
-
-As we described above, reporting only p-values is a mistake when we can also report effect sizes. With high-throughput data, we can visualize the results by making a plot. The idea behind a _volcano plot_ is to show these for all features. In the y-axis we plot -log (base 10) p-values and on the x-axis we plot the effect size. By using - log (base 10), the "highly significant" features appear at the top of the plot. Using log also permits us to better distinguish between small and very small p-values, for example 0.01 and {$$}10^6{/$$}.  Here is the volcano plot for our results above:
+As we described earlier, reporting only p-values is a mistake when we can also report effect sizes. With high-throughput data, we can visualize the results by making a _volcano plot_. The idea behind a volcano plot is to show these for all features. In the y-axis we plot -log (base 10) p-values and on the x-axis we plot the effect size. By using - log (base 10), the "highly significant" features appear at the top of the plot. Using log also permits us to better distinguish between small and very small p-values, for example 0.01 and {$$}10^6{/$$}.  Here is the volcano plot for our results above:
 
 
 ```r
@@ -53,10 +50,11 @@ Many features with very small p-values, but small effect sizes as we see here, a
 
 #### p-value Histograms
 
-Another plot we can create to get an overall idea of the results is to make histograms of p-values. When we generate completely null data the histogram follows a uniform distribution (we will say more about this later). With our original data set we see a higher frequency of smaller p-values. 
+Another plot we can create to get an overall idea of the results is to make histograms of p-values. When we generate completely null data the histogram follows a uniform distribution. With our original data set we see a higher frequency of smaller p-values. 
 
 
 ```r
+library(rafalib)
 mypar(1,2)
 hist(nullpvals,ylim=c(0,1400))
 hist(pvals,ylim=c(0,1400))
@@ -76,6 +74,8 @@ hist(permresults$p.value)
 ```
 
 ![Histogram obtained after permuting labels.](images/R/eda_for_highthroughput-tmp-pval-hist2-1.png) 
+
+In a later chapter we will see that the columns in this dataset are not independnet and thus the assumptions used to compute the p-values here are incorrect.
 
 #### Data Boxplots and Histograms
 
@@ -101,7 +101,7 @@ boxplot(ge,range=0,names=1:ncol(e),col=ifelse(1:ncol(ge)==49,1,2))
 
 ![Boxplot for log-scale expression for all samples.](images/R/eda_for_highthroughput-tmp-boxplots-1.png) 
 
-Note that the number of samples is a bit too large here making it hard to see the boxes. One can instead simply show the boxplot summaries without (cite Karl Broman):
+Note that the number of samples is a bit too large here making it hard to see the boxes. One can instead simply show the boxplot summaries without the boxes:
 
 
 ```r
@@ -123,7 +123,7 @@ shist(ge,unit=0.5)
 
 #### MA Plot
 
-Scatterplots and correlation are not the best tools to detect replication problems. Note, for example, that 1,2,3,4 and 100,200,300,400 are two lists with very different values yet have perfect correlation. A better measure of replication can be obtained from examining the differences between the values that should be the same. Therefore, a better plot is a rotation of the scatterplot containing the differences on the y-axis and the averages on the x-axis. This plot was originally named a Bland-Altman plot, but in the genomics world it is commonly referred to as an MA-plot. The name MA comes from plots of red log intensity minus (M) green intensities versus average (A) log intensities used with microarrays (MA) data.
+Scatterplots and correlation are not the best tools to detect replication problems. A better measure of replication can be obtained from examining the differences between the values that should be the same. Therefore, a better plot is a rotation of the scatterplot containing the differences on the y-axis and the averages on the x-axis. This plot was originally named a Bland-Altman plot, but in genomics  it is commonly referred to as an MA-plot. The name MA comes from plots of red log intensity minus (M) green intensities versus average (A) log intensities used with microarrays (MA) data.
 
 
 ```r
