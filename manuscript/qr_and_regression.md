@@ -12,13 +12,12 @@ layout: page
 
 The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/linear/qr_and_regression.Rmd).
 
-We have seen that in order to calculate the LSE, we need to invert a matrix. We have shown how to use solve. However, solve is not a stable solution. When coding LSE computation, we use the QR decomposition.
+We have seen that in order to calculate the LSE, we need to invert a matrix. In previous sections we used the function `solve`. However, solve is not a stable solution. When coding LSE computation, we use the QR decomposition.
 
 
 #### Inverting {$$}\mathbf{X^\top X}{/$$}
 
-
-To minimize the RSS: 
+Remember that to minimize the RSS: 
 
 {$$}
 (\mathbf{Y}-\mathbf{X}\boldsymbol{\beta})^\top
@@ -37,17 +36,18 @@ The solution is:
 \boldsymbol{\hat{\beta}} = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{Y}   
 {/$$}
 
-Thus, we need to compute {$$}(\mathbf{X}^\top \mathbf{X})^{-1}{/$$}
+Thus, we need to compute {$$}(\mathbf{X}^\top \mathbf{X})^{-1}{/$$}.
 
-#### `solve` is unstable
+#### `solve` is numerically unstable
 
-Here we construct an extreme case:
+To demonstrate what we mean by _numerically unstable_,  we construct an extreme case:
 
 
 ```r
 n <- 50;M <- 500
 x <- seq(1,M,len=n)
 X <- cbind(1,x,x^2,x^3)
+colnames(X) <- c("Intercept","x","x2","x3")
 beta <- matrix(c(1,1,1,1),4,1)
 set.seed(1)
 y <- X%*%beta+rnorm(n,sd=1)
@@ -62,21 +62,20 @@ solve(crossprod(X)) %*% crossprod(X,y)
 To see why this happens, look at {$$}(\mathbf{X}^\top \mathbf{X}){/$$}
 
 
-
-
 ```r
+options(digits=4)
 log10(crossprod(X))
 ```
 
 ```
-##              x              
-##   1.699  4.098  6.625  9.203
-## x 4.098  6.625  9.203 11.810
-##   6.625  9.203 11.810 14.434
-##   9.203 11.810 14.434 17.070
+##           Intercept      x     x2     x3
+## Intercept     1.699  4.098  6.625  9.203
+## x             4.098  6.625  9.203 11.810
+## x2            6.625  9.203 11.810 14.434
+## x3            9.203 11.810 14.434 17.070
 ```
 
-Note the difference of several orders of magnitude. On a digital computer, we have a limited range of numbers which makes some numbers seem like 0, which in turn leads to division by 0 errors.
+Note the difference of several orders of magnitude. On a digital computer, we have a limited range of numbers. This makes some numbers seem like 0, when we also have to consider very large numbers. This in turn leads to  divisions that are, practically, divisions by 0 errors.
 
 #### The factorization 
 
@@ -118,7 +117,7 @@ c\\
 \end{pmatrix}
 {/$$}
 
-We immediately know that {$$}c=1{/$$}, which implies that {$$}b+2=4{/$$}. This in turn suggests {$$}b=2{/$$} and thus {$$}a+4-1=6{/$$} so {$$}a = 3{/$$}. Writing an algorithm to do this is straight-forward for any upper triangular matrix.
+We immediately know that {$$}c=1{/$$}, which implies that {$$}b+2=4{/$$}. This in turn implies {$$}b=2{/$$} and thus {$$}a+4-1=6{/$$} so {$$}a = 3{/$$}. Writing an algorithm to do this is straight-forward for any upper triangular matrix.
 
 #### Finding LSE with QR 
 
@@ -168,11 +167,11 @@ QR <- qr(X)
 ```
 
 ```
-##     [,1]
-##   0.9038
-## x 1.0066
-##   1.0000
-##   1.0000
+##             [,1]
+## Intercept 0.9038
+## x         1.0066
+## x2        1.0000
+## x3        1.0000
 ```
 
 
@@ -195,7 +194,7 @@ fitted <- tcrossprod(Q)%*%y
 lines(x,fitted,col=2)
 ```
 
-<img src="images/R/qr_and_regression-tmp-unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
+<img src="images/R/qr_and_regression-tmp-unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
 
 #### Standard errors
 
@@ -215,11 +214,11 @@ cbind(betahat,SE)
 ```
 
 ```
-##                 SE
-##   0.9038 4.508e-01
-## x 1.0066 7.858e-03
-##   1.0000 3.662e-05
-##   1.0000 4.802e-08
+##                         SE
+## Intercept 0.9038 4.508e-01
+## x         1.0066 7.858e-03
+## x2        1.0000 3.662e-05
+## x3        1.0000 4.802e-08
 ```
 
 This gives us identical results to the `lm` function.
@@ -230,10 +229,10 @@ summary(lm(y~0+X))$coef
 ```
 
 ```
-##    Estimate Std. Error   t value   Pr(>|t|)
-## X    0.9038  4.508e-01 2.005e+00  5.089e-02
-## Xx   1.0066  7.858e-03 1.281e+02  2.171e-60
-## X    1.0000  3.662e-05 2.731e+04 1.745e-167
-## X    1.0000  4.802e-08 2.082e+07 4.559e-300
+##            Estimate Std. Error   t value   Pr(>|t|)
+## XIntercept   0.9038  4.508e-01 2.005e+00  5.089e-02
+## Xx           1.0066  7.858e-03 1.281e+02  2.171e-60
+## Xx2          1.0000  3.662e-05 2.731e+04 1.745e-167
+## Xx3          1.0000  4.802e-08 2.082e+07 4.559e-300
 ```
 
