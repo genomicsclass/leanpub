@@ -111,6 +111,8 @@ matplot(qs,type="l",lty=1)
 
 ![The 0.05, 0.25, 0.5, 0.75, and 0.95 quantiles are plotted for each sample.](images/R/eda_for_highthroughput-tmp-kaboxplot-1.png) 
 
+We refer to this figure as a _kaboxplot_ because Karl Broman was the first we saw use it as an alternative to boxplots.
+
 We can also plot all the histograms. Because we have so much data we create histograms using small bins, then smooth the heights of the bars and then plot _smooth histograms_. We re-calibrate the height of these smooth curves so that if a bar is made with base of size "unit" and height given by the curve at {$$}x_0{/$$}, the area approximates the number of points in region of size "unit" centered at {$$}x_0{/$$}:
 
 
