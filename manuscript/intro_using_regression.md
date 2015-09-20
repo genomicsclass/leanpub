@@ -7,7 +7,7 @@ title: "Introduction to Linear Models"
 
 # Matrix Algebra
 
-We are going to describe three examples from the life sciences: one from physics, one related to genetics, and one from a mouse experiment. They are very different, yet we end up using the same statistical technique: fitting linear models. Linear models are typically taught and described in the language of matrix algebra. 
+We will describe three examples from the life sciences: one from physics, one related to genetics, and one from a mouse experiment. They are very different, yet we end up using the same statistical technique: fitting linear models. Linear models are typically taught and described in the language of matrix algebra. 
 
 
 
@@ -15,9 +15,9 @@ We are going to describe three examples from the life sciences: one from physics
 
 The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/matrixalg/intro_using_regression.Rmd).
 
-#### Objects falling
+#### Falling objects
 
-Imagine you are Galileo in the 16th century trying to describe the velocity of a falling object. An assistant climbs the Tower of Pisa and drops a ball, while several others record the position at different times. Let's simulate some data using the equations we know today and adding some measurement error:
+Imagine you are Galileo in the 16th century trying to describe the velocity of a falling object. An assistant climbs the Tower of Pisa and drops a ball, while several other assistants record the position at different times. Let's simulate some data using the equations we know today and adding some measurement error:
 
 
 ```r
@@ -44,7 +44,7 @@ He does not know the exact equation, but by looking at the plot above he deduces
 
 With {$$}Y_i{/$$} representing location, {$$}x_i{/$$} representing the time, and {$$}\varepsilon{/$$} accounting for measurement error. This is a linear model because it is a linear combination of known quantities (th {$$}x{/$$} s) referred to as predictors or covariates and unknown parameters (the {$$}\beta{/$$} s). 
 
-#### Fathers' & sons' heights
+#### Father & son heights
 Now imagine you are Francis Galton in the 19th century and you collect paired height data from fathers and sons. You suspect that height is inherited. Your data:
 
 
@@ -63,11 +63,11 @@ plot(x,y,xlab="Father's height",ylab="Son's height")
 
 ![Galton's data. Son heights versus father heights.](images/R/intro_using_regression-tmp-galton_data-1.png) 
 
-The sons' height does seem to increase linearly with the fathers' height. In this case a model that describes the data is as follows:
+The sons' heights do seem to increase linearly with the fathers' heights. In this case a model that describes the data is as follows:
 
 {$$} Y_i = \beta_0 + \beta_1 x_i + \varepsilon, i=1,\dots,N {/$$}
 
-This is also a linear model with {$$}x_i{/$$} and {$$}Y_i{/$$} the father and son heights respectively for the {$$}i{/$$}-th pair and {$$}\varepsilon{/$$} a term to account for the extra variability. Here we think of the fathers' height as the predictor and being fixed (not random) so we use lower case. Measurement error alone can't explain all the variability seen in {$$}\varepsilon{/$$}. This makes sense as there are other variables not in the model, for example, mothers' height, genetic randomness, and environmental factors.
+This is also a linear model with {$$}x_i{/$$} and {$$}Y_i{/$$} the father and son heights respectively for the {$$}i{/$$}-th pair and {$$}\varepsilon{/$$} a term to account for the extra variability. Here we think of the fathers' heights as the predictor and being fixed (not random) so we use lower case. Measurement error alone can't explain all the variability seen in {$$}\varepsilon{/$$}. This makes sense as there are other variables not in the model, for example, mothers' heights, genetic randomness, and environmental factors.
 
 #### Random samples from multiple populations
 
@@ -113,7 +113,7 @@ The standard approach in science is to find the values that minimize the distanc
 
 {$$} \sum_{i=1}^n \left\{  Y_i - \left(\beta_0 + \sum_{j=1}^p \beta_j x_{i,j}\right)\right\}^2 {/$$}
 
-Once we find the minimum, we will call the values the least squares estimates (LSE) and denote them with {$$}\hat{\beta}{/$$}. The quantity obtained when evaluating the least square equation at the estimates is called the residual sum of squares (RSS). Note that because all these quantities depend on {$$}Y{/$$}, *they are random variables*. The {$$}\hat{\beta}{/$$} s are random variables and we will eventually perform inference on them.
+Once we find the minimum, we will call the values the least squares estimates (LSE) and denote them with {$$}\hat{\beta}{/$$}. The quantity obtained when evaluating the least square equation at the estimates is called the residual sum of squares (RSS). Since all these quantities depend on {$$}Y{/$$}, *they are random variables*. The {$$}\hat{\beta}{/$$} s are random variables and we will eventually perform inference on them.
 
 #### Falling object example revisited
 Thanks to my high school physics teacher, I know that the equation for the trajectory of a falling object is: 
@@ -201,7 +201,7 @@ Trial and error here is not going to work. Instead we can use calculus: take the
 
 When studying the father-son data, Galton made a fascinating discovery using exploratory analysis.
 
-![Galton's plot](images/downloads/Galton's_correlation_diagram_1875.jpg) 
+![Galton's plot](http://upload.wikimedia.org/wikipedia/commons/b/b2/Galton's_correlation_diagram_1875.jpg) 
 
 He noted that if he tabulated the number of father-son height pairs and followed all the x,y values having the same totals in the table, they formed an ellipsis. In the plot above, made by Galton, you see the ellipsis formed by the pairs having 3 cases. This then led to modeling this data as correlated bivariate normal which we described earlier: 
 
@@ -222,6 +222,6 @@ Pr(X<a,Y<b) =
 }
 {/$$}
 
-We described how we can use math to show that if you keep {$$}X{/$$} fixed (condition to be {$$}x{/$$}) the distribution of {$$}Y{/$$} is normally distributed with mean: {$$}\mu_x +\sigma_y \rho \left(\frac{x-\mu_x}{\sigma_x}\right){/$$} and standard deviation {$$}\sigma_y \sqrt{1-\rho^2}{/$$}. Note that {$$}\rho{/$$} is the correlation between {$$}Y{/$$} and {$$}X{/$$} and this implies that if we fix {$$}X=x{/$$}, {$$}Y{/$$} does in fact follow a linear model. The {$$}\beta_0{/$$} and {$$}\beta_1{/$$} parameters in our simple linear model can be expressed in terms of {$$}\mu_x,\mu_y,\sigma_x,\sigma_y{/$$}, and {$$}\rho{/$$}.   
+We described how we can use math to show that if you keep {$$}X{/$$} fixed (condition to be {$$}x{/$$}) the distribution of {$$}Y{/$$} is normally distributed with mean: {$$}\mu_x +\sigma_y \rho \left(\frac{x-\mu_x}{\sigma_x}\right){/$$} and standard deviation {$$}\sigma_y \sqrt{1-\rho^2}{/$$}. Note that {$$}\rho{/$$} is the correlation between {$$}Y{/$$} and {$$}X{/$$} , which implies that if we fix {$$}X=x{/$$}, {$$}Y{/$$} does in fact follow a linear model. The {$$}\beta_0{/$$} and {$$}\beta_1{/$$} parameters in our simple linear model can be expressed in terms of {$$}\mu_x,\mu_y,\sigma_x,\sigma_y{/$$}, and {$$}\rho{/$$}.   
 
 
