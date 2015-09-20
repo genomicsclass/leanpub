@@ -19,7 +19,7 @@ A>\frac{  \sum_{i=1}^{N_x} (X_i - \mu_x)^2  + \sum_{i=1} (Y_i - \mu_y)^2  }{N_x 
 A>{/$$}
 A>
 A>
-A>Where {$$}N_x{/$$} is the number of samples in the first group and {$$}N_y{/$$} is the number of samples in the second group.
+A>Here {$$}N_x{/$$} is the number of samples in the first group and {$$}N_y{/$$} is the number of samples in the second group.
 A>
 A>If we look carefully, the second part of this equation is the sum of squared residuals, divided by {$$}N - 2{/$$}.
 A>
@@ -41,7 +41,7 @@ A>2. The other entries of {$$}X^\top X{/$$} are all the same. What is this numbe
 A>
 A>
 A>
-A>Now we just need to invert the matrix to obtain (X^T X)^-1. The formula for matrix inversion for a 2x2 matrix is actually relatively easy to memorize:
+A>Now we just need to invert the matrix to obtain {$$}(X^\top X)^{-1}{/$$}. The formula for matrix inversion for a 2x2 matrix is actually relatively easy to memorize:
 A>
 A>{$$} \,
 A>\begin{pmatrix}
