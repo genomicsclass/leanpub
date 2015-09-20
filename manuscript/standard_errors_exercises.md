@@ -34,10 +34,10 @@ A>{/$$}
 A>
 A>We will estimate or calculate each part of this equation and then combine them.
 A>
-A>First, we want to estimate {$$}\sigma^2{/$$}, the variance of {$$}Y{/$$}. As we have seen in the previous unit, the random part of {$$}Y{/$$} is only coming from epsilon, because we assume {$$}X\beta{/$$} is fixed. So we can try to estimate the variance of the epsilons from the residuals, the {$$}Y_i{/$$} minus the fitted values from the linear model.
+A>First, we want to estimate {$$}\sigma^2{/$$}, the variance of {$$}Y{/$$}. As we have seen in the previous unit, the random part of {$$}Y{/$$} is only coming from {$$}\varepsilon{/$$}, because we assume {$$}X\beta{/$$} is fixed. So we can try to estimate the variance of the {$$}\varepsilon{/$$} s from the residuals, the {$$}Y_i{/$$} minus the fitted values from the linear model.
 A>
 A>
-A>1. Note that the fitted values (Y-hat) from a linear model can be obtained with:
+A>1. Note that the fitted values {$$}\hat{Y}{/$$} from a linear model can be obtained with:
 A>
 A>    
     ```r
@@ -65,7 +65,7 @@ A>
 A>    Now calculate {$$}(X^\top X)^{-1}{/$$}. Use the `solve` function for the inverse and `t` for the transpose. What is the element in the first row, first column?
 A>
 A>
-A>4. Now we are one step away from the standard error of beta-hat. Take the diagonals from the {$$}(X^\top X)^{-1}{/$$} matrix above, using the `diag` function. Now multiply our estimate of {$$}\sigma^2{/$$} and the diagonals of this matrix. This is the estimated variance of {$$}\hat{beta}{/$$}, so take the square root of this. You should end up with two numbers, the standard error for the intercept and the standard error for the slope.
+A>4. Now we are one step away from the standard error of {$$}\hat{beta}{/$$}. Take the diagonals from the {$$}(X^\top X)^{-1}{/$$} matrix above, using the `diag` function. Now multiply our estimate of {$$}\sigma^2{/$$} and the diagonals of this matrix. This is the estimated variance of {$$}\hat{\beta}{/$$}, so take the square root of this. You should end up with two numbers, the standard error for the intercept and the standard error for the slope.
 A>
 A>    What is the standard error for the slope?
 A>
