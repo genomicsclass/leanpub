@@ -16,12 +16,6 @@ The R markdown document for this section is available [here](https://github.com/
 If an experiment is designed incorrectly we may not be able to estimate the parameters of interest. Similarly, when analyzing data we may incorrectly decide to use a model that can't be fit. If we are using linear models then we can detect these problems mathematically by looking for collinearity in the design matrix.
 
 
-```r
-library(rafalib)
-mypar()
-```
-
-
 
 #### System of Equations example
 
@@ -142,7 +136,7 @@ Notice that the third column does not add a constraint and that what we really h
 
 #### Collinearity and least squares
 
-Consider a design matrix {$$}\mathbf{X}{/$$} with two collinear columns. Here we create an extreme example in which one column is the opposite of the other:
+Consider a design matrix {$$}\mathbf{X}{/$$} with two collinear columns. Here we create an extreme example in which one column is the opposite of another:
 
 {$$}
 \mathbf{X} = \begin{pmatrix}
@@ -160,7 +154,7 @@ This means that we can rewrite the residuals like this:
 = \mathbf{Y}- \left\{\mathbf{1}\beta_0 + \mathbf{X}_1 \beta_1 + \mathbf{X}_2(\beta_2  - \beta_3)\right\}
 {/$$}
 
-If {$$}\hat{\beta}_1{/$$}, {$$}\hat{\beta}_2{/$$}, {$$}\hat{\beta}_3{/$$} is a solution then {$$}\hat{\beta}_1{/$$}, {$$}\hat{\beta}_2+1{/$$}, {$$}\hat{\beta}_3+1{/$$} is also a solution
+and if {$$}\hat{\beta}_1{/$$}, {$$}\hat{\beta}_2{/$$}, {$$}\hat{\beta}_3{/$$} is a least squares solution, then, for example, {$$}\hat{\beta}_1{/$$}, {$$}\hat{\beta}_2+1{/$$}, {$$}\hat{\beta}_3+1{/$$} is also a solution.
 
 
 #### Confounding as an example
@@ -225,6 +219,8 @@ D \\
 \end{pmatrix}
 {/$$}
 
+This implies that a unique least squares estimate is not achievable.
+
 ## Rank
 
 The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/linear/collinearity.Rmd).
@@ -245,6 +241,8 @@ cat("ncol=",ncol(X),"rank=", qr(X)$rank,"\n")
 ```
 ## ncol= 5 rank= 4
 ```
+
+Here we will not be able to estimate the effect of sex.
 
 ## Removing Confounding
 
