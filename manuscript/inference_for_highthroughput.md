@@ -5,12 +5,6 @@ title: Basic inference for high-throughput data
 
 
 
-
-```r
-library(rafalib)
-```
-
-
 ## Inference in Practice
 
 The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/advinference/inference_for_highthroughput.Rmd).
@@ -19,7 +13,7 @@ Suppose we were given high-throughput gene expression data that was measured for
 
 #### p-values are random variables
 
-An important concept to remember in order to understand the concepts presented in this chapter is that p-values are random variables. To see this  consider the example in which we define a p-value from a t-test with a large enough sample size to use the CLT approximation. Then our p-value is defined as the probability that a normally distributed random variable than the observed t-test, call it {$$}Z{/$$}. So for a two sided test: 
+An important concept to remember in order to understand the concepts presented in this chapter is that p-values are random variables. To see this  consider the example in which we define a p-value from a t-test with a large enough sample size to use the CLT approximation. Then our p-value is defined as the probability that a normally distributed random variable is larger, in absolute value, than the observed t-test, call it {$$}Z{/$$}. So for a two sided test the p-value is: 
 
 {$$}
 p = 2 \{ 1 - \Phi(Z)\}
@@ -31,21 +25,13 @@ In R we write:
 2*(1-pnorm(Z))
 ```
 
-Now because {$$}Z{/$$} is a random variable ({$$}\Phi{/$$} is simply a deterministic
-function), {$$}p{/$$} is also a random variable. We will create a Monte Carlo
-simulation showing how the values of {$$}p{/$$} change.
-
-First we download the `femaleControlsPopulation.csv` file:
+Now because {$$}Z{/$$} is a random variable and {$$}\Phi{/$$} is a deterministic
+function, {$$}p{/$$} is also a random variable. We will create a Monte Carlo
+simulation showing how the values of {$$}p{/$$} change. We ust`femaleControlsPopulation.csv` from earlier chapters.
 
 
-```r
-library(downloader)
-url <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/femaleControlsPopulation.csv"
-filename <- "femaleControlsPopulation.csv"
-if (!file.exists(filename)) download(url,destfile=filename)
-```
 
-Now, we read in the data, and use `replicate` to repeatedly create p-values.
+We read in the data, and use `replicate` to repeatedly create p-values.
 
 
 ```r
@@ -95,11 +81,13 @@ g
 ##  [1] 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0
 ```
 
-If we were interested in a particular gene, let's arbitrarily pick the one on the 25th row, we would simply compute a t-test. Assuming the data is well approximated by normal:
+If we were interested in a particular gene, let's arbitrarily pick the one on the 25th row, we would simply compute a t-test. To compute a p-value we will use the t-distribution approximation thuse we need the popoulation data to be approximately normal. We check this assumption with a qq-plot:
 
 
 ```r
 e <- geneExpression[25,]
+
+library(rafalib)
 mypar(1,2)
 
 qqnorm(e[g==1])
@@ -111,28 +99,18 @@ qqline(e[g==0])
 
 ![Normal qq-plots for one gene. Left plot shows first group and right plot shows second group.](images/R/inference_for_highthroughput-tmp-qqplots_for_one_gene-1.png) 
 
-The qq-plots show that the data is well approximated by the normal approximation so apply a t-test. The t-test does not find this gene to be statistically significant:
+The qq-plots show that the data is well approximated by the normal approximation. The t-test does not find this gene to be statistically significant:
 
 
 ```r
-t.test(e[g==1],e[g==0])
+t.test(e[g==1],e[g==0])$p.value
 ```
 
 ```
-## 
-## 	Welch Two Sample t-test
-## 
-## data:  e[g == 1] and e[g == 0]
-## t = 0.28382, df = 21.217, p-value = 0.7793
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##  -0.1431452  0.1884244
-## sample estimates:
-## mean of x mean of y 
-##  10.52505  10.50241
+## [1] 0.779303
 ```
 
-To answer the question for each gene, we simply do this for every gene. Here we will define our own function and use `apply`:
+To answer the question for each gene, we simply do repeat the above for each gene. Here we will define our own function and use `apply`:
 
 
 ```r
@@ -140,7 +118,7 @@ myttest <- function(x) t.test(x[g==1],x[g==0],var.equal=TRUE)$p.value
 pvals <- apply(geneExpression,1,myttest)
 ```
 
-We can now see which genes have p-values less than, say, 0.05. For example, right away we see that:
+We can now see which genes have p-values less than, say, 0.05. For example, right away we see that...
 
 
 ```r
@@ -151,7 +129,7 @@ sum(pvals<0.05)
 ## [1] 1383
 ```
 
-genes had p-values less than 0.05.
+... genes had p-values less than 0.05.
 
 However, as we will describe in more detail below, we have to be careful in interpreting this result because we have performed over 8,000 tests. If we performed the same procedure on random data, for which the null hypothesis is true for all features, we obtain the following results:
 
@@ -169,11 +147,21 @@ sum(nullpvals<0.05)
 ## [1] 419
 ```
 
-As we will explain later in the chapter, this is to be expected. 419 is roughly 0.05*8192 and we will describe the theory that tells us why this prediction works.
+As we will explain later in the chapter, this is to be expected: 419 is roughly 0.05*8192 and we will describe the theory that tells us why this prediction works.
 
 #### Faster t-test implementation
 
-Before we continue, we should point out that the above implementation is very inefficient. There are several faster implementations that perform t-test for high-throughput data. For example:
+Before we continue, we should point out that the above implementation is very inefficient. There are several faster implementations that perform t-test for high-throughput data. We make use of a function that is not available from CRAN but rather from the Bioconductor project. 
+
+To download and install packages from Bioconductor. We can use the `install_bioc` function in `rafalib` to install the package:
+
+
+
+```r
+install_bioc("genefilter")
+```
+
+Now we can show that this function is much faster than our code above and produce practically the same answer:
 
 
 ```r
@@ -185,15 +173,5 @@ max(abs(pvals-results$p))
 ```
 ## [1] 6.528111e-14
 ```
-
-`genefilter` is available from the Bioconductor projects. In a later section we will say more about this project, but here is how to install it:
- 
-
-```r
-source("http://www.bioconductor.org/biocLite.R")
-biocLite("genefilter")
-```
-
-Note that we get practically the same answer and much faster performance.
 
 
