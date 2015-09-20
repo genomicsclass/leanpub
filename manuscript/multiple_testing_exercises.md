@@ -2,6 +2,8 @@
 Title: Multiple Testing Exercises
 ---
 
+{pagebreak} 
+
 A>## Exercises
 A>
 A>With these exercises we hope to help you further grasp the concept that p-values are random variables and start laying the ground work for the development of procedures that control error rates. The calculations to compute error rates require us to understand the random behavior of p-values.
@@ -30,7 +32,7 @@ A>
 A>
 A>    The following exercises should help you understand the concept of an error controlling procedure. You can think of it as defnining a set of instructions, such as "reject all the null hypothesis for  for which p-values < 0.0001" or "reject the null hypothesis for the 10 features with smallest p-values". Then, knowing the p-values are random variables, we use statistical theory to compute how many mistakes, on average, will we make if we follow this procedure. More precisely we commonly bounds on these rates, meaning that we show that they are smaller than some predermined value.
 A>
-A>    As described in the video, we can compute different error rates. The FWER tells us the probability of having at least one false positive. The FDR is the expected rate of rejected null hypothesis.
+A>    As described in the text, we can compute different error rates. The FWER tells us the probability of having at least one false positive. The FDR is the expected rate of rejected null hypothesis.
 A>
 A>    Note 1: the FWER and FDR are not procedures but error rates. We will review procedures here and use Monte Carlo simulations to estimate their error rates.
 A>
@@ -38,7 +40,7 @@ A>    Note 2: We sometimes use the colloquial term "pick genes that" meaning "re
 A>
 A>4. So we have learned about the family wide error rate FWER. This is the probability of incorrectly rejecting the null at least once. Using the notation in the video this probability is written like this: {$$}\mbox{Pr}(V>0){/$$}. 
 A>
-A>    What we want to do in practice is choose a _procedure_ that guarantees this probability is smaller than a predetermined value such as 0.05. Here we keep it general and instead of 0.05 we use {$$}\alpha{/$$} 
+A>    What we want to do in practice is choose a _procedure_ that guarantees this probability is smaller than a predetermined value such as 0.05. Here we keep it general and instead of 0.05 we use {$$}\alpha{/$$}.
 A>
 A>    We have already learned that the procedure "pick all the genes with p-value <0.05" fails  miserably as we have seen that {$$}Pr(V>0) \approx 1{/$$}. So what else can we do?
 A>
@@ -48,11 +50,11 @@ A>    So the first result we rely on is that this probability is largest when al
 A>
 A>    {$$}\mbox{Pr}(V>0) \leq \mbox{Pr}(V>0 | \mbox{all nulls are true}){/$$}
 A>
-A>    or using the notation in the video:
+A>    or:
 A>
 A>    {$$}\mbox{Pr}(V>0) \leq \mbox{Pr}(V>0 | m_1=0){/$$}
 A>
-A>    In an earlier assessment we showed that if the tests are independent then 
+A>    We showed that if the tests are independent then 
 A>
 A>    {$$}\mbox{Pr}(V>0 | m_1) = 1-(1-k)^m{/$$}
 A>
@@ -70,26 +72,25 @@ A>
 A>    Make a plot of {$$}\alpha/m{/$$} and {$$}1-(1-\alpha)^{1/m}{/$$} for various values of m>1. 
 A>
 A>    Which procedure is more conservative Bonferroni's or Sidek's?
-A>    - A) The are the same
+A>    
+A>    - A) They are the same
 A>    - B) Bonferroni's
 A>    - C) Depends on m
 A>    - D) Sidek's
 A>
 A>
 A>
-A>5.  To simulate the p-value results of, say a 8,792 t-tests for which the null is true we don't actual have to generate the original data. As we learned in class we can generate p-values for a uniform distribution like this: 'pvals <- runif(8793,0,1)`. 
-A>
-A>    Using what we have learned set the cutoff using the Bonferroni correction and report back the FWER. Set the seed at 1 and run 10,000 simulation.
+A>5.  To simulate the p-value results of, say a 8,792 t-tests for which the null is true we don't actual have to generate the original data. As we learned in class we can generate p-values for a uniform distribution like this: 'pvals <- runif(8793,0,1)`. Using what we have learned set the cutoff using the Bonferroni correction and report back the FWER. Set the seed at 1 and run 10,000 simulation.
 A>
 A>
 A>
-A>6. Using the same seed repeat the above for Sidek's cutoff
+A>6. Using the same seed repeat the exercise 5 but for Sidek's cutoff.
 A>
 A>
 A> 
-A>    In the following questions assessment we will define error controlling procedures for experimental data. We will make list of genes based on q-values. We will also assess your understanding of false positives rates and false negative rates by asking you to create a Monte Carlo simulation.
-A>
-A>7. Load the gene expression data
+A>7. In the following questions assessment we will define error controlling procedures for experimental data. We will make list of genes based on q-values. We will also assess your understanding of false positives rates and false negative rates by asking you to create a Monte Carlo simulation.
+A>    
+A>    Load the gene expression data
 A>
 A>    
     ```r
@@ -116,14 +117,14 @@ A>8. Apply the Bonferroni correction to achieve a FWER of 0.05. How many genes a
 A>
 A>
 A>
-A>9. Note that the FDR is a property of a list of features, not each specific feature. The q-value relates FDR to individual feature. To define the q-value we order features we tested by p-value then compute the FDRs for a list with the most significant, the two most significant, the three most significant, etc... The FDR of the list with the, say, {$$}m{/$$} most significant tests is defined as the q-value of the {$$}m{/$$}-th most significant feature. In other words, the q-value of a feature, is the FDR of the biggest list that includes that gene.
+A>9. Note that the FDR is a property of a list of features, not each specific feature. The q-value relates FDR to individual features. To define the q-value we order features we tested by p-value then compute the FDRs for a list with the most significant, the two most significant, the three most significant, etc... The FDR of the list with the, say, {$$}m{/$$} most significant tests is defined as the q-value of the {$$}m{/$$}-th most significant feature. In other words, the q-value of a feature, is the FDR of the biggest list that includes that gene.
 A>
 A>    In R, we can compute the q-value of using the p.adjust function with the FDR option. Read the help file for p.adjust and the for our gene expression dataset compute the how many genes achieve an FDR < 0.05
 A>
 A>
 A>
 A>
-A>10. Now use the qvalue function, in the Bioconductor qvalue package, to estimate q-values using the procedure described by Storey. How many genes have q-values below 0.05?
+A>10. Now use the `qvalue` function, in the Bioconductor `qvalue` package, to estimate q-values using the procedure described by Storey. How many genes have q-values below 0.05?
 A>
 A>
 A>
@@ -132,10 +133,10 @@ A>
 A>
 A>
 A>12. Note that we have the number of genes passing the q-value <0.05 threshold is larger with the qvalue function than the p.adjust difference. Why is this the case? Make a plot of the ratio of these two estimates to help answer the question.
-A>    - A) One of the two procedures is flawed
-A>    - B) The two functions are estimating different things
-A>    - C) The qvalue function estimates the proportion of genes for which the null hypothesis is true and provides a less conservative estimate
-A>    - D) The qvalue function estimates the proportion of genes for which the null hypothesis is true and provides a more conservative estimate
+A>    - A) One of the two procedures is flawed.
+A>    - B) The two functions are estimating different things.
+A>    - C) The qvalue function estimates the proportion of genes for which the null hypothesis is true and provides a less conservative estimate.
+A>    - D) The qvalue function estimates the proportion of genes for which the null hypothesis is true and provides a more conservative estimate.
 A>
 A>
 A>
@@ -148,10 +149,8 @@ expectedfreq <- length(pvals)/20 #per bin
 abline(h=expectedfreq*qvalue(pvals)$pi0,col=2,lty=2)
 ```
 A>
-A>
-A>    
 A>13. Note that this and the remaining questions are more advanced questions.
-A>. Create a Monte Carlo Simulation in which you simulate measurements from 8,793 genes for 24 samples, 12 cases and 12 controls. 
+A>. Create a Monte Carlo Simulation in which you simulate measurements from 8,793 genes for 24 samples: 12 cases and 12 controls. 
 A>
 A>    
     ```r
@@ -171,7 +170,7 @@ A>
 A>
 A>    So the null hypothesis is true for 8793-100 genes.
 A>
-A>    Run this experiment 1,000 with a Monte Carlo simulation. For each instance compute p-values using a t-test and report keep track of the number of false positives and false negatives. Compute the false positive rate and false negative rates if we use Bonferroni, q-values from p.adjust, and  q-values from qvalue function. Set the seed to 1 for each simulations. What is false positive rate for Bonferroni?
+A>    Run this experiment 1,000 with a Monte Carlo simulation. For each instance compute p-values using a t-test and report keep track of the number of false positives and false negatives. Compute the false positive rate and false negative rates if we use Bonferroni, q-values from p.adjust, and  q-values from qvalue function. Set the seed to 1 for each simulations. What is the false positive rate for Bonferroni?
 A>
 A>
 A>
