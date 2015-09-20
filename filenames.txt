@@ -4,7 +4,7 @@ intro getting_started
 intro_exercises getting_started_exercises
 intro dplyr_intro dplyr_introduction
 intro_exercises dplyr_intro_exercises dplyr_introduction_exercises
-intro math_notation	mathematical_notation
+intro math_notation Mathematical_notation
 
 ## Chapter 1 - Inference
 inference random_variables
