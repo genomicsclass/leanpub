@@ -6,7 +6,7 @@ A>## Exercises
 A>
 A>These exercises will help clarify that p-values are random variables and some of the properties of these p-values. Note that just like the sample average is a random variable because it is based on a random sample, the p-values are based on random variables (sample mean and sample standard deviation for example) it is also a random variable.
 A>
-A>To see this let’s see how p-values change when we take different samples.
+A>To see this let's see how p-values change when we take different samples.
 A>
 ```r
 set.seed(1)
@@ -52,6 +52,6 @@ A>    Set the seed at 100, `set.seed(100)`, run the code from Question 1.1.2 1,0
 A>
 A>
 A>
-A>5. Note that what this says is that on average, we expect more some p-value to be 0.05 even when the null is true for all diets. Use the same simulation data and report what percent of the 1,000 replications did we make more than 0 false positives?
+A>5. Note that what this says is that on average, we expect some p-value to be 0.05 even when the null is true for all diets. Use the same simulation data and report what percent of the 1,000 replications did we make more than 0 false positives?
 A>
 A>
