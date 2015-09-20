@@ -2,22 +2,24 @@
 Title: Modeling Exercises
 ---
 
+{pagebreak}
+
 A>## Exercises
 A>
 A>
-A>1. Supposed you have an urn with blue and red balls. If {$$}N{/$$} balls at randaom with replacement (you put the ball back after you pick it) we can denote the outcomes as random variables {$$}X_1,\dots,X_N{/$$} that are 1 or 0. If the proportion of red ball is {$$}p{/$$} then the distribution of each of these is {$$}\mbox{Pr}(X_i=1)=p{/$$}. 
+A>1. Suppos you have an urn with blue and red balls. If {$$}N{/$$} balls are selected at randaom with replacement (you put the ball back after you pick it) we can denote the outcomes as random variables {$$}X_1,\dots,X_N{/$$} that are 1 or 0. If the proportion of red ball is {$$}p{/$$} then the distribution of each of these is {$$}\mbox{Pr}(X_i=1)=p{/$$}. 
 A>
 A>    These are also called bernoulli trials. Note that these random variables are independent because we replace the balls. Flipping a coin is an example of this with {$$}p=0.5{/$$}. 
 A>
-A>    You can show that the mean and variance are {$$}p{/$$} and {$$}p(1-p){/$$} respectively. The binomial distribution gives us the distribution of the sum {$$}S_N{/$$} of these random variables. What is the probability that we see {$$}k{/$$} red balls is given by 
+A>    You can show that the mean and variance are {$$}p{/$$} and {$$}p(1-p){/$$} respectively. The binomial distribution gives us the distribution of the sum {$$}S_N{/$$} of these random variables. The probability that we see {$$}k{/$$} red balls is given by 
 A>
 A>    {$$} \mbox{Pr}(S_N=k) = {N \choose k} p^k (1-p)^{N-k} {/$$}
 A>
-A>    In R the function `dbimom` gives you this result. The function `pbinom` gives us {$$}\mbox{Pr}(S_N\leq k){/$$}.
+A>    In R, the function `dbimom` gives you this result. The function `pbinom` gives us {$$}\mbox{Pr}(S_N\leq k){/$$}.
 A>
 A>    This equation has many uses in the life sciences. We give some examples below
 A>
-A>    The probability of conceiving a girl is 0.49. What is the probability that a familiy with 4 children has 2 girls and 2 boys (you can 
+A>    The probability of conceiving a girl is 0.49. What is the probability that a familiy with 4 children has 2 girls and 2 boys (you can assume that the outcomes are independet)
 A>
 A>
 A>2. Use what you learned in Question 4.1.1. to answer these questions:
@@ -33,7 +35,7 @@ A>
 A>4. The probability of winning the lottery is 1 in  175,223,510. If 20,000,000 people buy a ticket, what is the probability that more than on person wins?
 A>
 A>
-A>5. We can show that the binomail approximation is approximately normal with {$$}N{/$$} is large and {$$}p{/$$} is not too close to 0 or 1. This means that 
+A>5. We can show that the binomail approximation is approximately normal when {$$}N{/$$} is large and {$$}p{/$$} is not too close to 0 or 1. This means that 
 A>
 A>    {$$}\frac{S_N - \mbox{E}(S_N)}{ \sqrt{ \mbox{Var}(S_N)}}  {/$$} 
 A>
@@ -48,10 +50,10 @@ A>
 A>
 A>    Note how close these are. 
 A>
-A>7. Repeat question 4.1.3 but using an interval of 1000 bases. What is the difference (in absolute value) between the normal approximation and the exact distribution of the GC-content being greater than 0.35 and lesser or equal to 0.45?
+A>7. Repeat exercise 4 but using an interval of 1000 bases. What is the difference (in absolute value) between the normal approximation and the exact distribution of the GC-content being greater than 0.35 and lesser or equal to 0.45?
 A>
 A>
-A>8. The Cs in our genomes can be [_methylated_](http://en.wikipedia.org/wiki/DNA_methylation) or _unmethylated_. Suppose we have a large (millions) group of cells in which a proportion {$$}p{/$$} of a C of interest are methylated. We break up the DNA of these cells and randomely select pieces and end up with {$$}N{/$$} pieces that contain the C we care abut. This means that the probability of seing {$$}k{/$$} methylated Cs is binomial:
+A>8. The Cs in our genomes can be [_methylated_](http://en.wikipedia.org/wiki/DNA_methylation) or _unmethylated_. Suppose we have a large (millions) group of cells in which a proportion {$$}p{/$$} of the Cs of interest are methylated. We break up the DNA of these cells and randomely select pieces and end up with {$$}N{/$$} pieces that contain the C we care about. This means that the probability of seeing {$$}k{/$$} methylated Cs is binomial:
 A>
 A>    
     ```r
@@ -75,6 +77,7 @@ A>
     ```
 A>
 A>    Compare the apprximation and exact probabilty of the proportion of Cs being {$$}p{/$$}, {$$}k=1,\dots,N-1{/$$} plotting the exact versus approx for each {$$}p{/$$} and {$$}N{/$$} combination
+A>    
 A>    - A) The normal approximation works well when {$$}p{/$$} is close to 0.5 even for small {$$}N=10{/$$}
 A>    - B) The normal apprximation breaks down when {$$}p{/$$} is close to 0 or 1 even for large {$$}N{/$$}
 A>    - C) When {$$}N{/$$} is 100 all approximations are spot on.
@@ -118,7 +121,7 @@ A>
     library(dagdata)
     data(hcmv)
     ```
-A>
+A>    
 A>    These are the locations of palindromes on the genome of this virus:
 A>    
     ```r
@@ -126,7 +129,7 @@ A>
     mypar()
     plot(locations,rep(1,length(locations)),ylab="",yaxt="n")
     ```
-A>
+A>    
 A>    These palindroms are quite rare, {$$}p{/$$} is very samll. If we break the genome into bins of 4000 basepairs, then we have {$$}Np{/$$} not so small and we might be able to use Poison to model the number of palindroms in each bin:
 A>
 A>    
@@ -136,7 +139,7 @@ A>
     counts=as.numeric(table(tmp))
     ```
 A>
-A>    So if our model is correct `counts` should follow a Poisson distribtion. The distribution seems about right:
+A>    So if our model is correct `counts`, should follow a Poisson distribtion. The distribution seems about right:
 A>
 A>    
     ```r
@@ -199,11 +202,11 @@ A>
     binLocation=(breaks[-1]+breaks[-length(breaks)])/2
     plot(binLocation,counts,type="l",xlab=)
     ```
-A>
+A>    
 A>    What is the center of the bin with the highest count?
 A>
 A>
-A>    What is the maximum count? 
+A>12. What is the maximum count? 
 A>
 A>
 A>
@@ -249,6 +252,7 @@ A>
     ```
 A>
 A>    How would you characterize this qq-plot
+A>    
 A>    - A) Poisson is a terrible approximation
 A>    - B) Poisson is a very good approximation except for on point that we actually think is a region of interest
 A>    - C) There are too many 1s in the data
@@ -263,7 +267,7 @@ A>
     ```r
     library(tissuesGeneExpression)
     ```
-A>
+A>    
 A>    Now load this data and select the columns related to endometrium 
 A>
 A>    
@@ -275,6 +279,7 @@ A>
 A>    This will give you a matrix `y` with 15 samples.
 A>
 A>    Compute the across sample variance for the first three samples. Then make a qq-plot to see if the data follow a normal distribution. Which of the following is true?
+A>    
 A>    - A) With the exception of a handful of outliers, the data follow a normal distribution
 A>    - B) The variance does not follow a normal distribution but taking the square root fixes this
 A>    - C) The normal distribution is not usable here: the left tail in over estimated and the right tail is underestimated
