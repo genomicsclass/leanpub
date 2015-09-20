@@ -15,7 +15,7 @@ data(rma95)
 y <- exprs(rma95)
 ```
 A>
-A>This dataset comes from an experiment in which RNA was obtained from the same background pool to creat six replicate samples. Then RNA from 16 genes were artificially added in different quantities to each sample. These quantities (in picoMolars) and gene IDs are stored here:
+A>This dataset comes from an experiment in which RNA was obtained from the same background pool to create six replicate samples. Then RNA from 16 genes were artificially added in different quantities to each sample. These quantities (in picoMolars) and gene IDs are stored here:
 A>
 A>
 ```r
@@ -45,10 +45,10 @@ A>    What proportion of genes with a p-value < 0.01 (no multiple comparison cor
 A>
 A>
 A>2. Now compute the within group sample  standard deviation for each gene (you can use group 1). Based on the p-value cut-off split the genes into true positives, false positives, true negatives and false negatives. Create a boxplot comparing the sample SDs for each group. Which of the following best described the box-plot? 
-A>    - A) The standard deviation is similar across all groups
-A>    - B) On average, the true negatives have much larger variability
-A>    - C) The false negatives have larger variability
-A>    - D) The false positives have smaller standard devition
+A>    - A) The standard deviation is similar across all groups.
+A>    - B) On average, the true negatives have much larger variability.
+A>    - C) The false negatives have larger variability.
+A>    - D) The false positives have smaller standard devition.
 A>
 A>
 A>
