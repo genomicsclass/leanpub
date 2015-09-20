@@ -9,9 +9,9 @@ title: Statistical Models
 
 "All models are wrong, but some are useful" -George E. P. Box
 
-When we see a p-value in the literature, it means a probability distribution of some sort was used to quantify the null hypothesis. Many times deciding which probability distribution to use is relatively straightforward. For example, in the tea tasting challenge any p-values in the scientific literature are based on sample averages, or least squares estimates from a linear model, and make use of the CLT to approximate the null distribution of their statistic as normal.
+When we see a p-value in the literature, it means a probability distribution of some sort was used to quantify the null hypothesis. Many times deciding which probability distribution to use is relatively straightforward. For example, in the tea tasting challenge we can use simple probability calculations to determine the null distribution. Most  p-values in the scientific literature are based on sample averages or least squares estimates from a linear model and make use of the CLT to approximate the null distribution of their statistic as normal.
 
-The CLT is backed by theoretical results that guarantee that the approximation is accurate. However, we cannot always use this approximation, such as when our sample size is too small. In a previous module we described how the sample average can be approximated with t-distribution when the population data is approximately normal. However, there is no theoretical backing for this assumption. We are now *modeling*. In the case of height, we know from experience that this turns out to be a very good model. 
+The CLT is backed by theoretical results that guarantee that the approximation is accurate. However, we cannot always use this approximation, such as when our sample size is too small. Previously, we described how the sample average can be approximated as t-distributed when the population data is approximately normal. However, there is no theoretical backing for this assumption. We are now *modeling*. In the case of height, we know from experience that this turns out to be a very good model. 
 
 But this does not imply that every dataset we collect will follow a normal distribution. Some examples are: coin tosses, the number of people who win the lottery, and US incomes. The normal is not the only parametric distribution that is available from modeling. Here we describe some useful parametric distributions and their use in genomics. For many more please consult a Statistics textbook such as [this one](https://www.stat.berkeley.edu/~rice/Book3ed/index.html). 
 
@@ -19,19 +19,19 @@ But this does not imply that every dataset we collect will follow a normal distr
 
 The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/modeling/modeling.Rmd).
 
-A distribution that one should be familiar is the binomial distribution. It describes the probability of the total number of observed heads {$$}S=k{/$$} heads when tossing {$$}N{/$$} heads as
+The first distribution we will describe is the binomial distribution. It reports the probability of observing {$$}S=k{/$$} heads when tossing {$$}N{/$$} coins as
 
 {$$}
 \mbox{Pr}(S=k) = {N \choose k}p^k (1-p)^{N-k}
 {/$$}
 
-with {$$}p{/$$} the probability of observing a head in one coin toss.  {$$}S/N{/$$} is the average of independent random variables and thus the CLT tells us that {$$}S{/$$} is approximately normal. This distribution is used by some of the variant callers and genotypers based on NGS to decide if the data is consistent 
+with {$$}p{/$$} the probability of observing a head in one coin toss.  {$$}S/N{/$$} is the average of independent random variables and thus the CLT tells us that {$$}S{/$$} is approximately normal. This distribution is used by some of the variant callers and genotypers based on next generation sequencing.
 
 ## The Poisson Distribution
 
 The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/modeling/modeling.Rmd).
 
-The number of people that win the lottery follows a binomial distribution (we assume each person buys one ticket). The number of "tosses" {$$}N{/$$} is the number of people that buy tickets and very large. However, the number of people that win the lottery oscillates between 0 and 3. So why does CLT not hold? One can explain this mathematically, but the intuition is that with most of the average so close to and also constrained to be larger than 0, it is impossible for the distribution to be normal. Here is a quick simulation:
+The number of people that win the lottery follows a binomial distribution (we assume each person buys one ticket). The number of "tosses" {$$}N{/$$} is the number of people that buy tickets and is usually very large. However, the number of people that win the lottery oscillates between 0 and 3 which implies the normal approximation does not hold. So why does CLT not hold? One can explain this mathematically, but the intuition is that with most of the average so close to and also constrained to be larger than 0, it is impossible for the distribution to be normal. Here is a quick simulation:
 
 
 ```r
@@ -50,8 +50,8 @@ prop.table(tab)
 
 ```
 ## winners
-##     0     1     2     3     4 
-## 0.605 0.305 0.076 0.012 0.002
+##     0     1     2     3 
+## 0.633 0.283 0.071 0.013
 ```
 
 For cases like this, where {$$}N{/$$} is very large, but {$$}p{/$$} is small enough to make {$$}N \times p{/$$} (call it {$$}\lambda{/$$}) a number between 0 and 10, then {$$}S{/$$} can be shown to follow a Poisson distribution which has a simple parametric form:
@@ -60,13 +60,9 @@ For cases like this, where {$$}N{/$$} is very large, but {$$}p{/$$} is small eno
 \mbox{Pr}(S=k)=\frac{\lambda^k \exp{-\lambda}}{k!}
 {/$$}
 
-The Poisson distribution is commonly used in RNAseq analyses. Because we are sampling thousands molecules and for some genes represent are a very small proportion of the totality of molecules, the Poisson distribution seems appropriate. 
+The Poisson distribution is commonly used in RNAseq analyses. Because we are sampling thousands molecules and most genes represent a very small proportion of the totality of molecules, the Poisson distribution seems appropriate. 
 
-Homework
-1- Do you expect a Poisson distribution with {$$}\lambda=100{/$$} to be approximately normal? Why or why not? 
-
-
-So how does this help us? One way is that it informs us of the statistical properties of important summaries. For example, say we only have one sample from each of a case and control RNAseq experiment and we want to report the genes with larges fold-changes. Under the null, there are no differences; the statistical variability of this quantity depends on the total abundance of the gene. We can show this mathematically, but here is a quick simulation to demonstrate the point:
+So how does this help us? One way is that it informs us of the statistical properties of summaries that are widely used in practice. For example, say we only have one sample from each of a case and control RNAseq experiment and we want to report the genes with larges fold-changes. Under the null, there are no differences; the statistical variability of this quantity depends on the total abundance of the gene. We can show this mathematically, but here is a quick simulation to demonstrate the point:
 
 
 ```r
@@ -95,14 +91,14 @@ library(parathyroidSE)
 data(parathyroidGenesSE)
 ```
 
-This library contains `SummarizedExperiment` data, which will be discussed in a later lab. The important thing to know is that the `SummarizedExperiment` has a matrix of data, similar to the `ExpressionSet`, where each row is a genomic feature, and each column is a sample. For this dataset, the value in single cell in the matrix is count of reads which aligned to a given gene for a given sample.
+This library contains `SummarizedExperiment` data, which we not describe here. The important thing to know is that the `SummarizedExperiment` includes a matrix of data, where each row is a genomic feature, and each column is a sample. For this dataset, the value in single cell in the matrix is count of reads which aligned to a given gene for a given sample.
 
 
 ```r
 se <- parathyroidGenesSE
 ```
 
-A similar plot of technical replicates reveals that the behavior predicted by the model is present in real data:
+A similar plot of technical replicates reveals that the behavior predicted by the model is present in experimental data:
 
 
 ```r
@@ -132,14 +128,14 @@ abline(0,1,col=2,lwd=2)
 
 ![Variance versus mean plot. Summaries were obtained from the RNAseq data.](images/R/modeling-tmp-var_vs_mean-1.png) 
 
-The variability plotted here includes biological variability, which the motivation for the Poisson does not include. In a later module we learn about the negative binomial distribution which combines the sampling variability of a Poisson and biological variability. The negative binomial has two parameters and permits more flexibility for count data. The Poisson is a special case of the negative binomial distribution.
+The variability plotted here includes biological variability, which the motivation for the Poisson does not include.  The negative binomial distribution which combines the sampling variability of a Poisson and biological variability is a more appropriate distribution to model this type of experiments. The negative binomial has two parameters and permits more flexibility for count data. The Poisson is a special case of the negative binomial distribution.
 
 
 ## Maximum Likelihood Estimation
 
 The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/modeling/modeling.Rmd).
 
-We use palindrome locations in the HMCV genome as example. We read in the locations of the palindrome and then count the number of palindromes in each 4,000 basepair segments.
+To illustrate the concept of maximum likelihood estimates (MLE), we use a dataset containing palindrome locations in the HMCV genome. We read in the locations of the palindrome and then count the number of palindromes in each 4,000 basepair segments.
 
 
 ```r
@@ -195,7 +191,8 @@ print(c(mle$maximum,mean(counts)))
 ```
 ## [1] 5.157894 5.157895
 ```
-The fit is quite good in this case:
+
+Note that the fit is quite good in this case:
 
 ```r
 theoretical<-qpois((seq(0,99)+0.5)/100,mean(counts))
@@ -211,13 +208,13 @@ abline(0,1)
 
 The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/modeling/modeling.Rmd).
 
-In a previous module we learned that different genes vary differently across biological replicates. In a latter module [advanced inference/differential expression] we will demonstrate that knowing this distribution can help improve downstream analysis. 
+Different genes vary differently across biological replicates. In the hierarchical models chapter we will demonstrate that knowing this distribution can help improve downstream analysis. 
 
-So can we model the distribution of these standard errors? Are they normal? Note that we are modeling the population standard errors so CLT does not apply. Here are some exploratory plots of the sample standard errors:
+So can we model the distribution of the gene-specific standard errors? Are they normal? Note that we are modeling the population standard errors so CLT does not apply. Here are some exploratory plots of the sample standard errors:
 
 
 ```r
-library(Biobase)
+library(Biobase) ##available from Bioconductor
 library(maPooling) ##available from course github repo
 
 data(maPooling)
@@ -279,7 +276,7 @@ with {$$}B{/$$} the _beta function_ and {$$}d_1{/$$} and {$$}d_2{/$$} are called
 
 #### Modeling the Variance
 
-In a later module we will learn about empirical Bayes approaches to improve estimates of variance. In these cases it is mathematically convenient (see Bayesian book) to model the distribution of the variance {$$}\sigma^2{/$$}. The hierarchical model (described here [Smyth 2004]) to the mean and variance implies (see paper for details) that the sample standard deviation of genes follows scaled F-statistics:
+In a later module we will learn about empirical Bayes approaches to improve estimates of variance. In these cases it is mathematically convenient to model the distribution of the variance {$$}\sigma^2{/$$}. A standard hierarchical model for the variance implies that the sample standard deviation of genes follows scaled F-statistics:
 
 {$$}
 s^2 \sim s_0^2 F_{d,d_0}
