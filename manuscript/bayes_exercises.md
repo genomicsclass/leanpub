@@ -11,7 +11,7 @@ A>    {$$}\mbox{Prob}(+|D)=0.99, \mbox{Prob}(-|\mbox{no } D)=0.99{/$$}
 A>
 A>    The cystic fibrosis rate in the general population is 1 in 3,900, {$$}\mbox{Prob}(D)=0.00025{/$$}
 A>
-A>    If we select random person and they test postive what is probability that they have cysttic fibrosos {$$}\mbox{Prob}(D|+){/$$} ? Hint: use Bayes Rule: 
+A>    If we select random person and they test postive what is probability that they have cystic fibrosos {$$}\mbox{Prob}(D|+){/$$} ? Hint: use Bayes Rule: 
 A>
 A>    {$$}
 A>    \mbox{Pr}(A|B)  =  \frac{\mbox{Pr}(B|A)\mbox{Pr}(A)}{\mbox{Pr}(B)}
@@ -20,7 +20,7 @@ A>
 A>
 A>
 A>
-A>2. (Advanced) First download some basaball statistics
+A>2. (Advanced) First download some baseball statistics
 A>
 A>    
     ```r
@@ -55,7 +55,7 @@ A>    - C) F-distribution
 A>    - D) Uniform
 A>
 A>
-A>5. It is April and after 20 at bats, Jose Iglesias is batting .450 (this is very good). We can think of this as a binomial distribution with 20 trial with probability of success {$$}p{/$$}. Our sample estimate of {$$}p{/$$} is .450. What is our estimate of standard devitaion? Hint: This is sum that is binomial divided by 20
+A>5. It is April and after 20 at bats, José Iglesias is batting .450 (this is very good). We can think of this as a binomial distribution with 20 trial with probability of success {$$}p{/$$}. Our sample estimate of {$$}p{/$$} is .450. What is our estimate of standard devitaion? Hint: This is sum that is binomial divided by 20
 A>
 A>
 A>
