@@ -70,7 +70,7 @@ print line;
 
 rm $2.md
 
-### If exercises add the X>
+### If exercises add the A>
 if [[ "$2" =~ "_exercises" ]]
 then
 	awk '
@@ -95,7 +95,6 @@ then
 	' $2-tmp.md > $2.md
 	rm $2-tmp.md
 else 
-	printf "NO"
 	mv $2-tmp.md $2.md
 fi
 
