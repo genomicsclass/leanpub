@@ -58,7 +58,7 @@ swirl()
 
 Alternatively you can take the [try R](http://tryr.codeschool.com/) interactive class from Code School. 
 
-Note that there are also many open and free resources and reference
+There are also many open and free resources and reference
 guides for R. Two examples are:
 
 * [Quick-R](http://www.statmethods.net/): a quick online reference for data input, basic statistics and plots
@@ -71,8 +71,8 @@ Two key things you need to know about R is that you can get help for a function 
 help("install.packages")
 ```
 
-and that the hash character represents comments and so text after this
-character is interpreted:
+and the hash character represents comments, so text following these
+characters is not interpreted:
 
 
 ```r
@@ -84,7 +84,7 @@ character is interpreted:
 The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/intro/getting_started.Rmd).
 
 The first R command we will run is `install.packages`. If you took the
-`swirl` tutorial you already did this. R only includes a basic set of
+`swirl` tutorial you should have already done this. R only includes a basic set of
 functions. It can do much more than this, but not everybody needs
 everything so we instead make some functions available via
 packages. Many of these functions are stored in CRAN. Note that these
@@ -118,7 +118,7 @@ install it first.
 
 The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/intro/getting_started.Rmd).
 
-The first step when getting ready to analyze data is to read in the data into R. There are several ways to do this and we will discuss three of them. But you only need to learn one to follow along. 
+The first step when preparing to analyze data is to read in the data into R. There are several ways to do this and we will discuss three of them. But you only need to learn one to follow along. 
 
 In the life sciences, small datasets such as the one used as an
 example in the next sections are typically stored as Excel files. Although there
@@ -157,24 +157,23 @@ We find that the simplest way to organize yourself is to start a Project in RStu
 
 You can navigate to the `femaleMiceWeights.csv` file by visiting the
 data directory of dagdata on
-[GitHub](https://github.com/genomicsclass/dagdata/tree/master/inst/extdata). Note
-that if you navigate to the file, you need to click on *Raw* on the
+[GitHub](https://github.com/genomicsclass/dagdata/tree/master/inst/extdata). If you navigate to the file, you need to click on *Raw* on the
 upper right hand corner of the data and then use your browser's "Save
-As" function to assure that the downloaded file is in a CSV
-format. Note that some browsers add an extra suffix to your filename by
+As" function to ensure that the downloaded file is in a CSV
+format. Some browsers add an extra suffix to your filename by
 default. You do not want this. You want your file to be named
 `femaleMiceWeights.csv`. 
 
 ![GitHub page screenshot](images/handmade/screenshot1.png)
 
-Once you have this file in your working directory then you can simply read it in like this:
+Once you have this file in your working directory, then you can simply read it in like this:
 
 
 ```r
 dat <- read.csv("femaleMiceWeights.csv")
 ```
 
-Note that if you did not receive any message then you probably read in the file successfully.
+If you did not receive any message then you probably read in the file successfully.
 
 #### Option 2: Download from within R
 
@@ -205,7 +204,7 @@ install.packages("devtools")
 
 Note to Windows users: to use devtools you will have to also install `Rtools`. In general you will need to install packages as administrator. One way to do this is to start R as administrator. If you do not have permission to do this, then it is a bit [more complicated](http://www.magesblog.com/2012/04/installing-r-packages-without-admin.html). 
 
-Now we are ready to install a package from GitHub. Note that we now use a different function:
+Now yoy are ready to install a package from GitHub. For this we use a different function:
 
 
 ```r
