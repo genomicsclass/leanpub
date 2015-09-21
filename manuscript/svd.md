@@ -52,8 +52,8 @@ round(sqrt(2) * s$u , 3)
 
 ```
 ##        [,1]   [,2]
-## [1,] -1.018 -0.982
-## [2,] -0.982  1.018
+## [1,] -0.957 -1.041
+## [2,] -1.041  0.957
 ```
 
 The plot we showed after the rotation, was showing what we call the _principal components_: the second plotted againts the first. To obtain the principal components from the SVD we simply need the columns of the rotation {$$}\mathbf{U}^\top\mathbf{Y}{/$$} :
