@@ -75,6 +75,7 @@ plot(times[o],pch=21,bg=as.numeric(batch)[o],ylab="date")
 ```
 
 ![Dates with color denoting month.](images/R/adjusting_with_factor_analysis-tmp-what_is_batch-1.png) 
+
 There is more than one day per month. Could day have an effect as well?
 
 
@@ -142,6 +143,7 @@ legend("bottomright",c("chrX","chrY"),col=1:2,pch=16)
 ![p-value histogram and volcano plot after blindly removing the first two PCs.](images/R/adjusting_with_factor_analysis-tmp-pval_hist_and_volcano_after_removing_PCs-1.png) 
 
 <a name="sva"></a>
+
 #### Surrogate Variable Analysis
 
 An alternative is to fit models with both the covariate of interest, as well as those believed to be batches. An example of an approach that does this is Surrogate Variable Analysis (SVA).
@@ -202,7 +204,7 @@ for(b in 1:2){
 ![Illustration of iterative procedure used by SVA. Only two iterations are shown.](images/R/adjusting_with_factor_analysis-tmp-illustration_of_sva-1.png) 
 
 
-The above is an illustration of the algorithm. To actually run SVA, we follow the code. In this case, SVA picks the number of surrogate values or factors for us.
+The above is an illustration of the algorithm. To actually run SVA, we run the `sva` funtion. In this case, SVA picks the number of surrogate values or factors for us.
 
 
 
@@ -240,7 +242,7 @@ legend("bottomright",c("chrX","chrY"),col=1:2,pch=16)
 ![p-value histogram and volcano plot obtained with SVA.](images/R/adjusting_with_factor_analysis-tmp-pval_hist_and_volcano_sva-1.png) 
 
 
-And here is a decompose of the data into sex effects, surrogate variables, and independent noise:
+And, finally, here is the dataset decomposed into sex effects, surrogate variables, and independent noise:
 
 
 ```r
