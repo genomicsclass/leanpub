@@ -51,7 +51,7 @@ prop.table(tab)
 ```
 ## winners
 ##     0     1     2     3     4 
-## 0.619 0.311 0.062 0.006 0.002
+## 0.598 0.308 0.082 0.009 0.003
 ```
 
 For cases like this, where {$$}N{/$$} is very large, but {$$}p{/$$} is small enough to make {$$}N \times p{/$$} (call it {$$}\lambda{/$$}) a number between 0 and 10, then {$$}S{/$$} can be shown to follow a Poisson distribution which has a simple parametric form:
