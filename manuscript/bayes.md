@@ -106,7 +106,7 @@ The proportions of red in the top plot shows {$$}\mbox{Pr}(D=1){/$$}. The bottom
 #### Bayes in practice
 
 
-<!-- ![iglesias](http://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Jos%C3%A9_Iglesias_on_September_28%2C_2012.jpg/902px-Jos%C3%A9_Iglesias_on_September_28%2C_2012.jpg) -->
+<!-- ![iglesias](images/downloads/902px-Jos%C3%A9_Iglesias_on_September_28%2C_2012.jpg) -->
 
 
 José Iglesias is a professional baseball player. In April 2013, when he was starting his career he was performing rather well:
