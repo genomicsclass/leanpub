@@ -25,7 +25,7 @@ A>1. Suppose we want to build a contrast of coefficients for the above experimen
 A>
 A>    You can either figure this question out through logic, by looking at the design matrix, or using the `contrast` function from the contrast library. The contrast vector is returned as `contrast(...)$X`.
 A>
-A>    What should the contrast vector be, for the contrast of (species=B and condition=control) vs (species=A and condition=treatment)? Assume that the beta vector from the model fit by R is: Intercept, speciesB, conditiontreated.
+A>    What should the contrast vector be for the contrast of (species=B and condition=control) vs (species=A and condition=treatment)? Assume that the beta vector from the model fit by R is: Intercept, speciesB, conditiontreated.
 A>    - A) 0 0 1  
 A>    - B) 0 -1 0 
 A>    - C) 0 1 1  
@@ -50,7 +50,7 @@ A>    {$$}
 A>    \sqrt{ \mathbf{C} \boldsymbol{\Sigma} \mathbf{C}^\top }
 A>    {/$$}
 A>    
-A>    {$$}\Sigma{/$$} is the covariance matrix of the coeffcient estimates {$$}\hat{\boldsymbol{\beta}}{/$$}. The covariance matrix contains elements which give the variance or covariance of elements in beta-hat. The elements on the diagonal of the {$$}\boldsymbol{\Sigma}{/$$} matrix give the variance of each element in beta-hat. The square root of these is the standard error of the elements in {$$}\hat{\boldsymbol{\beta}}{/$$}. The off-diagonal elements of Sigma give the covariance of two different elements of the {$$}\hat{\boldsymbol{\beta}}{/$$} matrix. So {$$}\boldsymbol{\Sigma}[1,2]{/$$} gives the covariance of the first and second element of {$$}\hat{\boldsymbol{\beta}}{/$$}. The {$$}\hat{\boldsymbol{\beta}}{/$$} matrix is symmetric, which means {$$}\boldsymbol{\Sigma}[i,j]=\boldsymbol{\Sigma}[j,i]{/$$}.
+A>    {$$}\Sigma{/$$} is the covariance matrix of the coefficient estimates {$$}\hat{\boldsymbol{\beta}}{/$$}. The covariance matrix contains elements which give the variance or covariance of elements in beta-hat. The elements on the diagonal of the {$$}\boldsymbol{\Sigma}{/$$} matrix give the variance of each element in beta-hat. The square root of these is the standard error of the elements in {$$}\hat{\boldsymbol{\beta}}{/$$}. The off-diagonal elements of Sigma give the covariance of two different elements of the {$$}\hat{\boldsymbol{\beta}}{/$$} matrix. So {$$}\boldsymbol{\Sigma}[1,2]{/$$} gives the covariance of the first and second element of {$$}\hat{\boldsymbol{\beta}}{/$$}. The {$$}\hat{\boldsymbol{\beta}}{/$$} matrix is symmetric, which means {$$}\boldsymbol{\Sigma}[i,j]=\boldsymbol{\Sigma}[j,i]{/$$}.
 A>    
 A>
 A>    {$$}
@@ -75,13 +75,13 @@ A>    Using {$$}\boldsymbol{\Sigma}{/$$}, what is {$$}\mbox{cov}(\hat{\beta}_{L4
 A>
 A>
 A>
-A>    To see a further application of the matrix algebra, we can confirm that 
+A>    To see a further application of the matrix algebra, we can confirm that:
 A>
 A>    {$$}
 A>\mbox{var}(\hat{\beta}_{L4} - \hat{\beta}_{L2}) = \mbox{var}(\hat{\beta}_{L4}) + \mbox{var}(\hat{\beta}_{L2} - 2 \mbox{cov}(\hat{\beta}_{L4}, \hat{\beta}_{L2})
 A>    {/$$}
 A>
-A>    is equal to
+A>    is equal to:
 A>    
     ```r
     C %*% Sigma %*% t(C))
@@ -110,22 +110,22 @@ A>    What is the t-statistic for the interaction of type push and leg L4? If th
 A>
 A>
 A>
-A>5. What is the F-value for all of the type:leg interaction terms, in an analysis of variance? If this value is sufficiently large, we would reject the null hypothesis that the push vs pull effect on `log2(friction)` is the same for all leg pairs.
+A>5. What is the F-value for all of the `type:leg` interaction terms, in an analysis of variance? If this value is sufficiently large, we would reject the null hypothesis that the push vs pull effect on `log2(friction)` is the same for all leg pairs.
 A>
 A>
 A>
 A>
-A>6. What is the L2 vs L1 estimate in log2friction for the pull samples?
+A>6. What is the L2 vs L1 estimate in `log2(friction)` for the pull samples?
 A>
 A>
 A>
-A>7. What is the L2 vs L1 estimate in log2friction for the push samples? Remember, because of the interaction terms, this is not the same as the L2 vs L1 difference for the pull samples. If you're not sure use the `contrast` function. Another hint: consider the arrows plot for the model with interactions.
+A>7. What is the L2 vs L1 estimate in `log2(friction)` for the push samples? Remember, because of the interaction terms, this is not the same as the L2 vs L1 difference for the pull samples. If you're not sure use the `contrast` function. Another hint: consider the arrows plot for the model with interactions.
 A>
 A>
 A>   
 A>    Note that taking the log2 of a Y value and then performing a linear model has a meaningful effect on the coefficients. If we have, {$$}\log_2(X) = \beta_0{/$$} and {$$}log2(Y) = \beta_0 + \beta_1{/$$}, then {$$}Y/X = 2^(\beta_0 + \beta_1) / 2^(\beta_0)= 2^\beta_1{/$$}, so {$$}\beta_1{/$$} represents a log2 fold change of {$$}Y{/$$} over {$$}X{/$$}. If {$$}\beta_1 = 1{/$$}, then {$$}Y{/$$} is 2 times {$$}X{/$$}. If {$$}\beta_1 = -1{/$$}, then {$$}Y{/$$} is half of {$$}X{/$$}, etc. 
 A>
-A>8. Snalysis of variance (ANOVA), performed in R using the `anova`, allows us to test whether a number of coefficients are equal to zero, by comparing a linear model including these terms to a linear model where these terms are set to 0. In this last question, we will use Monte Carlo techniques to observe the distribution of the ANOVA's _F-value_ under the null hypothesis, that there are no differences between groups.
+A>8. Analysis of variance (ANOVA) performed in R using the `anova`, allows us to test whether a number of coefficients are equal to zero, by comparing a linear model including these terms to a linear model where these terms are set to 0. In this last question, we will use Monte Carlo techniques to observe the distribution of the ANOVA's _F-value_ under the null hypothesis, that there are no differences between groups.
 A>
 A>    Suppose we have 4 groups, and 10 samples per group, so 40 samples overall:
 A>
@@ -137,7 +137,7 @@ A>
     X <- model.matrix(~ group)
     ```
 A>
-A>    We will show here how to calculate the "F-value", and then we will use random number to observe the distribution of the F-value under the null hypothesis.
+A>    We will show here how to calculate the "F-value", and then we will use random numbers to observe the distribution of the F-value under the null hypothesis.
 A>
 A>    The F-value is the mean sum of squares explained by the terms of interest (in our case, the 'group' terms) divided by the mean sum of squares of the residuals of a model including the terms of interest. So it is the explanatory power of the terms divided by the leftover variance.
 A>
@@ -150,7 +150,7 @@ A>
     Y <- rnorm(N,mean=42,7)
     ```
 A>    
-A>    The base model we wil compare against is simply {$$}\hat{Y}{/$$} = `mean(Y)`, which we will call {$$}\mu_0{/$$}, and the initial sum of squares is the Y values minus {$$}\mu_0{/$$}:
+A>    The base model we will compare against is simply {$$}\hat{Y}{/$$} = `mean(Y)`, which we will call {$$}\mu_0{/$$}, and the initial sum of squares is the Y values minus {$$}\mu_0{/$$}:
 A>
 A>    
     ```r
@@ -186,13 +186,13 @@ A>
     ```r
     f.value <- group.ms / after.group.ms
     ```
-A>    What Is the point of all these calculations? The point is that, after following these steps, the exact distribution of the F-value has a nice mathematical formula under the null hypothesis. 
+A>    What is the point of all these calculations? After following these steps, the exact distribution of the F-value has a nice mathematical formula under the null hypothesis. 
 A>    
 A>    Set the seed at 1 and calculate the F-value for 1000 random versions of Y. What is the mean of these F-values?
 A>
 A>
 A>
-A>    If you save the values from the simulation into `Fs` we can plot the distribution of the 1000 F-values and overlay the theoretical F-distribution, with parameters `df1=p - 1`, `df2=N - p`. Note the similarity:
+A>    If you save the values from the simulation into `Fs` , we can plot the distribution of the 1000 F-values and overlay the theoretical F-distribution, with parameters `df1=p - 1`, `df2=N - p`. Note the similarity:
 A>
 A>    
     ```r
