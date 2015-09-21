@@ -8,7 +8,7 @@ title: Cross-validation
 
 The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/ml/crossvalidation.Rmd).
 
-Here we describe *cross-validation*: one of the fundamental methods in machine learning for picking parameters in a prediction / machine learning task.
+Here we describe *cross-validation*: one of the fundamental methods in machine learning for method assessment and picking parameters in a prediction / machine learning task.
 
 Suppose we have a prediction algorithm which is going to predict the class of some observations using a number of features. For example, we will use the gene expression values to predict the tissue type in our tissues gene expression dataset.
 
@@ -151,7 +151,7 @@ res <- sapply(ks, function(k) {
 })
 ```
 
-Now we can plot the mean misclassification rate for each value of k:
+Here is a plot the mean misclassification rate for each value of k:
 
 
 ```r
