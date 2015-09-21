@@ -1,7 +1,7 @@
 ## Chapter 7 - Statistical Modeling
 modeling modeling
-modeling_exercises modeling_exercises
-modeling bayes Bayes_theorem
-modeling_exercises bayes_exercises Bayes_theorem_exercises
-modeling hierarchical_models
-modeling_exercises hierarchical_models_exercises
+#modeling_exercises modeling_exercises
+#modeling bayes Bayes_theorem
+#modeling_exercises bayes_exercises Bayes_theorem_exercises
+#modeling hierarchical_models
+#modeling_exercises hierarchical_models_exercises
