@@ -9,7 +9,7 @@ title: Singular Value Decomposition
 
 The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/highdim/svd.Rmd).
 
-In the previous section we motivated dimension reduction and showed a transformation that permitted us to approximate the distance between two dimensional points with the distance betwee points with just one dimension. The singular value decomposition (SVD) is a generalization of the algorithm we used in the motivational section. As in the example, the SVD provides a transformation of the original data. As we will see, this transformation has some very useful properties. 
+In the previous section we motivated dimension reduction and showed a transformation that permitted us to approximate the distance between two dimensional points with the distance between points with just one dimension. The singular value decomposition (SVD) is a generalization of the algorithm we used in the motivational section. As in the example, the SVD provides a transformation of the original data. As we will see, this transformation has some very useful properties. 
 
 The main result SVD provides is that we can write an {$$}m \times n{/$$}, matrix {$$}\mathbf{Y}{/$$} as
 
@@ -21,12 +21,12 @@ With:
 * {$$}\mathbf{V}{/$$} is an {$$}p \times p{/$$} orthogonal matrix
 * {$$}\mathbf{D}{/$$} is an {$$}n \times p{/$$} diagonal matrix 
 
-with {$$}p=\mbox{min}(m,n){/$$}. Note that {$$}\mathbf{U}^\top{/$$} provide the rotation of our data {$$}\mathbf{Y}{/$$} that turns out to be very useful because the variability (sum of squares to be precise) of the columns of {$$}\mathbf{VD}{/$$} are decreasing.
+with {$$}p=\mbox{min}(m,n){/$$}. Note that {$$}\mathbf{U}^\top{/$$} provides a rotation of our data {$$}\mathbf{Y}{/$$} that turns out to be very useful because the variability (sum of squares to be precise) of the columns of {$$}\mathbf{U}^\top \mathbf{Y}=\mathbf{VD}{/$$} are decreasing.
 Also note that because {$$}\mathbf{U}{/$$} is orthogonal, we can wrtie the SVD like this: 
 
 {$$}\mathbf{Y} = \mathbf{UDV}^\top{/$$}
 
-In fact, the formula above is much more commonly used. Also note that we can write the transformation like this:
+In fact, this formula is much more commonly used. Also note that we can write the transformation like this:
 
 {$$}\mathbf{YV} = \mathbf{UD}{/$$}
 
@@ -36,6 +36,13 @@ This transformaton of {$$}Y{/$$} also results in a matrix with column of decreas
 Applying the SVD to the motivating example we have:
 
 
+```r
+library(rafalib)
+library(MASS)
+n <- 100
+y <- t(mvrnorm(n,c(0,0), matrix(c(1,0.95,0.95,1),2,2)))
+s <- svd(y)
+```
 
 We can immediately see that applying the SVD results in a transformation very similar to the one we used in the motivating example:
 
@@ -45,8 +52,8 @@ round(sqrt(2) * s$u , 3)
 
 ```
 ##        [,1]   [,2]
-## [1,] -1.001 -0.999
-## [2,] -0.999  1.001
+## [1,] -1.009 -0.991
+## [2,] -0.991  1.009
 ```
 
 The plot we showed after the rotation, was showing what we call the _principal components_: the second plotted againts the first. To obtain the principal components from the SVD we simply need the columns of the rotation {$$}\mathbf{U}^\top\mathbf{Y}{/$$} :
@@ -63,7 +70,7 @@ plot(PC1,PC2,xlim=c(-3,3),ylim=c(-3,3))
 
 ### How is this useful?
 
-It is not immediately obvious how incredibly useful the SVD can be so let's consider some examples. In this example we will try to reduce dimension of {$$}V{/$$} and still be able to reconstruct {$$}Y{/$$}.
+It is not immediately obvious how incredibly useful the SVD can be so let's consider some examples. In this example we will greatly reduce the dimension of {$$}V{/$$} and still be able to reconstruct {$$}Y{/$$}.
 
 Let's compute the SVD on the gene expression table we have been working with. We will take a subset of 100 genes so that computations are faster.
 
@@ -97,7 +104,7 @@ max(abs(resid))
 ## [1] 3.508305e-14
 ```
 
-If we look at the sum of squares of {$$}\mathbf{UD}{/$$} we see that the last few are quite close to 0.  
+If we look at the sum of squares of {$$}\mathbf{UD}{/$$} we see that the last few are quite close to 0 (perhaps we have some replicated columns).  
 
 
 ```r
@@ -140,7 +147,7 @@ plot(cumsum(s$d^2)/sum(s$d^2)*100,ylab="Percent variability explained",ylim=c(0,
 
 ![Cumulative variance explained by principal components of gene expression data.](images/R/svd-tmp-cum_variance_explained-1.png) 
 
-We see that although we start with just 125 dimensions we can approximate {$$}Y{/$$}:
+We see that although we start with 189 dimensions we can approximate {$$}Y{/$$} with just 95:
 
 
 ```r
@@ -165,7 +172,7 @@ var(as.vector(resid))/var(as.vector(Y))
 
 We say that we explain 96% of the variability.
 
-Note that we can compute this proportionfrom {$$}D{/$$}:
+Note that we can compute this proportion from {$$}D{/$$}:
 
 ```r
 1-sum(s$d[1:k]^2)/sum(s$d^2)
@@ -174,7 +181,7 @@ Note that we can compute this proportionfrom {$$}D{/$$}:
 ```
 ## [1] 0.04076899
 ```
-Thus the entries of {$$}D{/$$} tell us how much each
+Thus the entries of {$$}D{/$$} tell us how much each PC contributes in term of variability explained.
 
 ### Highly correlated data
 
