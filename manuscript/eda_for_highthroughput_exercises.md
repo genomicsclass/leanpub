@@ -6,7 +6,7 @@ Title: EDA for Highthroughput Exercises
 
 A>## Exercises
 A>
-A>We will be using a handful of Bioconductor packages. These are installed using the function `biocLite` which you can source from the web
+A>We will be using a handful of Bioconductor packages. These are installed using the function `biocLite` which you can source from the web:
 A>
 A>
 ```r
@@ -22,7 +22,7 @@ bioc_install()
 ```
 A>
 A>
-A>Download and install the Bioconductor package SpikeInSubset and then load the library and the mas133 data:
+A>Download and install the Bioconductor package `SpikeInSubset` and then load the library and the `mas133` data:
 A>
 A>
 ```r
@@ -62,11 +62,11 @@ A>
 A>    - A) The tails do not dominate the plot: 95% of data is not in a tiny section of plot.
 A>    - B) There are less points.
 A>    - C) There is exponential growth.
-A>    - D) We always take logs
+A>    - D) We always take logs.
 A>
 A>
 A>
-A>3. Make an MA-plot
+A>3. Make an MA-plot:
 A>
 A>    
     ```r
@@ -74,7 +74,7 @@ A>
     plot((e[,1]+e[,2])/2,e[,2]-e[,1],cex=0.5)
     ```
 A>
-A>    The two samples we are plotting are replicates (they random samples fro the same batch of RNA) The correlation of the data was 0.997 in the original scale and 0.96 in the log-scale. High correlations are sometimes confused with evidence of replication. But replication implies we get very small difference between the observations which is better measured with distance or differences.
+A>    The two samples we are plotting are replicates (they are random samples from the same batch of RNA). The correlation of the data was 0.997 in the original scale and 0.96 in the log-scale. High correlations are sometimes confused with evidence of replication. However, replication implies we get very small differences between the observations, which is better measured with distance or differences.
 A>
 A>    What is the standard deviation of the log ratios for this comparison? 
 A>
