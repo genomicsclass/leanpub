@@ -1,5 +1,5 @@
 ---
-Title: Factor Analsysis Exercises
+Title: Factor Analysis Exercises
 ---
 
 A>## Exercises
@@ -47,20 +47,21 @@ A>    - D) {$$}U^\top Y{/$$} is a projection from an {$$}N{/$$}-dimensional to {
 A>
 A>
 A>
-A>3. Define
+A>3. Define:
 A>
 A>    
     ```r
     y = geneExpression - rowMeans(geneExpression)
     ```
 A>
-A>    Compute and plot an image of the correlation for each sample. Make two image plots of these correlations. In the first one, plot the correlation as image. In the second, order the samples by date and then plot the an image of the correlation. The only difference in these plots is the order in which the samples are plotted.
+A>    Compute and plot an image of the correlation for each sample. Make two image plots of these correlations. In the first one, plot the correlation as image. In the second, order the samples by date and then plot an image of the correlation. The only difference in these plots is the order in which the samples are plotted.
 A>
-A>    Based on these plots, which of the following you would say is true:
-A>    - A) The samples appear to be completely independent of each other
-A>    - B) Sex seems to be creating structures as evidenced by the two cluster of highly correlated samples
-A>    - C) There appear to be only two factors completely driven by month
-A>    - D) The fact the in the plot ordered by month we see two groups mainly driven by month and within these, we subgroups driven by date seems to suggest date more than month per se are the hidden factors
+A>    Based on these plots, which of the following you would say is true?
+A>    
+A>    - A) The samples appear to be completely independent of each other.
+A>    - B) Sex seems to be creating structures as evidenced by the two cluster of highly correlated samples.
+A>    - C) There appear to be only two factors completely driven by month.
+A>    - D) The fact that in the plot ordered by month we see two groups mainly driven by month, and, within these, we see subgroups driven by date seems to suggest date more than month per se are the hidden factors.
 A>
 A>
 A>
@@ -75,7 +76,7 @@ A>    - D) `pcs = svd(y)$d[1:2]`
 A>
 A>
 A>
-A>5. Plot each of the estimated factor ordered by date. Use color to denote month. The first factor is clearly related to date. 
+A>5. Plot each of the estimated factors ordered by date. Use color to denote month. The first factor is clearly related to date. 
 A>Which of the following appear to be most different according to this factor?
 A>    - A) June 23 and June 27
 A>    - B) Oct 07 and Oct 28
@@ -94,24 +95,24 @@ A>
 A>7. Which PC most correlates (negative or positive correlation) with month? 
 A>
 A>
-A>8. What is this correlation  (in absolute value)?
+A>8. What is this correlation (in absolute value)?
 A>
 A>
 A>
 A>9. Which PC most correlates (negative or positive correlation) with sex? 
 A>
 A>
-A>10. What is this correlation  (in absolute value)?
+A>10. What is this correlation (in absolute value)?
 A>
 A>
-A>11. Now instead of using month, which we have shown does not quite describe the batch,  add the two estimated factors in exercise 9 to the linear model we used above.
+A>11. Now instead of using month, which we have shown does not quite describe the batch, add the two estimated factors in exercise 9 to the linear model we used above.
 A>
 A>    
     ```r
     X <- model.matrix(~sex+s$v[,1:2])
     ```
 A>
-A>    And apply this model to each gene, exact p-values for the sex difference.  How many q-values <0.1 for the sex comparison?
+A>    Apply this model to each gene and compute q-values for the sex difference.  How many q-values <0.1 for the sex comparison?
 A>	
 A>
 A>
