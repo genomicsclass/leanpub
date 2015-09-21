@@ -7,7 +7,7 @@ title: Brief Introduction to `dplyr`
 
 The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/intro/dplyr_intro.Rmd).
 
-The learning curve for R syntax is slow. One of the mor difficult aspects that requires some getting used to is subsetting data tables. The `dplyr` packages brings these tasks closer to English and we are therefore going to introduce two simple functions: one is used to subset and the other to select columns.
+The learning curve for R syntax is slow. One of the more difficult aspects that requires some getting used to is subsetting data tables. The `dplyr` packages brings these tasks closer to English and we are therefore going to introduce two simple functions: one is used to subset and the other to select columns.
 
 Take a look at the dataset we read in:
 
@@ -64,7 +64,7 @@ head(chowVals)
 ## 6      19.79
 ```
 
-A nice feature of the `dplyr` package is that you can perform consecutive tasks by using what is called a "pipe".  In `dplyr` we use `%>%` to denote a pipe. This symbol tells the program to first do one thing and then do something else to the result of the first. As a result, we can perform several data manipulations in one line.  For example:
+A nice feature of the `dplyr` package is that you can perform consecutive tasks by using what is called a "pipe". In `dplyr` we use `%>%` to denote a pipe. This symbol tells the program to first do one thing and then do something else to the result of the first. As a result, we can perform several data manipulations in one line. For example:
 
 
 ```r
