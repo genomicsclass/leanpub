@@ -4,7 +4,7 @@ Title: Conditional Expectations Exercises
 
 A>## Exercises
 A>
-A>Throughout this exercises it will be useful to remember that when our data are 0s and 1s, probabilities and expectations are the same thing. We can do the math, but here is some R code:
+A>Throughout these exercises it will be useful to remember that when our data are 0s and 1s, probabilities and expectations are the same thing. We can do the math, but here is some R code:
 A>
 A>
 ```r
@@ -38,6 +38,6 @@ A>
 A>
 A>2. Now make a plot of {$$}E(Y|X=x){/$$} for `x=seq(160,178)` using the data generated in exercise 1.
 A>
-A>    If you want your chance of predicting female or male based on height, and you want your probability of success to be larger than 0.5, at what is the largest height where you predict female ?
+A>    If you are predicting female or male based on height and want your probability of success to be larger than 0.5, what is the largest height where you predict female ?
 A>
 A>
