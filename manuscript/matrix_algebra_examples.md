@@ -210,7 +210,7 @@ So now we are ready to determine which values of {$$}\beta{/$$} minimize the abo
 
 #### Advanced: Finding the minimum using calculus
 
-There are a series of rules that permit us to compute partial derivatives equations in matrix notation. By equating the derivative to 0 and solving for the {$$}\beta{/$$}, we will have our solution. The only one we need here tells us that the derivative of the above equation is:
+There are a series of rules that permit us to compute partial derivative equations in matrix notation. By equating the derivative to 0 and solving for the {$$}\beta{/$$}, we will have our solution. The only one we need here tells us that the derivative of the above equation is:
 
 {$$}
 2 \mathbf{X}^\top (\mathbf{Y} - \mathbf{X} \boldsymbol{\hat{\beta}})=0
@@ -270,7 +270,7 @@ tt <- seq(0,3.4,len=n) #time in secs, t is a base function
 d <- 56.67  - 0.5*g*tt^2 + rnorm(n,sd=1)
 ```
 
-Note that we are using almost the same exact code:
+Notice that we are using almost the same exact code:
 
 
 
@@ -335,8 +335,7 @@ summary(fit)
 ## F-statistic:  4025 on 2 and 22 DF,  p-value: < 2.2e-16
 ```
 
-We obtain the same values as above.
-
+Note that we obtain the same values as above.
 
 ### Summary
 
