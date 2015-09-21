@@ -21,7 +21,7 @@ We consider an example with twin heights. Here we simulate 100 two dimensional p
 
 ![Simulated twin pair heights.](images/R/pca_motivation-tmp-simulate twin heights-1.png) 
 
-To help with the illustration, think of this as high-throughput gene expression dat with the twin pairs representing the {$$}N{/$$} samples and the two heights representing gene expression from two genes. 
+To help with the illustration, think of this as high-throughput gene expression data with the twin pairs representing the {$$}N{/$$} samples and the two heights representing gene expression from two genes. 
 
 We are interested in the distance between any two samples. We can compute this using `dist`. For example, here is the distance between the two orange points in the figure above:
 
@@ -35,7 +35,7 @@ as.matrix(d)[1,2]
 ## [1] 1.140897
 ```
 
-What if we two dimensions was too comples and we were only able to make 1 dimensional plots. Can we, for example, reduce the data to a one dimensional matrix that preserves distances between points?
+What if making two dimensional plots was too complex and we were only able to make 1 dimensional plots. Can we, for example, reduce the data to a one dimensional matrix that preserves distances between points?
 
 If we look back at the plot, and visualize a line between any pair of points, the length of this line is the distance between the two points. Note that these lines tend to go along the direction of the diagonal. We have seen before that we can "rotate" the plot so that the diagonal is in the x-axis by making a MA-plot instead:
 
