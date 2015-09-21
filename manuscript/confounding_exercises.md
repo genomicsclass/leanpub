@@ -1,10 +1,10 @@
 ---
-Title: Counfounding Exercises
+Title: Confounding Exercises
 ---
 
 A>## Exercises
 A>
-A>Load the admissions data from the `dagdata` package (which is avaialbe from the genomicsclass repository):
+A>Load the admissions data from the `dagdata` package (which is available from the genomicsclass repository):
 A>
 A>
 ```r
@@ -49,23 +49,23 @@ A>
 A>
 A>    How can this be? This is referred to as Simpson's Paradox. In the following questions we will try to decipher why this is happening.
 A>
-A>3. We can quantify how "hard" a major is using the percent of students that were accepted. Compute the percent that were accepted (regardless of gender) to each major and call this vector `H`
+A>3. We can quantify how "hard" a major is by using the percent of students that were accepted. Compute the percent that were accepted (regardless of gender) to each major and call this vector `H`.
 A>
 A>    Which is the hardest major? 
 A>
 A>
 A>
 A>
-A>4. What proportion gets in for this major?
+A>4. What proportion is accepted for this major?
 A>
 A>
-A>5. For men, what is the correlation between the number of applications across majors and `H`
+A>5. For men, what is the correlation between the number of applications across majors and `H`:
 A>
 A>
-A>6. For women, what is the correlation between the number of applications across majors and `H`
+A>6. For women, what is the correlation between the number of applications across majors and `H`:
 A>
 A>
-A>7. Given the answers to the above, which best explains the differences in admission percentages when we combine majors
+A>7. Given the answers to the above, which best explains the differences in admission percentages when we combine majors?
 A>    - A) We made a coding mistake when computing the overall admissions percentages.
 A>    - B) There were more total number of women applications which made the denominator much bigger.
 A>    - C) There is confounding between gender and preference for "hard" majors: females are more likely to apply to harder majors.
