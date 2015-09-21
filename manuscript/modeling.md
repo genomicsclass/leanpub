@@ -53,7 +53,7 @@ prop.table(tab)
 ```
 ## winners
 ##     0     1     2     3     4 
-## 0.619 0.286 0.085 0.008 0.002
+## 0.608 0.309 0.070 0.012 0.001
 ```
 
 For cases like this, where {$$}N{/$$} is very large, but {$$}p{/$$} is small enough to make {$$}N \times p{/$$} (call it {$$}\lambda{/$$}) a number between 0 and, for example, 10, then {$$}S{/$$} can be shown to follow a Poisson distribution which has a simple parametric form:
@@ -197,7 +197,7 @@ abline(0,1)
 
 ![Observed counts versus theoretical Poisson counts.](images/R/modeling-tmp-obs_versus_theoretical_Poisson_count-1.png) 
 
-We therefore can model the palindrome count data with a Poisson with {$$}\lamba=5.16{/$$}. 
+We therefore can model the palindrome count data with a Poisson with {$$}\lambda=5.16{/$$}. 
 
 ## Distributions for Positive Continuous Values
 
@@ -332,18 +332,6 @@ Now which {$$}s_0{/$$} and {$$}d{/$$} fit our data best? This is a rather advanc
 
 ```r
 library(limma)
-```
-
-```
-## 
-## Attaching package: 'limma'
-## 
-## The following object is masked from 'package:BiocGenerics':
-## 
-##     plotMA
-```
-
-```r
 estimates=fitFDist(biosds^2,11)
 
 theoretical<- sqrt(qf((seq(0,999)+0.5)/1000, 11, estimates$df2)*estimates$scale)
