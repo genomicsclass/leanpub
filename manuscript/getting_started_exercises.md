@@ -5,7 +5,7 @@ title: Getting Started Exercises
 
 A>## Exercises
 A>
-A>Here we will test some of the basics of R data manipulation which you should know or should have learned by following the tutorials above. You will need to have the file `femaleMiceWeights.csv` in your working directory. As we showed above, one way to do this is using the `downloader` package:
+A>Here we will test some of the basics of R data manipulation which you should know or should have learned by following the tutorials above. You will need to have the file `femaleMiceWeights.csv` in your working directory. As we showed above, one way to do this is by using the `downloader` package:
 A>
 A>
 ```r
@@ -15,7 +15,7 @@ filename <- "femaleMiceWeights.csv"
 download(url, destfile=filename)
 ```
 A>
-A>1. Read in the file `femaleMiceWeights.csv` and report the body weight of the mouse in the exact name of the column containing the weights
+A>1. Read in the file `femaleMiceWeights.csv` and report the body weight of the mouse in the exact name of the column containing the weights:
 A>
 A>
 A>
