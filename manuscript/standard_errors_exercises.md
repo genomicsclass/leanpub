@@ -6,7 +6,7 @@ Title: Standard Errors Exercises
 
 A>## Exercises
 A>
-A>In the previous assessment, we used a Monte Carlo technique to see that the linear model coefficients are random variables when the data is a random sample. Now we will use the matrix algebra from the previous video to try to estimate the standard error of the linear model coefficients. Again, take a random sample of the father.son heights data:
+A>In the previous assessment, we used a Monte Carlo technique to see that the linear model coefficients are random variables when the data is a random sample. Now we will use the previously seen matrix algebra to try to estimate the standard error of the linear model coefficients. Again, take a random sample of the `father.son` heights data:
 A>
 A>
 ```r
@@ -37,7 +37,7 @@ A>
 A>First, we want to estimate {$$}\sigma^2{/$$}, the variance of {$$}Y{/$$}. As we have seen in the previous unit, the random part of {$$}Y{/$$} is only coming from {$$}\varepsilon{/$$}, because we assume {$$}X\beta{/$$} is fixed. So we can try to estimate the variance of the {$$}\varepsilon{/$$} s from the residuals, the {$$}Y_i{/$$} minus the fitted values from the linear model.
 A>
 A>
-A>1. Note that the fitted values {$$}\hat{Y}{/$$} from a linear model can be obtained with:
+A>1. The fitted values {$$}\hat{Y}{/$$} from a linear model can be obtained with:
 A>
 A>    
     ```r
@@ -49,12 +49,12 @@ A>    What is the sum of the squared residuals (where residuals are given by {$$
 A>
 A>
 A>
-A>2. Our estimate of {$$}\sigma^2{/$$} will be the sum of squared residuals divided by {$$}N - p{/$$}, the sample size minus the number of terms in the model. Since we have a sample of 50 and 2 terms in the model (an intercept and a slope), our estimate of {$$}\sigma^2{/$$} will be the sum of squared residuals divided by 48. Use the answer to exercise 1 to provide an estimate of {$$}\sigma^2{/$$}:
+A>2. Our estimate of {$$}\sigma^2{/$$} will be the sum of squared residuals divided by {$$}N - p{/$$}, the sample size minus the number of terms in the model. Since we have a sample of 50 and 2 terms in the model (an intercept and a slope), our estimate of {$$}\sigma^2{/$$} will be the sum of squared residuals divided by 48. Use the answer from exercise 1 to provide an estimate of {$$}\sigma^2{/$$}:
 A>
 A>
 A>  
-A>3. Form the design matrix X (note: use a capital X!). This can be done by combining a column of 1's with a 
-A>column of 'x' the father's heights.
+A>3. Form the design matrix `X` (note: use a capital X!). This can be done by combining a column of 1's with a 
+A>column containg 'x' , the fathers' heights.
 A>
 A>    
     ```r
@@ -65,15 +65,15 @@ A>
 A>    Now calculate {$$}(X^\top X)^{-1}{/$$}. Use the `solve` function for the inverse and `t` for the transpose. What is the element in the first row, first column?
 A>
 A>
-A>4. Now we are one step away from the standard error of {$$}\hat{beta}{/$$}. Take the diagonals from the {$$}(X^\top X)^{-1}{/$$} matrix above, using the `diag` function. Now multiply our estimate of {$$}\sigma^2{/$$} and the diagonals of this matrix. This is the estimated variance of {$$}\hat{\beta}{/$$}, so take the square root of this. You should end up with two numbers, the standard error for the intercept and the standard error for the slope.
+A>4. Now we are one step away from the standard error of {$$}\hat{beta}{/$$}. Take the diagonals from the {$$}(X^\top X)^{-1}{/$$} matrix above, using the `diag` function. Multiply our estimate of {$$}\sigma^2{/$$} and the diagonals of this matrix. This is the estimated variance of {$$}\hat{\beta}{/$$}, so take the square root of this. You should end up with two numbers, the standard error for the intercept and the standard error for the slope.
 A>
 A>    What is the standard error for the slope?
 A>
 A>
 A>
-A>Compare your answer to the last question to the value you estimated using Monte Carlo in the previous set of exercises. It will not be the same, because we are only estimating the standard error given a particular sample of 50 (which we obtained with set.seed(1)).
+A>Compare your answer to the last question, to the value you estimated using Monte Carlo in the previous set of exercises. It will not be the same, because we are only estimating the standard error given a particular sample of 50 (which we obtained with set.seed(1)).
 A>
-A>Note that the standard error estimate is also printed in the second column of:
+A>Notice that the standard error estimate is also printed in the second column of:
 A>
 A>
 ```r
