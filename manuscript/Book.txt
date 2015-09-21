@@ -1,19 +1,12 @@
-## Chapter 1 - Inference
-random_variables.md
-random_variables_exercises.md
-populations_and_samples.md
-populations_and_samples_exercises.md
-clt_and_t-distribution.md
-clt_and_t-distribution_exercises.md
-clt_in_practice.md
-clt_in_practice_exercises.md
-t-tests_in_practice.md
-confidence_intervals.md
-power_calculations.md
-power_calculations_exercises.md
-monte_carlo.md
-monte_carlo_exercises.md
-permutation_tests.md
-permutation_tests_exercises.md
-association_tests.md
-association_tests_exercises.md
+## Chapter 10 - Batch Effects
+intro_to_batch_effects.md
+confounding.md
+confounding_exercises.md
+eda_with_pca.md
+eda_with_pca_exercises.md
+adjusting_with_linear_models.md
+adjusting_with_linear_models_exercises.md
+factor_analysis.md
+factor_analysis_exercises.md
+adjusting_with_factor_analysis.md
+adjusting_with_factor_analysis_exercises.md
