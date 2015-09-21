@@ -1,11 +1,7 @@
-## Chapter 8 - Distance and Dimension Reduction
-distance.md
-distance_exercises.md
-pca_motivation.md
-svd.md
-svd_exercises.md
-projections.md
-rotations.md
-mds.md
-mds_exercises.md
-PCA.md
+## Chapter 7 - Statistical Modeling
+modeling.md
+modeling_exercises.md
+bayes.md
+bayes_exercises.md
+hierarchical_models.md
+hierarchical_models_exercises.md
