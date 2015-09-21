@@ -1,12 +1,10 @@
-## Chapter 10 - Batch Effects
-batch intro_to_batch_effects Introduction_to_batch_effects
-batch confounding
-batch_exercises confounding_exercises
-batch eda_with_pca EDA_with_PCA
-batch_exercises eda_with_pca_exercises EDA_with_PCA_exercises
-batch adjusting_with_linear_models
-batch_exercises adjusting_with_linear_models_exercises
-batch factor_analysis
-batch_exercises factor_analysis_exercises
-batch adjusting_with_factor_analysis
-batch_exercises adjusting_with_factor_analysis_exercises
+## Chapter 9 - Practical Machine Learning
+ml clustering_and_heatmaps
+ml_exercises clustering_and_heatmaps_exercises
+ml conditional_expectation
+ml_exercises conditional_expectation_exercises
+ml smoothing
+ml_exercises smoothing_exercises
+ml machine_learning
+ml crossvalidation
+ml_exercises crossvalidation_exercises
