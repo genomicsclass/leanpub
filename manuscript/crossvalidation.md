@@ -51,15 +51,6 @@ We will use the `createFolds` function from the `caret` package to make 5 folds 
 
 ```r
 library(caret)
-```
-
-```
-## Loading required package: lattice
-## Loading required package: ggplot2
-## Loading required package: methods
-```
-
-```r
 set.seed(1)
 idx <- createFolds(y, k=10)
 sapply(idx, function(i) table(y[i]))
