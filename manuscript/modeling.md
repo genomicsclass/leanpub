@@ -53,7 +53,7 @@ prop.table(tab)
 ```
 ## winners
 ##     0     1     2     3     4 
-## 0.608 0.309 0.070 0.012 0.001
+## 0.616 0.287 0.082 0.014 0.001
 ```
 
 For cases like this, where {$$}N{/$$} is very large, but {$$}p{/$$} is small enough to make {$$}N \times p{/$$} (call it {$$}\lambda{/$$}) a number between 0 and, for example, 10, then {$$}S{/$$} can be shown to follow a Poisson distribution which has a simple parametric form:
@@ -213,24 +213,6 @@ As an example, we use an experimental data that included both technical and biol
 
 ```r
 library(Biobase) ##available from Bioconductor
-```
-
-```
-## Welcome to Bioconductor
-## 
-##     Vignettes contain introductory material; view with
-##     'browseVignettes()'. To cite Bioconductor, see
-##     'citation("Biobase")', and for packages 'citation("pkgname")'.
-## 
-## 
-## Attaching package: 'Biobase'
-## 
-## The following objects are masked from 'package:matrixStats':
-## 
-##     anyMissing, rowMedians
-```
-
-```r
 library(maPooling) ##available from course github repo
 
 data(maPooling)
