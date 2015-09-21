@@ -1,10 +1,12 @@
 ---
 Title: Smoothing exercises
+---
+
 
 A>## Exercises
 A>
 A>
-A>1. As in the previous section generate the follwowing data:
+A>1. Generate the following data:
 A>  
 A>    
     ```r
@@ -20,7 +22,7 @@ A>
     x = x[ind]
     ```
 A>
-A>    Set the seed at 5, `set.seed(5)` and take a random sample of 250 from
+A>    Set the seed at 5, `set.seed(5)` and take a random sample of 250 from:
 A>
 A>    
     ```r
@@ -35,9 +37,9 @@ A>    Use loess to estimate {$$}f(x)=E(Y|X=x){/$$} using the default parameters.
 A>
 A>
 A>
-A>2. The loess estimate above is a random variable. We can compute standard errors for it. Here we use Monte Carlo to demonstrate that it is a random variable.Use Monte Carlo simulation to estimate the standard error of your estimate of {$$}f(168){/$$}. 
+A>2. The loess estimate above is a random variable. We can compute standard errors for it. Here we use Monte Carlo to demonstrate that it is a random variable. Use Monte Carlo simulation to estimate the standard error of your estimate of {$$}f(168){/$$}. 
 A>
-A>    Set the seed to 5, `set.seed(5)` and perform 10000 simulation and report the the SE of the loess based estimate ?
+A>    Set the seed to 5, `set.seed(5)` and perform 10000 simulations and report the SE of the loess based estimate.
 A>
 A>
 A>
