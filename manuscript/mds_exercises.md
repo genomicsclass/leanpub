@@ -101,7 +101,6 @@ A>
 A>    In exercise 3 we saw that one the  5th dimension was highly correlate to the `sampleInfo$group`. Now take the 5th column of {$$}\mathbf{U}{/$$} and stratify by the gene chromosome. Remove `chrUn` and make a boxplot of the values of {$$}\mathbf{U}_5{/$$} stratified by chromosome. 
 A>
 A>    Which chromosome looks different from the rest? Copy and paste the name as it appears in `geneAnnotation`
-A>Explanation:
 A>
 A>
 A>Given the answer to the last exercise, any guesses as to what `sampleInfo$group` represents?
