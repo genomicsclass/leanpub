@@ -1,10 +1,11 @@
-## Chapter 9 - Practical Machine Learning
-ml clustering_and_heatmaps
-ml_exercises clustering_and_heatmaps_exercises
-ml conditional_expectation
-ml_exercises conditional_expectation_exercises
-ml smoothing
-ml_exercises smoothing_exercises
-ml machine_learning
-ml crossvalidation
-ml_exercises crossvalidation_exercises
+## Chapter 8 - Distance and Dimension Reduction
+highdim distance
+highdim_exercises distance_exercises
+highdim pca_motivation PCA_motivation
+highdim svd SVD
+highdim_exercises svd_exercises SVD_exercises
+highdim projections
+highdim rotations
+highdim mds MDS
+highdim_exercises mds_exercises MDS_exercises
+highdim PCA
