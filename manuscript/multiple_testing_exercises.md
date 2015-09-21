@@ -140,17 +140,7 @@ A>    - D) The qvalue function estimates the proportion of genes for which the n
 A>
 A>
 A>
-A>    To get an idea of how {$$}\pi_0{/$$} is estimated, note that if we look at the histogram, {$$}\pi_0{/$$} roughly tells us the proportion that looks about uniform:
-A>
-A>    
-    ```r
-    hist(pvals,breaks=seq(0,1,len=21))
-    expectedfreq <- length(pvals)/20 #per bin
-    abline(h=expectedfreq*qvalue(pvals)$pi0,col=2,lty=2)
-    ```
-A>
-A>13. This exercise and the remaining one are more advanced.
-A> Create a Monte Carlo Simulation in which you simulate measurements from 8,793 genes for 24 samples: 12 cases and 12 controls. 
+A>13. This exercise and the remaining one are more advanced. Create a Monte Carlo Simulation in which you simulate measurements from 8,793 genes for 24 samples: 12 cases and 12 controls. 
 A>
 A>    
     ```r
@@ -158,7 +148,7 @@ A>
     m <- 8793
     mat <- matrix(rnorm(n*m),m,n)
     ```
-A>
+A>    
 A>    Now for 100 genes, there is a difference of 1 between cases and controls:
 A>
 A>    
