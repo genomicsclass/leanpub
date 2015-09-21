@@ -1,7 +1,19 @@
-## Chapter 0 - Introduction
-introduction.md
-getting_started.md
-getting_started_exercises.md
-dplyr_intro.md
-dplyr_intro_exercises.md
-math_notation.md
+## Chapter 1 - Inference
+random_variables.md
+random_variables_exercises.md
+populations_and_samples.md
+populations_and_samples_exercises.md
+clt_and_t-distribution.md
+clt_and_t-distribution_exercises.md
+clt_in_practice.md
+clt_in_practice_exercises.md
+t-tests_in_practice.md
+confidence_intervals.md
+power_calculations.md
+power_calculations_exercises.md
+monte_carlo.md
+monte_carlo_exercises.md
+permutation_tests.md
+permutation_tests_exercises.md
+association_tests.md
+association_tests_exercises.md
