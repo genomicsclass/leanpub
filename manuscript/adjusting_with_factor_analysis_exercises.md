@@ -4,7 +4,7 @@ Title: Adjusting with factor analysis exercises
 
 A>## Exercises
 A>
-A>In this section we will use the `sva` function in the `sva` package (available from Biocondcutor) and apply it to the following data:
+A>In this section we will use the `sva` function in the `sva` package (available from Bioconductor) and apply it to the following data:
 A>
 A>
 ```r
@@ -14,7 +14,7 @@ library(GSE5859Subset)
 data(GSE5859Subset)
 ```
 A>
-A>1. In a previous section we estimated factors using PCA. But we noted that the first factor was correlated with our outcome of interest: 
+A>1. In a previous section we estimated factors using PCA, but we noted that the first factor was correlated with our outcome of interest: 
 A>
 A>    
     ```r
@@ -22,7 +22,7 @@ A>
     cor(sampleInfo$group,s$v[,1])
     ```
 A>
-A>    The `svafit` function estimates factors, but downweighting the genes that appear to correlate with the outcome of interest. It also tries to estimate the number of factors and returns the estimated factors like this:
+A>    The `svafit` function estimates factors, but downweighs the genes that appear to correlate with the outcome of interest. It also tries to estimate the number of factors and returns the estimated factors like this:
 A>
 A>    
     ```r
@@ -32,7 +32,7 @@ A>
     head(svafit$sv)
     ```
 A>
-A>    Note that the resulting estimated factors are not that different from  the PCs
+A>    The resulting estimated factors are not that different from the PCs.
 A>    
 A>    
     ```r
