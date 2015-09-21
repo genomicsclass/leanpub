@@ -60,7 +60,7 @@ plot(hc,labels=tissue,cex=0.5)
 
 ![Dendrogram showing hierarchical clustering of tissue gene expression data.](images/R/clustering_and_heatmaps-tmp-dendrogram-1.png) 
 
-Does this technique "discover" the clusters defined by the different tissues? In this case, it is not easy to see the different tissues so we add colors by using the `mypclust` function from the `rafalib` package. 
+Does this technique "discover" the clusters defined by the different tissues? In this plot, it is not easy to see the different tissues so we add colors by using the `mypclust` function from the `rafalib` package. 
  
 
 ```r
@@ -162,7 +162,7 @@ table(true=tissue,cluster=km$cluster)
 ##   placenta     0  4  0  0  0  0  2
 ```
 
-We can instead perform k-means clustering using all of the genes. To visualize this, we can use an MDS plot:
+Here we do not get the separation we expect. This is very likely due to the fact the the first two genes are not informative regarding tissue type. We can instead perform k-means clustering using all of the genes. To visualize this, we can use an MDS plot:
 
 
 
