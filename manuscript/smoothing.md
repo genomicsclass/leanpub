@@ -11,9 +11,9 @@ title: Smoothing
 
 The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/ml/smoothing.Rmd).
 
-Smoothing is a very powerful technique used all across data analysis. The general idea is to group data points that are expected to have similar expectations and [RAFA]
+Smoothing is a very powerful technique used all across data analysis. The general idea is to group data points that are expected to have similar expectations and compute the average.
 
-The following data are from measurements from replicated RNA. We consider the data used in an MA-plot ( {$$}Y{/$$} = log ratios and {$$}A{/$$} = averages) and take down-sample in a way that balances the number of points for different strata of {$$}A{/$$}:
+The following data are gene expression measurements from replicated RNA samples. We consider the data used in an MA-plot ( {$$}Y{/$$} = log ratios and {$$}A{/$$} = averages) and take down-sample in a way that balances the number of points for different strata of {$$}A{/$$}:
 
 
 ```r
@@ -68,7 +68,7 @@ points(X,Y,pch=21,bg=ifelse(Y>fit$fitted,1,3))
 abline(fit,col=2,lwd=4,lty=2)
 ```
 
-![MAplot comparing gene expression from two arrays with fitted regression line.](images/R/smoothing-tmp-MAplot_with_regression_line-1.png) 
+![MAplot comparing gene expression from two arrays with fitted regression line. The two colors represent positive and negative residuals.](images/R/smoothing-tmp-MAplot_with_regression_line-1.png) 
 
 Note that the points above the fitted line (green) and those below (purple) are not evenly distributed.
 
