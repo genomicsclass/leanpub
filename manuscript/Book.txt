@@ -1,10 +1,11 @@
-## Chapter 9 - Practical Machine Learning
-clustering_and_heatmaps.md
-clustering_and_heatmaps_exercises.md
-conditional_expectation.md
-conditional_expectation_exercises.md
-smoothing.md
-smoothing_exercises.md
-machine_learning.md
-crossvalidation.md
-crossvalidation_exercises.md
+## Chapter 8 - Distance and Dimension Reduction
+distance.md
+distance_exercises.md
+pca_motivation.md
+svd.md
+svd_exercises.md
+projections.md
+rotations.md
+mds.md
+mds_exercises.md
+PCA.md
