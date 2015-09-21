@@ -1,11 +1,7 @@
-## Chapter 8 - Distance and Dimension Reduction
-highdim distance
-highdim_exercises distance_exercises
-highdim pca_motivation PCA_motivation
-highdim svd SVD
-highdim_exercises svd_exercises SVD_exercises
-highdim projections
-highdim rotations
-highdim mds MDS
-highdim_exercises mds_exercises MDS_exercises
-highdim PCA
+## Chapter 7 - Statistical Modeling
+modeling modeling
+modeling_exercises modeling_exercises
+modeling bayes Bayes_theorem
+modeling_exercises bayes_exercises Bayes_theorem_exercises
+modeling hierarchical_models
+modeling_exercises hierarchical_models_exercises
