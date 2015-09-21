@@ -106,15 +106,15 @@ A^{-1}= \begin{pmatrix} 0.5& 0.5 \\ 1 &-1\end{pmatrix}
 
 Here are 100 two dimensional points {$$}Y{/$$}
 
-<img src="images/R/rotations-tmp-unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
+![plot of chunk twin-heights](images/R/rotations-tmp-twin-heights-1.png) 
 
 Here are the rotations: {$$}Z = A^{-1} Y{/$$}
 
-<img src="images/R/rotations-tmp-unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
+![plot of chunk twin-heights-rotated](images/R/rotations-tmp-twin-heights-rotated-1.png) 
 
 What we have done here is rotate the data so that the first coordinate of {$$}Z{/$$} is the average height, while the second is the difference between twin heights. 
 
-In the following sections we will be using the singular value decomposition to find principal components. It is sometimes useful to think of the SVD as a rotation, for example, {$$}U^\top Y{/$$} that gives us a new coordinate system {$$}DV^\top{/$$} in which the dimensions are ordered by how much variance they explain. 
+We have used the singular value decomposition to find principal components. It is sometimes useful to think of the SVD as a rotation, for example, {$$}\mathbf{U}^\top \mathbf{Y}{/$$} that gives us a new coordinate system {$$}\mathbf{DV}^\top{/$$} in which the dimensions are ordered by how much variance they explain. 
 
 
 
