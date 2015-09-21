@@ -142,12 +142,12 @@ A>
 A>
 A>    To get an idea of how {$$}\pi_0{/$$} is estimated, note that if we look at the histogram, {$$}\pi_0{/$$} roughly tells us the proportion that looks about uniform:
 A>
-A>
-```r
-hist(pvals,breaks=seq(0,1,len=21))
-expectedfreq <- length(pvals)/20 #per bin
-abline(h=expectedfreq*qvalue(pvals)$pi0,col=2,lty=2)
-```
+A>    
+    ```r
+    hist(pvals,breaks=seq(0,1,len=21))
+    expectedfreq <- length(pvals)/20 #per bin
+    abline(h=expectedfreq*qvalue(pvals)$pi0,col=2,lty=2)
+    ```
 A>
 A>13. This exercise and the remaining one are more advanced.
 A> Create a Monte Carlo Simulation in which you simulate measurements from 8,793 genes for 24 samples: 12 cases and 12 controls. 
