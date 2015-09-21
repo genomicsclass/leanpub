@@ -697,9 +697,9 @@ If we work out the math for comparing across two non-reference leg pairs, this i
 (\mbox{`typepush`} + \mbox{`typepush:legL3`}) - (\mbox{`typepush`} + \mbox{`typepush:legL2`})
 {/$$}
 
-<p align="center">
+{$$}
 = \mbox{`typepush:legL3`} - \mbox{`typepush:legL2`}
-</p>
+{/$$}
 
 We can't make this contrast using the `contrast` function shown before, but we can make this comparison using the `glht` (for "general linear hypothesis test") function from the *multcomp* package. All we need to do is form a 1-row matrix which has a -1 for the `typepush:legL2` effect and a +1 for the `typepush:legL3` effect. We provide this matrix to the `linfct` (linear function) argument, and obtain a summary table for this contrast alone.
 
