@@ -49,7 +49,7 @@ A>6. We are now going to increase the number of times we redo the sample from 1,
 A>
 A>
 A>
-A>7. Note that the answers of 4 and 5 barely changed. This is expected. The way we think about the random value distributions is as the distribution of the list of values obtained if we repeated the experiment an infinite number of times. On a computer, we can't perform an infinite number of iterations so instead, for our examples, we consider 1,000 to be large enough, thus 10,000 is as well. Now, if instead we change the sample size, then we change the random variable and thus its distribution. 
+A>7. Note that the answers to 4 and 5 barely changed. This is expected. The way we think about the random value distributions is as the distribution of the list of values obtained if we repeated the experiment an infinite number of times. On a computer, we can't perform an infinite number of iterations so instead, for our examples, we consider 1,000 to be large enough, thus 10,000 is as well. Now if instead we change the sample size, then we change the random variable and thus its distribution. 
 A>
 A>    Set the seed at 1, then using a for-loop take a random sample of 50 mice 1,000 times. Save these averages. What percent of these 1,000 averages are more than 1 ounce away from the average of `x` ?
 A>
@@ -67,10 +67,10 @@ A>9. For the last set of averages, the ones obtained from a sample size of 50, w
 A>
 A>
 A>
-A>10. Now ask the same question of a normal distribution with average 23.9 and standard deviation 0.43
+A>10. Now ask the same question of a normal distribution with average 23.9 and standard deviation 0.43:
 A>
 A>
-A>The answer to 9 and 10 were very similar. This is because we can approximate the distribution of the sample average with a normal distribution. We will learn more about why this is next. 
+A>The answer to 9 and 10 were very similar. This is because we can approximate the distribution of the sample average with a normal distribution. We will learn more about the reason for this next. 
 A>
 A>
 A>
