@@ -116,6 +116,7 @@ A>    What is the Poisson approximation for more than one person winning?
 A>
 A>
 A>10. Now we are going to explore if palindromes are over-represented in some part of the HCMV genome. Make sure you have the latest version of the `dagdata` library and then load the palindrome data from the Human cytomegalovirus genome:
+A>
 A>    
     ```r
     library(dagdata)
@@ -123,6 +124,7 @@ A>
     ```
 A>    
 A>    These are the locations of palindromes on the genome of this virus:
+A>    
 A>    
     ```r
     library(rafalib)
@@ -155,11 +157,15 @@ A>
 A>    To fully describe this distribution, we need {$$}\lambda{/$$}. For this we will use MLE.
 A>To compute the Maximum Likelihood Estimate (MLE) we ask what is the probability of observing our data (which we denote with small caps):
 A>
-A>    {$$}L(\lambda) = \mbox{Pr}(X_1=x_1 \mbox{ and } X_2=x2 \mbox{ and } \dots X_n=x_n){/$$}
+A>    {$$}
+A>    L(\lambda) = \mbox{Pr}(X_1=x_1 \mbox{ and } X_2=x2 \mbox{ and } \dots X_n=x_n)
+A>    {/$$}
 A>
 A>    We assume that the {$$}X{/$$} are independent, thus the probabilities multiply:
 A>
-A>    {$$}L(\lambda) = \mbox{Pr}(X_1=x_1) \times \mbox{Pr}(X_2=x2) \times \dots \times \mbox{Pr}(X_n=x_n){/$$}
+A>    {$$}
+A>    L(\lambda) = \mbox{Pr}(X_1=x_1) \times \mbox{Pr}(X_2=x2) \times \dots \times \mbox{Pr}(X_n=x_n)
+A>    {/$$}
 A>
 A>    Now we can write it in R. For example, for {$$}\lambda=4{/$$} we have:
 A>    
