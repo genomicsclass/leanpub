@@ -134,10 +134,6 @@ A>
     sqrt(crossprod(e[,3]-e[,45]))
     ```
 A>    
-A>    ```
-A>    ## Error in crossprod(e[, 3] - e[, 45]): object 'e' not found
-A>    ```
-A>    
 A>    and the approximation using only two dimensions of `z` ?
 A>
 A>
