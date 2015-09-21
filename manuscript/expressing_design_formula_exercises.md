@@ -12,7 +12,7 @@ A>|---|---|---|---|---|
 A>|treatment    |  2 |   2 |   2 |
 A>|control    |  2 |   2 |  2 |
 A>
-A>1. Given the factors we have defined above, and not defining any new ones, which of the following R formula will produce a design matrix (model matrix) that let's us analyze the effect of condition, controlling for the different days:
+A>1. Given the factors we have defined above, and without defining any new ones, which of the following R formula will produce a design matrix (model matrix) that lets us analyze the effect of condition, controlling for the different days:
 A>    - A) `~ day + condition` 
 A>    - B) `~ condition  ~ day` 
 A>    - C) `~ A + B + C + control + treated`  
