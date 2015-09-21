@@ -60,7 +60,7 @@ and for the normal distribution:
 
 
 ```r
-ps <- seq(0, 1, length=101)
+ps <- ( seq(0,99) + 0.5 )/100 
 qs <- quantile(x, ps)
 normalqs <- qnorm(ps, mean(x), popsd(x))
 plot(normalqs,qs,xlab="Normal percentiles",ylab="Height percentiles")
@@ -140,23 +140,25 @@ qqnorm(exec.pay)
 qqline(exec.pay)
 ```
 
-![Histogram and QQ-plot of executive pay.](images/R/exploratory_data_analysis-tmp-unnamed-chunk-2-1.png) 
+![Histogram and QQ-plot of executive pay.](images/R/exploratory_data_analysis-tmp-execpay-1.png) 
 
 In addition to QQ-plots, a practical summary of data is to compute 3
 percentiles: 25-th, 50-th (the median) and the 75-th. A boxplot shows
 these 3 values along with a 
 range of the points within median {$$}\pm{/$$} 1.5 (75-th percentile -
 25th-percentile). Values outside this range are shown as points and
-sometimes refereed to as _outliers_. Here we show just one boxplot,
-however one of the great benefits of boxplots is that we could easily
-show many distributions in one plot, by lining them up, side by side. We will see several examples of this throughout the book.
+sometimes refereed to as _outliers_. 
 
 
 ```r
 boxplot(exec.pay, ylab="10,000s of dollars", ylim=c(0,400))
 ```
 
-![Simple boxplot of executive pay.](images/R/exploratory_data_analysis-tmp-unnamed-chunk-3-1.png) 
+![Simple boxplot of executive pay.](images/R/exploratory_data_analysis-tmp-unnamed-chunk-2-1.png) 
+
+Here we show just one boxplot,
+however one of the great benefits of boxplots is that we could easily
+show many distributions in one plot, by lining them up, side by side. We will see several examples of this throughout the book.
 
 <a name="scatterplots"></a>
 
