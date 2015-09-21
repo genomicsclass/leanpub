@@ -35,14 +35,14 @@ A>3. What is the distance between gene `210486_at` and `200805_at`
 A>
 A>
 A>
-A>4. If I run the command (don't run it!)
+A>4. If I run the command (don't run it!):
 A>
 A>    
     ```r
     d = as.matrix( dist(e) )
     ```
 A>
-A>    how many cells (number of rows times number of columns) with this matrix have?
+A>    how many cells (number of rows times number of columns) will this matrix have?
 A>
 A>
 A>
@@ -56,16 +56,16 @@ A>
 A>
 A>    Read the help file for `dist`.
 A>
-A>    How many distances are stored in `d`? (Hint: What is the length of d)? 
+A>    How many distances are stored in `d`? Hint: What is the length of d?
 A>
 A>
 A>
 A>
-A>6. Why is the answer to 1.1.4 not `ncol(e)^2`?
-A>    - A) R made a mistake there
-A>    - B) Distances of 0 are left out
+A>6. Why is the answer to exercise 5 not `ncol(e)^2`?
+A>    - A) R made a mistake there.
+A>    - B) Distances of 0 are left out.
 A>    - C) Because we take advantage of symmetry: only lower triangular matrix is stored thus only `ncol(e)*(ncol(e)-1)/2` values.
-A>    -D.  Because it is equal`nrow(e)^2`
+A>    - D)  Because it is equal`nrow(e)^2`
 A>
 A>
 A>
