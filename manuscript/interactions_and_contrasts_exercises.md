@@ -4,14 +4,13 @@ Title: Interactions and Contrasts
 
 A>## Exercises
 A>
-A>1. Suppose we have an experiment with two species A and B, and two conditions: control and treated.
+A>Suppose we have an experiment with two species A and B, and two conditions: control and treated.
 A>
 A>
 ```r
 species <- factor(c("A","A","B","B"))
 condition <- factor(c("control","treated","control","treated"))
 ```
-A>
 A>And we will use a formula of '~ species + condition'.
 A>
 A>The model matrix is then:
@@ -31,8 +30,8 @@ A>    - A) 0 0 1
 A>    - B) 0 -1 0 
 A>    - C) 0 1 1  
 A>    - D) 0 1 -1
-A>    - E. 0 -1 1
-A>    - F. 1 0 1
+A>    - E) 0 -1 1
+A>    - F) 1 0 1
 A>    
 A>
 A>   
@@ -51,14 +50,14 @@ A>    {$$}
 A>    \sqrt{ \mathbf{C} \boldsymbol{\Sigma} \mathbf{C}^\top }
 A>    {/$$}
 A>    
-A>    {$$}\Sigma{/$$} is the covariance matrix of the coefficient estimates {$$}\hat{\boldsymbol{\beta}}{/$$}. The covariance matrix contains elements which give the variance or covariance of elements in beta-hat. The elements on the diagonal of the {$$}\boldsymbol{\Sigma}{/$$} matrix give the variance of each element in beta-hat. The square root of these is the standard error of the elements in {$$}\hat{\boldsymbol{\beta}}{/$$}. The off-diagonal elements of Sigma give the covariance of two different elements of the {$$}\hat{\boldsymbol{\beta}}{/$$} matrix. So {$$}\boldsymbol{\Sigma}[1,2]{/$$} gives the covariance of the first and second element of {$$}\hat{\boldsymbol{\beta}}{/$$}. The {$$}\hat{\boldsymbol{\beta}}{/$$} matrix is symmetric, which means {$$}\boldsymbol{\Sigma}[i,j]=\boldsymbol{\Sigma}[j,i]{/$$}.
+A>    with {$$}\boldsymbol{\Sigma}{/$$} the covariance matrix of the coefficient estimates {$$}\hat{\boldsymbol{\beta}}{/$$}. The covariance matrix contains elements which give the variance or covariance of elements in \hat{\beta}. The elements on the diagonal of the {$$}\boldsymbol{\Sigma}{/$$} matrix give the variance of each element in beta-hat. The square root of these is the standard error of the elements in {$$}\hat{\boldsymbol{\beta}}{/$$}. The off-diagonal elements of {$$}\boldsymbol{\Sigma}{/$$} give the covariance of two different elements of the {$$}\hat{\boldsymbol{\beta}}{/$$} matrix. So {$$}\boldsymbol{\Sigma}[1,2]{/$$} gives the covariance of the first and second element of {$$}\hat{\boldsymbol{\beta}}{/$$}. The {$$}\hat{\boldsymbol{\beta}}{/$$} matrix is symmetric, which means {$$}\boldsymbol{\Sigma}[i,j]=\boldsymbol{\Sigma}[j,i]{/$$}.
 A>    
 A>
 A>    {$$}
 A>    \mbox{var}(\hat{\beta }_{L4} - \hat{\beta }_{L2}) = \mbox{var}(\hat{\beta }_{L4}) + \mbox{var}(\hat{\beta }_{L2}) - 2 \mbox{cov}(\hat{\beta }_{L4}, \hat{\beta }_{L2})
 A>    {/$$}
 A>    
-A>    In the book page, we computed Sigma using:
+A>    In the book page, we estimated {$$}\boldsymbol{\Sigma}{/$$} using:
 A>
 A>    
     ```r
@@ -72,7 +71,7 @@ A>
     C <- matrix(c(0,0,-1,0,1),1,5)
     ```
 A>    
-A>    Using {$$}\boldsymbol{\Sigma}{/$$}, what is {$$}\mbox{cov}(\hat{\beta}_{L4}, \hat{\beta}_{L2}){/$$} ?
+A>    Using the estimate of {$$}\boldsymbol{\Sigma}{/$$}, what is your estimate of  {$$}\mbox{cov}(\hat{\beta}_{L4}, \hat{\beta}_{L2}){/$$} ?
 A>
 A>
 A>
@@ -124,9 +123,9 @@ A>7. What is the L2 vs L1 estimate in `log2(friction)` for the push samples? Rem
 A>
 A>
 A>   
-A>    Note that taking the log2 of a Y value and then performing a linear model has a meaningful effect on the coefficients. If we have, {$$}\log_2(X) = \beta_0{/$$} and {$$}log2(Y) = \beta_0 + \beta_1{/$$}, then {$$}Y/X = 2^(\beta_0 + \beta_1) / 2^(\beta_0)= 2^\beta_1{/$$}, so {$$}\beta_1{/$$} represents a log2 fold change of {$$}Y{/$$} over {$$}X{/$$}. If {$$}\beta_1 = 1{/$$}, then {$$}Y{/$$} is 2 times {$$}X{/$$}. If {$$}\beta_1 = -1{/$$}, then {$$}Y{/$$} is half of {$$}X{/$$}, etc. 
+A>    Note that taking the log2 of a Y value and then performing a linear model has a meaningful effect on the coefficients. If we have, {$$}\log_2(X) = \beta_0{/$$} and {$$}\log_2(Y) = \beta_0 + \beta_1{/$$}, then {$$}Y/X = 2^{\beta_0 + \beta_1} / 2^{\beta_0}= 2^\beta_1{/$$}, so {$$}\beta_1{/$$} represents a log2 fold change of {$$}Y{/$$} over {$$}X{/$$}. If {$$}\beta_1 = 1{/$$}, then {$$}Y{/$$} is 2 times {$$}X{/$$}. If {$$}\beta_1 = -1{/$$}, then {$$}Y{/$$} is half of {$$}X{/$$}, etc. 
 A>
-A>8. Analysis of variance (ANOVA) performed in R using the `anova`, allows us to test whether a number of coefficients are equal to zero, by comparing a linear model including these terms to a linear model where these terms are set to 0. In this last question, we will use Monte Carlo techniques to observe the distribution of the ANOVA's _F-value_ under the null hypothesis, that there are no differences between groups.
+A>8. Analysis of variance (ANOVA), performed in R using the `anova`, allows us to test whether a number of coefficients are equal to zero, by comparing a linear model including these terms to a linear model where these terms are set to 0. In this last question, we will use Monte Carlo techniques to observe the distribution of the ANOVA's _F-value_ under the null hypothesis, that there are no differences between groups.
 A>
 A>    Suppose we have 4 groups, and 10 samples per group, so 40 samples overall:
 A>
@@ -187,13 +186,13 @@ A>
     ```r
     f.value <- group.ms / after.group.ms
     ```
-A>    What is the point of all these calculations? After following these steps, the exact distribution of the F-value has a nice mathematical formula under the null hypothesis. 
+A>    After following these steps, the exact distribution of the F-value has a nice mathematical formula under the null hypothesis. 
 A>    
 A>    Set the seed at 1 and calculate the F-value for 1000 random versions of Y. What is the mean of these F-values?
 A>
 A>
 A>
-A>    If you save the values from the simulation into `Fs` , we can plot the distribution of the 1000 F-values and overlay the theoretical F-distribution, with parameters `df1=p - 1`, `df2=N - p`. Note the similarity:
+A>    If you save the values from the simulation into `Fs` , we can plot the distribution of the 1000 F-values and overlay the theoretical F-distribution, with parameters `df1 = p-1`, `df2 = N-p`. Note the similarity:
 A>
 A>    
     ```r
