@@ -28,7 +28,7 @@ A>
 A>4. Which is the column that is negatively skewed?
 A>
 A>
-A>5. Let's consider a random sample of finishers from the New York City Marathon in 2002.  This data set can be found in the UsingR package. Load the library and then load the nym.2002 data set. 
+A>5. Let's consider a random sample of finishers from the New York City Marathon in 2002.  This dataset can be found in the UsingR package. Load the library and then load the `nym.2002` dataset. 
 A>
 A>    
     ```r
@@ -37,6 +37,7 @@ A>
     ```
 A>
 A>    Use boxplots and histograms to compare the finishing times of males and females. Which of the following best describes the difference?
+A>    
 A>    - A) Males and females have the same distribution.
 A>    - B) Most males are faster than most women.
 A>    - C) Male and females have similar right skewed distributions with the former, 20 minutes shifted to the left.
@@ -51,7 +52,7 @@ A>
 A>7. For females, what is the Pearson correlation between age and time to finish? 
 A>
 A>
-A>8. If we interpret these correlations without visualizing the data, we would conclude that the older we get the slower we run marathons, regardless of gender. Look at scatter plots and boxplots of times stratified by age groups (20-25, 25-30, etc..). After examining the data, what is a more reasonable conclusion?
+A>8. If we interpret these correlations without visualizing the data, we would conclude that the older we get, the slower we run marathons, regardless of gender. Look at scatterplots and boxplots of times stratified by age groups (20-25, 25-30, etc..). After examining the data, what is a more reasonable conclusion?
 A>    - A) Finish times are constant up until about our 40s, then we get slower.
 A>    - B) On average, finish times go up by about 7 minutes every five years.
 A>    - C) The optimal age to run a marathon is 20-25.
