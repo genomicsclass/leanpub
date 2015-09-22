@@ -139,23 +139,7 @@ A>
     ```r
     hist(counts)
     ```
-A>    Let {$$}X_1,\dots,X_n{/$$} be the random variables representing counts then:   
-A>  
-A>    {$$}
-A>    \mbox{Pr}(X_i=k) = \lambda^k / k! \exp ( -\lambda)
-A>    {/$$}
-A>    To fully describe this distribution, we need {$$}\lambda{/$$}. For this we will use MLE.
-A>To compute the Maximum Likelihood Estimate (MLE) we ask what is the probability of observing our data (which we denote with small caps):
-A>
-A>    {$$}
-A>    L(\lambda) = \mbox{Pr}(X_1=x_1 \mbox{ and } X_2=x2 \mbox{ and } \dots X_n=x_n)
-A>    {/$$}
-A>    We assume that the {$$}X{/$$} are independent, thus the probabilities multiply:
-A>
-A>    {$$}
-A>    L(\lambda) = \mbox{Pr}(X_1=x_1) \times \mbox{Pr}(X_2=x2) \times \dots \times \mbox{Pr}(X_n=x_n)
-A>    {/$$}
-A>    Now we can write it in R. For example, for {$$}\lambda=4{/$$} we have:
+A>    So let {$$}X_1,\dots,X_n{/$$} be the random variables representing counts then {$$}\mbox{Pr}(X_i=k) = \lambda^k / k! \exp ( -\lambda){/$$} and to fully describe this distribution, we need to know {$$}\lambda{/$$}. For this we will use MLE. We can write the likelihood described in book in R. For example, for {$$}\lambda=4{/$$} we have:
 A>    
 A>    
     ```r
