@@ -12,7 +12,7 @@ The R markdown document for this section is available [here](https://github.com/
 An under-appreciated advantage of working with high-throughput data is that problems with the data are sometimes more easily exposed than with low-throughput data. The fact that we have thousands of measurements permits us to see problems that are not apparent when only a few measurements are available. A powerful way to detect these problems is with exploratory data analysis (EDA). Here we review some of the plots that allow us to detect quality problems.
 
 
-#### Volcano Plots
+#### Volcano plots
 
 Here we will use the results obtained from applying t-test to data from a gene expression dataset:
 
@@ -75,11 +75,11 @@ hist(permresults$p.value)
 
 ![Histogram obtained after permuting labels.](images/R/eda_for_highthroughput-tmp-pval-hist2-1.png) 
 
-In a later chapter we will see that the columns in this dataset are not independnet and thus the assumptions used to compute the p-values here are incorrect.
+In a later chapter we will see that the columns in this dataset are not independent and thus the assumptions used to compute the p-values here are incorrect.
 
-#### Data Boxplots and Histograms
+#### Data boxplots and histograms
 
-With high-throughput data we have thousands of measurements for each experimental unit. As mentioned earlier, this can help us detect quality issues. For example, if one sample has a completely different distribution than the rest, we might suspect there are problems. Although a complete change in distribution could be due to real biological differences, more often than not it is due to a technical problem. Here we load a large gene expression experiment available from Bioconductor. We "accidentally" use log instead of log2 on one of the samples.
+With high-throughput data, we have thousands of measurements for each experimental unit. As mentioned earlier, this can help us detect quality issues. For example, if one sample has a completely different distribution than the rest, we might suspect there are problems. Although a complete change in distribution could be due to real biological differences, more often than not it is due to a technical problem. Here we load a large gene expression experiment available from Bioconductor. We "accidentally" use log instead of log2 on one of the samples.
 
 
 ```r
@@ -101,7 +101,7 @@ boxplot(ge,range=0,names=1:ncol(e),col=ifelse(1:ncol(ge)==49,1,2))
 
 ![Boxplot for log-scale expression for all samples.](images/R/eda_for_highthroughput-tmp-boxplots-1.png) 
 
-Note that the number of samples is a bit too large here making it hard to see the boxes. One can instead simply show the boxplot summaries without the boxes:
+Note that the number of samples is a bit too large here, making it hard to see the boxes. One can instead simply show the boxplot summaries without the boxes:
 
 
 ```r
@@ -113,7 +113,7 @@ matplot(qs,type="l",lty=1)
 
 We refer to this figure as a _kaboxplot_ because Karl Broman was the first we saw use it as an alternative to boxplots.
 
-We can also plot all the histograms. Because we have so much data we create histograms using small bins, then smooth the heights of the bars and then plot _smooth histograms_. We re-calibrate the height of these smooth curves so that if a bar is made with base of size "unit" and height given by the curve at {$$}x_0{/$$}, the area approximates the number of points in region of size "unit" centered at {$$}x_0{/$$}:
+We can also plot all the histograms. Because we have so much data, we create histograms using small bins, then smooth the heights of the bars and then plot _smooth histograms_. We re-calibrate the height of these smooth curves so that if a bar is made with base of size "unit" and height given by the curve at {$$}x_0{/$$}, the area approximates the number of points in region of size "unit" centered at {$$}x_0{/$$}:
 
 
 ```r
@@ -123,9 +123,9 @@ shist(ge,unit=0.5)
 
 ![Smooth histograms for each sample.](images/R/eda_for_highthroughput-tmp-shist-1.png) 
 
-#### MA Plot
+#### MA plot
 
-Scatterplots and correlation are not the best tools to detect replication problems. A better measure of replication can be obtained from examining the differences between the values that should be the same. Therefore, a better plot is a rotation of the scatterplot containing the differences on the y-axis and the averages on the x-axis. This plot was originally named a Bland-Altman plot, but in genomics  it is commonly referred to as an MA-plot. The name MA comes from plots of red log intensity minus (M) green intensities versus average (A) log intensities used with microarrays (MA) data.
+Scatterplots and correlation are not the best tools to detect replication problems. A better measure of replication can be obtained from examining the differences between the values that should be the same. Therefore, a better plot is a rotation of the scatterplot containing the differences on the y-axis and the averages on the x-axis. This plot was originally named a Bland-Altman plot, but in genomics it is commonly referred to as an MA-plot. The name MA comes from plots of red log intensity minus (M) green intensities versus average (A) log intensities used with microarrays (MA) data.
 
 
 ```r
