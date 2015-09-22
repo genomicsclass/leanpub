@@ -17,7 +17,7 @@ If an experiment is designed incorrectly we may not be able to estimate the para
 
 
 
-#### System of Equations example
+#### System of equations example
 
 The following system of equations:
 
@@ -130,7 +130,7 @@ c
 \end{pmatrix}
 {/$$}
 
-Notice that the third column does not add a constraint and that what we really have are three equations and two unknowns: {$$}a+c{/$$} and {$$}b-c{/$$}. Once we have values for those two quantities, there are an infinity number of triplets that can be used.
+The third column does not add a constraint and what we really have are three equations and two unknowns: {$$}a+c{/$$} and {$$}b-c{/$$}. Once we have values for those two quantities, there are an infinity number of triplets that can be used.
 
 
 
@@ -159,7 +159,7 @@ and if {$$}\hat{\beta}_1{/$$}, {$$}\hat{\beta}_2{/$$}, {$$}\hat{\beta}_3{/$$} is
 
 #### Confounding as an example
 
-Now we will demonstrate how collinearity helps us determine problems with our design using one of the most common errors made in current experimental design: confounding. To illustrate let's use an imagined experiment in which we are interested in the effect of four treatments A, B, C and D. We assign two mice to each treatment. After starting the experiment by giving A and B to female mice, we realize there might be a sex effect. 
+Now we will demonstrate how collinearity helps us determine problems with our design using one of the most common errors made in current experimental design: confounding. To illustrate, let's use an imagined experiment in which we are interested in the effect of four treatments A, B, C and D. We assign two mice to each treatment. After starting the experiment by giving A and B to female mice, we realize there might be a sex effect. 
 We decide to give C and D to males with hopes of estimating this effect. But can we estimate the sex effect? The described design implies the following design matrix:
 
 
@@ -225,7 +225,7 @@ This implies that a unique least squares estimate is not achievable.
 
 The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/linear/collinearity.Rmd).
 
-The _rank_ of a matrix columns is the number of columns that are independent of all the others. If the rank is smaller than the number of columns, then the LSE are not unique. In R we can obtain the rank of matrix with the function `qr`, which we will describe in more detail in a following section.
+The _rank_ of a matrix columns is the number of columns that are independent of all the others. If the rank is smaller than the number of columns, then the LSE are not unique. In R. we can obtain the rank of matrix with the function `qr`, which we will describe in more detail in a following section.
 
 
 ```r
@@ -248,7 +248,7 @@ Here we will not be able to estimate the effect of sex.
 
 The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/linear/collinearity.Rmd).
 
-This particular experiment could have been designed better. Using the same number of male and female mice, we can easily design an experiment that allows us to compute the sex effect as well as all the treatment effects. Specifically, when we balance sex and treatments the confounding is removed as demonstrated by the fact that the rank is now the same as the number of columns:
+This particular experiment could have been designed better. Using the same number of male and female mice, we can easily design an experiment that allows us to compute the sex effect as well as all the treatment effects. Specifically, when we balance sex and treatments, the confounding is removed as demonstrated by the fact that the rank is now the same as the number of columns:
 
 ```r
 Sex <- c(0,1,0,1,0,1,0,1)
