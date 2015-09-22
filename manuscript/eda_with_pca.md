@@ -10,7 +10,7 @@ title: Discovering Batch Effects with EDA
 
 The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/batch/eda_with_pca.Rmd).
 
-Now that we understand PCA, we are going to demonstrate how we use it in practice with an emphasis on exploratory data analysis. To illustrate, we will go through an actual dataset that has not be sanitized for teaching purposes. We start with the raw data as it was provided in the public repository. The only step we did for you is to preprocess these data and create an R package with a preformed Bioconductor object.
+Now that we understand PCA, we are going to demonstrate how we use it in practice with an emphasis on exploratory data analysis. To illustrate, we will go through an actual dataset that has not been sanitized for teaching purposes. We start with the raw data as it was provided in the public repository. The only step we did for you is to preprocess these data and create an R package with a preformed Bioconductor object.
 
 ## Gene Expression Data
 
@@ -51,7 +51,7 @@ dates <- pData(e)$date
 eth <- pData(e)$ethnicity
 ```
 
-The original dataset did not include sex in the sample information. We did this for you in the subset dataset we provided for illustrative purposes. In the code below we show how we predict the sex of each sample. The basic idea is to look at the median gene expression levels on Y chromosome genes. Males should have much higher values. To do this,  we need to upload an annotation package that provides information for the features of the platform used in this experiment:
+The original dataset did not include sex in the sample information. We did this for you in the subset dataset we provided for illustrative purposes. In the code below, we show how we predict the sex of each sample. The basic idea is to look at the median gene expression levels on Y chromosome genes. Males should have much higher values. To do this,  we need to upload an annotation package that provides information for the features of the platform used in this experiment:
 
 
 ```r
@@ -76,7 +76,7 @@ annot$CHR <- ifelse(is.na(annot$CHR),NA,paste0("chr",annot$CHR))
 chryexp<- colMeans(y[which(annot$CHR=="chrY"),])
 ```
 
-If we create a histogram of the median gene expression values on chromosome Y we clearly see two modes which must be females and males:
+If we create a histogram of the median gene expression values on chromosome Y, we clearly see two modes which must be females and males:
 
 ```r
 mypar()
@@ -105,9 +105,9 @@ dim(s$v)
 ## [1] 207 207
 ```
 
-We can also use `prcomp` which creates an object with just the PCs and also demeans by default. They provide practically the same principal components so we continue the analysis with the object {$$}s{/$$}
+We can also use `prcomp` which creates an object with just the PCs and also demeans by default. They provide practically the same principal components so we continue the analysis with the object {$$}s{/$$}.
 
-#### Variance Explained
+#### Variance explained
 
 A first step in determining how much sample correlation induced _structure_ there is in the data. 
 
@@ -120,7 +120,7 @@ image ( cor(y) ,col=cols,zlim=c(-1,1))
 
 ![Image of correlations. Cell i,j  represents correlation between samples i and j. Red is high, white is 0 and red is negative.](images/R/eda_with_pca-tmp-correlations-1.png) 
 
-Here we are using the term _structure_ to refer to the deviation from what one would see if the samples were in fact independent from each other. The plot above clearly shows groups of samples that more correlated between themselves than to others.
+Here we are using the term _structure_ to refer to the deviation from what one would see if the samples were in fact independent from each other. The plot above clearly shows groups of samples that are more correlated between themselves than to others.
 
 One simple exploratory plot we make to determine how many principal components we need to describe this _structure_ is the variance-explained plot. This is what the variance explained for the PCs would look like if data were independent :
 
@@ -193,7 +193,7 @@ legend("bottomleft",levels(year),col=seq(along=levels(year)),pch=16)
 
 ![First two PCs for gene expression data with color representing processing year.](images/R/eda_with_pca-tmp-mds_plot2-1.png) 
 
-We see that year is also very correlated with the first PC. So which variable is driving this? Given the high level of confounding, it is not easy to parse out. Nonetheless, in the assessment questions and below we provide some further exploratory approaches.
+We see that year is also very correlated with the first PC. So which variable is driving this? Given the high level of confounding, it is not easy to parse out. Nonetheless, in the assessment questions and below, we provide some further exploratory approaches.
 
 #### Boxplot of PCs
 
@@ -258,7 +258,7 @@ abline(h=sqrt(qf(0.995,p-1,ncol(s$v)-1)))
 ![Square root of F-statistics from an analysis of variance to explain PCs with month.](images/R/eda_with_pca-tmp-fstat_month_PC-1.png) 
 
 We have seen how PCA combined with EDA can be a powerful technique to detect and understand batches. 
-In a later section we will see how we can use the PCs as estimates in factor analysis to improve model estimates.
+In a later section, we will see how we can use the PCs as estimates in factor analysis to improve model estimates.
 
 
 
