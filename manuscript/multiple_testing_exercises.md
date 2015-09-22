@@ -131,7 +131,7 @@ A>    - C) The qvalue function estimates the proportion of genes for which the n
 A>    - D) The qvalue function estimates the proportion of genes for which the null hypothesis is true and provides a more conservative estimate.
 A>
 A>
-A>13. This exercise and the remaining one are more advanced. Create a Monte Carlo Simulation in which you simulate measurements from 8,793 genes for 24 samples, 12 cases and 12 controls. The for 100 genes create a difference of 1 between cases and controls. You can use this code:
+A>13. This exercise and the remaining one are more advanced. Create a Monte Carlo Simulation in which you simulate measurements from 8,793 genes for 24 samples, 12 cases and 12 controls. The for 100 genes create a difference of 1 between cases and controls. You can use the code provided below. Run this experiment 1,000 times with a Monte Carlo simulation. For each instance compute p-values using a t-test and  keep track of the number of false positives and false negatives. Compute the false positive rate and false negative rates if we use Bonferroni, q-values from `p.adjust`, and q-values from `qvalue` function. Set the seed to 1 for all three simulations. What is the false positive rate for Bonferroni?
 A>
 A>    
     ```r
@@ -142,7 +142,6 @@ A>
     positives <- 500
     mat[1:positives,1:(n/2)] <- mat[1:positives,1:(n/2)]+delta
     ```
-A>
 A>
 A>
 A>14. What are the false negative rates for Bonferroni?
