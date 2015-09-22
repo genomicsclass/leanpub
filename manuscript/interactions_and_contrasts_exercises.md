@@ -4,16 +4,15 @@ Title: Interactions and Contrasts
 
 A>## Exercises
 A>
-A>Suppose we have an experiment with two species A and B, and two conditions: control and treated.
+A>Suppose we have an experiment with two species A and B, and two conditions, control and treated.
 A>
 A>
 ```r
 species <- factor(c("A","A","B","B"))
 condition <- factor(c("control","treated","control","treated"))
 ```
-A>And we will use a formula of '~ species + condition'.
 A>
-A>The model matrix is then:
+A>We will use the formula of `~ species + condition` to create the model matrix:
 A>
 A>
 ```r
@@ -24,7 +23,7 @@ A>1. Suppose we want to build a contrast of coefficients for the above experimen
 A>
 A>    You can either figure this question out through logic, by looking at the design matrix, or using the `contrast` function from the contrast library. The contrast vector is returned as `contrast(...)$X`.
 A>
-A>    What should the contrast vector be for the contrast of (species=B and condition=control) vs (species=A and condition=treatment)? Assume that the beta vector from the model fit by R is: Intercept, speciesB, conditiontreated.
+A>    What should the contrast vector be to define the contrast of the species=B control group vs. the species=A treatment group? Assume that the beta vector from the model fit by R is: Intercept, speciesB, conditiontreated.
 A>    
 A>    - A) 0 0 1  
 A>    - B) 0 -1 0 
@@ -38,11 +37,11 @@ A>
 A>   
 A>2. Use the Rmd script of the spider dataset. Suppose we build a model using two `variables: ~ type + leg`.
 A>
-A>    What is the t-statistic for the contrast of leg pair L4 vs leg pair L2?
+A>    What is the t-statistic for the contrast of leg pair L4 vs. leg pair L2?
 A>
 A>
 A>
-A>3. The t-statistic for the contrast of leg pair L4 vs leg pair L2 is constructed by taking the difference of the coefficients legL4 and legL2, and then dividing by the standard error of the difference. In the last question we will explore how the standard error of the difference is calculated here.
+A>3. The t-statistic for the contrast of leg pair L4 vs. leg pair L2 is constructed by taking the difference of the coefficients legL4 and legL2, and then dividing by the standard error of the difference. In the last question we will explore how the standard error of the difference is calculated here.
 A>
 A>    For a contrast vector {$$}\mathbf{C}{/$$}, the standard error of the contrast {$$}\mathbf{C}\hat{\boldsymbol{\beta}}{/$$} is:
 A> 
@@ -106,20 +105,20 @@ A>
 A>
 A>    Run a linear model of log2friction with type, leg and interactions between type and leg.
 A>    
-A>    What is the t-statistic for the interaction of type push and leg L4? If this t-statistic is sufficiently large, we would reject the null hypothesis that the push vs pull effect on `log2(friction)` is the same in L4 as in L1.
+A>    What is the t-statistic for the interaction of type push and leg L4? If this t-statistic is sufficiently large, we would reject the null hypothesis that the push vs. pull effect on `log2(friction)` is the same in L4 as in L1.
 A>
 A>
 A>
-A>5. What is the F-value for all of the `type:leg` interaction terms, in an analysis of variance? If this value is sufficiently large, we would reject the null hypothesis that the push vs pull effect on `log2(friction)` is the same for all leg pairs.
+A>5. What is the F-value for all of the `type:leg` interaction terms, in an analysis of variance? If this value is sufficiently large, we would reject the null hypothesis that the push vs. pull effect on `log2(friction)` is the same for all leg pairs.
 A>
 A>
 A>
 A>
-A>6. What is the L2 vs L1 estimate in `log2(friction)` for the pull samples?
+A>6. What is the L2 vs. L1 estimate in `log2(friction)` for the pull samples?
 A>
 A>
 A>
-A>7. What is the L2 vs L1 estimate in `log2(friction)` for the push samples? Remember, because of the interaction terms, this is not the same as the L2 vs L1 difference for the pull samples. If you're not sure use the `contrast` function. Another hint: consider the arrows plot for the model with interactions.
+A>7. What is the L2 vs. L1 estimate in `log2(friction)` for the push samples? Remember, because of the interaction terms, this is not the same as the L2 vs L1 difference for the pull samples. If you're not sure use the `contrast` function. Another hint: consider the arrows plot for the model with interactions.
 A>
 A>
 A>   
@@ -139,7 +138,7 @@ A>
 A>
 A>    We will show here how to calculate the "F-value", and then we will use random numbers to observe the distribution of the F-value under the null hypothesis.
 A>
-A>    The F-value is the mean sum of squares explained by the terms of interest (in our case, the 'group' terms) divided by the mean sum of squares of the residuals of a model including the terms of interest. So it is the explanatory power of the terms divided by the leftover variance.
+A>    The F-value is the mean sum of squares of the estimated coefficients of interest (in our case, the `group` terms)  divided by the mean sum of squares of the residuals, obtained after fitting a a model with these terms of interest. 
 A>
 A>    Intuitively, if this number is large, it means that the group variable explains a lot of the variance in the data, compared to the amount of variance left in the data after using group information. We will calculate these values exactly here:
 A>
@@ -166,7 +165,7 @@ A>
     after.group.ss <- sum(sapply(s, function(x) sum((x - mean(x))^2)))
     ```
 A>    
-A>    Then the explanatory power of the group variable is the initial sum of squares minus the residual sum of squares:
+A>    Then, the explanatory power of the group variable is the initial sum of squares, minus the residual sum of squares:
 A>
 A>    
     ```r
