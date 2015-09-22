@@ -193,7 +193,6 @@ A>
     y = e[,which(tissue=="endometrium")]
     ```
 A>    This will give you a matrix `y` with 15 samples. Compute the across sample variance for the first three samples. Then make a qq-plot to see if the data follow a normal distribution. Which of the following is true?
-A>    
 A>    - A) With the exception of a handful of outliers, the data follow a normal distribution.
 A>    - B) The variance does not follow a normal distribution, but taking the square root fixes this.
 A>    - C) The normal distribution is not usable here: the left tail is over estimated and the right tail is underestimated.
@@ -204,7 +203,7 @@ A>18. Now fit an F-distribution with 14 degrees of freedom using the `fitFDist` 
 A>
 A>
 A>19. Now create a qq-plot of the observed sample variances versus the F-distribution quantiles. Which of the following best describes the qq-plot?
-A>
+A>    
 A>    - A) The fitted F-distribution provides a perfect fit.
 A>    - B) If we exclude the lowest 0.1% of the data, the F-distribution provides a good fit.
 A>    - C) The normal distribution provided a better fit.
