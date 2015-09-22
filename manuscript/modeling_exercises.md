@@ -13,7 +13,9 @@ A>    These are also called Bernoulli trials. These random variables are indepen
 A>
 A>    You can show that the mean and variance are {$$}p{/$$} and {$$}p(1-p){/$$} respectively. The binomial distribution gives us the distribution of the sum {$$}S_N{/$$} of these random variables. The probability that we see {$$}k{/$$} red balls is given by:
 A>
-A>    {$$} \mbox{Pr}(S_N=k) = {N \choose k} p^k (1-p)^{N-k} {/$$}
+A>    {$$} 
+A>    \mbox{Pr}(S_N=k) = {N \choose k} p^k (1-p)^{N-k} 
+A>    {/$$}
 A>
 A>    In R, the function `dbimom` gives you this result. The function `pbinom` gives us {$$}\mbox{Pr}(S_N\leq k){/$$}.
 A>
