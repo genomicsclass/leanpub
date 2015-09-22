@@ -137,7 +137,6 @@ A>
     binLocation=(breaks[-1]+breaks[-length(breaks)])/2
     plot(binLocation,counts,type="l",xlab=)
     ```
-A>    
 A>    What is the center of the bin with the highest count?
 A>
 A>
