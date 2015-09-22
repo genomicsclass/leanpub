@@ -13,7 +13,7 @@ Now that we have described the concept of dimension reduction and some of the ap
 
 As a review, remember that projections minimize the distance between points and subspace.
 
-![Illustration of projection](http://upload.wikimedia.org/wikipedia/commons/8/84/Linalg_projection_3.png)
+![Illustration of projection](images/downloads/Linalg_projection_3.png)
 
 In the figure above, the point on top is pointing to a point in space. In this particular cartoon, the space is two dimensional, but we should be thinking abstractly. The space is represented by the Cartesian plan and the line on which the little person stands is a subspace of points. The projection to this subspace is the place that is closest to the original point. Geometry tells us that we can find this closest point by dropping a perpendicular line (dotted line) from the point to the space. The little person is standing on the projection.  The amount this person had to walk from the origin to the new projected point is referred to as _the coordinate_. 
 
