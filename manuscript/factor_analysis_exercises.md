@@ -61,7 +61,7 @@ A>
 A>    - A) The samples appear to be completely independent of each other.
 A>    - B) Sex seems to be creating structures as evidenced by the two cluster of highly correlated samples.
 A>    - C) There appear to be only two factors completely driven by month.
-A>    - D) The fact that in the plot ordered by month we see two groups mainly driven by month, and, within these, we see subgroups driven by date seems to suggest date more than month per se are the hidden factors.
+A>    - D) The fact that in the plot ordered by month we see two groups mainly driven by month, and within these we see subgroups driven by date, seems to suggest date more than month per se are the hidden factors.
 A>
 A>
 A>
@@ -85,7 +85,7 @@ A>    - D) June 15 and June 24
 A>
 A>
 A>
-A>6. Use the `svd` function to obtain the principal components (PCs) for our detrended gene expression data `y`:
+A>6. Use the `svd` function to obtain the principal components (PCs) for our detrended gene expression data `y`.
 A>
 A>    How many PCs explain more than 10% of the variability?
 A>
@@ -108,5 +108,5 @@ A>
 A>11. Now instead of using month, which we have shown does not quite describe the batch, add the two estimated factors `s$v[,1:2]` to the linear model we used above. Apply this model to each gene and compute q-values for the sex difference. How many q-values {$$}<{/$$} 0.1 for the sex comparison?
 A>
 A>
-A>12. What proportion of the genes are on chrX and chrY?
+A>12. What proportion of the genes are on chromosomes X and Y?
 A>
