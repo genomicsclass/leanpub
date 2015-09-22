@@ -63,11 +63,11 @@ plot(x,y,xlab="Father's height",ylab="Son's height")
 
 ![Galton's data. Son heights versus father heights.](images/R/intro_using_regression-tmp-galton_data-1.png) 
 
-The sons' heights do seem to increase linearly with the fathers' heights. In this case a model that describes the data is as follows:
+The sons' heights do seem to increase linearly with the fathers' heights. In this case, a model that describes the data is as follows:
 
 {$$} Y_i = \beta_0 + \beta_1 x_i + \varepsilon, i=1,\dots,N {/$$}
 
-This is also a linear model with {$$}x_i{/$$} and {$$}Y_i{/$$} the father and son heights respectively for the {$$}i{/$$}-th pair and {$$}\varepsilon{/$$} a term to account for the extra variability. Here we think of the fathers' heights as the predictor and being fixed (not random) so we use lower case. Measurement error alone can't explain all the variability seen in {$$}\varepsilon{/$$}. This makes sense as there are other variables not in the model, for example, mothers' heights, genetic randomness, and environmental factors.
+This is also a linear model with {$$}x_i{/$$} and {$$}Y_i{/$$}, the father and son heights respectively, for the {$$}i{/$$}-th pair and {$$}\varepsilon{/$$} a term to account for the extra variability. Here we think of the fathers' heights as the predictor and being fixed (not random) so we use lower case. Measurement error alone can't explain all the variability seen in {$$}\varepsilon{/$$}. This makes sense as there are other variables not in the model, for example, mothers' heights, genetic randomness, and environmental factors.
 
 #### Random samples from multiple populations
 
@@ -85,7 +85,7 @@ stripchart(Bodyweight~Diet,data=dat,vertical=TRUE,method="jitter",pch=1,main="Mi
 
 ![Mouse weights under two diets.](images/R/intro_using_regression-tmp-mice_weights-1.png) 
 
-We want to estimate the difference in average weight between populations. We demonstrated how to do this using t-tests and confidence intervals based on the difference in sample averages. We can obtain the same exact results using a linear model:
+We want to estimate the difference in average weight between populations. We demonstrated how to do this using t-tests and confidence intervals, based on the difference in sample averages. We can obtain the same exact results using a linear model:
 
 {$$} Y_i = \beta_0 + \beta_1 x_{i} + \varepsilon_i{/$$}
 
@@ -169,7 +169,7 @@ It gives us the LSE, as well as standard errors and p-values.
 
 Part of what we do in this course is explain the mathematics behind this function. 
 
-#### The Least Squares Estimate (LSE)
+#### The least squares estimate (LSE)
 
 Let's write a function that computes the RSS for any vector {$$}\beta{/$$}:
 
@@ -194,14 +194,14 @@ lines(Beta2s,sapply(Beta2s,rss,Beta0=65,Beta1=0),col=2)
 
 ![Residual sum of squares obtained for several values of the parameters.](images/R/intro_using_regression-tmp-rss_versus_estimate-1.png) 
 
-Trial and error here is not going to work. Instead we can use calculus: take the partial derivatives, set them to 0 and solve. Of course, if we have many parameters, these equations can get rather complex. Linear algebra provides a compact and general way of solving this problem. 
+Trial and error here is not going to work. Instead, we can use calculus: take the partial derivatives, set them to 0 and solve. Of course, if we have many parameters, these equations can get rather complex. Linear algebra provides a compact and general way of solving this problem. 
 
 
 #### More on Galton (Advanced)
 
 When studying the father-son data, Galton made a fascinating discovery using exploratory analysis.
 
-![Galton's plot](images/downloads/Galton's_correlation_diagram_1875.jpg) 
+![Galton's plot](http://upload.wikimedia.org/wikipedia/commons/b/b2/Galton's_correlation_diagram_1875.jpg) 
 
 He noted that if he tabulated the number of father-son height pairs and followed all the x,y values having the same totals in the table, they formed an ellipsis. In the plot above, made by Galton, you see the ellipsis formed by the pairs having 3 cases. This then led to modeling this data as correlated bivariate normal which we described earlier: 
 
