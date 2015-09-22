@@ -59,7 +59,7 @@ A>
 A>1. Which of the above design matrices does NOT have the problem of collinearity?
 A>
 A>
-A>2. The following exercises are advanced. Let's use the example from the lecture to visualize how there is not a single best beta-hat, when the design matrix has collinearity of columns. An example can be made with:
+A>2. The following exercises are advanced. Let's use the example from the lecture to visualize how there is not a single best {$$}\hat{\beta}{/$$}, when the design matrix has collinearity of columns. An example can be made with:
 A>
 A>    
     ```r
@@ -87,7 +87,7 @@ A>
     Y <- 1:8
     ```
 A>
-A>    Now, we will fix the value for two coefficients and optimize the remaining ones. We will fix {$$}\beta_{male}{/$$} and {$$}\beta_D{/$$}. Then, we will find the optimal value for the remaining betas, in terms of minimizing {$$}\sum((Y - X \beta)^2){/$$}. We find the value that minimize:
+A>    Now, we will fix the value for two coefficients and optimize the remaining ones. We will fix {$$}\beta_{male}{/$$} and {$$}\beta_D{/$$}. Then, we will find the optimal value for the remaining betas, in terms of minimizing the residual sum of squares. We find the value that minimize:
 A>
 A>    {$$}
 A>\sum_{i=1}^8  \{ (Y_i - X_{i,male} \beta_{male} - X_{i,D} \beta_{i,D}) - \mathbf{Z}_i \boldsymbol{\gamma} )^2 \}
@@ -95,7 +95,7 @@ A>    {/$$}
 A>
 A>    where {$$}X_{male}{/$$} is the male column of the design matrix, {$$}X_D{/$$} is the D column, {$$}\mathbf{Z}_i{/$$} is a 1 by 3 matrix with the remaining column entries for unit {$$}i{/$$}, and {$$}\boldsymbol{\gamma}{/$$} is a 3 x 1 matrix with the remaining parameters.
 A>
-A>    So all we need to do is redefine {$$}Y{/$$} as {$$}Y^* = Y - X_{male} \beta_{male} - X_{D} \beta_D{/$$} and fit a linear model. The following line of code creates this  variable {$$}Y^*{/$$}, after fixing {$$}\beta_{male}{/$$} to a value `a`, and beta_D to a value, `b`:
+A>    So all we need to do is redefine {$$}Y{/$$} as {$$}Y^* = Y - X_{male} \beta_{male} - X_{D} \beta_D{/$$} and fit a linear model. The following line of code creates this  variable {$$}Y^*{/$$}, after fixing {$$}\beta_{male}{/$$} to a value `a`, and {$$}\beta_D{/$$} to a value, `b`:
 A>
 A>    
     ```r
@@ -108,7 +108,7 @@ A>
     ```r
     fitTheRest <- function(a,b) {
       Ystar <- makeYstar(a,b)
-       Xrest <- X[,-c(2,5)]
+      Xrest <- X[,-c(2,5)]
       betarest <- solve(t(Xrest) %*% Xrest) %*% t(Xrest) %*% Ystar
       residuals <- Ystar - Xrest %*% betarest
       sum(residuals^2)
