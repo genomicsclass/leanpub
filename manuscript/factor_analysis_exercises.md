@@ -111,8 +111,10 @@ A>
     ```r
     X <- model.matrix(~sex+s$v[,1:2])
     ```
-A>
-A>    Apply this model to each gene and compute q-values for the sex difference.  How many q-values <0.1 for the sex comparison?
+A>    
+A>    Apply this model to each gene and compute q-values for the sex difference.
+A>    
+A>    How many q-values {$$}<{/$$} 0.1 for the sex comparison?
 A>	
 A>
 A>
