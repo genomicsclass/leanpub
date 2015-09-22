@@ -144,20 +144,17 @@ A>
 A>    {$$}
 A>\Pr(X_i=k) = \lambda^k / k! \exp ( -\lambda)
 A>    {/$$}
-A>
 A>    To fully describe this distribution, we need {$$}\lambda{/$$}. For this we will use MLE.
 A>To compute the Maximum Likelihood Estimate (MLE) we ask what is the probability of observing our data (which we denote with small caps):
 A>
 A>    {$$}
 A>    L(\lambda) = \mbox{Pr}(X_1=x_1 \mbox{ and } X_2=x2 \mbox{ and } \dots X_n=x_n)
 A>    {/$$}
-A>
 A>    We assume that the {$$}X{/$$} are independent, thus the probabilities multiply:
 A>
 A>    {$$}
 A>    L(\lambda) = \mbox{Pr}(X_1=x_1) \times \mbox{Pr}(X_2=x2) \times \dots \times \mbox{Pr}(X_n=x_n)
 A>    {/$$}
-A>
 A>    Now we can write it in R. For example, for {$$}\lambda=4{/$$} we have:
 A>    
 A>    
