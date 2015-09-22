@@ -34,7 +34,7 @@ A>    For the list calculated above, what proportion of this list is on chrX or 
 A>
 A>
 A>
-A>3. We can also check how many of the chrX and chrY we detected as different. How many are on Y?
+A>3. We can also check how many of the chromosomes X and Y genes we detected as different. How many are on Y?
 A>
 A>
 A>4. Now for the autosomal genes (not on chrX and chrY) for which q-value < 0.1, perform a t-test comparing
@@ -80,7 +80,7 @@ A>
 A>8. How many on Y or X?
 A>
 A>
-A>9. Now, from the linear model above, extract the p-values related to the coefficient representing the October versus June differences using the same linear model.
+A>9. Now from the linear model above, extract the p-values related to the coefficient representing the October versus June differences using the same linear model.
 A>
 A>    How many of the q-values for the month comparison are now <0.1?
 A>
