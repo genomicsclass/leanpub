@@ -9,7 +9,7 @@ title: Factor Analysis
 
 The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/batch/factor_analysis.Rmd).
 
-Before we introduce the next type of statistical method for batch effect correction we introduce the statistical idea that motivates the main idea: Factor Analysis. Factor Analysis was first developed over a century ago. Karl Pearson noted that correlation between different subject when the correlation was computed across students. To explain this, he posed a model having one factor that was common across subjects for each student that explained this correlation:
+Before we introduce the next type of statistical method for batch effect correction, we introduce the statistical idea that motivates the main idea: Factor Analysis. Factor Analysis was first developed over a century ago. Karl Pearson noted that correlation between different subjects when the correlation was computed across students. To explain this, he posed a model having one factor that was common across subjects for each student that explained this correlation:
 
 {$$}
 Y_ij = \alpha_i W_1 + \varepsilon_{ij}
@@ -23,7 +23,7 @@ In this example, {$$}W_1{/$$} is a constant. Here we will motivate factor analys
 
 #### Sample correlations
 
-Note that we observe high correlation across the six subject:
+Note that we observe high correlation across the six subjects:
 
 ```r
 round(cor(Y),2)
@@ -41,15 +41,15 @@ round(cor(Y),2)
 
 A graphical look shows that the correlation suggests a grouping of the subjects into STEM and the humanities.
 
-In the figure below high correlations are red, no correlation is white and negative correlations are blue (code not shown).
+In the figure below, high correlations are red, no correlation is white and negative correlations are blue (code not shown).
 
 ![Images of correlation between columns. High correlation is red, no correlation is white, and negative correlation is blue.](images/R/factor_analysis-tmp-correlation_images-1.png) 
 
-The figure shows the following. There is correlation across all subject indicating that students have an underlying hidden factor (academic ability for exampel) that results in subjects begin correlated since students that test high in one subject tend to test high in the others. We also see that this correlation is higher with the STEM subjects and within the humanities subject. This implies that there is probably another hidden factor that determines if students are better in STEM or humanities. We now show how these concepts can be explained with a statistical model.
+The figure shows the following: there is correlation across all subjects, indicating that students have an underlying hidden factor (academic ability for example) that results in subjects begin correlated since students that test high in one subject tend to test high in the others. We also see that this correlation is higher with the STEM subjects and within the humanities subjects. This implies that there is probably another hidden factor that determines if students are better in STEM or humanities. We now show how these concepts can be explained with a statistical model.
 
 #### Factor model
 
-Based on the plot above we hypothesize that there are two hidden factors {$$}\mathbf{W}_1{/$$} and {$$}\mathbf{W}_2{/$$} and to account for the observed correlation structure we model the data in the following way:
+Based on the plot above, we hypothesize that there are two hidden factors {$$}\mathbf{W}_1{/$$} and {$$}\mathbf{W}_2{/$$} and, to account for the observed correlation structure, we model the data in the following way:
 
 {$$}
 Y_{ij} = \alpha_{i,1} W_{1,j} + \alpha_{i,2} W_{2,j} + \varepsilon_{ij}
@@ -59,7 +59,7 @@ The interpretation of these parameters are as follows: {$$}\alpha_{i,1}{/$$} is 
 
 #### Factor analysis and PCA
 
-It turns out that under certain assumption, the first two principal components are optimal estimate for {$$}W_1{/$$} and {$$}W_2{/$$}. So we can estimate them like this:
+It turns out that under certain assumptions, the first two principal components are optimal estimates for {$$}W_1{/$$} and {$$}W_2{/$$}. So we can estimate them like this:
 
 
 ```r
@@ -81,30 +81,23 @@ As expected, the first factor is close to a constant and will help explain the o
 Y_{ij} = \alpha_{i,1} \hat{W}_{1,j} + \alpha_{i,2} \hat{W}_{2,j} + \varepsilon_{ij}
 {/$$}
  
-and we can now fit the model which explain a large percent of the variabilty.
+and we can now fit the model and note that it explains a large percent of the variability.
 
 
 ```r
-fit = s$u[,1:2]%*% (s$d[1:2]*W)
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'W' not found
-```
-
-```r
+fit = s$u[,1:2]%*% (s$d[1:2]*What)
 var(as.vector(fit))/var(as.vector(Y))
 ```
 
 ```
-## Error in as.vector(fit): object 'fit' not found
+## [1] 0.7880933
 ```
 
-The important lesson here is that when we have correlated units, the standard linear models are not appropriate. We need to account for the observed structure somehow. Factor analysis is powerful way of achieving this. 
+The important lesson here is that when we have correlated units, the standard linear models are not appropriate. We need to account for the observed structure somehow. Factor analysis is a powerful way of achieving this. 
 
 #### Factor analysis in general
 
-In high-throughput data it is quite common to see correlation structure. For example, notice the complex correlations we see across samples in the plot below. These are the correlations for a gene expression experiment with columns ordered by date:
+In high-throughput data, it is quite common to see correlation structure. For example, notice the complex correlations we see across samples in the plot below. These are the correlations for a gene expression experiment with columns ordered by date:
 
 
 ```r
