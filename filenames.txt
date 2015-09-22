@@ -1,2 +1,2 @@
 ## Chapter 6 - Inference for High-Dimensional Data
-advinference_exercises multiple_testing_exercises
+modeling_exercises modeling_exercises
