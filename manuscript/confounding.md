@@ -79,9 +79,9 @@ y
 ```
 
 Notice that we no longer see a clear gender bias. 
-The chi-square test we performed above suggests a dependence between admission and gender. Yet when the data is grouped by major, this dependence seems to dissapear.  What's going on? 
+The chi-square test we performed above suggests a dependence between admission and gender. Yet when the data is grouped by major, this dependence seems to disappear.  What's going on? 
 
-This is an example of _Simpson's paradox_ . A plot showing the perecentages that applied to a major against the percent that get into that major, for males and femails starts to point to an explanation.
+This is an example of _Simpson's paradox_ . A plot showing the percentages that applied to a major against the percent that get into that major, for males and females starts to point to an explanation.
 
 
 ```r
@@ -100,9 +100,9 @@ legend("topleft",c("Male","Female"),col=c("blue","red"),pch=c("1","2"),box.lty=0
 What the plot suggests is that males were much more likely to apply to "easy" majors. The plot shows that males and "easy" majors are confounded.
 
 
-#### Confounding Explained Graphically
+#### Confounding explained graphically
 
-Here we visualize the confounding. In the plots below each letter represents a person. Accepted individuals are denoted in green and not admitted in orange. The letter indicates the major. In this first plot we group all the students together and notice that the proportion of green is larger for men.
+Here we visualize the confounding. In the plots below, each letter represents a person. Accepted individuals are denoted in green and not admitted in orange. The letter indicates the major. In this first plot we group all the students together and notice that the proportion of green is larger for men.
 
 
 ![Admitted are in green and majors are denoted with letters. Here we clearly see that more males were admitted.](images/R/confounding-tmp-simpsons_paradox_illustration-1.png) 
@@ -111,9 +111,9 @@ Now we stratify the data by major. The key point here is that most of the accept
 
 ![Simpon's Paradox illustrated. Admitted students are in green. Students are now stratified by the major to which they applied.](images/R/confounding-tmp-simpsons_paradox_illustration2-1.png) 
 
-#### Average after Stratifying
+#### Average after stratifying
 
-In this plot we can see that if we condition or stratify by major and then look at differences we control for the confounder and this effect goes away. 
+In this plot, we can see that if we condition or stratify by major, and then look at differences, we control for the confounder and this effect goes away. 
 
 ```r
 y=cbind(admissions[1:6,3],admissions[7:12,3])
@@ -136,7 +136,7 @@ mean(y[,1]-y[,2])
 ## [1] -3.5
 ```
 
-#### Simpson's Paradox in Baseball
+#### Simpson's paradox in baseball
 
 Simpson's Paradox is commonly seen in baseball statistics. Here is a well known example in which David Justice had a higher batting average than Derek Jeter in both 1995 and 1996, but Jeter had a higher overall average:
 
@@ -204,7 +204,7 @@ print(tab)
 ##   06   2   0  24
 ```
 
-By running a t-test and creating a volcano plot, we note that thousands of genes appear to be differentially expressed between ethnicities. Yet when we perform a similar comparison only on the CEU population between the years 2002 and 2003, we again obtain thousands of diferentially expressed genes:
+By running a t-test and creating a volcano plot, we note that thousands of genes appear to be differentially expressed between ethnicities. Yet when we perform a similar comparison only on the CEU population between the years 2002 and 2003, we again obtain thousands of differentially expressed genes:
 
 
 
