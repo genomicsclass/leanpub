@@ -10,19 +10,19 @@ A>
 A>In the case of a linear models written as:
 A>
 A>    {$$}
-A>Y_i = \beta_0 + \beta_1 X_i + \varepsilon, i=1,\dots,n
+A>Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i, i=1,\dots,n
 A>    {/$$}
 A>
 A>    {$$}\varepsilon{/$$} is considered random. Every time we re-run the experiment we will see different {$$}\varepsilon{/$$} dichotomous. This implies that in different application {$$}\varepsilon{/$$} represents different things: measurement error or variability between individuals for example.
 A>    
-A>    If we were to re-run the experiment many times, and estimate linear model terms {$$}\hat{\beta}{/$$} each time, this is called the sampling distribution of the estimates. If we take the standard deviation of all of these estimates from repetitions of the experiment, this is called the standard error of the estimate. While we are not sampling individuals, you can think about the repetition of the experiment that we are "sampling" new errors in our observation of {$$}Y{/$$}.
+A>    If we were to re-run the experiment many times, and estimate linear model terms {$$}\hat{\beta}{/$$} each time, the distribution of these {$$}\hat{\beta}{/$$} is called the sampling distribution of the estimates. If we take the standard deviation of all of these estimates from repetitions of the experiment, this is called the standard error of the estimate. While we are not necesarily sampling individuals, you can think about the repetition of the experiment as "sampling" new errors in our observation of {$$}Y{/$$}.
 A>
 A>1. We have shown how to find the least squares estimates with matrix algebra. These estimates are random variables as they are linear combinations of the data. For these estimates to be useful we also need to compute the standard errors. Here we review standard errors in the context of linear models.
 A>    To see this we can run a Monte Carlo simulation to imitate the collection of falling object data. Specifically we will generate the data repeatedly and compute the estimate for the quadratic term each time.
 A>
 A>    
     ```r
-    g = 9.8 ## meters per second
+    g = 9.8 
     h0 = 56.67
     v0 = 0
     n = 25
@@ -89,6 +89,20 @@ A>
 A>
 A>4. Later in this chapter we will introduce a new concept: covariance. The covariance of two lists of numbers {$$}X=x_1,...,x_n{/$$} and {$$}Y=y_1,...,y_n{/$$} is 
 A>
+A>    
+    ```r
+    mean( (Y - mean(Y))*(X-mean(X) ) )
+    ```
+A>    
+A>    ```
+A>    ## Error in mean((Y - mean(Y)) * (X - mean(X))): object 'Y' not found
+A>    ```
 A>
+A>    Which of the following is closest to the covariance between father heights and son heights?
+A>    
+A>    - A) 0 
+A>    - B) -4 
+A>    - C) 4  
+A>    - D) 0.5
 A>
 A>
