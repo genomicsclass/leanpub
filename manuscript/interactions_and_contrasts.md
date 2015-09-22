@@ -468,7 +468,11 @@ What about the standard error and t-statistic? As before, the t-statistic is the
 
 where we saw the covariance of the coefficients earlier:
 
-{$$} \boldsymbol{\Sigma} = \hat{\sigma}^2 (\mathbf{X}^\top \mathbf{X})^{-1}{/$$}
+{$$} 
+\boldsymbol{\Sigma} = \sigma^2 (\mathbf{X}^\top \mathbf{X})^{-1}
+{/$$}
+
+We estimate {$$}\sigma^2{/$$} with the sample estimate {$$}\hat{\sigma}^2{/$$} described above and obtain:
 
 
 ```r
