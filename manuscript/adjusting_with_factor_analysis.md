@@ -23,7 +23,7 @@ Below is the image we showed earlier with a subset of genes showing both the sex
 
 
 
-We have seen how the approache that assume month explains the batch and use linear models perform relatively well. However, there was still room for improvement. This is most likely due to the fact that month is only a surrogate for some hidden factor or factors that actually induces structure or between sample correlation.
+We have seen how the approach that assumes month explains the batch and adjusts with linear models perform relatively well. However, there was still room for improvement. This is most likely due to the fact that month is only a surrogate for some hidden factor or factors that actually induces structure or between sample correlation.
 
 #### What is a batch?
 
@@ -55,7 +55,7 @@ legend("topleft",c("Month 1","Month 2"),col=1:2,pch=16,box.lwd=0)
 
 ![First PC plotted against ordered by date with colors representing month.](images/R/adjusting_with_factor_analysis-tmp-PC1_versus_time-1.png) 
 
-Day seems to be highly correlated with the first PC which explains a high percentage of the variability:
+Day seems to be highly correlated with the first PC, which explains a high percentage of the variability:
 
 
 ```r
@@ -65,7 +65,7 @@ plot(s$d^2/sum(s$d^2),ylab="% variance explained",xlab="Principal component")
 
 ![Variance explained.](images/R/adjusting_with_factor_analysis-tmp-variance_explained-1.png) 
 
-Further exploration, shows that the first six or so PC seem to be at least partially driven by date:
+Further exploration shows that the first six or so PC seem to be at least partially driven by date:
 
 ```r
 mypar(3,4)
@@ -119,7 +119,7 @@ cat("Total genes with q-value < 0.1: ",length(index),"\n",
 ## Number of selected genes on chrX: 0
 ```
 
-Note that in this case we seem to have over corrected since we now recover many fewer chromosome Y genes and the p-value histogram shows a derth of small p-values that makes the distribution non-uniform. Becasue sex is probably correlated with some of the first PCs, this may be a case of "throwing out the baby with the bath water".
+In this case we seem to have over corrected since we now recover many fewer chromosome Y genes and the p-value histogram shows a dearth of small p-values that makes the distribution non-uniform. Because sex is probably correlated with some of the first PCs, this may be a case of "throwing out the baby with the bath water".
 
 <a name="sva"></a>
 
@@ -149,8 +149,8 @@ The basic idea of SVA is to first estimate the factors, but taking care not to i
 
 ![Illustration of iterative procedure used by SVA. Only two iterations are shown.](images/R/adjusting_with_factor_analysis-tmp-illustration_of_sva-1.png) 
 
-The algorithm iterates this procedure several times (controlled by `B` argument) and returns estimate of the surrogate variables which are analogous to the hidden factors of facto analysis.
-To actually run SVA, we run the `sva` funtion. In this case, SVA picks the number of surrogate values or factors for us.
+The algorithm iterates this procedure several times (controlled by `B` argument) and returns an estimate of the surrogate variables, which are analogous to the hidden factors of factor analysis.
+To actually run SVA, we run the `sva` function. In this case, SVA picks the number of surrogate values or factors for us.
 
 
 
@@ -170,7 +170,7 @@ lmfit <- lmFit(geneExpression,svaX)
 tt<- lmfit$coef[,2]*sqrt(lmfit$df.residual)/(2*lmfit$sigma)
 ```
 
-There is an improvement over a previous approaches:
+There is an improvement over previous approaches:
 
 
 ```r
@@ -203,7 +203,7 @@ cat("Total genes with q-value < 0.1: ",length(index),"\n",
 ```
 
 
-To visualize what SVA achieved, below is visualization of the original dataset dataset decomposed into sex effects, surrogate variables, and independent noise estimated by the algorithm (code not shown)
+To visualize what SVA achieved, below is a visualization of the original dataset decomposed into sex effects, surrogate variables, and independent noise estimated by the algorithm (code not shown):
 
 ![Original data split into three sources of variability estimated by SVA: sex-related signal, surrogate-variable induced structure and indepedent error.](images/R/adjusting_with_factor_analysis-tmp-different_sources_of_var-1.png) 
 
