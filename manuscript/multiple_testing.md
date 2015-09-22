@@ -107,6 +107,7 @@ calls <- sapply(1:m, function(i){
           "Not Called Significant")
 })
 ```
+
 Because in this simulation we know the truth (saved in `nullHypothesis`) we can compute the entries of the table:
 
 
@@ -224,7 +225,9 @@ pvals <- sapply(1:m, function(i){
   t.test(treatment,control)$p.value
 })
 ```
+
 ...we note that only:
+
 
 ```r
 sum(pvals < 0.05/10000)
@@ -525,6 +528,7 @@ plot(pvals,qvals)
 ```
 
 ![Q-values versus p-values.](images/R/multiple_testing-tmp-qval_vs_pval-1.png) 
+
 we also obtain the estimate of {$$}\hat{\pi}_0{/$$}:
 
 
