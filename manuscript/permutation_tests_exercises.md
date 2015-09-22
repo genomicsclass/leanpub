@@ -22,8 +22,8 @@ A>
     smokers <- sample(bwt.smoke , N)
     obs <- mean(smokers) - mean(nonsmokers)
     ```
-A>  
-A>  The question is whether this observed difference is statistically significant. We do not want to rely on the assumptions needed for the normal or t-distribution approximations to hold, so instead we will use permutations. We will reshuffle the data and recompute the mean. We can create one permuted sample with the following code:
+A>    
+A>    The question is whether this observed difference is statistically significant. We do not want to rely on the assumptions needed for the normal or t-distribution approximations to hold, so instead we will use permutations. We will reshuffle the data and recompute the mean. We can create one permuted sample with the following code:
 A>
 A>    
     ```r
@@ -33,8 +33,8 @@ A>
     nonsmokersstar <- shuffle[(N+1):(2*N)]
     mean(smokersstar)-mean(nonsmokersstar)
     ```
-A>
-A>  The last value is one observation from the null distribution we will construct. Set the seed at 1, and then repeat the permutation 1,000 times to create a null distribution. What is the permutation derived p-value for our observation?
+A>    
+A>    The last value is one observation from the null distribution we will construct. Set the seed at 1, and then repeat the permutation 1,000 times to create a null distribution. What is the permutation derived p-value for our observation?
 A>
 A>
 A>
