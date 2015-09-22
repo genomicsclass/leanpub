@@ -42,7 +42,7 @@ A>    What is the value in the 3rd row and the 2nd column of the matrix product 
 A>
 A>
 A>
-A>4. Multiply the 3rd row of 'a' with the 2nd column of 'b', using the element-wise vector multiplication with `*`.
+A>4. Multiply the 3rd row of `a` with the 2nd column of `b`, using the element-wise vector multiplication with `*`.
 A>
 A>    What is the sum of the elements in the resulting vector?
 A>
