@@ -4,7 +4,7 @@ Title: Introduction to high throughput data exercises
 
 A>## Exercises
 A>
-A>For the remaining parts of this book we will be downloading larger datasets than those we have been using. Most of thes datasets are not avaialbe as part of the standard R installation or packages such as `UsingR`. For some of these packages we have created pacakges and offer them via GitHub. To download these you will need to install the `devtools` package. Once you do this you can install packages such as the `GSE5859Subset` which we will be using here:
+A>For the remaining parts of this book we will be downloading larger datasets than those we have been using. Most of these datasets are not available as part of the standard R installation or packages such as `UsingR`. For some of these packages, we have created packages and offer them via GitHub. To download these you will need to install the `devtools` package. Once you do this, you can install packages such as the `GSE5859Subset` which we will be using here:
 A>
 A>
 ```r
