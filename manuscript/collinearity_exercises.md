@@ -80,14 +80,14 @@ A>
     ```r
     qr(X)$rank
     ```
-A>    Suppose we observe some outcome, Y. For simplicity we will use synthetic data:
+A>    Suppose we observe some outcome Y. For simplicity, we will use synthetic data:
 A>
 A>    
     ```r
     Y <- 1:8
     ```
 A>
-A>    Now, we will fix the value for two coefficients and optimize the remaining ones. We will fix {$$}\beta_{male}{/$$} and {$$}\beta_D{/$$}. Then, we will find the optimal value for the remaining betas, in terms of minimizing the residual sum of squares. We find the value that minimize:
+A>    Now we will fix the value for two coefficients and optimize the remaining ones. We will fix {$$}\beta_{male}{/$$} and {$$}\beta_D{/$$}. Then we will find the optimal value for the remaining betas, in terms of minimizing the residual sum of squares. We find the value that minimize:
 A>
 A>    {$$}
 A>\sum_{i=1}^8  \{ (Y_i - X_{i,male} \beta_{male} - X_{i,D} \beta_{i,D}) - \mathbf{Z}_i \boldsymbol{\gamma} )^2 \}
@@ -120,7 +120,7 @@ A>
 A>
 A>
 A>
-A>3. We can apply our function `fitTheRest` to a grid of values for {$$}\beta_{male}{/$$} and {$$}\beta_D{/$$}, using the `outer` function in R. `outer` takes three arguments, a grid of values for the first argument, a grid of values for the second argument, and finally a function which takes two arguments.
+A>3. We can apply our function `fitTheRest` to a grid of values for {$$}\beta_{male}{/$$} and {$$}\beta_D{/$$}, using the `outer` function in R. `outer` takes three arguments: a grid of values for the first argument, a grid of values for the second argument, and finally a function which takes two arguments.
 A>
 A>    Try it out: 
 A>
