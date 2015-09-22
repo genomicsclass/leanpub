@@ -17,7 +17,7 @@ A>    - C) A constant at 0.05.
 A>    - D) P is not a random value.
 A>
 A>
-A>2. In the previous exercises we saw how the probability of incorrectly rejecting the null for at least one of 20 experiments for which the null is true is well over 5%. Now let's consider a case in which we run thousands of tests, as we would do in a high throughput experiment. 
+A>2. In the previous exercises, we saw how the probability of incorrectly rejecting the null for at least one of 20 experiments for which the null is true, is well over 5%. Now let's consider a case in which we run thousands of tests, as we would do in a high throughput experiment. 
 A>
 A>    We previously learned that under the null, the probability of a p-value < p is p. If we run 8,793 independent tests, what it the probability of incorrectly rejecting at least one of the null hypothesis? 
 A>
@@ -26,7 +26,7 @@ A>
 A>3. Suppose we need to run 8,793 statistical tests and we want to make the probability of a mistake very small, say 5%. Use the answer to Exercise 2 to determine how small we have to change the cutoff, previously 0.05, to lower our probability of at least one mistake to be 5%. 
 A>
 A>
-A>    The following exercises should help you understand the concept of an error controlling procedure. You can think of it as defining a set of instructions, such as "reject all the null hypothesis for which p-values < 0.0001" or "reject the null hypothesis for the 10 features with smallest p-values". Then, knowing the p-values are random variables, we use statistical theory to compute how many mistakes, on average, we will make if we follow this procedure. More precisely we commonly find bounds on these rates, meaning that we show that they are smaller than some predetermined value.
+A>    The following exercises should help you understand the concept of an error controlling procedure. You can think of it as defining a set of instructions, such as "reject all the null hypothesis for which p-values < 0.0001" or "reject the null hypothesis for the 10 features with smallest p-values". Then, knowing the p-values are random variables, we use statistical theory to compute how many mistakes, on average, we will make if we follow this procedure. More precisely, we commonly find bounds on these rates, meaning that we show that they are smaller than some predetermined value.
 A>
 A>    As described in the text, we can compute different error rates. The FWER tells us the probability of having at least one false positive. The FDR is the expected rate of rejected null hypothesis.
 A>
@@ -84,10 +84,10 @@ A>
 A>5.  To simulate the p-value results of, say  8,792 t-tests for which the null is true, we don't actually have to generate the original data. We can generate p-values for a uniform distribution like this: 'pvals <- runif(8793,0,1)`. Using what we have learned, set the cutoff using the Bonferroni correction and report back the FWER. Set the seed at 1 and run 10,000 simulation.
 A>
 A>
-A>6. Using the same seed, repeat exercise 5 but for Sidek's cutoff.
+A>6. Using the same seed, repeat exercise 5, but for Sidek's cutoff.
 A>
 A> 
-A>7. In the following exercises, we will define error controlling procedures for experimental data. We will make list of genes based on q-values. We will also assess your understanding of false positives rates and false negative rates by asking you to create a Monte Carlo simulation.
+A>7. In the following exercises, we will define error controlling procedures for experimental data. We will make a list of genes based on q-values. We will also assess your understanding of false positives rates and false negative rates by asking you to create a Monte Carlo simulation.
 A>    
 A>    Load the gene expression data:
 A>
@@ -131,7 +131,7 @@ A>    - C) The qvalue function estimates the proportion of genes for which the n
 A>    - D) The qvalue function estimates the proportion of genes for which the null hypothesis is true and provides a more conservative estimate.
 A>
 A>
-A>13. This exercise and the remaining one are more advanced. Create a Monte Carlo Simulation in which you simulate measurements from 8,793 genes for 24 samples, 12 cases and 12 controls. The for 100 genes create a difference of 1 between cases and controls. You can use the code provided below. Run this experiment 1,000 times with a Monte Carlo simulation. For each instance compute p-values using a t-test and  keep track of the number of false positives and false negatives. Compute the false positive rate and false negative rates if we use Bonferroni, q-values from `p.adjust`, and q-values from `qvalue` function. Set the seed to 1 for all three simulations. What is the false positive rate for Bonferroni?
+A>13. This exercise and the remaining one are more advanced. Create a Monte Carlo Simulation in which you simulate measurements from 8,793 genes for 24 samples, 12 cases and 12 controls. The for 100 genes create a difference of 1 between cases and controls. You can use the code provided below. Run this experiment 1,000 times with a Monte Carlo simulation. For each instance, compute p-values using a t-test and  keep track of the number of false positives and false negatives. Compute the false positive rate and false negative rates if we use Bonferroni, q-values from `p.adjust`, and q-values from `qvalue` function. Set the seed to 1 for all three simulations. What is the false positive rate for Bonferroni?
 A>
 A>    
     ```r
