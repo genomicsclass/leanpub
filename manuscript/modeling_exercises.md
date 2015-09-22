@@ -153,14 +153,13 @@ A>    What is the probability of seeing a count of 14 or more?
 A>
 A>
 A>14. So we obtain a p-value smaller than 0.001 for a count of 14. Why is it problematic to report this p-value as strong evidence of a location that is different?
-A>
 A>    - A) Poisson in only an approximation.
 A>    - B) We selected the highest region out of 57 and need to adjust for multiple testing.
 A>    - C) {$$}\lambda{/$$} is an estimate, a random variable, and we didn't take into account its variability.
 A>    - D)  We don't know the effect size.
 A>
 A>
-A>15. Use the Bonferonni correction to determine the p-value cut-off that guarantees a FWER of 0.05. What is this p-value cutoff ?
+A>15. Use the Bonferonni correction to determine the p-value cut-off that guarantees a FWER of 0.05. What is this p-value cutoff?
 A>
 A>
 A>16. Create a qq-plot to see if our Poisson model is a good fit:
@@ -174,7 +173,6 @@ A>
     abline(0,1)
     ```
 A>    How would you characterize this qq-plot
-A>    
 A>    - A) Poisson is a terrible approximation.
 A>    - B) Poisson is a very good approximation except for one point that we actually think is a region of interest.
 A>    - C) There are too many 1s in the data.
