@@ -75,7 +75,7 @@ log10(crossprod(X))
 ## x3            9.203 11.810 14.434 17.070
 ```
 
-Note the difference of several orders of magnitude. On a digital computer, we have a limited range of numbers. This makes some numbers seem like 0, when we also have to consider very large numbers. This in turn leads to  divisions that are, practically, divisions by 0 errors.
+Note the difference of several orders of magnitude. On a digital computer, we have a limited range of numbers. This makes some numbers seem like 0, when we also have to consider very large numbers. This in turn leads to  divisions that are practically divisions by 0 errors.
 
 #### The factorization 
 
@@ -135,7 +135,7 @@ If we rewrite the equations of the LSE using {$$}\mathbf{QR}{/$$} instead of {$$
 
 {$$}\mathbf{R} \boldsymbol{\beta} = \mathbf{Q}^\top \mathbf{Y}{/$$}
 
-{$$}\mathbf{R}{/$$} being upper triangular makes solving this more stable. Also because {$$}\mathbf{Q}^\top\mathbf{Q}=\mathbf{I}{/$$} we know that the columns of {$$}\mathbf{Q}{/$$} are in the same scale which stabilizes the right side. 
+{$$}\mathbf{R}{/$$} being upper triangular makes solving this more stable. Also, because {$$}\mathbf{Q}^\top\mathbf{Q}=\mathbf{I}{/$$} , we know that the columns of {$$}\mathbf{Q}{/$$} are in the same scale which stabilizes the right side. 
 
 Now we are ready to find LSE using the QR decomposition. To solve:
 
@@ -158,7 +158,7 @@ R <- qr.R( QR )
 ## [4,] 1.0000
 ```
 
-In practice we do not need to do any of this due to the built-in `solve.qr` function:
+In practice, we do not need to do any of this due to the built-in `solve.qr` function:
 
 
 ```r
@@ -183,7 +183,7 @@ This factorization also simplifies the calculation for fitted values:
 {$$}\mathbf{X}\boldsymbol{\hat{\beta}} = 
 (\mathbf{QR})\mathbf{R}^{-1}\mathbf{Q}^\top \mathbf{y}= \mathbf{Q}\mathbf{Q}^\top\mathbf{y} {/$$}
 
-In R we simply do the following:
+In R, we simply do the following:
 
 
 ```r
@@ -198,7 +198,7 @@ lines(x,fitted,col=2)
 
 #### Standard errors
 
-To obtain the standard errors of the LSE we note that:
+To obtain the standard errors of the LSE, we note that:
 
 {$$}(\mathbf{X^\top X})^{-1} = (\mathbf{R^\top Q^\top QR})^{-1} = (\mathbf{R^\top R})^{-1}{/$$}
 
