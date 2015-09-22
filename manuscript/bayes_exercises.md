@@ -2,6 +2,8 @@
 Title: Bayes Exercises
 ---
 
+{pagebreak} 
+ 
 A>## Exercises
 A>
 A>
