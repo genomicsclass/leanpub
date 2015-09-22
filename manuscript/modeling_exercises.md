@@ -7,7 +7,7 @@ Title: Modeling Exercises
 A>## Exercises
 A>
 A>
-A>1. Suppose you have an urn with blue and red balls. If {$$}N{/$$} balls are selected at random with replacement (you put the ball back after you pick it), we can denote the outcomes as random variables {$$}X_1,\dots,X_N{/$$} that are 1 or 0. If the proportion of red ball is {$$}p{/$$} , then the distribution of each of these is {$$}\mbox{Pr}(X_i=1)=p{/$$}. 
+A>1. Suppose you have an urn with blue and red balls. If {$$}N{/$$} balls are selected at random with replacement (you put the ball back after you pick it), we can denote the outcomes as random variables {$$}X_1,\dots,X_N{/$$} that are 1 or 0. If the proportion of red balls is {$$}p{/$$} , then the distribution of each of these is {$$}\mbox{Pr}(X_i=1)=p{/$$}. 
 A>
 A>    These are also called Bernoulli trials. These random variables are independent because we replace the balls. Flipping a coin is an example of this with {$$}p=0.5{/$$}. 
 A>
@@ -125,7 +125,7 @@ A>
     data(hcmv)
     plot(locations,rep(1,length(locations)),ylab="",yaxt="n")
     ```
-A>    These palindromes are quite rare, {$$}p{/$$} is very small. If we break the genome into bins of 4000 basepairs, then we have {$$}Np{/$$} not so small and we might be able to use Poisson to model the number of palindromes in each bin:
+A>    These palindromes are quite rare, and therefore {$$}p{/$$} is very small. If we break the genome into bins of 4000 basepairs, then we have {$$}Np{/$$} not so small and we might be able to use Poisson to model the number of palindromes in each bin:
 A>
 A>    
     ```r
@@ -133,7 +133,7 @@ A>
     tmp=cut(locations,breaks)
     counts=as.numeric(table(tmp))
     ```
-A>    So if our model is correct `counts`, should follow a Poisson distribution. The distribution seems about right:
+A>    So if our model is correct, `counts` should follow a Poisson distribution. The distribution seems about right:
 A>
 A>    
     ```r
