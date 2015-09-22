@@ -4,7 +4,7 @@ Title: Linear Models in Practice Exercises.
 
 A>## Exercises
 A>
-A>The function `lm` can be used to fit a simple two group linear model. The test statistic from a linear model is equivalent to the test statistic we get when we perform a t-test with the equal variance assumption. Though the linear model in this case is equivalent to a t-test, we will soon explore more complicated designs, where the linear model is a useful extension (confounding variables, testing contrasts of terms, testing interactions, testing many terms at once, etc.).
+A>The function `lm` can be used to fit a simple, two group linear model. The test statistic from a linear model is equivalent to the test statistic we get when we perform a t-test with the equal variance assumption. Though the linear model in this case is equivalent to a t-test, we will soon explore more complicated designs, where the linear model is a useful extension (confounding variables, testing contrasts of terms, testing interactions, testing many terms at once, etc.).
 A>
 A>Here we will review the mathematics on why these produce the same test statistic and therefore p-value.
 A>
@@ -25,14 +25,14 @@ A>If we look carefully, the second part of this equation is the sum of squared r
 A>
 A>All that is left to show is that the entry in the second row, second column of {$$}(X^\top X)^{-1}{/$$} is  {$$}(1/N_x + 1/N_y){/$$}
 A>
-A>1. You can make a design matrix `X` for a two group comparison either using `model.matrix` or simply with:
+A>1. You can make a design matrix `X` for a two group comparison, either using `model.matrix` or simply with:
 A>
 A>    
     ```r
     X <- cbind(rep(1,Nx + Ny),rep(c(0,1),c(Nx, Ny)))
     ```
 A>
-A>    For a comparison of two groups, where the first group has `Nx=5` samples, and the second group has `Ny=7` samples, what is the element in the 1st row and 1st column of {$$}X^\top X{/$$}?
+A>    In order to compare two groups, where the first group has `Nx=5` samples and the second group has `Ny=7` samples, what is the element in the 1st row and 1st column of {$$}X^\top X{/$$}?
 A>
 A>
 A>
