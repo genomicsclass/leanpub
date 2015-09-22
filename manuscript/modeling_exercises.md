@@ -143,16 +143,12 @@ A>
 A>12. What is the maximum count? 
 A>
 A>
-A>
-A>13. Once we have identified the location with the largest palindrome count, we want to know if we could see a value this big by chance?
-A>
-A>    If {$$}X{/$$} is a Poisson random variable with rate:
+A>13. Once we have identified the location with the largest palindrome count, we want to know if we could see a value this big by chance. If {$$}X{/$$} is a Poisson random variable with rate:
 A>
 A>    
     ```r
     lambda = mean(counts[ - which.max(counts) ])
     ```
-A>
 A>    What is the probability of seeing a count of 14 or more?
 A>
 A>
@@ -164,9 +160,7 @@ A>    - C) {$$}\lambda{/$$} is an estimate, a random variable, and we didn't tak
 A>    - D)  We don't know the effect size.
 A>
 A>
-A>
 A>15. Use the Bonferonni correction to determine the p-value cut-off that guarantees a FWER of 0.05. What is this p-value cutoff ?
-A>
 A>
 A>
 A>16. Create a qq-plot to see if our Poisson model is a good fit:
@@ -179,7 +173,6 @@ A>
     plot(poisq,sort(counts))
     abline(0,1)
     ```
-A>
 A>    How would you characterize this qq-plot
 A>    
 A>    - A) Poisson is a terrible approximation.
@@ -188,15 +181,12 @@ A>    - C) There are too many 1s in the data.
 A>    - D) A normal distribution provides a better approximation.
 A>
 A>
-A>
-A>
 A>17. Load the `tissuesGeneExpression` data library
 A>    
 A>    
     ```r
     library(tissuesGeneExpression)
     ```
-A>    
 A>    Now load this data and select the columns related to endometrium: 
 A>
 A>    
@@ -204,16 +194,12 @@ A>
     library(genefilter)
     y = e[,which(tissue=="endometrium")]
     ```
-A>
-A>    This will give you a matrix `y` with 15 samples.
-A>
-A>    Compute the across sample variance for the first three samples. Then make a qq-plot to see if the data follow a normal distribution. Which of the following is true?
+A>    This will give you a matrix `y` with 15 samples. Compute the across sample variance for the first three samples. Then make a qq-plot to see if the data follow a normal distribution. Which of the following is true?
 A>    
 A>    - A) With the exception of a handful of outliers, the data follow a normal distribution.
 A>    - B) The variance does not follow a normal distribution, but taking the square root fixes this.
 A>    - C) The normal distribution is not usable here: the left tail is over estimated and the right tail is underestimated.
 A>    - D) The normal distribution fits the data almost perfectly.
-A>
 A>
 A>
 A>18. Now fit an F-distribution with 14 degrees of freedom using the `fitFDist` function in the `limma` package:
@@ -225,6 +211,5 @@ A>    - A) The fitted F-distribution provides a perfect fit.
 A>    - B) If we exclude the lowest 0.1% of the data, the F-distribution provides a good fit.
 A>    - C) The normal distribution provided a better fit.
 A>    - D) If we exclude the highest 0.1% of the data, the F-distribution provides a good fit.
-A>  
 A>
 A>
