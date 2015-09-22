@@ -4,6 +4,7 @@ title: Cross-validation
 ---
 
 
+
 ## Cross-validation
 
 The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/ml/crossvalidation.Rmd).
@@ -102,29 +103,17 @@ y[idx[[1]]] ##the labels
 ```
 
 ```r
-X[idx[[1]], 1:3] ##the genes (only showing the first 3 genes...)
+head( X[idx[[1]], 1:3] ) ##the genes (only showing the first 3 genes...)
 ```
 
 ```
-##                  1007_s_at  1053_at   117_at
-## GSM12075.CEL.gz   9.966782 6.060069 7.644452
-## GSM12098.CEL.gz   9.945652 5.927861 7.847192
-## GSM21214.cel.gz  10.955428 5.776781 7.493743
-## GSM21218.cel.gz  10.757734 5.984170 8.525524
-## GSM21230.cel.gz  11.496114 5.760156 7.787561
-## GSM87086.cel.gz   9.798633 5.862426 7.279199
-## GSM87087.cel.gz   9.758049 5.904910 7.382182
-## GSM87094.cel.gz   9.753415 6.169774 7.338395
-## GSM92250.CEL.gz  11.079038 6.662952 7.298781
-## GSM92269.CEL.gz  10.646973 6.349878 7.584153
-## GSM92274.CEL.gz  10.817390 6.210328 7.750246
-## GSM92275.CEL.gz  10.391968 5.923316 8.042244
-## GSM35981.cel.gz  10.697330 5.825616 8.596204
-## GSM44675.CEL.gz  10.683256 6.225941 7.517055
-## GSM296878.CEL.gz 10.626825 6.113875 7.404070
-## GSM296883.CEL.gz 10.343827 6.115159 7.618541
-## GSM298749.CEL.gz  8.746337 6.004847 8.885333
-## GSM299113.CEL.gz  8.362492 6.072837 8.886452
+##                 1007_s_at  1053_at   117_at
+## GSM12075.CEL.gz  9.966782 6.060069 7.644452
+## GSM12098.CEL.gz  9.945652 5.927861 7.847192
+## GSM21214.cel.gz 10.955428 5.776781 7.493743
+## GSM21218.cel.gz 10.757734 5.984170 8.525524
+## GSM21230.cel.gz 11.496114 5.760156 7.787561
+## GSM87086.cel.gz  9.798633 5.862426 7.279199
 ```
 
 We can see that, in fact, the tissues are fairly equally represented across the 10 folds:
