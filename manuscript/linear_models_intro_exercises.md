@@ -91,12 +91,11 @@ A>4. Later in this chapter we will introduce a new concept: covariance. The cova
 A>
 A>    
     ```r
+    n <- 100
+    Y <- rnorm(n)
+    X <- rnorm(n)
     mean( (Y - mean(Y))*(X-mean(X) ) )
     ```
-A>    
-A>    ```
-A>    ## Error in mean((Y - mean(Y)) * (X - mean(X))): object 'Y' not found
-A>    ```
 A>
 A>    Which of the following is closest to the covariance between father heights and son heights?
 A>    
