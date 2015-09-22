@@ -59,10 +59,10 @@ A>
 A>4. What proportion is accepted for this major?
 A>
 A>
-A>5. For men, what is the correlation between the number of applications across majors and `H`:
+A>5. For men, what is the correlation between the number of applications across majors and `H`?
 A>
 A>
-A>6. For women, what is the correlation between the number of applications across majors and `H`:
+A>6. For women, what is the correlation between the number of applications across majors and `H`?
 A>
 A>
 A>7. Given the answers to the above, which best explains the differences in admission percentages when we combine majors?
