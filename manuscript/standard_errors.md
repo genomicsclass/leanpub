@@ -12,7 +12,7 @@ layout: page
 
 The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/linear/standard_errors.Rmd).
 
-We have shown how to find the least squares estimates with matrix algebra. These estimates are random variables as they are linear combinations of the data. For these estimates to be useful, we also need to compute their standard errors. Linear algebra also provides a powerful approach for this task. We provide several examples.
+We have shown how to find the least squares estimates with matrix algebra. These estimates are random variables since they are linear combinations of the data. For these estimates to be useful, we also need to compute their standard errors. Linear algebra provides a powerful approach for this task. We provide several examples.
 
 
 #### Falling object
@@ -133,9 +133,9 @@ cor(betahat[,1],betahat[,2])
 ## [1] -0.9992293
 ```
 
-When we compute linear combinations of our estimates, we will need to know this information to correctly calculate the standard error of these linear combination.
+When we compute linear combinations of our estimates, we will need to know this information to correctly calculate the standard error of these linear combinations.
 
-In the next section we will describe the variance-covariance matrix. The covariance of two random variables is defined as follows:
+In the next section, we will describe the variance-covariance matrix. The covariance of two random variables is defined as follows:
 
 
 ```r
@@ -150,7 +150,7 @@ The covariance is the correlation multiplied by the standard deviations of each 
 
 {$$}\mbox{Corr}(X,Y) = \frac{\mbox{Cov}(X,Y)}{\sigma_X \sigma_Y}{/$$}
 
-Other than that, this quantity does not have a useful interpretation in practice. However, as we will see, it is a very useful quantity for mathematical derivations. In the next sections we show useful matrix algebra calculations that can be used to estimate standard errors of linear model estimates. 
+Other than that, this quantity does not have a useful interpretation in practice. However, as we will see, it is a very useful quantity for mathematical derivations. In the next sections, we show useful matrix algebra calculations that can be used to estimate standard errors of linear model estimates. 
 
 <a name="varcov"></a>
 
@@ -173,7 +173,7 @@ Later, we will see a case, specifically the estimate coefficients of a linear mo
 
 #### Variance of a linear combination 
 
-A useful result that linear algebra gives is that the variance covariance-matrix of a linear combination {$$}\mathbf{AY}{/$$} of {$$}\mathbf{Y}{/$$} can be computed as follows:
+A useful result provided by linear algebra is that the variance covariance-matrix of a linear combination {$$}\mathbf{AY}{/$$} of {$$}\mathbf{Y}{/$$} can be computed as follows:
 
 {$$}
 \mbox{var}(\mathbf{AY}) = \mathbf{A}\mbox{var}(\mathbf{Y}) \mathbf{A}^\top 
@@ -190,7 +190,7 @@ as we expect. We use this result to obtain the standard errors of the LSE (least
 
 #### LSE standard errors (Advanced)
 
-Note that {$$}\boldsymbol{\hat{\beta}}{/$$} is a linear combination of {$$}\mathbf{Y}{/$$}: {$$}\mathbf{AY}{/$$} with {$$}\mathbf{A}=\mathbf{(X^\top X)^{-1}X}^\top{/$$} so we can use the equation above to derive the variance of our estimates:
+Note that {$$}\boldsymbol{\hat{\beta}}{/$$} is a linear combination of {$$}\mathbf{Y}{/$$}: {$$}\mathbf{AY}{/$$} with {$$}\mathbf{A}=\mathbf{(X^\top X)^{-1}X}^\top{/$$}, so we can use the equation above to derive the variance of our estimates:
 
 {$$}\mbox{var}(\boldsymbol{\hat{\beta}}) = \mbox{var}( \mathbf{(X^\top X)^{-1}X^\top Y} ) =  {/$$}
 
@@ -279,7 +279,7 @@ apply(betahat,2,sd)
 
 
 
-#### Linear Combination of Estimates
+#### Linear combination of estimates
 
 Frequently, we want to compute the standard deviation of a linear combination of estimates such as {$$}\hat{\beta}_2 - \hat{\beta}_1{/$$}. This is a linear combination of {$$}\hat{\boldsymbol{\beta}}{/$$}:
 
@@ -299,7 +299,7 @@ Using the above, we know how to compute the variance covariance matrix of {$$}\h
 
 We have shown how we can obtain standard errors for our estimates. However, as we learned in the first chapter, to perform inference we need to know the distribution of these random variables. The reason we went through the effort to compute the standard errors is because the CLT applies in linear models. If {$$}N{/$$} is large enough, then the LSE will be normally distributed with mean {$$}\boldsymbol{\beta}{/$$} and standard errors as described. For small samples, if the {$$}\varepsilon{/$$} are normally distributed, then the {$$}\hat{\beta}-\beta{/$$} follow a t-distribution. We do not derive this result here, but the results are extremely useful since it is how we construct p-values and confidence intervals in the context of linear models.
 
-#### Code Versus Math
+#### Code versus math
 
 The standard approach to writing linear models either assume the X are fixed or that we are conditioning on them. Thus  X*beta has no variance as the {$$}X{/$$} is considered fixed. This is why we write {$$}\mbox{var}(Y_i) = \mbox{var}(\varepsilon_i)=\sigma^2{/$$}. This can cause confusion in practice because if you, for example, compute the following: 
 
@@ -314,7 +314,7 @@ var(beta[1]+beta[2]*x)
 ## [1] 1.883576
 ```
 
-it is nowhere near 0. This is an example in which we have to be careful in distinguishing code from math. The function var is simply computing the variance of the list we feed it, while the mathematical use of var is considering only quantities that are random variables. In the R code above, `x` is not fixed at all: we are letting it vary but when we write  {$$}\mbox{var}(Y_i) = \sigma^2{/$$} we are imposing, mathematically, `x` to be fixed. Similarly if we use R to compute the variance of {$$}Y{/$$} in our object dropping example we obtain something very different than {$$}\sigma^2=1{/$$} (the known variance):
+it is nowhere near 0. This is an example in which we have to be careful in distinguishing code from math. The function `var` is simply computing the variance of the list we feed it, while the mathematical definition of variance is considering only quantities that are random variables. In the R code above, `x` is not fixed at all: we are letting it vary, but when we write  {$$}\mbox{var}(Y_i) = \sigma^2{/$$} we are imposing, mathematically, `x` to be fixed. Similarly, if we use R to compute the variance of {$$}Y{/$$} in our object dropping example, we obtain something very different than {$$}\sigma^2=1{/$$} (the known variance):
 
 
 ```r
