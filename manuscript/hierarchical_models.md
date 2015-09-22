@@ -9,16 +9,16 @@ title: Hierarchical Models
 
 The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/modeling/hierarchical_models.Rmd).
 
-In this section we use the mathematical theory which describes an approach that has become widely applied in the analysis of high-throughput data. The general idea is to build a _hierachichal model_ with two levels. One level describes variability across samples/units, and the other describes variability across features. This is similar to the baseball example in which the first level described variability across players and the second described the randomness for the success of one player. The first level of variation is accounted for by all the models and approaches we have described here, for example the model that leads to the t-test. The second level provides power by permitting us to "borrow" information from all features to inform the inference performed on each one. 
+In this section, we use the mathematical theory which describes an approach that has become widely applied in the analysis of high-throughput data. The general idea is to build a _hierachichal model_ with two levels. One level describes variability across samples/units, and the other describes variability across features. This is similar to the baseball example in which the first level described variability across players and the second described the randomness for the success of one player. The first level of variation is accounted for by all the models and approaches we have described here, for example the model that leads to the t-test. The second level provides power by permitting us to "borrow" information from all features to inform the inference performed on each one. 
 
 Here we describe one specific case that is currently the most widely
 used approach to inference with gene expression data. It is the model
 implemented by the `limma` Bioconductor package. This idea has been
-adapted to develop methods for other data types such as RNAseq such as
+adapted to develop methods for other data types such as RNAseq by, for example,
 [edgeR](http://www.ncbi.nlm.nih.gov/pubmed/19910308) and
 [DESeq2](http://www.ncbi.nlm.nih.gov/pubmed/25516281). This package
 provides an alternative to the t-test that greatly improves power by
-modeling the variance. While in the baseball example we modelled averages, here we model variances. Modelling variances requires more advanced math but the concepts are the practically the same. We motivate and demonstrate the approach with
+modeling the variance. While in the baseball example we modeled averages, here we model variances. Modelling variances requires more advanced math, but the concepts are practically the same. We motivate and demonstrate the approach with
 an example. 
 
 Here is a volcano showing effect sizes and p-value from applying a t-test to data from an experiment running six replicated samples with 16 genes artificially made to be different in two groups of three samples each. These 16 genes are the only genes for which the alternative hypothesis is true. In the plot they are shown in blue.
@@ -81,7 +81,7 @@ with(tt, plot(s, -log10(p.value), cex=.8, pch=16,
 
 ![p-values versus standard deviation estimates.](images/R/hierarchical_models-tmp-pval_versus_sd-1.png) 
 
-Here is where a hierarchical model can be useful. If we can make an assumption about the distribution of these variances across genes, then we can improve estimates by "adjusting" estimates that are "too small" according to this distribution. In a previous section we described how the F-distribution provides approximates the distribution of the observed variances.
+Here is where a hierarchical model can be useful. If we can make an assumption about the distribution of these variances across genes, then we can improve estimates by "adjusting" estimates that are "too small" according to this distribution. In a previous section we described how the F-distribution approximates the distribution of the observed variances.
 
 {$$}
 s^2 \sim s_0^2 F_{d,d_0}
@@ -102,7 +102,7 @@ In the plot above we can see how the variance estimate _shrink_ for 40 genes (co
 
 ![Illustration of how estimates shrink towards the prior expectation. Forty genes spanning the range of values were selected.](images/R/hierarchical_models-tmp-shrinkage-1.png) 
 
-An important aspect of this adjustment is that genes having a sample standard deviation close to 0 are no longer close to 0 (the shirnk towards {$$}s_0{/$$} ). We can now create a version of the t-test that instead of the sample standard deviation uses this posterior mean or "shrunken" estimate of the variance. We refer to these as _moderated_ t-tests. Once we do this, the improvements can be seen clearly in the volcano plot:
+An important aspect of this adjustment is that genes having a sample standard deviation close to 0 are no longer close to 0 (the shrink towards {$$}s_0{/$$} ). We can now create a version of the t-test that instead of the sample standard deviation uses this posterior mean or "shrunken" estimate of the variance. We refer to these as _moderated_ t-tests. Once we do this, the improvements can be seen clearly in the volcano plot:
 
 
 ```r
