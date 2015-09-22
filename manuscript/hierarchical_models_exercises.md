@@ -77,6 +77,7 @@ A>
 A>
 A>
 A>    Which best describes what the hierarchical model does?
+A>    
 A>    - A) Moves all the estimates of standard deviation closer to 0.12.
 A>    - B) Increases the estimates of standard deviation to increase t.
 A>    - C) Decreases the estimate of standard deviation.
