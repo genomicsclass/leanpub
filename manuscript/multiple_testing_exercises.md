@@ -17,17 +17,13 @@ A>    - C) A constant at 0.05.
 A>    - D) P is not a random value.
 A>
 A>
-A>
 A>2. In the previous exercises we saw how the probability of incorrectly rejecting the null for at least one of 20 experiments for which the null is true is well over 5%. Now let's consider a case in which we run thousands of tests, as we would do in a high throughput experiment. 
 A>
 A>    We previously learned that under the null, the probability of a p-value < p is p. If we run 8,793 independent tests, what it the probability of incorrectly rejecting at least one of the null hypothesis? 
 A>
 A>
 A>
-A>
-A>
 A>3. Suppose we need to run 8,793 statistical tests and we want to make the probability of a mistake very small, say 5%. Use the answer to Exercise 2 to determine how small we have to change the cutoff, previously 0.05, to lower our probability of at least one mistake to be 5%. 
-A>
 A>
 A>
 A>    The following exercises should help you understand the concept of an error controlling procedure. You can think of it as defining a set of instructions, such as "reject all the null hypothesis for which p-values < 0.0001" or "reject the null hypothesis for the 10 features with smallest p-values". Then, knowing the p-values are random variables, we use statistical theory to compute how many mistakes, on average, we will make if we follow this procedure. More precisely we commonly find bounds on these rates, meaning that we show that they are smaller than some predetermined value.
@@ -48,15 +44,21 @@ A>    The Bonferroni procedure assumes we have computed p-values for each test a
 A>
 A>    So the first result we rely on is that this probability is largest when all the null hypotheses are true:
 A>
-A>    {$$}\mbox{Pr}(V>0) \leq \mbox{Pr}(V>0 | \mbox{all nulls are true}){/$$}
+A>    {$$}
+A>    \mbox{Pr}(V>0) \leq \mbox{Pr}(V>0 | \mbox{all nulls are true})
+A>    {/$$}
 A>
 A>    or:
 A>
-A>    {$$}\mbox{Pr}(V>0) \leq \mbox{Pr}(V>0 | m_1=0){/$$}
+A>    {$$}
+A>    \mbox{Pr}(V>0) \leq \mbox{Pr}(V>0 | m_1=0)
+A>    {/$$}
 A>
 A>    We showed that if the tests are independent then:
 A>
-A>    {$$}\mbox{Pr}(V>0 | m_1) = 1-(1-k)^m{/$$}
+A>    {$$}
+A>    \mbox{Pr}(V>0 | m_1) = 1-(1-k)^m
+A>    {/$$}
 A>
 A>    And we pick {$$}k{/$$} so that {$$}1-(1-k)^m = \alpha \implies k = 1-(1-\alpha)^{1/m}{/$$}
 A>
@@ -79,13 +81,10 @@ A>    - C) Depends on m.
 A>    - D) Sidek's.
 A>
 A>
-A>
 A>5.  To simulate the p-value results of, say  8,792 t-tests for which the null is true, we don't actually have to generate the original data. We can generate p-values for a uniform distribution like this: 'pvals <- runif(8793,0,1)`. Using what we have learned, set the cutoff using the Bonferroni correction and report back the FWER. Set the seed at 1 and run 10,000 simulation.
 A>
 A>
-A>
 A>6. Using the same seed, repeat exercise 5 but for Sidek's cutoff.
-A>
 A>
 A> 
 A>7. In the following exercises, we will define error controlling procedures for experimental data. We will make list of genes based on q-values. We will also assess your understanding of false positives rates and false negative rates by asking you to create a Monte Carlo simulation.
@@ -111,10 +110,7 @@ A>
 A>    How many genes have p-values smaller than 0.05?
 A>
 A>
-A>
-A>
 A>8. Apply the Bonferroni correction to achieve a FWER of 0.05. How many genes are called significant under this procedure?
-A>
 A>
 A>
 A>9. The FDR is a property of a list of features, not each specific feature. The q-value relates FDR to individual features. To define the q-value, we order features we tested by p-value, then compute the FDRs for a list with the most significant, the two most significant, the three most significant, etc. . The FDR of the list with the, say, {$$}m{/$$} most significant tests is defined as the q-value of the {$$}m{/$$}-th most significant feature. In other words, the q-value of a feature, is the FDR of the biggest list that includes that gene.
@@ -122,14 +118,10 @@ A>
 A>    In R, we can compute q-values using the `p.adjust` function with the FDR option. Read the help file for `p.adjust` and compute how many genes achieve a q-value < 0.05 for our gene expression dataset.
 A>
 A>
-A>
-A>
 A>10. Now use the `qvalue` function, in the Bioconductor `qvalue` package, to estimate q-values using the procedure described by Storey. How many genes have q-values below 0.05?
 A>
 A>
-A>
 A>11. Read the help file for qvalue and report the estimated proportion of genes for which the null hypothesis is true {$$}\pi_0=m_0/m{/$$}
-A>
 A>
 A>
 A>12. The number of genes passing the q-value <0.05 threshold is larger with the q-value function than the p.adjust difference. Why is this the case? Make a plot of the ratio of these two estimates to help answer the question.
@@ -137,7 +129,6 @@ A>    - A) One of the two procedures is flawed.
 A>    - B) The two functions are estimating different things.
 A>    - C) The qvalue function estimates the proportion of genes for which the null hypothesis is true and provides a less conservative estimate.
 A>    - D) The qvalue function estimates the proportion of genes for which the null hypothesis is true and provides a more conservative estimate.
-A>
 A>
 A>
 A>13. This exercise and the remaining one are more advanced. Create a Monte Carlo Simulation in which you simulate measurements from 8,793 genes for 24 samples, 12 cases and 12 controls. The for 100 genes create a difference of 1 between cases and controls. You can use this code:
@@ -152,8 +143,7 @@ A>
     mat[1:positives,1:(n/2)] <- mat[1:positives,1:(n/2)]+delta
     ```
 A>    
-A>    Note that the null hypothesis is true for 8793-100=8693 genes. Run this experiment 1,000 times with a Monte Carlo simulation. For each instance compute p-values using a t-test and  keep track of the number of false positives and false negatives. Compute the false positive rate and false negative rates if we use Bonferroni, q-values from `p.adjust`, and q-values from `qvalue` function. Set the seed to 1 for each simulations. What is the false positive rate for Bonferroni?
-A>
+A>    Note that the null hypothesis is true for 8793-100=8693 genes. Run this experiment 1,000 times with a Monte Carlo simulation. For each instance compute p-values using a t-test and  keep track of the number of false positives and false negatives. Compute the false positive rate and false negative rates if we use Bonferroni, q-values from `p.adjust`, and q-values from `qvalue` function. Set the seed to 1 for all three simulations. What is the false positive rate for Bonferroni?
 A>
 A>
 A>14. What are the false negative rates for Bonferroni?
