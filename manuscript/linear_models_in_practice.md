@@ -7,7 +7,7 @@ layout: page
 
 #### The mouse diet example
 
-We will demonstrate how to analyze the high fat diet data using linear models instead of directly applying a t-test. We will demonstrate how, ultimately, these two approaches are equivalent. 
+We will demonstrate how to analyze the high fat diet data using linear models instead of directly applying a t-test. We will demonstrate how ultimately these two approaches are equivalent. 
 
 We start by reading in the data and creating a quick stripchart:
 
@@ -56,11 +56,11 @@ head(X)
 
 The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/linear/linear_models_in_practice.Rmd).
 
-Before we use our shortcut for running linear models, `lm`, we want to review what will happen internally. Inside of `lm`, we will form the design matrix {$$}\mathbf{X}{/$$}, and calculate the {$$}\boldsymbol{\beta}{/$$} which minimizes the sum of squares, as described in a previously. The formula for this solution is:
+Before we use our shortcut for running linear models, `lm`, we want to review what will happen internally. Inside of `lm`, we will form the design matrix {$$}\mathbf{X}{/$$} and calculate the {$$}\boldsymbol{\beta}{/$$}, which minimizes the sum of squares using the previously described formula. The formula for this solution is:
 
 {$$} \hat{\boldsymbol{\beta}} = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{Y} {/$$}
 
-We can calculate this in R using our matrix multiplication operator `%*%`, the inverse function `solve` and the transpose function `t`.
+We can calculate this in R using our matrix multiplication operator `%*%`, the inverse function `solve`, and the transpose function `t`.
 
 
 
@@ -137,13 +137,13 @@ summary(fit)
 
 #### Examining the coefficients
 
-The following plot provides a visualization of  the meaning of the coefficients with colored arrows (code not shown):
+The following plot provides a visualization of the meaning of the coefficients with colored arrows (code not shown):
 
 ![Estimated linear model coefficients for bodyweight data illustrated with arrows.](images/R/linear_models_in_practice-tmp-parameter_estimate_illustration-1.png) 
 
 To make a connection with material presented earlier, this simple linear model is actually giving us the same result (the t-statistic and p-value) for the difference as a specific kind of t-test. This is the t-test between two groups with the assumption that the population standard deviation is the same for both groups. This was encoded into our linear model when we assumed that the errors {$$}\boldsymbol{\varepsilon}{/$$} were all equally distributed.
 
-Note that although, in this case, the linear model is equivalent to a t-test, we will soon explore more complicated designs, where the linear model is a useful extension. Below we demonstrate that one does in fact get the exact same results:
+Although in this case the linear model is equivalent to a t-test, we will soon explore more complicated designs, where the linear model is a useful extension. Below we demonstrate that one does in fact get the exact same results:
 
 Our `lm` estimates were:
 
