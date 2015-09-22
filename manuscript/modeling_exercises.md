@@ -116,7 +116,7 @@ A>
 A>    In this case. it is practically the same because {$$}N{/$$} is very large and {$$}Np{/$$} is not 0. These are the assumptions needed for the Poisson to work. What is the Poisson approximation for more than one person winning?
 A>
 A>
-A>10. Now we are going to explore if palindromes are over-represented in some part of the HCMV genome. Make sure you have the latest version of the `dagdata`, load the palindrome data from the Human cytomegalovirus genome, and plot locations of palindromes on the genome for this virus:
+A>10. Now we are going to explore if palindromes are over-represented in some part of the HCMV genome. Make sure you have the latest version of the `dagdata`, load the palindrome data from the Human cytomegalovirus genome, and plot locations of palindromes on the genome for this virus. We provide sample code below. 
 A>
 A>
 A>    
@@ -126,7 +126,7 @@ A>
     plot(locations,rep(1,length(locations)),ylab="",yaxt="n")
     ```
 A>    
-A>    These palindromes are quite rare, {$$}p{/$$} is very small. If we break the genome into bins of 4000 basepairs, then we have {$$}Np{/$$} not so small and we might be able to use Poisson to model the number of palindromes in each bin:
+A>   
 A>
 A>    
     ```r
