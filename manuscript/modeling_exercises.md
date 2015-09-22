@@ -125,6 +125,58 @@ A>
     data(hcmv)
     plot(locations,rep(1,length(locations)),ylab="",yaxt="n")
     ```
+A>    These palindromes are quite rare, {$$}p{/$$} is very small. If we break the genome into bins of 4000 basepairs, then we have {$$}Np{/$$} not so small and we might be able to use Poisson to model the number of palindromes in each bin:
+A>
+A>    
+    ```r
+    breaks=seq(0,4000*round(max(locations)/4000),4000)
+    tmp=cut(locations,breaks)
+    counts=as.numeric(table(tmp))
+    ```
+A>    So if our model is correct `counts`, should follow a Poisson distribution. The distribution seems about right:
+A>
+A>    
+    ```r
+    hist(counts)
+    ```
+A>    Let {$$}X_1,\dots,X_n{/$$} be the random variables representing counts then:   
+A>  
+A>    {$$}
+A>\Pr(X_i=k) = \lambda^k / k! \exp ( -\lambda)
+A>    {/$$}
+A>
+A>    To fully describe this distribution, we need {$$}\lambda{/$$}. For this we will use MLE.
+A>To compute the Maximum Likelihood Estimate (MLE) we ask what is the probability of observing our data (which we denote with small caps):
+A>
+A>    {$$}
+A>    L(\lambda) = \mbox{Pr}(X_1=x_1 \mbox{ and } X_2=x2 \mbox{ and } \dots X_n=x_n)
+A>    {/$$}
+A>
+A>    We assume that the {$$}X{/$$} are independent, thus the probabilities multiply:
+A>
+A>    {$$}
+A>    L(\lambda) = \mbox{Pr}(X_1=x_1) \times \mbox{Pr}(X_2=x2) \times \dots \times \mbox{Pr}(X_n=x_n)
+A>    {/$$}
+A>
+A>    Now we can write it in R. For example, for {$$}\lambda=4{/$$} we have:
+A>    
+A>    
+    ```r
+    probs <- dpois(counts,4)
+    likelihood <- prod(probs)
+    likelihood
+    ```
+A>    Notice that it's a tiny number. It is usually more convenient to compute log-likelihoods:
+A>
+A>    
+    ```r
+    logprobs <- dpois(counts,4,log=TRUE)
+    loglikelihood <- sum(logprobs)
+    loglikelihood
+    ```
+A>    Now write a function that takes {$$}\lambda{/$$} and the vector of counts as input and returns the log-likelihood. Compute this log-likelihood for `lambdas = seq(0,15,len=300)` and make a plot.  What value of `lambdas` maximizes the log-likelihood? 
+A>
+A>
 A>11. The point of collecting this dataset was to try to determine if there is a region of the genome that has a higher palindrome rate than expected. We can create a plot and see the counts per location:
 A>
 A>    
