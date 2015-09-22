@@ -46,7 +46,7 @@ A>
     params = expand.grid(k=ks,m=ms)
     ```
 A>
-A>    Now use apply or a loop to obtain error rates for each of these pairs of parameters. Which pair of parameters minimizes the error rate?
+A>    Now use apply or a for-loop to obtain error rates for each of these pairs of parameters. Which pair of parameters minimizes the error rate?
 A>
 A>
 A>5. Repeat exercise 4, but now perform the t-test filtering before the cross validation. Note how this biases the entire result and gives us much lower estimated error rates.
