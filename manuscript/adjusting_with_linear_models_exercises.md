@@ -47,6 +47,7 @@ A>
 A>5. The above result shows that the great majority of the autosomal genes show differences due to processing data. This provides further evidence that confounding is resulting in false positives. So we are going to try to model the month effect to better estimate the sex effect. We are going to use a linear model:
 A>
 A>    Which of the following creates the appropriate design matrix?
+A>    
 A>    - A) `X = model.matrix(~sex+ethnicity)`
 A>    - B) `X = cbind(sex,as.numeric(month))`  
 A>    - C) It can't be done with one line.
