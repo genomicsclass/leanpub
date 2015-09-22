@@ -37,8 +37,10 @@ A>
 A>
 A>5. We can show that the binomial approximation is approximately normal when {$$}N{/$$} is large and {$$}p{/$$} is not too close to 0 or 1. This means that:
 A>
-A>    {$$}\frac{S_N - \mbox{E}(S_N)}{ \sqrt{ \mbox{Var}(S_N)}}  {/$$} 
-A>
+A>    {$$}
+A>    \frac{S_N - \mbox{E}(S_N)}{ \sqrt{ \mbox{Var}(S_N)}}
+A>    {/$$} 
+A>    
 A>    is approximately normal with mean 0 and SD 1. Using the results for sums of independent random variables we learned in a previous course, we can show that {$$}\mbox{E}(S_N) = Np{/$$} and {$$}\mbox{Var}(S_n)=Np(1-p){/$$}. 
 A>
 A>    The genome has 3 billion bases. About 20% are C, 20% are G, 30% are T, and 30% are A. Suppose you take a random interval of 20 bases, what is the exact probability that the GC-content (proportion of Gs of Cs) is greater than 0.35 and smaller or equal to 0.45 in this interval?
@@ -47,8 +49,6 @@ A>
 A>
 A>6. For the question above, what is the normal approximation to the probability?
 A>
-A>
-A>    Note how close these are. 
 A>
 A>7. Repeat exercise 4, but using an interval of 1000 bases. What is the difference (in absolute value) between the normal approximation and the exact distribution of the GC-content being greater than 0.35 and lesser or equal to 0.45?
 A>
@@ -88,6 +88,7 @@ A>9. We saw in the previous question that when {$$}p{/$$} is very small, the nor
 A>
 A>    Earlier we computed 1 or more people winning the lottery when the probability of winning was 1 in 175,223,510 and 20,000,000 people bought a ticket. Using the binomial, we can compute the probability of exactly two people winning to be:
 A>    
+A>    
     ```r
     N <- 20000000
     p <- 1/175223510
@@ -110,9 +111,7 @@ A>
     dpois(2,N*p)
     ```
 A>    
-A>    In this case. it is practically the same because {$$}N{/$$} is very large and {$$}Np{/$$} is not 0. These are the assumptions needed for the Poisson to work. 
-A>
-A>    What is the Poisson approximation for more than one person winning?
+A>    In this case. it is practically the same because {$$}N{/$$} is very large and {$$}Np{/$$} is not 0. These are the assumptions needed for the Poisson to work. What is the Poisson approximation for more than one person winning?
 A>
 A>
 A>10. Now we are going to explore if palindromes are over-represented in some part of the HCMV genome. Make sure you have the latest version of the `dagdata`, load the palindrome data from the Human cytomegalovirus genome, and plot locations of palindromes on the genome for this virus:
@@ -162,6 +161,7 @@ A>    {/$$}
 A>
 A>    Now we can write it in R. For example, for {$$}\lambda=4{/$$} we have:
 A>    
+A>    
     ```r
     probs <- dpois(counts,4)
     likelihood <- prod(probs)
@@ -177,17 +177,8 @@ A>
     loglikelihood
     ```
 A>
-A>    Now write a function that takes {$$}\lambda{/$$} and the vector of counts as input and returns the log-likelihood. Compute this log-likelihood for `lambdas = seq(0,15,len=300)` and make a plot. 
+A>    Now write a function that takes {$$}\lambda{/$$} and the vector of counts as input and returns the log-likelihood. Compute this log-likelihood for `lambdas = seq(0,15,len=300)` and make a plot.  What value of `lambdas` maximizes the log-likelihood? 
 A>
-A>    What value of `lambdas` maximizes the log-likelihood? 
-A>
-A>
-A>    It turns out that we can work mathematically what {$$}\lambda{/$$} maximizes the likelihood using calculus.  The average of the counts is the MLE.
-A>
-A>    
-    ```r
-    mean(counts)
-    ```
 A>
 A>11. The point of collecting this dataset was to try to determine if there is a region of the genome that has a higher palindrome rate than expected. We can create a plot and see the counts per location:
 A>
@@ -232,9 +223,6 @@ A>
 A>
 A>15. Use the Bonferonni correction to determine the p-value cut-off that guarantees a FWER of 0.05. What is this p-value cutoff ?
 A>
-A>
-A>
-A>    Note that our observed p-value satisfy the Bonferroni correction. 
 A>
 A>
 A>16. Create a qq-plot to see if our Poisson model is a good fit:
@@ -288,6 +276,7 @@ A>18. Now fit an F-distribution with 14 degrees of freedom using the `fitFDist` 
 A>
 A>
 A>19. Now create a qq-plot of the observed sample variances versus the F-distribution quantiles. Which of the following best describes the qq-plot?
+A>
 A>    - A) The fitted F-distribution provides a perfect fit.
 A>    - B) If we exclude the lowest 0.1% of the data, the F-distribution provides a good fit.
 A>    - C) The normal distribution provided a better fit.
