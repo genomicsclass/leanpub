@@ -105,7 +105,7 @@ A>
 A>10. What is this correlation (in absolute value)?
 A>
 A>
-A>11. Now instead of using month, which we have shown does not quite describe the batch, add the two estimated factors in exercise 9 to the linear model we used above.
+A>11. Now instead of using month, which we have shown does not quite describe the batch, add the two estimated factors in exercise 9 to the linear model we used above:
 A>
 A>    
     ```r
@@ -115,7 +115,6 @@ A>
 A>    Apply this model to each gene and compute q-values for the sex difference.
 A>    
 A>    How many q-values {$$}<{/$$} 0.1 for the sex comparison?
-A>	
 A>
 A>
 A>12. What proportion of the genes are on chrX and chrY?
