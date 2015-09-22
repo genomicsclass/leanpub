@@ -5,14 +5,13 @@ title: Adjusting for Batch Effects with Linear Models
 
 
 
-
 ## Motivation for Statistical Approaches
 
 The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/batch/adjusting_with_linear_models.Rmd).
 
-#### Data Example
+#### Data example
 
-To illustrate how we can adjust for batch effects using statistical methods, we will create a data example in which the outcome of interest is somewhat confounded with batch, but not completely. To aid with the illustration and assessment of the methods we demonstrate, we will also select an outcome for which we have an expectation of what genes should be diferentially expressed. Namely, we make sex the outcome of interest and expect genes on the Y chromosome to be diferentially expressed. We may also see genes from the X chromosome as differentially expressed since some escape X inactivation. The data with these properties is the one included in this dataset:
+To illustrate how we can adjust for batch effects using statistical methods, we will create a data example in which the outcome of interest is somewhat confounded with batch, but not completely. To aid with the illustration and assessment of the methods we demonstrate, we will also select an outcome for which we have an expectation of what genes should be differentially expressed. Namely, we make sex the outcome of interest and expect genes on the Y chromosome to be differentially expressed. We may also see genes from the X chromosome as differentially expressed since some escape X inactivation. The data with these properties is the one included in this dataset:
 
 
 ```r
@@ -40,18 +39,18 @@ To illustrate the confounding, we will pick some genes to show in a heatmap plot
 
 ![Image of gene expression data for genes selected to show difference in group as well as the batch effect, along with some randomly chosen genes.](images/R/adjusting_with_linear_models-tmp-image_of_subset-1.png) 
 
-In the plot above the first 12 columns are females (1s) and the last 12 columns are males (0s). We can see some Y chromosome genes towards the top since they are blue for females and red from males. We can also see some genes that correlate with month towards the bottom of the image. Some genes are low in June (6) and high in october (10), while other do the oppossite. The month effect is not as clear as the sex effect, but it is certainly present.  
+In the plot above, the first 12 columns are females (1s) and the last 12 columns are males (0s). We can see some Y chromosome genes towards the top since they are blue for females and red from males. We can also see some genes that correlate with month towards the bottom of the image. Some genes are low in June (6) and high in October (10), while others do the opposite. The month effect is not as clear as the sex effect, but it is certainly present.  
 
-In what follows, we will imitate the typical analysis we would do in practice. We will act as if we don't know which genes are supposed to be differentially expressed between males and females, find genes that are differentially expressed, and the eveluate these methods by comparing to what we expect to be correct. Note while in the plot we only show a few genes, for the analysis we analyze 
+In what follows, we will imitate the typical analysis we would do in practice. We will act as if we don't know which genes are supposed to be differentially expressed between males and females, find genes that are differentially expressed, and the evaluate these methods by comparing to what we expect to be correct. Note while in the plot we only show a few genes, for the analysis we analyze 
 all 8,793.
 
 
-#### Assessment Plots and Summaries
+#### Assessment plots and summaries
 
-For the assessment of the methods we present we will assume that 
-autosomal (not on chromosom X or Y) genes on the list are likely false positives. We will also assume that genes on chromosom Y are likely true positives. Chromosom X genes could go either way. This gives us the opportunity to estimate both specificity and sensitivity. Since in practice we rarely know the "truth", these evaluations are not possible. Simulations are therefore commonly used for evaluation purposes: we know the truth because we construct the data. However, simulations are at risk of not capturing all the nuances of real experimental data. In contrast, this dataset is an experimental dataset. 
+For the assessment of the methods we present, we will assume that 
+autosomal (not on chromosome X or Y) genes on the list are likely false positives. We will also assume that genes on chromosome Y are likely true positives. Chromosome X genes could go either way. This gives us the opportunity to estimate both specificity and sensitivity. Since in practice we rarely know the "truth", these evaluations are not possible. Simulations are therefore commonly used for evaluation purposes: we know the truth because we construct the data. However, simulations are at risk of not capturing all the nuances of real experimental data. In contrast, this dataset is an experimental dataset. 
 
-In the next sections we will use the histogram p-values  to evaluate the specificity (low false positive rates) of the batch adjustment procedures presented here. Because the autosomal genes are not expected to be differentially expressed, we should see a a flat p-value histogram. To evaluate sensitivity (low false negative rates), we will report the number of the reported genes on chromosom X and chromsome Y for which we reject the null hypothesis. We also include a volcano plot with a horizontal dashed line separating the genes called significant from those that are not, and colors used to highlight chromosome X and Y genes.
+In the next sections, we will use the histogram p-values  to evaluate the specificity (low false positive rates) of the batch adjustment procedures presented here. Because the autosomal genes are not expected to be differentially expressed, we should see a a flat p-value histogram. To evaluate sensitivity (low false negative rates), we will report the number of the reported genes on chromosome X and chromosome Y for which we reject the null hypothesis. We also include a volcano plot with a horizontal dashed line separating the genes called significant from those that are not, and colors used to highlight chromosome X and Y genes.
 
 Below are the results of applying a naive t-test and report genes with q-values smaller than 0.1. 
 
@@ -85,7 +84,7 @@ cat("Total genes with q-value < 0.1: ",length(index),"\n",
 ## Number of selected genes on chrX: 12
 ```
 
-We immediately not that the histogram is not flat. Instead, low p-values are over-represented. Furthermore, more than half of the genes on the final list are autosomal. We now describe two statistical solutions and try to improve on this.
+We immediately note that the histogram is not flat. Instead, low p-values are over-represented. Furthermore, more than half of the genes on the final list are autosomal. We now describe two statistical solutions and try to improve on this.
 
 ## Adjusting for Batch Effects with Linear Models
 
@@ -168,7 +167,7 @@ index <- which(qvals<0.1)
 abline(h=-log10(max(res$p.value[index])))
 ```
 
-![p-value histogram and volcano plot for comparison between sexes after adjustement for month. The Y chromosome genes (considered to be positives) are highlighted in red. The X chromosome genes (a subset is considered to be positive) are shown in green.](images/R/adjusting_with_linear_models-tmp-pvalue_hist_and_volcano_plots2-1.png) 
+![p-value histogram and volcano plot for comparison between sexes after adjustment for month. The Y chromosome genes (considered to be positives) are highlighted in red. The X chromosome genes (a subset is considered to be positive) are shown in green.](images/R/adjusting_with_linear_models-tmp-pvalue_hist_and_volcano_plots2-1.png) 
 
 ```r
 cat("Total genes with q-value < 0.1: ",length(index),"\n",
@@ -182,10 +181,10 @@ cat("Total genes with q-value < 0.1: ",length(index),"\n",
 ## Number of selected genes on chrX: 9
 ```
 
-There is a great improvement in specificity (less false positives) without much loss in sensitivity (we still find many chromosom Y genes). However, we still see some bias in the histogram. In a later section we will see that month does not perfectly account for the batch effect and that better estimates are possible.
+There is a great improvement in specificity (less false positives) without much loss in sensitivity (we still find many chromosome Y genes). However, we still see some bias in the histogram. In a later section we will see that month does not perfectly account for the batch effect and that better estimates are possible.
 
 
-#### A Note on Computing Efficiency
+#### A note on computing efficiency
 
 In the code above, the design matrix does not change within the iterations we are computing {$$}(X^\top X)^{-1}{/$$} repeatedly and applying to each gene. Instead we can perform this calculation in one matrix algebra calculation by computing it once and then obtaining all the betas by multiplying {$$}(X^\top X)^{-1}X^\top Y{/$$} with the columns of {$$}Y{/$$} representing genes in this case. The `limma` package has an implementation of this idea (using the QR decomposition). Notice how much faster this is:
 
