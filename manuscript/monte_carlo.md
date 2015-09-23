@@ -106,7 +106,9 @@ qqline(controlPopulation)
 
 ![Quantile-quantile of original data compared to theoretical quantile distribution.](images/R/monte_carlo-tmp-dat_qqplot-1.png) 
 
-### Parametric Simulations for the Observations
+## Parametric Simulations for the Observations
+
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/inference/monte_carlo.Rmd).
 
 The technique we used to motivate random variables and the null
 distribution was a type of Monte Carlo simulation. We had access to
