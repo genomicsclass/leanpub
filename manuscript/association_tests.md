@@ -27,7 +27,7 @@ so the t-distribution approximation is certainly out of the
 question. We could use CLT if the sample size is large enough;
 otherwise, we can use *association tests*. 
 
-### Lady Tasting Tea
+#### Lady Tasting Tea
 
 One of the most famous examples of hypothesis testing was performed by
 [R.A. Fisher](https://en.wikipedia.org/wiki/Ronald_Fisher).
@@ -58,7 +58,7 @@ under the null hypothesis, is {$$}\approx 0.24{/$$}. This is the p-value. The
 procedure that produced this p-value is called _Fisher's exact test_ and
 it uses the *hypergeometric distribution*. 
 
-### Two By Two Tables
+#### Two By Two Tables
 
 The data from the experiment above can be summarized by a 2 by 2 table:
 
@@ -97,7 +97,7 @@ fisher.test(tab,alternative="greater")
 ##   6.408309
 ```
 
-### Chi-square Test
+#### Chi-square Test
 
 Genome-wide association studies (GWAS) have become ubiquitous in
 biology. One of the main statistical summaries used in these studies
@@ -250,7 +250,7 @@ chisq.test(tab)$p.value
 ## [1] 0.08857435
 ```
 
-### Large Samples, Small p-values
+#### Large Samples, Small p-values
 
 As mentioned earlier, reporting only p-values is not an appropriate
 way to report the results of your experiment. Many genetic association
@@ -278,7 +278,7 @@ chisq.test(tab)$p.value
 ## [1] 1.219624e-09
 ```
 
-### Confidence Intervals For The Odd Ratio
+#### Confidence Intervals For The Odd Ratio
 
 Computing confidence intervals for the OR is not mathematically
 straightforward. Unlike other statistics, for which we can derive
