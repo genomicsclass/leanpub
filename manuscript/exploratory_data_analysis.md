@@ -122,7 +122,9 @@ for(df in dfs){
 
 <a name="boxplots"></a>
 
-### Boxplots
+## Boxplots
+
+The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/eda/exploratory_data_analysis.Rmd).
 
 Data is not always normally distributed. Income is a widely cited
 example. In these cases, the average and standard deviation are not
