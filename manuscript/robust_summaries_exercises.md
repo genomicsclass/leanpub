@@ -56,7 +56,7 @@ A>3. Now try the same thing with the sample standard deviation (the `sd` functio
 A>
 A>
 A>
-A>4. Compare the result above to the median absolute deviation in R, which is calculated with the `mad` function. Note that the mad is unaffected by the addition of a single outlier. The `mad` function in R includes the scaling factor 1.4826, which was mentioned in the video, such that `mad` and `sd` are very similar for a sample from a normal distribution. What's the MAD with the outlier chick divided by the MAD without the outlier chick?
+A>4. Compare the result above to the median absolute deviation in R, which is calculated with the `mad` function. Note that the mad is unaffected by the addition of a single outlier. The `mad` function in R includes the scaling factor 1.4826, such that `mad` and `sd` are very similar for a sample from a normal distribution. What's the MAD with the outlier chick divided by the MAD without the outlier chick?
 A>
 A>
 A>
