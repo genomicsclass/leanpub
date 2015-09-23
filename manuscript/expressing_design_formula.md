@@ -9,7 +9,7 @@ title: Expressing design formula in R
 
 The R markdown document for this section is available [here](https://github.com/genomicsclass/labs/tree/master/linear/expressing_design_formula.Rmd).
 
-Here we will show how to use the two base R functions, `formula`
+Here we will show how to use the two R functions, `formula`
 and `model.matrix`, in order to produce *design matrices* (also known as *model matrices*) for a variety of linear models. For example, in the mouse diet examples we wrote the model as
 
 {$$} 
@@ -92,8 +92,7 @@ Once we define a design matrix, we are ready to find the least squares estimates
 #### Choice of design
 
 The choice of design matrix is a critical step in linear modeling since it encodes which coefficients will be fit in the model, as well as the inter-relationship between the samples. 
-
-<!--- The very simplest design matrix is a column of 1's, where a single coefficient {$$}\beta_0{/$$} is fit for all the experimental units. For standard linear modeling, this fitted coefficient will simply be the average of the observed values  ({$$}\mathbf{Y}{/$$}). However, this is not our typical use of linear models. -->
+A common misunderstanding is that the choice of design follow straightforward from a description of which samples were included in the experiment. This is not the case. The basic information about each sample (whether control or treatment group, experimental batch, etc.) does not imply a single 'correct' design matrix. The design matrix additionally encodes various assumptions about how the variables in {$$}\mathbf{X}{/$$} explain the observed values in {$$}\mathbf{Y}{/$$}, on which the investigator must decide.
 
 For the examples we cover here, we use linear models to make comparisons between different groups. Hence, the design matrices that we ultimately work with will have at least two columns: an _intercept_ column, which consists of a column of 1's, and a second column, which specifies which samples are in a second group. In this case, two coefficients are fit in the linear model: the intercept, which represents the population average of the first group, and a second coefficient, which represents the difference between the population averages of the second group and the first group. The latter is typically the coefficient we are interested in when we are performing statistical tests: we want to know if their is a difference between the two groups.
 
@@ -328,7 +327,7 @@ model.matrix(~ diet*sex)
 
 #### Releveling
 
-The level which is chosen for the *reference level* or *base level* is the level which is contrasted against.  By default, this is simply the first level alphabetically. We can specify that we want group 2 to be the base level by either using the `relevel` function:
+The level which is chosen for the *reference level* is the level which is contrasted against.  By default, this is simply the first level alphabetically. We can specify that we want group 2 to be the reference level by either using the `relevel` function:
 
 
 ```r
@@ -415,7 +414,7 @@ model.matrix(~ tt + I(tt^2))
 
 The `I` function above is necessary to specify a mathematical transformation of a variable. See `?I` for more information.
 
-In the life sciences, we we could be interested in testing various dosages of a treatment, where we expect a specific relationship between a measured quantity and the dosage, e.g. 0 mg, 10mg, 20mg. 
+In the life sciences, we could be interested in testing various dosages of a treatment, where we expect a specific relationship between a measured quantity and the dosage, e.g. 0 mg, 10mg, 20mg. 
 
 The assumptions imposed by including continuous data as variables are typically hard to defend and motivate than the indicator function variables. Why the indicator variables simply assume a different mean between two groups, continuous variables assume a very specific relationship between the outcome and predictor variables. 
 
