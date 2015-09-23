@@ -16,7 +16,7 @@ The R markdown document for this section is available [here](https://github.com/
 
 
 
-This course introduces the statistical concepts necessary to understand p-values and confidence intervals. These terms are ubiquitous in the life science literature. Let's use [this paper](http://diabetes.diabetesjournals.org/content/53/suppl_3/S215.full]) as an example. 
+This chapter introduces the statistical concepts necessary to understand p-values and confidence intervals. These terms are ubiquitous in the life science literature. Let's use [this paper](http://diabetes.diabetesjournals.org/content/53/suppl_3/S215.full]) as an example. 
 
 Note that the abstract has this statement: 
 
@@ -26,8 +26,8 @@ To support this claim they provide the following in the results section:
 
 > "Already during the first week after introduction of high-fat diet, body weight increased significantly more in the high-fat diet-fed mice ({$$}+{/$$} 1.6 {$$}\pm{/$$} 0.1 g) than in the normal diet-fed mice ({$$}+{/$$} 0.2 {$$}\pm{/$$} 0.1 g; P < 0.001)."
 
-What does P < 0.001 mean? What are the {$$}\pm{/$$} included? In this class,
-we will learn what this means and learn to compute these values in
+What does P < 0.001 mean? What are the {$$}\pm{/$$} included?
+We will learn what this means and learn to compute these values in
 R. The first step is to understand random variables. To do
 this, we will use data from a mouse database (provided by Karen
 Svenson via Gary Churchill and Dan Gatti and partially funded by P50
