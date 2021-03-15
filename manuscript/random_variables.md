@@ -16,7 +16,7 @@ The R markdown document for this section is available [here](https://github.com/
 
 
 
-This chapter introduces the statistical concepts necessary to understand p-values and confidence intervals. These terms are ubiquitous in the life science literature. Let's use [this paper](http://diabetes.diabetesjournals.org/content/53/suppl_3/S215.full]) as an example. 
+This chapter introduces the statistical concepts necessary to understand p-values and confidence intervals. These terms are ubiquitous in the life science literature. Let's use [this paper](http://diabetes.diabetesjournals.org/content/53/suppl_3/S215.full) as an example. 
 
 Note that the abstract has this statement: 
 
